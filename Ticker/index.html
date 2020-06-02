@@ -1,0 +1,359 @@
+<!doctype html public "-//IETF//DTD HTML//EN//2.0">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="Generator" content="Microsoft Publisher 97">
+<title>Ticker</title>
+</head>
+<body bgcolor="#ffffff" link="#009966" vlink="#663399" text="#000000" background="back.gif">
+<a name=Page1></a>
+  
+  <table border=0 cellpadding=0 cellspacing=0>
+    <tr>
+      <td width=148 height=6></td>
+      <td width=2></td>
+      <td width=42></td>
+      <td width=120></td>
+      <td width=88></td>
+      <td width=2></td>
+      <td width=54></td>
+      <td width=37></td>
+      <td width=35></td>
+      <td width=36></td>
+      <td width=2></td>
+      <td width=10></td>
+    </tr>
+    <tr>
+      <td height=41></td>
+      <td width=416 height=41 colspan=9 rowspan=1 valign=top align=left>
+
+<p align=center><center><B><font face="Arial" size=5>ActiveX News Ticker</center></p></B></font>
+
+
+      </td>
+      <td colspan=2></td>
+    </tr>
+    <tr>
+      <td height=7></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=102></td>
+      <td></td>
+      <td width=416 height=102 colspan=9 rowspan=1 valign=top align=left>
+        
+        <table border=0 cellpadding=0 cellspacing=0>
+          <tr>
+            <td width=4 height=4></td>
+            <td width=408></td>
+            <td width=4></td>
+          </tr>
+          <tr>
+            <td height=94></td>
+            <td width=408 height=94 valign=top align=left>
+
+<p align=left><font face="Britannic Bold" size=4>T</font><font face="Britannic Bold" size=3>HIS SITE IS FOR DEMOSTRATING AN </font><font face="Britannic Bold" size=4>A</font><font face="Britannic Bold" size=3>CTIVE</font><font face="Britannic Bold" size=4>X C</font><font face="Britannic Bold" size=3>ONTROL TO ALLOW </font><font face="Britannic Bold" size=4>M</font><font face="Britannic Bold" size=3>ICROSOFT TO PROVE </font><font face="Britannic Bold" color=#000080 size=4>S</font><font face="Britannic Bold" color=#000080 size=3>IDE </font><font face="Britannic Bold" color=#000080 size=4>B</font><font face="Britannic Bold" color=#000080 size=3>UILDER </font><font face="Britannic Bold" color=#000080 size=4>M</font><font face="Britannic Bold" color=#000080 size=3>EMBERSHIP </font><font face="Britannic Bold" color=#000080 size=4>U</font><font face="Britannic Bold" color=#000080 size=3>PGRADE</font><font face="Britannic Bold" size=4> </font><font face="Britannic Bold" size=3>FOR </font><font face="Britannic Bold" color=#ff9933 size=4>P</font><font face="Britannic Bold" color=#ff9933 size=3>ATRICK </font><font face="Britannic Bold" color=#ff9933 size=4>L</font><font face="Britannic Bold" color=#ff9933 size=3>IN</font><font face="Britannic Bold" size=4> </font><font face="Britannic Bold" size=3>WHO IS USING </font><font face="Britannic Bold" size=4>A</font><font face="Britannic Bold" size=3>CTIVE</font><font face="Britannic Bold" size=4>X </font><font face="Britannic Bold" size=3>CONTROLS TO CREATE HIGH-TRAFFIC, INTERACTIVE SITES AS AN ADVANCED SITE BUILDER.</p></font>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td height=4></td>
+            <td colspan=2></td>
+          </tr>
+        </table>
+
+
+
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td height=12></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=50></td>
+      <td></td>
+      <td width=416 height=50 colspan=9 rowspan=1 valign=top align=left>
+        
+<!--TICKER START-->
+		<SCRIPT LANGUAGE="VBScript">
+		<!--
+		dim majorver
+		dim ua
+		dim ie3
+		dim ie4
+		dim aol
+		dim minorver4
+		dim update
+		dim winplat
+		dim nav
+		dim win32
+		dim intButton
+		set nav = navigator
+		ua = nav.useragent
+		minorver4 = ""
+
+
+		if len(ua) >=1 then 'nav object is supported
+			winplat = mid(ua,instr(ua,"Windows") + 8, 2)
+			win32 = mid(ua,instr(ua,"Win") + 3, 2) 'In some user agent strings the platform is referred to as Win32
+			majorver = mid(ua,instr(ua,"MSIE") + 5, 1)
+			ie3 = majorver = 3 and (winplat = "NT" or winplat = "95" or win32 = "32")
+			ie4 = majorver = 4 and (winplat = "NT" or winplat = "95" or win32 = "32")
+			update = instr(ua,"Update a")
+			aol = instr(ua,"AOL")
+
+
+			if ie4 then minorver4 = mid(ua,instr(ua,"MSIE") + 7, 3)
+			If (ie3 or minorver4 = "0b1") and update = 0 and aol = 0 then 'filter down to ie3 or ie40b1(PP1) then see if "update a" is true and not AOL
+				intButton = msgbox ("Get Authenticode 2.0 now. This update includes valuable new features and renews key Authenticode certificates that help you safely download software from the Web after June 30. The update should take less than 5 minutes to download over a 28.8 Kbps modem. Do you want to visit our Authenticode Update page?", 4 + 64, "Download the Authenticode 2.0 Update Now!") 
+				If intButton = 6 then
+					location.href="http://www.microsoft.com/ie/security/authent2.htm"
+				end if
+			end if
+		end if
+		-->
+		</SCRIPT>
+
+		<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" HEIGHT=34>
+			<TR>
+				<TD WIDTH=100% COLSPAN=3 HEIGHT=1>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD VALIGN=MIDDLE>
+					<P>
+					<IMG SRC="/library/images/gifs/ticker/hrb.gif" WIDTH=446 HEIGHT=1 ALT="">
+
+<OBJECT
+	id=iexr2
+	type="application/x-oleobject"
+	classid="clsid:AE775D48-49AA-11d1-8F1C-00C04FB67063"
+	codebase="http://fdl.msn.com/public/investor/v5/Ticker.cab#version=5,1998,0204,1"
+	width="100%"
+	height=34
+	>
+		<param name="ServerRoot" value="http://investor.msn.com">
+		<param name="AppRoot" value="http://investor.msn.com ">
+		<param name="StockTarget" value="_top">
+		<param name="NewsTarget" value="_top">
+		<param name="BackgroundColor" value="0x00FFFFFF">
+</OBJECT>
+					
+
+					<BR>
+					<IMG SRC="/library/images/gifs/ticker/hrb.gif" WIDTH=446 HEIGHT=1 ALT="">
+					<P>
+
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+			</TR>
+			<TR>
+				<TD WIDTH=100% COLSPAN=3 HEIGHT=1>
+				</TD>
+			</TR>
+		</TABLE>
+		<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" HEIGHT=34>
+			<TR>
+				<TD>
+				</TD>
+				<TD WIDTH="480" VALIGN=MIDDLE>
+					<SPAN STYLE="text-align: center; font-size: 8pt">
+						<IMG SRC="/library/images/gifs/homepage/1ptrans.gif" WIDTH=1 HEIGHT=5 ALT="" BORDER=0>
+						<BR>
+						Quote Information is provided by <A HREF="http://www.spcomstock.com" TARGET="_top">S&P Comstock, Inc.</A>
+						 and delayed at least 20 minutes.<BR>
+						<A HREF="http://investor.msn.com/common/disclaim.asp" TARGET="_top">IMPORTANT information: please read. &copy; 1996-98 Microsoft Corporation and/or its suppliers.  All rights reserved.</A>
+						<BR>
+						<IMG SRC="/library/images/gifs/homepage/1ptrans.gif" WIDTH=1 HEIGHT=5 ALT="" BORDER=0>
+					</SPAN>
+				</TD>
+				<TD>
+				</TD>
+			</TR>
+		</TABLE>
+	<!--TICKER END-->
+
+
+
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td height=10></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=1></td>
+      <td></td>
+      <td width=414 height=1 colspan=8 rowspan=1 valign=top align=left>
+        <img width=414 height=1 border=0 src="img0.gif">
+      </td>
+      <td colspan=2></td>
+    </tr>
+    <tr>
+      <td height=10></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=20></td>
+      <td colspan=7></td>
+      <td width=71 height=70 colspan=2 rowspan=3 valign=top align=left>
+        <map name="map342">
+          <area shape="rect" coords="17,1,59,46" href="mailto:patrick_lin@lotus.com">
+          <area shape="rect" coords="0,0,70,70" href="mailto:patrick_lin@lotus.com">
+        </map>
+        <img width=71 height=70 border=0 src="img1.gif" usemap="#map342">
+      </td>
+      <td colspan=2></td>
+    </tr>
+    <tr>
+      <td height=30></td>
+      <td width=308 height=30 colspan=6 rowspan=1 valign=top align=left>
+
+<p align=left><font face="Arial" size=2><a href="mailto:patrick_lin@lotus.com">patrick_lin@lotus.com</a></p></font>
+
+
+      </td>
+      <td></td>
+      <td colspan=2></td>
+    </tr>
+    <tr>
+      <td height=20></td>
+      <td colspan=7></td>
+      <td colspan=2></td>
+    </tr>
+    <tr>
+      <td height=20></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=1></td>
+      <td></td>
+      <td width=414 height=1 colspan=8 rowspan=1 valign=top align=left>
+        <img width=414 height=1 border=0 src="img0.gif">
+      </td>
+      <td colspan=2></td>
+    </tr>
+    <tr>
+      <td height=20></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=6></td>
+      <td colspan=3></td>
+      <td width=88 height=31 colspan=1 rowspan=3 valign=top align=left>
+        <a href="http://www.microsoft.com/ie/default.asp"> <img width=88 height=31 border=0 src="ie_animated.gif"> </a>
+      </td>
+      <td colspan=7></td>
+    </tr>
+    <tr>
+      <td height=22></td>
+      <td></td>
+      <td width=162 height=22 colspan=2 rowspan=1 valign=top align=left>
+        
+        <table border=0 cellpadding=0 cellspacing=0>
+          <tr>
+            <td width=4 height=4></td>
+            <td width=154></td>
+            <td width=4></td>
+          </tr>
+          <tr>
+            <td height=15></td>
+            <td width=154 height=15 valign=top align=left>
+
+<p align=left><B><font face="Arial" size=1>Best experienced with</p></B></font>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td height=4></td>
+            <td colspan=2></td>
+          </tr>
+        </table>
+
+
+
+      </td>
+      <td></td>
+      <td width=164 height=22 colspan=5 rowspan=1 valign=top align=left>
+        
+        <table border=0 cellpadding=0 cellspacing=0>
+          <tr>
+            <td width=4 height=4></td>
+            <td width=157></td>
+            <td width=4></td>
+          </tr>
+          <tr>
+            <td height=15></td>
+            <td width=157 height=15 valign=top align=left>
+
+<p align=left><B><font face="Arial" size=1>Click here to start.</p></B></font>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td height=4></td>
+            <td colspan=2></td>
+          </tr>
+        </table>
+
+
+
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td height=3></td>
+      <td colspan=3></td>
+      <td colspan=7></td>
+    </tr>
+    <tr>
+      <td height=5></td>
+      <td colspan=11></td>
+    </tr>
+    <tr>
+      <td height=36></td>
+      <td colspan=2></td>
+      <td width=336 height=36 colspan=6 rowspan=1 valign=top align=left>
+        
+        <table border=0 cellpadding=0 cellspacing=0>
+          <tr>
+            <td width=4 height=4></td>
+            <td width=328></td>
+            <td width=4></td>
+          </tr>
+          <tr>
+            <td height=28></td>
+            <td width=328 height=28 valign=top align=left>
+
+<p align=left><font face="Arial" size=1>Microsoft is a registered trademark and the Microsoft Internet Explorer Logo is a trademark of Microsoft.</p></font>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td height=4></td>
+            <td colspan=2></td>
+          </tr>
+        </table>
+
+
+
+      </td>
+      <td colspan=3></td>
+    </tr>
+    <tr>
+      <td height=72></td>
+      <td colspan=11></td>
+    </tr>
+  </table>
+
+</body>
+</html>
+

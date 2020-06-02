@@ -1,0 +1,2116 @@
+
+
+<!--
+This page is implemented using a draft specification recently published by the
+Worldwide Web Consortium (W3C) that extends HTML capabilities to provide exact,
+2D layout features.  Refer to http://www.w3.org/pub/TR/WD-layout.htm for more
+information on the tags used in these pages. This source page is displayed in
+the Internet Explorer 3.0 using the Microsoft HTML Layout Control.
+-->
+<SCRIPT LANGUAGE="VBScript">
+<!--
+
+'This section of code initializes several variables and arrays.
+	dim board()
+	dim flags()
+	dim BombKeep()
+	dim LockLater()
+	dim Alive
+	dim TimeCount
+	dim FlagCount
+	dim SafeStepCtr
+	dim BombMarkCtr
+	dim GameWon
+	dim LockRow	
+	dim KilledCell
+	dim OK_To_Continue
+
+'In order to be able to reset the game, the arrays must be redim-able.  This section of
+'code redims the arrays for the first time.
+	redim board(9,9)
+	redim flags(9,9,1)
+	redim BombKeep(9,1)
+	redim LockLater(53)
+
+'This section of code assigns values to several global variables.
+	LockRow = -1
+	GameWon = False
+	BombMarkCtr = 0
+	SafeStepCtr = 0
+	FlagCount = 10
+	Alive = True
+	OK_To_Continue = True
+
+'This section of code calls the first two subroutines that initialize the game.
+	Plant_Mines
+	Fill_Values
+
+'This subroutine randomly sets 10 bombs in the 2d board array.
+Sub Plant_Mines()
+	Dim BombsPlanted
+	BombsPlanted = 0
+	Randomize
+	Do until BombsPlanted = 10
+		BombRow = Int((8 * Rnd)+1)
+		BombColumn = Int((8 * Rnd)+1)
+		if board(BombRow,BombColumn) <> -1 then
+			board(BombRow,BombColumn) = -1
+			BombKeep(BombsPlanted,0) = BombRow
+			BombKeep(BombsPlanted,1) = BombColumn
+			BombsPlanted = BombsPlanted + 1
+		end if
+	loop
+end sub
+
+'This subroutine walks around each cell in the 2d board array and calculates how many
+'bombs the cell touches.  The total number of bombs that the cell touches is stored
+'as the value of the cell.
+Sub Fill_Values
+for row = 1 to 8
+	for column = 1 to 8
+		if board(row,column) <> -1 then
+
+			if board(row-1, column-1) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+			if board(row, column-1) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+			if board(row+1, column-1) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+			if board(row-1, column) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+			if board(row+1, column) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+			if board(row-1, column+1) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+			if board(row, column+1) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+			if board(row+1, column+1) = -1 then
+				board(row,column) = board(row,column) + 1
+			end if
+
+		end if
+	next
+next
+
+'This code is a part of the Fill_Values subroutine which zero-fills the flags 3d array. 
+for row = 1 to 8
+	for column = 1 to 8
+		for plane = 0 to 1
+			flags(row,column,plane) = 0
+		next
+	next
+next
+end sub
+
+'This subroutine fires every second based on the interval of the IETimer control.
+'This event handler changes the caption in the label that shows the elapsed time.
+Sub IeTimer1_Timer()
+	TimeCount = TimeCount + 1
+	TimeLen = Len(TimeCount)
+	Select case TimeLen
+	Case 1
+		Label4.Caption = "00" & TimeCount
+	Case 2
+		Label4.Caption = "0" & TimeCount
+	Case 3
+		Label4.Caption = TimeCount
+	end Select
+end sub
+
+'This subroutine is called anytime a MouseDown event is triggered over one of the
+'ToggleButtons.  The routine establishes whether the timer is running, then checks
+'to see which button the user has pressed down.  Depending on the button pressed,
+'a different code path is called.  If the user pushed the left mouse button down, 
+'the picture is changed on the CommandButton.  Finally, the routine checks to see
+'if the game-win routine should be called. 
+Sub MD_Routine(row,column,button)
+	If OK_To_Continue = True then
+		OK_To_Continue = False
+
+		If button = 1 and IETimer1.Enabled = False then
+			IETimer1.Enabled = True
+		end if
+
+		If button = 2 then
+			Set_Flag row, column
+		else
+			CommandButton1.Picture = SScared.Picture
+			If board(row,column) = -1 then
+				Bomb_Stepped_On row, column
+			else
+				Safe_Step row, column
+			end if
+		end if
+
+		If SafeStepCtr = 54 and BombMarkCtr = 10 then
+			Win_Game
+		end if
+	end if
+end sub
+
+'This subroutine is called when the user clicks on a bomb.  If the ToggleButton is
+'showing a bomb-marking flag, the value of the button is maintained.  If there is 
+'no flag on the square, the routine to blow up the bomb is called.
+Sub Bomb_Stepped_On(BombRow,BombColumn)
+	Set MyBtn = mainboard.controls("TB" & BombRow & BombColumn)
+	If flags(BombRow,BombColumn,0) = 1 then
+		MyBtn.value = true
+	else
+		Killed_Rtn BombRow, BombColumn
+	end if
+end sub
+
+'This subroutine is called when the user clicks on a square that does not hide a bomb.
+'The routine sets the caption of the ToggleButton, and if the caption is null the
+'snake routine is called.  If the caption is not null, the ToggleButton is marked for
+'locking, and the SafeStep counter is incremented.
+Sub Safe_Step(SafeRow, SafeColumn)
+	Set MyBtn = mainboard.controls("TB" & SafeRow & SafeColumn)
+	MyBtn.caption = board(SafeRow,SafeColumn)
+
+	If board(SafeRow,SafeColumn) = "" then
+		RunSnake SafeRow, SafeColumn
+	else
+		LockRow = LockRow + 1
+		LockLater(LockRow) = MyBtn.ID
+
+		If flags(SafeRow,SafeColumn,1) = 0 then
+			SafeStepCtr = SafeStepCtr + 1
+			flags(SafeRow,SafeColumn,1) = 1
+		end if
+	end if
+end sub
+
+'This subroutine is called when the right mouse button is detected in the MouseDown
+'event.  The routine is effectively a tri-state routine to set a flag, a question
+'mark, or clear the picture from the ToggleButton.
+Sub Set_Flag(FlagRow, FlagColumn)
+	Select case flags(FlagRow,FlagColumn,0)
+	case 0
+		flags(FlagRow,FlagColumn,0) = flags(FlagRow,FlagColumn,0) + 1
+		Set MyBtn = mainboard.controls("TB" & FlagRow & FlagColumn)
+		Set_Flag_Counter 1
+		MyBtn.picture = flag.picture
+		BombMarkCtr = BombMarkCtr + 1
+
+	case 1
+		flags(FlagRow,FlagColumn,0) = flags(FlagRow,FlagColumn,0) + 1
+		Set MyBtn = mainboard.controls("TB" & FlagRow & FlagColumn)
+		Set_Flag_Counter -1
+		MyBtn.picture = question.picture
+		BombMarkCtr = BombMarkCtr - 1
+
+	case 2
+		flags(FlagRow,FlagColumn,0) = 0
+		Set MyBtn = mainboard.controls("TB" & FlagRow & FlagColumn)
+		MyBtn.picture = label1.picture
+	end select
+end sub
+
+'This subroutine is called when a flag is set on a ToggleButton.  The routine
+'maintains a counter and sets the value of the counting label based on the value
+'of the counter.  This routine parses the value of the counter and aligns the 
+'new caption based on the counter value.
+Sub Set_Flag_Counter(Amount)
+	FlagCount = FlagCount - Amount
+	FlagLen = Len(FlagCount)
+
+	If FlagCount > -1 then
+		Select case FlagLen
+		Case 1
+			Label3.Caption = "00" & FlagCount
+		Case 2
+			Label3.Caption = "0" & FlagCount
+		end Select
+	end if
+
+	If FlagCount < 0 then
+		FlagAbs = abs(FlagCount)
+		Select case FlagLen
+		Case 1
+			Label3.Caption = "-0" & FlagAbs
+		Case 2
+			Label3.Caption = "-" & FlagAbs
+		end Select
+	end if
+end sub
+
+'This subroutine is called when the user clicks on a ToggleButton that does not touch any bombs.
+'The general idea is that the user's click should initiate a snake-like recursion across the
+'board that will uncover additional blank spaces.  The subroutine uses a counter-chasing-counter 
+'strategy to track all ToggleButtons that should be checked.
+Sub RunSnake(SnakeRow, SnakeColumn)
+	dim Blanks(63,1)
+	dim CurrentRow
+	dim NextRow
+	CurrentRow = 0
+	NextRow = 1
+
+	blanks(CurrentRow, 0) = SnakeRow
+	blanks(CurrentRow, 1) = SnakeColumn
+
+	Set OrgBtn = MainBoard.controls("TB" & SnakeRow & SnakeColumn)
+	OrgBtn.value = false
+
+	If flags(SnakeRow,SnakeColumn,1) = 0 then
+		SafeStepCtr = SafeStepCtr + 1
+		flags(SnakeRow,SnakeColumn,1) = 1
+	end if
+
+	LockRow = LockRow + 1
+	LockLater(LockRow) = OrgBtn.ID
+
+	Do until CurrentRow = NextRow
+
+		Set MyBtn = MainBoard.controls("TB" & blanks(CurrentRow,0) & blanks(CurrentRow,1))
+
+		For RecurseRow = -1 to 1
+			For RecurseColumn = -1 to 1
+				If (blanks(CurrentRow,0)+RecurseRow > 0) and (blanks(CurrentRow,0)+RecurseRow < 9) and (blanks(CurrentRow,1)+RecurseColumn < 9) and (blanks(CurrentRow,1)+RecurseColumn > 0) then
+					Set RecBtn = mainboard.controls("TB" & (blanks(CurrentRow, 0)+RecurseRow) & (blanks(CurrentRow,1)+RecurseColumn))
+					RecValue = board(blanks(CurrentRow,0)+RecurseRow, blanks(CurrentRow,1)+RecurseColumn)
+					If MyBtn.id <> RecBtn.id then
+						If (RecValue <> -1) and (RecBtn.value = false) then
+							RecBtn.caption = RecValue
+							RecBtn.value = true
+							If flags((blanks(CurrentRow, 0)+RecurseRow),(blanks(CurrentRow,1)+RecurseColumn),1) = 0 then
+								SafeStepCtr = SafeStepCtr + 1
+								flags((blanks(CurrentRow, 0)+RecurseRow),(blanks(CurrentRow,1)+RecurseColumn),1) = 1
+							end if
+							LockRow = LockRow + 1
+							LockLater(LockRow) = RecBtn.ID
+							If (RecValue = "") then
+								Blanks(NextRow,0) = blanks(CurrentRow, 0)+RecurseRow
+								Blanks(NextRow,1) = blanks(CurrentRow, 1)+RecurseColumn
+								NextRow = NextRow+1
+							end if
+						end if
+					end if
+				end if
+			next
+		next
+		CurrentRow = CurrentRow+1
+	loop
+end sub
+
+'This subroutine is called on the MouseUp event.  It sets the picture back to a 
+'smiley face on the CommandButton, locks any single ToggleButtons that need to 
+'be locked, and iterates over the whole board to lock all controls if the user
+'loses or wins the game.
+Sub MakeSmiley(LorR)
+	OK_To_Continue = True
+
+	If LorR = 1 and Alive = True and GameWon = False then
+		CommandButton1.Picture = SHappy.Picture
+		CommandButton1.ForeColor = &H00000000
+	end if
+
+	For LockIt = 0 to LockRow
+		set LockBtn = MainBoard.controls(LockLater(LockIt))
+		LockBtn.Value = True
+		LockBtn.Locked = True
+	next
+
+	If Alive = False or GameWon = True then
+		For KLRow = 1 to 8
+			For KLCol = 1 to 8
+				set KLLock = MainBoard.Controls("TB" & KLRow & KLCol)
+				If KLLock.ID = KilledCell then
+					KLLock.Value = True
+				end if
+				KLLock.Locked = True
+			next
+		next
+	end if		
+
+	LockRow = -1
+end sub
+
+'This subroutine shuts the timer down, changes the CommandButton picture and sets
+'global variable if the user wins the game.
+Sub Win_Game()
+	IETimer1.Enabled = False
+	CommandButton1.Picture = SWin.Picture
+	GameWon = True
+end sub
+
+'This subroutine performs the neccessary functions if the user loses the game.  It
+'sets all the variables to a losing state and performs a loop to reveal the remaining
+'hidden bombs.
+Sub Killed_Rtn(KRRow,KRCol)
+	set KRBtn = MainBoard.controls("TB" & KRRow & KRCol)
+	KRBtn.picture = mineblown.picture
+	KilledCell = KRBtn.ID
+	LastPiece = KRRow & KRCol 
+	CommandButton1.Picture = SDead.Picture
+	Alive = False
+	IETimer1.Enabled = False
+
+	For KilledRow = 0 to 9
+		CheckLast = BombKeep(KilledRow,0) & BombKeep(KilledRow,1)
+		If CheckLast <> LastPiece then
+			Set HiddenBomb = mainboard.controls("TB" & BombKeep(KilledRow,0) & BombKeep(KilledRow,1))
+			HiddenBomb.Value = True
+			HiddenBomb.Picture = Mine.Picture
+		end if
+	next 
+end sub
+
+'This subroutine resets all the global variables and arrays if the user clicks
+'the CommandButton.  The routine also calls the three subroutines which initialize
+'all variables for the game.
+Sub Total_Reset()
+	ReDim board(9,9)
+	ReDim flags(9,9,1)
+	ReDim BombKeep(9,1)
+	ReDim LockLater(53)
+
+	for tbrow = 1 to 8
+		for tbcol = 1 to 8
+			set RBtn = MainBoard.controls("TB" & tbrow & tbcol)
+			RBtn.Locked = False
+			RBtn.Caption = ""
+			RBtn.Picture = Label1.Picture 
+			RBtn.Value = False
+			RBtn.ForeColor = "&H00000000"
+		next
+	next
+
+	Alive = True
+	TimeCount = 0
+	FlagCount = 10
+	SafeStepCtr = 0
+	BombMarkCtr = 0
+	GameWon = False
+	CommandButton1.Picture = SHappy.Picture
+	Label3.Caption = "010"
+	Label4.Caption = "000"
+	LockRow = -1
+	KilledCell = ""
+	OK_To_Continue = True
+
+	Plant_Mines
+	Fill_Values
+
+end sub
+
+
+'The MouseDown events all call the MD_Routine.  The routine is passed parameters which
+'indicate which button was pressed down.
+
+Sub TB11_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,1,Button
+end sub
+
+Sub TB12_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,2,Button
+end sub
+
+Sub TB13_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,3,Button
+end sub
+
+Sub TB14_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,4,Button
+end sub
+
+Sub TB15_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,5,Button
+end sub
+
+Sub TB16_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,6,Button
+end sub
+
+Sub TB17_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,7,Button
+end sub
+
+Sub TB18_MouseDown(Button, Shift, X, Y)
+	MD_Routine 1,8,Button
+end sub
+
+Sub TB21_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,1,Button
+end sub
+
+Sub TB22_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,2,Button
+end sub
+
+Sub TB23_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,3,Button
+end sub
+
+Sub TB24_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,4,Button
+end sub
+
+Sub TB25_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,5,Button
+end sub
+
+Sub TB26_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,6,Button
+end sub
+
+Sub TB27_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,7,Button
+end sub
+
+Sub TB28_MouseDown(Button, Shift, X, Y)
+	MD_Routine 2,8,Button
+end sub
+
+Sub TB31_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,1,Button
+end sub
+
+Sub TB32_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,2,Button
+end sub
+
+Sub TB33_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,3,Button
+end sub
+
+Sub TB34_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,4,Button
+end sub
+
+Sub TB35_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,5,Button
+end sub
+
+Sub TB36_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,6,Button
+end sub
+
+Sub TB37_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,7,Button
+end sub
+
+Sub TB38_MouseDown(Button, Shift, X, Y)
+	MD_Routine 3,8,Button
+end sub
+
+Sub TB41_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,1,Button
+end sub
+
+Sub TB42_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,2,Button
+end sub
+
+Sub TB43_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,3,Button
+end sub
+
+Sub TB44_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,4,Button
+end sub
+
+Sub TB45_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,5,Button
+end sub
+
+Sub TB46_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,6,Button
+end sub
+
+Sub TB47_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,7,Button
+end sub
+
+Sub TB48_MouseDown(Button, Shift, X, Y)
+	MD_Routine 4,8,Button
+end sub
+
+Sub TB51_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,1,Button
+end sub
+
+Sub TB52_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,2,Button
+end sub
+
+Sub TB53_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,3,Button
+end sub
+
+Sub TB54_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,4,Button
+end sub
+
+Sub TB55_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,5,Button
+end sub
+
+Sub TB56_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,6,Button
+end sub
+
+Sub TB57_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,7,Button
+end sub
+
+Sub TB58_MouseDown(Button, Shift, X, Y)
+	MD_Routine 5,8,Button
+end sub
+
+Sub TB61_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,1,Button
+end sub
+
+Sub TB62_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,2,Button
+end sub
+
+Sub TB63_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,3,Button
+end sub
+
+Sub TB64_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,4,Button
+end sub
+
+Sub TB65_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,5,Button
+end sub
+
+Sub TB66_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,6,Button
+end sub
+
+Sub TB67_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,7,Button
+end sub
+
+Sub TB68_MouseDown(Button, Shift, X, Y)
+	MD_Routine 6,8,Button
+end sub
+
+Sub TB71_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,1,Button
+end sub
+
+Sub TB72_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,2,Button
+end sub
+
+Sub TB73_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,3,Button
+end sub
+
+Sub TB74_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,4,Button
+end sub
+
+Sub TB75_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,5,Button
+end sub
+
+Sub TB76_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,6,Button
+end sub
+
+Sub TB77_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,7,Button
+end sub
+
+Sub TB78_MouseDown(Button, Shift, X, Y)
+	MD_Routine 7,8,Button
+end sub
+
+Sub TB81_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,1,Button
+end sub
+
+Sub TB82_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,2,Button
+end sub
+
+Sub TB83_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,3,Button
+end sub
+
+Sub TB84_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,4,Button
+end sub
+
+Sub TB85_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,5,Button
+end sub
+
+Sub TB86_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,6,Button
+end sub
+
+Sub TB87_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,7,Button
+end sub
+
+Sub TB88_MouseDown(Button, Shift, X, Y)
+	MD_Routine 8,8,Button
+end sub
+
+
+'The MouseUp subroutines all call the MakeSmiley subroutine.
+
+Sub TB11_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB12_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB13_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB14_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB15_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB16_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB17_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB18_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB21_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB22_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB23_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB24_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB25_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB26_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB27_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB28_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB31_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB32_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB33_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB34_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB35_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB36_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB37_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB38_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB41_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB42_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB43_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB44_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB45_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB46_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB47_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB48_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB51_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB52_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB53_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB54_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB55_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB56_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB57_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB58_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB61_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB62_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB63_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB64_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB65_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB66_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB67_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB68_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB71_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB72_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB73_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB74_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB75_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB76_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB77_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB78_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB81_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB82_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB83_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB84_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB85_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB86_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB87_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+Sub TB88_MouseUp(Button, Shift, X, Y)
+	MakeSmiley Button
+end sub
+
+
+'When the CommandButton is clicked, the Total_Reset subroutine is initiated.
+Sub CommandButton1_Click()
+	Total_Reset
+end sub
+
+-->
+</SCRIPT>
+<!-- Characteristics of various controls defined below. --> 
+<DIV ID="MainBoard" STYLE="LAYOUT:FIXED;WIDTH:193pt;HEIGHT:250pt;">
+    <OBJECT ID="SHappy"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADUAQAAQk3UAQAAAAAAAEIAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAMAAAADAAAA////AAD//wAAAAAAAAAAAAEREREA
+AAAAAAAgAgAAAAEREREREQAAAAAAAAAAAAERERERERERAAAAAAAAAAARERER
+ERERERAAAAAAAAABERERERERERERAAAAAAAAEREREiIiIhERERAAAAABABER
+EiIiIiIiEREQAAAAEQERESIhERERIiEREQAAABEBESIhEREREREiIREAAAER
+ERESEREREREREhEREAABERERERERERERERERERAAEREREREREREREREREREQ
+ABEREREREREREREREREREAARERERERERERERERERERAAERERERESIhERESIh
+EREQABERERERIiIhERIiIhEREAAREQERESIiIRESIiIREQAAEREBEREiIiER
+EiIiEREAAAERABEREiIREREiIREQAAABEQAREREREREREREREAAAABEAARER
+EREREREREQAAAAARAAARERERERERERAAAAAAAQAAAREREREREREAAAAAAAAA
+AAABEREREREAAAAAAAAAAAAAAAEREREAAAAAAAAAAAAAAAIIALAAAAAAAgAA
+
+"
+     STYLE="TOP:66pt;LEFT:223pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:0;">
+    </OBJECT>
+    <OBJECT ID="SScared"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADUAQAAQk3UAQAAAAAAAEIAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAAASCwAAEgsAAAMAAAADAAAA////AAD//wAAAAAAAAAAAAEREREA
+AAAAAAAkAgAAAAEREREREQAAAAAAAAAAAAERERIiIRERAAAAAAAAAAARERIi
+IiIhERAAAAAAAAABERESIRESIRERAAAAAAAAERERIhERESIRERAAAAABABER
+ESIREREiEREQAAAAEQEREREiERERIhEREQAAABEBEREREiEREiEREREAAAER
+ERERERIiIiIhEREREAABEREREREREiIhERERERAAEREREREREREREREREREQ
+ABEREREREREREREREREREAARERERERERERERERERERAAERERERESIhERESIh
+EREQABERERERIiIhERIiIhEREAAREQERESIiIRESIiIREQAAEREBEREiIiER
+EiIiEREAAAERABEREiIREREiIREQAAABEQAREREREREREREREAAAABEAARER
+EREREREREQAAAAARAAARERERERERERAAAAAAAQAAAREREREREREAAAAAAAAA
+AAABEREREREAAAAAAAAAAAAAAAEREREAAAAAAAAAAAAAAAIIALAAAAAAAgAA
+
+"
+     STYLE="TOP:66pt;LEFT:264pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:1;">
+    </OBJECT>
+    <OBJECT ID="SWin"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADUAQAAQk3UAQAAAAAAAEIAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAMAAAADAAAA////AAD//wAAAAAAAAAAAAEREREA
+AAAAAAAkAgAAAAEREREREQAAAAAAAAAAAAERERERERERAAAAAAAAAAARERER
+ERERERAAAAAAAAABERERERERERERAAAAAAAAEREREiIiIhERERAAAAABABER
+EiIiIiIiEREQAAAAEQERESIhERERIiEREQAAABEBESIhEREREREiIREAAAER
+ERESEREREREREhEREAABERERERERERERERERERAAEREREREREREREREREREQ
+ABEREREREREREREREREREAARERERESIiERESIiERERAAERERERIiIiERIiIi
+EREQABERIhESIiIhESIiIhEiIAAREQEhEiIiIhIiIiISEQAAIhEBEiIiIiIi
+IiIiIREAAAEhABERIiIhESIiIREQAAABEgAREREREREREREREAAAABEAARER
+EREREREREQAAAAARAAARERERERERERAAAAAAAQAAAREREREREREAAAAAAAAA
+AAABEREREREAAAAAAAAAAAAAAAEREREAAAAAAAAAAAAAAAIIALAAAAAAAgAA
+
+"
+     STYLE="TOP:91pt;LEFT:223pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:2;">
+    </OBJECT>
+    <OBJECT ID="Flag"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADcAQAAQk3cAQAAAAAAAEoAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAUAAAAFAAAA////AAAA/wCAgIAAAACAAAAAAAAA
+AAAAAAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAACJEREREQiAAAA
+AAAAAAAAAAACJCIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAA
+AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAE
+AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA
+AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA
+EzMzMzM0AAAAAAAAAAAAABEzMzMzNAAAAAAAAAAAAAAREzMzMzQAAAAAAAAA
+AAAAEREzMzM0AAAAAAAAAAAAABEREzMzNAAAAAAAAAAAAAAREREzMzQAAAAA
+AAAAAAAAEREREzM0AAAAAAAAAAAAABEREREzNAAAAAAAAAAAAAAREREREzQA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggA
+sAAAAAACAAA=
+"
+     STYLE="TOP:91pt;LEFT:264pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:3;">
+    </OBJECT>
+    <OBJECT ID="MineBlown"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADkAQAAQk3kAQAAAAAAAFIAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAcAAAAHAAAA////AAAA/wDf5eUAAACAAAAAegAA
+ACAAAAAAAEEREREREREREREREUAAYAYREREREREREREREREQAEERERERERER
+MREREREREAAREREREREREVERERERERAAERERERERERFREREREREQABERERER
+ERETUxEREREREAAREREREVERM2MxEVERERAAEREREREVVVZmVVUREREQABER
+ERERFWZmZmZlEREREAARERERERVmZmZmZRERERAAERERERE1ZmZmZmUxEREQ
+ABERERETNmZmZmZmMxEREAARERE1VWZmZmZmZmVVMRAAERERERM2ZmZmZmYz
+EREQABE1ERERNWZmZmZlMREREAARERERERViJmZmZRERERAAEREREREVZmZm
+ZmUREREQABERERERFVVVZlVVEREREAAREREREVERM2MxEVERERAAERERERER
+ERNTEREREREQABERERERERERUREREREREAAREREREREREVERERERERAAERER
+ERERERExEREREREQABEREREREREREREREREREAAREUEREREREREREREREUAA
+EREAAAACCACwAAAAAAIAAA==
+"
+     STYLE="TOP:116pt;LEFT:223pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:4;">
+    </OBJECT>
+    <OBJECT ID="Question"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADUAQAAQk3UAQAAAAAAAEIAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAMAAAADAAAA////AP8AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAkAgAAAAAAAAAAAAAAAAAAAAAAAAAAABERAAAAAAAAAAAAAAAAAAAR
+EQAAAAAAAAAAAAAAAAAAEREAAAAAAAAAAAAAAAAAABERAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABERAAAAAAAAAAAA
+AAAAAAAREQAAAAAAAAAAAAAAAAAAEREQAAAAAAAAAAAAAAAAAAEREQAAAAAA
+AAAAAAAAAAABEREQAAAAAAAAAAAAAAAAABEREQAAAAAAAAAAAAAAAAAAEREQ
+AAAAAAAAAAAAAAAAAAEREQAAAAAAAAAAAAAAAAAAEREAAAAAAAAAAAEREAAA
+ABERAAAAAAAAAAABEREAAAAREQAAAAAAAAAAABEREAABERAAAAAAAAAAAAAR
+EREREREQAAAAAAAAAAAAARERERERAAAAAAAAAAAAAAABERERAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIIALAAAAAAAgAA
+
+"
+     STYLE="TOP:116pt;LEFT:264pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:5;">
+    </OBJECT>
+    <OBJECT ID="Mine"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADYAQAAQk3YAQAAAAAAAEYAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAQAAAAEAAAA////AN/l5QCAgIAAAAAAAAAAAAAA
+AAAAAAAAAAAANwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA
+AAAAADAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAACMgAAAAAAAAAA
+AAAAADAAIjIgADAAAAAAAAAAAAADMzMzMzMAAAAAAAAAAAAAAzMzMzMzAAAA
+AAAAAAAAAAMzMzMzMwAAAAAAAAAAAAAjMzMzMzMgAAAAAAAAAAACIzMzMzMz
+IgAAAAAAAAAjMzMzMzMzMzMzIAAAAAAAAAIjMzMzMzMiAAAAAAAjAAAAIzMz
+MzMzIAAAAAAAAAAAAAMxEzMzMwAAAAAAAAAAAAADMzMzMzMAAAAAAAAAAAAA
+AzMzMzMzAAAAAAAAAAAAADAAIjIgADAAAAAAAAAAAAAAAAIyAAAAAAAAAAAA
+AAAAAAAAMAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCACwAAAA
+AAIAAA==
+"
+     STYLE="TOP:141pt;LEFT:223pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:6;">
+    </OBJECT>
+    <OBJECT ID="SDead"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0"
+     DATA="DATA:application/x-oleobject;BASE64,I56Ml7DUzhG/LQCqAD9A0AACEAAgBAAA//8AAHIDAAByAwAAsIFn2krCzxG1
+hACqAKcdGmx0AADUAQAAQk3UAQAAAAAAAEIAAAAoAAAAGQAAABkAAAABAAQA
+AAAAAAAAAADDDgAAww4AAAMAAAADAAAA////AAD//wAAAAAAAAAAAAEREREA
+AAAAAAAhAgAAAAEREREREQAAAAAAAAAAAAERERERERERAAAAAAAAAAARERER
+ERERERAAAAAAAAABERERERERERERAAAAAAAAERIRERERERESERAAAAABABEi
+IRERERERIiEQAAAAEQERESIhERERIiEREQAAABEBERESIiIiIiIREREAAAER
+ERERERIiIiIREREREAABERERERERERERERERERAAEREREREREREREREREREQ
+ABEREREREREREREREREREAARERERERERERERERERERAAEREREREhESERIREh
+EREQABEREREREhIRERISEREREAAREQEREREhERERIREREQAAEREBERESEhER
+EhIREREAAAERABERIREhESERIREQAAABEQAREREREREREREREAAAABEAARER
+EREREREREQAAAAARAAARERERERERERAAAAAAAQAAAREREREREREAAAAAAAAA
+AAABEREREREAAAAAAAAAAAAAAAEREREAAAAAAAAAAAAAAAIIALAAAAAAAgAA
+
+"
+     STYLE="TOP:141pt;LEFT:264pt;WIDTH:25pt;HEIGHT:25pt;DISPLAY:NONE;ZINDEX:7;">
+    </OBJECT>
+    <OBJECT ID="Label1"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0" STYLE="TOP:2pt;LEFT:1pt;WIDTH:190pt;HEIGHT:248pt;ZINDEX:8;">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="Size" VALUE="6703;8749">
+        <PARAM NAME="SpecialEffect" VALUE="1">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="FontWeight" VALUE="0">
+    </OBJECT>
+    <OBJECT ID="Label2"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0" STYLE="TOP:11pt;LEFT:9pt;WIDTH:173pt;HEIGHT:41pt;ZINDEX:9;">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="Size" VALUE="6103;1446">
+        <PARAM NAME="SpecialEffect" VALUE="2">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="FontWeight" VALUE="0">
+    </OBJECT>
+    <OBJECT ID="Label3"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0" STYLE="TOP:17pt;LEFT:16pt;WIDTH:41pt;HEIGHT:28pt;ZINDEX:10;">
+        <PARAM NAME="ForeColor" VALUE="255">
+        <PARAM NAME="BackColor" VALUE="0">
+        <PARAM NAME="Caption" VALUE="010">
+        <PARAM NAME="Size" VALUE="1446;988">
+        <PARAM NAME="SpecialEffect" VALUE="2">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="440">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="Label4"
+     CLASSID="CLSID:978C9E23-D4B0-11CE-BF2D-00AA003F40D0" STYLE="TOP:17pt;LEFT:132pt;WIDTH:41pt;HEIGHT:28pt;ZINDEX:11;">
+        <PARAM NAME="ForeColor" VALUE="255">
+        <PARAM NAME="BackColor" VALUE="0">
+        <PARAM NAME="Caption" VALUE="000">
+        <PARAM NAME="Size" VALUE="1446;988">
+        <PARAM NAME="SpecialEffect" VALUE="2">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="440">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB11"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:3;ZINDEX:12;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB12"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:4;ZINDEX:13;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB13"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:5;ZINDEX:14;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB14"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:6;ZINDEX:15;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB15"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:7;ZINDEX:16;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB16"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:8;ZINDEX:17;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB17"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:9;ZINDEX:18;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB18"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:58pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:10;ZINDEX:19;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB27"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:11;ZINDEX:20;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB21"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:12;ZINDEX:21;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB22"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:13;ZINDEX:22;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB23"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:14;ZINDEX:23;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB24"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:15;ZINDEX:24;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB25"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:16;ZINDEX:25;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB26"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:17;ZINDEX:26;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB28"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:81pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:18;ZINDEX:27;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB37"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:19;ZINDEX:28;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB31"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:20;ZINDEX:29;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB32"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:21;ZINDEX:30;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB33"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:22;ZINDEX:31;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB34"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:23;ZINDEX:32;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB35"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:24;ZINDEX:33;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB36"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:25;ZINDEX:34;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB38"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:104pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:26;ZINDEX:35;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB47"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:27;ZINDEX:36;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB41"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:28;ZINDEX:37;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB42"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:29;ZINDEX:38;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB43"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:30;ZINDEX:39;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB44"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:31;ZINDEX:40;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB45"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:32;ZINDEX:41;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB46"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:33;ZINDEX:42;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB48"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:127pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:34;ZINDEX:43;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB57"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:35;ZINDEX:44;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB51"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:36;ZINDEX:45;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB52"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:37;ZINDEX:46;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB53"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:38;ZINDEX:47;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB54"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:39;ZINDEX:48;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB55"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:40;ZINDEX:49;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB56"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:41;ZINDEX:50;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB58"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:150pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:42;ZINDEX:51;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB67"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:43;ZINDEX:52;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB61"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:44;ZINDEX:53;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB62"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:45;ZINDEX:54;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB63"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:46;ZINDEX:55;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB64"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:47;ZINDEX:56;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB65"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:48;ZINDEX:57;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB66"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:49;ZINDEX:58;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB68"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:173pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:50;ZINDEX:59;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB77"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:51;ZINDEX:60;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB71"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:52;ZINDEX:61;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB72"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:53;ZINDEX:62;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB73"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:54;ZINDEX:63;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB74"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:55;ZINDEX:64;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB75"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:56;ZINDEX:65;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB76"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:57;ZINDEX:66;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB78"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:196pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:58;ZINDEX:67;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB87"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:140pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:59;ZINDEX:68;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB81"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:8pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:60;ZINDEX:69;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB82"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:30pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:61;ZINDEX:70;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB83"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:52pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:62;ZINDEX:71;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB84"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:74pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:63;ZINDEX:72;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB85"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:96pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:64;ZINDEX:73;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB86"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:118pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:65;ZINDEX:74;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="TB88"
+     CLASSID="CLSID:8BD21D60-EC42-11CE-9E0D-00AA006002F3" STYLE="TOP:219pt;LEFT:162pt;WIDTH:22pt;HEIGHT:23pt;TABINDEX:66;ZINDEX:75;">
+        <PARAM NAME="BackColor" VALUE="2147483663">
+        <PARAM NAME="ForeColor" VALUE="0">
+        <PARAM NAME="DisplayStyle" VALUE="6">
+        <PARAM NAME="Size" VALUE="776;811">
+        <PARAM NAME="Value" VALUE="False">
+        <PARAM NAME="FontName" VALUE="Arial">
+        <PARAM NAME="FontEffects" VALUE="1073741825">
+        <PARAM NAME="FontHeight" VALUE="280">
+        <PARAM NAME="FontCharSet" VALUE="0">
+        <PARAM NAME="FontPitchAndFamily" VALUE="2">
+        <PARAM NAME="ParagraphAlign" VALUE="3">
+        <PARAM NAME="FontWeight" VALUE="700">
+    </OBJECT>
+    <OBJECT ID="IeTimer1"
+     CLASSID="CLSID:59CCB4A0-727D-11CF-AC36-00AA00A47DD2"
+     CODEBASE="/ie/most/howto/layout/ietimer.ocx#version=4,70,0,1086"
+     STYLE="TOP:17pt;LEFT:231pt;WIDTH:29pt;HEIGHT:29pt;TABINDEX:76;ZINDEX:76;">
+        <PARAM NAME="_ExtentX" VALUE="1032">
+        <PARAM NAME="_ExtentY" VALUE="1032">
+        <PARAM NAME="Interval" VALUE="1000">
+        <PARAM NAME="Enabled" VALUE="False">
+    </OBJECT>
+    <OBJECT ID="CommandButton1"
+     CLASSID="CLSID:D7053240-CE69-11CD-A777-00DD01143C57"
+     DATA="DATA:application/x-oleobject;BASE64,QDIF12nOzRGndwDdARQ8VwACGACxAAAAAAAAAAQABAD//wAApgUAAP8DAACw
+gWfaSsLPEbWEAKoApx0abHQAANQBAABCTdQBAAAAAAAAQgAAACgAAAAZAAAA
+GQAAAAEABAAAAAAAAAAAAMMOAADDDgAAAwAAAAMAAAD///8AAP//AAAAAAAA
+AAAAAREREQAAAAAAACACAAAAARERERERAAAAAAAAAAAAAREREREREREAAAAA
+AAAAABEREREREREREAAAAAAAAAEREREREREREREAAAAAAAARERESIiIiERER
+EAAAAAEAERESIiIiIiIRERAAAAARARERIiEREREiIRERAAAAEQERIiERERER
+ESIhEQAAARERERIRERERERESEREQAAEREREREREREREREREREAARERERERER
+ERERERERERAAEREREREREREREREREREQABEREREREREREREREREREAARERER
+ERIiERERIiERERAAEREREREiIiEREiIiEREQABERARERIiIhERIiIhERAAAR
+EQERESIiIRESIiIREQAAAREAERESIhERESIhERAAAAERABEREREREREREREQ
+AAAAEQABERERERERERERAAAAABEAABEREREREREREAAAAAABAAABERERERER
+EQAAAAAAAAAAAAEREREREQAAAAAAAAAAAAAAAREREQAAAAAAAAAAAAAAAgwA
+8AAAAAACAwAAAAAA
+"
+     STYLE="TOP:17pt;LEFT:74pt;WIDTH:41pt;HEIGHT:29pt;TABINDEX:77;ZINDEX:77;">
+    </OBJECT>
+</DIV>
