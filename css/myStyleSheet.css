@@ -1,6 +1,23 @@
 <!--
 A:link { color: #009966 }
 A:visited { color: #ff0000 }
+#Sans8NBF {
+font-family: Arial;
+font-size: 8.0pt;
+color: BLUE;
+}
+#Sans9BNF {
+font-family: Arial;
+font-weight: bold;
+font-size: 9.0pt;
+color: NAVY;
+}
+#Sans11BNF {
+font-family: Arial;
+font-weight: bold;
+font-size: 11.0pt;
+color: NAVY;
+}
 #Serif12BGF {
 font-family: Times New Roman;
 font-weight: bold;
@@ -15,6 +32,11 @@ color: NAVY;
 }
 #AlignLeftP {
 text-align: left;
+margin-top: 0.0pt;
+margin-bottom: 0.0pt;
+}
+#AlignCenterP {
+text-align: center;
 margin-top: 0.0pt;
 margin-bottom: 0.0pt;
 }
@@ -80,7 +102,7 @@ margin-bottom: 0.0pt;
 #PubSt6F {
 font-family: Arial;
 font-size: 8.0pt;
-color: #0000ff;
+color: BLUE;
 }
 #PubSt6P {
 text-align: center;
