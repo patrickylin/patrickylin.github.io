@@ -24,6 +24,11 @@ font-weight: bold;
 font-size: 14.0pt;
 color: PURPLE;
 }
+#Sans14INF {
+font-family: Impact;
+font-size: 14.0pt;
+color: NAVY;
+}
 #Serif12BGF {
 font-family: Times New Roman;
 font-weight: bold;
@@ -35,6 +40,18 @@ font-family: Times New Roman;
 font-weight: bold;
 font-size: 14.0pt;
 color: NAVY;
+}
+#Serif14BWF {
+font-family: Times New Roman;
+font-weight: bold;
+font-size: 14.0pt;
+color: WHITE;
+}
+#Serif28BYF {
+font-family: Times New Roman;
+font-weight: bold;
+font-size: 28.0pt;
+color: YELLOW;
 }
 #AlignLeftP {
 text-align: left;
