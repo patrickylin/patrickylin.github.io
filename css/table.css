@@ -1,0 +1,70 @@
+<!--
+#HeaderCellD {
+  border:solid #1F497D 1.0pt;
+  mso-border-themecolor:text2;
+  mso-border-alt:solid #1F497D .25pt;
+  mso-border-themecolor:text2;
+  background:#EFEFEF;
+  padding:.75pt .75pt .75pt .75pt
+}
+#HeaderCellP {
+  margin-top:0in;
+  margin-right:0in;
+  margin-bottom:0in;
+  margin-left:1.45pt;
+  margin-bottom:.0001pt;
+  text-align:center;
+  line-height:normal
+}
+#HeaderCellF {
+  font-size:14.0pt;
+  font-family:"Arial Unicode MS","sans-serif";
+  font-weight:bold;
+  color:maroon
+}
+#NormalCellD {
+  border:solid #1F497D 1.0pt;
+  mso-border-themecolor:text2;
+  mso-border-alt:solid #1F497D .25pt;
+  mso-border-themecolor:text2;
+  background:#F7F7F7;
+  padding:.75pt .75pt .75pt .75pt
+}
+#NormalCellP {
+  margin-top:0in;
+  margin-right:0in;
+  margin-bottom:0in;
+  margin-left:1.45pt;
+  margin-bottom:.0001pt;
+  text-align:left;
+  line-height:normal
+}
+#NormalCellF {
+  font-size:10.0pt;
+  font-family:"Arial Unicode MS","sans-serif";
+  color:black
+}
+#BoldCellD {
+  border:solid #1F497D 1.0pt;
+  mso-border-themecolor:text2;
+  mso-border-alt:solid #1F497D .25pt;
+  mso-border-themecolor:text2;
+  background:#E6E6E6;
+  padding:.75pt .75pt .75pt .75pt
+}
+#BoldCellP {
+  margin-top:0in;
+  margin-right:0in;
+  margin-bottom:0in;
+  margin-left:1.45pt;
+  margin-bottom:.0001pt;
+  text-align:center;
+  line-height:normal
+}
+#BoldCellF {
+  font-size:10.0pt;
+  font-family:"Arial Unicode MS","sans-serif";
+  font-weight:bold;
+  color:navy
+}
+-->
