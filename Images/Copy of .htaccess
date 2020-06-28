@@ -1,8 +1,0 @@
-AuthUserFile /export/home/plin/www/Authenticate/.htpasswd
-AuthGroupFile /dev/null
-AuthName TheLin'sPhotoAlbum
-AuthType Basic
-
-<Limit GET>
-require user PLIN plin ISAIAH isaiah
-</Limit>
