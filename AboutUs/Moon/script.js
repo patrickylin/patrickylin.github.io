@@ -142,14 +142,14 @@ function moonPhaseBuildWidget(){
 						 '		<h2 class="moonphases_date_text">Mon 2nd Feb</h2>' +
 						 '			<img class="moonphases_img" src="0.png" alt="Full Moon">' +
 						 '		<h2 class="moonphases_text">Full Moon</h2>' +
-						 '		<p class="moonphases_illum_text">99% / 0.5</p>' +
+						 '		<p class="moonphases_illum_text">00% / 0.0</p>' +
 						 '	</div>' +
 						 '	<div>' +
 						 '		<h3>Moonrise</h3><br>' +
-						 '		<div class="moonphases_rise_time" style="width: 95px;">15<span>:</span>49</div>' +
+						 '		<div class="moonphases_rise_time" style="width: 95px;">00<span>:</span>00</div>' +
 						 '		<br>' +
 						 '		<h3>Moonset</h3><br>' +
-						 '		<div class="moonphases_set_time" style="width: 95px;">06<span>:</span>18</div>' +
+						 '		<div class="moonphases_set_time" style="width: 95px;">00<span>:</span>00</div>' +
 						 '	</div>' +
 						 '<p class="moonphases_foot">Lexington, MA</p>' +
 						 '</div>';
