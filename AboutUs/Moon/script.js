@@ -57,8 +57,8 @@ function getMoonPhase() {
 		theMonth = theDate.format("M");
 		theYear = theDate.format("YYYY");
 
-		theLat = (jQuery('#' + strScriptTag).attr('lat') != '') ? jQuery('#' + strScriptTag).attr('lat') : '51.4809181';
-		theLng = (jQuery('#' + strScriptTag).attr('lng') != '') ? jQuery('#' + strScriptTag).attr('lng') : '-0.0207105';
+		theLat = (jQuery('#' + strScriptTag).attr('lat') != '') ? jQuery('#' + strScriptTag).attr('lat') : '42.45863627221938';
+		theLng = (jQuery('#' + strScriptTag).attr('lng') != '') ? jQuery('#' + strScriptTag).attr('lng') : '-71.24694149071624';
 
 		theTz = (jQuery('#' + strScriptTag).attr('tz') != '') ? jQuery('#' + strScriptTag).attr('tz') : '';
 
