@@ -46,11 +46,11 @@ function getMoonPhase() {
 
 	if(theDate.isValid()) {
 
-		strDate = theDate.format('ddd Do MMM');
+		strDate = theDate.format('ddd MMM DD YYYY');
 
-		if(!moment().isSame(theDate, 'year')) {
-			strDate = strDate + ' ' + theDate.format('YYYY');
-		}
+		//if(!moment().isSame(theDate, 'year')) {
+		//	strDate = strDate + ' ' + theDate.format('YYYY');
+		//}
 		jQuery('.moonphases_date_text').text(strDate);
 
 		theDay = theDate.format("D");
