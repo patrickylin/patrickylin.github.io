@@ -37,6 +37,14 @@ color: PURPLE;
 height: 40px;
 width: 100%;
 }
+#Sans30BPF {
+font-family: Arial;
+font-weight: bold;
+font-size: 30.0pt;
+color: DARKRED;
+height: 30px;
+width: 100%;
+}
 #Sans40BPF {
 font-family: Arial;
 font-weight: bold;
