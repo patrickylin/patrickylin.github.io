@@ -33,8 +33,16 @@ color: NAVY;
 font-family: Arial;
 font-weight: bold;
 font-size: 20.0pt;
-color: PURPLE;
-height: 40px;
+color: DARKBLUE;
+height: 20px;
+width: 100%;
+}
+#Sans24BPF {
+font-family: Arial;
+font-weight: bold;
+font-size: 24.0pt;
+color: DARKRED;
+height: 24px;
 width: 100%;
 }
 #Sans30BPF {
