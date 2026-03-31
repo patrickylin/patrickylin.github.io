@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 1 — Japanese & Korean Foundations</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+  .char-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 12px; }
+  .char-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 8px; text-align: center; }
+  .char-big { font-size: 32px; line-height: 1.2; margin-bottom: 4px; }
+  .char-rom { font-size: 13px; color: #555; font-weight: 500; }
+  .char-hint { font-size: 11px; color: #999; margin-top: 2px; }
+  .word-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .word-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px; }
+  .word-native { font-size: 20px; margin-bottom: 2px; }
+  .word-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .word-en { font-size: 13px; color: #444; font-weight: 500; }
+  .word-use { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+  .tip-box { background: #f0f8f5; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-box.blue { background: #f0f5fc; border-left-color: #378ADD; }
+  .tip-box.amber { background: #fdf6ec; border-left-color: #BA7517; }
+  .quiz { margin-top: 12px; }
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; color: #555; }
+  .block-demo { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; font-size: 14px; color: #555; }
+  .block-big { font-size: 40px; background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 8px 16px; }
+  .arrow { color: #bbb; font-size: 20px; }
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 8px; border-bottom: 0.5px solid #eee; }
+  td { padding: 8px 8px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+  td:first-child { font-size: 18px; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; transition: width 0.4s; }
+  .week-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .week-nav { font-size: 12px; color: #aaa; }
+  @media (max-width: 500px) { .word-list { grid-template-columns: 1fr; } .char-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 1 of 16</span>
+      <h1>Scripts & Sounds</h1>
+      <div class="subtitle">The foundation — learn how each language sounds before anything else.</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:120px"><div class="progress-fill" style="width:6%"></div></div>
+      6% complete
+    </div>
+  </div>
+
+  <!-- ═══════════════ JAPANESE ═══════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 1 · The writing systems & the 5 vowel sounds</div>
+      </div>
+    </div>
+
+    <!-- Big picture -->
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">Japanese has 3 writing systems — here's the order to learn them</div>
+      <table>
+        <tr><th>Script</th><th>What it is</th><th>When you'll learn it</th></tr>
+        <tr><td>ひらがな<br/><span style="font-size:12px;color:#888">Hiragana</span></td><td>46 phonetic characters. The core script for Japanese words. Every sound has a symbol.</td><td>✅ Week 1–2 (start here)</td></tr>
+        <tr><td>カタカナ<br/><span style="font-size:12px;color:#888">Katakana</span></td><td>Another 46 phonetic characters. Used for foreign words & loanwords (e.g. coffee = コーヒー).</td><td>Week 3</td></tr>
+        <tr><td>漢字<br/><span style="font-size:12px;color:#888">Kanji</span></td><td>Chinese-origin characters. Thousands exist — daily life needs ~2,000. Don't worry about these yet.</td><td>Week 5+</td></tr>
+      </table>
+      <div class="tip-box" style="margin-top:14px">
+        <strong>Good news:</strong> Hiragana is phonetic — once you learn the 46 sounds, you can read anything written in it. Think of it like learning the alphabet, but each letter = a full syllable (e.g. か = "ka", み = "mi").
+      </div>
+    </div>
+
+    <!-- The 5 vowels -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Master these first</div>
+      <div class="section-title">The 5 vowel sounds — the DNA of Japanese pronunciation</div>
+      <p>Every hiragana character is built on one of these 5 vowels. Get these perfect and the rest falls into place.</p>
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-big">あ</div>
+          <div class="char-rom">a</div>
+          <div class="char-hint">like "ah" in "spa"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">い</div>
+          <div class="char-rom">i</div>
+          <div class="char-hint">like "ee" in "see"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">う</div>
+          <div class="char-rom">u</div>
+          <div class="char-hint">like "oo" but softer, lips flat</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">え</div>
+          <div class="char-rom">e</div>
+          <div class="char-hint">like "eh" in "pet"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">お</div>
+          <div class="char-rom">o</div>
+          <div class="char-hint">like "oh" in "go"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ka row -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · First consonant row</div>
+      <div class="section-title">The か (ka) row — consonant + vowel = syllable</div>
+      <p>Japanese consonants always pair with a vowel. The "k" sound combined with each vowel gives you your first 5 full syllables.</p>
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-big">か</div>
+          <div class="char-rom">ka</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">き</div>
+          <div class="char-rom">ki</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">く</div>
+          <div class="char-rom">ku</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">け</div>
+          <div class="char-rom">ke</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">こ</div>
+          <div class="char-rom">ko</div>
+        </div>
+      </div>
+      <div class="tip-box blue" style="margin-top:14px">
+        <strong>Pattern tip:</strong> Every row in hiragana follows this same structure — one consonant × 5 vowels. Once you see the pattern, memorising all 46 becomes systematic, not random.
+      </div>
+    </div>
+
+    <!-- Words you can already read -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Your first readable words</div>
+      <div class="section-title">5 words using only what you've learned this week</div>
+      <div class="word-list">
+        <div class="word-card">
+          <div class="word-native">あお</div>
+          <div class="word-rom">ao</div>
+          <div class="word-en">Blue / green</div>
+          <div class="word-use">Used when describing sky or nature</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">いか</div>
+          <div class="word-rom">ika</div>
+          <div class="word-en">Squid</div>
+          <div class="word-use">You'll see this on menus!</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">うえ</div>
+          <div class="word-rom">ue</div>
+          <div class="word-en">Above / up</div>
+          <div class="word-use">Direction word — very practical</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">おかあ</div>
+          <div class="word-rom">okaa</div>
+          <div class="word-en">Mother (part of お母さん)</div>
+          <div class="word-use">Recognise the sounds in speech</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">かお</div>
+          <div class="word-rom">kao</div>
+          <div class="word-en">Face</div>
+          <div class="word-use">Body vocabulary — common in conversation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture note -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🙇</span>
+        <div class="culture-text">
+          <strong>Bowing (お辞儀 — ojigi)</strong><br/>
+          In Japan, bowing replaces the handshake. A slight bow (~15°) means "thank you" or "hello". A deeper bow (~30–45°) shows respect or apology. As a foreigner, any sincere bow will be appreciated — locals won't expect perfection.
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Match the hiragana to its sound</div>
+      <div class="quiz" id="jp-quiz">
+        <div class="quiz-item">
+          <div class="quiz-q">What sound does <span style="font-size:20px">え</span> make?</div>
+          <div class="quiz-options">
+            <button class="quiz-btn" onclick="answer(this,'wrong')">a</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">i</button>
+            <button class="quiz-btn" onclick="answer(this,'correct')">e</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">o</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-item">
+          <div class="quiz-q">Which character makes the sound "ku"?</div>
+          <div class="quiz-options">
+            <button class="quiz-btn" onclick="answer(this,'wrong')">か</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">き</button>
+            <button class="quiz-btn" onclick="answer(this,'correct')">く</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">け</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-item">
+          <div class="quiz-q">What does あお (ao) mean?</div>
+          <div class="quiz-options">
+            <button class="quiz-btn" onclick="answer(this,'wrong')">Squid</button>
+            <button class="quiz-btn" onclick="answer(this,'correct')">Blue / green</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">Face</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">Above</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end Japanese block -->
+
+
+  <!-- ═══════════════ KOREAN ═══════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 1 · Hangul — the world's most logical alphabet</div>
+      </div>
+    </div>
+
+    <!-- Big picture -->
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">Korean uses ONE script — and it was scientifically designed</div>
+      <p>Unlike Japanese (3 scripts) or Chinese (thousands of characters), Korean uses <strong>Hangul (한글)</strong> — a single phonetic alphabet invented in 1443 by King Sejong specifically to be easy to learn. Most people can read Hangul in 1–2 weeks.</p>
+      <div class="tip-box" style="margin-top:12px">
+        <strong>Key insight:</strong> Hangul characters aren't written left to right like English — they're stacked into syllable blocks. For example, the word 한 (han) is one block made of 3 parts: ㅎ (h) + ㅏ (a) + ㄴ (n).
+      </div>
+    </div>
+
+    <!-- How blocks work -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The block system</div>
+      <div class="section-title">How Hangul syllable blocks are built</div>
+      <p>Every Korean syllable is written as a compact block. The block always has at least a consonant + a vowel, and optionally a final consonant (called a 받침, batchim).</p>
+      <div class="block-demo">
+        <div style="text-align:center">
+          <div style="font-size:12px;color:#aaa;margin-bottom:4px">consonant</div>
+          <div style="font-size:28px;background:#f0f5fc;padding:6px 12px;border-radius:8px;border:0.5px solid #cce0f5">ㄱ</div>
+          <div style="font-size:11px;color:#888;margin-top:4px">g / k</div>
+        </div>
+        <span class="arrow">+</span>
+        <div style="text-align:center">
+          <div style="font-size:12px;color:#aaa;margin-bottom:4px">vowel</div>
+          <div style="font-size:28px;background:#f0f5fc;padding:6px 12px;border-radius:8px;border:0.5px solid #cce0f5">ㅏ</div>
+          <div style="font-size:11px;color:#888;margin-top:4px">a</div>
+        </div>
+        <span class="arrow">=</span>
+        <div style="text-align:center">
+          <div style="font-size:12px;color:#aaa;margin-bottom:4px">syllable block</div>
+          <div style="font-size:40px;background:#e1f0fe;padding:6px 14px;border-radius:8px;border:0.5px solid #378ADD;color:#185FA5">가</div>
+          <div style="font-size:11px;color:#888;margin-top:4px">"ga"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic consonants -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Basic consonants</div>
+      <div class="section-title">The 7 essential consonants to learn first</div>
+      <p>These are the most common. Notice how some letters look like the shape your mouth makes to produce the sound — that's by design!</p>
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-big">ㄱ</div>
+          <div class="char-rom">g / k</div>
+          <div class="char-hint">"g" at start, "k" elsewhere</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㄴ</div>
+          <div class="char-rom">n</div>
+          <div class="char-hint">like "n" in "no"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㄷ</div>
+          <div class="char-rom">d / t</div>
+          <div class="char-hint">"d" at start, "t" elsewhere</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㄹ</div>
+          <div class="char-rom">r / l</div>
+          <div class="char-hint">between r and l — unique!</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅁ</div>
+          <div class="char-rom">m</div>
+          <div class="char-hint">shaped like a mouth — "m"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅂ</div>
+          <div class="char-rom">b / p</div>
+          <div class="char-hint">"b" at start, "p" elsewhere</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅅ</div>
+          <div class="char-rom">s</div>
+          <div class="char-hint">like "s" in "sun"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic vowels -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Core vowels</div>
+      <div class="section-title">6 essential vowels — the building blocks of every block</div>
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-big">ㅏ</div>
+          <div class="char-rom">a</div>
+          <div class="char-hint">like "ah"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅓ</div>
+          <div class="char-rom">eo</div>
+          <div class="char-hint">like "uh" / "awe"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅗ</div>
+          <div class="char-rom">o</div>
+          <div class="char-hint">like "oh"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅜ</div>
+          <div class="char-rom">u</div>
+          <div class="char-hint">like "oo"</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅡ</div>
+          <div class="char-rom">eu</div>
+          <div class="char-hint">like "uh" with flat lips</div>
+        </div>
+        <div class="char-card">
+          <div class="char-big">ㅣ</div>
+          <div class="char-rom">i</div>
+          <div class="char-hint">like "ee"</div>
+        </div>
+      </div>
+      <div class="tip-box amber" style="margin-top:14px">
+        <strong>Notice:</strong> Vertical vowels (ㅏ, ㅓ, ㅣ) sit to the right of the consonant: 가 나 다. Horizontal vowels (ㅗ, ㅜ, ㅡ) sit below the consonant: 고 누 드. This layout rule is key to reading blocks quickly.
+      </div>
+    </div>
+
+    <!-- First words -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Your first Korean words</div>
+      <div class="section-title">5 essential words — you can sound them out now</div>
+      <div class="word-list">
+        <div class="word-card">
+          <div class="word-native">안녕</div>
+          <div class="word-rom">annyeong</div>
+          <div class="word-en">Hi / Bye (casual)</div>
+          <div class="word-use">With friends your age</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">네</div>
+          <div class="word-rom">ne</div>
+          <div class="word-en">Yes</div>
+          <div class="word-use">One of the most used words</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">아니요</div>
+          <div class="word-rom">aniyo</div>
+          <div class="word-en">No</div>
+          <div class="word-use">Polite form — use this with adults</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">물</div>
+          <div class="word-rom">mul</div>
+          <div class="word-en">Water</div>
+          <div class="word-use">Essential — ordering at restaurants</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">감사합니다</div>
+          <div class="word-rom">gamsahamnida</div>
+          <div class="word-en">Thank you (formal)</div>
+          <div class="word-use">Use this everywhere</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture note -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🙏</span>
+        <div class="culture-text">
+          <strong>Politeness levels (존댓말 — jondaemal)</strong><br/>
+          Korean has formal and informal speech built into its grammar. As a beginner, always use formal speech (ending words in -요 or -습니다) with anyone older or in a service setting. Koreans deeply appreciate when foreigners try to use the polite form — it shows cultural awareness.
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Test your Hangul knowledge</div>
+      <div class="quiz" id="kr-quiz">
+        <div class="quiz-item">
+          <div class="quiz-q">What sound does the consonant <span style="font-size:20px">ㅁ</span> make?</div>
+          <div class="quiz-options">
+            <button class="quiz-btn" onclick="answer(this,'wrong')">n</button>
+            <button class="quiz-btn" onclick="answer(this,'correct')">m</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">b</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">s</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-item">
+          <div class="quiz-q">The block 가 is made of which two parts?</div>
+          <div class="quiz-options">
+            <button class="quiz-btn" onclick="answer(this,'wrong')">ㄴ + ㅏ</button>
+            <button class="quiz-btn" onclick="answer(this,'correct')">ㄱ + ㅏ</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">ㄱ + ㅣ</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">ㅅ + ㅏ</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-item">
+          <div class="quiz-q">How do you say "Thank you" formally in Korean?</div>
+          <div class="quiz-options">
+            <button class="quiz-btn" onclick="answer(this,'wrong')">안녕</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">아니요</button>
+            <button class="quiz-btn" onclick="answer(this,'correct')">감사합니다</button>
+            <button class="quiz-btn" onclick="answer(this,'wrong')">네</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end Korean block -->
+
+  <!-- Footer -->
+  <div style="text-align:center;font-size:13px;color:#aaa;margin-top:1rem">
+    Week 1 complete · Poke <a href="Japanese.Korean.Week2.html">here</a> when you're ready for Week 2 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => {
+    b.disabled = true;
+    b.style.opacity = '0.6';
+  });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Well done.' : '✗ Not quite — try to remember this one.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+</script>
+</body>
+</html>
