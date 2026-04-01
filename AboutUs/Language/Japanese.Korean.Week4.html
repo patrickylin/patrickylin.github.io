@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 4 — Japanese & Korean: Numbers</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Number grids */
+  .num-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px; }
+  .num-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .num-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 8px; text-align: center; }
+  .num-card.highlight { background: #f0f5fc; border-color: #b8d4f0; }
+  .num-card.accent { background: #f0f8f5; border-color: #a8ddc5; }
+  .num-digit { font-size: 22px; font-weight: 500; color: #185FA5; margin-bottom: 2px; }
+  .num-native { font-size: 18px; margin-bottom: 1px; }
+  .num-rom { font-size: 12px; color: #666; }
+  .num-hint { font-size: 10px; color: #aaa; margin-top: 2px; }
+
+  /* Two-column number table */
+  .num-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .num-col { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; overflow: hidden; }
+  .num-col-header { padding: 10px 14px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; }
+  .num-col-header.native { background: #f0f8f5; color: #0f6e56; border-bottom: 0.5px solid #c8e8d8; }
+  .num-col-header.sino { background: #f0f5fc; color: #185FA5; border-bottom: 0.5px solid #b8d4f0; }
+  .num-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; border-bottom: 0.5px solid #f0f0ee; font-size: 13px; }
+  .num-row:last-child { border-bottom: none; }
+  .num-row .digit { color: #aaa; font-size: 12px; width: 20px; }
+  .num-row .word { font-size: 17px; }
+  .num-row .rom { color: #888; font-size: 12px; }
+
+  /* Use-case cards */
+  .use-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .use-card { border-radius: 10px; padding: 12px 14px; }
+  .use-card.native-use { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .use-card.sino-use { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .use-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+  .use-title.native-use { color: #0f6e56; }
+  .use-title.sino-use { color: #185FA5; }
+  .use-items { font-size: 13px; color: #333; line-height: 2; }
+  .use-example { font-size: 16px; color: #1a1a18; }
+  .use-rom { font-size: 11px; color: #888; }
+
+  /* Time/price examples */
+  .example-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .example-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; gap: 14px; }
+  .example-icon { font-size: 20px; flex-shrink: 0; }
+  .example-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; }
+  .example-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .example-en { font-size: 13px; color: #333; font-weight: 500; }
+  .example-note { font-size: 11px; color: #aaa; font-style: italic; margin-top: 3px; }
+
+  /* Counter words */
+  .counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .counter-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .counter-word { font-size: 20px; margin-bottom: 3px; }
+  .counter-rom { font-size: 12px; color: #888; }
+  .counter-en { font-size: 13px; color: #333; font-weight: 500; margin-top: 3px; }
+  .counter-ex { font-size: 12px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Big number builder */
+  .number-builder { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .builder-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; font-size: 13px; }
+  .builder-row:last-child { margin-bottom: 0; }
+  .builder-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 8px; padding: 5px 10px; font-size: 13px; color: #444; }
+  .builder-plus { color: #ccc; }
+  .builder-result { font-size: 18px; color: #1a1a18; margin-left: 6px; }
+  .builder-rom { font-size: 12px; color: #888; }
+  .builder-en { font-size: 13px; color: #185FA5; font-weight: 500; }
+
+  /* Interactive counter */
+  .counter-demo { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 16px; margin-top: 12px; text-align: center; }
+  .counter-display { font-size: 48px; margin: 12px 0 4px; }
+  .counter-label { font-size: 16px; color: #555; margin-bottom: 4px; }
+  .counter-rom-label { font-size: 13px; color: #888; margin-bottom: 16px; }
+  .counter-controls { display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .counter-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 8px 20px; font-size: 18px; cursor: pointer; line-height: 1; transition: background 0.15s; }
+  .counter-btn:hover { background: #f0f0ee; }
+  .counter-num-display { font-size: 32px; font-weight: 500; color: #185FA5; min-width: 60px; text-align: center; }
+
+  /* Compare table */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .preview-card { border-radius: 10px; padding: 12px 14px; }
+  .preview-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .preview-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .preview-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .preview-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .num-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+    .num-compare, .use-grid, .counter-grid, .preview-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 4 of 16</span>
+      <h1>Numbers — Count, Pay & Tell Time</h1>
+      <div class="subtitle">JP: One number system with counters · KR: Two separate number systems with very different jobs</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:25%"></div></div>
+      25% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 4 · Numbers, time, prices & counting words</div>
+      </div>
+    </div>
+
+    <!-- Core numbers 1-10 -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Numbers 1–10</div>
+      <div class="section-title">The foundation — learn these cold</div>
+      <p>Japanese numbers come from Chinese (called 音読み, on'yomi). These are the numbers used for counting, prices, phone numbers, and most everyday situations.</p>
+      <div class="num-grid">
+        <div class="num-card highlight"><div class="num-digit">1</div><div class="num-native">一</div><div class="num-rom">ichi</div></div>
+        <div class="num-card highlight"><div class="num-digit">2</div><div class="num-native">二</div><div class="num-rom">ni</div></div>
+        <div class="num-card highlight"><div class="num-digit">3</div><div class="num-native">三</div><div class="num-rom">san</div></div>
+        <div class="num-card highlight"><div class="num-digit">4</div><div class="num-native">四</div><div class="num-rom">shi / yon</div><div class="num-hint">yon is safer</div></div>
+        <div class="num-card highlight"><div class="num-digit">5</div><div class="num-native">五</div><div class="num-rom">go</div></div>
+        <div class="num-card highlight"><div class="num-digit">6</div><div class="num-native">六</div><div class="num-rom">roku</div></div>
+        <div class="num-card highlight"><div class="num-digit">7</div><div class="num-native">七</div><div class="num-rom">shichi / nana</div><div class="num-hint">nana is safer</div></div>
+        <div class="num-card highlight"><div class="num-digit">8</div><div class="num-native">八</div><div class="num-rom">hachi</div></div>
+        <div class="num-card highlight"><div class="num-digit">9</div><div class="num-native">九</div><div class="num-rom">ku / kyuu</div><div class="num-hint">kyuu is safer</div></div>
+        <div class="num-card highlight"><div class="num-digit">10</div><div class="num-native">十</div><div class="num-rom">juu</div></div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>4, 7, and 9 have two readings each.</strong> The readings し (shi), しち (shichi), and く (ku) sound like the words for "death", "bad luck direction", and "suffering" — so in daily speech, yon, nana, and kyuu are preferred. Stick to the safer versions as a beginner.
+      </div>
+    </div>
+
+    <!-- Tens, hundreds, thousands -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Big numbers</div>
+      <div class="section-title">Tens, hundreds, thousands — the pattern is beautifully simple</div>
+      <p>Japanese numbers are additive. Once you know 1–10, you can build any number by stacking. No "twenty" or "thirty" — just "two-ten", "three-ten" etc.</p>
+
+      <div class="number-builder">
+        <div class="builder-row">
+          <span class="builder-piece">十 juu (10)</span>
+          <span class="builder-piece">二十 ni-juu (20)</span>
+          <span class="builder-piece">三十 san-juu (30)</span>
+          <span class="builder-piece">百 hyaku (100)</span>
+        </div>
+        <div class="builder-row">
+          <span class="builder-piece">千 sen (1,000)</span>
+          <span class="builder-piece">万 man (10,000)</span>
+          <span class="builder-piece">百万 hyaku-man (1,000,000)</span>
+        </div>
+      </div>
+
+      <p style="margin-top:14px; font-size:13px; font-weight:500; color:#1a1a18;">How to build any number:</p>
+      <div class="number-builder" style="margin-top:8px">
+        <div class="builder-row">
+          <span class="builder-piece">三</span><span class="builder-plus">+</span><span class="builder-piece">十</span><span class="builder-plus">+</span><span class="builder-piece">五</span>
+          <span style="color:#ccc; font-size:16px">=</span>
+          <span class="builder-result">三十五</span>
+          <span class="builder-rom">(san-juu-go)</span>
+          <span class="builder-en">= 35</span>
+        </div>
+        <div class="builder-row">
+          <span class="builder-piece">二</span><span class="builder-plus">+</span><span class="builder-piece">百</span><span class="builder-plus">+</span><span class="builder-piece">五十</span><span class="builder-plus">+</span><span class="builder-piece">八</span>
+          <span style="color:#ccc; font-size:16px">=</span>
+          <span class="builder-result">二百五十八</span>
+          <span class="builder-rom">(ni-hyaku-go-juu-hachi)</span>
+          <span class="builder-en">= 258</span>
+        </div>
+        <div class="builder-row">
+          <span class="builder-piece">一万</span><span class="builder-plus">+</span><span class="builder-piece">五千</span>
+          <span style="color:#ccc; font-size:16px">=</span>
+          <span class="builder-result">一万五千</span>
+          <span class="builder-rom">(ichi-man-go-sen)</span>
+          <span class="builder-en">= 15,000</span>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Japan uses 万 (man = 10,000) as a base unit</strong> — not thousands like English. So 100,000 is "10 man" (十万), not "one hundred thousand". This trips up English speakers most around large prices and population figures.
+      </div>
+    </div>
+
+    <!-- Telling time -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Telling time</div>
+      <div class="section-title">〜時 (ji) = o'clock · 〜分 (fun/pun) = minutes</div>
+      <p>Time in Japanese is straightforward — just attach the number to the right suffix.</p>
+      <div class="example-list">
+        <div class="example-card">
+          <span class="example-icon">🕒</span>
+          <div>
+            <div class="example-native">三時です</div>
+            <div class="example-rom">San-ji desu</div>
+            <div class="example-en">It's 3 o'clock</div>
+            <div class="example-note">時 (ji) = o'clock. Number + 時 for any hour.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🕠</span>
+          <div>
+            <div class="example-native">三時半です</div>
+            <div class="example-rom">San-ji han desu</div>
+            <div class="example-en">It's 3:30</div>
+            <div class="example-note">半 (han) = half past. Very commonly used.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🕔</span>
+          <div>
+            <div class="example-native">四時十五分です</div>
+            <div class="example-rom">Yo-ji juu-go-fun desu</div>
+            <div class="example-en">It's 4:15</div>
+            <div class="example-note">分 (fun/pun) = minutes. Note: 4 o'clock uses よ (yo) not し (shi).</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🕐</span>
+          <div>
+            <div class="example-native">何時ですか？</div>
+            <div class="example-rom">Nan-ji desu ka?</div>
+            <div class="example-en">What time is it?</div>
+            <div class="example-note">何 (nan) = what/how many. 何時 = "what hour". Memorise this question.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prices -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Prices & money</div>
+      <div class="section-title">〜円 (en) = yen — handle transactions with confidence</div>
+      <div class="example-list">
+        <div class="example-card">
+          <span class="example-icon">💴</span>
+          <div>
+            <div class="example-native">五百円です</div>
+            <div class="example-rom">Go-hyaku-en desu</div>
+            <div class="example-en">It's 500 yen</div>
+            <div class="example-note">Typical price for a onigiri (rice ball) at a konbini.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🍜</span>
+          <div>
+            <div class="example-native">千二百円です</div>
+            <div class="example-rom">Sen-ni-hyaku-en desu</div>
+            <div class="example-en">It's 1,200 yen</div>
+            <div class="example-note">Around the price of a decent ramen bowl.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🧾</span>
+          <div>
+            <div class="example-native">全部でいくらですか？</div>
+            <div class="example-rom">Zenbu de ikura desu ka?</div>
+            <div class="example-en">How much is everything in total?</div>
+            <div class="example-note">全部 (zenbu) = everything/all. Essential at restaurants and shops.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Counting words (counters) -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Counting words (助数詞)</div>
+      <div class="section-title">Japanese uses different counter words depending on what you're counting</div>
+      <p>This is one of the most distinctive features of Japanese. You don't just say "three cats" — you say "three small-animal-units of cat". The counter changes based on the type of object.</p>
+      <div class="counter-grid">
+        <div class="counter-card">
+          <div class="counter-word">〜枚 (mai)</div>
+          <div class="counter-rom">flat thin things</div>
+          <div class="counter-ex">paper, plates, tickets, T-shirts</div>
+          <div style="font-size:14px; color:#185FA5; margin-top:6px">二枚 = 2 sheets/tickets</div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-word">〜本 (hon)</div>
+          <div class="counter-rom">long thin things</div>
+          <div class="counter-ex">bottles, pens, umbrellas, rivers</div>
+          <div style="font-size:14px; color:#185FA5; margin-top:6px">三本 = 3 bottles</div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-word">〜冊 (satsu)</div>
+          <div class="counter-rom">bound books</div>
+          <div class="counter-ex">books, magazines, notebooks</div>
+          <div style="font-size:14px; color:#185FA5; margin-top:6px">一冊 = 1 book</div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-word">〜杯 (hai)</div>
+          <div class="counter-rom">cups / glasses</div>
+          <div class="counter-ex">coffee, tea, soup, glasses of water</div>
+          <div style="font-size:14px; color:#185FA5; margin-top:6px">コーヒー一杯 = 1 coffee</div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-word">〜匹 (hiki)</div>
+          <div class="counter-rom">small animals</div>
+          <div class="counter-ex">cats, dogs, fish, insects</div>
+          <div style="font-size:14px; color:#185FA5; margin-top:6px">猫二匹 = 2 cats</div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-word">〜人 (nin / ri)</div>
+          <div class="counter-rom">people</div>
+          <div class="counter-ex">1 person = 一人 (hitori), 2 = 二人 (futari), 3+ uses nin</div>
+          <div style="font-size:14px; color:#185FA5; margin-top:6px">三人 = 3 people</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Don't panic about counters.</strong> Even Japanese children take years to master all of them. As a beginner, just learn 〜個 (ko) — a generic counter for small objects — and 〜人 (nin) for people. You can use these for almost anything and be understood.
+      </div>
+    </div>
+
+    <!-- Interactive counter -->
+    <div class="section">
+      <div class="section-label">Interactive · Practice counting</div>
+      <div class="section-title">Tap the buttons to count in Japanese</div>
+      <div class="counter-demo">
+        <div class="counter-display" id="jp-counter-display">🍱</div>
+        <div class="counter-label" id="jp-counter-native">一個</div>
+        <div class="counter-rom-label" id="jp-counter-rom">ikko — one item</div>
+        <div class="counter-controls">
+          <button class="counter-btn" onclick="jpCount(-1)">−</button>
+          <div class="counter-num-display" id="jp-counter-num">1</div>
+          <button class="counter-btn" onclick="jpCount(1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💴</span>
+        <div class="culture-text">
+          <strong>Cash is still king in Japan</strong><br/>
+          Despite being a tech powerhouse, Japan remains heavily cash-based — especially at smaller restaurants, temples, and rural shops. ATMs at 7-Eleven and Japan Post are your most reliable options for foreign cards. Always carry yen in small denominations. Coins matter: a 500-yen coin is worth about $3.50 USD. Prices are usually displayed clearly in Arabic numerals, so you won't need to read kanji numbers at checkout — but you will need to count out cash!
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 4 Japanese — numbers challenge</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say 35 in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">五三 (go-san)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">三十五 (san-juu-go)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">三五十 (san-go-juu)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">十三五 (juu-san-go)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does 三時半 (san-ji han) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">3 minutes</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">3 o'clock sharp</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">3:30 (half past three)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">3 and a half yen</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which counter would you use for 3 bottles of water?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">三枚 (san-mai)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">三本 (san-bon)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">三冊 (san-satsu)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">三匹 (san-biki)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Why do Japanese speakers prefer yon over shi for "4"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Yon is easier to pronounce</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Shi is not a real reading</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Shi sounds like the word for "death"</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Yon is the older, traditional form</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 4 · Two number systems — when to use each one</div>
+      </div>
+    </div>
+
+    <!-- The two systems overview -->
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">Korean has two completely separate number systems — and they're not interchangeable</div>
+      <p>This is the most surprising thing about Korean numbers for English speakers. There are <strong>native Korean numbers</strong> (고유어 수사) and <strong>Sino-Korean numbers</strong> (한자어 수사) — borrowed from Chinese, just like Japanese. Each system is used for completely different purposes.</p>
+      <div class="use-grid">
+        <div class="use-card native-use">
+          <div class="use-title native-use">Native Korean — used for:</div>
+          <div class="use-items">
+            Counting objects (1–99)<br/>
+            Telling someone's age<br/>
+            Counting hours (time)<br/>
+            Counting people
+          </div>
+        </div>
+        <div class="use-card sino-use">
+          <div class="use-title sino-use">Sino-Korean — used for:</div>
+          <div class="use-items">
+            Money (prices, won)<br/>
+            Minutes & seconds (time)<br/>
+            Dates (months, days)<br/>
+            Phone numbers, addresses<br/>
+            Numbers above 99
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Don't let this overwhelm you.</strong> The good news: for most tourist/beginner situations, prices use Sino-Korean (which is simpler to learn) and you can always just show fingers for small counts. You'll get the feel for which system to use naturally over time.
+      </div>
+    </div>
+
+    <!-- Native Korean numbers -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Native Korean numbers 1–10</div>
+      <div class="section-title">고유어 — used for counting objects and age</div>
+      <div class="num-grid">
+        <div class="num-card accent"><div class="num-digit">1</div><div class="num-native">하나</div><div class="num-rom">hana</div><div class="num-hint">→ 한 before noun</div></div>
+        <div class="num-card accent"><div class="num-digit">2</div><div class="num-native">둘</div><div class="num-rom">dul</div><div class="num-hint">→ 두 before noun</div></div>
+        <div class="num-card accent"><div class="num-digit">3</div><div class="num-native">셋</div><div class="num-rom">set</div><div class="num-hint">→ 세 before noun</div></div>
+        <div class="num-card accent"><div class="num-digit">4</div><div class="num-native">넷</div><div class="num-rom">net</div><div class="num-hint">→ 네 before noun</div></div>
+        <div class="num-card accent"><div class="num-digit">5</div><div class="num-native">다섯</div><div class="num-rom">daseot</div></div>
+        <div class="num-card accent"><div class="num-digit">6</div><div class="num-native">여섯</div><div class="num-rom">yeoseot</div></div>
+        <div class="num-card accent"><div class="num-digit">7</div><div class="num-native">일곱</div><div class="num-rom">ilgop</div></div>
+        <div class="num-card accent"><div class="num-digit">8</div><div class="num-native">여덟</div><div class="num-rom">yeodeol</div></div>
+        <div class="num-card accent"><div class="num-digit">9</div><div class="num-native">아홉</div><div class="num-rom">ahop</div></div>
+        <div class="num-card accent"><div class="num-digit">10</div><div class="num-native">열</div><div class="num-rom">yeol</div></div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>하나, 둘, 셋, 넷 shorten</strong> when followed directly by a noun/counter — 하나 → 한, 둘 → 두, 셋 → 세, 넷 → 네. So "one cup" is 한 잔 (han jan), not 하나 잔. This catches beginners off guard — just remember the pattern for these first four.
+      </div>
+    </div>
+
+    <!-- Sino-Korean numbers -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Sino-Korean numbers 1–10</div>
+      <div class="section-title">한자어 — used for money, dates, minutes, phone numbers</div>
+      <div class="num-grid">
+        <div class="num-card highlight"><div class="num-digit">1</div><div class="num-native">일</div><div class="num-rom">il</div></div>
+        <div class="num-card highlight"><div class="num-digit">2</div><div class="num-native">이</div><div class="num-rom">i</div></div>
+        <div class="num-card highlight"><div class="num-digit">3</div><div class="num-native">삼</div><div class="num-rom">sam</div></div>
+        <div class="num-card highlight"><div class="num-digit">4</div><div class="num-native">사</div><div class="num-rom">sa</div></div>
+        <div class="num-card highlight"><div class="num-digit">5</div><div class="num-native">오</div><div class="num-rom">o</div></div>
+        <div class="num-card highlight"><div class="num-digit">6</div><div class="num-native">육</div><div class="num-rom">yuk</div></div>
+        <div class="num-card highlight"><div class="num-digit">7</div><div class="num-native">칠</div><div class="num-rom">chil</div></div>
+        <div class="num-card highlight"><div class="num-digit">8</div><div class="num-native">팔</div><div class="num-rom">pal</div></div>
+        <div class="num-card highlight"><div class="num-digit">9</div><div class="num-native">구</div><div class="num-rom">gu</div></div>
+        <div class="num-card highlight"><div class="num-digit">10</div><div class="num-native">십</div><div class="num-rom">sip</div></div>
+      </div>
+      <div class="number-builder" style="margin-top:14px">
+        <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:10px">Building Sino-Korean numbers — same additive logic as Japanese:</p>
+        <div class="builder-row">
+          <span class="builder-piece">이십오</span><span style="color:#888; font-size:12px">(i-sip-o)</span>
+          <span style="color:#ccc">=</span><span class="builder-en">25</span>
+        </div>
+        <div class="builder-row">
+          <span class="builder-piece">삼백</span><span style="color:#888; font-size:12px">(sam-baek)</span>
+          <span style="color:#ccc">=</span><span class="builder-en">300</span>
+          <span style="font-size:12px; color:#aaa">(백 = 100)</span>
+        </div>
+        <div class="builder-row">
+          <span class="builder-piece">오천원</span><span style="color:#888; font-size:12px">(o-cheon-won)</span>
+          <span style="color:#ccc">=</span><span class="builder-en">5,000 won</span>
+          <span style="font-size:12px; color:#aaa">(천 = 1,000, 원 = Korean won)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real usage examples -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The two systems in real life</div>
+      <div class="section-title">Side by side — see when each is used</div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px; margin-top:4px;">Telling time — hours use Native, minutes use Sino:</p>
+      <div class="example-list">
+        <div class="example-card">
+          <span class="example-icon">🕒</span>
+          <div>
+            <div class="example-native"><span style="color:#0f6e56">세</span> 시 <span style="color:#185FA5">삼십</span> 분</div>
+            <div class="example-rom"><span style="color:#0f6e56">se</span> si <span style="color:#185FA5">samsip</span> bun</div>
+            <div class="example-en">3:30 — "three (native) hours, thirty (sino) minutes"</div>
+            <div class="example-note">시 = hour marker, 분 = minute marker</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🕐</span>
+          <div>
+            <div class="example-native">몇 시예요?</div>
+            <div class="example-rom">Myeot siyeyo?</div>
+            <div class="example-en">What time is it?</div>
+            <div class="example-note">몇 (myeot) = how many/what number. Use this to ask the time.</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px; margin-top:16px;">Age — always uses Native Korean numbers + 살 (sal):</p>
+      <div class="example-list">
+        <div class="example-card">
+          <span class="example-icon">🎂</span>
+          <div>
+            <div class="example-native">저는 스물다섯 살이에요</div>
+            <div class="example-rom">Jeoneun seumul-daseot sal-ieyo</div>
+            <div class="example-en">I am 25 years old</div>
+            <div class="example-note">스물 = 20 (native), 다섯 = 5 (native), 살 = age counter</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px; margin-top:16px;">Prices — always Sino-Korean + 원 (won):</p>
+      <div class="example-list">
+        <div class="example-card">
+          <span class="example-icon">💵</span>
+          <div>
+            <div class="example-native">오천 원이에요</div>
+            <div class="example-rom">O-cheon won-ieyo</div>
+            <div class="example-en">It's 5,000 won (about $3.70 USD)</div>
+            <div class="example-note">Typical price for a street food tteokbokki (rice cake).</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🧾</span>
+          <div>
+            <div class="example-native">얼마예요?</div>
+            <div class="example-rom">Eolmayeyo?</div>
+            <div class="example-en">How much is it?</div>
+            <div class="example-note">From Week 2 — you already know this one!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture note -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🎂</span>
+        <div class="culture-text">
+          <strong>Korean age — you may be older than you think!</strong><br/>
+          Korea has traditionally used a unique age system where everyone is born at age 1 and everyone gains a year on New Year's Day — not on their birthday. This means you could be 1–2 years older in Korean age than your international age. As of 2023, Korea officially switched to the international system for legal purposes, but you may still encounter the traditional system in casual conversation. If someone asks your Korean age, add 1 (or 2 if your birthday hasn't passed this year).
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 4 Korean — numbers challenge</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which number system is used for prices in Korean won?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Native Korean (하나, 둘, 셋...)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Sino-Korean (일, 이, 삼...)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Either system works</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Japanese numbers</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">When telling time in Korean, what do you use for the HOURS?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'correct')">Native Korean numbers (하나, 둘, 셋...)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Sino-Korean numbers (일, 이, 삼...)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Either works equally</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">English numbers</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I am 25 years old" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 이십오 살이에요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">저는 스물다섯 살이에요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 25 원이에요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 다섯 시예요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does 하나 shorten to when placed directly before a noun?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">하</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">한</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">나</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">일</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side by side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — numbers in context</div>
+    <table>
+      <tr><th>Situation</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr>
+        <td style="font-size:13px">It's 3 o'clock</td>
+        <td>三時です (san-ji desu)</td>
+        <td>세 시예요 (se siyeyo) — native hours</td>
+      </tr>
+      <tr>
+        <td style="font-size:13px">3:30</td>
+        <td>三時半 (san-ji han)</td>
+        <td>세 시 삼십 분 (se si samsip bun)</td>
+      </tr>
+      <tr>
+        <td style="font-size:13px">5,000 (price)</td>
+        <td>五千円 (go-sen-en)</td>
+        <td>오천 원 (o-cheon won) — sino</td>
+      </tr>
+      <tr>
+        <td style="font-size:13px">I'm 25 years old</td>
+        <td>二十五歳 (ni-juu-go-sai)</td>
+        <td>스물다섯 살 (seumul-daseot sal) — native</td>
+      </tr>
+      <tr>
+        <td style="font-size:13px">How much?</td>
+        <td>いくらですか (ikura desu ka)</td>
+        <td>얼마예요? (eolmayeyo)</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Week 5 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 5</div>
+    <div class="preview-grid">
+      <div class="preview-card jp">
+        <div class="preview-lang">🇯🇵 Japanese</div>
+        <div class="preview-content">Days of the week, months, and dates — plus how to read a Japanese calendar. You'll be able to make appointments and understand event schedules.</div>
+      </div>
+      <div class="preview-card kr">
+        <div class="preview-lang">🇰🇷 Korean</div>
+        <div class="preview-content">Days, months, and dates in Korean — plus your first taste of verb conjugation endings (present, past, and question form). Korean verbs are actually very logical once you see the pattern.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 4 complete · Click <a href="Japanese.Korean.Week5.html">here</a> when you're ready for Week 5 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* Japanese counter demo */
+const jpWords = {
+  1: ['一個','ikko — one item'],
+  2: ['二個','ni-ko — two items'],
+  3: ['三個','san-ko — three items'],
+  4: ['四個','yon-ko — four items'],
+  5: ['五個','go-ko — five items'],
+  6: ['六個','rok-ko — six items'],
+  7: ['七個','nana-ko — seven items'],
+  8: ['八個','hachi-ko — eight items'],
+  9: ['九個','kyuu-ko — nine items'],
+  10: ['十個','juu-ko — ten items'],
+};
+const jpEmoji = ['','🍱','🍱🍱','🍱🍱🍱','🍱🍱🍱🍱','🍱🍱🍱🍱🍱','🍱🍱🍱🍱🍱🍱','🍱🍱🍱🍱🍱🍱🍱','🍱🍱🍱🍱🍱🍱🍱🍱','🍱🍱🍱🍱🍱🍱🍱🍱🍱','🍱🍱🍱🍱🍱🍱🍱🍱🍱🍱'];
+let jpN = 1;
+function jpCount(delta) {
+  jpN = Math.max(1, Math.min(10, jpN + delta));
+  document.getElementById('jp-counter-num').textContent = jpN;
+  document.getElementById('jp-counter-display').textContent = jpEmoji[jpN];
+  document.getElementById('jp-counter-native').textContent = jpWords[jpN][0];
+  document.getElementById('jp-counter-rom').textContent = jpWords[jpN][1];
+}
+</script>
+</body>
+</html>
