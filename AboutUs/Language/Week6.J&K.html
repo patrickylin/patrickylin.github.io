@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 6 — Japanese & Korean: Food & Dining</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Food dish cards */
+  .dish-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .dish-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 14px; }
+  .dish-card.must { background: #fdf9f0; border-color: #f0dfa8; }
+  .dish-emoji { font-size: 26px; margin-bottom: 6px; }
+  .dish-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; }
+  .dish-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .dish-en { font-size: 13px; color: #333; font-weight: 500; }
+  .dish-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+  .must-badge { display: inline-block; background: #fdf6ec; border: 0.5px solid #f0d090; color: #854F0B; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-bottom: 6px; letter-spacing: 0.05em; }
+
+  /* Ordering phrases */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Interactive menu simulator */
+  .menu-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .menu-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+  .menu-tabs { display: flex; gap: 0; border-bottom: 0.5px solid #eee; }
+  .menu-tab { padding: 9px 16px; font-size: 13px; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.15s; }
+  .menu-tab.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
+  .menu-tab:hover { color: #333; }
+  .menu-content { padding: 14px; }
+  .menu-section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin: 10px 0 8px; }
+  .menu-section-title:first-child { margin-top: 0; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 0.5px solid #f5f5f5; }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-left { flex: 1; }
+  .menu-item-native { font-size: 16px; color: #1a1a18; }
+  .menu-item-rom { font-size: 11px; color: #888; }
+  .menu-item-en { font-size: 12px; color: #555; margin-top: 1px; }
+  .menu-item-price { font-size: 14px; color: #185FA5; font-weight: 500; white-space: nowrap; margin-left: 12px; }
+  .menu-order-btn { background: transparent; border: 0.5px solid #ccc; border-radius: 6px; padding: 4px 10px; font-size: 12px; cursor: pointer; color: #555; margin-left: 8px; transition: background 0.15s; }
+  .menu-order-btn:hover { background: #f0f0ee; }
+  .menu-order-btn.ordered { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .menu-order-panel { padding: 12px 14px; background: #fff; border-top: 0.5px solid #eee; font-size: 13px; min-height: 48px; }
+  .order-empty { color: #aaa; font-style: italic; }
+  .order-item { display: inline-block; background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 8px; padding: 3px 10px; margin: 3px; font-size: 12px; color: #185FA5; }
+
+  /* Diet restriction cards */
+  .diet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .diet-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .diet-native { font-size: 18px; margin-bottom: 3px; }
+  .diet-rom { font-size: 12px; color: #888; }
+  .diet-en { font-size: 13px; color: #333; font-weight: 500; margin-top: 3px; }
+  .diet-phrase { font-size: 12px; color: #555; margin-top: 6px; background: #fff; border: 0.5px solid #eee; border-radius: 6px; padding: 6px 8px; line-height: 1.6; }
+
+  /* Spice meter */
+  .spice-card { background: #fdf0ed; border: 0.5px solid #f5c4b0; border-radius: 12px; padding: 14px 16px; margin-top: 12px; }
+  .spice-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+  .spice-label { font-size: 13px; color: #333; width: 120px; flex-shrink: 0; }
+  .spice-dots { display: flex; gap: 4px; }
+  .dot-fill { width: 10px; height: 10px; border-radius: 50%; background: #D85A30; }
+  .dot-empty { width: 10px; height: 10px; border-radius: 50%; background: #f5ddd8; border: 0.5px solid #e5c0b8; }
+  .spice-native { font-size: 16px; color: #1a1a18; margin-left: 6px; }
+  .spice-rom { font-size: 11px; color: #888; }
+
+  /* Etiquette cards */
+  .etiq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .etiq-card { display: flex; gap: 12px; align-items: flex-start; background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .etiq-icon { font-size: 20px; flex-shrink: 0; }
+  .etiq-text { font-size: 13px; color: #333; line-height: 1.6; }
+  .etiq-title { font-weight: 500; color: #1a1a18; display: block; margin-bottom: 2px; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .dish-grid, .diet-grid, .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 6 of 16</span>
+      <h1>Food & Dining</h1>
+      <div class="subtitle">JP: Order confidently at any Japanese restaurant · KR: Navigate Korea's unique dining culture from street food to sit-down meals</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:37%"></div></div>
+      37% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 6 · Must-know dishes · Ordering · Dining etiquette</div>
+      </div>
+    </div>
+
+    <!-- Must-know dishes -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Essential Japanese dishes</div>
+      <div class="section-title">12 dishes every visitor needs to know — and how to order them</div>
+      <div class="dish-grid">
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🍣</div>
+          <div class="dish-native">寿司 / すし</div>
+          <div class="dish-rom">sushi</div>
+          <div class="dish-en">Sushi — vinegared rice with toppings</div>
+          <div class="dish-note">At a conveyor belt (回転寿司 kaiten-zushi), just grab plates. At a proper sushi bar, say the fish name + ひとつ (hitotsu = one please).</div>
+        </div>
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🍜</div>
+          <div class="dish-native">ラーメン</div>
+          <div class="dish-rom">rāmen</div>
+          <div class="dish-en">Ramen — noodle soup</div>
+          <div class="dish-note">4 main styles: 醤油 (shoyu/soy), 塩 (shio/salt), 味噌 (miso), 豚骨 (tonkotsu/pork bone). Each region has its specialty.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍱</div>
+          <div class="dish-native">弁当 / べんとう</div>
+          <div class="dish-rom">bentō</div>
+          <div class="dish-en">Bento — boxed meal</div>
+          <div class="dish-note">From konbini or train stations. Usually rice + protein + vegetables. A complete, affordable meal.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍙</div>
+          <div class="dish-native">おにぎり</div>
+          <div class="dish-rom">onigiri</div>
+          <div class="dish-en">Rice ball — stuffed with filling</div>
+          <div class="dish-note">Fillings include 鮭 (sake/salmon), ツナ (tsuna/tuna), 梅 (ume/pickled plum). Konbini staple.</div>
+        </div>
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🍛</div>
+          <div class="dish-native">カレーライス</div>
+          <div class="dish-rom">karē raisu</div>
+          <div class="dish-en">Japanese curry rice</div>
+          <div class="dish-note">Milder and thicker than Indian curry. Japan's most-eaten dish — every family has their version. Deep comfort food.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍢</div>
+          <div class="dish-native">おでん</div>
+          <div class="dish-rom">oden</div>
+          <div class="dish-en">Simmered hot pot — winter classic</div>
+          <div class="dish-note">Found at konbini in winter — point at what you want and the staff ladles it out. Tofu, daikon, fish cakes, eggs.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🥟</div>
+          <div class="dish-native">餃子 / ぎょうざ</div>
+          <div class="dish-rom">gyōza</div>
+          <div class="dish-en">Pan-fried dumplings</div>
+          <div class="dish-note">Japanese gyoza are thinner-skinned and crispier than Chinese ones. Often served with ramen or as a side dish.</div>
+        </div>
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🍡</div>
+          <div class="dish-native">たこ焼き</div>
+          <div class="dish-rom">takoyaki</div>
+          <div class="dish-en">Octopus balls — Osaka street food</div>
+          <div class="dish-note">Batter balls with octopus inside, topped with sauce, mayo, and bonito flakes. Warning: they're extremely hot inside!</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🫕</div>
+          <div class="dish-native">しゃぶしゃぶ</div>
+          <div class="dish-rom">shabu-shabu</div>
+          <div class="dish-en">Hotpot — swish thin-sliced meat in broth</div>
+          <div class="dish-note">Named after the swishing sound the meat makes. A communal, interactive dining experience.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍤</div>
+          <div class="dish-native">天ぷら</div>
+          <div class="dish-rom">tempura</div>
+          <div class="dish-en">Light battered and deep-fried seafood & veg</div>
+          <div class="dish-note">The batter is deliberately thin and airy — nothing like heavy Western batter. Dip in tentsuyu (dashi dipping sauce).</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🥩</div>
+          <div class="dish-native">焼肉 / やきにく</div>
+          <div class="dish-rom">yakiniku</div>
+          <div class="dish-en">BBQ — grill your own meat at the table</div>
+          <div class="dish-note">You cook it yourself over a tabletop grill. Order different cuts and dip in tare (sauce). Social and very popular.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍮</div>
+          <div class="dish-native">茶碗蒸し</div>
+          <div class="dish-rom">chawanmushi</div>
+          <div class="dish-en">Steamed savoury egg custard</div>
+          <div class="dish-note">Silky smooth, served in a lidded cup. A classic side dish at traditional Japanese restaurants.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive menu simulator -->
+    <div class="section">
+      <div class="section-label">Interactive · Japanese restaurant menu</div>
+      <div class="section-title">Practice reading a real menu — tap "Order" to build your meal</div>
+      <div class="menu-sim">
+        <div class="menu-header">
+          <span>🏮 レストランよし — Restaurant Yoshi</span>
+          <span style="font-size:12px; opacity:0.7">ようこそ！(Welcome!)</span>
+        </div>
+        <div class="menu-tabs">
+          <div class="menu-tab active" onclick="switchTab(this,'jp-main')">定食 Main</div>
+          <div class="menu-tab" onclick="switchTab(this,'jp-side')">サイド Sides</div>
+          <div class="menu-tab" onclick="switchTab(this,'jp-drink')">飲み物 Drinks</div>
+        </div>
+        <div class="menu-content" id="jp-main">
+          <div class="menu-section-title">麺類 — Noodles</div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">醤油ラーメン</div>
+              <div class="menu-item-rom">shoyu rāmen</div>
+              <div class="menu-item-en">Soy sauce ramen with chashu pork</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥850</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'醤油ラーメン ¥850')">注文</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">味噌ラーメン</div>
+              <div class="menu-item-rom">miso rāmen</div>
+              <div class="menu-item-en">Miso broth ramen with corn & butter</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥900</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'味噌ラーメン ¥900')">注文</button>
+            </div>
+          </div>
+          <div class="menu-section-title" style="margin-top:14px">ご飯もの — Rice dishes</div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">カレーライス</div>
+              <div class="menu-item-rom">karē raisu</div>
+              <div class="menu-item-en">Japanese curry rice with salad</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥750</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'カレーライス ¥750')">注文</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">親子丼</div>
+              <div class="menu-item-rom">oyakodon</div>
+              <div class="menu-item-en">Chicken & egg rice bowl</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥780</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'親子丼 ¥780')">注文</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-content" id="jp-side" style="display:none">
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">餃子 (6個)</div>
+              <div class="menu-item-rom">gyōza (6 pieces)</div>
+              <div class="menu-item-en">Pan-fried dumplings × 6</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥380</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'餃子 ¥380')">注文</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">枝豆</div>
+              <div class="menu-item-rom">edamame</div>
+              <div class="menu-item-en">Salted steamed soybeans</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥280</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'枝豆 ¥280')">注文</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">唐揚げ</div>
+              <div class="menu-item-rom">karaage</div>
+              <div class="menu-item-en">Japanese fried chicken</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥450</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'唐揚げ ¥450')">注文</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-content" id="jp-drink" style="display:none">
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">緑茶</div>
+              <div class="menu-item-rom">ryokucha</div>
+              <div class="menu-item-en">Green tea (usually free)</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">無料</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'緑茶 (free)')">注文</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">生ビール</div>
+              <div class="menu-item-rom">nama bīru</div>
+              <div class="menu-item-en">Draft beer</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥550</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'生ビール ¥550')">注文</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">オレンジジュース</div>
+              <div class="menu-item-rom">orenji jūsu</div>
+              <div class="menu-item-en">Orange juice</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">¥320</div>
+              <button class="menu-order-btn" onclick="jpOrder(this,'オレンジジュース ¥320')">注文</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-order-panel">
+          <div style="font-size:11px;color:#aaa;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em">Your order:</div>
+          <div id="jp-order-list"><span class="order-empty">Nothing ordered yet — tap 注文 (order) to add items</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ordering phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Restaurant phrases</div>
+      <div class="section-title">Everything you need from entering to paying</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🚪</span>
+          <div>
+            <div class="phrase-native">一人です / 二人です</div>
+            <div class="phrase-rom">Hitori desu / Futari desu</div>
+            <div class="phrase-en">Table for one / two</div>
+            <div class="phrase-note">Staff will ask 何名様ですか (nan-mei-sama desu ka = how many people?). Just hold up fingers or say the number + 人 (nin/ri).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📖</span>
+          <div>
+            <div class="phrase-native">メニューをください</div>
+            <div class="phrase-rom">Menyū wo kudasai</div>
+            <div class="phrase-en">Please give me the menu</div>
+            <div class="phrase-note">Many restaurants have picture menus or plastic food displays outside — point and use これをください if needed.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙋</span>
+          <div>
+            <div class="phrase-native">すみません！</div>
+            <div class="phrase-rom">Sumimasen!</div>
+            <div class="phrase-en">Excuse me! (to call a waiter)</div>
+            <div class="phrase-note">In Japan, calling out すみません to get a server's attention is completely normal and expected — not rude at all.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">✏️</span>
+          <div>
+            <div class="phrase-native">〜をひとつ、お願いします</div>
+            <div class="phrase-rom">[dish]-wo hitotsu, onegaishimasu</div>
+            <div class="phrase-en">One [dish], please</div>
+            <div class="phrase-note">ひとつ (one) / ふたつ (two) / みっつ (three) — these are native Japanese counting words for general objects.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌶️</span>
+          <div>
+            <div class="phrase-native">辛くしないでください</div>
+            <div class="phrase-rom">Karakunishinai de kudasai</div>
+            <div class="phrase-en">Please don't make it spicy</div>
+            <div class="phrase-note">辛い (karai) = spicy. 辛くして (karakushite) = make it spicy. 甘い (amai) = sweet. 少し (sukoshi) = a little.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💳</span>
+          <div>
+            <div class="phrase-native">お会計をお願いします</div>
+            <div class="phrase-rom">Okaikei wo onegaishimasu</div>
+            <div class="phrase-en">Bill / check, please</div>
+            <div class="phrase-note">In Japan, you don't split bills at the table — pay at the register on your way out. Never tip; it can be considered rude.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🥡</span>
+          <div>
+            <div class="phrase-native">持ち帰りできますか？</div>
+            <div class="phrase-rom">Mochikaeri dekimasu ka?</div>
+            <div class="phrase-en">Can I take this away / get takeout?</div>
+            <div class="phrase-note">持ち帰り (mochikaeri) = takeaway/takeout. テイクアウト (teiku-auto) is also widely understood.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dietary restrictions -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Dietary restrictions</div>
+      <div class="section-title">Essential phrases for allergies and dietary needs</div>
+      <div class="diet-grid">
+        <div class="diet-card">
+          <div class="diet-native">アレルギーがあります</div>
+          <div class="diet-rom">arerugī ga arimasu</div>
+          <div class="diet-en">I have an allergy</div>
+          <div class="diet-phrase">〜アレルギーがあります<br/>[allergen]-arerugī ga arimasu<br/>I am allergic to [allergen]</div>
+        </div>
+        <div class="diet-card">
+          <div class="diet-native">ベジタリアンです</div>
+          <div class="diet-rom">bejitarian desu</div>
+          <div class="diet-en">I am vegetarian</div>
+          <div class="diet-phrase">肉は食べません<br/>niku wa tabemasen<br/>I don't eat meat</div>
+        </div>
+        <div class="diet-card">
+          <div class="diet-native">〜は入っていますか？</div>
+          <div class="diet-rom">[ingredient]-wa haitte imasu ka?</div>
+          <div class="diet-en">Does this contain [ingredient]?</div>
+          <div class="diet-phrase">小麦粉 = flour/wheat<br/>卵 = egg · 乳 = dairy<br/>海産物 = seafood</div>
+        </div>
+        <div class="diet-card">
+          <div class="diet-native">〜なしでお願いします</div>
+          <div class="diet-rom">[ingredient]-nashi de onegaishimasu</div>
+          <div class="diet-en">Without [ingredient], please</div>
+          <div class="diet-phrase">なし (nashi) = without<br/>e.g. ネギなし = no green onion<br/>グルテンなし = gluten-free</div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Note on vegetarianism in Japan:</strong> Traditional Japanese cooking uses dashi (出汁) — a stock often made from fish (bonito flakes) or seafood. Many dishes that appear vegetarian contain dashi. Always ask 魚は入っていますか？(sakana wa haitte imasu ka? = Does it contain fish?) to be safe.
+      </div>
+    </div>
+
+    <!-- Dining etiquette -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Japanese dining etiquette</div>
+      <div class="section-title">6 rules that will make you look like a seasoned Japan visitor</div>
+      <div class="etiq-list">
+        <div class="etiq-card">
+          <span class="etiq-icon">🍽️</span>
+          <div class="etiq-text">
+            <span class="etiq-title">いただきます & ごちそうさま</span>
+            Say いただきます (itadakimasu) before eating and ごちそうさまでした (gochisousama deshita) after. Already covered in Week 2 — this is the most appreciated thing a foreigner can do.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🥢</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Chopstick rules</span>
+            Never stick chopsticks upright in rice (resembles funeral offerings) and never pass food chopstick-to-chopstick (a funeral ritual). Rest them on the chopstick holder (箸置き, hashioki) when not in use.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🍶</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Pour for others, not yourself</span>
+            When drinking with a group, pour for those around you before filling your own glass. It's a sign of care and attentiveness.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">💴</span>
+          <div class="etiq-text">
+            <span class="etiq-title">No tipping — ever</span>
+            Tipping is not part of Japanese culture and can cause confusion or even offence. The service price is included. Leave the table clean — that's the real appreciation.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🍵</span>
+          <div class="etiq-text">
+            <span class="etiq-title">お茶 (ocha) is usually free</span>
+            Hot green tea is complimentary at most Japanese restaurants. It's refilled automatically. Asking for water (お水 o-mizu) is fine too — it's always free.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🔔</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Call buttons & shouting すみません</span>
+            Many restaurants have a call button (呼び出しボタン) at the table. If not, calling out すみません loudly is totally acceptable — staff will come promptly.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture note JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🍱</span>
+        <div class="culture-text">
+          <strong>駅弁 (ekiben) — train station bento culture</strong><br/>
+          Japan has elevated the humble packed lunch into an art form. Ekiben (station bento boxes) are sold at bullet train (新幹線, shinkansen) platforms across the country, each region featuring its own local specialties — Hokkaido crab, Kyoto pickled vegetables, Kobe beef. Buying an ekiben before your shinkansen journey and eating it while watching the countryside go by is one of the most quintessentially Japanese experiences. Look for them in the basement food halls of department stores (デパ地下, depachika) too.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 6 Japanese — food & dining</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask for the bill in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">メニューをください</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">お会計をお願いします</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">すみません</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">いただきます</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which ramen style uses a pork bone broth?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">醤油 (shoyu)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">塩 (shio)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">味噌 (miso)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">豚骨 (tonkotsu)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Why should you be careful about vegetarian food in Japan?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Vegetables are expensive in Japan</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Many dishes contain dashi, which is often made from fish or seafood</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Japanese restaurants rarely have vegetarian options</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Tofu is considered a meat substitute</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does たこ焼き (takoyaki) contain?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Beef</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Tofu</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Octopus</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Shrimp</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 6 · Must-know dishes · Ordering · 반찬 culture · Spice levels</div>
+      </div>
+    </div>
+
+    <!-- Must-know dishes -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Essential Korean dishes</div>
+      <div class="section-title">12 dishes every visitor needs to know</div>
+      <div class="dish-grid">
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🌶️</div>
+          <div class="dish-native">김치찌개</div>
+          <div class="dish-rom">kimchi-jjigae</div>
+          <div class="dish-en">Kimchi stew — Korea's ultimate comfort food</div>
+          <div class="dish-note">Fermented kimchi simmered with pork (or tofu) and tofu. Deeply flavourful, spicy, and eaten year-round.</div>
+        </div>
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🥩</div>
+          <div class="dish-native">삼겹살</div>
+          <div class="dish-rom">samgyeopsal</div>
+          <div class="dish-en">Grilled pork belly — Korea's most social meal</div>
+          <div class="dish-note">Grilled at the table, wrapped in lettuce with garlic and ssamjang paste. The centrepiece of Korean social dining.</div>
+        </div>
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🍲</div>
+          <div class="dish-native">비빔밥</div>
+          <div class="dish-rom">bibimbap</div>
+          <div class="dish-en">Mixed rice bowl with vegetables & egg</div>
+          <div class="dish-note">Rice topped with seasoned vegetables, a fried egg, and gochujang paste. Mix everything together before eating.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍜</div>
+          <div class="dish-native">냉면</div>
+          <div class="dish-rom">naengmyeon</div>
+          <div class="dish-en">Cold buckwheat noodles — summer essential</div>
+          <div class="dish-note">Served in an icy broth or dry with sauce. The scissor-cut noodles tradition means staff will offer to cut them for you.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🥘</div>
+          <div class="dish-native">된장찌개</div>
+          <div class="dish-rom">doenjang-jjigae</div>
+          <div class="dish-en">Fermented soybean paste stew</div>
+          <div class="dish-note">Korea's answer to miso soup — but much heartier. Made with tofu, zucchini, and fermented soybean paste.</div>
+        </div>
+        <div class="dish-card must">
+          <div class="must-badge">MUST TRY</div>
+          <div class="dish-emoji">🌶️</div>
+          <div class="dish-native">떡볶이</div>
+          <div class="dish-rom">tteokbokki</div>
+          <div class="dish-en">Spicy rice cakes — king of Korean street food</div>
+          <div class="dish-note">Chewy cylindrical rice cakes in a sweet-spicy gochujang sauce. Found everywhere on the street. Addictive.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍗</div>
+          <div class="dish-native">치킨</div>
+          <div class="dish-rom">chikin</div>
+          <div class="dish-en">Korean fried chicken — double-fried, crispy</div>
+          <div class="dish-note">Double-fried for maximum crispiness — a technique that changed the world. Often delivered late at night with beer (치맥, chimaek).</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🧆</div>
+          <div class="dish-native">순두부찌개</div>
+          <div class="dish-rom">sundubu-jjigae</div>
+          <div class="dish-en">Soft tofu stew — silky and spicy</div>
+          <div class="dish-note">Served in a stone pot, still bubbling. Crack a raw egg in at the table and it cooks in the broth. A breakfast and lunch favourite.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🧇</div>
+          <div class="dish-native">파전</div>
+          <div class="dish-rom">pajeon</div>
+          <div class="dish-en">Green onion pancake</div>
+          <div class="dish-note">Crispy savoury pancake with green onions, often with seafood (해물파전, haemul pajeon). A classic rainy day food.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍣</div>
+          <div class="dish-native">김밥</div>
+          <div class="dish-rom">gimbap</div>
+          <div class="dish-en">Rice rolls — Korea's answer to sushi</div>
+          <div class="dish-note">Rice and fillings wrapped in seaweed. Not raw fish — usually ham, egg, vegetables. A picnic and lunch staple.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🥗</div>
+          <div class="dish-native">잡채</div>
+          <div class="dish-rom">japchae</div>
+          <div class="dish-en">Glass noodles with vegetables & meat</div>
+          <div class="dish-note">Sweet potato starch noodles stir-fried with sesame oil, vegetables, and beef. Served at celebrations and special occasions.</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-emoji">🍖</div>
+          <div class="dish-native">갈비탕</div>
+          <div class="dish-rom">galbi-tang</div>
+          <div class="dish-en">Short rib soup — rich and clear-broth</div>
+          <div class="dish-note">Slowly simmered beef short ribs in a milky-white bone broth. A restorative, deeply satisfying bowl.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Korean spice guide -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Spice levels — know before you order</div>
+      <div class="section-title">맵기 (maepgi) — Korean food ranges from mild to brutal</div>
+      <p>Korea is famous for its bold spice. Knowing how to ask about spice levels can save you a lot of pain — and help you find your perfect dish.</p>
+      <div class="spice-card">
+        <div style="font-size:13px; font-weight:500; color:#993C1D; margin-bottom:10px">Spice level guide — 맵기 단계 (maepgi dangye)</div>
+        <div class="spice-row">
+          <div class="spice-label" style="font-size:12px">안 매워요 (not spicy)</div>
+          <div class="spice-dots"><div class="dot-fill"></div><div class="dot-empty"></div><div class="dot-empty"></div><div class="dot-empty"></div><div class="dot-empty"></div></div>
+          <div style="margin-left:8px"><div class="spice-native">된장찌개, 갈비탕</div><div class="spice-rom">doenjang-jjigae, galbi-tang</div></div>
+        </div>
+        <div class="spice-row">
+          <div class="spice-label" style="font-size:12px">조금 매워요 (a little spicy)</div>
+          <div class="spice-dots"><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-empty"></div><div class="dot-empty"></div><div class="dot-empty"></div></div>
+          <div style="margin-left:8px"><div class="spice-native">비빔밥, 잡채</div><div class="spice-rom">bibimbap, japchae</div></div>
+        </div>
+        <div class="spice-row">
+          <div class="spice-label" style="font-size:12px">매워요 (spicy)</div>
+          <div class="spice-dots"><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-empty"></div><div class="dot-empty"></div></div>
+          <div style="margin-left:8px"><div class="spice-native">김치찌개, 순두부찌개</div><div class="spice-rom">kimchi-jjigae, sundubu</div></div>
+        </div>
+        <div class="spice-row">
+          <div class="spice-label" style="font-size:12px">많이 매워요 (very spicy)</div>
+          <div class="spice-dots"><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-empty"></div></div>
+          <div style="margin-left:8px"><div class="spice-native">떡볶이, 불닭볶음면</div><div class="spice-rom">tteokbokki, buldak</div></div>
+        </div>
+        <div class="spice-row">
+          <div class="spice-label" style="font-size:12px">아주 매워요 (extremely spicy)</div>
+          <div class="spice-dots"><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-fill"></div><div class="dot-fill"></div></div>
+          <div style="margin-left:8px"><div class="spice-native">핵불닭, 마라탕</div><div class="spice-rom">haek-buldak, maratang</div></div>
+        </div>
+      </div>
+      <div class="phrase-list" style="margin-top:12px">
+        <div class="phrase-card">
+          <span class="phrase-icon">🌶️</span>
+          <div>
+            <div class="phrase-native">덜 맵게 해주세요</div>
+            <div class="phrase-rom">deol maepge haejuseyo</div>
+            <div class="phrase-en">Please make it less spicy</div>
+            <div class="phrase-note">덜 = less · 맵게 = spicy · 해주세요 = please make it. One of the most useful phrases in Korea.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔥</span>
+          <div>
+            <div class="phrase-native">더 맵게 해주세요</div>
+            <div class="phrase-rom">deo maepge haejuseyo</div>
+            <div class="phrase-en">Please make it spicier</div>
+            <div class="phrase-note">더 = more. Koreans will genuinely light up if you ask for more spice — it shows cultural confidence!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Korean menu -->
+    <div class="section">
+      <div class="section-label">Interactive · Korean restaurant menu</div>
+      <div class="section-title">Practice reading a Korean menu — tap 주문 to order</div>
+      <div class="menu-sim">
+        <div class="menu-header">
+          <span>🏮 식당 한울 — Hanul Restaurant</span>
+          <span style="font-size:12px; opacity:0.7">어서오세요！(Welcome!)</span>
+        </div>
+        <div class="menu-tabs">
+          <div class="menu-tab active" onclick="switchTab(this,'kr-main')">찌개 Stews</div>
+          <div class="menu-tab" onclick="switchTab(this,'kr-grill')">구이 Grill</div>
+          <div class="menu-tab" onclick="switchTab(this,'kr-drink')">음료 Drinks</div>
+        </div>
+        <div class="menu-content" id="kr-main">
+          <div class="menu-section-title">찌개류 — Stews</div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">김치찌개</div>
+              <div class="menu-item-rom">kimchi-jjigae</div>
+              <div class="menu-item-en">Kimchi stew with pork & tofu 🌶️🌶️</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩8,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'김치찌개 ₩8,000')">주문</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">된장찌개</div>
+              <div class="menu-item-rom">doenjang-jjigae</div>
+              <div class="menu-item-en">Soybean paste stew with tofu & zucchini</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩7,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'된장찌개 ₩7,000')">주문</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">순두부찌개</div>
+              <div class="menu-item-rom">sundubu-jjigae</div>
+              <div class="menu-item-en">Soft tofu stew with seafood 🌶️🌶️</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩8,500</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'순두부찌개 ₩8,500')">주문</button>
+            </div>
+          </div>
+          <div class="menu-section-title" style="margin-top:14px">밥류 — Rice dishes</div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">비빔밥</div>
+              <div class="menu-item-rom">bibimbap</div>
+              <div class="menu-item-en">Mixed rice bowl with vegetables & egg 🌶️</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩9,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'비빔밥 ₩9,000')">주문</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-content" id="kr-grill" style="display:none">
+          <div class="menu-section-title">구이류 — Grilled meats</div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">삼겹살 (200g)</div>
+              <div class="menu-item-rom">samgyeopsal</div>
+              <div class="menu-item-en">Grilled pork belly 200g</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩14,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'삼겹살 ₩14,000')">주문</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">불고기</div>
+              <div class="menu-item-rom">bulgogi</div>
+              <div class="menu-item-en">Marinated beef — sweet & savoury</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩15,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'불고기 ₩15,000')">주문</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">떡볶이</div>
+              <div class="menu-item-rom">tteokbokki</div>
+              <div class="menu-item-en">Spicy rice cakes 🌶️🌶️🌶️</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩7,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'떡볶이 ₩7,000')">주문</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-content" id="kr-drink" style="display:none">
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">소주</div>
+              <div class="menu-item-rom">soju</div>
+              <div class="menu-item-en">Korean rice spirit — 360ml bottle</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩4,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'소주 ₩4,000')">주문</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">맥주</div>
+              <div class="menu-item-rom">maekju</div>
+              <div class="menu-item-en">Beer — 500ml bottle</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">₩5,000</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'맥주 ₩5,000')">주문</button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-left">
+              <div class="menu-item-native">물</div>
+              <div class="menu-item-rom">mul</div>
+              <div class="menu-item-en">Water (free refill)</div>
+            </div>
+            <div style="display:flex;align-items:center">
+              <div class="menu-item-price">무료</div>
+              <button class="menu-order-btn" onclick="krOrder(this,'물 (free)')">주문</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-order-panel">
+          <div style="font-size:11px;color:#aaa;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em">Your order:</div>
+          <div id="kr-order-list"><span class="order-empty">Nothing ordered yet — tap 주문 (order) to add items</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 반찬 culture -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · 반찬 — the side dish system</div>
+      <div class="section-title">The most unique thing about eating in Korea</div>
+      <p>When you sit down at a Korean restaurant, several small side dishes called 반찬 (banchan) arrive at your table automatically — and they're free. These might include kimchi, seasoned spinach, fish cake, pickled radish, and more. You can ask for refills at no extra cost.</p>
+      <div class="etiq-list">
+        <div class="etiq-card">
+          <span class="etiq-icon">🥬</div>
+          <div class="etiq-text">
+            <span class="etiq-title">반찬 더 주세요 (banchan deo juseyo)</span>
+            "More banchan, please." Use this freely — restaurants expect and welcome it. Never hesitate to ask for a refill of any side dish you enjoy.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🍚</span>
+          <div class="etiq-text">
+            <span class="etiq-title">공기밥 하나 더 주세요 (gonggi-bap hana deo juseyo)</span>
+            "One more bowl of rice, please." 공기밥 (gonggi-bap) is a bowl of plain steamed rice — often free or very cheap. Request it any time.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">✂️</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Scissors are a dining tool</span>
+            In Korean restaurants, scissors (가위, gawi) are used to cut meat on the grill, cut long noodles, and even cut pancakes. Don't be surprised when the server pulls out a pair mid-meal.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ordering phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Restaurant phrases</div>
+      <div class="section-title">From entering to paying — Korean restaurant essentials</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🚪</span>
+          <div>
+            <div class="phrase-native">몇 명이세요?</div>
+            <div class="phrase-rom">Myeot myeong-iseyo?</div>
+            <div class="phrase-en">How many people? (what staff will ask)</div>
+            <div class="phrase-note">Answer: 두 명이요 (du myeong-iyo = two people) or just hold up fingers.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📖</span>
+          <div>
+            <div class="phrase-native">메뉴판 주세요</div>
+            <div class="phrase-rom">Menyupan juseyo</div>
+            <div class="phrase-en">Please bring the menu</div>
+            <div class="phrase-note">Many Korean restaurants have picture menus or tablets — point and say 이거 주세요 (igeo juseyo = this one, please).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙋</span>
+          <div>
+            <div class="phrase-native">저기요!</div>
+            <div class="phrase-rom">Jeogiyo!</div>
+            <div class="phrase-en">Excuse me! (to call a waiter)</div>
+            <div class="phrase-note">저기요 literally means "over there" — the standard way to get a server's attention in Korea. Some restaurants have buzzers on the table (벨, bel).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🍽️</span>
+          <div>
+            <div class="phrase-native">잘 먹겠습니다</div>
+            <div class="phrase-rom">Jal meokgesseumnida</div>
+            <div class="phrase-en">I will eat well (said before eating)</div>
+            <div class="phrase-note">The Korean equivalent of いただきます — a polite expression of gratitude before a meal. Very appreciated if you use it.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💳</span>
+          <div>
+            <div class="phrase-native">계산해 주세요</div>
+            <div class="phrase-rom">Gyesan-hae juseyo</div>
+            <div class="phrase-en">Bill / check, please</div>
+            <div class="phrase-note">계산 (gyesan) = calculation/payment. Unlike Japan, many Korean restaurants accept card everywhere. Tipping is not expected.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🥡</span>
+          <div>
+            <div class="phrase-native">포장해 주세요</div>
+            <div class="phrase-rom">Pojang-hae juseyo</div>
+            <div class="phrase-en">Please pack this to go</div>
+            <div class="phrase-note">포장 (pojang) = packaging/to go. Very common — Koreans frequently take leftovers home.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture note KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🍺</span>
+        <div class="culture-text">
+          <strong>치맥 (chimaek) — fried chicken + beer culture</strong><br/>
+          치맥 (chimaek) combines 치킨 (chikin = fried chicken) and 맥주 (maekju = beer) — Korea's favourite pairing. It became a global phenomenon after featuring in the drama My Love from the Star in 2013. Korean fried chicken is distinct from Western styles — double-fried for an incredibly thin, glass-like crust and usually available in flavours like soy garlic, honey butter, or spicy. Late-night delivery of chimaek is a cornerstone of Korean social culture. Try ordering from a 치킨집 (chicken restaurant) at least once.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 6 Korean — food & dining</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What are 반찬 (banchan)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">The main dish in a Korean meal</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Free side dishes that arrive automatically with your meal</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A type of Korean dessert</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A traditional Korean drink</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask for the bill in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">잘 먹겠습니다</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저기요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">계산해 주세요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">포장해 주세요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is 삼겹살 (samgyeopsal)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A cold noodle dish</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Fried chicken</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Grilled pork belly cooked at the table</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Spicy rice cakes</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "Please make it less spicy" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">더 맵게 해주세요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">매워요!</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">덜 맵게 해주세요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">맵지 않아요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — dining in both countries</div>
+    <table>
+      <tr><th>Situation</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Before eating</td><td>いただきます (itadakimasu)</td><td>잘 먹겠습니다 (jal meokgesseumnida)</td></tr>
+      <tr><td style="font-size:13px">After eating</td><td>ごちそうさまでした</td><td>잘 먹었습니다 (jal meogeosseumnida)</td></tr>
+      <tr><td style="font-size:13px">Calling a waiter</td><td>すみません！(sumimasen)</td><td>저기요！(jeogiyo)</td></tr>
+      <tr><td style="font-size:13px">The bill please</td><td>お会計をお願いします</td><td>계산해 주세요</td></tr>
+      <tr><td style="font-size:13px">To go / takeout</td><td>持ち帰りできますか？</td><td>포장해 주세요</td></tr>
+      <tr><td style="font-size:13px">Tipping</td><td>Never — can be rude</td><td>Not expected — not common</td></tr>
+      <tr><td style="font-size:13px">Free side dishes</td><td>Not typically</td><td>Yes — 반찬 (banchan) always</td></tr>
+    </table>
+  </div>
+
+  <!-- Preview Week 7 -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 7</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Getting around — trains, buses, taxis, and asking for directions. Japan has one of the world's most complex (and efficient!) train systems. You'll learn how to buy tickets, read platform signs, and navigate subway maps.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Getting around Korea — the Seoul subway, KTX bullet trains, taxis, and T-money cards. Plus adjectives and descriptive verbs — giving you a huge new toolkit to describe what you see and experience.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 6 complete · Click <a href="Japanese.Korean.Week7.html">here</a> when you're ready for Week 7 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* Menu tab switcher */
+function switchTab(tabEl, contentId) {
+  const block = tabEl.closest('.lang-block') || tabEl.closest('.menu-sim').parentElement;
+  tabEl.parentElement.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+  const sim = tabEl.closest('.menu-sim');
+  sim.querySelectorAll('.menu-content').forEach(c => c.style.display = 'none');
+  sim.querySelector('#' + contentId).style.display = 'block';
+}
+
+/* JP order */
+let jpOrders = [];
+function jpOrder(btn, item) {
+  if (btn.classList.contains('ordered')) return;
+  btn.classList.add('ordered');
+  btn.textContent = '✓';
+  jpOrders.push(item);
+  const el = document.getElementById('jp-order-list');
+  el.innerHTML = jpOrders.map(o => `<span class="order-item">${o}</span>`).join('');
+}
+
+/* KR order */
+let krOrders = [];
+function krOrder(btn, item) {
+  if (btn.classList.contains('ordered')) return;
+  btn.classList.add('ordered');
+  btn.textContent = '✓';
+  krOrders.push(item);
+  const el = document.getElementById('kr-order-list');
+  el.innerHTML = krOrders.map(o => `<span class="order-item">${o}</span>`).join('');
+}
+</script>
+</body>
+</html>
