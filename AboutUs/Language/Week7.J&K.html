@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 7 — Japanese & Korean: Getting Around</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Transport mode cards */
+  .transport-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .transport-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px; }
+  .transport-card.featured { background: #f0f5fc; border-color: #b8d4f0; }
+  .transport-icon { font-size: 28px; margin-bottom: 6px; }
+  .transport-name { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .transport-rom { font-size: 12px; color: #888; margin-bottom: 4px; }
+  .transport-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 6px; }
+  .transport-note { font-size: 12px; color: #666; line-height: 1.6; }
+
+  /* Sign reading cards */
+  .sign-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .sign-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .sign-native { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .sign-rom { font-size: 11px; color: #888; }
+  .sign-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+  .sign-card.green { background: #f0f8f5; border-color: #a8ddc5; }
+  .sign-card.blue { background: #f0f5fc; border-color: #b8d4f0; }
+  .sign-card.red { background: #fdf0ed; border-color: #f5c4b0; }
+  .sign-card.amber { background: #fdf6ec; border-color: #f0d090; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Direction word table */
+  .dir-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .dir-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px 8px; text-align: center; }
+  .dir-native { font-size: 20px; margin-bottom: 3px; }
+  .dir-rom { font-size: 11px; color: #888; }
+  .dir-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+
+  /* Interactive ticket machine */
+  .ticket-sim { background: #1a1a18; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .ticket-screen { background: #0d2a1a; padding: 16px; min-height: 80px; }
+  .ticket-screen-text { font-size: 13px; color: #7de8a8; font-family: monospace; line-height: 1.8; }
+  .ticket-screen-title { font-size: 11px; color: #4a9e6a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .ticket-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 14px; }
+  .ticket-btn { background: #2a2a28; border: 0.5px solid #444; border-radius: 8px; color: #ddd; padding: 10px 6px; font-size: 12px; cursor: pointer; text-align: center; transition: background 0.15s; line-height: 1.4; }
+  .ticket-btn:hover { background: #383836; }
+  .ticket-btn.active { background: #185FA5; border-color: #378ADD; color: #fff; }
+  .ticket-btn .btn-native { font-size: 16px; color: #fff; display: block; margin-bottom: 2px; }
+  .ticket-btn .btn-en { font-size: 10px; color: #aaa; display: block; }
+  .ticket-footer { background: #111; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .ticket-price { font-size: 20px; font-weight: 500; color: #7de8a8; font-family: monospace; }
+  .ticket-confirm { background: #1D9E75; border: none; border-radius: 8px; color: #fff; padding: 8px 16px; font-size: 13px; cursor: pointer; }
+  .ticket-confirm:hover { background: #178a65; }
+  .ticket-result { display: none; background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 10px; padding: 12px 14px; margin-top: 10px; font-size: 13px; color: #0f6e56; }
+
+  /* Subway map visual */
+  .subway-map { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 16px; margin-top: 12px; overflow-x: auto; }
+  .subway-line { display: flex; align-items: center; gap: 0; margin: 8px 0; }
+  .subway-station { text-align: center; flex-shrink: 0; }
+  .subway-dot { width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid #fff; margin: 0 auto 3px; box-shadow: 0 0 0 1px rgba(0,0,0,0.15); }
+  .subway-dot.transfer { width: 18px; height: 18px; border-width: 3px; }
+  .subway-name { font-size: 9px; color: #555; max-width: 44px; line-height: 1.2; }
+  .subway-name.en { color: #888; font-size: 8px; }
+  .subway-track { height: 5px; flex: 1; margin-bottom: 17px; }
+  .line-1 { background: #0052A4; }
+  .line-2 { background: #009144; }
+  .line-3 { background: #EF7C1C; }
+  .line-9 { background: #BDB092; }
+  .dot-1 { background: #0052A4; }
+  .dot-2 { background: #009144; }
+  .dot-3 { background: #EF7C1C; }
+  .dot-shin { background: #9400D3; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* IC card visual */
+  .ic-card { background: linear-gradient(135deg, #185FA5 0%, #0d3d70 100%); border-radius: 12px; padding: 18px 20px; margin-top: 12px; color: #fff; display: flex; justify-content: space-between; align-items: flex-start; }
+  .ic-card-name { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .ic-card-sub { font-size: 12px; opacity: 0.75; }
+  .ic-card-logo { font-size: 36px; }
+  .ic-card-uses { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ic-chip { background: rgba(255,255,255,0.18); border: 0.5px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 10px; font-size: 11px; }
+
+  /* Adjective table */
+  .adj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .adj-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .adj-base { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .adj-rom { font-size: 11px; color: #888; margin-bottom: 4px; }
+  .adj-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 6px; }
+  .adj-conjugated { font-size: 12px; color: #555; background: #fff; border: 0.5px solid #eee; border-radius: 6px; padding: 6px 8px; line-height: 1.8; }
+
+  /* Culture note */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .transport-grid, .two-col, .adj-grid { grid-template-columns: 1fr; }
+    .sign-grid { grid-template-columns: repeat(2, 1fr); }
+    .dir-grid { grid-template-columns: repeat(2, 1fr); }
+    .ticket-buttons { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 7 of 16</span>
+      <h1>Getting Around</h1>
+      <div class="subtitle">JP: Master Japan's legendary train system · KR: Navigate Seoul's subway, KTX, and taxis — plus Korean adjectives</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:43%"></div></div>
+      43% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 7 · Trains · IC cards · Signs · Directions · Taxis</div>
+      </div>
+    </div>
+
+    <!-- Transport modes -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Japan's transport options</div>
+      <div class="section-title">4 ways to get around — and when to use each</div>
+      <div class="transport-grid">
+        <div class="transport-card featured">
+          <div class="transport-icon">🚆</div>
+          <div class="transport-name">新幹線</div>
+          <div class="transport-rom">shinkansen</div>
+          <div class="transport-en">Bullet train — city to city</div>
+          <div class="transport-note">The world's most punctual train. Tokyo→Osaka in 2h15m. Buy tickets at みどりの窓口 (midori no madoguchi = green window) or via a Japan Rail Pass if visiting multiple cities.</div>
+        </div>
+        <div class="transport-card featured">
+          <div class="transport-icon">🚇</div>
+          <div class="transport-name">地下鉄</div>
+          <div class="transport-rom">chikatetsu</div>
+          <div class="transport-en">Subway — within cities</div>
+          <div class="transport-note">Tokyo's subway is the world's busiest and most complex. Each line has a colour code and letter prefix (e.g. G = Ginza line). Maps are always in English too.</div>
+        </div>
+        <div class="transport-card">
+          <div class="transport-icon">🚌</div>
+          <div class="transport-name">バス</div>
+          <div class="transport-rom">basu</div>
+          <div class="transport-en">Bus — local routes</div>
+          <div class="transport-note">Pay when you board (urban) or when you exit (rural). IC cards work on most urban buses. Announce your stop with 次止まってください (tsugi tomatte kudasai = please stop at the next stop).</div>
+        </div>
+        <div class="transport-card">
+          <div class="transport-icon">🚕</div>
+          <div class="transport-name">タクシー</div>
+          <div class="transport-rom">takushī</div>
+          <div class="transport-en">Taxi — door to door</div>
+          <div class="transport-note">Doors open and close automatically — never touch them. Drivers wear white gloves. Expensive but reliable. Show the driver your destination written in Japanese or on a map app.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IC card -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · The IC card — your most important travel tool</div>
+      <div class="section-title">Suica & Pasmo — one card for trains, buses, and shops</div>
+      <p>An IC card (交通系ICカード, kōtsū-kei IC kādo) is a rechargeable transit card that works on almost every train, subway, and bus in Japan. It also works as a contactless payment card at konbini, vending machines, and many shops.</p>
+      <div class="ic-card">
+        <div>
+          <div class="ic-card-name">Suica / PASMO</div>
+          <div class="ic-card-sub">交通系ICカード — Japan IC Transit Card</div>
+          <div class="ic-card-uses">
+            <span class="ic-chip">🚆 All trains</span>
+            <span class="ic-chip">🚇 Subway</span>
+            <span class="ic-chip">🚌 Buses</span>
+            <span class="ic-chip">🏪 Konbini</span>
+            <span class="ic-chip">🍜 Some restaurants</span>
+            <span class="ic-chip">🎰 Vending machines</span>
+          </div>
+        </div>
+        <div class="ic-card-logo">🐧</div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Get one immediately on arrival.</strong> Buy a Suica at JR station machines or add it to Apple Wallet / Google Pay before you arrive. Top up at any チャージ (chāji = charge) machine. Starting balance ¥1,500 (¥500 is a deposit). This single card removes almost all transport friction during your trip.
+      </div>
+    </div>
+
+    <!-- Station signs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Reading station signs</div>
+      <div class="section-title">Essential kanji you'll see at every Japanese station</div>
+      <p>You don't need to read all kanji — but these specific ones appear on every platform, ticket gate, and exit sign across Japan.</p>
+      <div class="sign-grid">
+        <div class="sign-card green">
+          <div class="sign-native">出口</div>
+          <div class="sign-rom">deguchi</div>
+          <div class="sign-en">Exit</div>
+        </div>
+        <div class="sign-card red">
+          <div class="sign-native">入口</div>
+          <div class="sign-rom">iriguchi</div>
+          <div class="sign-en">Entrance</div>
+        </div>
+        <div class="sign-card blue">
+          <div class="sign-native">改札口</div>
+          <div class="sign-rom">kaisatsuguchi</div>
+          <div class="sign-en">Ticket gate</div>
+        </div>
+        <div class="sign-card">
+          <div class="sign-native">ホーム</div>
+          <div class="sign-rom">hōmu</div>
+          <div class="sign-en">Platform</div>
+        </div>
+        <div class="sign-card amber">
+          <div class="sign-native">乗換</div>
+          <div class="sign-rom">norikae</div>
+          <div class="sign-en">Transfer</div>
+        </div>
+        <div class="sign-card">
+          <div class="sign-native">終点</div>
+          <div class="sign-rom">shūten</div>
+          <div class="sign-en">Final stop</div>
+        </div>
+        <div class="sign-card green">
+          <div class="sign-native">北口</div>
+          <div class="sign-rom">kitaguchi</div>
+          <div class="sign-en">North exit</div>
+        </div>
+        <div class="sign-card green">
+          <div class="sign-native">南口</div>
+          <div class="sign-rom">minamiguchi</div>
+          <div class="sign-en">South exit</div>
+        </div>
+        <div class="sign-card green">
+          <div class="sign-native">東口 / 西口</div>
+          <div class="sign-rom">higashi / nishiguchi</div>
+          <div class="sign-en">East / West exit</div>
+        </div>
+        <div class="sign-card">
+          <div class="sign-native">禁煙</div>
+          <div class="sign-rom">kin'en</div>
+          <div class="sign-en">No smoking</div>
+        </div>
+        <div class="sign-card red">
+          <div class="sign-native">優先席</div>
+          <div class="sign-rom">yūsenseki</div>
+          <div class="sign-en">Priority seat</div>
+        </div>
+        <div class="sign-card blue">
+          <div class="sign-native">自由席</div>
+          <div class="sign-rom">jiyūseki</div>
+          <div class="sign-en">Unreserved seat</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive ticket machine -->
+    <div class="section">
+      <div class="section-label">Interactive · Ticket machine simulator</div>
+      <div class="section-title">Practice buying a train ticket in Japanese</div>
+      <p style="font-size:13px; color:#666; margin-bottom:4px">Step 1: Choose your destination. Step 2: Choose seat type. Step 3: Confirm.</p>
+      <div class="ticket-sim">
+        <div class="ticket-screen">
+          <div class="ticket-screen-title">▶ 行き先をお選びください — Select destination</div>
+          <div class="ticket-screen-text" id="ticket-screen">
+            切符をお買い求めください<br/>
+            Please select your destination below.
+          </div>
+        </div>
+        <div class="ticket-buttons">
+          <div class="ticket-btn" onclick="selectDest(this,'大阪','Osaka','¥13,870')">
+            <span class="btn-native">大阪</span>
+            <span class="btn-en">Osaka · ¥13,870</span>
+          </div>
+          <div class="ticket-btn" onclick="selectDest(this,'京都','Kyoto','¥13,320')">
+            <span class="btn-native">京都</span>
+            <span class="btn-en">Kyoto · ¥13,320</span>
+          </div>
+          <div class="ticket-btn" onclick="selectDest(this,'名古屋','Nagoya','¥10,560')">
+            <span class="btn-native">名古屋</span>
+            <span class="btn-en">Nagoya · ¥10,560</span>
+          </div>
+          <div class="ticket-btn" onclick="selectSeat(this,'自由席','Unreserved')">
+            <span class="btn-native">自由席</span>
+            <span class="btn-en">Unreserved seat</span>
+          </div>
+          <div class="ticket-btn" onclick="selectSeat(this,'指定席','Reserved')">
+            <span class="btn-native">指定席</span>
+            <span class="btn-en">Reserved seat</span>
+          </div>
+          <div class="ticket-btn" onclick="selectSeat(this,'グリーン席','Green car')">
+            <span class="btn-native">グリーン席</span>
+            <span class="btn-en">Green car (1st class)</span>
+          </div>
+        </div>
+        <div class="ticket-footer">
+          <span class="ticket-price" id="ticket-price">¥ ----</span>
+          <button class="ticket-confirm" onclick="confirmTicket()">購入する (Buy)</button>
+        </div>
+      </div>
+      <div class="ticket-result" id="ticket-result"></div>
+    </div>
+
+    <!-- Transport phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Essential transport phrases</div>
+      <div class="section-title">Everything you need to get from A to B in Japan</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎫</span>
+          <div>
+            <div class="phrase-native">〜まで一枚ください</div>
+            <div class="phrase-rom">[destination]-made ichimai kudasai</div>
+            <div class="phrase-en">One ticket to [destination], please</div>
+            <div class="phrase-note">まで (made) = to/until. 一枚 (ichimai) = one (flat-thing counter). 二枚 (nimai) = two tickets.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚉</span>
+          <div>
+            <div class="phrase-native">〜行きは何番線ですか？</div>
+            <div class="phrase-rom">[destination]-yuki wa nan-ban-sen desu ka?</div>
+            <div class="phrase-en">Which platform for [destination]?</div>
+            <div class="phrase-note">〜行き (yuki) = bound for. 何番線 (nan-ban-sen) = which track number. Very useful when platforms are not in English.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">⏱️</span>
+          <div>
+            <div class="phrase-native">次の電車は何時ですか？</div>
+            <div class="phrase-rom">Tsugi no densha wa nan-ji desu ka?</div>
+            <div class="phrase-en">What time is the next train?</div>
+            <div class="phrase-note">次 (tsugi) = next. 電車 (densha) = train. Japanese trains run like clockwork — the answer will be exactly on time.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔄</span>
+          <div>
+            <div class="phrase-native">〜に乗り換えはどこですか？</div>
+            <div class="phrase-rom">[line name]-ni norikae wa doko desu ka?</div>
+            <div class="phrase-en">Where do I transfer to [line]?</div>
+            <div class="phrase-note">乗り換え (norikae) = transfer. One of the most useful phrases in complex stations like Shinjuku or Umeda.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚕</span>
+          <div>
+            <div class="phrase-native">〜へお願いします</div>
+            <div class="phrase-rom">[destination]-e onegaishimasu</div>
+            <div class="phrase-en">To [destination], please (taxi)</div>
+            <div class="phrase-note">The simplest taxi phrase. Show the driver a map if unsure. へ (e) = to/toward.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🗺️</span>
+          <div>
+            <div class="phrase-native">〜はどうやって行きますか？</div>
+            <div class="phrase-rom">[place]-wa dou yatte ikimasu ka?</div>
+            <div class="phrase-en">How do I get to [place]?</div>
+            <div class="phrase-note">どうやって (dou yatte) = how / by what means. A slightly more advanced but very natural phrase.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Directions -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Direction words</div>
+      <div class="section-title">Navigate on foot — the 8 words you need</div>
+      <div class="dir-grid">
+        <div class="dir-card">
+          <div class="dir-native">まっすぐ</div>
+          <div class="dir-rom">massugu</div>
+          <div class="dir-en">Straight ahead</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">右</div>
+          <div class="dir-rom">migi</div>
+          <div class="dir-en">Right</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">左</div>
+          <div class="dir-rom">hidari</div>
+          <div class="dir-en">Left</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">曲がる</div>
+          <div class="dir-rom">magaru</div>
+          <div class="dir-en">To turn</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">近く</div>
+          <div class="dir-rom">chikaku</div>
+          <div class="dir-en">Nearby</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">遠い</div>
+          <div class="dir-rom">tooi</div>
+          <div class="dir-en">Far</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">交差点</div>
+          <div class="dir-rom">kōsaten</div>
+          <div class="dir-en">Intersection</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">信号</div>
+          <div class="dir-rom">shingō</div>
+          <div class="dir-en">Traffic light</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Putting directions together:</strong> 右に曲がってください (migi ni magatte kudasai) = Please turn right. 交差点をまっすぐ行ってください (kōsaten wo massugu itte kudasai) = Please go straight through the intersection. に (ni) = at/to, を (wo) = through/along.
+      </div>
+    </div>
+
+    <!-- Culture note JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🚆</span>
+        <div class="culture-text">
+          <strong>Train etiquette — Japan's unwritten rules</strong><br/>
+          Japan's trains run on politeness as much as electricity. Silent carriages (especially the shinkansen's quiet car 静粛車, seishukusha) mean no phone calls. Priority seats (優先席) near the doors are for the elderly and pregnant — give them up without hesitation. Backpacks go on the rack overhead or held in front. Eating on local trains is considered rude, though shinkansen are fine (ekiben time!). And perhaps most importantly: the train will leave at exactly the announced second. Do not run — just catch the next one.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 7 Japanese — transport & directions</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 出口 (deguchi) mean at a station?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Entrance</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Exit</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Platform</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Ticket gate</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is a Suica / PASMO card used for?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Only for shinkansen tickets</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Trains, buses, subways and contactless payment at shops</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Hotel room key cards</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Passport identification in Japan</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "One ticket to Osaka, please"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">大阪へお願いします</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">大阪まで一枚ください</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">大阪行きは何番線ですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">大阪はどうやって行きますか？</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does まっすぐ (massugu) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Turn left</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Turn right</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Straight ahead</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Nearby</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 7 · Seoul subway · KTX · T-money · Directions · Korean adjectives</div>
+      </div>
+    </div>
+
+    <!-- Transport modes Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Korea's transport options</div>
+      <div class="section-title">Getting around Korea — fast, affordable, and easy</div>
+      <div class="transport-grid">
+        <div class="transport-card featured">
+          <div class="transport-icon">🚇</div>
+          <div class="transport-name">지하철</div>
+          <div class="transport-rom">jihacheol</div>
+          <div class="transport-en">Subway — Seoul's backbone</div>
+          <div class="transport-note">Seoul's subway has 23 lines and covers the entire metro area. It's cheap (from ₩1,400), extremely clean, and has English on all signs. One of the world's best urban transit systems.</div>
+        </div>
+        <div class="transport-card featured">
+          <div class="transport-icon">🚄</div>
+          <div class="transport-name">KTX</div>
+          <div class="transport-rom">KTX (케이티엑스)</div>
+          <div class="transport-en">Korea Train Express — bullet train</div>
+          <div class="transport-note">Seoul→Busan in 2h15m, Seoul→Gyeongju in under 2h. Book at korail.go.kr or the station. Dramatically more comfortable than flying.</div>
+        </div>
+        <div class="transport-card">
+          <div class="transport-icon">🚌</div>
+          <div class="transport-name">버스</div>
+          <div class="transport-rom">beoseu</div>
+          <div class="transport-en">Bus — colour-coded by type</div>
+          <div class="transport-note">Blue = long-distance city, Green = local neighbourhood, Red = express suburban, Yellow = downtown loop. T-money works on all. Board at the front, exit at the back.</div>
+        </div>
+        <div class="transport-card">
+          <div class="transport-icon">🚕</div>
+          <div class="transport-name">택시</div>
+          <div class="transport-rom">taeksi</div>
+          <div class="transport-en">Taxi — colour-coded by tier</div>
+          <div class="transport-note">Orange/silver = regular (cheap), Black = premium (고급택시). Use KakaoTaxi app for easy hailing with English support. Drivers often don't speak English — show destination on maps.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T-money card -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · T-money — Korea's IC transit card</div>
+      <div class="section-title">One card for all transport in Korea</div>
+      <p>T-money (티머니) is Korea's rechargeable transit card — the equivalent of Japan's Suica. It works on all Seoul subway lines, buses, KTX, and even some taxis and convenience stores.</p>
+      <div class="ic-card" style="background: linear-gradient(135deg, #27ae60 0%, #0d5c30 100%);">
+        <div>
+          <div class="ic-card-name">T-money 티머니</div>
+          <div class="ic-card-sub">교통카드 — Korea Transit Card</div>
+          <div class="ic-card-uses">
+            <span class="ic-chip">🚇 All subway lines</span>
+            <span class="ic-chip">🚌 All city buses</span>
+            <span class="ic-chip">🚕 Most taxis</span>
+            <span class="ic-chip">🏪 GS25 / CU stores</span>
+            <span class="ic-chip">🚄 KTX</span>
+          </div>
+        </div>
+        <div class="ic-card-logo">💳</div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Buy at any convenience store (편의점)</strong> on arrival — GS25, CU, 7-Eleven, or Emart24. Cost: ₩2,500–4,000 for the card. Top up (충전, chung-jeon) at any subway station machine or convenience store. You get a transfer discount if you switch from bus to subway within 30 minutes — a big money-saver.
+      </div>
+    </div>
+
+    <!-- Seoul subway map snippet -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Seoul subway — key lines to know</div>
+      <div class="section-title">The 4 most useful lines for visitors in Seoul</div>
+      <p>Seoul has 23 subway lines but most visitor destinations are covered by just 4 core lines. Each line has a number, a colour, and stations are numbered — e.g. 강남역 is on Line 2 (green), station number 222.</p>
+      <div class="subway-map">
+        <div style="font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:12px">Key lines — simplified</div>
+
+        <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px">
+          <div style="width:14px;height:14px;border-radius:50%;background:#0052A4;flex-shrink:0"></div>
+          <span style="font-size:12px; font-weight:500; color:#0052A4">Line 1 — Blue</span>
+          <span style="font-size:11px; color:#aaa; margin-left:4px">Seoul Station · City Hall · Dongdaemun</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px">
+          <div style="width:14px;height:14px;border-radius:50%;background:#009144;flex-shrink:0"></div>
+          <span style="font-size:12px; font-weight:500; color:#009144">Line 2 — Green</span>
+          <span style="font-size:11px; color:#aaa; margin-left:4px">Hongdae · Sinchon · Gangnam · Jamsil (loop line)</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px">
+          <div style="width:14px;height:14px;border-radius:50%;background:#EF7C1C;flex-shrink:0"></div>
+          <span style="font-size:12px; font-weight:500; color:#EF7C1C">Line 3 — Orange</span>
+          <span style="font-size:11px; color:#aaa; margin-left:4px">Gyeongbokgung Palace · Anguk · Apgujeong</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px; margin-bottom:12px">
+          <div style="width:14px;height:14px;border-radius:50%;background:#9400D3;flex-shrink:0"></div>
+          <span style="font-size:12px; font-weight:500; color:#9400D3">Shinbundang — Purple</span>
+          <span style="font-size:11px; color:#aaa; margin-left:4px">Express: Gangnam → Yangjae → Pangyo (fast)</span>
+        </div>
+
+        <div style="background:#fff; border:0.5px solid #eee; border-radius:10px; padding:12px; font-size:12px; color:#555; line-height:1.8">
+          <strong style="color:#1a1a18; display:block; margin-bottom:4px">Reading a station sign:</strong>
+          <span style="font-size:18px; color:#009144; font-weight:500">강남</span>
+          <span style="font-size:13px; color:#888"> Gangnam</span>
+          &nbsp;
+          <span style="background:#009144; color:#fff; border-radius:4px; padding:1px 6px; font-size:11px">2</span>
+          <span style="font-size:11px; color:#888"> Line 2 · Station 222</span>
+          <br/>
+          Screens show the previous station ← current station → next station in Korean and English, plus transfer lines available.
+        </div>
+      </div>
+    </div>
+
+    <!-- Transport phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Transport phrases in Korean</div>
+      <div class="section-title">Getting around — station to taxi to asking directions</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎫</span>
+          <div>
+            <div class="phrase-native">〜까지 얼마예요?</div>
+            <div class="phrase-rom">[destination]-kkaji eolmayeyo?</div>
+            <div class="phrase-en">How much is it to [destination]?</div>
+            <div class="phrase-note">까지 (kkaji) = until / to. Works for taxis and asking about ticket prices at the station.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚇</span>
+          <div>
+            <div class="phrase-native">몇 호선 타야 해요?</div>
+            <div class="phrase-rom">Myeot hoseon taya haeyo?</div>
+            <div class="phrase-en">Which line do I need to take?</div>
+            <div class="phrase-note">호선 (hoseon) = line number. 타다 (tada) = to ride/take. 몇 (myeot) = which number.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🔄</span>
+          <div>
+            <div class="phrase-native">어디서 갈아타요?</div>
+            <div class="phrase-rom">Eodiseo garatayo?</div>
+            <div class="phrase-en">Where do I transfer?</div>
+            <div class="phrase-note">갈아타다 (garatada) = to transfer/change. 어디서 (eodiseo) = where (at). Very useful in multi-line journeys.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚕</span>
+          <div>
+            <div class="phrase-native">〜으로 가주세요</div>
+            <div class="phrase-rom">[destination]-euro gajuseyo</div>
+            <div class="phrase-en">Please take me to [destination]</div>
+            <div class="phrase-note">으로 (euro) = toward/to (after consonant). 가주세요 = please go. The standard taxi instruction.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⏹️</span>
+          <div>
+            <div class="phrase-native">여기서 세워 주세요</div>
+            <div class="phrase-rom">Yeogiseo sewo juseyo</div>
+            <div class="phrase-en">Please stop here</div>
+            <div class="phrase-note">여기서 (yeogiseo) = here. 세우다 (seuda) = to stop (a vehicle). Essential for taxis — say it firmly when approaching your destination.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🗺️</span>
+          <div>
+            <div class="phrase-native">〜에 어떻게 가요?</div>
+            <div class="phrase-rom">[place]-e eotteoke gayo?</div>
+            <div class="phrase-en">How do I get to [place]?</div>
+            <div class="phrase-note">어떻게 (eotteoke) = how. 가요 = go. One of the most useful street-level direction-asking phrases.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Direction words Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Direction words in Korean</div>
+      <div class="section-title">Navigate on foot — 8 essential direction words</div>
+      <div class="dir-grid">
+        <div class="dir-card">
+          <div class="dir-native">직진</div>
+          <div class="dir-rom">jikjin</div>
+          <div class="dir-en">Straight ahead</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">오른쪽</div>
+          <div class="dir-rom">oreunjjok</div>
+          <div class="dir-en">Right</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">왼쪽</div>
+          <div class="dir-rom">oenjjok</div>
+          <div class="dir-en">Left</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">돌아가다</div>
+          <div class="dir-rom">doragada</div>
+          <div class="dir-en">To turn</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">가깝다</div>
+          <div class="dir-rom">gakkapda</div>
+          <div class="dir-en">Close / nearby</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">멀다</div>
+          <div class="dir-rom">meolda</div>
+          <div class="dir-en">Far</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">교차로</div>
+          <div class="dir-rom">gyocharo</div>
+          <div class="dir-en">Intersection</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-native">신호등</div>
+          <div class="dir-rom">sinodeung</div>
+          <div class="dir-en">Traffic light</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Putting it together:</strong> 오른쪽으로 가세요 (oreunjjogeuro gaseyo) = Go to the right. 신호등에서 왼쪽으로 도세요 (sinodeung-eseo oenjjogeuro doseyo) = Turn left at the traffic light. 으로 (euro/ro) = in the direction of.
+      </div>
+    </div>
+
+    <!-- Korean adjectives — the bonus lesson -->
+    <div class="section">
+      <div class="section-label">Lesson 6 · Bonus — Korean adjectives</div>
+      <div class="section-title">Descriptive words that will transform your Korean</div>
+      <p>Korean adjectives work differently from English — they conjugate just like verbs! In their dictionary form they end in 다, and they're placed before a noun or at the end of a sentence as a predicate. Here are the 10 most useful ones for daily life.</p>
+      <div class="adj-grid">
+        <div class="adj-card">
+          <div class="adj-base">크다</div>
+          <div class="adj-rom">keuda</div>
+          <div class="adj-en">Big / large</div>
+          <div class="adj-conjugated">
+            커요 (keoyo) — it's big<br/>
+            큰 가방 (keun gabang) — big bag
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">작다</div>
+          <div class="adj-rom">jakda</div>
+          <div class="adj-en">Small / little</div>
+          <div class="adj-conjugated">
+            작아요 (jagayo) — it's small<br/>
+            작은 방 (jageun bang) — small room
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">빠르다</div>
+          <div class="adj-rom">ppareuda</div>
+          <div class="adj-en">Fast / quick</div>
+          <div class="adj-conjugated">
+            빨라요 (ppallayo) — it's fast<br/>
+            빠른 기차 (ppareun gicha) — fast train
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">느리다</div>
+          <div class="adj-rom">neurida</div>
+          <div class="adj-en">Slow</div>
+          <div class="adj-conjugated">
+            느려요 (neuryeoyo) — it's slow<br/>
+            느린 버스 (neurin beoseu) — slow bus
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">비싸다</div>
+          <div class="adj-rom">bissada</div>
+          <div class="adj-en">Expensive</div>
+          <div class="adj-conjugated">
+            비싸요 (bissayo) — it's expensive<br/>
+            비싼 택시 (bissan taeksi) — expensive taxi
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">싸다</div>
+          <div class="adj-rom">ssada</div>
+          <div class="adj-en">Cheap / inexpensive</div>
+          <div class="adj-conjugated">
+            싸요 (ssayo) — it's cheap<br/>
+            싼 지하철 (ssan jihacheol) — cheap subway
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">가깝다</div>
+          <div class="adj-rom">gakkapda</div>
+          <div class="adj-en">Close / near</div>
+          <div class="adj-conjugated">
+            가까워요 (gakkaweoyo) — it's near<br/>
+            가까운 역 (gakkaun yeok) — nearby station
+          </div>
+        </div>
+        <div class="adj-card">
+          <div class="adj-base">복잡하다</div>
+          <div class="adj-rom">bokjaphada</div>
+          <div class="adj-en">Complicated / crowded</div>
+          <div class="adj-conjugated">
+            복잡해요 (bokjaphaeyo) — it's crowded<br/>
+            복잡한 역 (bokjapan yeok) — busy station
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Adjectives as predicates:</strong> In Korean, adjectives at the end of a sentence act exactly like verbs — 지하철이 빨라요 (jihacheori ppallayo) = "The subway is fast." You don't need 이다 (to be) — the adjective itself carries that meaning. This makes sentences feel very direct and natural.
+      </div>
+    </div>
+
+    <!-- Culture note KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🚇</span>
+        <div class="culture-text">
+          <strong>Seoul subway culture — unwritten rules</strong><br/>
+          The Seoul subway has dedicated quiet zones and phone-free carriages on some lines. Priority seats (교통 약자석, gyotong yakjaseok) — marked in blue/pink — are strictly for the elderly, pregnant, and disabled. Unlike Japan, Koreans do eat and drink on the subway, though loud behaviour is frowned upon. One unique feature: subway stations double as massive underground shopping malls — Gangnam Station alone has over 200 shops beneath it. Arrive early and explore before your train.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 7 Korean — transport & adjectives</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is T-money (티머니) used for?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Only for the Seoul subway</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Subway, buses, taxis, and some shops</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">International flights from Korea</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Hotel check-in only</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "Please stop here" to a taxi driver?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">〜으로 가주세요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">어디서 갈아타요?</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">여기서 세워 주세요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">몇 호선 타야 해요?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What colour is Seoul subway Line 2?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Blue</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Green</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Orange</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Purple</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "The subway is cheap" using an adjective as predicate?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">지하철이 비싸요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">지하철이 빨라요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">지하철이 싸요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">지하철이 복잡해요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — getting around in both countries</div>
+    <table>
+      <tr><th>Situation</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Transit card</td><td>Suica / PASMO (スイカ / パスモ)</td><td>T-money (티머니)</td></tr>
+      <tr><td style="font-size:13px">Subway</td><td>地下鉄 (chikatetsu)</td><td>지하철 (jihacheol)</td></tr>
+      <tr><td style="font-size:13px">Bullet train</td><td>新幹線 (shinkansen)</td><td>KTX (케이티엑스)</td></tr>
+      <tr><td style="font-size:13px">Exit</td><td>出口 (deguchi)</td><td>출구 (chulgu)</td></tr>
+      <tr><td style="font-size:13px">Transfer</td><td>乗換 (norikae)</td><td>환승 (hwanseung)</td></tr>
+      <tr><td style="font-size:13px">Straight ahead</td><td>まっすぐ (massugu)</td><td>직진 (jikjin)</td></tr>
+      <tr><td style="font-size:13px">Ticket to [place]</td><td>〜まで一枚ください</td><td>〜까지 얼마예요?</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 8 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 8</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Shopping — clothes, electronics, souvenirs. Size systems, colour vocabulary, bargaining phrases (where applicable), and how to navigate Japan's legendary department stores and 100-yen shops.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Shopping in Korea — Myeongdong markets, K-beauty shops, and traditional 시장 (sijang) markets. Plus comparison structures in Korean grammar: "A is more ~ than B" and "the most ~".</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 7 complete · Click <a href="Week8.J&K.html">here</a> when you're ready for Week 8 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* Ticket machine simulator */
+let selectedDest = null;
+let selectedPrice = null;
+let selectedSeat = null;
+
+function selectDest(btn, native, en, price) {
+  document.querySelectorAll('.ticket-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedDest = native;
+  selectedPrice = price;
+  document.getElementById('ticket-price').textContent = price;
+  document.getElementById('ticket-screen').innerHTML =
+    `行き先: <strong style="color:#a8e8c0">${native}</strong> (${en})<br/>` +
+    `料金: <strong style="color:#a8e8c0">${price}</strong><br/>` +
+    `席の種類をお選びください — Please select seat type.`;
+}
+
+function selectSeat(btn, native, en) {
+  if (!selectedDest) {
+    document.getElementById('ticket-screen').innerHTML =
+      `<span style="color:#e88a7a">⚠ まず行き先を選んでください。<br/>Please select a destination first.</span>`;
+    return;
+  }
+  document.querySelectorAll('.ticket-btn').forEach(b => {
+    if (['自由席','指定席','グリーン席'].some(s => b.querySelector('.btn-native') && b.querySelector('.btn-native').textContent === s)) {
+      b.classList.remove('active');
+    }
+  });
+  btn.classList.add('active');
+  selectedSeat = native;
+  document.getElementById('ticket-screen').innerHTML =
+    `行き先: <strong style="color:#a8e8c0">${selectedDest}</strong><br/>` +
+    `席種: <strong style="color:#a8e8c0">${native}</strong> (${en})<br/>` +
+    `料金: <strong style="color:#a8e8c0">${selectedPrice}</strong><br/>` +
+    `「購入する」を押してください — Press Buy to confirm.`;
+}
+
+function confirmTicket() {
+  const result = document.getElementById('ticket-result');
+  if (!selectedDest || !selectedSeat) {
+    result.style.display = 'block';
+    result.style.background = '#fdf0ed';
+    result.style.borderColor = '#f5c4b0';
+    result.style.color = '#791F1F';
+    result.textContent = '⚠ Please select both a destination and a seat type first.';
+    return;
+  }
+  result.style.display = 'block';
+  result.style.background = '#f0f8f5';
+  result.style.borderColor = '#a8ddc5';
+  result.style.color = '#0f6e56';
+  result.innerHTML =
+    `✓ 切符を購入しました！ (Ticket purchased!)<br/>` +
+    `<strong>${selectedDest}</strong> · ${selectedSeat} · ${selectedPrice}<br/>` +
+    `<span style="font-size:11px; color:#888; margin-top:4px; display:block">You'd say at the counter: 「${selectedDest}まで、${selectedSeat}一枚ください。」</span>`;
+  document.getElementById('ticket-screen').innerHTML =
+    `✓ ありがとうございます！<br/>Thank you! Have a great journey.`;
+}
+</script>
+</body>
+</html>

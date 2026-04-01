@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 8 — Japanese & Korean: Shopping</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Shop type cards */
+  .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .shop-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 14px; }
+  .shop-card.featured { background: #fdf9f0; border-color: #f0dfa8; }
+  .shop-icon { font-size: 26px; margin-bottom: 6px; }
+  .shop-name { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .shop-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .shop-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 5px; }
+  .shop-note { font-size: 12px; color: #666; line-height: 1.6; }
+
+  /* Colour vocabulary grid */
+  .colour-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px; }
+  .colour-card { border-radius: 10px; padding: 10px 6px; text-align: center; border: 0.5px solid rgba(0,0,0,0.08); }
+  .colour-swatch { width: 32px; height: 32px; border-radius: 50%; margin: 0 auto 6px; border: 0.5px solid rgba(0,0,0,0.1); }
+  .colour-native { font-size: 14px; color: #1a1a18; margin-bottom: 1px; }
+  .colour-rom { font-size: 10px; color: #888; }
+  .colour-en { font-size: 11px; color: #555; font-weight: 500; margin-top: 2px; }
+
+  /* Size chart */
+  .size-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+  .size-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; text-align: center; }
+  .size-table td { padding: 8px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; text-align: center; }
+  .size-table td:first-child { text-align: left; font-weight: 500; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Interactive shop simulator */
+  .shop-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .shop-sim-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+  .shop-sim-body { padding: 14px; }
+  .sim-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 0.5px solid #f0f0ee; }
+  .sim-item:last-child { border-bottom: none; }
+  .sim-item-info { flex: 1; }
+  .sim-item-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .sim-item-detail { font-size: 12px; color: #888; }
+  .sim-item-price { font-size: 14px; color: #185FA5; font-weight: 500; margin: 0 10px; }
+  .sim-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 6px; padding: 5px 10px; font-size: 12px; cursor: pointer; transition: background 0.15s; }
+  .sim-btn:hover { background: #f0f0ee; }
+  .sim-btn.added { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .sim-basket { padding: 12px 14px; background: #fff; border-top: 0.5px solid #eee; }
+  .sim-basket-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .sim-basket-items { min-height: 28px; font-size: 13px; color: #333; }
+  .sim-basket-total { font-size: 14px; font-weight: 500; color: #185FA5; margin-top: 6px; }
+  .basket-tag { display: inline-block; background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 8px; padding: 2px 8px; margin: 2px; font-size: 12px; color: #185FA5; }
+  .sim-phrase-box { background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 8px; padding: 10px 12px; margin-top: 10px; font-size: 13px; color: #0f6e56; display: none; }
+
+  /* Comparison grammar cards */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Tax-free info card */
+  .info-card { display: flex; gap: 12px; align-items: flex-start; background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .info-icon { font-size: 24px; flex-shrink: 0; }
+  .info-text { font-size: 13px; color: #333; line-height: 1.6; }
+  .info-title { font-weight: 500; color: #1a1a18; display: block; margin-bottom: 3px; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture note */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .shop-grid, .two-col { grid-template-columns: 1fr; }
+    .colour-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 8 of 16</span>
+      <h1>Shopping</h1>
+      <div class="subtitle">JP: Department stores, 100-yen shops & tax-free shopping · KR: Myeongdong, K-beauty & comparison grammar</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:50%"></div></div>
+      50% complete — halfway there!
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 8 · Where to shop · Colours · Sizes · Phrases · Tax-free</div>
+      </div>
+    </div>
+
+    <!-- Where to shop -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Where to shop in Japan</div>
+      <div class="section-title">6 types of shops — every visitor should know these</div>
+      <div class="shop-grid">
+        <div class="shop-card featured">
+          <div class="shop-icon">🏬</div>
+          <div class="shop-name">デパート</div>
+          <div class="shop-rom">depāto</div>
+          <div class="shop-en">Department store</div>
+          <div class="shop-note">Multi-floor shopping palaces. Food hall (デパ地下, depachika) in the basement is a must. Brands floor by floor — cosmetics and food at basement level, fashion upstairs.</div>
+        </div>
+        <div class="shop-card featured">
+          <div class="shop-icon">💴</div>
+          <div class="shop-name">百円ショップ</div>
+          <div class="shop-rom">hyaku-en shoppu</div>
+          <div class="shop-en">100-yen shop (Daiso, Seria)</div>
+          <div class="shop-note">Everything for ¥100–300. Incredible quality for the price — stationery, kitchenware, snacks, travel accessories. Daiso is the most famous. Don't leave Japan without visiting one.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">🎮</div>
+          <div class="shop-name">電気街</div>
+          <div class="shop-rom">denkigai</div>
+          <div class="shop-en">Electronics district (Akihabara)</div>
+          <div class="shop-note">Tokyo's Akihabara is the world's densest concentration of electronics, anime goods, and gaming. Osaka has Den-Den Town. Prices on electronics can be excellent especially for cameras.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">🏪</div>
+          <div class="shop-name">ドラッグストア</div>
+          <div class="shop-rom">doraggu sutoa</div>
+          <div class="shop-en">Drug store (Matsumoto Kiyoshi etc.)</div>
+          <div class="shop-note">Japanese drug stores sell cosmetics, medicines, snacks and household goods at great prices. Popular with tourists for buying Japanese skincare and beauty products.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">👘</div>
+          <div class="shop-name">着物屋</div>
+          <div class="shop-rom">kimono-ya</div>
+          <div class="shop-en">Kimono / traditional clothing shop</div>
+          <div class="shop-note">Many shops in Kyoto and Asakusa offer kimono rental (着物レンタル, kimono rentaru) by the day — a beautiful way to experience traditional Japan.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">🛒</div>
+          <div class="shop-name">スーパー</div>
+          <div class="shop-rom">sūpā</div>
+          <div class="shop-en">Supermarket</div>
+          <div class="shop-note">Hit the supermarket (especially after 7pm) for dramatically discounted 弁当 (bento) and 刺身 (sashimi). Stickers say 半額 (hangaku = half price) or 30%引き (30% off).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colour vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Colour vocabulary</div>
+      <div class="section-title">10 colours — essential for clothes shopping</div>
+      <div class="colour-grid">
+        <div class="colour-card" style="background:#fff8f0">
+          <div class="colour-swatch" style="background:#e74c3c"></div>
+          <div class="colour-native">赤</div>
+          <div class="colour-rom">aka</div>
+          <div class="colour-en">Red</div>
+        </div>
+        <div class="colour-card" style="background:#f0f5fc">
+          <div class="colour-swatch" style="background:#2980b9"></div>
+          <div class="colour-native">青</div>
+          <div class="colour-rom">ao</div>
+          <div class="colour-en">Blue</div>
+        </div>
+        <div class="colour-card" style="background:#f0f8f5">
+          <div class="colour-swatch" style="background:#27ae60"></div>
+          <div class="colour-native">緑</div>
+          <div class="colour-rom">midori</div>
+          <div class="colour-en">Green</div>
+        </div>
+        <div class="colour-card" style="background:#fdf9f0">
+          <div class="colour-swatch" style="background:#f39c12"></div>
+          <div class="colour-native">黄色</div>
+          <div class="colour-rom">kiiro</div>
+          <div class="colour-en">Yellow</div>
+        </div>
+        <div class="colour-card" style="background:#fdf0f5">
+          <div class="colour-swatch" style="background:#e91e8c"></div>
+          <div class="colour-native">ピンク</div>
+          <div class="colour-rom">pinku</div>
+          <div class="colour-en">Pink</div>
+        </div>
+        <div class="colour-card" style="background:#f5f0fd">
+          <div class="colour-swatch" style="background:#8e44ad"></div>
+          <div class="colour-native">紫</div>
+          <div class="colour-rom">murasaki</div>
+          <div class="colour-en">Purple</div>
+        </div>
+        <div class="colour-card" style="background:#fdf6ec">
+          <div class="colour-swatch" style="background:#e67e22"></div>
+          <div class="colour-native">オレンジ</div>
+          <div class="colour-rom">orenji</div>
+          <div class="colour-en">Orange</div>
+        </div>
+        <div class="colour-card" style="background:#f9f8f5">
+          <div class="colour-swatch" style="background:#2c3e50"></div>
+          <div class="colour-native">黒</div>
+          <div class="colour-rom">kuro</div>
+          <div class="colour-en">Black</div>
+        </div>
+        <div class="colour-card" style="background:#f9f8f5">
+          <div class="colour-swatch" style="background:#ecf0f1; border:0.5px solid #ddd"></div>
+          <div class="colour-native">白</div>
+          <div class="colour-rom">shiro</div>
+          <div class="colour-en">White</div>
+        </div>
+        <div class="colour-card" style="background:#f9f8f5">
+          <div class="colour-swatch" style="background:#95a5a6"></div>
+          <div class="colour-native">グレー</div>
+          <div class="colour-rom">gurē</div>
+          <div class="colour-en">Grey</div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Using colours with nouns:</strong> Attach い-adjective colours directly: 赤いシャツ (akai shatsu = red shirt). For katakana colours like ピンク and グレー, add の: ピンクのバッグ (pinku no baggu = pink bag). This の pattern works for all noun-based colour words.
+      </div>
+    </div>
+
+    <!-- Clothing sizes -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Clothing & shoe sizes</div>
+      <div class="section-title">Japanese sizing — generally runs smaller than Western sizes</div>
+      <p>Japan uses its own sizing system which can differ significantly from US, UK, and EU sizes. Always check or try on before buying.</p>
+      <table class="size-table">
+        <tr>
+          <th>Type</th>
+          <th>Japan</th>
+          <th>US</th>
+          <th>UK</th>
+          <th>EU</th>
+        </tr>
+        <tr>
+          <td>Tops (women's)</td>
+          <td>S · M · L · LL</td>
+          <td>XS · S · M · L</td>
+          <td>6–8 · 10 · 12 · 14</td>
+          <td>34 · 36 · 38 · 40</td>
+        </tr>
+        <tr>
+          <td>Tops (men's)</td>
+          <td>S · M · L · XL</td>
+          <td>XS · S · M · L</td>
+          <td>34 · 36 · 38 · 40</td>
+          <td>44 · 46 · 48 · 50</td>
+        </tr>
+        <tr>
+          <td>Shoes (women's)</td>
+          <td>22.5–23 · 23.5 · 24</td>
+          <td>5–5.5 · 6 · 6.5</td>
+          <td>3 · 3.5 · 4</td>
+          <td>36 · 36.5 · 37</td>
+        </tr>
+        <tr>
+          <td>Shoes (men's)</td>
+          <td>25 · 26 · 27 · 28</td>
+          <td>7 · 8 · 9 · 10</td>
+          <td>6 · 7 · 8 · 9</td>
+          <td>40 · 41 · 42 · 43</td>
+        </tr>
+      </table>
+      <div class="tip-box tip-blue">
+        <strong>Key phrase for trying on:</strong> 試着してもいいですか？(shichaku shite mo ii desu ka? = May I try this on?) Most shops have fitting rooms (試着室, shichakushitsu). Sizes S/M/L are used widely but numbers in cm are more precise for footwear.
+      </div>
+    </div>
+
+    <!-- Interactive shop sim JP -->
+    <div class="section">
+      <div class="section-label">Interactive · Japanese clothing shop</div>
+      <div class="section-title">Practice asking about items — tap to add to basket</div>
+      <div class="shop-sim">
+        <div class="shop-sim-header">
+          <span>👗 ファッションショップ — Fashion Shop</span>
+          <span style="font-size:12px; opacity:0.7">いらっしゃいませ！</span>
+        </div>
+        <div class="shop-sim-body">
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">白いTシャツ (Mサイズ)</div>
+              <div class="sim-item-detail">shiro-i T-shatsu — White T-shirt, size M</div>
+            </div>
+            <span class="sim-item-price">¥2,800</span>
+            <button class="sim-btn" onclick="jpAdd(this,'白いTシャツ','¥2,800')">カゴへ</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">青いジーンズ (Lサイズ)</div>
+              <div class="sim-item-detail">ao-i jīnzu — Blue jeans, size L</div>
+            </div>
+            <span class="sim-item-price">¥6,500</span>
+            <button class="sim-btn" onclick="jpAdd(this,'青いジーンズ','¥6,500')">カゴへ</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">黒いスニーカー (27cm)</div>
+              <div class="sim-item-detail">kuroi sunīkā — Black sneakers, 27cm</div>
+            </div>
+            <span class="sim-item-price">¥9,200</span>
+            <button class="sim-btn" onclick="jpAdd(this,'黒いスニーカー','¥9,200')">カゴへ</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">赤いマフラー</div>
+              <div class="sim-item-detail">akai mafurā — Red scarf</div>
+            </div>
+            <span class="sim-item-price">¥3,400</span>
+            <button class="sim-btn" onclick="jpAdd(this,'赤いマフラー','¥3,400')">カゴへ</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">緑のバッグ</div>
+              <div class="sim-item-detail">midori no baggu — Green bag</div>
+            </div>
+            <span class="sim-item-price">¥12,000</span>
+            <button class="sim-btn" onclick="jpAdd(this,'緑のバッグ','¥12,000')">カゴへ</button>
+          </div>
+        </div>
+        <div class="sim-basket">
+          <div class="sim-basket-label">カゴの中 — Your basket</div>
+          <div class="sim-basket-items" id="jp-basket-items"><span style="color:#aaa; font-style:italic; font-size:13px">Empty — tap カゴへ to add items</span></div>
+          <div class="sim-basket-total" id="jp-basket-total"></div>
+        </div>
+        <div class="sim-phrase-box" id="jp-phrase-box"></div>
+      </div>
+    </div>
+
+    <!-- Shopping phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Shopping phrases</div>
+      <div class="section-title">From browsing to buying — everything you need</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">👀</span>
+          <div>
+            <div class="phrase-native">見ているだけです</div>
+            <div class="phrase-rom">Mite iru dake desu</div>
+            <div class="phrase-en">I'm just looking</div>
+            <div class="phrase-note">Staff will often greet you immediately — this phrase lets you browse peacefully without feeling obligated to buy.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔍</span>
+          <div>
+            <div class="phrase-native">〜を探しています</div>
+            <div class="phrase-rom">[item]-wo sagashite imasu</div>
+            <div class="phrase-en">I'm looking for [item]</div>
+            <div class="phrase-note">探す (sagasu) = to look for/search. 〜を探しています is natural and polite. Staff will immediately try to help.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">👕</span>
+          <div>
+            <div class="phrase-native">〜色の〜はありますか？</div>
+            <div class="phrase-rom">[colour]-iro no [item]-wa arimasu ka?</div>
+            <div class="phrase-en">Do you have this in [colour]?</div>
+            <div class="phrase-note">e.g. 青色のシャツはありますか？(Do you have a blue shirt?) 色 (iro) = colour. Works for size too: Mサイズはありますか？</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📐</span>
+          <div>
+            <div class="phrase-native">試着してもいいですか？</div>
+            <div class="phrase-rom">Shichaku shite mo ii desu ka?</div>
+            <div class="phrase-en">May I try this on?</div>
+            <div class="phrase-note">Always ask before entering a changing room. Staff will direct you to 試着室 (shichakushitsu = fitting room).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💳</span>
+          <div>
+            <div class="phrase-native">カードで払えますか？</div>
+            <div class="phrase-rom">Kādo de haraemasu ka?</div>
+            <div class="phrase-en">Can I pay by card?</div>
+            <div class="phrase-note">払う (harau) = to pay. カード (kādo) = card. 現金 (genkin) = cash. Smaller shops may be cash-only.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎁</span>
+          <div>
+            <div class="phrase-native">プレゼント用に包んでもらえますか？</div>
+            <div class="phrase-rom">Purezento-yō ni tsunde moraemasu ka?</div>
+            <div class="phrase-en">Could you gift-wrap this?</div>
+            <div class="phrase-note">Japanese gift wrapping (包装, hōsō) is an art form — done meticulously and usually free. Just ask!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔖</span>
+          <div>
+            <div class="phrase-native">割引はありますか？</div>
+            <div class="phrase-rom">Waribiki wa arimasu ka?</div>
+            <div class="phrase-en">Is there a discount?</div>
+            <div class="phrase-note">割引 (waribiki) = discount. セール (sēru) = sale. 半額 (hangaku) = half price. Note: haggling is not a Japanese custom — only ask in market or outlet contexts.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🧾</span>
+          <div>
+            <div class="phrase-native">免税はできますか？</div>
+            <div class="phrase-rom">Menzei wa dekimasu ka?</div>
+            <div class="phrase-en">Can I get tax-free shopping?</div>
+            <div class="phrase-note">Tourists can claim consumption tax (消費税, shōhizei — currently 10%) back on purchases over ¥5,000 at participating shops. Look for the 免税 (tax-free) logo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tax-free shopping info -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Tax-free shopping in Japan</div>
+      <div class="section-title">Save 10% on almost everything — if you know how</div>
+      <div class="info-card">
+        <span class="info-icon">🧾</span>
+        <div class="info-text">
+          <span class="info-title">消費税免除 (shōhizei menjō) — Consumption tax exemption</span>
+          Foreign visitors can claim back Japan's 10% consumption tax on purchases of ¥5,000 or more (before tax) at registered shops. Show your passport, fill in a short form, and the tax is either deducted immediately or refunded at the airport. Look for the 免税 (tax-free) or "Japan Tax-Free Shop" sticker at the entrance. Department stores, electronics shops, and drug stores almost always participate.
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Tax-free vocabulary:</strong> 消費税 (shōhizei) = consumption tax · 免税 (menzei) = tax-free · パスポートを見せてください (pasupōto wo misete kudasai) = Please show your passport · 免税カウンター (menzei kauntā) = tax-free counter.
+      </div>
+    </div>
+
+    <!-- Culture note JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🛍️</span>
+        <div class="culture-text">
+          <strong>いらっしゃいませ (irasshaimase) — the sound of Japanese shopping</strong><br/>
+          The moment you step into any Japanese shop, you'll hear いらっしゃいませ — a formal welcome meaning "welcome, honoured customer." You don't need to reply — just a nod or smile is fine. Staff may follow you attentively which can feel different from Western shopping culture, but this is simply dedicated service (おもてなし, omotenashi). Another quirk: cashiers will count your change back to you out loud, double-bagging every purchase and placing it on the counter rather than handing it to you directly — a sign of hygiene-conscious respect.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 8 Japanese — shopping</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I'm just looking" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">試着してもいいですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">見ているだけです</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">割引はありますか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">免税はできますか？</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 半額 (hangaku) mean on a supermarket sticker?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">10% off</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">30% off</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Half price</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Tax-free</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the minimum purchase to qualify for tax-free shopping in Japan?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">¥1,000</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">¥3,000</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">¥5,000</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">¥10,000</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "Do you have this in blue?" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'correct')">青色のはありますか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">青いのを探しています</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">青色はどこですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">青のカードはありますか？</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 8 · Where to shop · K-beauty · Shopping phrases · Comparison grammar</div>
+      </div>
+    </div>
+
+    <!-- Where to shop in Korea -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Where to shop in Korea</div>
+      <div class="section-title">6 essential shopping destinations</div>
+      <div class="shop-grid">
+        <div class="shop-card featured">
+          <div class="shop-icon">🏙️</div>
+          <div class="shop-name">명동</div>
+          <div class="shop-rom">Myeongdong</div>
+          <div class="shop-en">Myeongdong — Seoul's shopping heart</div>
+          <div class="shop-note">The most famous shopping district in Korea. K-beauty shops, street food, international brands, and endless stalls. Prices are tourist-facing but selection is unbeatable.</div>
+        </div>
+        <div class="shop-card featured">
+          <div class="shop-icon">💄</div>
+          <div class="shop-name">올리브영</div>
+          <div class="shop-rom">Ollibeu-yeong</div>
+          <div class="shop-en">Olive Young — Korea's K-beauty chain</div>
+          <div class="shop-note">Think of it as Korea's Sephora + drug store combined. Every K-beauty brand you've ever heard of is here. Best prices in the country. App available in English. Locations everywhere.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">🏬</div>
+          <div class="shop-name">백화점</div>
+          <div class="shop-rom">baekwajeom</div>
+          <div class="shop-en">Department store (Lotte, Shinsegae)</div>
+          <div class="shop-note">Lotte and Shinsegae department stores rival Tokyo's finest. High-end fashion, gourmet food halls, and dedicated tourist service desks. Tax-refund counters on site.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">🧺</div>
+          <div class="shop-name">시장</div>
+          <div class="shop-rom">sijang</div>
+          <div class="shop-en">Traditional market</div>
+          <div class="shop-note">Gwangjang Market (광장시장) for street food and textiles, Namdaemun (남대문) for wholesale goods. Real prices, real Korea. Bargaining (흥정, heungjeong) is acceptable here.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">🛍️</div>
+          <div class="shop-name">면세점</div>
+          <div class="shop-rom">myeonsejeom</div>
+          <div class="shop-en">Duty-free shop</div>
+          <div class="shop-note">Korea's duty-free shops (at airports and downtown) are among the world's largest. Popular for luxury goods, cosmetics, and Korean spirits like 한정판 (limited edition) soju.</div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-icon">📱</div>
+          <div class="shop-name">용산 전자상가</div>
+          <div class="shop-rom">Yongsan jeonjasangga</div>
+          <div class="shop-en">Yongsan Electronics Market</div>
+          <div class="shop-note">Seoul's answer to Akihabara — floors of electronics, computer parts, gaming gear, and phone accessories. Wholesale prices if you know how to negotiate.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colour vocabulary Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Colours in Korean</div>
+      <div class="section-title">10 colours — many have native Korean and Sino-Korean forms</div>
+      <div class="colour-grid">
+        <div class="colour-card" style="background:#fff8f0">
+          <div class="colour-swatch" style="background:#e74c3c"></div>
+          <div class="colour-native">빨간</div>
+          <div class="colour-rom">ppalgan</div>
+          <div class="colour-en">Red</div>
+        </div>
+        <div class="colour-card" style="background:#f0f5fc">
+          <div class="colour-swatch" style="background:#2980b9"></div>
+          <div class="colour-native">파란</div>
+          <div class="colour-rom">paran</div>
+          <div class="colour-en">Blue</div>
+        </div>
+        <div class="colour-card" style="background:#f0f8f5">
+          <div class="colour-swatch" style="background:#27ae60"></div>
+          <div class="colour-native">초록</div>
+          <div class="colour-rom">chorok</div>
+          <div class="colour-en">Green</div>
+        </div>
+        <div class="colour-card" style="background:#fdf9f0">
+          <div class="colour-swatch" style="background:#f39c12"></div>
+          <div class="colour-native">노란</div>
+          <div class="colour-rom">noran</div>
+          <div class="colour-en">Yellow</div>
+        </div>
+        <div class="colour-card" style="background:#fdf0f5">
+          <div class="colour-swatch" style="background:#e91e8c"></div>
+          <div class="colour-native">분홍</div>
+          <div class="colour-rom">bunhong</div>
+          <div class="colour-en">Pink</div>
+        </div>
+        <div class="colour-card" style="background:#f5f0fd">
+          <div class="colour-swatch" style="background:#8e44ad"></div>
+          <div class="colour-native">보라</div>
+          <div class="colour-rom">bora</div>
+          <div class="colour-en">Purple</div>
+        </div>
+        <div class="colour-card" style="background:#fdf6ec">
+          <div class="colour-swatch" style="background:#e67e22"></div>
+          <div class="colour-native">주황</div>
+          <div class="colour-rom">juhwang</div>
+          <div class="colour-en">Orange</div>
+        </div>
+        <div class="colour-card" style="background:#f9f8f5">
+          <div class="colour-swatch" style="background:#2c3e50"></div>
+          <div class="colour-native">검은</div>
+          <div class="colour-rom">geomeun</div>
+          <div class="colour-en">Black</div>
+        </div>
+        <div class="colour-card" style="background:#f9f8f5">
+          <div class="colour-swatch" style="background:#ecf0f1; border:0.5px solid #ddd"></div>
+          <div class="colour-native">하얀</div>
+          <div class="colour-rom">hayan</div>
+          <div class="colour-en">White</div>
+        </div>
+        <div class="colour-card" style="background:#f9f8f5">
+          <div class="colour-swatch" style="background:#95a5a6"></div>
+          <div class="colour-native">회색</div>
+          <div class="colour-rom">hoesaek</div>
+          <div class="colour-en">Grey</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Using colours with nouns:</strong> Korean colour adjectives end in 색 (saek = colour) in formal use, or simply modify the noun: 빨간 가방 (ppalgan gabang = red bag). In shops you might also hear 색상 (saeksang = colour tone/shade) when choosing between variants.
+      </div>
+    </div>
+
+    <!-- Shopping phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Shopping phrases</div>
+      <div class="section-title">Browse, ask, and buy with confidence</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">👀</span>
+          <div>
+            <div class="phrase-native">그냥 구경하는 거예요</div>
+            <div class="phrase-rom">Geunyang gugyeonghaneun geoyeyo</div>
+            <div class="phrase-en">I'm just browsing</div>
+            <div class="phrase-note">그냥 = just. 구경하다 = to browse/look around. Staff in Korean shops can be very attentive — this phrase gives you space to explore.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔍</span>
+          <div>
+            <div class="phrase-native">〜 있어요?</div>
+            <div class="phrase-rom">[item] isseoyo?</div>
+            <div class="phrase-en">Do you have [item]?</div>
+            <div class="phrase-note">The simplest way to ask for something. e.g. 빨간 원피스 있어요? (Do you have a red dress?) 있어요 = do you have / is there.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">👕</span>
+          <div>
+            <div class="phrase-native">다른 색상 있어요?</div>
+            <div class="phrase-rom">Dareun saeksang isseoyo?</div>
+            <div class="phrase-en">Do you have this in another colour?</div>
+            <div class="phrase-note">다른 = different/another. 색상 = colour. You can also say 다른 사이즈 있어요? (Do you have another size?)</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📐</span>
+          <div>
+            <div class="phrase-native">입어 봐도 돼요?</div>
+            <div class="phrase-rom">Ibeo bwado dwaeyo?</div>
+            <div class="phrase-en">May I try this on?</div>
+            <div class="phrase-note">입다 (ipda) = to wear/put on. 봐도 돼요 = is it okay to try. 피팅룸 (pitting-rum) = fitting room.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💰</span>
+          <div>
+            <div class="phrase-native">깎아 주실 수 있어요?</div>
+            <div class="phrase-rom">Kkakka jusil su isseoyo?</div>
+            <div class="phrase-en">Can you give me a discount?</div>
+            <div class="phrase-note">깎다 (kkakda) = to reduce/cut (price). Only use this at traditional markets (시장) — not in regular shops or malls. Very effective at Namdaemun and Gwangjang.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💳</span>
+          <div>
+            <div class="phrase-native">카드 돼요?</div>
+            <div class="phrase-rom">Kadeu dwaeyo?</div>
+            <div class="phrase-en">Do you take card?</div>
+            <div class="phrase-note">Korea is one of the world's most cashless societies — almost everywhere accepts card. But it's worth checking at small market stalls.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🧾</span>
+          <div>
+            <div class="phrase-native">영수증 주세요</div>
+            <div class="phrase-rom">Yeongsujeung juseyo</div>
+            <div class="phrase-en">Please give me a receipt</div>
+            <div class="phrase-note">영수증 (yeongsujeung) = receipt. Keep all receipts if you plan to claim a tax refund at the airport.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Korean shop sim -->
+    <div class="section">
+      <div class="section-label">Interactive · K-beauty shop</div>
+      <div class="section-title">Practice shopping at an Olive Young — tap to add to basket</div>
+      <div class="shop-sim">
+        <div class="shop-sim-header">
+          <span>💄 올리브영 (Olive Young)</span>
+          <span style="font-size:12px; opacity:0.7">어서오세요！</span>
+        </div>
+        <div class="shop-sim-body">
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">선크림 (SPF50+)</div>
+              <div class="sim-item-detail">seonkeurim — Sunscreen SPF50+ · 미백 (brightening)</div>
+            </div>
+            <span class="sim-item-price">₩18,000</span>
+            <button class="sim-btn" onclick="krAdd(this,'선크림','₩18,000')">담기</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">립 틴트 (빨간색)</div>
+              <div class="sim-item-detail">rip tinteu — Lip tint, red shade</div>
+            </div>
+            <span class="sim-item-price">₩12,000</span>
+            <button class="sim-btn" onclick="krAdd(this,'립 틴트','₩12,000')">담기</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">수분 크림</div>
+              <div class="sim-item-detail">subun keurim — Moisturising cream · 건성 피부용 (for dry skin)</div>
+            </div>
+            <span class="sim-item-price">₩25,000</span>
+            <button class="sim-btn" onclick="krAdd(this,'수분 크림','₩25,000')">담기</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">마스크팩 (10개)</div>
+              <div class="sim-item-detail">maseukeupaek — Sheet masks, pack of 10</div>
+            </div>
+            <span class="sim-item-price">₩15,000</span>
+            <button class="sim-btn" onclick="krAdd(this,'마스크팩 10개','₩15,000')">담기</button>
+          </div>
+          <div class="sim-item">
+            <div class="sim-item-info">
+              <div class="sim-item-native">에센스</div>
+              <div class="sim-item-detail">esenseu — Essence / serum · 모든 피부 타입 (all skin types)</div>
+            </div>
+            <span class="sim-item-price">₩32,000</span>
+            <button class="sim-btn" onclick="krAdd(this,'에센스','₩32,000')">담기</button>
+          </div>
+        </div>
+        <div class="sim-basket">
+          <div class="sim-basket-label">담은 상품 — Your basket</div>
+          <div class="sim-basket-items" id="kr-basket-items"><span style="color:#aaa; font-style:italic; font-size:13px">Empty — tap 담기 to add items</span></div>
+          <div class="sim-basket-total" id="kr-basket-total"></div>
+        </div>
+        <div class="sim-phrase-box" id="kr-phrase-box"></div>
+      </div>
+    </div>
+
+    <!-- Comparison grammar — the big grammar lesson -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Comparison grammar</div>
+      <div class="section-title">A보다 B가 더 〜 — "B is more ~ than A"</div>
+      <p>Korean comparisons use a fixed structure: put the thing you're comparing against first (A보다), then what you're saying is better/bigger/cheaper (B가 더). The word order feels reversed from English — but once you see the pattern, it's very logical.</p>
+
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">A보다</span>
+          <span class="formula-eq">+</span>
+          <span class="formula-piece">B가</span>
+          <span class="formula-eq">+</span>
+          <span class="formula-piece">더 [adjective]</span>
+          <span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">B is more [adjective] than A</span>
+        </div>
+        <div class="grammar-result">이것보다 저것이 더 싸요.</div>
+        <div class="grammar-rom">Igeotboda jeogeosi deo ssayo.</div>
+        <div class="grammar-en">That one is cheaper than this one.</div>
+        <div class="grammar-note">이것 = this thing · 저것 = that thing · 더 싸요 = cheaper</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-formula">
+          <span class="formula-piece">A보다</span>
+          <span class="formula-eq">+</span>
+          <span class="formula-piece">B가</span>
+          <span class="formula-eq">+</span>
+          <span class="formula-piece">더 [adjective]</span>
+        </div>
+        <div class="grammar-result">한국이 일본보다 더 가까워요.</div>
+        <div class="grammar-rom">Hanguki Ilbonboda deo gakkaweoyo.</div>
+        <div class="grammar-en">Korea is closer than Japan.</div>
+        <div class="grammar-note">한국 = Korea · 일본보다 = than Japan · 더 가까워요 = is closer</div>
+      </div>
+
+      <p style="margin-top:16px; font-size:13px; font-weight:500; color:#1a1a18;">Superlatives — "the most ~" using 제일 or 가장</p>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-formula">
+          <span class="formula-piece">제일 / 가장</span>
+          <span class="formula-eq">+</span>
+          <span class="formula-piece">[adjective]</span>
+          <span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">the most [adjective]</span>
+        </div>
+        <div class="grammar-result">이게 제일 싸요.</div>
+        <div class="grammar-rom">Ige jeil ssayo.</div>
+        <div class="grammar-en">This one is the cheapest.</div>
+        <div class="grammar-note">제일 and 가장 are interchangeable. 제일 is slightly more casual, 가장 slightly more formal.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">어느 게 제일 좋아요?</div>
+        <div class="grammar-rom">Eoneu ge jeil joayo?</div>
+        <div class="grammar-en">Which one is the best?</div>
+        <div class="grammar-note">어느 게 = which one. 좋다 (jota) = good. An incredibly useful shopping phrase.</div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>Shopping comparisons in action:</strong> 이 립스틱보다 저 립스틱이 더 예뻐요 (this lipstick is prettier than that lipstick). 어느 색이 제일 인기 있어요? (Which colour is most popular?) — 인기 있다 (ingi itda) = to be popular, a great phrase to ask staff for recommendations.
+      </div>
+    </div>
+
+    <!-- Culture note KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💄</span>
+        <div class="culture-text">
+          <strong>K-beauty (케이뷰티) — Korea's global skincare revolution</strong><br/>
+          Korea's 10-step skincare routine transformed the global beauty industry. The philosophy centres on skin health first — layers of hydration (toner → essence → serum → moisturiser) rather than covering imperfections. Key concepts to know in shops: 미백 (mibaek = brightening), 보습 (boseum = moisturising), 수분 (subun = hydration), 민감성 피부 (mingamseon pibu = sensitive skin), 지성 (jiseong = oily), 건성 (geonseong = dry). Staff at Olive Young and 미샤 (Missha) speak enough English to help — but knowing these words opens up the entire product range to you.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 8 Korean — shopping & comparisons</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 깎아 주실 수 있어요? mean — and where should you use it?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Can I try this on? — use in any shop</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Can you give me a discount? — use only at traditional markets</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Do you have another colour? — use everywhere</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Where is the fitting room? — use in clothing shops</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "That one is cheaper than this one" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저것이 이것보다 더 비싸요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">이것보다 저것이 더 싸요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">이것이 저것보다 더 싸요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저것보다 이것이 제일 싸요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is Olive Young (올리브영) in Korea?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A traditional Korean market</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A department store chain</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">A K-beauty and health/drug store chain</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A supermarket chain</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask "Which one is the best?" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">어느 게 더 좋아요?</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">이게 제일 좋아요?</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">어느 게 제일 좋아요?</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">제일 어느 게 좋아요?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — shopping in both countries</div>
+    <table>
+      <tr><th>Situation</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Just browsing</td><td>見ているだけです (mite iru dake desu)</td><td>그냥 구경하는 거예요 (geunyang gugyeonghaneun geoyeyo)</td></tr>
+      <tr><td style="font-size:13px">Try this on?</td><td>試着してもいいですか？</td><td>입어 봐도 돼요?</td></tr>
+      <tr><td style="font-size:13px">Another colour?</td><td>〜色のはありますか？</td><td>다른 색상 있어요?</td></tr>
+      <tr><td style="font-size:13px">Pay by card?</td><td>カードで払えますか？</td><td>카드 돼요?</td></tr>
+      <tr><td style="font-size:13px">Discount?</td><td>割引はありますか？(not common)</td><td>깎아 주실 수 있어요? (markets only)</td></tr>
+      <tr><td style="font-size:13px">Tax refund</td><td>免税できますか？ (10% tax back)</td><td>면세점 or airport refund counter</td></tr>
+      <tr><td style="font-size:13px">Red / Blue</td><td>赤 (aka) / 青 (ao)</td><td>빨간 (ppalgan) / 파란 (paran)</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 9 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 9</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Health & emergencies — doctor visits, pharmacy, describing symptoms, and emergency phrases. Plus the て-form of Japanese verbs — the gateway to complex sentence building.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Health & emergencies in Korean — clinics, pharmacies, describing how you feel. Plus the -(으)면 conditional structure: "if ~ then ~" — one of the most useful grammar patterns in Korean.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 8 complete — halfway through the course! 🎉 Click <a href="Week9.J&K.html">here</a> when you're ready for Week 9 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* Japanese shop simulator */
+let jpBasket = [];
+let jpTotal = 0;
+function jpAdd(btn, name, priceStr) {
+  if (btn.classList.contains('added')) return;
+  btn.classList.add('added');
+  btn.textContent = '✓ 追加';
+  const price = parseInt(priceStr.replace(/[¥,]/g, ''));
+  jpBasket.push({ name, price });
+  jpTotal += price;
+  const itemsEl = document.getElementById('jp-basket-items');
+  const totalEl = document.getElementById('jp-basket-total');
+  const phraseEl = document.getElementById('jp-phrase-box');
+  itemsEl.innerHTML = jpBasket.map(i => `<span class="basket-tag">${i.name}</span>`).join('');
+  totalEl.textContent = `合計: ¥${jpTotal.toLocaleString()}`;
+  phraseEl.style.display = 'block';
+  phraseEl.innerHTML = `💬 At the register you'd say:<br/><strong>「${jpBasket.map(i=>i.name).join('と')}をください。」</strong><br/><span style="font-size:11px; color:#888">...wo kudasai — I'd like ${jpBasket.map(i=>i.name).join(', ')}</span>`;
+}
+
+/* Korean shop simulator */
+let krBasket = [];
+let krTotal = 0;
+function krAdd(btn, name, priceStr) {
+  if (btn.classList.contains('added')) return;
+  btn.classList.add('added');
+  btn.textContent = '✓ 담김';
+  const price = parseInt(priceStr.replace(/[₩,]/g, ''));
+  krBasket.push({ name, price });
+  krTotal += price;
+  const itemsEl = document.getElementById('kr-basket-items');
+  const totalEl = document.getElementById('kr-basket-total');
+  const phraseEl = document.getElementById('kr-phrase-box');
+  itemsEl.innerHTML = krBasket.map(i => `<span class="basket-tag">${i.name}</span>`).join('');
+  totalEl.textContent = `합계: ₩${krTotal.toLocaleString()}`;
+  phraseEl.style.display = 'block';
+  phraseEl.innerHTML = `💬 At the register you'd say:<br/><strong>「${krBasket.map(i=>i.name).join(', ')} 주세요.」</strong><br/><span style="font-size:11px; color:#888">...juseyo — [items], please</span>`;
+}
+</script>
+</body>
+</html>
