@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 5 — Japanese & Korean: Dates, Calendar & Verbs</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Day/month grids */
+  .day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 12px; }
+  .month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .day-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px 6px; text-align: center; }
+  .day-card.weekend { background: #fdf0ed; border-color: #f5c4b0; }
+  .day-card.today { background: #f0f5fc; border-color: #b8d4f0; }
+  .day-kanji { font-size: 20px; margin-bottom: 2px; }
+  .day-rom { font-size: 11px; color: #555; font-weight: 500; }
+  .day-en { font-size: 10px; color: #aaa; margin-top: 1px; }
+
+  /* Calendar widget */
+  .cal-widget { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; overflow: hidden; margin-top: 12px; }
+  .cal-header { background: #1a1a18; color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .cal-title { font-size: 15px; font-weight: 500; }
+  .cal-nav { background: transparent; border: 0.5px solid rgba(255,255,255,0.3); color: #fff; border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 14px; }
+  .cal-nav:hover { background: rgba(255,255,255,0.1); }
+  .cal-body { padding: 12px; }
+  .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 6px; }
+  .cal-day-label { text-align: center; font-size: 11px; font-weight: 600; color: #aaa; padding: 4px; }
+  .cal-day-label.sun { color: #D85A30; }
+  .cal-day-label.sat { color: #185FA5; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
+  .cal-cell { text-align: center; padding: 6px 2px; font-size: 13px; border-radius: 6px; cursor: pointer; min-height: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .cal-cell:hover { background: #f0f0ee; }
+  .cal-cell.sun { color: #D85A30; }
+  .cal-cell.sat { color: #185FA5; }
+  .cal-cell.selected { background: #f0f5fc; border: 0.5px solid #378ADD; }
+  .cal-cell.empty { cursor: default; }
+  .cal-cell .jp-date { font-size: 10px; color: #aaa; }
+  .cal-info { padding: 10px 12px; border-top: 0.5px solid #eee; font-size: 13px; color: #333; min-height: 38px; }
+
+  /* Date format cards */
+  .format-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .format-label { font-size: 11px; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .format-main { font-size: 22px; color: #1a1a18; margin-bottom: 4px; }
+  .format-rom { font-size: 13px; color: #888; margin-bottom: 3px; }
+  .format-en { font-size: 14px; color: #333; font-weight: 500; }
+  .format-note { font-size: 12px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Verb conjugation table */
+  .verb-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .verb-table th { text-align: left; background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; }
+  .verb-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .verb-table td:first-child { font-weight: 500; color: #1a1a18; font-size: 14px; }
+  .verb-table tr:last-child td { border-bottom: none; }
+  .verb-form { font-size: 18px; color: #1a1a18; display: block; margin-bottom: 2px; }
+  .verb-rom { font-size: 11px; color: #888; display: block; }
+
+  /* Sentence examples */
+  .example-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .example-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 16px; display: flex; align-items: flex-start; gap: 14px; }
+  .example-card.highlight { background: #f0f8f5; border-color: #a8ddc5; }
+  .example-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .example-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; }
+  .example-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .example-en { font-size: 13px; color: #333; font-weight: 500; }
+  .example-note { font-size: 11px; color: #aaa; font-style: italic; margin-top: 3px; }
+
+  /* Verb builder interactive */
+  .verb-builder { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .vb-label { font-size: 12px; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .vb-select-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  .vb-select { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 7px 12px; font-size: 13px; color: #333; cursor: pointer; outline: none; }
+  .vb-result { background: #fff; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; text-align: center; }
+  .vb-output { font-size: 26px; color: #1a1a18; margin-bottom: 4px; min-height: 36px; }
+  .vb-rom { font-size: 13px; color: #888; margin-bottom: 2px; }
+  .vb-en { font-size: 14px; color: #333; font-weight: 500; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture note */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .day-grid { grid-template-columns: repeat(4, 1fr); }
+    .month-grid { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .vb-select-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 5 of 16</span>
+      <h1>Dates, Calendar & Your First Verbs</h1>
+      <div class="subtitle">JP: Navigate calendars and make appointments · KR: Unlock Korean verbs in present, past & question form</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:31%"></div></div>
+      31% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 5 · Days, months, dates & making appointments</div>
+      </div>
+    </div>
+
+    <!-- Days of the week -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Days of the week</div>
+      <div class="section-title">曜日 (youbi) — each day is named after a natural element</div>
+      <p>Japanese days of the week follow a beautiful pattern — each is named after the Sun, Moon, and the five classical elements. Once you see the pattern, they're easy to remember.</p>
+      <div class="day-grid">
+        <div class="day-card weekend">
+          <div class="day-kanji">日</div>
+          <div class="day-rom">Nichi-youbi</div>
+          <div class="day-en">Sunday · Sun</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">月</div>
+          <div class="day-rom">Getsu-youbi</div>
+          <div class="day-en">Monday · Moon</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">火</div>
+          <div class="day-rom">Ka-youbi</div>
+          <div class="day-en">Tuesday · Fire</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">水</div>
+          <div class="day-rom">Sui-youbi</div>
+          <div class="day-en">Wednesday · Water</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">木</div>
+          <div class="day-rom">Moku-youbi</div>
+          <div class="day-en">Thursday · Wood</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">金</div>
+          <div class="day-rom">Kin-youbi</div>
+          <div class="day-en">Friday · Gold</div>
+        </div>
+        <div class="day-card weekend">
+          <div class="day-kanji">土</div>
+          <div class="day-rom">Do-youbi</div>
+          <div class="day-en">Saturday · Earth</div>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Memory trick:</strong> Sun → Mon → Fire → Water → Wood → Gold → Earth. Or think of it as the planets: Sun(day), Moon(day), Mars (fire), Mercury (water), Jupiter (wood), Venus (gold/metal), Saturn (earth). The Japanese days map to the same planetary order as English!
+      </div>
+    </div>
+
+    <!-- Months -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Months of the year</div>
+      <div class="section-title">月 (gatsu) — months are simply numbered 1 through 12</div>
+      <p>No memorising "January, February..." — Japanese months are just "1-month, 2-month" etc. This is beautifully simple.</p>
+      <div class="month-grid">
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">一月</div><div class="day-rom">Ichi-gatsu</div><div class="day-en">January</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">二月</div><div class="day-rom">Ni-gatsu</div><div class="day-en">February</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">三月</div><div class="day-rom">San-gatsu</div><div class="day-en">March</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">四月</div><div class="day-rom">Shi-gatsu</div><div class="day-en">April</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">五月</div><div class="day-rom">Go-gatsu</div><div class="day-en">May</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">六月</div><div class="day-rom">Roku-gatsu</div><div class="day-en">June</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">七月</div><div class="day-rom">Shichi-gatsu</div><div class="day-en">July</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">八月</div><div class="day-rom">Hachi-gatsu</div><div class="day-en">August</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">九月</div><div class="day-rom">Ku-gatsu</div><div class="day-en">September</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">十月</div><div class="day-rom">Juu-gatsu</div><div class="day-en">October</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">十一月</div><div class="day-rom">Juuichi-gatsu</div><div class="day-en">November</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:17px">十二月</div><div class="day-rom">Juuni-gatsu</div><div class="day-en">December</div></div>
+      </div>
+    </div>
+
+    <!-- Dates -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Saying the full date</div>
+      <div class="section-title">Japanese date order: Year → Month → Day</div>
+      <p>Japanese writes dates in the opposite order to English — biggest unit first. This is the same as ISO format (2025-03-15) but spoken aloud.</p>
+      <div class="format-block">
+        <div class="format-label">Full date format</div>
+        <div class="format-main">二〇二五年三月十五日</div>
+        <div class="format-rom">Ni-zero-ni-go-nen san-gatsu juu-go-nichi</div>
+        <div class="format-en">March 15, 2025</div>
+        <div class="format-note">年 (nen) = year · 月 (gatsu) = month · 日 (nichi/ka) = day</div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Days of the month are irregular!</strong> The first 10 days have special readings — 1st = 一日 (tsuitachi), 2nd = 二日 (futsuka), 3rd = 三日 (mikka), 4th = 四日 (yokka), 10th = 十日 (tooka). From the 11th onward, most follow the pattern [number]-nichi — except 14th (juuyokka), 20th (hatsuka), and 24th (nijuuyokka).
+      </div>
+
+      <!-- Interactive calendar -->
+      <div style="margin-top:16px">
+        <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">Interactive Japanese calendar — tap a date to see it in Japanese:</p>
+        <div class="cal-widget">
+          <div class="cal-header">
+            <button class="cal-nav" onclick="calPrev()">‹</button>
+            <div class="cal-title" id="cal-title">2025年 5月</div>
+            <button class="cal-nav" onclick="calNext()">›</button>
+          </div>
+          <div class="cal-body">
+            <div class="cal-days-header">
+              <div class="cal-day-label sun">日</div>
+              <div class="cal-day-label">月</div>
+              <div class="cal-day-label">火</div>
+              <div class="cal-day-label">水</div>
+              <div class="cal-day-label">木</div>
+              <div class="cal-day-label">金</div>
+              <div class="cal-day-label sat">土</div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+          <div class="cal-info" id="cal-info">Tap a date to see how it's read in Japanese.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointment phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Making appointments</div>
+      <div class="section-title">Essential phrases for scheduling — shops, restaurants, clinics</div>
+      <div class="example-list">
+        <div class="example-card highlight">
+          <span class="example-icon">📅</span>
+          <div>
+            <div class="example-native">〜に予約したいです</div>
+            <div class="example-rom">[date/time]-ni yoyaku shitai desu</div>
+            <div class="example-en">I'd like to make a reservation for [date/time]</div>
+            <div class="example-note">予約 (yoyaku) = reservation. Works for restaurants, hotels, clinics.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">📆</span>
+          <div>
+            <div class="example-native">今日は何日ですか？</div>
+            <div class="example-rom">Kyou wa nan-nichi desu ka?</div>
+            <div class="example-en">What's today's date?</div>
+            <div class="example-note">今日 (kyou) = today. 何日 (nan-nichi) = what day of the month.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🗓️</span>
+          <div>
+            <div class="example-native">来週の月曜日はどうですか？</div>
+            <div class="example-rom">Raishuu no getsuyoubi wa dou desu ka?</div>
+            <div class="example-en">How about next Monday?</div>
+            <div class="example-note">来週 (raishuu) = next week. 今週 (konshuu) = this week. 先週 (senshuu) = last week.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">✅</span>
+          <div>
+            <div class="example-native">〜は空いていますか？</div>
+            <div class="example-rom">[time]-wa aite imasu ka?</div>
+            <div class="example-en">Is [time] available?</div>
+            <div class="example-note">空いている (aite iru) = available / open. Very useful for checking availability.</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🏥</span>
+          <div>
+            <div class="example-native">何時から何時まで開いていますか？</div>
+            <div class="example-rom">Nan-ji kara nan-ji made aite imasu ka?</div>
+            <div class="example-en">What are your opening hours?</div>
+            <div class="example-note">から (kara) = from · まで (made) = until. Very useful for checking shop hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Time words -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Essential time reference words</div>
+      <div class="section-title">Words for navigating time in conversation</div>
+      <table>
+        <tr><th>Japanese</th><th>Reading</th><th>Meaning</th></tr>
+        <tr><td style="font-size:18px">今日</td><td>kyou</td><td>Today</td></tr>
+        <tr><td style="font-size:18px">明日</td><td>ashita</td><td>Tomorrow</td></tr>
+        <tr><td style="font-size:18px">昨日</td><td>kinou</td><td>Yesterday</td></tr>
+        <tr><td style="font-size:18px">今週</td><td>konshuu</td><td>This week</td></tr>
+        <tr><td style="font-size:18px">来週</td><td>raishuu</td><td>Next week</td></tr>
+        <tr><td style="font-size:18px">先週</td><td>senshuu</td><td>Last week</td></tr>
+        <tr><td style="font-size:18px">今月</td><td>kongetsu</td><td>This month</td></tr>
+        <tr><td style="font-size:18px">来月</td><td>raigetsu</td><td>Next month</td></tr>
+        <tr><td style="font-size:18px">今年</td><td>kotoshi</td><td>This year</td></tr>
+      </table>
+    </div>
+
+    <!-- Culture note JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌸</span>
+        <div class="culture-text">
+          <strong>Japan's own calendar era system — 和暦 (wareki)</strong><br/>
+          Japan uses its own era-based calendar alongside the Western one. Each new emperor's reign starts a new era — the current era is 令和 (Reiwa), which began in May 2019 when Emperor Naruhito ascended the throne. So 2025 is 令和7年 (Reiwa 7-nen). You'll see this on official documents, receipts, and government forms in Japan. Don't be surprised — it's not a separate calendar, just a different way to label the year.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 5 Japanese — dates & calendar</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What natural element is Wednesday (水曜日) named after?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Fire</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Water</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Wood</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Earth</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "September" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">八月 (hachi-gatsu)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">九月 (ku-gatsu)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">十月 (juu-gatsu)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">七月 (shichi-gatsu)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">In Japanese, what is the correct date order?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Day → Month → Year</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Month → Day → Year</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Year → Month → Day</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Month → Year → Day</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does 来週 (raishuu) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Last week</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">This week</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Next week</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Next month</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 5 · Calendar + verb conjugation unlocked</div>
+      </div>
+    </div>
+
+    <!-- Days of the week Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Days of the week</div>
+      <div class="section-title">요일 (yoil) — Korean days follow the exact same element pattern as Japanese</div>
+      <p>Korean and Japanese both inherited the same Chinese naming system for days. The elements are identical — just in Korean pronunciation!</p>
+      <div class="day-grid">
+        <div class="day-card weekend">
+          <div class="day-kanji">일요일</div>
+          <div class="day-rom">il-yoil</div>
+          <div class="day-en">Sunday · Sun (日)</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">월요일</div>
+          <div class="day-rom">wol-yoil</div>
+          <div class="day-en">Monday · Moon (月)</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">화요일</div>
+          <div class="day-rom">hwa-yoil</div>
+          <div class="day-en">Tuesday · Fire (火)</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">수요일</div>
+          <div class="day-rom">su-yoil</div>
+          <div class="day-en">Wednesday · Water (水)</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">목요일</div>
+          <div class="day-rom">mok-yoil</div>
+          <div class="day-en">Thursday · Wood (木)</div>
+        </div>
+        <div class="day-card">
+          <div class="day-kanji">금요일</div>
+          <div class="day-rom">geum-yoil</div>
+          <div class="day-en">Friday · Gold (金)</div>
+        </div>
+        <div class="day-card weekend">
+          <div class="day-kanji">토요일</div>
+          <div class="day-rom">to-yoil</div>
+          <div class="day-en">Saturday · Earth (土)</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Compare Japanese and Korean days side by side</strong> — 월요일 (wol) ↔ 月曜日 (getsu), 화요일 (hwa) ↔ 火曜日 (ka), 수요일 (su) ↔ 水曜日 (sui). Seeing both languages together reinforces both sets at once!
+      </div>
+    </div>
+
+    <!-- Months Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Months & dates</div>
+      <div class="section-title">월 (wol) — same numbered system as Japanese, using Sino-Korean numbers</div>
+      <p>Just like Japanese, Korean months are simply numbered. Use Sino-Korean numbers (일, 이, 삼...) + 월 for month, and + 일 for day.</p>
+      <div class="month-grid">
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">1월</div><div class="day-rom">il-wol</div><div class="day-en">January</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">2월</div><div class="day-rom">i-wol</div><div class="day-en">February</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">3월</div><div class="day-rom">sam-wol</div><div class="day-en">March</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">4월</div><div class="day-rom">sa-wol</div><div class="day-en">April</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">5월</div><div class="day-rom">o-wol</div><div class="day-en">May</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">6월</div><div class="day-rom">yu-wol</div><div class="day-en">June</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">7월</div><div class="day-rom">chil-wol</div><div class="day-en">July</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">8월</div><div class="day-rom">pal-wol</div><div class="day-en">August</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">9월</div><div class="day-rom">gu-wol</div><div class="day-en">September</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">10월</div><div class="day-rom">si-wol</div><div class="day-en">October</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">11월</div><div class="day-rom">sip-il-wol</div><div class="day-en">November</div></div>
+        <div class="day-card"><div class="day-kanji" style="font-size:15px">12월</div><div class="day-rom">sip-i-wol</div><div class="day-en">December</div></div>
+      </div>
+      <div class="format-block" style="margin-top:14px">
+        <div class="format-label">Full date example</div>
+        <div class="format-main">2025년 3월 15일</div>
+        <div class="format-rom">I-cheon-i-sip-o-nyeon sam-wol sip-o-il</div>
+        <div class="format-en">March 15, 2025</div>
+        <div class="format-note">년 (nyeon) = year · 월 (wol) = month · 일 (il) = day — same Year → Month → Day order as Japanese</div>
+      </div>
+    </div>
+
+    <!-- TIME REFERENCE WORDS KOREAN -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Time reference words</div>
+      <div class="section-title">Essential words for talking about when things happen</div>
+      <table>
+        <tr><th>Korean</th><th>Reading</th><th>Meaning</th></tr>
+        <tr><td style="font-size:18px">오늘</td><td>oneul</td><td>Today</td></tr>
+        <tr><td style="font-size:18px">내일</td><td>naeil</td><td>Tomorrow</td></tr>
+        <tr><td style="font-size:18px">어제</td><td>eoje</td><td>Yesterday</td></tr>
+        <tr><td style="font-size:18px">이번 주</td><td>ibeon ju</td><td>This week</td></tr>
+        <tr><td style="font-size:18px">다음 주</td><td>daeum ju</td><td>Next week</td></tr>
+        <tr><td style="font-size:18px">지난 주</td><td>jinan ju</td><td>Last week</td></tr>
+        <tr><td style="font-size:18px">이번 달</td><td>ibeon dal</td><td>This month</td></tr>
+        <tr><td style="font-size:18px">다음 달</td><td>daeum dal</td><td>Next month</td></tr>
+        <tr><td style="font-size:18px">올해</td><td>olhae</td><td>This year</td></tr>
+      </table>
+    </div>
+
+    <!-- VERB CONJUGATION — the big lesson -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Korean verbs — the big unlock</div>
+      <div class="section-title">How Korean verb conjugation works — it's more logical than you think</div>
+      <p>All Korean verbs in the dictionary end in 다 (da). To conjugate, you remove 다 and add an ending. The most important endings for beginners are the polite present, polite past, and question form.</p>
+
+      <div class="tip-box tip-green">
+        <strong>The golden rule:</strong> Korean verbs change based on (1) whether the verb stem's last vowel is 아/오 (bright vowels) or anything else (dark vowels), and (2) the formality level. For now, we focus on the polite informal level (해요체 — haeyoche) which ends in 아요/어요. This is what you'll use 90% of the time in everyday speech.
+      </div>
+
+      <p style="margin-top:14px; font-size:13px; font-weight:500; color:#1a1a18;">The 3 essential verb endings:</p>
+      <table class="verb-table" style="margin-top:8px">
+        <tr>
+          <th>Tense / type</th>
+          <th>Ending</th>
+          <th>Example with 먹다 (to eat)</th>
+          <th>Meaning</th>
+        </tr>
+        <tr>
+          <td>Present (polite)</td>
+          <td style="font-size:16px; color:#1D9E75">아요 / 어요</td>
+          <td><span class="verb-form">먹어요</span><span class="verb-rom">meogeoyo</span></td>
+          <td style="font-size:13px">(I/you/they) eat</td>
+        </tr>
+        <tr>
+          <td>Past (polite)</td>
+          <td style="font-size:16px; color:#185FA5">았어요 / 었어요</td>
+          <td><span class="verb-form">먹었어요</span><span class="verb-rom">meogeosseoyo</span></td>
+          <td style="font-size:13px">ate</td>
+        </tr>
+        <tr>
+          <td>Question (polite)</td>
+          <td style="font-size:16px; color:#BA7517">아요? / 어요?</td>
+          <td><span class="verb-form">먹어요?</span><span class="verb-rom">meogeoyo?</span></td>
+          <td style="font-size:13px">Do (you) eat? / Are you eating?</td>
+        </tr>
+        <tr>
+          <td>Negative (polite)</td>
+          <td style="font-size:16px; color:#D85A30">안 + verb</td>
+          <td><span class="verb-form">안 먹어요</span><span class="verb-rom">an meogeoyo</span></td>
+          <td style="font-size:13px">Don't eat / Not eating</td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber" style="margin-top:12px">
+        <strong>Bright vs dark vowels (모음 조화):</strong> If the verb stem's last vowel is ㅏ or ㅗ (bright), use 아요. For all other vowels (dark), use 어요. Example: 가다 (to go) → 가요 (bright ㅏ). 먹다 (to eat) → 먹어요 (dark ㅓ). With practice, this becomes instinctive — Korean speakers naturally "feel" which sounds right.
+      </div>
+    </div>
+
+    <!-- Common verbs conjugated -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · 8 essential verbs conjugated</div>
+      <div class="section-title">Learn these conjugated forms — they cover a huge range of daily situations</div>
+      <table class="verb-table">
+        <tr>
+          <th>Dictionary form</th>
+          <th>Meaning</th>
+          <th>Present (polite)</th>
+          <th>Past (polite)</th>
+        </tr>
+        <tr>
+          <td>가다</td>
+          <td style="font-size:12px; color:#888">to go</td>
+          <td><span class="verb-form">가요</span><span class="verb-rom">gayo</span></td>
+          <td><span class="verb-form">갔어요</span><span class="verb-rom">gasseoyo</span></td>
+        </tr>
+        <tr>
+          <td>오다</td>
+          <td style="font-size:12px; color:#888">to come</td>
+          <td><span class="verb-form">와요</span><span class="verb-rom">wayo</span></td>
+          <td><span class="verb-form">왔어요</span><span class="verb-rom">wasseoyo</span></td>
+        </tr>
+        <tr>
+          <td>먹다</td>
+          <td style="font-size:12px; color:#888">to eat</td>
+          <td><span class="verb-form">먹어요</span><span class="verb-rom">meogeoyo</span></td>
+          <td><span class="verb-form">먹었어요</span><span class="verb-rom">meogeosseoyo</span></td>
+        </tr>
+        <tr>
+          <td>마시다</td>
+          <td style="font-size:12px; color:#888">to drink</td>
+          <td><span class="verb-form">마셔요</span><span class="verb-rom">masyeoyo</span></td>
+          <td><span class="verb-form">마셨어요</span><span class="verb-rom">masyeosseoyo</span></td>
+        </tr>
+        <tr>
+          <td>보다</td>
+          <td style="font-size:12px; color:#888">to see / watch</td>
+          <td><span class="verb-form">봐요</span><span class="verb-rom">bwayo</span></td>
+          <td><span class="verb-form">봤어요</span><span class="verb-rom">bwasseoyo</span></td>
+        </tr>
+        <tr>
+          <td>사다</td>
+          <td style="font-size:12px; color:#888">to buy</td>
+          <td><span class="verb-form">사요</span><span class="verb-rom">sayo</span></td>
+          <td><span class="verb-form">샀어요</span><span class="verb-rom">sasseoyo</span></td>
+        </tr>
+        <tr>
+          <td>있다</td>
+          <td style="font-size:12px; color:#888">to exist / have</td>
+          <td><span class="verb-form">있어요</span><span class="verb-rom">isseoyo</span></td>
+          <td><span class="verb-form">있었어요</span><span class="verb-rom">isseosseoyo</span></td>
+        </tr>
+        <tr>
+          <td>하다</td>
+          <td style="font-size:12px; color:#888">to do</td>
+          <td><span class="verb-form">해요</span><span class="verb-rom">haeyo</span></td>
+          <td><span class="verb-form">했어요</span><span class="verb-rom">haesseoyo</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Verb builder interactive -->
+    <div class="section">
+      <div class="section-label">Interactive · Build a sentence</div>
+      <div class="section-title">Pick a verb and a tense — see the result</div>
+      <div class="verb-builder">
+        <div class="vb-label">Choose verb & tense</div>
+        <div class="vb-select-row">
+          <select class="vb-select" id="vb-verb" onchange="buildVerb()">
+            <option value="ga">가다 — to go</option>
+            <option value="meo">먹다 — to eat</option>
+            <option value="ma">마시다 — to drink</option>
+            <option value="bo">보다 — to see</option>
+            <option value="sa">사다 — to buy</option>
+            <option value="ha">하다 — to do</option>
+          </select>
+          <select class="vb-select" id="vb-tense" onchange="buildVerb()">
+            <option value="present">Present</option>
+            <option value="past">Past</option>
+            <option value="question">Question</option>
+            <option value="negative">Negative</option>
+          </select>
+        </div>
+        <div class="vb-result">
+          <div class="vb-output" id="vb-output">가요</div>
+          <div class="vb-rom" id="vb-rom">gayo</div>
+          <div class="vb-en" id="vb-en">Going / I go</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real sentence examples -->
+    <div class="section">
+      <div class="section-label">Lesson 6 · Full sentences using verbs + time words</div>
+      <div class="section-title">Put it all together — these are real, natural Korean sentences</div>
+      <div class="example-list">
+        <div class="example-card highlight">
+          <span class="example-icon">🍜</span>
+          <div>
+            <div class="example-native">어제 한국 음식을 먹었어요.</div>
+            <div class="example-rom">Eoje hanguk eumsigul meogeosseoyo.</div>
+            <div class="example-en">I ate Korean food yesterday.</div>
+            <div class="example-note">어제 = yesterday · 한국 음식 = Korean food · 먹었어요 = ate (past)</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🚇</span>
+          <div>
+            <div class="example-native">내일 서울에 가요.</div>
+            <div class="example-rom">Naeil Seoul-e gayo.</div>
+            <div class="example-en">I'm going to Seoul tomorrow.</div>
+            <div class="example-note">내일 = tomorrow · 서울에 = to Seoul · 가요 = going (present)</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">☕</span>
+          <div>
+            <div class="example-native">오늘 커피를 마셔요?</div>
+            <div class="example-rom">Oneul keopireul masyeoyo?</div>
+            <div class="example-en">Are you drinking coffee today?</div>
+            <div class="example-note">오늘 = today · 커피를 = coffee (object) · 마셔요? = drinking? (question)</div>
+          </div>
+        </div>
+        <div class="example-card">
+          <span class="example-icon">🛍️</span>
+          <div>
+            <div class="example-native">이번 주에 뭐 해요?</div>
+            <div class="example-rom">Ibeon ju-e mwo haeyo?</div>
+            <div class="example-en">What are you doing this week?</div>
+            <div class="example-note">이번 주 = this week · 뭐 = what · 해요 = doing (present)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture note KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌺</span>
+        <div class="culture-text">
+          <strong>공휴일 — Korea's colorful public holiday calendar</strong><br/>
+          Korea has some fascinating national holidays. Chuseok (추석) — the autumn harvest festival in September/October — is the most important family holiday, like Thanksgiving and Christmas combined. Seollal (설날) is Lunar New Year, when the whole country travels home. On these holidays, cities empty out dramatically and transport is packed days in advance. If you're visiting during these periods, book everything well ahead — and expect to see beautiful traditional clothing (한복, hanbok) everywhere.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 5 Korean — calendar & verb conjugation</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "Friday" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">수요일</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">목요일</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">금요일</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">토요일</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What is the polite present tense of 가다 (to go)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">갔어요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">가요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">가다요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">안 가다</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence correctly means "I ate Korean food yesterday"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">어제 한국 음식을 먹어요.</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">어제 한국 음식을 먹었어요.</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">내일 한국 음식을 먹었어요.</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">어제 한국 음식이 가요.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does 다음 주 (daeum ju) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Last week</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">This week</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Next week</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Next month</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — this week's parallels</div>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Monday</td><td>月曜日 (getsu-youbi)</td><td>월요일 (wol-yoil)</td></tr>
+      <tr><td style="font-size:13px">Friday</td><td>金曜日 (kin-youbi)</td><td>금요일 (geum-yoil)</td></tr>
+      <tr><td style="font-size:13px">March 15</td><td>三月十五日 (san-gatsu juu-go-nichi)</td><td>3월 15일 (sam-wol sip-o-il)</td></tr>
+      <tr><td style="font-size:13px">Tomorrow</td><td>明日 (ashita)</td><td>내일 (naeil)</td></tr>
+      <tr><td style="font-size:13px">Next week</td><td>来週 (raishuu)</td><td>다음 주 (daeum ju)</td></tr>
+      <tr><td style="font-size:13px">I ate (past)</td><td>食べました (tabe-mashita)</td><td>먹었어요 (meogeosseoyo)</td></tr>
+    </table>
+    <p style="margin-top:10px; font-size:13px; color:#666;">Notice how similar the days of the week are in both languages — this is the shared Chinese-origin heritage at work. Knowing one language's days makes the other much easier to remember!</p>
+  </div>
+
+  <!-- Preview Week 6 -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 6</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Food & dining — how to order in a restaurant, read a basic menu, dietary restrictions, and the beautiful ritual of Japanese dining etiquette. You'll be ready to eat your way through Japan!</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Food & dining in Korea — ordering at restaurants and street food stalls, must-know dish names, and Korean dining culture including the unique side dish (반찬) system.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 5 complete · Click <a href="Japanese.Korean.Week6.html">here</a> when you're ready for Week 6 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* Japanese interactive calendar */
+const JP_MONTHS = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+const JP_MONTHS_ROM = ['Ichi-gatsu','Ni-gatsu','San-gatsu','Shi-gatsu','Go-gatsu','Roku-gatsu','Shichi-gatsu','Hachi-gatsu','Ku-gatsu','Juu-gatsu','Juuichi-gatsu','Juuni-gatsu'];
+const JP_DAYS_SPEC = {1:'ついたち(tsuitachi)',2:'ふつか(futsuka)',3:'みっか(mikka)',4:'よっか(yokka)',5:'いつか(itsuka)',6:'むいか(muika)',7:'なのか(nanoka)',8:'ようか(youka)',9:'ここのか(kokonoka)',10:'とおか(tooka)',14:'じゅうよっか(juuyokka)',20:'はつか(hatsuka)',24:'にじゅうよっか(nijuuyokka)'};
+const JP_YEARS = {2025:'二〇二五年'};
+let calYear = 2025, calMonth = 4; // 0-indexed month
+
+function getJPDay(d) {
+  if (JP_DAYS_SPEC[d]) return JP_DAYS_SPEC[d];
+  const nums = ['','一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','二十一','二十二','二十三','二十四','二十五','二十六','二十七','二十八','二十九','三十','三十一'];
+  const roms = ['','ichi','ni','san','yo','go','roku','nana','hachi','kyuu','juu','juu-ichi','juu-ni','juu-san','juu-shi','juu-go','juu-roku','juu-nana','juu-hachi','juu-ku','hatsuka','nijuu-ichi','nijuu-ni','nijuu-san','nijuu-shi','nijuu-go','nijuu-roku','nijuu-nana','nijuu-hachi','nijuu-ku','sanjuu','sanjuu-ichi'];
+  return nums[d]+'日('+roms[d]+'-nichi)';
+}
+
+function renderCal() {
+  const title = document.getElementById('cal-title');
+  const grid = document.getElementById('cal-grid');
+  const yr = calYear, mo = calMonth;
+  title.textContent = (JP_YEARS[yr]||yr+'年') + ' ' + JP_MONTHS[mo];
+  const first = new Date(yr, mo, 1).getDay();
+  const days = new Date(yr, mo+1, 0).getDate();
+  let html = '';
+  for (let i=0;i<first;i++) html += '<div class="cal-cell empty"></div>';
+  for (let d=1;d<=days;d++) {
+    const dow = (first+d-1)%7;
+    const cls = dow===0?'sun':dow===6?'sat':'';
+    html += `<div class="cal-cell ${cls}" onclick="selectDay(${d},${dow})">${d}</div>`;
+  }
+  grid.innerHTML = html;
+  document.getElementById('cal-info').textContent = 'Tap a date to see how it\'s read in Japanese.';
+}
+
+function selectDay(d, dow) {
+  document.querySelectorAll('.cal-cell').forEach(c=>c.classList.remove('selected'));
+  event.target.classList.add('selected');
+  const yr = calYear, mo = calMonth;
+  const yrStr = JP_YEARS[yr]||yr+'年';
+  const moStr = JP_MONTHS[mo]+'('+JP_MONTHS_ROM[mo]+')';
+  const dayStr = getJPDay(d);
+  const days = ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'];
+  document.getElementById('cal-info').textContent = `${yrStr} ${moStr} ${dayStr} — ${days[dow]}`;
+}
+
+function calPrev() {
+  calMonth--;
+  if (calMonth<0){calMonth=11;calYear--;}
+  renderCal();
+}
+function calNext() {
+  calMonth++;
+  if (calMonth>11){calMonth=0;calYear++;}
+  renderCal();
+}
+renderCal();
+
+/* Korean verb builder */
+const verbData = {
+  ga:  { present:['가요','gayo','Going / I go'],       past:['갔어요','gasseoyo','Went'],           question:['가요?','gayo?','Are you going?'],      negative:['안 가요','an gayo','Not going'] },
+  meo: { present:['먹어요','meogeoyo','Eating / I eat'], past:['먹었어요','meogeosseoyo','Ate'],       question:['먹어요?','meogeoyo?','Are you eating?'],  negative:['안 먹어요','an meogeoyo','Not eating'] },
+  ma:  { present:['마셔요','masyeoyo','Drinking'],       past:['마셨어요','masyeosseoyo','Drank'],     question:['마셔요?','masyeoyo?','Drinking?'],        negative:['안 마셔요','an masyeoyo','Not drinking'] },
+  bo:  { present:['봐요','bwayo','Watching / seeing'],   past:['봤어요','bwasseoyo','Saw / watched'], question:['봐요?','bwayo?','Are you watching?'],     negative:['안 봐요','an bwayo','Not watching'] },
+  sa:  { present:['사요','sayo','Buying'],               past:['샀어요','sasseoyo','Bought'],         question:['사요?','sayo?','Are you buying?'],        negative:['안 사요','an sayo','Not buying'] },
+  ha:  { present:['해요','haeyo','Doing'],               past:['했어요','haesseoyo','Did'],           question:['해요?','haeyo?','Are you doing?'],        negative:['안 해요','an haeyo','Not doing'] },
+};
+function buildVerb() {
+  const v = document.getElementById('vb-verb').value;
+  const t = document.getElementById('vb-tense').value;
+  const d = verbData[v][t];
+  document.getElementById('vb-output').textContent = d[0];
+  document.getElementById('vb-rom').textContent = d[1];
+  document.getElementById('vb-en').textContent = d[2];
+}
+</script>
+</body>
+</html>
