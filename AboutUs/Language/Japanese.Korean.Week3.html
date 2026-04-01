@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 3 — Japanese & Korean</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  /* Progress */
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  /* Lang block */
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Char grids */
+  .char-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; }
+  .char-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+  .char-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .char-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px 6px; text-align: center; }
+  .char-card.new { background: #f0f5fc; border-color: #b8d4f0; }
+  .char-card.loan { background: #fdf6ec; border-color: #f0d9a8; }
+  .char-big { font-size: 26px; line-height: 1.2; margin-bottom: 3px; }
+  .char-rom { font-size: 12px; color: #555; font-weight: 500; }
+  .char-hint { font-size: 10px; color: #aaa; margin-top: 2px; }
+
+  /* Loan word cards */
+  .loan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .loan-card { background: #fdf9f0; border: 0.5px solid #f0e2b8; border-radius: 10px; padding: 12px 14px; }
+  .loan-katakana { font-size: 22px; margin-bottom: 2px; }
+  .loan-rom { font-size: 12px; color: #888; }
+  .loan-en { font-size: 13px; color: #333; font-weight: 500; margin-top: 3px; }
+  .loan-note { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Batchim table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+  td:first-child { font-size: 22px; }
+  td.note { font-size: 12px; color: #888; font-style: italic; }
+
+  /* Sentence builder */
+  .sentence-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+  .sentence-formula { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 8px; padding: 5px 10px; font-size: 12px; color: #555; }
+  .formula-arrow { color: #ccc; font-size: 16px; }
+  .sentence-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .sentence-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .sentence-en { font-size: 14px; color: #333; font-weight: 500; }
+  .sentence-note { font-size: 12px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 14px; }
+  .phrase-card.highlight { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 20px; line-height: 1.3; margin-bottom: 2px; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .phrase-en { font-size: 14px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 12px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Tip boxes */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture note */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview box */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .preview-card { border-radius: 10px; padding: 12px 14px; }
+  .preview-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .preview-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .preview-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .preview-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  /* Comparison table */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+
+  @media (max-width: 520px) {
+    .char-grid-5 { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+    .char-big { font-size: 20px; }
+    .loan-grid, .preview-grid { grid-template-columns: 1fr; }
+    .sentence-formula { gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 3 of 16</span>
+      <h1>Katakana & Sentence Building</h1>
+      <div class="subtitle">JP: Unlock hundreds of English-borrowed words · KR: Build your first real sentences</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:18%"></div></div>
+      18% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 3 · Katakana — your shortcut to hundreds of words</div>
+      </div>
+    </div>
+
+    <!-- Why katakana -->
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">Why katakana is the most fun script to learn</div>
+      <p>Katakana has the exact same 46 sounds as hiragana — you already know the phonetics. The only thing new is the visual shape of each character. And the payoff is huge: katakana is used to write foreign loanwords, which in Japan often come from English. Once you know katakana, you can read words like:</p>
+      <div class="loan-grid" style="margin-top:10px">
+        <div class="loan-card"><div class="loan-katakana">コーヒー</div><div class="loan-rom">kōhī</div><div class="loan-en">Coffee</div></div>
+        <div class="loan-card"><div class="loan-katakana">ホテル</div><div class="loan-rom">hoteru</div><div class="loan-en">Hotel</div></div>
+        <div class="loan-card"><div class="loan-katakana">タクシー</div><div class="loan-rom">takushī</div><div class="loan-en">Taxi</div></div>
+        <div class="loan-card"><div class="loan-katakana">レストラン</div><div class="loan-rom">resutoran</div><div class="loan-en">Restaurant</div></div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>The trick:</strong> Katakana is essentially a "squarer", more angular version of hiragana. If you know hiragana, you'll find many katakana characters feel visually related. Focus on the differences.
+      </div>
+    </div>
+
+    <!-- Vowel row katakana -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Katakana vowels</div>
+      <div class="section-title">The 5 vowels in katakana — compare with hiragana</div>
+      <p>Same sounds as hiragana, new shapes. The hiragana is shown in gray for reference.</p>
+      <div class="char-grid-5">
+        <div class="char-card new">
+          <div class="char-big">ア</div>
+          <div class="char-rom">a</div>
+          <div class="char-hint">cf. あ</div>
+        </div>
+        <div class="char-card new">
+          <div class="char-big">イ</div>
+          <div class="char-rom">i</div>
+          <div class="char-hint">cf. い</div>
+        </div>
+        <div class="char-card new">
+          <div class="char-big">ウ</div>
+          <div class="char-rom">u</div>
+          <div class="char-hint">cf. う</div>
+        </div>
+        <div class="char-card new">
+          <div class="char-big">エ</div>
+          <div class="char-rom">e</div>
+          <div class="char-hint">cf. え</div>
+        </div>
+        <div class="char-card new">
+          <div class="char-big">オ</div>
+          <div class="char-rom">o</div>
+          <div class="char-hint">cf. お</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ka, Sa, Ta, Na rows katakana -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Core katakana rows</div>
+      <div class="section-title">The same rows you learned in hiragana — now in katakana</div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:0; margin-top:12px;">カ row (k sounds)</p>
+      <div class="char-grid-5">
+        <div class="char-card new"><div class="char-big">カ</div><div class="char-rom">ka</div><div class="char-hint">cf. か</div></div>
+        <div class="char-card new"><div class="char-big">キ</div><div class="char-rom">ki</div><div class="char-hint">cf. き</div></div>
+        <div class="char-card new"><div class="char-big">ク</div><div class="char-rom">ku</div><div class="char-hint">cf. く</div></div>
+        <div class="char-card new"><div class="char-big">ケ</div><div class="char-rom">ke</div><div class="char-hint">cf. け</div></div>
+        <div class="char-card new"><div class="char-big">コ</div><div class="char-rom">ko</div><div class="char-hint">cf. こ</div></div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:0; margin-top:14px;">サ row (s sounds)</p>
+      <div class="char-grid-5">
+        <div class="char-card new"><div class="char-big">サ</div><div class="char-rom">sa</div></div>
+        <div class="char-card new"><div class="char-big">シ</div><div class="char-rom">shi</div></div>
+        <div class="char-card new"><div class="char-big">ス</div><div class="char-rom">su</div></div>
+        <div class="char-card new"><div class="char-big">セ</div><div class="char-rom">se</div></div>
+        <div class="char-card new"><div class="char-big">ソ</div><div class="char-rom">so</div></div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:0; margin-top:14px;">タ row (t sounds)</p>
+      <div class="char-grid-5">
+        <div class="char-card new"><div class="char-big">タ</div><div class="char-rom">ta</div></div>
+        <div class="char-card new"><div class="char-big">チ</div><div class="char-rom">chi</div></div>
+        <div class="char-card new"><div class="char-big">ツ</div><div class="char-rom">tsu</div></div>
+        <div class="char-card new"><div class="char-big">テ</div><div class="char-rom">te</div></div>
+        <div class="char-card new"><div class="char-big">ト</div><div class="char-rom">to</div></div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:0; margin-top:14px;">ナ row (n sounds)</p>
+      <div class="char-grid-5">
+        <div class="char-card new"><div class="char-big">ナ</div><div class="char-rom">na</div></div>
+        <div class="char-card new"><div class="char-big">ニ</div><div class="char-rom">ni</div></div>
+        <div class="char-card new"><div class="char-big">ヌ</div><div class="char-rom">nu</div></div>
+        <div class="char-card new"><div class="char-big">ネ</div><div class="char-rom">ne</div></div>
+        <div class="char-card new"><div class="char-big">ノ</div><div class="char-rom">no</div></div>
+      </div>
+
+      <div class="tip-box tip-blue" style="margin-top:14px">
+        <strong>Common mix-ups to watch:</strong> ン (n) vs ソ (so) vs リ (ri) — and シ (shi) vs ツ (tsu). These pairs look deceptively similar. ン and ソ differ by stroke direction; シ and ツ differ by whether the small strokes are vertical or horizontal. Take extra time on these.
+      </div>
+    </div>
+
+    <!-- Tricky pairs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The trickiest lookalike pairs</div>
+      <div class="section-title">4 pairs that fool everyone — study these carefully</div>
+      <div class="loan-grid">
+        <div class="loan-card">
+          <div style="display:flex; gap:16px; align-items:center; margin-bottom:6px">
+            <span style="font-size:34px">シ</span>
+            <span style="font-size:20px; color:#bbb">vs</span>
+            <span style="font-size:34px">ツ</span>
+          </div>
+          <div style="font-size:12px; color:#555"><strong>シ = shi</strong> — small strokes on the LEFT side, nearly horizontal<br/><strong>ツ = tsu</strong> — small strokes on the TOP, more vertical</div>
+        </div>
+        <div class="loan-card">
+          <div style="display:flex; gap:16px; align-items:center; margin-bottom:6px">
+            <span style="font-size:34px">ン</span>
+            <span style="font-size:20px; color:#bbb">vs</span>
+            <span style="font-size:34px">ソ</span>
+          </div>
+          <div style="font-size:12px; color:#555"><strong>ン = n</strong> — starts with a small stroke pointing RIGHT, main stroke curves right<br/><strong>ソ = so</strong> — starts with a small stroke pointing DOWN, main stroke is sharper</div>
+        </div>
+        <div class="loan-card">
+          <div style="display:flex; gap:16px; align-items:center; margin-bottom:6px">
+            <span style="font-size:34px">ア</span>
+            <span style="font-size:20px; color:#bbb">vs</span>
+            <span style="font-size:34px">マ</span>
+          </div>
+          <div style="font-size:12px; color:#555"><strong>ア = a</strong> — the horizontal bar doesn't cross the vertical<br/><strong>マ = ma</strong> — the bar crosses through, with a hook at the bottom</div>
+        </div>
+        <div class="loan-card">
+          <div style="display:flex; gap:16px; align-items:center; margin-bottom:6px">
+            <span style="font-size:34px">ロ</span>
+            <span style="font-size:20px; color:#bbb">vs</span>
+            <span style="font-size:34px">口</span>
+          </div>
+          <div style="font-size:12px; color:#555"><strong>ロ = ro</strong> — katakana, slightly rectangular<br/><strong>口 = mouth (kanji)</strong> — a kanji character meaning "mouth". Looks almost identical — context tells you which one!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loanwords you can now read -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Read these right now</div>
+      <div class="section-title">12 English loanwords in katakana — try sounding them out</div>
+      <div class="loan-grid">
+        <div class="loan-card"><div class="loan-katakana">アイスクリーム</div><div class="loan-rom">aisu kurīmu</div><div class="loan-en">Ice cream</div></div>
+        <div class="loan-card"><div class="loan-katakana">スーパー</div><div class="loan-rom">sūpā</div><div class="loan-en">Supermarket</div></div>
+        <div class="loan-card"><div class="loan-katakana">テレビ</div><div class="loan-rom">terebi</div><div class="loan-en">Television / TV</div></div>
+        <div class="loan-card"><div class="loan-katakana">カメラ</div><div class="loan-rom">kamera</div><div class="loan-en">Camera</div></div>
+        <div class="loan-card"><div class="loan-katakana">ケーキ</div><div class="loan-rom">kēki</div><div class="loan-en">Cake</div></div>
+        <div class="loan-card"><div class="loan-katakana">バス</div><div class="loan-rom">basu</div><div class="loan-en">Bus</div></div>
+        <div class="loan-card"><div class="loan-katakana">ナイフ</div><div class="loan-rom">naifu</div><div class="loan-en">Knife</div></div>
+        <div class="loan-card"><div class="loan-katakana">コンビニ</div><div class="loan-rom">konbini</div><div class="loan-en">Convenience store</div><div class="loan-note">short for コンビニエンスストア</div></div>
+        <div class="loan-card"><div class="loan-katakana">スマホ</div><div class="loan-rom">sumaho</div><div class="loan-en">Smartphone</div><div class="loan-note">short for スマートフォン</div></div>
+        <div class="loan-card"><div class="loan-katakana">トイレ</div><div class="loan-rom">toire</div><div class="loan-en">Toilet / Bathroom</div><div class="loan-note">from English "toilet"</div></div>
+        <div class="loan-card"><div class="loan-katakana">アパート</div><div class="loan-rom">apāto</div><div class="loan-en">Apartment</div></div>
+        <div class="loan-card"><div class="loan-katakana">ニュース</div><div class="loan-rom">nyūsu</div><div class="loan-en">News</div></div>
+      </div>
+      <div class="tip-box tip-amber" style="margin-top:14px">
+        <strong>Sound shift warning:</strong> Japanese phonetics can't always match English exactly, so loanwords are adjusted to fit. "Strike" becomes ストライク (sutoraiku), "McDonald's" becomes マクドナルド (Makudonarudo). Sound it out syllable by syllable and your brain will connect the dots.
+      </div>
+    </div>
+
+    <!-- Culture -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏪</span>
+        <div class="culture-text">
+          <strong>コンビニ (konbini) — Japan's convenience store culture</strong><br/>
+          Japanese convenience stores (7-Eleven, FamilyMart, Lawson) are unlike anything in the West. They're open 24/7 and sell hot food, fresh sushi, ATMs, event tickets, and even pay your bills. As a visitor, the konbini is your best friend — and now you can read the sign in katakana!
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 3 Japanese — katakana challenge</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which katakana character makes the sound "tsu"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">シ</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">ツ</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ン</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ソ</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What English word does テレビ (terebi) represent?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Telephone</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Table</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Television</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Taxi</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does コンビニ (konbini) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Coffee shop</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Convenience store</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Supermarket</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Combini shop</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Try reading this katakana word: カメラ</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Kamera (Camber)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Kamera (Camera)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Kimera (Chimera)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Kanera</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 3 · Final consonants (받침) + your first full sentences</div>
+      </div>
+    </div>
+
+    <!-- Batchim overview -->
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">받침 (batchim) — the final consonant at the bottom of a block</div>
+      <p>So far all your Hangul blocks have been consonant + vowel (e.g. 가, 나, 도). But many Korean syllables have a third component — a final consonant sitting at the bottom of the block. This is called 받침 (batchim).</p>
+      <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin:14px 0 8px; font-size:14px; color:#555;">
+        <div style="text-align:center">
+          <div style="font-size:11px; color:#aaa; margin-bottom:4px">No batchim</div>
+          <div style="font-size:44px; background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:8px 16px; line-height:1">가</div>
+          <div style="font-size:12px; color:#888; margin-top:5px">ga</div>
+        </div>
+        <div style="font-size:24px; color:#ccc">→</div>
+        <div style="text-align:center">
+          <div style="font-size:11px; color:#aaa; margin-bottom:4px">With batchim</div>
+          <div style="font-size:44px; background:#f0f5fc; border:0.5px solid #b8d4f0; border-radius:10px; padding:8px 16px; line-height:1">강</div>
+          <div style="font-size:12px; color:#888; margin-top:5px">gang (river)</div>
+        </div>
+        <div style="font-size:14px; color:#555; max-width:220px">
+          <span style="font-size:12px; color:#888">ㄱ + ㅏ = 가 (ga)</span><br/>
+          Add ㅇ at the bottom:<br/>
+          <span style="font-size:12px; color:#888">ㄱ + ㅏ + ㅇ = 강 (gang)</span>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Good news:</strong> You don't need to learn new letters for batchim — it uses the same consonants you already know. You're just placing them at the bottom of the block.
+      </div>
+    </div>
+
+    <!-- The 7 batchim sounds -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The 7 representative batchim sounds</div>
+      <div class="section-title">All final consonants reduce to one of just 7 sounds</div>
+      <p>Even though many consonants can appear as batchim, they all reduce to 7 actual sounds when pronounced. This makes it manageable.</p>
+      <table>
+        <tr>
+          <th>Consonant</th>
+          <th>Batchim sound</th>
+          <th>Example word</th>
+          <th>Meaning</th>
+        </tr>
+        <tr>
+          <td>ㄱ</td>
+          <td>-k (stop, unreleased)</td>
+          <td style="font-size:18px">국 <span style="font-size:12px; color:#888">guk</span></td>
+          <td class="note">Soup / broth</td>
+        </tr>
+        <tr>
+          <td>ㄴ</td>
+          <td>-n</td>
+          <td style="font-size:18px">산 <span style="font-size:12px; color:#888">san</span></td>
+          <td class="note">Mountain</td>
+        </tr>
+        <tr>
+          <td>ㄷ</td>
+          <td>-t (stop, unreleased)</td>
+          <td style="font-size:18px">낫 <span style="font-size:12px; color:#888">nat</span></td>
+          <td class="note">Sickle / better</td>
+        </tr>
+        <tr>
+          <td>ㄹ</td>
+          <td>-l</td>
+          <td style="font-size:18px">말 <span style="font-size:12px; color:#888">mal</span></td>
+          <td class="note">Horse / word</td>
+        </tr>
+        <tr>
+          <td>ㅁ</td>
+          <td>-m</td>
+          <td style="font-size:18px">밥 → 밤 <span style="font-size:12px; color:#888">bam</span></td>
+          <td class="note">Night / chestnut</td>
+        </tr>
+        <tr>
+          <td>ㅂ</td>
+          <td>-p (stop, unreleased)</td>
+          <td style="font-size:18px">입 <span style="font-size:12px; color:#888">ip</span></td>
+          <td class="note">Mouth</td>
+        </tr>
+        <tr>
+          <td>ㅇ</td>
+          <td>-ng</td>
+          <td style="font-size:18px">강 <span style="font-size:12px; color:#888">gang</span></td>
+          <td class="note">River</td>
+        </tr>
+      </table>
+      <div class="tip-box tip-amber" style="margin-top:12px">
+        <strong>Unreleased stops:</strong> The -k, -t, and -p batchim sounds are "stopped" — your mouth forms the shape but doesn't release air. It's like the word just ends abruptly. Native speakers do this naturally; you'll hear it clearly once you're listening for it.
+      </div>
+    </div>
+
+    <!-- Sentence structure -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Korean sentence structure</div>
+      <div class="section-title">The golden rule: Korean is Subject → Object → Verb</div>
+      <p>This is the biggest structural difference from English. In Korean, the verb always comes last. Particles (tiny markers) are attached to nouns to show their role in the sentence.</p>
+
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:12px; padding:14px 16px; margin-top:12px;">
+        <div style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:10px;">English vs Korean word order:</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px; color:#444;">
+          <div>
+            <div style="font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px">English</div>
+            <div style="background:#fff; border:0.5px solid #eee; border-radius:8px; padding:10px;">
+              <span style="background:#fdf6ec; border-radius:4px; padding:2px 6px;">I</span>
+              &nbsp;
+              <span style="background:#f0f8f5; border-radius:4px; padding:2px 6px;">coffee</span>
+              &nbsp;
+              <span style="background:#f0f5fc; border-radius:4px; padding:2px 6px;">drink</span>
+              <div style="font-size:11px; color:#aaa; margin-top:6px">Subject → Verb → Object</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px">Korean</div>
+            <div style="background:#fff; border:0.5px solid #eee; border-radius:8px; padding:10px;">
+              <span style="background:#fdf6ec; border-radius:4px; padding:2px 6px;">저는</span>
+              &nbsp;
+              <span style="background:#f0f8f5; border-radius:4px; padding:2px 6px;">커피를</span>
+              &nbsp;
+              <span style="background:#f0f5fc; border-radius:4px; padding:2px 6px;">마셔요</span>
+              <div style="font-size:11px; color:#aaa; margin-top:6px">Subject → Object → Verb</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-blue" style="margin-top:14px">
+        <strong>Particles — your new best friends:</strong>
+        <span style="display:block; margin-top:6px; line-height:2;">
+          <strong>은/는</strong> — topic marker (은 after consonant, 는 after vowel) — "as for..."<br/>
+          <strong>이/가</strong> — subject marker (이 after consonant, 가 after vowel)<br/>
+          <strong>을/를</strong> — object marker (을 after consonant, 를 after vowel)<br/>
+          <strong>에</strong> — location / direction — "at", "to", "in"
+        </span>
+        Don't panic — these feel weird at first but become automatic very quickly.
+      </div>
+    </div>
+
+    <!-- First sentences -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Your first full sentences</div>
+      <div class="section-title">Build these 6 sentence patterns — they cover a huge range of situations</div>
+
+      <div class="sentence-block">
+        <div class="sentence-formula">
+          <span class="formula-piece">저는 (I)</span>
+          <span class="formula-arrow">+</span>
+          <span class="formula-piece">[noun]이에요/예요</span>
+          <span class="formula-arrow">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500;">I am [noun]</span>
+        </div>
+        <div class="sentence-result">저는 학생이에요.</div>
+        <div class="sentence-rom">Jeoneun haksaengieyo.</div>
+        <div class="sentence-en">I am a student.</div>
+        <div class="sentence-note">이에요 after a consonant-ending noun, 예요 after a vowel-ending noun.</div>
+      </div>
+
+      <div class="sentence-block">
+        <div class="sentence-formula">
+          <span class="formula-piece">[noun]은/는</span>
+          <span class="formula-arrow">+</span>
+          <span class="formula-piece">[adjective]요</span>
+          <span class="formula-arrow">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500;">[noun] is [adjective]</span>
+        </div>
+        <div class="sentence-result">음식이 맛있어요.</div>
+        <div class="sentence-rom">Eumsigi masisseoyo.</div>
+        <div class="sentence-en">The food is delicious.</div>
+        <div class="sentence-note">음식 = food. You already know 맛있어요 from Week 2!</div>
+      </div>
+
+      <div class="sentence-block">
+        <div class="sentence-formula">
+          <span class="formula-piece">저는 (I)</span>
+          <span class="formula-arrow">+</span>
+          <span class="formula-piece">[noun]을/를 좋아해요</span>
+          <span class="formula-arrow">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500;">I like [noun]</span>
+        </div>
+        <div class="sentence-result">저는 한국어를 좋아해요.</div>
+        <div class="sentence-rom">Jeoneun hangugeoreul joahaeyo.</div>
+        <div class="sentence-en">I like Korean (language).</div>
+        <div class="sentence-note">좋아해요 (joahaeyo) = like. 한국어 = Korean language.</div>
+      </div>
+
+      <div class="sentence-block">
+        <div class="sentence-formula">
+          <span class="formula-piece">[place]에</span>
+          <span class="formula-arrow">+</span>
+          <span class="formula-piece">가요 / 있어요</span>
+          <span class="formula-arrow">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500;">Going to / at [place]</span>
+        </div>
+        <div class="sentence-result">식당에 가요.</div>
+        <div class="sentence-rom">Sikdange gayo.</div>
+        <div class="sentence-en">I'm going to the restaurant.</div>
+        <div class="sentence-note">식당 = restaurant. 가요 = going. 에 = direction particle.</div>
+      </div>
+
+      <div class="sentence-block">
+        <div class="sentence-formula">
+          <span class="formula-piece">[noun]</span>
+          <span class="formula-arrow">+</span>
+          <span class="formula-piece">주세요</span>
+          <span class="formula-arrow">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500;">Please give me [noun]</span>
+        </div>
+        <div class="sentence-result">물 주세요.</div>
+        <div class="sentence-rom">Mul juseyo.</div>
+        <div class="sentence-en">Please give me water.</div>
+        <div class="sentence-note">물 = water (Week 1!). 주세요 = please give me. Drop any particle for short, natural requests.</div>
+      </div>
+
+      <div class="sentence-block">
+        <div class="sentence-formula">
+          <span class="formula-piece">[noun]</span>
+          <span class="formula-arrow">+</span>
+          <span class="formula-piece">있어요 / 없어요</span>
+          <span class="formula-arrow">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500;">There is / there isn't [noun]</span>
+        </div>
+        <div class="sentence-result">시간이 없어요.</div>
+        <div class="sentence-rom">Sigani eopseoyo.</div>
+        <div class="sentence-en">I don't have time / There's no time.</div>
+        <div class="sentence-note">시간 = time. 없어요 = doesn't exist / don't have. Very natural in daily speech.</div>
+      </div>
+
+    </div>
+
+    <!-- Culture note -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🎤</span>
+        <div class="culture-text">
+          <strong>노래방 (noraebang) — private karaoke rooms</strong><br/>
+          Noraebang (literally "singing room") is a cornerstone of Korean social life. Unlike Western karaoke bars, you book a private room with your group — no audience, no embarrassment. It's used by all ages and is the go-to activity after a meal or work dinner. Even if your Korean is minimal, jumping into a 노래방 is one of the fastest ways to connect with locals.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 3 Korean — batchim & sentences</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">In the word 강 (gang = river), what is the batchim?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ㄱ</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ㅏ</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">ㅇ</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ㄴ</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct Korean word order?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Subject → Verb → Object</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Verb → Subject → Object</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Subject → Object → Verb</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Object → Subject → Verb</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I am a student" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 학생을 좋아해요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">저는 학생이에요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">학생이 가요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 학생 없어요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which particle marks the OBJECT of a sentence (after a vowel-ending noun)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">은</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">를</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">에</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">가</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side by side -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side insight — week 3</div>
+    <div class="section-title" style="margin-bottom:12px">A key difference in how each language borrows foreign words</div>
+    <table>
+      <tr><th>English word</th><th>🇯🇵 Katakana version</th><th>🇰🇷 Korean version</th></tr>
+      <tr><td style="font-size:14px">Coffee</td><td>コーヒー (kōhī)</td><td>커피 (keopi)</td></tr>
+      <tr><td style="font-size:14px">Camera</td><td>カメラ (kamera)</td><td>카메라 (kamera)</td></tr>
+      <tr><td style="font-size:14px">Taxi</td><td>タクシー (takushī)</td><td>택시 (taeksi)</td></tr>
+      <tr><td style="font-size:14px">Internet</td><td>インターネット (intānetto)</td><td>인터넷 (inteonet)</td></tr>
+      <tr><td style="font-size:14px">Smartphone</td><td>スマホ (sumaho)</td><td>스마트폰 (seumateupon)</td></tr>
+    </table>
+    <p style="margin-top:12px; font-size:13px; color:#666;">Both languages borrow heavily from English — but each adapts words to fit its own sound system. Japanese stretches vowels and adds syllables (e.g. "net" becomes "netto"); Korean tends to stay closer to the original but still adjusts for its phonology.</p>
+  </div>
+
+  <!-- Preview week 4 -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 4</div>
+    <div class="preview-grid" style="margin-top:10px">
+      <div class="preview-card jp">
+        <div class="preview-lang">🇯🇵 Japanese</div>
+        <div class="preview-content">Numbers 1–10,000 + how to tell time, ask about prices, and count objects. You'll be able to handle transactions and timetables.</div>
+      </div>
+      <div class="preview-card kr">
+        <div class="preview-lang">🇰🇷 Korean</div>
+        <div class="preview-content">Two number systems — Korean native numbers and Sino-Korean numbers — each used for different purposes (ages vs money vs time). A crucial Week 4 topic.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 3 complete · Click <a href="Japanese.Korean.Week4.html">here</a> when you're ready for Week 4 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above and try to remember it.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+</script>
+</body>
+</html>
