@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 2 — Japanese & Korean: More Script + First Phrases</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Hiragana rows */
+  .char-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px; }
+  .char-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px 6px; text-align: center; }
+  .char-big { font-size: 28px; line-height: 1.2; margin-bottom: 4px; }
+  .char-rom { font-size: 13px; color: #555; font-weight: 500; }
+  .char-hint { font-size: 10px; color: #aaa; margin-top: 2px; }
+  .char-card.new { background: #f0f5fc; border-color: #b8d4f0; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 14px; }
+  .phrase-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 20px; line-height: 1.3; margin-bottom: 2px; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .phrase-en { font-size: 14px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 12px; color: #aaa; margin-top: 4px; font-style: italic; }
+  .phrase-card.highlight { background: #f0f8f5; border-color: #a8ddc5; }
+
+  /* Tip boxes */
+  .tip-box { background: #f0f8f5; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-box.blue { background: #f0f5fc; border-left-color: #378ADD; }
+  .tip-box.amber { background: #fdf6ec; border-left-color: #BA7517; }
+  .tip-box.coral { background: #fdf0ed; border-left-color: #D85A30; }
+
+  /* Pronunciation rule cards */
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .rule-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; }
+  .rule-title { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+  .rule-example { font-size: 20px; color: #185FA5; margin: 6px 0 2px; }
+  .rule-desc { font-size: 12px; color: #666; line-height: 1.5; }
+
+  /* Word list */
+  .word-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .word-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px; }
+  .word-native { font-size: 20px; margin-bottom: 2px; }
+  .word-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .word-en { font-size: 13px; color: #444; font-weight: 500; }
+  .word-use { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Culture note */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Comparison box */
+  .compare-box { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .compare-card { border-radius: 10px; padding: 12px 14px; }
+  .compare-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .compare-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .compare-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .compare-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; color: #555; }
+
+  /* Recap */
+  .recap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .recap-card { background: var(--rc-bg, #f9f8f5); border: 0.5px solid var(--rc-border, #e5e4e0); border-radius: 10px; padding: 12px 14px; }
+  .recap-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .recap-items { font-size: 13px; color: #333; line-height: 1.9; }
+
+  /* Progress */
+  .week-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 8px; border-bottom: 0.5px solid #eee; }
+  td { padding: 8px 8px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .char-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+    .char-big { font-size: 22px; }
+    .rule-grid, .word-list, .compare-box, .recap-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 2 of 16</span>
+      <h1>More Script + First Real Phrases</h1>
+      <div class="subtitle">Expand your reading ability and start speaking from day one.</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:12%"></div></div>
+      12% complete
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       JAPANESE
+  ══════════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 2 · More hiragana rows + pronunciation rules + survival phrases</div>
+      </div>
+    </div>
+
+    <!-- Recap -->
+    <div class="section">
+      <div class="section-label">Quick recap — Week 1</div>
+      <div class="section-title">You already know these 10 characters</div>
+      <div class="char-grid">
+        <div class="char-card"><div class="char-big">あ</div><div class="char-rom">a</div></div>
+        <div class="char-card"><div class="char-big">い</div><div class="char-rom">i</div></div>
+        <div class="char-card"><div class="char-big">う</div><div class="char-rom">u</div></div>
+        <div class="char-card"><div class="char-big">え</div><div class="char-rom">e</div></div>
+        <div class="char-card"><div class="char-big">お</div><div class="char-rom">o</div></div>
+        <div class="char-card"><div class="char-big">か</div><div class="char-rom">ka</div></div>
+        <div class="char-card"><div class="char-big">き</div><div class="char-rom">ki</div></div>
+        <div class="char-card"><div class="char-big">く</div><div class="char-rom">ku</div></div>
+        <div class="char-card"><div class="char-big">け</div><div class="char-rom">ke</div></div>
+        <div class="char-card"><div class="char-big">こ</div><div class="char-rom">ko</div></div>
+      </div>
+    </div>
+
+    <!-- New rows: sa, ta, na -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · New hiragana rows</div>
+      <div class="section-title">3 new rows this week — 15 new characters</div>
+      <p>Each row follows the same vowel pattern: a · i · u · e · o. The highlighted cards are your new ones.</p>
+
+      <p style="margin-top:14px; font-weight:500; color:#1a1a18; font-size:13px;">さ row (s sounds)</p>
+      <div class="char-grid">
+        <div class="char-card new"><div class="char-big">さ</div><div class="char-rom">sa</div></div>
+        <div class="char-card new"><div class="char-big">し</div><div class="char-rom">shi</div><div class="char-hint">not "si"!</div></div>
+        <div class="char-card new"><div class="char-big">す</div><div class="char-rom">su</div></div>
+        <div class="char-card new"><div class="char-big">せ</div><div class="char-rom">se</div></div>
+        <div class="char-card new"><div class="char-big">そ</div><div class="char-rom">so</div></div>
+      </div>
+
+      <p style="margin-top:14px; font-weight:500; color:#1a1a18; font-size:13px;">た row (t sounds)</p>
+      <div class="char-grid">
+        <div class="char-card new"><div class="char-big">た</div><div class="char-rom">ta</div></div>
+        <div class="char-card new"><div class="char-big">ち</div><div class="char-rom">chi</div><div class="char-hint">not "ti"!</div></div>
+        <div class="char-card new"><div class="char-big">つ</div><div class="char-rom">tsu</div><div class="char-hint">not "tu"!</div></div>
+        <div class="char-card new"><div class="char-big">て</div><div class="char-rom">te</div></div>
+        <div class="char-card new"><div class="char-big">と</div><div class="char-rom">to</div></div>
+      </div>
+
+      <p style="margin-top:14px; font-weight:500; color:#1a1a18; font-size:13px;">な row (n sounds)</p>
+      <div class="char-grid">
+        <div class="char-card new"><div class="char-big">な</div><div class="char-rom">na</div></div>
+        <div class="char-card new"><div class="char-big">に</div><div class="char-rom">ni</div></div>
+        <div class="char-card new"><div class="char-big">ぬ</div><div class="char-rom">nu</div></div>
+        <div class="char-card new"><div class="char-big">ね</div><div class="char-rom">ne</div></div>
+        <div class="char-card new"><div class="char-big">の</div><div class="char-rom">no</div></div>
+      </div>
+
+      <div class="tip-box amber" style="margin-top:14px">
+        <strong>Watch out:</strong> し is "shi" (not "si"), ち is "chi" (not "ti"), and つ is "tsu" (not "tu"). These are the most common pronunciation mistakes English speakers make in Japanese.
+      </div>
+    </div>
+
+    <!-- Pronunciation rules -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Key pronunciation rules</div>
+      <div class="section-title">3 rules that will make you sound much more natural</div>
+      <div class="rule-grid">
+        <div class="rule-card">
+          <div class="rule-title">1. Long vowels</div>
+          <div class="rule-example">おかあさん</div>
+          <div class="rule-desc">Double vowels (aa, oo, uu) are held for twice as long. <em>okāsan</em> (mother) — the "aa" is a long "a". Getting this wrong changes the meaning!</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">2. Silent vowels</div>
+          <div class="rule-example">す · で·す</div>
+          <div class="rule-desc">The vowels い and う are often whispered or silent between voiceless consonants. <em>desu</em> sounds more like "des". Very common at the end of sentences.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">3. Double consonants</div>
+          <div class="rule-example">きって</div>
+          <div class="rule-desc">A tiny っ (small tsu) before a consonant means pause briefly before it — like a tiny stop. <em>kitte</em> (stamp) has a beat of silence before the "t".</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">4. Flat pitch</div>
+          <div class="rule-example">ありがとう</div>
+          <div class="rule-desc">Japanese doesn't have the heavy stress English does. Each syllable gets roughly equal time and energy — like a steady drumbeat. <em>a-ri-ga-to-u</em>, not "a-ri-GA-to".</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Survival phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Survival phrases</div>
+      <div class="section-title">10 phrases to use from the moment you arrive in Japan</div>
+      <div class="phrase-list">
+
+        <div class="phrase-card highlight">
+          <span class="phrase-icon">👋</span>
+          <div>
+            <div class="phrase-native">すみません</div>
+            <div class="phrase-rom">Sumimasen</div>
+            <div class="phrase-en">Excuse me / Sorry / Pardon me</div>
+            <div class="phrase-note">The single most useful word in Japan. Use it to get someone's attention, to apologise mildly, or to squeeze past someone.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🙏</span>
+          <div>
+            <div class="phrase-native">ありがとうございます</div>
+            <div class="phrase-rom">Arigatou gozaimasu</div>
+            <div class="phrase-en">Thank you very much (formal)</div>
+            <div class="phrase-note">Use this in shops, restaurants, and with strangers. Casual version: ありがとう (arigatou).</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🍽️</span>
+          <div>
+            <div class="phrase-native">これをください</div>
+            <div class="phrase-rom">Kore wo kudasai</div>
+            <div class="phrase-en">This one, please</div>
+            <div class="phrase-note">Point at a menu item or product and say this. Works everywhere. こ·れ·を·く·だ·さ·い — all from characters you know!</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">💴</span>
+          <div>
+            <div class="phrase-native">いくらですか</div>
+            <div class="phrase-rom">Ikura desu ka?</div>
+            <div class="phrase-en">How much is it?</div>
+            <div class="phrase-note">Essential for shopping. The か at the end turns any statement into a question — remember this pattern.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🚻</span>
+          <div>
+            <div class="phrase-native">トイレはどこですか</div>
+            <div class="phrase-rom">Toire wa doko desu ka?</div>
+            <div class="phrase-en">Where is the toilet?</div>
+            <div class="phrase-note">トイレ is a katakana loanword from English "toilet" — you'll learn katakana in Week 3.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🤔</span>
+          <div>
+            <div class="phrase-native">わかりません</div>
+            <div class="phrase-rom">Wakarimasen</div>
+            <div class="phrase-en">I don't understand</div>
+            <div class="phrase-note">Honest and polite. Locals will appreciate it and often try to help differently.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🗣️</span>
+          <div>
+            <div class="phrase-native">もう一度お願いします</div>
+            <div class="phrase-rom">Mou ichido onegaishimasu</div>
+            <div class="phrase-en">Please say that again</div>
+            <div class="phrase-note">Very useful in conversations. Pair it with わかりません if needed.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🏨</span>
+          <div>
+            <div class="phrase-native">〜はありますか</div>
+            <div class="phrase-rom">[thing] wa arimasu ka?</div>
+            <div class="phrase-en">Do you have [thing]?</div>
+            <div class="phrase-note">Slot any word into 〜. E.g. "みず (mizu) はありますか" = "Do you have water?"</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">✅</span>
+          <div>
+            <div class="phrase-native">はい / いいえ</div>
+            <div class="phrase-rom">Hai / Iie</div>
+            <div class="phrase-en">Yes / No</div>
+            <div class="phrase-note">はい (hai) is also used like "I see" or "understood" — you'll hear it constantly in conversation.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🔍</span>
+          <div>
+            <div class="phrase-native">〜はどこですか</div>
+            <div class="phrase-rom">[place] wa doko desu ka?</div>
+            <div class="phrase-en">Where is [place]?</div>
+            <div class="phrase-note">E.g. "えき (eki = station) はどこですか" = "Where is the station?" Your most-used direction phrase.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Culture -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🍱</span>
+        <div class="culture-text">
+          <strong>いただきます & ごちそうさま (Itadakimasu & Gochisousama)</strong><br/>
+          Before eating, Japanese people say いただきます ("I humbly receive") and after eating ごちそうさまでした ("It was a feast"). These aren't prayers — they're expressions of gratitude to everyone involved in making the meal. Using them in a restaurant or someone's home earns enormous respect.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Let's check Week 2 Japanese</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which hiragana character makes the sound "chi"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">つ</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">ち</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">た</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">し</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does すみません (sumimasen) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Thank you</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">How much?</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Excuse me / Sorry</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Where is it?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "This one, please" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">いくらですか</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">これをください</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">わかりません</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ありがとう</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">In Japanese pronunciation, how is "desu" usually said in natural speech?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">deh-soo (full u sound)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">des (the u is mostly silent)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">day-soo</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">deh-zu</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════════
+       KOREAN
+  ══════════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 2 · More consonants + compound vowels + survival phrases</div>
+      </div>
+    </div>
+
+    <!-- Recap -->
+    <div class="section">
+      <div class="section-label">Quick recap — Week 1</div>
+      <div class="section-title">You already know these from last week</div>
+      <div class="char-grid">
+        <div class="char-card"><div class="char-big">ㄱ</div><div class="char-rom">g/k</div></div>
+        <div class="char-card"><div class="char-big">ㄴ</div><div class="char-rom">n</div></div>
+        <div class="char-card"><div class="char-big">ㄷ</div><div class="char-rom">d/t</div></div>
+        <div class="char-card"><div class="char-big">ㄹ</div><div class="char-rom">r/l</div></div>
+        <div class="char-card"><div class="char-big">ㅁ</div><div class="char-rom">m</div></div>
+        <div class="char-card"><div class="char-big">ㅂ</div><div class="char-rom">b/p</div></div>
+        <div class="char-card"><div class="char-big">ㅅ</div><div class="char-rom">s</div></div>
+        <div class="char-card"><div class="char-big">ㅏ</div><div class="char-rom">a</div></div>
+        <div class="char-card"><div class="char-big">ㅓ</div><div class="char-rom">eo</div></div>
+        <div class="char-card"><div class="char-big">ㅗ</div><div class="char-rom">o</div></div>
+      </div>
+    </div>
+
+    <!-- New consonants -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · New consonants</div>
+      <div class="section-title">5 more essential consonants — including the aspirated sounds</div>
+      <p>Korean has a unique feature: many consonants come in three versions — basic, aspirated (extra breath), and tense (more forceful). This week we add the aspirated versions.</p>
+      <div class="char-grid">
+        <div class="char-card new"><div class="char-big">ㅇ</div><div class="char-rom">silent / ng</div><div class="char-hint">silent at start, "ng" at end</div></div>
+        <div class="char-card new"><div class="char-big">ㅈ</div><div class="char-rom">j</div><div class="char-hint">like "j" in "jump"</div></div>
+        <div class="char-card new"><div class="char-big">ㅎ</div><div class="char-rom">h</div><div class="char-hint">like "h" in "house"</div></div>
+        <div class="char-card new"><div class="char-big">ㅋ</div><div class="char-rom">k (aspirated)</div><div class="char-hint">ㄱ + extra breath</div></div>
+        <div class="char-card new"><div class="char-big">ㅌ</div><div class="char-rom">t (aspirated)</div><div class="char-hint">ㄷ + extra breath</div></div>
+      </div>
+      <div class="tip-box blue" style="margin-top:14px">
+        <strong>Key insight — ㅇ is a placeholder:</strong> Every syllable block needs a consonant. When a syllable starts with a pure vowel sound, ㅇ fills the consonant slot silently. For example: 아 = "a", 이 = "i". At the end of a block, it becomes an "ng" sound — e.g. 강 (gang).
+      </div>
+    </div>
+
+    <!-- Compound vowels -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Compound vowels</div>
+      <div class="section-title">5 compound vowels made by combining basic ones</div>
+      <p>These look complex but they're just two vowels blended together. They appear in very common words, so recognising them early helps a lot.</p>
+      <div class="char-grid">
+        <div class="char-card new"><div class="char-big">ㅐ</div><div class="char-rom">ae</div><div class="char-hint">like "e" in "bed"</div></div>
+        <div class="char-card new"><div class="char-big">ㅔ</div><div class="char-rom">e</div><div class="char-hint">similar to ㅐ — nearly same sound today</div></div>
+        <div class="char-card new"><div class="char-big">ㅘ</div><div class="char-rom">wa</div><div class="char-hint">ㅗ + ㅏ blended</div></div>
+        <div class="char-card new"><div class="char-big">ㅢ</div><div class="char-rom">ui / eui</div><div class="char-hint">tricky — practice carefully</div></div>
+        <div class="char-card new"><div class="char-big">ㅒ</div><div class="char-rom">yae</div><div class="char-hint">like "yeh"</div></div>
+      </div>
+      <div class="tip-box amber" style="margin-top:12px">
+        <strong>ㅐ and ㅔ sound almost identical in modern Korean.</strong> Native speakers sometimes mix up their spelling too — don't stress over the difference. Just recognise both.
+      </div>
+    </div>
+
+    <!-- Survival phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Survival phrases</div>
+      <div class="section-title">10 phrases to use from the moment you arrive in Korea</div>
+      <div class="phrase-list">
+
+        <div class="phrase-card highlight">
+          <span class="phrase-icon">👋</span>
+          <div>
+            <div class="phrase-native">안녕하세요</div>
+            <div class="phrase-rom">Annyeonghaseyo</div>
+            <div class="phrase-en">Hello (formal)</div>
+            <div class="phrase-note">The standard greeting for anyone older or in a service setting. Your most-used phrase in Korea. Slight bow included.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🙏</span>
+          <div>
+            <div class="phrase-native">감사합니다</div>
+            <div class="phrase-rom">Gamsahamnida</div>
+            <div class="phrase-en">Thank you (formal)</div>
+            <div class="phrase-note">From Week 1 — you already know this one! Casual version: 고마워요 (gomawoyo).</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🍽️</span>
+          <div>
+            <div class="phrase-native">이거 주세요</div>
+            <div class="phrase-rom">Igeo juseyo</div>
+            <div class="phrase-en">This one, please</div>
+            <div class="phrase-note">Point and say this anywhere — menus, shops, street food stalls. 이거 = "this thing", 주세요 = "please give me".</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">💴</span>
+          <div>
+            <div class="phrase-native">얼마예요?</div>
+            <div class="phrase-rom">Eolmayeyo?</div>
+            <div class="phrase-en">How much is it?</div>
+            <div class="phrase-note">Essential for markets and street food. The answer will often be in numbers — we cover those in Week 4.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🚻</span>
+          <div>
+            <div class="phrase-native">화장실이 어디예요?</div>
+            <div class="phrase-rom">Hwajangsili eodiyeyo?</div>
+            <div class="phrase-en">Where is the bathroom?</div>
+            <div class="phrase-note">화장실 = toilet/bathroom. 어디예요 = "where is it?" — memorise this pair and use it anywhere.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🤔</span>
+          <div>
+            <div class="phrase-native">모르겠어요</div>
+            <div class="phrase-rom">Moreugeseoyo</div>
+            <div class="phrase-en">I don't know / I'm not sure</div>
+            <div class="phrase-note">Polite and honest. Koreans respond well to humility — this phrase shows self-awareness.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🗣️</span>
+          <div>
+            <div class="phrase-native">다시 말씀해 주세요</div>
+            <div class="phrase-rom">Dasi malsseum-hae juseyo</div>
+            <div class="phrase-en">Please say that again</div>
+            <div class="phrase-note">Very polite phrasing — 말씀 is the honorific form of "words/speech". Use freely without embarrassment.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🚇</span>
+          <div>
+            <div class="phrase-native">〜이/가 어디예요?</div>
+            <div class="phrase-rom">[place]-i/ga eodiyeyo?</div>
+            <div class="phrase-en">Where is [place]?</div>
+            <div class="phrase-note">Use 이 after a consonant-ending word, 가 after a vowel-ending word. E.g. "지하철역이 어디예요?" = "Where is the subway station?"</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">🍜</span>
+          <div>
+            <div class="phrase-native">맛있어요!</div>
+            <div class="phrase-rom">Masisseoyo!</div>
+            <div class="phrase-en">It's delicious!</div>
+            <div class="phrase-note">Say this after eating and watch the reaction — Koreans are immensely proud of their food. Instant connection builder.</div>
+          </div>
+        </div>
+
+        <div class="phrase-card">
+          <span class="phrase-icon">📸</span>
+          <div>
+            <div class="phrase-native">사진 찍어도 돼요?</div>
+            <div class="phrase-rom">Sajin jjigeodo dwaeyo?</div>
+            <div class="phrase-en">May I take a photo?</div>
+            <div class="phrase-note">Always ask before photographing people or in temples/markets. 사진 = photo, 찍어도 돼요 = "is it okay to take?"</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Culture note -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🍺</span>
+        <div class="culture-text">
+          <strong>Pouring drinks for others (술 문화 — sul munhwa)</strong><br/>
+          In Korean culture, you never pour your own drink when dining with others — you pour for everyone else, and someone pours for you. It's a sign of care and respect. The same applies to water and tea. If you notice someone's glass is empty, fill it — you'll immediately earn goodwill at the table.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Let's check Week 2 Korean</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What role does ㅇ play at the START of a syllable block?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It makes an "ng" sound</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">It's silent — a placeholder for vowel-start syllables</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It makes an "h" sound</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It's never used at the start</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "This one, please" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">얼마예요?</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">감사합니다</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">이거 주세요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">안녕하세요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">What does 맛있어요 (masisseoyo) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm hungry</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">It's delicious</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">How much?</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Thank you</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Which consonant is the aspirated (extra breath) version of ㄱ?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ㅎ</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ㅌ</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">ㅋ</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">ㅈ</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div><!-- end Korean -->
+
+  <!-- Side-by-side comparison -->
+  <div style="background:#fff; border:0.5px solid #ddd; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side insight</div>
+    <div class="section-title" style="margin-bottom:12px">Same situation — how each language handles it</div>
+    <table>
+      <tr>
+        <th>Situation</th>
+        <th>🇯🇵 Japanese</th>
+        <th>🇰🇷 Korean</th>
+      </tr>
+      <tr>
+        <td>Getting attention</td>
+        <td>すみません (sumimasen)</td>
+        <td>저기요 (jeogiyo)</td>
+      </tr>
+      <tr>
+        <td>Thank you (formal)</td>
+        <td>ありがとうございます</td>
+        <td>감사합니다</td>
+      </tr>
+      <tr>
+        <td>This one please</td>
+        <td>これをください</td>
+        <td>이거 주세요</td>
+      </tr>
+      <tr>
+        <td>How much?</td>
+        <td>いくらですか？</td>
+        <td>얼마예요？</td>
+      </tr>
+      <tr>
+        <td>Where is the toilet?</td>
+        <td>トイレはどこですか？</td>
+        <td>화장실이 어디예요？</td>
+      </tr>
+      <tr>
+        <td>Delicious!</td>
+        <td>おいしい！(oishii)</td>
+        <td>맛있어요！(masisseoyo)</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- What's coming -->
+  <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
+    <div class="section-label">Coming up in Week 3</div>
+    <div class="compare-box">
+      <div class="compare-card jp">
+        <div class="compare-lang">🇯🇵 Japanese</div>
+        <div class="compare-content">Katakana — the script used for foreign words. Once you know it, you can read hundreds of English-origin words in Japanese (コーヒー = coffee, ホテル = hotel...).</div>
+      </div>
+      <div class="compare-card kr">
+        <div class="compare-lang">🇰🇷 Korean</div>
+        <div class="compare-content">Final consonants (받침, batchim) — how consonants at the end of a block change pronunciation, plus your first full sentences with basic grammar structure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:13px;color:#aaa;">
+    Week 2 complete · Click <a href="Japanese.Korean.Week3.html">here</a> when you're ready for Week 3 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the lesson above and try to remember it.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+</script>
+</body>
+</html>
