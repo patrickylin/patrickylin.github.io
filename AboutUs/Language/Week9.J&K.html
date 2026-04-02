@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 9 — Japanese & Korean: Health & Emergencies</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Emergency banner */
+  .emergency-banner { background: #fdf0ed; border: 1px solid #f5c4b0; border-radius: 12px; padding: 14px 16px; margin-top: 12px; display: flex; gap: 14px; align-items: flex-start; }
+  .emergency-banner.blue { background: #f0f5fc; border-color: #b8d4f0; }
+  .em-icon { font-size: 28px; flex-shrink: 0; }
+  .em-content { flex: 1; }
+  .em-title { font-size: 14px; font-weight: 500; color: #1a1a18; margin-bottom: 6px; }
+  .em-numbers { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .em-num { background: #fff; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 5px 12px; font-size: 13px; }
+  .em-num .num { font-size: 18px; font-weight: 500; color: #D85A30; display: block; }
+  .em-num .label { font-size: 10px; color: #888; }
+
+  /* Body part grid */
+  .body-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .body-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .body-icon { font-size: 22px; margin-bottom: 4px; }
+  .body-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .body-rom { font-size: 11px; color: #888; }
+  .body-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+
+  /* Symptom cards */
+  .symptom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .symptom-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .symptom-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .symptom-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .symptom-en { font-size: 13px; color: #333; font-weight: 500; }
+  .symptom-use { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.urgent { background: #fdf0ed; border-color: #f5c4b0; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Grammar — te-form table */
+  .te-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .te-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .te-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .te-table tr:last-child td { border-bottom: none; }
+  .verb-dict { font-size: 17px; color: #1a1a18; }
+  .verb-te { font-size: 17px; color: #185FA5; font-weight: 500; }
+  .verb-rom { font-size: 11px; color: #888; display: block; margin-top: 1px; }
+  .verb-rule { font-size: 12px; color: #555; }
+  .verb-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 2px; }
+
+  /* Grammar block */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Interactive symptom checker */
+  .symptom-checker { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .checker-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .checker-body { padding: 14px; }
+  .checker-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; font-weight: 600; }
+  .checker-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .checker-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .checker-btn:hover { background: #f0f0ee; }
+  .checker-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .checker-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 80px; }
+  .checker-result-title { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .checker-phrase { font-size: 19px; color: #1a1a18; margin-bottom: 3px; }
+  .checker-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .checker-en { font-size: 13px; color: #333; font-weight: 500; }
+  .checker-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Pharmacy section */
+  .pharmacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .pharma-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .pharma-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .pharma-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .pharma-en { font-size: 13px; color: #333; font-weight: 500; }
+  .pharma-note { font-size: 11px; color: #aaa; margin-top: 4px; line-height: 1.5; }
+
+  /* Conditional grammar blocks */
+  .cond-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .cond-formula { font-size: 13px; color: #185FA5; font-weight: 500; margin-bottom: 8px; background: #f0f5fc; border-radius: 6px; padding: 6px 10px; display: inline-block; }
+  .cond-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .cond-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .cond-en { font-size: 13px; color: #333; font-weight: 500; }
+  .cond-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .body-grid { grid-template-columns: repeat(2, 1fr); }
+    .symptom-grid, .pharmacy-grid, .two-col { grid-template-columns: 1fr; }
+    .checker-btns { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 9 of 16</span>
+      <h1>Health & Emergencies</h1>
+      <div class="subtitle">JP: Clinics, pharmacies & the て-form verb gateway · KR: Symptoms, emergencies & the -(으)면 conditional</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:56%"></div></div>
+      56% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 9 · Emergency numbers · Body parts · Symptoms · Pharmacy · て-form verbs</div>
+      </div>
+    </div>
+
+    <!-- Emergency numbers -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Emergency numbers — memorise these</div>
+      <div class="section-title">Japan's three emergency numbers</div>
+      <div class="emergency-banner">
+        <span class="em-icon">🚨</span>
+        <div class="em-content">
+          <div class="em-title">Call these in any emergency — operators often speak basic English</div>
+          <div class="em-numbers">
+            <div class="em-num">
+              <span class="num">110</span>
+              <span class="label">警察 (keisatsu)<br/>Police</span>
+            </div>
+            <div class="em-num">
+              <span class="num">119</span>
+              <span class="label">救急 / 消防 (kyūkyū / shōbō)<br/>Ambulance / Fire</span>
+            </div>
+            <div class="em-num">
+              <span class="num">Japan Helpline<br/>0570-000-911</span>
+              <span class="label">24hr English crisis line<br/>for foreigners</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>In a medical emergency say:</strong> 救急車を呼んでください！(kyūkyūsha wo yonde kudasai! = Please call an ambulance!) — this is the single most important emergency phrase in Japanese.
+      </div>
+    </div>
+
+    <!-- Body parts -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Body parts</div>
+      <div class="section-title">12 essential body parts — point and say to describe pain</div>
+      <div class="body-grid">
+        <div class="body-card">
+          <div class="body-icon">🤕</div>
+          <div class="body-native">頭</div>
+          <div class="body-rom">atama</div>
+          <div class="body-en">Head</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">👁️</div>
+          <div class="body-native">目</div>
+          <div class="body-rom">me</div>
+          <div class="body-en">Eye</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">👂</div>
+          <div class="body-native">耳</div>
+          <div class="body-rom">mimi</div>
+          <div class="body-en">Ear</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">👃</div>
+          <div class="body-native">鼻</div>
+          <div class="body-rom">hana</div>
+          <div class="body-en">Nose</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🦷</div>
+          <div class="body-native">歯</div>
+          <div class="body-rom">ha</div>
+          <div class="body-en">Tooth</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🫁</div>
+          <div class="body-native">喉</div>
+          <div class="body-rom">nodo</div>
+          <div class="body-en">Throat</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🫀</div>
+          <div class="body-native">胸</div>
+          <div class="body-rom">mune</div>
+          <div class="body-en">Chest</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🫃</div>
+          <div class="body-native">お腹</div>
+          <div class="body-rom">onaka</div>
+          <div class="body-en">Stomach / Belly</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">💪</div>
+          <div class="body-native">腕</div>
+          <div class="body-rom">ude</div>
+          <div class="body-en">Arm</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🦵</div>
+          <div class="body-native">足</div>
+          <div class="body-rom">ashi</div>
+          <div class="body-en">Leg / Foot</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🖐️</div>
+          <div class="body-native">手</div>
+          <div class="body-rom">te</div>
+          <div class="body-en">Hand</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🔙</div>
+          <div class="body-native">背中</div>
+          <div class="body-rom">senaka</div>
+          <div class="body-en">Back</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Describing pain:</strong> [body part] + が痛いです (ga itai desu = hurts). e.g. 頭が痛いです (atama ga itai desu = I have a headache). This one pattern covers almost every ache or pain you'll need to describe to a doctor.
+      </div>
+    </div>
+
+    <!-- Symptoms -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Symptoms</div>
+      <div class="section-title">10 common symptoms — describe how you feel</div>
+      <div class="symptom-grid">
+        <div class="symptom-card">
+          <div class="symptom-native">熱があります</div>
+          <div class="symptom-rom">netsu ga arimasu</div>
+          <div class="symptom-en">I have a fever</div>
+          <div class="symptom-use">熱 (netsu) = fever/temperature</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">気分が悪いです</div>
+          <div class="symptom-rom">kibun ga warui desu</div>
+          <div class="symptom-en">I feel unwell / nauseous</div>
+          <div class="symptom-use">気分 (kibun) = feeling/mood</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">吐き気がします</div>
+          <div class="symptom-rom">hakike ga shimasu</div>
+          <div class="symptom-en">I feel like vomiting</div>
+          <div class="symptom-use">吐き気 (hakike) = nausea</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">下痢をしています</div>
+          <div class="symptom-rom">geri wo shite imasu</div>
+          <div class="symptom-en">I have diarrhoea</div>
+          <div class="symptom-use">下痢 (geri) = diarrhoea</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">咳が出ます</div>
+          <div class="symptom-rom">seki ga demasu</div>
+          <div class="symptom-en">I have a cough</div>
+          <div class="symptom-use">咳 (seki) = cough</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">鼻水が出ます</div>
+          <div class="symptom-rom">hanamizu ga demasu</div>
+          <div class="symptom-en">I have a runny nose</div>
+          <div class="symptom-use">鼻水 (hanamizu) = nasal mucus</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">めまいがします</div>
+          <div class="symptom-rom">memai ga shimasu</div>
+          <div class="symptom-en">I feel dizzy</div>
+          <div class="symptom-use">めまい (memai) = dizziness</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">アレルギーがあります</div>
+          <div class="symptom-rom">arerugī ga arimasu</div>
+          <div class="symptom-en">I have an allergy</div>
+          <div class="symptom-use">アレルギー = allergy (from English)</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">切り傷があります</div>
+          <div class="symptom-rom">kirikizu ga arimasu</div>
+          <div class="symptom-en">I have a cut</div>
+          <div class="symptom-use">傷 (kizu) = wound/injury</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">骨を折ったかもしれません</div>
+          <div class="symptom-rom">hone wo otta kamoshiremasen</div>
+          <div class="symptom-en">I may have broken a bone</div>
+          <div class="symptom-use">骨 (hone) = bone · 折る (oru) = to break</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive symptom checker JP -->
+    <div class="section">
+      <div class="section-label">Interactive · Symptom phrase builder</div>
+      <div class="section-title">Choose a body part and a symptom — get the Japanese phrase</div>
+      <div class="symptom-checker">
+        <div class="checker-header">🏥 症状を説明する — Describing symptoms</div>
+        <div class="checker-body">
+          <div class="checker-label">Body part / 体の部位</div>
+          <div class="checker-btns" id="jp-body-btns">
+            <button class="checker-btn" onclick="jpSelectBody(this,'頭','atama','head')">頭 (head)</button>
+            <button class="checker-btn" onclick="jpSelectBody(this,'お腹','onaka','stomach')">お腹 (stomach)</button>
+            <button class="checker-btn" onclick="jpSelectBody(this,'喉','nodo','throat')">喉 (throat)</button>
+            <button class="checker-btn" onclick="jpSelectBody(this,'足','ashi','leg/foot')">足 (leg)</button>
+            <button class="checker-btn" onclick="jpSelectBody(this,'胸','mune','chest')">胸 (chest)</button>
+            <button class="checker-btn" onclick="jpSelectBody(this,'背中','senaka','back')">背中 (back)</button>
+          </div>
+          <div class="checker-label" style="margin-top:10px">Symptom type / 症状</div>
+          <div class="checker-btns" id="jp-symptom-btns">
+            <button class="checker-btn" onclick="jpSelectSymptom(this,'が痛いです','ga itai desu','hurts / is painful')">Pain 痛い</button>
+            <button class="checker-btn" onclick="jpSelectSymptom(this,'が腫れています','ga harete imasu','is swollen')">Swollen 腫れ</button>
+            <button class="checker-btn" onclick="jpSelectSymptom(this,'が痒いです','ga kayui desu','is itchy')">Itchy 痒い</button>
+            <button class="checker-btn" onclick="jpSelectSymptom(this,'が重いです','ga omoi desu','feels heavy')">Heavy 重い</button>
+          </div>
+          <div class="checker-result" id="jp-checker-result">
+            <span class="checker-empty">Select a body part and symptom above to build your phrase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clinic and pharmacy phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · At the clinic & pharmacy</div>
+      <div class="section-title">Essential phrases for getting medical help</div>
+      <div class="phrase-list">
+        <div class="phrase-card urgent">
+          <span class="phrase-icon">🚨</span>
+          <div>
+            <div class="phrase-native">救急車を呼んでください！</div>
+            <div class="phrase-rom">Kyūkyūsha wo yonde kudasai!</div>
+            <div class="phrase-en">Please call an ambulance!</div>
+            <div class="phrase-note">The most critical emergency phrase. Say it clearly and loudly — passers-by will act immediately in Japan.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏥</span>
+          <div>
+            <div class="phrase-native">近くの病院はどこですか？</div>
+            <div class="phrase-rom">Chikaku no byōin wa doko desu ka?</div>
+            <div class="phrase-en">Where is the nearest hospital?</div>
+            <div class="phrase-note">病院 (byōin) = hospital. 診療所 (shinryōjo) = clinic. 内科 (naika) = internal medicine. 外科 (geka) = surgery.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📋</span>
+          <div>
+            <div class="phrase-native">保険証を持っていません</div>
+            <div class="phrase-rom">Hokenshō wo motte imasen</div>
+            <div class="phrase-en">I don't have a health insurance card</div>
+            <div class="phrase-note">As a tourist you'll pay full price — keep receipts for travel insurance claims. 旅行保険 (ryokō hoken) = travel insurance.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💊</span>
+          <div>
+            <div class="phrase-native">この薬はありますか？</div>
+            <div class="phrase-rom">Kono kusuri wa arimasu ka?</div>
+            <div class="phrase-en">Do you have this medicine?</div>
+            <div class="phrase-note">Show the packaging or the name written down. 薬局 (yakkyoku) = pharmacy. ドラッグストア (doraggu sutoa) = drug store (also sells OTC medicine).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌡️</span>
+          <div>
+            <div class="phrase-native">〜にアレルギーがあります</div>
+            <div class="phrase-rom">[substance]-ni arerugī ga arimasu</div>
+            <div class="phrase-en">I am allergic to [substance]</div>
+            <div class="phrase-note">ペニシリン (penishirin) = penicillin · 花粉 (kafun) = pollen · ナッツ (nattsu) = nuts · 乳製品 (nyūseihin) = dairy</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📝</span>
+          <div>
+            <div class="phrase-native">英語を話せる医者はいますか？</div>
+            <div class="phrase-rom">Eigo wo hanaseru isha wa imasu ka?</div>
+            <div class="phrase-en">Is there a doctor who speaks English?</div>
+            <div class="phrase-note">Large city hospitals often have international wards (国際外来, kokusai gairai). Your hotel concierge can also help find English-speaking doctors.</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:0">Pharmacy vocabulary:</p>
+      <div class="pharmacy-grid">
+        <div class="pharma-card">
+          <div class="pharma-native">痛み止め</div>
+          <div class="pharma-rom">itamidome</div>
+          <div class="pharma-en">Painkiller</div>
+          <div class="pharma-note">Ask for ロキソニン (Loxonin) — Japan's most common OTC painkiller</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">解熱剤</div>
+          <div class="pharma-rom">genetsuzai</div>
+          <div class="pharma-en">Fever reducer</div>
+          <div class="pharma-note">バファリン (Bafarin) = Japan's Bufferin — widely available</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">胃薬</div>
+          <div class="pharma-rom">igusuri</div>
+          <div class="pharma-en">Stomach medicine</div>
+          <div class="pharma-note">For upset stomach or indigestion. Very common after rich food.</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">絆創膏</div>
+          <div class="pharma-rom">bansōkō</div>
+          <div class="pharma-en">Bandage / plaster</div>
+          <div class="pharma-note">Also called バンドエイド (bando eido) after the brand name</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">目薬</div>
+          <div class="pharma-rom">megusuri</div>
+          <div class="pharma-en">Eye drops</div>
+          <div class="pharma-note">Japanese eye drops are renowned — many tourists buy them as souvenirs</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">処方箋</div>
+          <div class="pharma-rom">shohōsen</div>
+          <div class="pharma-en">Prescription</div>
+          <div class="pharma-note">Required for stronger medicines — issued by a doctor (医者, isha)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The て-form — big grammar lesson -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Grammar — the て-form (te-form)</div>
+      <div class="section-title">The most important verb form in Japanese — gateway to complex sentences</div>
+      <p>The て-form (te-form) is one of the most essential grammar tools in Japanese. It connects verbs together, forms requests, expresses ongoing actions, and much more. Mastering it unlocks a huge range of sentences.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>3 verb groups, 3 te-form rules.</strong> Japanese verbs fall into 3 groups — and each has its own pattern for forming the て-form. The good news: Group 2 and Group 3 are dead simple. Group 1 has some variation but follows a predictable sound-change pattern.
+      </div>
+
+      <table class="te-table">
+        <tr>
+          <th>Group</th>
+          <th>Dictionary form</th>
+          <th>て-form</th>
+          <th>Rule</th>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Group 1<br/>(u-verbs)</td>
+          <td>
+            <div class="verb-dict">書く<span class="verb-rom">kaku (write)</span></div>
+            <div class="verb-dict" style="margin-top:6px">飲む<span class="verb-rom">nomu (drink)</span></div>
+            <div class="verb-dict" style="margin-top:6px">話す<span class="verb-rom">hanasu (speak)</span></div>
+            <div class="verb-dict" style="margin-top:6px">待つ<span class="verb-rom">matsu (wait)</span></div>
+          </td>
+          <td>
+            <div class="verb-te">書いて<span class="verb-rom">kaite</span></div>
+            <div class="verb-te" style="margin-top:6px">飲んで<span class="verb-rom">nonde</span></div>
+            <div class="verb-te" style="margin-top:6px">話して<span class="verb-rom">hanashite</span></div>
+            <div class="verb-te" style="margin-top:6px">待って<span class="verb-rom">matte</span></div>
+          </td>
+          <td style="font-size:12px; color:#555">
+            く→いて · ぐ→いで<br/>
+            む/ぬ/ぶ→んで<br/>
+            す→して<br/>
+            つ/る/う→って
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Group 2<br/>(ru-verbs)</td>
+          <td>
+            <div class="verb-dict">食べる<span class="verb-rom">taberu (eat)</span></div>
+            <div class="verb-dict" style="margin-top:6px">見る<span class="verb-rom">miru (see)</span></div>
+          </td>
+          <td>
+            <div class="verb-te">食べて<span class="verb-rom">tabete</span></div>
+            <div class="verb-te" style="margin-top:6px">見て<span class="verb-rom">mite</span></div>
+          </td>
+          <td style="font-size:12px; color:#555">Drop る, add て<br/>Simple!</td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Group 3<br/>(irregular)</td>
+          <td>
+            <div class="verb-dict">する<span class="verb-rom">suru (do)</span></div>
+            <div class="verb-dict" style="margin-top:6px">来る<span class="verb-rom">kuru (come)</span></div>
+          </td>
+          <td>
+            <div class="verb-te">して<span class="verb-rom">shite</span></div>
+            <div class="verb-te" style="margin-top:6px">来て<span class="verb-rom">kite</span></div>
+          </td>
+          <td style="font-size:12px; color:#555">Memorise these two — just 2 irregular verbs!</td>
+        </tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">4 ways to use the て-form:</p>
+
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">て-form</span><span class="formula-eq">+</span><span class="formula-piece">ください</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">Please do [verb]</span>
+        </div>
+        <div class="grammar-result">ここに座ってください。</div>
+        <div class="grammar-rom">Koko ni suwatte kudasai.</div>
+        <div class="grammar-en">Please sit here.</div>
+        <div class="grammar-note">て + ください = the standard polite request form. Used constantly in daily life.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-formula">
+          <span class="formula-piece">て-form</span><span class="formula-eq">+</span><span class="formula-piece">います</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">Currently doing [verb]</span>
+        </div>
+        <div class="grammar-result">薬を飲んでいます。</div>
+        <div class="grammar-rom">Kusuri wo nonde imasu.</div>
+        <div class="grammar-en">I am taking medicine (currently).</div>
+        <div class="grammar-note">て + います = the present progressive (like English "-ing"). Extremely common.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-formula">
+          <span class="formula-piece">て-form</span><span class="formula-eq">+</span><span class="formula-piece">もいいですか</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">May I do [verb]?</span>
+        </div>
+        <div class="grammar-result">ここに座ってもいいですか？</div>
+        <div class="grammar-rom">Koko ni suwatte mo ii desu ka?</div>
+        <div class="grammar-en">May I sit here?</div>
+        <div class="grammar-note">て + もいいですか = asking permission. You've already seen this pattern — 試着してもいいですか from Week 8!</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-formula">
+          <span class="formula-piece">[verb1 て-form]</span><span class="formula-eq">+</span><span class="formula-piece">[verb2]</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">Do verb1, then verb2</span>
+        </div>
+        <div class="grammar-result">薬を飲んで、寝てください。</div>
+        <div class="grammar-rom">Kusuri wo nonde, nete kudasai.</div>
+        <div class="grammar-en">Please take medicine and then sleep.</div>
+        <div class="grammar-note">Chaining actions with て connects them naturally — "do A, and then B". Very common in instructions.</div>
+      </div>
+    </div>
+
+    <!-- Culture JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏥</span>
+        <div class="culture-text">
+          <strong>Healthcare in Japan — excellent but document everything</strong><br/>
+          Japan's healthcare system is world-class. As a tourist you pay 100% of costs out-of-pocket but prices are surprisingly reasonable by international standards — a clinic visit might cost ¥3,000–8,000. Always get a receipt (領収書, ryōshūsho) and a breakdown of treatments (診療明細書, shinryō meisaisho) for your travel insurance claim. Major cities have hospitals with international patient services — Tokyo Medical and Surgical Clinic, St. Luke's International Hospital, and Hiroo Hospital all have strong English-speaking staff. If in doubt, your hotel concierge (コンシェルジュ) is an excellent first port of call.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 9 Japanese — health & て-form</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "My head hurts" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">頭が悪いです</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">頭が痛いです</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">頭があります</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">頭が出ます</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the て-form of 食べる (taberu = to eat)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べった</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べした</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">食べて</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べいて</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 薬を飲んでいます mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Please take medicine</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I took medicine yesterday</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">I am taking medicine (currently)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">May I take medicine?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which number do you call for an ambulance in Japan?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">110</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">119</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">118</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">911</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 9 · Emergency numbers · Body parts · Symptoms · Pharmacy · -(으)면 conditional</div>
+      </div>
+    </div>
+
+    <!-- Emergency numbers Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Emergency numbers — memorise these</div>
+      <div class="section-title">Korea's emergency numbers</div>
+      <div class="emergency-banner blue">
+        <span class="em-icon">🚨</span>
+        <div class="em-content">
+          <div class="em-title">All operators have access to interpretation services in major languages</div>
+          <div class="em-numbers">
+            <div class="em-num">
+              <span class="num" style="color:#185FA5">112</span>
+              <span class="label">경찰 (gyeongchal)<br/>Police</span>
+            </div>
+            <div class="em-num">
+              <span class="num" style="color:#185FA5">119</span>
+              <span class="label">소방/구급 (sobang/gugeup)<br/>Fire / Ambulance</span>
+            </div>
+            <div class="em-num">
+              <span class="num" style="color:#185FA5">1330</span>
+              <span class="label">Korea Tourism Hotline<br/>24hr English support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>In a medical emergency say:</strong> 구급차 불러 주세요! (gugeuпча bulleo juseyo! = Please call an ambulance!) — the single most critical emergency phrase in Korean.
+      </div>
+    </div>
+
+    <!-- Body parts Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Body parts in Korean</div>
+      <div class="section-title">12 essential body parts</div>
+      <div class="body-grid">
+        <div class="body-card">
+          <div class="body-icon">🤕</div>
+          <div class="body-native">머리</div>
+          <div class="body-rom">meori</div>
+          <div class="body-en">Head</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">👁️</div>
+          <div class="body-native">눈</div>
+          <div class="body-rom">nun</div>
+          <div class="body-en">Eye</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">👂</div>
+          <div class="body-native">귀</div>
+          <div class="body-rom">gwi</div>
+          <div class="body-en">Ear</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">👃</div>
+          <div class="body-native">코</div>
+          <div class="body-rom">ko</div>
+          <div class="body-en">Nose</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🦷</div>
+          <div class="body-native">이 / 치아</div>
+          <div class="body-rom">i / chia</div>
+          <div class="body-en">Tooth</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🫁</div>
+          <div class="body-native">목</div>
+          <div class="body-rom">mok</div>
+          <div class="body-en">Throat / Neck</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🫀</div>
+          <div class="body-native">가슴</div>
+          <div class="body-rom">gaseum</div>
+          <div class="body-en">Chest</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🫃</div>
+          <div class="body-native">배</div>
+          <div class="body-rom">bae</div>
+          <div class="body-en">Stomach / Belly</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">💪</div>
+          <div class="body-native">팔</div>
+          <div class="body-rom">pal</div>
+          <div class="body-en">Arm</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🦵</div>
+          <div class="body-native">다리</div>
+          <div class="body-rom">dari</div>
+          <div class="body-en">Leg</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🖐️</div>
+          <div class="body-native">손</div>
+          <div class="body-rom">son</div>
+          <div class="body-en">Hand</div>
+        </div>
+        <div class="body-card">
+          <div class="body-icon">🔙</div>
+          <div class="body-native">등</div>
+          <div class="body-rom">deung</div>
+          <div class="body-en">Back</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Describing pain:</strong> [body part] + 이/가 아파요 (i/ga apayo = hurts). e.g. 머리가 아파요 (meori-ga apayo = I have a headache). 이/가 is the subject marker — 이 after a consonant, 가 after a vowel. This pattern covers all aches and pains.
+      </div>
+    </div>
+
+    <!-- Symptoms Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Symptoms in Korean</div>
+      <div class="section-title">10 common symptoms to describe at a clinic</div>
+      <div class="symptom-grid">
+        <div class="symptom-card">
+          <div class="symptom-native">열이 있어요</div>
+          <div class="symptom-rom">yeori isseoyo</div>
+          <div class="symptom-en">I have a fever</div>
+          <div class="symptom-use">열 (yeol) = fever/heat</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">몸이 안 좋아요</div>
+          <div class="symptom-rom">momi an joayo</div>
+          <div class="symptom-en">I feel unwell</div>
+          <div class="symptom-use">몸 (mom) = body · 안 좋다 = not good</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">토할 것 같아요</div>
+          <div class="symptom-rom">tohal geot gatayo</div>
+          <div class="symptom-en">I feel like vomiting</div>
+          <div class="symptom-use">토하다 (tohada) = to vomit</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">설사를 해요</div>
+          <div class="symptom-rom">seolsareul haeyo</div>
+          <div class="symptom-en">I have diarrhoea</div>
+          <div class="symptom-use">설사 (seolsa) = diarrhoea</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">기침이 나요</div>
+          <div class="symptom-rom">gichimi nayo</div>
+          <div class="symptom-en">I have a cough</div>
+          <div class="symptom-use">기침 (gichim) = cough</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">콧물이 나요</div>
+          <div class="symptom-rom">konmuri nayo</div>
+          <div class="symptom-en">I have a runny nose</div>
+          <div class="symptom-use">콧물 (konmul) = nasal discharge</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">어지러워요</div>
+          <div class="symptom-rom">eojireoweoyo</div>
+          <div class="symptom-en">I feel dizzy</div>
+          <div class="symptom-use">어지럽다 (eojireopda) = to be dizzy</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">알레르기가 있어요</div>
+          <div class="symptom-rom">allereugi-ga isseoyo</div>
+          <div class="symptom-en">I have an allergy</div>
+          <div class="symptom-use">알레르기 = allergy (loanword)</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">상처가 났어요</div>
+          <div class="symptom-rom">sangcheoga nasseoyo</div>
+          <div class="symptom-en">I have a wound / cut</div>
+          <div class="symptom-use">상처 (sangcheo) = wound/injury</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">뼈가 부러진 것 같아요</div>
+          <div class="symptom-rom">ppyeoga bureojin geot gatayo</div>
+          <div class="symptom-en">I may have broken a bone</div>
+          <div class="symptom-use">뼈 (ppyeo) = bone · 부러지다 = to break</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive symptom checker KR -->
+    <div class="section">
+      <div class="section-label">Interactive · Korean symptom phrase builder</div>
+      <div class="section-title">Choose a body part and a symptom — get the Korean phrase</div>
+      <div class="symptom-checker">
+        <div class="checker-header">🏥 증상 설명하기 — Describing symptoms</div>
+        <div class="checker-body">
+          <div class="checker-label">Body part / 신체 부위</div>
+          <div class="checker-btns" id="kr-body-btns">
+            <button class="checker-btn" onclick="krSelectBody(this,'머리','meori','head')">머리 (head)</button>
+            <button class="checker-btn" onclick="krSelectBody(this,'배','bae','stomach')">배 (stomach)</button>
+            <button class="checker-btn" onclick="krSelectBody(this,'목','mok','throat')">목 (throat)</button>
+            <button class="checker-btn" onclick="krSelectBody(this,'다리','dari','leg')">다리 (leg)</button>
+            <button class="checker-btn" onclick="krSelectBody(this,'가슴','gaseum','chest')">가슴 (chest)</button>
+            <button class="checker-btn" onclick="krSelectBody(this,'등','deung','back')">등 (back)</button>
+          </div>
+          <div class="checker-label" style="margin-top:10px">Symptom / 증상</div>
+          <div class="checker-btns" id="kr-symptom-btns">
+            <button class="checker-btn" onclick="krSelectSymptom(this,'이/가 아파요','i/ga apayo','hurts')">Pain 아파요</button>
+            <button class="checker-btn" onclick="krSelectSymptom(this,'이/가 부었어요','i/ga bueosseoyo','is swollen')">Swollen 부었어요</button>
+            <button class="checker-btn" onclick="krSelectSymptom(this,'이/가 가려워요','i/ga galyeowoyo','is itchy')">Itchy 가려워요</button>
+            <button class="checker-btn" onclick="krSelectSymptom(this,'이/가 무거워요','i/ga mugeowoyo','feels heavy')">Heavy 무거워요</button>
+          </div>
+          <div class="checker-result" id="kr-checker-result">
+            <span class="checker-empty">Select a body part and symptom above to build your phrase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clinic and pharmacy Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · At the clinic & pharmacy</div>
+      <div class="section-title">Essential phrases for getting medical help in Korea</div>
+      <div class="phrase-list">
+        <div class="phrase-card urgent">
+          <span class="phrase-icon">🚨</span>
+          <div>
+            <div class="phrase-native">구급차 불러 주세요!</div>
+            <div class="phrase-rom">Gugeuпча bulleo juseyo!</div>
+            <div class="phrase-en">Please call an ambulance!</div>
+            <div class="phrase-note">구급차 (gugeuпча) = ambulance. 불러 주세요 = please call. Say clearly — 119 also works if you can't speak Korean.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏥</span>
+          <div>
+            <div class="phrase-native">가까운 병원이 어디예요?</div>
+            <div class="phrase-rom">Gakkaun byeongwoni eodiyeyo?</div>
+            <div class="phrase-en">Where is the nearest hospital?</div>
+            <div class="phrase-note">병원 (byeongwon) = hospital. 의원 (uiwon) = clinic. 응급실 (eunggeupssil) = emergency room. 약국 (yakguk) = pharmacy.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📋</span>
+          <div>
+            <div class="phrase-native">여행자 보험이 있어요</div>
+            <div class="phrase-rom">Yeohaengja bohemi isseoyo</div>
+            <div class="phrase-en">I have travel insurance</div>
+            <div class="phrase-note">여행자 보험 (yeohaengja bohem) = travel insurance. Keep all receipts — 영수증 (yeongsujeung). Korean hospitals often have English-speaking international desks.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💊</span>
+          <div>
+            <div class="phrase-native">이 약 있어요?</div>
+            <div class="phrase-rom">I yak isseoyo?</div>
+            <div class="phrase-en">Do you have this medicine?</div>
+            <div class="phrase-note">약 (yak) = medicine. 약국 (yakguk) = pharmacy. Show the packaging or name written down. Many pharmacies in tourist areas have English signage.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌡️</span>
+          <div>
+            <div class="phrase-native">〜에 알레르기가 있어요</div>
+            <div class="phrase-rom">[substance]-e allereugi-ga isseoyo</div>
+            <div class="phrase-en">I am allergic to [substance]</div>
+            <div class="phrase-note">페니실린 (penisil-lin) = penicillin · 견과류 (gyeongwaryu) = nuts · 유제품 (yujepum) = dairy · 해산물 (haesanmul) = seafood</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📝</span>
+          <div>
+            <div class="phrase-native">영어 할 수 있는 의사가 있어요?</div>
+            <div class="phrase-rom">Yeongeo hal su inneun uisaga isseoyo?</div>
+            <div class="phrase-en">Is there a doctor who can speak English?</div>
+            <div class="phrase-note">할 수 있다 (hal su itda) = to be able to do. 의사 (uisa) = doctor. Major hospitals in Seoul (Severance, Asan Medical Centre) have excellent international services.</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:0">Pharmacy vocabulary:</p>
+      <div class="pharmacy-grid">
+        <div class="pharma-card">
+          <div class="pharma-native">진통제</div>
+          <div class="pharma-rom">jintongje</div>
+          <div class="pharma-en">Painkiller</div>
+          <div class="pharma-note">타이레놀 (Tairenol = Tylenol) widely available OTC</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">해열제</div>
+          <div class="pharma-rom">haeyeolje</div>
+          <div class="pharma-en">Fever reducer</div>
+          <div class="pharma-note">이부프로펜 (ibupeurogen = ibuprofen) widely sold</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">소화제</div>
+          <div class="pharma-rom">sohwaje</div>
+          <div class="pharma-en">Digestive medicine</div>
+          <div class="pharma-note">활명수 (Hwalmyeongsu) — Korea's iconic digestive tonic since 1897</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">반창고</div>
+          <div class="pharma-rom">banchanggo</div>
+          <div class="pharma-en">Bandage / plaster</div>
+          <div class="pharma-note">대일밴드 (Daeil Band) = Korea's most common brand</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">안약</div>
+          <div class="pharma-rom">anyak</div>
+          <div class="pharma-en">Eye drops</div>
+          <div class="pharma-note">Available OTC at any pharmacy — 인공눈물 (artificial tears) very popular</div>
+        </div>
+        <div class="pharma-card">
+          <div class="pharma-native">처방전</div>
+          <div class="pharma-rom">cheobangjeong</div>
+          <div class="pharma-en">Prescription</div>
+          <div class="pharma-note">Required for antibiotics and stronger medication — issued by 의사 (uisa = doctor)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Korean conditional -(으)면 -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Grammar — the -(으)면 conditional</div>
+      <div class="section-title">"If / when ~ then ~" — one of Korean's most useful grammar patterns</div>
+      <p>The -(으)면 ending attaches to verb or adjective stems to create "if/when" conditional sentences. It's the equivalent of English "if" clauses — and it's incredibly practical for daily life, giving advice, and expressing conditions.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>The rule:</strong> Verb/adjective stem + 으면 (after a consonant) or + 면 (after a vowel or ㄹ). e.g. 먹다 → 먹으면 (if you eat), 가다 → 가면 (if you go), 아프다 → 아프면 (if it hurts).
+      </div>
+
+      <div class="cond-block">
+        <div class="cond-formula">Verb stem + (으)면 → "if/when ~"</div>
+        <div class="cond-result">약을 먹으면 나을 거예요.</div>
+        <div class="cond-rom">Yageul meogeumyeon naul geoyeyo.</div>
+        <div class="cond-en">If you take medicine, you'll get better.</div>
+        <div class="cond-note">먹다 (to eat) → 먹으면 (if you eat). 낫다 (to get better) → 나을 거예요 (will get better)</div>
+      </div>
+
+      <div class="cond-block" style="margin-top:8px">
+        <div class="cond-result">아프면 병원에 가세요.</div>
+        <div class="cond-rom">Apeumyeon byeongwone gaseyo.</div>
+        <div class="cond-en">If you're sick, go to the hospital.</div>
+        <div class="cond-note">아프다 (to be sick/hurt) → 아프면 (if sick). Ends in vowel so just add 면.</div>
+      </div>
+
+      <div class="cond-block" style="margin-top:8px">
+        <div class="cond-result">열이 있으면 쉬세요.</div>
+        <div class="cond-rom">Yeori isseumyeon swiseyo.</div>
+        <div class="cond-en">If you have a fever, rest.</div>
+        <div class="cond-note">있다 (to exist/have) → 있으면 (if there is / if you have)</div>
+      </div>
+
+      <div class="cond-block" style="margin-top:8px">
+        <div class="cond-result">필요하면 말씀하세요.</div>
+        <div class="cond-rom">Piryohamyeon malsseum-haseyo.</div>
+        <div class="cond-en">If you need anything, please let me know.</div>
+        <div class="cond-note">필요하다 (to need) → 필요하면 (if you need). A beautifully polite everyday expression.</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">More practical -(으)면 sentences:</p>
+      <div class="symptom-grid">
+        <div class="symptom-card">
+          <div class="symptom-native">시간이 있으면 연락해요</div>
+          <div class="symptom-rom">sigani isseumyeon yeollakaeyo</div>
+          <div class="symptom-en">If you have time, contact me</div>
+          <div class="symptom-use">시간이 있다 = to have time</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">비가 오면 택시 타세요</div>
+          <div class="symptom-rom">biga omyeon taeksi taseyo</div>
+          <div class="symptom-en">If it rains, take a taxi</div>
+          <div class="symptom-use">비가 오다 = rain comes (= it rains)</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">모르면 물어보세요</div>
+          <div class="symptom-rom">moreumyeon mureoboseyo</div>
+          <div class="symptom-en">If you don't know, ask</div>
+          <div class="symptom-use">모르다 = to not know</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-native">배가 고프면 드세요</div>
+          <div class="symptom-rom">baega gopeumyeon deuseyo</div>
+          <div class="symptom-en">If you're hungry, please eat</div>
+          <div class="symptom-use">배가 고프다 = to be hungry</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏥</span>
+        <div class="culture-text">
+          <strong>Healthcare in Korea — fast, affordable, and foreigner-friendly</strong><br/>
+          Korea's national health system (국민건강보험, gungmin geongang boheom) doesn't cover tourists, but medical costs are still remarkably affordable by international standards. A clinic visit typically costs ₩15,000–50,000. Pharmacies (약국) are everywhere and pharmacists (약사, yaksa) are highly trained — they can recommend OTC treatments for common ailments without a doctor's visit. Many urban pharmacies have staff who speak basic English. One important note: Korea has a strict stance on certain medications brought into the country — ADHD medication and some sleeping pills require advance approval. Always check Korea Customs before travelling with any prescription medicine.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 9 Korean — health & conditional</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "My stomach hurts" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">배가 있어요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">배가 아파요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">배가 나빠요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">배가 없어요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 약을 먹으면 나을 거예요 mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Please take medicine now</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">If you take medicine, you'll get better</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I took medicine and got better</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">When I eat, I take medicine</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which number do you call for police in Korea?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">119</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">112</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">1330</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">110</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you form -(으)면 with 먹다 (to eat)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">먹면</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">먹으면</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">먹어면</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">먹이면</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — health & emergencies</div>
+    <table>
+      <tr><th>Situation</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Ambulance</td><td>119</td><td>119</td></tr>
+      <tr><td style="font-size:13px">Police</td><td>110</td><td>112</td></tr>
+      <tr><td style="font-size:13px">Call an ambulance!</td><td>救急車を呼んでください！</td><td>구급차 불러 주세요!</td></tr>
+      <tr><td style="font-size:13px">My head hurts</td><td>頭が痛いです (atama ga itai desu)</td><td>머리가 아파요 (meori-ga apayo)</td></tr>
+      <tr><td style="font-size:13px">I have a fever</td><td>熱があります (netsu ga arimasu)</td><td>열이 있어요 (yeori isseoyo)</td></tr>
+      <tr><td style="font-size:13px">Painkiller</td><td>痛み止め (itamidome)</td><td>진통제 (jintongje)</td></tr>
+      <tr><td style="font-size:13px">Pharmacy</td><td>薬局 (yakkyoku)</td><td>약국 (yakguk)</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>て-form → request, ongoing, permission</td><td>-(으)면 → "if / when ~"</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 10 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 10</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Social situations — introductions, small talk, expressing opinions, and complimenting people. Plus Japanese keigo (敬語) — the basics of polite speech levels and why they matter.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Social situations in Korean — meeting people, talking about yourself, hobbies, and weekend plans. Plus the -(아/어)서 cause-and-effect connector: "because ~ / so ~" — a game-changer for natural speech.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 9 complete · Click <a href="Week10.J&K.html">here</a> when you're ready for Week 10 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP symptom checker */
+let jpBody = null, jpSymptom = null, jpBodyEn = null, jpSymptomEn = null;
+function jpSelectBody(btn, native, rom, en) {
+  document.querySelectorAll('#jp-body-btns .checker-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  jpBody = native; jpBodyEn = en;
+  jpUpdateChecker();
+}
+function jpSelectSymptom(btn, native, rom, en) {
+  document.querySelectorAll('#jp-symptom-btns .checker-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  jpSymptom = native; jpSymptomEn = en;
+  jpUpdateChecker();
+}
+function jpUpdateChecker() {
+  const el = document.getElementById('jp-checker-result');
+  if (!jpBody || !jpSymptom) {
+    el.innerHTML = '<span class="checker-empty">Select a body part and symptom above to build your phrase</span>';
+    return;
+  }
+  const phrase = jpBody + jpSymptom;
+  const romBody = {'頭':'atama','お腹':'onaka','喉':'nodo','足':'ashi','胸':'mune','背中':'senaka'}[jpBody];
+  const romSym = {'が痛いです':'ga itai desu','が腫れています':'ga harete imasu','が痒いです':'ga kayui desu','が重いです':'ga omoi desu'}[jpSymptom];
+  el.innerHTML = `
+    <div class="checker-result-title">Your phrase:</div>
+    <div class="checker-phrase">${phrase}</div>
+    <div class="checker-rom">${romBody} ${romSym}</div>
+    <div class="checker-en">My ${jpBodyEn} ${jpSymptomEn}</div>
+  `;
+}
+
+/* KR symptom checker */
+let krBody = null, krSymptom = null, krBodyEn = null, krSymptomEn = null;
+function krSelectBody(btn, native, rom, en) {
+  document.querySelectorAll('#kr-body-btns .checker-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  krBody = native; krBodyEn = en;
+  krUpdateChecker();
+}
+function krSelectSymptom(btn, native, rom, en) {
+  document.querySelectorAll('#kr-symptom-btns .checker-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  krSymptom = native; krSymptomEn = en;
+  krUpdateChecker();
+}
+function krUpdateChecker() {
+  const el = document.getElementById('kr-checker-result');
+  if (!krBody || !krSymptom) {
+    el.innerHTML = '<span class="checker-empty">Select a body part and symptom above to build your phrase</span>';
+    return;
+  }
+  const markerMap = {'머리':'가','배':'가','목':'이','다리':'가','가슴':'이','등':'이'};
+  const marker = markerMap[krBody] || '이/가';
+  const symClean = krSymptom.replace('이/가 ', '');
+  const phrase = krBody + marker + ' ' + symClean;
+  const romBody = {'머리':'meori','배':'bae','목':'mok','다리':'dari','가슴':'gaseum','등':'deung'}[krBody];
+  const romSym = {'이/가 아파요':'apayo','이/가 부었어요':'bueosseoyo','이/가 가려워요':'galyeowoyo','이/가 무거워요':'mugeowoyo'}[krSymptom];
+  el.innerHTML = `
+    <div class="checker-result-title">Your phrase:</div>
+    <div class="checker-phrase">${phrase}</div>
+    <div class="checker-rom">${romBody}${marker === '가' ? '-ga' : '-i'} ${romSym}</div>
+    <div class="checker-en">My ${krBodyEn} ${krSymptomEn}</div>
+  `;
+}
+</script>
+</body>
+</html>
