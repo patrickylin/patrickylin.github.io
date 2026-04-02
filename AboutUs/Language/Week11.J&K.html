@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 11 — Japanese & Korean: Accommodation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Accommodation type cards */
+  .accom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .accom-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px; }
+  .accom-card.featured { background: #fdf9f0; border-color: #f0dfa8; }
+  .accom-icon { font-size: 28px; margin-bottom: 6px; }
+  .accom-name { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .accom-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .accom-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 5px; }
+  .accom-note { font-size: 12px; color: #666; line-height: 1.6; }
+  .price-tag { display: inline-block; background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 6px; padding: 2px 8px; font-size: 11px; color: #185FA5; margin-top: 5px; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.amber { background: #fdf9f0; border-color: #f0dfa8; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Interactive check-in sim */
+  .checkin-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .checkin-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+  .checkin-body { padding: 14px; }
+  .checkin-form-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid #f0f0ee; flex-wrap: wrap; }
+  .checkin-form-row:last-child { border-bottom: none; }
+  .checkin-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; width: 100px; flex-shrink: 0; font-weight: 600; }
+  .checkin-native { font-size: 16px; color: #1a1a18; }
+  .checkin-rom { font-size: 11px; color: #888; }
+  .checkin-select { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 10px; font-size: 13px; color: #333; cursor: pointer; outline: none; }
+  .checkin-result-btn { background: #1D9E75; border: none; border-radius: 8px; color: #fff; padding: 9px 18px; font-size: 13px; cursor: pointer; margin-top: 12px; }
+  .checkin-result-btn:hover { background: #178a65; }
+  .checkin-result { background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 10px; padding: 12px 14px; margin-top: 10px; font-size: 13px; color: #0f6e56; display: none; line-height: 1.8; }
+
+  /* Ryokan / jjimjilbang etiquette */
+  .etiq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .etiq-card { display: flex; gap: 12px; align-items: flex-start; background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .etiq-icon { font-size: 20px; flex-shrink: 0; }
+  .etiq-text { font-size: 13px; color: #333; line-height: 1.6; }
+  .etiq-title { font-weight: 500; color: #1a1a18; display: block; margin-bottom: 2px; }
+
+  /* Room vocab grid */
+  .room-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .room-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .room-icon { font-size: 22px; margin-bottom: 4px; }
+  .room-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .room-rom { font-size: 11px; color: #888; }
+  .room-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+
+  /* Grammar blocks */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Potential form table */
+  .potential-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .potential-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .potential-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .potential-table tr:last-child td { border-bottom: none; }
+  .pot-dict { font-size: 17px; color: #1a1a18; }
+  .pot-form { font-size: 17px; color: #185FA5; font-weight: 500; }
+  .pot-rom { font-size: 11px; color: #888; display: block; margin-top: 1px; }
+  .pot-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; display: block; }
+
+  /* Can/cannot cards */
+  .can-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .can-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .can-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .can-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .can-en { font-size: 13px; color: #333; font-weight: 500; }
+  .can-ex { font-size: 12px; color: #1D9E75; margin-top: 5px; font-style: italic; }
+  .can-card.positive { background: #f0f8f5; border-color: #a8ddc5; }
+  .can-card.negative { background: #fdf0ed; border-color: #f5c4b0; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .accom-grid, .can-grid, .two-col { grid-template-columns: 1fr; }
+    .room-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 11 of 16</span>
+      <h1>Accommodation</h1>
+      <div class="subtitle">JP: Hotels, ryokan & the potential form · KR: Guesthouses, jjimjilbang & -(으)ㄹ 수 있다/없다</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:68%"></div></div>
+      68% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 11 · Accommodation types · Check-in/out · Room vocab · Ryokan etiquette · Potential form</div>
+      </div>
+    </div>
+
+    <!-- Accommodation types JP -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Where to stay in Japan</div>
+      <div class="section-title">6 accommodation types — from budget to unforgettable</div>
+      <div class="accom-grid">
+        <div class="accom-card featured">
+          <div class="accom-icon">🏯</div>
+          <div class="accom-name">旅館</div>
+          <div class="accom-rom">ryokan</div>
+          <div class="accom-en">Traditional Japanese inn</div>
+          <div class="accom-note">The quintessential Japanese experience — tatami floors, futon bedding, yukata robes, communal hot spring baths, and elaborate multi-course kaiseki dinners. Staying in a ryokan is one of Japan's greatest travel highlights.</div>
+          <span class="price-tag">¥15,000–80,000/night</span>
+        </div>
+        <div class="accom-card featured">
+          <div class="accom-icon">🏨</div>
+          <div class="accom-name">ホテル</div>
+          <div class="accom-rom">hoteru</div>
+          <div class="accom-en">Western-style hotel</div>
+          <div class="accom-note">From budget business hotels (ビジネスホテル, bijinesu hoteru) to luxury. Toyoko Inn, APA, and Dormy Inn are excellent value. Always immaculate — Japanese hotel standards are exceptionally high.</div>
+          <span class="price-tag">¥7,000–30,000/night</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">🛖</div>
+          <div class="accom-name">民宿</div>
+          <div class="accom-rom">minshuku</div>
+          <div class="accom-en">Family-run guesthouse</div>
+          <div class="accom-note">Like a ryokan but simpler and more intimate. Often run by a family who serves home-cooked meals. Very popular in rural areas and fishing villages. Authentic and affordable.</div>
+          <span class="price-tag">¥6,000–12,000/night</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">⚡</div>
+          <div class="accom-name">カプセルホテル</div>
+          <div class="accom-rom">kapuseru hoteru</div>
+          <div class="accom-en">Capsule hotel</div>
+          <div class="accom-note">A uniquely Japanese invention — compact sleeping pods stacked in rows. Modern ones are surprisingly comfortable with TV, USB charging, and privacy curtains. A memorable budget option.</div>
+          <span class="price-tag">¥3,000–5,000/night</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">🏠</div>
+          <div class="accom-name">ゲストハウス</div>
+          <div class="accom-rom">gesuto hausu</div>
+          <div class="accom-en">Guesthouse / Hostel</div>
+          <div class="accom-note">Budget-friendly with shared facilities. Great for solo travellers and meeting others. Many have private tatami rooms alongside dorms. Very common in Kyoto and Tokyo.</div>
+          <span class="price-tag">¥2,500–5,000/night</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">♨️</div>
+          <div class="accom-name">温泉宿</div>
+          <div class="accom-rom">onsen yado</div>
+          <div class="accom-en">Hot spring inn</div>
+          <div class="accom-note">A ryokan built around natural hot spring baths. Regions like Hakone, Beppu, and Kinosaki are famous for their onsen culture. Often the centrepiece of a Japan trip.</div>
+          <span class="price-tag">¥20,000–60,000/night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Room vocabulary</div>
+      <div class="section-title">Essential words for navigating your accommodation</div>
+      <div class="room-grid">
+        <div class="room-card">
+          <div class="room-icon">🛏️</div>
+          <div class="room-native">部屋</div>
+          <div class="room-rom">heya</div>
+          <div class="room-en">Room</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🔑</div>
+          <div class="room-native">鍵</div>
+          <div class="room-rom">kagi</div>
+          <div class="room-en">Key</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🚿</div>
+          <div class="room-native">シャワー</div>
+          <div class="room-rom">shawā</div>
+          <div class="room-en">Shower</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🛁</div>
+          <div class="room-native">お風呂</div>
+          <div class="room-rom">ofuro</div>
+          <div class="room-en">Bath</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🌡️</div>
+          <div class="room-native">エアコン</div>
+          <div class="room-rom">eakon</div>
+          <div class="room-en">Air conditioning</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">📶</div>
+          <div class="room-native">Wi-Fi</div>
+          <div class="room-rom">waifai</div>
+          <div class="room-en">Wi-Fi</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🪴</div>
+          <div class="room-native">浴衣</div>
+          <div class="room-rom">yukata</div>
+          <div class="room-en">Casual kimono (ryokan robe)</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🛋️</div>
+          <div class="room-native">布団</div>
+          <div class="room-rom">futon</div>
+          <div class="room-en">Floor bedding (ryokan)</div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🧹</div>
+          <div class="room-native">タオル</div>
+          <div class="room-rom">taoru</div>
+          <div class="room-en">Towel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Check-in/out phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Check-in, check-out & room requests</div>
+      <div class="section-title">Everything from arrival to departure</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏨</span>
+          <div>
+            <div class="phrase-native">チェックインをお願いします</div>
+            <div class="phrase-rom">Chekkuin wo onegaishimasu</div>
+            <div class="phrase-en">I'd like to check in, please</div>
+            <div class="phrase-note">Simply approach the front desk and say this. The staff will ask for your name (お名前は？, onamae wa?) and passport.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📋</span>
+          <div>
+            <div class="phrase-native">予約した〜と申します</div>
+            <div class="phrase-rom">Yoyaku shita [name]-to moushimasu</div>
+            <div class="phrase-en">I have a reservation under the name [name]</div>
+            <div class="phrase-note">予約した (yoyaku shita) = (I) made a reservation. Combine with your name and a bow — front desk staff will immediately look you up.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌊</span>
+          <div>
+            <div class="phrase-native">海が見える部屋はありますか？</div>
+            <div class="phrase-rom">Umi ga mieru heya wa arimasu ka?</div>
+            <div class="phrase-en">Is there a room with an ocean view?</div>
+            <div class="phrase-note">〜が見える (ga mieru) = can see ~. 山が見える (yama ga mieru) = mountain view. 庭が見える (niwa ga mieru) = garden view.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🚿</span>
+          <div>
+            <div class="phrase-native">タオルをもう一枚いただけますか？</div>
+            <div class="phrase-rom">Taoru wo mō ichimai itadakemasu ka?</div>
+            <div class="phrase-en">Could I have one more towel?</div>
+            <div class="phrase-note">もう (mō) = another/more. いただけますか (itadakemasu ka) = polite "could I have". Use this pattern for any extra amenity.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">❄️</span>
+          <div>
+            <div class="phrase-native">エアコンの使い方を教えてもらえますか？</div>
+            <div class="phrase-rom">Eakon no tsukaikata wo oshiete moraemasu ka?</div>
+            <div class="phrase-en">Could you show me how to use the air conditioning?</div>
+            <div class="phrase-note">〜の使い方 (no tsukaikata) = how to use ~. Works for any appliance: テレビ (TV), お風呂 (bath), Wi-Fi router.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔧</span>
+          <div>
+            <div class="phrase-native">部屋に問題があります</div>
+            <div class="phrase-rom">Heya ni mondai ga arimasu</div>
+            <div class="phrase-en">There is a problem in my room</div>
+            <div class="phrase-note">問題 (mondai) = problem. Be specific: お湯が出ません (oyū ga demasen = no hot water), 鍵が壊れています (kagi ga kowarete imasu = the key is broken).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🧳</span>
+          <div>
+            <div class="phrase-native">チェックアウトは何時ですか？</div>
+            <div class="phrase-rom">Chekkuauto wa nan-ji desu ka?</div>
+            <div class="phrase-en">What time is check-out?</div>
+            <div class="phrase-note">Standard check-out in Japan is 11am. Late check-out (レイトチェックアウト, reito chekkuauto) is available for a fee at most hotels.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💼</span>
+          <div>
+            <div class="phrase-native">荷物を預かってもらえますか？</div>
+            <div class="phrase-rom">Nimotsu wo azukatte moraemasu ka?</div>
+            <div class="phrase-en">Could you store my luggage?</div>
+            <div class="phrase-note">荷物 (nimotsu) = luggage. 預かる (azukaru) = to keep/store. Most Japanese hotels offer free luggage storage before check-in and after check-out.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive check-in JP -->
+    <div class="section">
+      <div class="section-label">Interactive · Build your check-in request</div>
+      <div class="section-title">Choose your preferences — get the Japanese phrase to use at reception</div>
+      <div class="checkin-sim">
+        <div class="checkin-header">
+          <span>🏨 フロントにて — At the front desk</span>
+          <span style="font-size:12px; opacity:0.7">ようこそ！</span>
+        </div>
+        <div class="checkin-body">
+          <div class="checkin-form-row">
+            <span class="checkin-label">Room type</span>
+            <select class="checkin-select" id="jp-room-type">
+              <option value="シングル|shinguru|single">シングル (Single)</option>
+              <option value="ダブル|daburu|double">ダブル (Double)</option>
+              <option value="ツイン|tsuin|twin">ツイン (Twin)</option>
+              <option value="和室|washitsu|Japanese-style tatami room">和室 (Japanese tatami room)</option>
+            </select>
+          </div>
+          <div class="checkin-form-row">
+            <span class="checkin-label">View</span>
+            <select class="checkin-select" id="jp-view">
+              <option value="海が見える|umi ga mieru|ocean view">海が見える (Ocean view)</option>
+              <option value="山が見える|yama ga mieru|mountain view">山が見える (Mountain view)</option>
+              <option value="静かな|shizuka na|quiet">静かな (Quiet room)</option>
+              <option value="高い階の|takai kai no|high floor">高い階の (High floor)</option>
+            </select>
+          </div>
+          <div class="checkin-form-row">
+            <span class="checkin-label">Nights</span>
+            <select class="checkin-select" id="jp-nights">
+              <option value="一泊|ippaku|1 night">一泊 (1 night)</option>
+              <option value="二泊|nihaku|2 nights">二泊 (2 nights)</option>
+              <option value="三泊|sanhaku|3 nights">三泊 (3 nights)</option>
+              <option value="四泊|yohaku|4 nights">四泊 (4 nights)</option>
+            </select>
+          </div>
+          <button class="checkin-result-btn" onclick="buildJpCheckin()">生成する — Build phrase</button>
+          <div class="checkin-result" id="jp-checkin-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ryokan etiquette -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Ryokan etiquette — 7 rules</div>
+      <div class="section-title">A ryokan stay is an experience — know the customs</div>
+      <div class="etiq-list">
+        <div class="etiq-card">
+          <span class="etiq-icon">👟</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Remove shoes at the genkan (玄関)</span>
+            The entrance foyer is where you step out of outdoor shoes and into slippers provided. Never wear outdoor shoes inside — this is a strict rule.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🪴</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Wear your yukata (浴衣) everywhere inside</span>
+            The cotton robe provided is worn for dinner, in the corridors, and to the onsen. Wrap it left over right — right over left is reserved for funerals.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">♨️</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Onsen etiquette — wash thoroughly before entering</span>
+            Always wash and rinse your body completely at the shower stations before entering the communal bath. Enter clean. No swimwear — it's nude bathing. Tattoos are still restricted at many traditional onsen.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🍱</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Meals are often served in your room</span>
+            A ryokan breakfast and dinner (kaiseki 懐石) may be served in your tatami room by staff. Wait to be seated and let them arrange the dishes before eating.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🌙</span>
+          <div class="etiq-text">
+            <span class="etiq-title">The futon appears while you dine</span>
+            Staff will lay out your floor futon while you're at dinner. In the morning it's put away — a ryokan custom that feels magical the first time it happens.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Potential form grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Grammar — the potential form</div>
+      <div class="section-title">〜られる / 〜える — "can do / am able to do"</div>
+      <p>The potential form expresses ability — what you can or cannot do. It's essential for asking about hotel services, your own abilities, and politely expressing limitations.</p>
+
+      <table class="potential-table">
+        <tr>
+          <th>Group</th>
+          <th>Dictionary form</th>
+          <th>Potential form</th>
+          <th>Example in use</th>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Group 1<br/>(u-verbs)</td>
+          <td>
+            <span class="pot-dict">泳ぐ<span class="pot-rom">oyogu (swim)</span></span><br/>
+            <span class="pot-dict" style="margin-top:6px; display:block">書く<span class="pot-rom">kaku (write)</span></span>
+            <span class="pot-dict" style="margin-top:6px; display:block">話す<span class="pot-rom">hanasu (speak)</span></span>
+          </td>
+          <td>
+            <span class="pot-form">泳げる<span class="pot-rom">oyogeru</span></span><br/>
+            <span class="pot-form" style="margin-top:6px; display:block">書ける<span class="pot-rom">kakeru</span></span>
+            <span class="pot-form" style="margin-top:6px; display:block">話せる<span class="pot-rom">hanaseru</span></span>
+          </td>
+          <td style="font-size:12px; color:#555">
+            Change final う-sound to える-sound.<br/>
+            ぐ→げる · く→ける · す→せる · つ→てる · ぬ/む/ぶ→ねる/める/べる · る→れる
+            <span class="pot-ex">日本語が話せます。= I can speak Japanese.</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Group 2<br/>(ru-verbs)</td>
+          <td>
+            <span class="pot-dict">食べる<span class="pot-rom">taberu (eat)</span></span><br/>
+            <span class="pot-dict" style="margin-top:6px; display:block">見る<span class="pot-rom">miru (see)</span></span>
+          </td>
+          <td>
+            <span class="pot-form">食べられる<span class="pot-rom">taberareru</span></span><br/>
+            <span class="pot-form" style="margin-top:6px; display:block">見られる<span class="pot-rom">mirareru</span></span>
+          </td>
+          <td style="font-size:12px; color:#555">
+            Drop る, add られる.<br/><br/>
+            <span class="pot-ex">刺身が食べられます。= I can eat sashimi.</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Group 3<br/>(irregular)</td>
+          <td>
+            <span class="pot-dict">する<span class="pot-rom">suru (do)</span></span><br/>
+            <span class="pot-dict" style="margin-top:6px; display:block">来る<span class="pot-rom">kuru (come)</span></span>
+          </td>
+          <td>
+            <span class="pot-form">できる<span class="pot-rom">dekiru</span></span><br/>
+            <span class="pot-form" style="margin-top:6px; display:block">来られる<span class="pot-rom">korareru</span></span>
+          </td>
+          <td style="font-size:12px; color:#555">
+            Memorise these two.
+            <span class="pot-ex">予約できますか？= Can I make a reservation?</span>
+          </td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>Negative potential — can't do:</strong> Just add ません to the potential form. 日本語が話せません (Nihongo ga hanasemasen = I can't speak Japanese). 食べられません (taberaremasen = I can't eat it). The potential form with が instead of を for the object is more natural in modern Japanese.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Potential form in accommodation context:</p>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏊</span>
+          <div>
+            <div class="phrase-native">プールは使えますか？</div>
+            <div class="phrase-rom">Pūru wa tsukaemasu ka?</div>
+            <div class="phrase-en">Can I use the pool?</div>
+            <div class="phrase-note">使う (tsukau = to use) → 使える (tsukaeru = can use). Works for: ジム (jimu = gym), サウナ (sauna), 駐車場 (chūshajō = parking).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌸</span>
+          <div>
+            <div class="phrase-native">温泉に入れますか？</div>
+            <div class="phrase-rom">Onsen ni hairemasu ka?</div>
+            <div class="phrase-en">Can I enter the hot spring bath?</div>
+            <div class="phrase-note">入る (hairu = to enter) → 入れる (haireru = can enter). Essential to ask if you have a tattoo — some onsen have restrictions.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🍳</span>
+          <div>
+            <div class="phrase-native">朝食は何時から食べられますか？</div>
+            <div class="phrase-rom">Chōshoku wa nan-ji kara taberaremasu ka?</div>
+            <div class="phrase-en">From what time can I eat breakfast?</div>
+            <div class="phrase-note">食べられる = can eat (Group 2 potential). 朝食 (chōshoku) = breakfast. 夕食 (yūshoku) = dinner.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">♨️</span>
+        <div class="culture-text">
+          <strong>温泉 (onsen) — Japan's bathing culture</strong><br/>
+          Japan has over 27,000 hot spring sources, making onsen one of the country's most treasured cultural institutions. The ritual of bathing together in natural mineral waters is seen as deeply restorative — physically and socially. Many Japanese families take annual onsen trips as their primary holiday. The water itself varies dramatically by region: sulphurous and milky white in Noboribetsu, crystal clear and slightly acidic in Kinosaki, rich in iron and rust-coloured in Beppu. Each has claimed health benefits and traditional customs. For visitors, an onsen stay is often described as transformative — the combination of hot water, clean air, seasonal food, and profound quiet is unlike anything else in the world.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 11 Japanese — accommodation & potential form</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the potential form of 食べる (taberu = to eat)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べます</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">食べられる</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べて</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べれ</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "Can I use the pool?" using the potential form?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">プールを使ってもいいですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">プールは使えますか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">プールはどこですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">プールを使います</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is a 旅館 (ryokan)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A modern Western-style hotel</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A budget capsule hotel</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">A traditional Japanese inn with tatami, futon and hot spring baths</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A family-run youth hostel</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 予約した〜と申します mean at a hotel front desk?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I would like to make a reservation</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">I have a reservation under the name ~</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'd like to check out</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">My name is ~, nice to meet you</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 11 · Accommodation types · Check-in phrases · Jjimjilbang guide · -(으)ㄹ 수 있다/없다</div>
+      </div>
+    </div>
+
+    <!-- Accommodation types KR -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Where to stay in Korea</div>
+      <div class="section-title">6 accommodation types — including the uniquely Korean ones</div>
+      <div class="accom-grid">
+        <div class="accom-card featured">
+          <div class="accom-icon">🏨</div>
+          <div class="accom-name">호텔</div>
+          <div class="accom-rom">hotel</div>
+          <div class="accom-en">Hotel</div>
+          <div class="accom-note">From budget (모텔, motel — very common and not seedy in Korea) to luxury (롯데 호텔, Lotte Hotel). Korean business hotels offer great value. Many have Korean-style communal baths.</div>
+          <span class="price-tag">₩50,000–300,000/night</span>
+        </div>
+        <div class="accom-card featured">
+          <div class="accom-icon">🧖</div>
+          <div class="accom-name">찜질방</div>
+          <div class="accom-rom">jjimjilbang</div>
+          <div class="accom-en">Korean sauna house</div>
+          <div class="accom-note">A 24-hour heated public bathing and rest facility. Includes hot and cold pools, steam rooms, sleeping areas, food stalls, and entertainment. Staying overnight is very affordable and completely safe.</div>
+          <span class="price-tag">₩10,000–15,000</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">🛖</div>
+          <div class="accom-name">한옥스테이</div>
+          <div class="accom-rom">hanok seutei</div>
+          <div class="accom-en">Traditional Korean house stay</div>
+          <div class="accom-note">Stay in a restored hanok (한옥) — Korea's traditional wooden architecture with curved roofs and ondol (heated floor) rooms. Bukchon and Jeonju are famous hanok villages.</div>
+          <span class="price-tag">₩80,000–200,000/night</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">🏠</div>
+          <div class="accom-name">게스트하우스</div>
+          <div class="accom-rom">geseuteu hauseu</div>
+          <div class="accom-en">Guesthouse / Hostel</div>
+          <div class="accom-note">Very social — great for solo travellers. Many offer free breakfast, city tours, and K-pop nights. Hongdae and Insadong areas have excellent guesthouses.</div>
+          <span class="price-tag">₩20,000–40,000/night</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">🏢</div>
+          <div class="accom-name">고시원</div>
+          <div class="accom-rom">gosiwon</div>
+          <div class="accom-en">Study room rental (micro-accommodation)</div>
+          <div class="accom-note">Ultra-budget tiny private rooms originally for students studying for exams. Now popular with budget travellers for extended stays. Very basic but private and cheap.</div>
+          <span class="price-tag">₩300,000–500,000/month</span>
+        </div>
+        <div class="accom-card">
+          <div class="accom-icon">⛺</div>
+          <div class="accom-name">펜션</div>
+          <div class="accom-rom">pension</div>
+          <div class="accom-en">Korean pension (countryside villa)</div>
+          <div class="accom-note">A popular weekend getaway — private villas or cabins outside the city, often with private BBQ facilities, hot tubs, and stunning natural settings.</div>
+          <span class="price-tag">₩100,000–300,000/night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Check-in phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Check-in, check-out & room requests</div>
+      <div class="section-title">Everything you need from arrival to departure in Korean</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏨</span>
+          <div>
+            <div class="phrase-native">체크인 하려고요</div>
+            <div class="phrase-rom">Chekeu-in haryeogoyo</div>
+            <div class="phrase-en">I'd like to check in</div>
+            <div class="phrase-note">하려고요 (haryeogoyo) = I intend to / I'd like to. Very natural and casual — perfect for hotels and guesthouses alike.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📋</span>
+          <div>
+            <div class="phrase-native">〜 이름으로 예약했어요</div>
+            <div class="phrase-rom">[name] ireumeuro yeyakhasseoyo</div>
+            <div class="phrase-en">I have a reservation under the name [name]</div>
+            <div class="phrase-note">이름으로 (ireumeuro) = under the name of. 예약했어요 (yeyakhasseoyo) = made a reservation (past tense).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌊</span>
+          <div>
+            <div class="phrase-native">조용한 방으로 주세요</div>
+            <div class="phrase-rom">Joyonghan bangeuro juseyo</div>
+            <div class="phrase-en">Please give me a quiet room</div>
+            <div class="phrase-note">조용하다 (joyonghada) = quiet. 높은 층 (nopseun cheung) = high floor · 창문이 큰 방 (changmuni keun bang) = room with big windows.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🛁</span>
+          <div>
+            <div class="phrase-native">수건 더 가져다 주실 수 있어요?</div>
+            <div class="phrase-rom">Sugeon deo gajeoda jusil su isseoyo?</div>
+            <div class="phrase-en">Could you bring more towels?</div>
+            <div class="phrase-note">가져다 주다 (gajyeoda juda) = to bring (something). 더 (deo) = more. Notice -(으)ㄹ 수 있어요 here — "is it possible to ~?" — the grammar you're learning today!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔧</span>
+          <div>
+            <div class="phrase-native">방에 문제가 있어요</div>
+            <div class="phrase-rom">Bange munje-ga isseoyo</div>
+            <div class="phrase-en">There is a problem in my room</div>
+            <div class="phrase-note">문제 (munje) = problem. Be specific: 온수가 안 나와요 (onsuga an nawayo = no hot water), 에어컨이 안 돼요 (eeokeoni an dwaeyo = the AC doesn't work).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🧳</span>
+          <div>
+            <div class="phrase-native">짐 맡아 주실 수 있어요?</div>
+            <div class="phrase-rom">Jim mata jusil su isseoyo?</div>
+            <div class="phrase-en">Could you store my luggage?</div>
+            <div class="phrase-note">짐 (jim) = luggage/bag. 맡다 (matda) = to keep/store. Korean hotels are generally very accommodating about luggage storage.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🕐</span>
+          <div>
+            <div class="phrase-native">체크아웃은 몇 시예요?</div>
+            <div class="phrase-rom">Chekeu-auteun myeot siyeyo?</div>
+            <div class="phrase-en">What time is check-out?</div>
+            <div class="phrase-note">Standard check-out in Korea is noon (12pm). 늦은 체크아웃 (neujeun chekeu-aut) = late check-out — ask at the front desk, often possible for a fee.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive check-in KR -->
+    <div class="section">
+      <div class="section-label">Interactive · Build your Korean check-in request</div>
+      <div class="section-title">Choose your preferences — get the Korean phrase for reception</div>
+      <div class="checkin-sim">
+        <div class="checkin-header">
+          <span>🏨 프론트에서 — At the front desk</span>
+          <span style="font-size:12px; opacity:0.7">어서오세요！</span>
+        </div>
+        <div class="checkin-body">
+          <div class="checkin-form-row">
+            <span class="checkin-label">Room type</span>
+            <select class="checkin-select" id="kr-room-type">
+              <option value="싱글룸|singeullum|single room">싱글룸 (Single)</option>
+              <option value="더블룸|deobeullum|double room">더블룸 (Double)</option>
+              <option value="트윈룸|teuwinlum|twin room">트윈룸 (Twin)</option>
+              <option value="온돌방|ondobang|Korean-style heated floor room">온돌방 (Korean ondol room)</option>
+            </select>
+          </div>
+          <div class="checkin-form-row">
+            <span class="checkin-label">Preference</span>
+            <select class="checkin-select" id="kr-pref">
+              <option value="조용한|joyonghan|quiet">조용한 (Quiet)</option>
+              <option value="높은 층에 있는|nopseun cheunge inneun|on a high floor">높은 층 (High floor)</option>
+              <option value="전망 좋은|jeonmang joeun|with a good view">전망 좋은 (Good view)</option>
+              <option value="넓은|neolbeun|spacious">넓은 (Spacious)</option>
+            </select>
+          </div>
+          <div class="checkin-form-row">
+            <span class="checkin-label">Nights</span>
+            <select class="checkin-select" id="kr-nights">
+              <option value="1박|ilbak|1 night">1박 (1 night)</option>
+              <option value="2박|ibak|2 nights">2박 (2 nights)</option>
+              <option value="3박|sambak|3 nights">3박 (3 nights)</option>
+              <option value="4박|sabak|4 nights">4박 (4 nights)</option>
+            </select>
+          </div>
+          <button class="checkin-result-btn" onclick="buildKrCheckin()">만들기 — Build phrase</button>
+          <div class="checkin-result" id="kr-checkin-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jjimjilbang guide -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · 찜질방 (jjimjilbang) — the ultimate Korean experience</div>
+      <div class="section-title">How to survive and thrive in a Korean sauna house</div>
+      <p>The jjimjilbang is one of the most uniquely Korean experiences you can have. Open 24 hours, they're used by families, couples, friends, and solo travellers alike. Here's everything you need to know.</p>
+      <div class="etiq-list">
+        <div class="etiq-card">
+          <span class="etiq-icon">👕</span>
+          <div class="etiq-text">
+            <span class="etiq-title">You'll be given a uniform</span>
+            Upon entry (입장, ipjang), pay at the counter and receive a locker key, two towels, and a cotton uniform (짐질복, jjimjilbok) — shorts and a T-shirt in a single colour. Everyone wears the same uniform in the common areas.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">♨️</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Bathing areas are gender-separated and nude</span>
+            The bath floors (목욕탕, mogyoktang) are gender-separated. Shower and wash thoroughly before entering the communal pools. No swimwear — it's nude in the bath area, clothed in the common sauna areas.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🥚</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Eat the iconic jjimjilbang eggs</span>
+            맥반석 계란 (maekbansok gyeran) — eggs slow-cooked in the sauna rooms overnight, slightly caramelised and sold for ₩500–1,000 each. A beloved jjimjilbang tradition. Don't leave without trying one.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">😴</span>
+          <div class="etiq-text">
+            <span class="etiq-title">You can sleep overnight</span>
+            Many people (including families) sleep overnight on the heated ondol floor of the common room with small cushions. It's completely normal and very comfortable — a unique budget accommodation option.
+          </div>
+        </div>
+        <div class="etiq-card">
+          <span class="etiq-icon">🎮</span>
+          <div class="etiq-text">
+            <span class="etiq-title">Facilities beyond the bath</span>
+            Larger jjimjilbang have PC rooms (PC방 inside), noraebang (karaoke), food courts, massage chairs, nail salons, and children's play areas. Some are essentially full leisure complexes.
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Essential jjimjilbang vocabulary:</strong> 탕 (tang) = heated pool · 냉탕 (naengtang) = cold pool · 온탕 (ontang) = hot pool · 황토방 (hwangtobang) = clay room · 소금방 (sogumbang) = salt room · 얼음방 (eoreum-bang) = ice room · 때밀이 (ttaemiri) = body scrub service (ask for this — transformative).
+      </div>
+    </div>
+
+    <!-- -(으)ㄹ 수 있다/없다 grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — -(으)ㄹ 수 있다 / 없다</div>
+      <div class="section-title">"Can do / Cannot do" — Korean's ability expression</div>
+      <p>This pattern expresses what is or isn't possible — ability, permission, and potential. It's made of three parts: the verb stem + -(으)ㄹ (future modifier) + 수 (means "way/possibility") + 있다 (exists) or 없다 (doesn't exist).</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>The rule:</strong> Verb stem + 을 수 있다/없다 (after a consonant) or + ㄹ 수 있다/없다 (after a vowel or ㄹ). e.g. 먹다 → 먹을 수 있다 (can eat), 가다 → 갈 수 있다 (can go), 만들다 → 만들 수 있다 (can make).
+      </div>
+
+      <div class="can-grid">
+        <div class="can-card positive">
+          <div class="can-native">수영할 수 있어요</div>
+          <div class="can-rom">suyeonghal su isseoyo</div>
+          <div class="can-en">I can swim</div>
+          <div class="can-ex">수영하다 → 수영할 수 있다</div>
+        </div>
+        <div class="can-card negative">
+          <div class="can-native">수영할 수 없어요</div>
+          <div class="can-rom">suyeonghal su eopseoyo</div>
+          <div class="can-en">I cannot swim</div>
+          <div class="can-ex">없다 (to not exist) = cannot</div>
+        </div>
+        <div class="can-card positive">
+          <div class="can-native">한국어를 할 수 있어요</div>
+          <div class="can-rom">hangugeoreul hal su isseoyo</div>
+          <div class="can-en">I can speak Korean</div>
+          <div class="can-ex">하다 → 할 수 있다</div>
+        </div>
+        <div class="can-card negative">
+          <div class="can-native">운전할 수 없어요</div>
+          <div class="can-rom">unjeonhal su eopseoyo</div>
+          <div class="can-en">I cannot drive</div>
+          <div class="can-ex">운전하다 → 운전할 수 없다</div>
+        </div>
+        <div class="can-card positive">
+          <div class="can-native">여기 앉을 수 있어요?</div>
+          <div class="can-rom">yeogi anjeul su isseoyo?</div>
+          <div class="can-en">Can I sit here?</div>
+          <div class="can-ex">앉다 → 앉을 수 있다</div>
+        </div>
+        <div class="can-card positive">
+          <div class="can-native">카드로 결제할 수 있어요?</div>
+          <div class="can-rom">kadeuro gyeoljaehal su isseoyo?</div>
+          <div class="can-en">Can I pay by card?</div>
+          <div class="can-ex">결제하다 → 결제할 수 있다</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">In accommodation contexts:</p>
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">수영장</span><span class="formula-eq">+</span>
+          <span class="formula-piece">이용할 수 있어요?</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">Can I use the swimming pool?</span>
+        </div>
+        <div class="grammar-result">수영장 이용할 수 있어요?</div>
+        <div class="grammar-rom">Suyeongjang iyonghal su isseoyo?</div>
+        <div class="grammar-en">Can I use the swimming pool?</div>
+        <div class="grammar-note">이용하다 (iyonghada) = to use/utilise. Works for: 사우나 (sauna), 조식 (josik = breakfast), 주차장 (juchajang = car park).</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">짐을 맡길 수 있을까요?</div>
+        <div class="grammar-rom">Jimeul matgil su isseulkkayo?</div>
+        <div class="grammar-en">Would it be possible to leave my luggage?</div>
+        <div class="grammar-note">-(으)ㄹ까요 = "I wonder if / would it be possible" — a softer, more polite form of the question.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">여기서 와이파이 쓸 수 있어요?</div>
+        <div class="grammar-rom">Yeogiseo waipai sseul su isseoyo?</div>
+        <div class="grammar-en">Can I use Wi-Fi here?</div>
+        <div class="grammar-note">쓰다 (sseuda) = to use/write. → 쓸 수 있다. One of the most asked questions at any accommodation!</div>
+      </div>
+
+      <div class="tip-box tip-coral" style="margin-top:12px">
+        <strong>-(으)ㄹ 수 있다 vs -(으)면 vs -(아/어)서 — keeping them straight:</strong> -(으)ㄹ 수 있다 = "can do" (ability/possibility). -(으)면 = "if/when" (condition). -(아/어)서 = "because/so" (cause). Together these three patterns cover a huge range of natural Korean — you now know all three!
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏠</span>
+        <div class="culture-text">
+          <strong>온돌 (ondol) — Korea's underfloor heating tradition</strong><br/>
+          Ondol (온돌) is one of Korea's most ingenious architectural inventions — an underfloor heating system that circulates warm air or hot water beneath stone or wood floors. Dating back over 5,000 years, it's the reason Koreans traditionally sit and sleep on the floor rather than on chairs and beds. You'll feel it in hanok guesthouses, traditional homes, and any 온돌방 (ondol room) at a hotel or jjimjilbang. The experience of sleeping on a warm floor in winter, covered by a thick blanket (이불, ibul), is deeply comforting and quintessentially Korean. Modern apartments still use electric ondol — it's one of Korea's greatest gifts to indoor living.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 11 Korean — accommodation & -(으)ㄹ 수 있다</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I can speak Korean" using -(으)ㄹ 수 있다?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">한국어를 할 수 없어요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">한국어를 할 수 있어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">한국어를 해서 있어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">한국어를 하면 있어요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is a 찜질방 (jjimjilbang)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A traditional Korean guesthouse</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A Korean street food market</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">A 24-hour Korean sauna house with baths, saunas, and sleeping areas</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A Korean department store basement</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct form of 가다 (to go) in -(으)ㄹ 수 있다?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">가을 수 있다</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">갈 수 있다</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">가서 수 있다</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">가면 수 있다</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is 온돌 (ondol)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A type of Korean communal bath</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A traditional Korean blanket</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Korea's traditional underfloor heating system</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">A type of Korean bedroom furniture</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — accommodation in both countries</div>
+    <table>
+      <tr><th>Topic</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Traditional inn</td><td>旅館 ryokan (tatami, futon, onsen)</td><td>한옥스테이 hanok stay (ondol floor heating)</td></tr>
+      <tr><td style="font-size:13px">Unique experience</td><td>♨️ Onsen (hot spring bathing culture)</td><td>🧖 찜질방 (24hr sauna/rest house)</td></tr>
+      <tr><td style="font-size:13px">Check in</td><td>チェックインをお願いします</td><td>체크인 하려고요</td></tr>
+      <tr><td style="font-size:13px">Reservation under name ~</td><td>予約した〜と申します</td><td>〜 이름으로 예약했어요</td></tr>
+      <tr><td style="font-size:13px">Can I use the pool?</td><td>プールは使えますか？(potential form)</td><td>수영장 이용할 수 있어요? (-(으)ㄹ 수 있다)</td></tr>
+      <tr><td style="font-size:13px">Store my luggage?</td><td>荷物を預かってもらえますか？</td><td>짐 맡아 주실 수 있어요?</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>Potential form — 〜られる/〜える (can do)</td><td>-(으)ㄹ 수 있다/없다 (can/cannot do)</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 12 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 12</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Nature & sightseeing — vocabulary for temples, shrines, gardens, and natural landscapes. Asking for recommendations, expressing wonder, and describing what you've seen. Plus giving and receiving souvenirs (お土産, omiyage).</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Sightseeing & nature — palaces, hiking culture (등산), and national parks. Plus -(으)려고 하다: expressing intentions — "I'm planning to / intending to ~", a very natural Korean speaking pattern.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 11 complete · Click <a href="Week12.J&K.html">here</a> when you're ready for Week 12 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP check-in builder */
+function buildJpCheckin() {
+  const roomParts = document.getElementById('jp-room-type').value.split('|');
+  const viewParts = document.getElementById('jp-view').value.split('|');
+  const nightParts = document.getElementById('jp-nights').value.split('|');
+  const room = roomParts[0], roomRom = roomParts[1], roomEn = roomParts[2];
+  const view = viewParts[0], viewRom = viewParts[1], viewEn = viewParts[2];
+  const nights = nightParts[0], nightsRom = nightParts[1], nightsEn = nightParts[2];
+  const phrase = `${view}${room}を、${nights}でお願いします。`;
+  const romPhrase = `${viewRom} ${roomRom} wo, ${nightsRom} de onegaishimasu.`;
+  const el = document.getElementById('jp-checkin-result');
+  el.style.display = 'block';
+  el.innerHTML = `
+    <strong style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.07em; display:block; margin-bottom:6px">Your phrase:</strong>
+    <div style="font-size:20px; color:#1a1a18; margin-bottom:4px">${phrase}</div>
+    <div style="font-size:12px; color:#888; margin-bottom:4px">${romPhrase}</div>
+    <div style="font-size:13px; color:#333; font-weight:500">A ${viewEn} ${roomEn}, for ${nightsEn}, please.</div>
+    <div style="font-size:11px; color:#aaa; margin-top:6px; font-style:italic">Follow with: よろしくお願いします。(Yoroshiku onegaishimasu.)</div>
+  `;
+}
+
+/* KR check-in builder */
+function buildKrCheckin() {
+  const roomParts = document.getElementById('kr-room-type').value.split('|');
+  const prefParts = document.getElementById('kr-pref').value.split('|');
+  const nightParts = document.getElementById('kr-nights').value.split('|');
+  const room = roomParts[0], roomRom = roomParts[1], roomEn = roomParts[2];
+  const pref = prefParts[0], prefRom = prefParts[1], prefEn = prefParts[2];
+  const nights = nightParts[0], nightsRom = nightParts[1], nightsEn = nightParts[2];
+  const phrase = `${pref} ${room}으로 ${nights} 예약했어요.`;
+  const romPhrase = `${prefRom} ${roomRom}-euro ${nightsRom} yeyakhasseoyo.`;
+  const el = document.getElementById('kr-checkin-result');
+  el.style.display = 'block';
+  el.innerHTML = `
+    <strong style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.07em; display:block; margin-bottom:6px">Your phrase:</strong>
+    <div style="font-size:20px; color:#1a1a18; margin-bottom:4px">${phrase}</div>
+    <div style="font-size:12px; color:#888; margin-bottom:4px">${romPhrase}</div>
+    <div style="font-size:13px; color:#333; font-weight:500">I reserved a ${prefEn} ${roomEn} for ${nightsEn}.</div>
+    <div style="font-size:11px; color:#aaa; margin-top:6px; font-style:italic">Follow with: 잘 부탁드립니다. (Jal butakdeurimnida.)</div>
+  `;
+}
+</script>
+</body>
+</html>

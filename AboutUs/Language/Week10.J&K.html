@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 10 — Japanese & Korean: Social Situations</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Intro phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.purple { background: #f5f0fd; border-color: #c8b8f0; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Hobby / topic grids */
+  .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .topic-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .topic-icon { font-size: 20px; margin-bottom: 4px; }
+  .topic-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .topic-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .topic-en { font-size: 13px; color: #333; font-weight: 500; }
+  .topic-example { font-size: 12px; color: #555; margin-top: 5px; background: #fff; border: 0.5px solid #eee; border-radius: 6px; padding: 5px 8px; line-height: 1.6; }
+
+  /* Keigo speech levels */
+  .keigo-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .keigo-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .keigo-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .keigo-table tr:last-child td { border-bottom: none; }
+  .level-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-bottom: 4px; letter-spacing: 0.04em; }
+  .level-formal { background: #f0f5fc; color: #185FA5; border: 0.5px solid #b8d4f0; }
+  .level-polite { background: #f0f8f5; color: #0f6e56; border: 0.5px solid #a8ddc5; }
+  .level-casual { background: #fdf6ec; color: #854F0B; border: 0.5px solid #f0d090; }
+  .keigo-form { font-size: 17px; color: #1a1a18; display: block; margin-bottom: 2px; }
+  .keigo-rom { font-size: 11px; color: #888; display: block; }
+  .keigo-use { font-size: 12px; color: #555; }
+
+  /* Opinion expression cards */
+  .opinion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .opinion-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .opinion-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .opinion-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .opinion-en { font-size: 13px; color: #333; font-weight: 500; }
+  .opinion-ex { font-size: 12px; color: #1D9E75; margin-top: 4px; font-style: italic; }
+
+  /* Grammar blocks */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Interactive conversation simulator */
+  .convo-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .convo-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+  .convo-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; min-height: 160px; }
+  .convo-bubble { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.6; }
+  .convo-bubble.them { background: #fff; border: 0.5px solid #e5e4e0; align-self: flex-start; border-bottom-left-radius: 4px; }
+  .convo-bubble.you { background: #f0f5fc; border: 0.5px solid #b8d4f0; align-self: flex-end; border-bottom-right-radius: 4px; color: #185FA5; }
+  .convo-bubble .native { font-size: 16px; color: #1a1a18; display: block; margin-bottom: 2px; }
+  .convo-bubble .rom { font-size: 11px; color: #888; display: block; }
+  .convo-bubble .en { font-size: 12px; color: #555; display: block; margin-top: 2px; }
+  .convo-choices { padding: 10px 14px; border-top: 0.5px solid #eee; background: #fff; }
+  .choices-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; font-weight: 600; }
+  .choice-btns { display: flex; flex-direction: column; gap: 6px; }
+  .choice-btn { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 9px 12px; font-size: 13px; cursor: pointer; text-align: left; transition: background 0.15s; display: flex; justify-content: space-between; align-items: center; }
+  .choice-btn:hover { background: #f0f0ee; }
+  .choice-btn.correct { background: #e1f5ee; border-color: #1D9E75; }
+  .choice-btn.wrong { background: #fceaea; border-color: #E24B4A; }
+  .choice-native { font-size: 15px; color: #1a1a18; }
+  .choice-rom { font-size: 11px; color: #888; }
+  .convo-result { padding: 10px 14px; font-size: 13px; min-height: 36px; color: #0f6e56; display: none; }
+
+  /* Compliment cards */
+  .compliment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .compliment-card { background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 12px 14px; }
+  .compliment-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .compliment-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .compliment-en { font-size: 13px; color: #333; font-weight: 500; }
+  .compliment-note { font-size: 11px; color: #aaa; margin-top: 4px; line-height: 1.5; }
+
+  /* -(아/어)서 grammar section */
+  .cause-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .cause-formula { display: inline-block; font-size: 13px; color: #185FA5; font-weight: 500; background: #f0f5fc; border-radius: 6px; padding: 5px 10px; margin-bottom: 10px; }
+  .cause-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .cause-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .cause-en { font-size: 13px; color: #333; font-weight: 500; }
+  .cause-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .topic-grid, .opinion-grid, .compliment-grid, .compliment-grid, .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 10 of 16</span>
+      <h1>Social Situations</h1>
+      <div class="subtitle">JP: Introductions, small talk, opinions & keigo basics · KR: Meeting people, hobbies, compliments & -(아/어)서</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:62%"></div></div>
+      62% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 10 · Introductions · Small talk · Opinions · Compliments · Keigo basics</div>
+      </div>
+    </div>
+
+    <!-- Self-introduction -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Self-introduction (自己紹介)</div>
+      <div class="section-title">How to introduce yourself naturally in Japanese</div>
+      <p>A Japanese self-introduction follows a fairly standard script. Knowing the structure means you can slot in your own details with confidence.</p>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙇</span>
+          <div>
+            <div class="phrase-native">はじめまして</div>
+            <div class="phrase-rom">Hajimemashite</div>
+            <div class="phrase-en">How do you do / Nice to meet you (first time)</div>
+            <div class="phrase-note">Always said when meeting someone for the first time. Literally means "for the first time". A light bow accompanies this.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">👤</span>
+          <div>
+            <div class="phrase-native">〜と申します</div>
+            <div class="phrase-rom">[name]-to moushimasu</div>
+            <div class="phrase-en">My name is [name] (formal)</div>
+            <div class="phrase-note">と申します is the humble/formal way to give your name. Casual version: 〜といいます (to iimasu) or simply 〜です.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌍</span>
+          <div>
+            <div class="phrase-native">〜から来ました</div>
+            <div class="phrase-rom">[country/city]-kara kimashita</div>
+            <div class="phrase-en">I came from [place]</div>
+            <div class="phrase-note">から (kara) = from. アメリカ (Amerika), イギリス (Igirisu = UK), オーストラリア (Ōsutoraria), カナダ (Kanada).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💼</span>
+          <div>
+            <div class="phrase-native">〜をしています</div>
+            <div class="phrase-rom">[job/activity]-wo shite imasu</div>
+            <div class="phrase-en">I work as / I do [job]</div>
+            <div class="phrase-note">エンジニア (enjinia), 教師 (kyōshi = teacher), 学生 (gakusei = student), 医者 (isha = doctor), 会社員 (kaishain = office worker).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙏</span>
+          <div>
+            <div class="phrase-native">よろしくお願いします</div>
+            <div class="phrase-rom">Yoroshiku onegaishimasu</div>
+            <div class="phrase-en">I look forward to your acquaintance / Please treat me well</div>
+            <div class="phrase-note">Said at the end of every self-introduction — there's no direct English equivalent. It's a warm expression of goodwill and the hope for a good relationship. Always bow here.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Full introduction template:</strong> はじめまして。[name]と申します。[country]から来ました。[job]をしています。よろしくお願いします。— Practice slotting in your own name, country, and job. This 5-line introduction will serve you in almost every formal first meeting in Japan.
+      </div>
+    </div>
+
+    <!-- Small talk topics -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Small talk topics & hobby vocabulary</div>
+      <div class="section-title">8 go-to conversation topics — with example sentences</div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <div class="topic-icon">🎵</div>
+          <div class="topic-native">音楽</div>
+          <div class="topic-rom">ongaku</div>
+          <div class="topic-en">Music</div>
+          <div class="topic-example">音楽が好きですか？<br/><span style="color:#888; font-size:11px">Ongaku ga suki desu ka? — Do you like music?</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">🎬</div>
+          <div class="topic-native">映画</div>
+          <div class="topic-rom">eiga</div>
+          <div class="topic-en">Movies / Films</div>
+          <div class="topic-example">映画をよく見ます。<br/><span style="color:#888; font-size:11px">Eiga wo yoku mimasu. — I often watch films.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">🍜</div>
+          <div class="topic-native">料理</div>
+          <div class="topic-rom">ryōri</div>
+          <div class="topic-en">Cooking / Cuisine</div>
+          <div class="topic-example">日本料理が大好きです！<br/><span style="color:#888; font-size:11px">Nihon ryōri ga daisuki desu! — I love Japanese food!</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">⚽</div>
+          <div class="topic-native">スポーツ</div>
+          <div class="topic-rom">supōtsu</div>
+          <div class="topic-en">Sports</div>
+          <div class="topic-example">週末はスポーツをします。<br/><span style="color:#888; font-size:11px">Shūmatsu wa supōtsu wo shimasu. — I play sports on weekends.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">📚</div>
+          <div class="topic-native">読書</div>
+          <div class="topic-rom">dokusho</div>
+          <div class="topic-en">Reading</div>
+          <div class="topic-example">読書が趣味です。<br/><span style="color:#888; font-size:11px">Dokusho ga shumi desu. — Reading is my hobby.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">✈️</div>
+          <div class="topic-native">旅行</div>
+          <div class="topic-rom">ryokō</div>
+          <div class="topic-en">Travel</div>
+          <div class="topic-example">旅行が大好きです。<br/><span style="color:#888; font-size:11px">Ryokō ga daisuki desu. — I love travelling.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">📷</div>
+          <div class="topic-native">写真</div>
+          <div class="topic-rom">shashin</div>
+          <div class="topic-en">Photography</div>
+          <div class="topic-example">写真を撮るのが好きです。<br/><span style="color:#888; font-size:11px">Shashin wo toru no ga suki. — I like taking photos.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">🎮</div>
+          <div class="topic-native">ゲーム</div>
+          <div class="topic-rom">gēmu</div>
+          <div class="topic-en">Gaming</div>
+          <div class="topic-example">よくゲームをします。<br/><span style="color:#888; font-size:11px">Yoku gēmu wo shimasu. — I often play games.</span></div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Key small talk patterns:</strong> 〜が好きです (ga suki desu = I like ~) · 〜が大好きです (ga daisuki desu = I love ~) · 〜が嫌いです (ga kirai desu = I dislike ~) · 〜が趣味です (ga shumi desu = ~ is my hobby) · 〜をよくします (wo yoku shimasu = I often do ~).
+      </div>
+    </div>
+
+    <!-- Expressing opinions -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Expressing opinions</div>
+      <div class="section-title">How to agree, disagree, and share your views politely</div>
+      <div class="opinion-grid">
+        <div class="opinion-card">
+          <div class="opinion-native">そうですね</div>
+          <div class="opinion-rom">sō desu ne</div>
+          <div class="opinion-en">That's right / I agree</div>
+          <div class="opinion-ex">The most common agreement response in Japanese.</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">なるほど</div>
+          <div class="opinion-rom">naruhodo</div>
+          <div class="opinion-en">I see / I understand (that makes sense)</div>
+          <div class="opinion-ex">Shows you're listening and processing. Very natural.</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">〜と思います</div>
+          <div class="opinion-rom">[statement]-to omoimasu</div>
+          <div class="opinion-en">I think that ~ (soft opinion)</div>
+          <div class="opinion-ex">e.g. いいと思います = I think it's good.</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">〜かもしれません</div>
+          <div class="opinion-rom">kamoshiremasen</div>
+          <div class="opinion-en">It might be ~ / Perhaps ~</div>
+          <div class="opinion-ex">Softens any statement — very Japanese!</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">ちょっと違うと思います</div>
+          <div class="opinion-rom">chotto chigau to omoimasu</div>
+          <div class="opinion-en">I think it's a little different (polite disagreement)</div>
+          <div class="opinion-ex">Never say a flat "no" — always soften it.</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">本当ですか？</div>
+          <div class="opinion-rom">hontō desu ka?</div>
+          <div class="opinion-en">Really? / Is that true?</div>
+          <div class="opinion-ex">Shows engagement. Equivalent of "oh really?"</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">すごいですね！</div>
+          <div class="opinion-rom">sugoi desu ne!</div>
+          <div class="opinion-en">That's amazing / Wow!</div>
+          <div class="opinion-ex">One of the most useful reactive phrases.</div>
+        </div>
+        <div class="opinion-card">
+          <div class="opinion-native">難しいですね</div>
+          <div class="opinion-rom">muzukashii desu ne</div>
+          <div class="opinion-en">That's difficult, isn't it</div>
+          <div class="opinion-ex">A safe response when something is complex or uncertain.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliments -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Compliments</div>
+      <div class="section-title">Making people smile — 8 compliments you'll use constantly</div>
+      <div class="compliment-grid">
+        <div class="compliment-card">
+          <div class="compliment-native">お上手ですね！</div>
+          <div class="compliment-rom">ojōzu desu ne!</div>
+          <div class="compliment-en">You're very skilled / talented!</div>
+          <div class="compliment-note">For any skill — language, cooking, sport. Very warm.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">日本語がお上手ですね！</div>
+          <div class="compliment-rom">Nihongo ga ojōzu desu ne!</div>
+          <div class="compliment-en">Your Japanese is excellent!</div>
+          <div class="compliment-note">You'll receive this often as a learner — respond with ありがとうございます、まだまだです (Thank you, I still have a long way to go).</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">かわいいですね</div>
+          <div class="compliment-rom">kawaii desu ne</div>
+          <div class="compliment-en">It's cute / How cute!</div>
+          <div class="compliment-note">Used for objects, pets, children — very common and warm.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">かっこいいですね</div>
+          <div class="compliment-rom">kakkoii desu ne</div>
+          <div class="compliment-en">That's cool / stylish!</div>
+          <div class="compliment-note">For people, outfits, cars, anything stylish or impressive.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">おいしかったです！</div>
+          <div class="compliment-rom">oishikatta desu!</div>
+          <div class="compliment-en">That was delicious!</div>
+          <div class="compliment-note">Past tense of おいしい — say this after eating someone's food. Enormous impact on hosts.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">素敵ですね</div>
+          <div class="compliment-rom">suteki desu ne</div>
+          <div class="compliment-en">How lovely / wonderful!</div>
+          <div class="compliment-note">Works for people, places, things — elegant and warm.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keigo -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Keigo (敬語) — polite speech basics</div>
+      <div class="section-title">Japan's speech level system — the most important thing to understand about Japanese social language</div>
+      <p>Japanese has three main speech levels. You don't need to master all of them — but you need to understand why the same verb has completely different forms, and know which level to use in which situation.</p>
+      <table class="keigo-table">
+        <tr>
+          <th>Level</th>
+          <th>Name</th>
+          <th>Example — "to eat"</th>
+          <th>When to use</th>
+        </tr>
+        <tr>
+          <td><span class="level-badge level-formal">Formal</span></td>
+          <td style="font-size:13px; color:#333">丁寧語<br/><span style="font-size:11px; color:#888">teineigo</span></td>
+          <td>
+            <span class="keigo-form">食べます</span>
+            <span class="keigo-rom">tabemasu</span>
+          </td>
+          <td class="keigo-use">With strangers, in shops, with customers, in service settings. This is the level you've been learning throughout this course — it ends in ます/です.</td>
+        </tr>
+        <tr>
+          <td><span class="level-badge level-polite">Honorific</span></td>
+          <td style="font-size:13px; color:#333">尊敬語<br/><span style="font-size:11px; color:#888">sonkeigo</span></td>
+          <td>
+            <span class="keigo-form">召し上がります</span>
+            <span class="keigo-rom">meshiagarimasu</span>
+          </td>
+          <td class="keigo-use">When talking about what someone senior to you (a boss, customer, elder) does — you elevate their actions. Used heavily in business and formal service.</td>
+        </tr>
+        <tr>
+          <td><span class="level-badge level-casual">Casual</span></td>
+          <td style="font-size:13px; color:#333">普通体<br/><span style="font-size:11px; color:#888">futsūtai</span></td>
+          <td>
+            <span class="keigo-form">食べる</span>
+            <span class="keigo-rom">taberu</span>
+          </td>
+          <td class="keigo-use">With close friends, family, people your own age. The dictionary form you've seen in grammar charts. Only use this once you have a clear close friendship.</td>
+        </tr>
+      </table>
+      <div class="tip-box tip-purple">
+        <strong>As a beginner, always use 丁寧語 (teineigo — the ます/です form).</strong> Japanese people expect foreigners to speak formally and will never be offended by it. Using casual speech (plain form) with someone you've just met can feel rude. When in doubt: add ます and です to everything. You've been doing this all course — keep it up!
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Keigo in action — 3 common scenarios:</p>
+      <div class="phrase-list">
+        <div class="phrase-card purple">
+          <span class="phrase-icon">🏢</span>
+          <div>
+            <div class="phrase-native">〜さんはいらっしゃいますか？</div>
+            <div class="phrase-rom">[name]-san wa irasshaimasu ka?</div>
+            <div class="phrase-en">Is [name] available? (on the phone / at the door)</div>
+            <div class="phrase-note">いらっしゃる is the honorific form of いる (to be/exist). Used when asking about someone senior. Very common in business and formal settings.</div>
+          </div>
+        </div>
+        <div class="phrase-card purple">
+          <span class="phrase-icon">🎁</span>
+          <div>
+            <div class="phrase-native">どうぞ、お召し上がりください</div>
+            <div class="phrase-rom">Dōzo, omeshiagari kudasai</div>
+            <div class="phrase-en">Please help yourself / Please eat</div>
+            <div class="phrase-note">Said when offering food to a guest. お召し上がりください is the full honorific "please eat". You'll hear this in restaurants and at formal gatherings.</div>
+          </div>
+        </div>
+        <div class="phrase-card purple">
+          <span class="phrase-icon">📞</span>
+          <div>
+            <div class="phrase-native">少々お待ちいただけますか？</div>
+            <div class="phrase-rom">Shōshō omachi itadakemasu ka?</div>
+            <div class="phrase-en">Could you please wait a moment?</div>
+            <div class="phrase-note">The formal version of 待ってください. You'll hear this in shops, hotels, and on the phone. 少々 (shōshō) = a little while.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive conversation JP -->
+    <div class="section">
+      <div class="section-label">Interactive · First meeting conversation</div>
+      <div class="section-title">Choose the right response at each step of a Japanese introduction</div>
+      <div class="convo-sim">
+        <div class="convo-header">
+          <span>💬 はじめまして — First meeting</span>
+          <span style="font-size:12px; opacity:0.7" id="jp-convo-step">Step 1 of 4</span>
+        </div>
+        <div class="convo-body" id="jp-convo-body">
+          <div class="convo-bubble them">
+            <span class="native">はじめまして！田中と申します。</span>
+            <span class="rom">Hajimemashite! Tanaka to moushimasu.</span>
+            <span class="en">Nice to meet you! My name is Tanaka.</span>
+          </div>
+        </div>
+        <div class="convo-choices">
+          <div class="choices-label">Your response:</div>
+          <div class="choice-btns" id="jp-choices">
+            <button class="choice-btn" onclick="jpConvo(this,true,'Step 2: Tanaka-san asks where you are from.')">
+              <div><span class="choice-native">はじめまして。[あなたの名前]と申します。</span><span class="choice-rom">Hajimemashite. [Your name]-to moushimasu.</span></div>
+              <span style="font-size:11px; color:#1D9E75">✓</span>
+            </button>
+            <button class="choice-btn" onclick="jpConvo(this,false,'Try again — you need to introduce yourself with はじめまして first.')">
+              <div><span class="choice-native">よろしくお願いします。</span><span class="choice-rom">Yoroshiku onegaishimasu.</span></div>
+              <span style="font-size:11px; color:#E24B4A">✗</span>
+            </button>
+            <button class="choice-btn" onclick="jpConvo(this,false,'That\'s too casual for a first formal meeting.')">
+              <div><span class="choice-native">やあ！[名前]だよ。</span><span class="choice-rom">Yā! [Name] da yo. (casual)</span></div>
+              <span style="font-size:11px; color:#E24B4A">✗</span>
+            </button>
+          </div>
+        </div>
+        <div class="convo-result" id="jp-convo-result"></div>
+      </div>
+    </div>
+
+    <!-- Culture JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💼</span>
+        <div class="culture-text">
+          <strong>名刺 (meishi) — the art of the business card exchange</strong><br/>
+          In Japan, exchanging business cards (名刺交換, meishi kōkan) is a social ritual as important as a handshake in the West. Cards are presented and received with both hands, with a slight bow. The card is then studied carefully — never write on it, fold it, or put it in your back pocket in front of the giver. Place it respectfully on the table in front of you during a meeting. If you don't have a card, apologise gracefully: 申し訳ありませんが、名刺を切らしております (moushiwake arimasen ga, meishi wo kirashite orimasu = I apologise, I've run out of business cards). This attention to objects as extensions of the person is a key expression of Japanese respect culture.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 10 Japanese — social situations & keigo</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does よろしくお願いします mean at the end of an introduction?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Thank you for meeting me</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Please treat me well / I look forward to our relationship</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm sorry to bother you</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">My name is ~</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which keigo level should beginners always use with strangers?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Casual plain form (食べる)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Honorific sonkeigo (召し上がる)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Polite teineigo (食べます / です)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">No particular level needed</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I think it's good" as a soft opinion in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">いいです</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">いいと思います</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">いいかもしれません</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">そうですね</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct way to say "I came from the UK" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">イギリスにいます</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">イギリスへ行きます</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">イギリスから来ました</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">イギリスで来ました</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 10 · Introductions · Hobbies · Weekend plans · Compliments · -(아/어)서 grammar</div>
+      </div>
+    </div>
+
+    <!-- Self-introduction Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Self-introduction (자기소개)</div>
+      <div class="section-title">Introduce yourself naturally in Korean</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙌</span>
+          <div>
+            <div class="phrase-native">처음 뵙겠습니다</div>
+            <div class="phrase-rom">Cheoeum boepgesseumnida</div>
+            <div class="phrase-en">How do you do / Nice to meet you (formal, first time)</div>
+            <div class="phrase-note">The formal equivalent of はじめまして. 처음 = first time. 뵙다 = humble form of "to see/meet". Use with seniors or in formal settings.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">👤</span>
+          <div>
+            <div class="phrase-native">저는 〜라고 합니다</div>
+            <div class="phrase-rom">Jeoneun [name]-rago hamnida</div>
+            <div class="phrase-en">My name is ~ (formal)</div>
+            <div class="phrase-note">라고 하다 = to be called. Casual version: 저는 〜예요 / 〜이에요. 저 (jeo) = formal "I", 나 (na) = casual "I".</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌍</span>
+          <div>
+            <div class="phrase-native">저는 〜에서 왔어요</div>
+            <div class="phrase-rom">Jeoneun [place]-eseo wasseoyo</div>
+            <div class="phrase-en">I am from [place]</div>
+            <div class="phrase-note">에서 (eseo) = from (a place). 미국 (miguk) = USA · 영국 (yeongguk) = UK · 호주 (hoju) = Australia · 캐나다 (kaenada) = Canada.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💼</span>
+          <div>
+            <div class="phrase-native">저는 〜을/를 하고 있어요</div>
+            <div class="phrase-rom">Jeoneun [job]-eul/reul hago isseoyo</div>
+            <div class="phrase-en">I work as / I do [job]</div>
+            <div class="phrase-note">엔지니어 (enjinieo = engineer) · 선생님 (seonsaengnim = teacher) · 학생 (haksaeng = student) · 의사 (uisa = doctor) · 회사원 (hoesawon = office worker).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">😊</span>
+          <div>
+            <div class="phrase-native">잘 부탁드립니다</div>
+            <div class="phrase-rom">Jal butakdeurimnida</div>
+            <div class="phrase-en">I look forward to working with you / Please take care of me</div>
+            <div class="phrase-note">The Korean equivalent of よろしくお願いします — said at the end of introductions to express goodwill. Slightly more formal: 잘 부탁드립니다. Casual: 잘 부탁해요.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Full introduction template:</strong> 처음 뵙겠습니다. 저는 [name]라고 합니다. [country]에서 왔어요. [job]을/를 하고 있어요. 잘 부탁드립니다. — Exactly mirrors the Japanese structure, making it easy to remember both!
+      </div>
+    </div>
+
+    <!-- Hobbies and interests -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Hobbies & interests in Korean</div>
+      <div class="section-title">8 conversation topics with key patterns</div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <div class="topic-icon">🎵</div>
+          <div class="topic-native">음악</div>
+          <div class="topic-rom">eumak</div>
+          <div class="topic-en">Music</div>
+          <div class="topic-example">음악 듣는 걸 좋아해요.<br/><span style="color:#888; font-size:11px">I like listening to music.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">🎬</div>
+          <div class="topic-native">영화</div>
+          <div class="topic-rom">yeonghwa</div>
+          <div class="topic-en">Movies</div>
+          <div class="topic-example">영화 자주 봐요.<br/><span style="color:#888; font-size:11px">I often watch movies.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">🍳</div>
+          <div class="topic-native">요리</div>
+          <div class="topic-rom">yori</div>
+          <div class="topic-en">Cooking</div>
+          <div class="topic-example">요리하는 게 취미예요.<br/><span style="color:#888; font-size:11px">Cooking is my hobby.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">⚽</div>
+          <div class="topic-native">운동</div>
+          <div class="topic-rom">undong</div>
+          <div class="topic-en">Exercise / Sport</div>
+          <div class="topic-example">주말에 운동해요.<br/><span style="color:#888; font-size:11px">I exercise on weekends.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">📚</div>
+          <div class="topic-native">독서</div>
+          <div class="topic-rom">dokseo</div>
+          <div class="topic-en">Reading</div>
+          <div class="topic-example">독서가 취미예요.<br/><span style="color:#888; font-size:11px">Reading is my hobby.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">✈️</div>
+          <div class="topic-native">여행</div>
+          <div class="topic-rom">yeohaeng</div>
+          <div class="topic-en">Travel</div>
+          <div class="topic-example">여행을 정말 좋아해요.<br/><span style="color:#888; font-size:11px">I really love travelling.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">🎮</div>
+          <div class="topic-native">게임</div>
+          <div class="topic-rom">geim</div>
+          <div class="topic-en">Gaming</div>
+          <div class="topic-example">게임을 자주 해요.<br/><span style="color:#888; font-size:11px">I often play games.</span></div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon">☕</div>
+          <div class="topic-native">카페</div>
+          <div class="topic-rom">kape</div>
+          <div class="topic-en">Café hopping</div>
+          <div class="topic-example">카페 가는 걸 좋아해요.<br/><span style="color:#888; font-size:11px">I like going to cafés.</span></div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Key Korean hobby patterns:</strong> 〜을/를 좋아해요 (eul/reul joahaeyo = I like ~) · 〜이/가 취미예요 (i/ga chwimiyeyo = ~ is my hobby) · 〜을/를 자주 해요 (eul/reul jaju haeyo = I often do ~) · 〜는 걸 좋아해요 (neun geol joahaeyo = I like doing ~).
+      </div>
+    </div>
+
+    <!-- Weekend plans and small talk -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Weekend plans & small talk</div>
+      <div class="section-title">Natural Korean conversation starters</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📅</span>
+          <div>
+            <div class="phrase-native">주말에 뭐 해요?</div>
+            <div class="phrase-rom">Jumare mwo haeyo?</div>
+            <div class="phrase-en">What are you doing this weekend?</div>
+            <div class="phrase-note">주말 (jumal) = weekend. 뭐 (mwo) = what. The most natural small talk opener in Korean — expect to be asked this constantly.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤷</span>
+          <div>
+            <div class="phrase-native">아직 모르겠어요</div>
+            <div class="phrase-rom">Ajik moreugesseoyo</div>
+            <div class="phrase-en">I don't know yet / I'm not sure yet</div>
+            <div class="phrase-note">아직 = yet/still. A natural, relaxed response when you haven't made plans.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">😄</span>
+          <div>
+            <div class="phrase-native">같이 가요!</div>
+            <div class="phrase-rom">Gachi gayo!</div>
+            <div class="phrase-en">Let's go together!</div>
+            <div class="phrase-note">같이 (gachi) = together. One of the warmest invitations in Korean — Koreans are very group-oriented and love including people.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎉</span>
+          <div>
+            <div class="phrase-native">재미있었어요!</div>
+            <div class="phrase-rom">Jaemiisseosseoyo!</div>
+            <div class="phrase-en">It was fun / That was great!</div>
+            <div class="phrase-note">재미있다 (jaemiitda) = to be fun/interesting. Past tense: 재미있었어요. The go-to response after any positive experience.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🥺</span>
+          <div>
+            <div class="phrase-native">다음에 또 만나요</div>
+            <div class="phrase-rom">Daeume tto mannayo</div>
+            <div class="phrase-en">Let's meet again next time</div>
+            <div class="phrase-note">다음에 = next time · 또 = again · 만나다 = to meet. A warm, natural goodbye after a social outing.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💬</span>
+          <div>
+            <div class="phrase-native">한국어 잘 하시네요!</div>
+            <div class="phrase-rom">Hangugeo jal hasineyo!</div>
+            <div class="phrase-en">Your Korean is great!</div>
+            <div class="phrase-note">You'll receive this often — respond modestly: 아니에요, 아직 많이 부족해요 (anievo, ajik mani bujokaeyo = No, I'm still lacking a lot).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliments Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Giving and receiving compliments</div>
+      <div class="section-title">8 Korean compliments — and how to respond modestly</div>
+      <div class="compliment-grid">
+        <div class="compliment-card">
+          <div class="compliment-native">멋있어요!</div>
+          <div class="compliment-rom">meositsseoyo!</div>
+          <div class="compliment-en">You're cool / awesome!</div>
+          <div class="compliment-note">For people, style, actions. Very common among younger Koreans.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">귀여워요!</div>
+          <div class="compliment-rom">gwiyeowoyo!</div>
+          <div class="compliment-en">So cute!</div>
+          <div class="compliment-note">For people, animals, objects — widely used and appreciated.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">예뻐요!</div>
+          <div class="compliment-rom">yeppeoyo!</div>
+          <div class="compliment-en">Beautiful / Pretty!</div>
+          <div class="compliment-note">For people and things. 잘생겼어요 (jalsaenggyeosseoyo) = handsome (for men).</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">정말 맛있어요!</div>
+          <div class="compliment-rom">jeongmal masisseoyo!</div>
+          <div class="compliment-en">It's really delicious!</div>
+          <div class="compliment-note">정말 = really/truly. Adding 정말 intensifies any compliment.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">대단해요!</div>
+          <div class="compliment-rom">daedanhaeyo!</div>
+          <div class="compliment-en">That's amazing / impressive!</div>
+          <div class="compliment-note">For impressive achievements or skills. 대단하다 = to be great/impressive.</div>
+        </div>
+        <div class="compliment-card">
+          <div class="compliment-native">잘 어울려요!</div>
+          <div class="compliment-rom">jal eoullyeoyo!</div>
+          <div class="compliment-en">It suits you well!</div>
+          <div class="compliment-note">어울리다 = to suit/match. Say this about someone's outfit, hairstyle, or item they've just bought.</div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Responding to compliments Korean-style:</strong> Koreans typically deflect compliments modestly. When complimented, say 아니에요 (anievo = no, not at all), 과찬이세요 (gwa-chaniseyo = you're too kind), or 별말씀을요 (byeolmalsseumeullyo = not at all). Accepting a compliment directly can seem arrogant — modest deflection is the culturally warm response.
+      </div>
+    </div>
+
+    <!-- -(아/어)서 grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Grammar — -(아/어)서 connector</div>
+      <div class="section-title">"Because ~ / So ~" — the cause-and-effect connector that makes speech natural</div>
+      <p>The -(아/어)서 ending connects two clauses to express cause and effect or sequential actions. It's one of the most natural-sounding connectors in Korean — and once you start using it, your sentences immediately sound more fluent.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>The rule:</strong> Verb/adjective stem + 아서 (bright vowels ㅏ/ㅗ) or + 어서 (all other vowels). e.g. 좋다 → 좋아서 (because it's good), 먹다 → 먹어서 (because I ate), 하다 → 해서 (because I do/did). Note: -(아/어)서 cannot be used with tense markers — the tense shows in the final verb only.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">Using -(아/어)서 for cause and effect:</p>
+
+      <div class="cause-block">
+        <div class="cause-formula">Verb stem + 아서/어서 → "because ~" / "so ~"</div>
+        <div class="cause-result">피곤해서 일찍 잤어요.</div>
+        <div class="cause-rom">Pigonhaeseo iljjik jasseoyo.</div>
+        <div class="cause-en">Because I was tired, I went to bed early.</div>
+        <div class="cause-note">피곤하다 (tired) → 피곤해서. The cause always comes first.</div>
+      </div>
+
+      <div class="cause-block" style="margin-top:8px">
+        <div class="cause-result">배가 고파서 밥을 먹었어요.</div>
+        <div class="cause-rom">Baega gopaseo babeul meogeosseoyo.</div>
+        <div class="cause-en">I was hungry so I ate rice.</div>
+        <div class="cause-note">고프다 (hungry) → 고파서 (bright vowel ㅗ, so 아서).</div>
+      </div>
+
+      <div class="cause-block" style="margin-top:8px">
+        <div class="cause-result">한국어가 재미있어서 매일 공부해요.</div>
+        <div class="cause-rom">Hangugeoga jaemiisseoseo maeil gongbuhaeyo.</div>
+        <div class="cause-en">Because Korean is fun, I study every day.</div>
+        <div class="cause-note">재미있다 (fun) → 재미있어서. A sentence you can genuinely say by now!</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Using -(아/어)서 for sequential actions:</p>
+
+      <div class="cause-block">
+        <div class="cause-result">카페에 가서 커피를 마셨어요.</div>
+        <div class="cause-rom">Kape-e gaseo keopireul masyeosseoyo.</div>
+        <div class="cause-en">I went to a café and (then) drank coffee.</div>
+        <div class="cause-note">가다 (to go) → 가서 (going, and then~). The two actions are connected in sequence.</div>
+      </div>
+
+      <div class="cause-block" style="margin-top:8px">
+        <div class="cause-result">친구를 만나서 같이 밥 먹었어요.</div>
+        <div class="cause-rom">Chingureul mannaseo gachi bap meogeosseoyo.</div>
+        <div class="cause-en">I met a friend and we ate together.</div>
+        <div class="cause-note">만나다 (to meet) → 만나서 (after meeting). Natural storytelling in Korean.</div>
+      </div>
+
+      <div class="tip-box tip-coral" style="margin-top:12px">
+        <strong>-(아/어)서 vs -(으)면 — don't mix them up:</strong> -(으)면 = "if/when" (conditional, future possibility). -(아/어)서 = "because/so" (cause already happened or is a fact). e.g. 비가 오면 택시 타세요 (If it rains, take a taxi) vs 비가 와서 택시를 탔어요 (Because it rained, I took a taxi). Context and tense will guide you.
+      </div>
+    </div>
+
+    <!-- Interactive conversation KR -->
+    <div class="section">
+      <div class="section-label">Interactive · Korean small talk conversation</div>
+      <div class="section-title">Choose the best response in this social exchange</div>
+      <div class="convo-sim">
+        <div class="convo-header">
+          <span>💬 처음 뵙겠습니다 — First meeting</span>
+          <span style="font-size:12px; opacity:0.7" id="kr-convo-step">Step 1 of 4</span>
+        </div>
+        <div class="convo-body" id="kr-convo-body">
+          <div class="convo-bubble them">
+            <span class="native">처음 뵙겠습니다! 저는 박지민이라고 합니다.</span>
+            <span class="rom">Cheoeum boepgesseumnida! Jeoneun Bak Jimin-irago hamnida.</span>
+            <span class="en">Nice to meet you! My name is Park Jimin.</span>
+          </div>
+        </div>
+        <div class="convo-choices">
+          <div class="choices-label">Your response:</div>
+          <div class="choice-btns" id="kr-choices">
+            <button class="choice-btn" onclick="krConvo(this,true,'Great! Now Park Jimin asks about your hobby.')">
+              <div><span class="choice-native">처음 뵙겠습니다. 저는 [이름]라고 합니다. 잘 부탁드립니다.</span><span class="choice-rom">Nice to meet you. My name is [Name]. Please take care of me.</span></div>
+              <span style="font-size:11px; color:#1D9E75">✓</span>
+            </button>
+            <button class="choice-btn" onclick="krConvo(this,false,'잘 부탁해 is too casual for a formal first meeting.')">
+              <div><span class="choice-native">안녕! 나는 [이름]이야. 잘 부탁해.</span><span class="choice-rom">Hey! I\'m [Name]. (casual)</span></div>
+              <span style="font-size:11px; color:#E24B4A">✗</span>
+            </button>
+            <button class="choice-btn" onclick="krConvo(this,false,'You need to introduce yourself first before saying goodbye!')">
+              <div><span class="choice-native">다음에 또 만나요!</span><span class="choice-rom">Let\'s meet again next time!</span></div>
+              <span style="font-size:11px; color:#E24B4A">✗</span>
+            </button>
+          </div>
+        </div>
+        <div class="convo-result" id="kr-convo-result"></div>
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🍺</span>
+        <div class="culture-text">
+          <strong>눈치 (nunchi) — Korea's unspoken social intelligence</strong><br/>
+          눈치 (nunchi) is one of the most important concepts in Korean social life. Literally "eye measure", it refers to the ability to read the room — to sense what others are feeling or needing without them having to say it directly. Someone with 눈치 knows when to refill someone's glass, when to change the topic, when a gathering is winding down. 눈치가 없다 (nunchi-ga eopda = to have no nunchi) is a social failing. 눈치가 빠르다 (nunchi-ga ppareuda = to have quick nunchi) is a high compliment. As a visitor, demonstrating basic nunchi — pouring for others, noticing when someone is tired, saying goodbye at the right moment — will earn you enormous respect from Korean hosts.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 10 Korean — social situations & -(아/어)서</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 잘 부탁드립니다 mean at the end of an introduction?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Thank you for your time</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Please take care of me / I look forward to our relationship</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I am pleased to introduce myself</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Nice to meet you for the first time</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence correctly uses -(아/어)서 for cause and effect?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">피곤하면 일찍 잤어요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">피곤해서 일찍 잤어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">피곤했어서 일찍 잤어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">피곤이라서 일찍 잤어요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I am from Australia" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 호주에 있어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 호주로 왔어요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">저는 호주에서 왔어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">저는 호주가 왔어요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct -(아/어)서 form of 고프다 (to be hungry)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">고프어서</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">고프서</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">고파서</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">고픈서</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — social situations in both languages</div>
+    <table>
+      <tr><th>Situation</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">First meeting</td><td>はじめまして (hajimemashite)</td><td>처음 뵙겠습니다 (cheoeum boepgesseumnida)</td></tr>
+      <tr><td style="font-size:13px">My name is ~</td><td>〜と申します (to moushimasu)</td><td>〜라고 합니다 (rago hamnida)</td></tr>
+      <tr><td style="font-size:13px">I'm from ~</td><td>〜から来ました (kara kimashita)</td><td>〜에서 왔어요 (eseo wasseoyo)</td></tr>
+      <tr><td style="font-size:13px">Please treat me well</td><td>よろしくお願いします</td><td>잘 부탁드립니다</td></tr>
+      <tr><td style="font-size:13px">I think ~ (opinion)</td><td>〜と思います (to omoimasu)</td><td>〜고 생각해요 (go saenggakhaeyo)</td></tr>
+      <tr><td style="font-size:13px">That's amazing!</td><td>すごいですね！(sugoi desu ne)</td><td>대단해요！(daedanhaeyo)</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>Keigo levels — always use ます/です with strangers</td><td>-(아/어)서 — "because / so ~"</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 11 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 11</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Accommodation — booking hotels and ryokan (traditional inns), room requests, check-in/out phrases, and asking for help from hotel staff. Plus Japanese potential form — "can do / able to".</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Accommodation in Korea — booking guesthouses, jjimjilbang (sauna houses), and asking for hotel services. Plus the -(으)ㄹ 수 있다/없다 potential — "can / cannot do something".</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 10 complete · Click <a href="Week11.J&K.html">here</a> when you're ready for Week 11 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP conversation sim */
+const jpSteps = [
+  {
+    them: { native: '出身はどちらですか？', rom: 'Shusshin wa dochira desu ka?', en: 'Where are you from?' },
+    choices: [
+      { native: 'イギリスから来ました。', rom: 'Igirisu kara kimashita.', correct: true, feedback: 'Perfect! Now Tanaka-san asks about your job.' },
+      { native: 'イギリスにいます。', rom: 'Igirisu ni imasu.', correct: false, feedback: 'Close! Use から来ました (came from) not にいます (am in) for origin.' },
+      { native: 'イギリスが好きです。', rom: 'Igirisu ga suki desu.', correct: false, feedback: 'This means "I like the UK" — not quite the right answer!' }
+    ]
+  },
+  {
+    them: { native: 'お仕事は何をされていますか？', rom: 'Oshigoto wa nani wo sarete imasu ka?', en: 'What is your occupation?' },
+    choices: [
+      { native: 'エンジニアをしています。', rom: 'Enjinia wo shite imasu.', correct: true, feedback: 'Well done! Tanaka-san wraps up the introduction.' },
+      { native: 'エンジニアです。', rom: 'Enjinia desu.', correct: false, feedback: 'Acceptable but を shite imasu is more natural here.' },
+      { native: 'エンジニアしたいです。', rom: 'Enjinia shitai desu.', correct: false, feedback: 'This means "I want to be an engineer" — use をしています for current job.' }
+    ]
+  },
+  {
+    them: { native: 'どうぞよろしくお願いします！', rom: 'Dōzo yoroshiku onegaishimasu!', en: 'Please treat me well!' },
+    choices: [
+      { native: 'こちらこそ、よろしくお願いします！', rom: 'Kochira koso, yoroshiku onegaishimasu!', correct: true, feedback: '🎉 Perfect introduction completed! こちらこそ means "likewise / same to you" — the ideal response.' },
+      { native: 'ありがとうございます。', rom: 'Arigatou gozaimasu.', correct: false, feedback: 'Polite, but こちらこそ、よろしくお願いします is the ideal matching response here.' },
+      { native: 'はい、そうです。', rom: 'Hai, sō desu.', correct: false, feedback: 'That doesn\'t fit the context — mirror よろしくお願いします with こちらこそ。' }
+    ]
+  }
+];
+let jpStep = 0;
+
+function jpConvo(btn, correct, feedback) {
+  const choicesEl = document.getElementById('jp-choices');
+  const resultEl = document.getElementById('jp-convo-result');
+  const bodyEl = document.getElementById('jp-convo-body');
+  const stepEl = document.getElementById('jp-convo-step');
+  choicesEl.querySelectorAll('.choice-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.7'; });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  btn.style.opacity = '1';
+  resultEl.style.display = 'block';
+  resultEl.style.color = correct ? '#0f6e56' : '#791F1F';
+  resultEl.textContent = (correct ? '✓ ' : '✗ ') + feedback;
+  if (correct && jpStep < jpSteps.length) {
+    setTimeout(() => {
+      const next = jpSteps[jpStep];
+      jpStep++;
+      stepEl.textContent = `Step ${jpStep + 1} of 4`;
+      const youBubble = document.createElement('div');
+      youBubble.className = 'convo-bubble you';
+      youBubble.innerHTML = `<span class="native">${btn.querySelector('.choice-native').textContent}</span>`;
+      bodyEl.appendChild(youBubble);
+      const themBubble = document.createElement('div');
+      themBubble.className = 'convo-bubble them';
+      themBubble.innerHTML = `<span class="native">${next.them.native}</span><span class="rom">${next.them.rom}</span><span class="en">${next.them.en}</span>`;
+      bodyEl.appendChild(themBubble);
+      choicesEl.innerHTML = next.choices.map(c =>
+        `<button class="choice-btn" onclick="jpConvo(this,${c.correct},'${c.feedback.replace(/'/g,"\\'")}')">
+          <div><span class="choice-native">${c.native}</span><span class="choice-rom">${c.rom}</span></div>
+        </button>`
+      ).join('');
+      resultEl.style.display = 'none';
+    }, 900);
+  }
+}
+
+/* KR conversation sim */
+const krSteps = [
+  {
+    them: { native: '취미가 뭐예요?', rom: 'Chwimiga mwoyeyo?', en: 'What is your hobby?' },
+    choices: [
+      { native: '저는 여행을 좋아해요. 특히 아시아 여행을 좋아해요!', rom: 'Jeoneun yeohaengeul joahaeyo. Teukhi Asia yeohaengeul joahaeyo!', correct: true, feedback: 'Great! Park Jimin responds enthusiastically.' },
+      { native: '여행 있어요.', rom: 'Yeohaeng isseoyo.', correct: false, feedback: 'Almost! Use 여행을 좋아해요 (I like travel) rather than 여행 있어요 (I have travel).' },
+      { native: '모르겠어요.', rom: 'Moreugesseoyo.', correct: false, feedback: '모르겠어요 means "I don\'t know" — a bit odd for your own hobby!' }
+    ]
+  },
+  {
+    them: { native: '저도 여행을 정말 좋아해요! 이번 주말에 뭐 해요?', rom: 'Jeodo yeohaengeul jeongmal joahaeyo! Ibeon jumare mwo haeyo?', en: 'I love travelling too! What are you doing this weekend?' },
+    choices: [
+      { native: '아직 모르겠어요. 같이 뭐 할까요?', rom: 'Ajik moreugesseoyo. Gachi mwo halkkayo?', correct: true, feedback: 'Perfect! Suggesting doing something together — very natural Korean!' },
+      { native: '바빠서 안 돼요.', rom: 'Bappasseo an dwaeyo.', correct: false, feedback: 'Too abrupt — while grammatically correct, it closes the conversation. Try something warmer!' },
+      { native: '주말에 가요.', rom: 'Jumare gayo.', correct: false, feedback: 'This is incomplete — where are you going? Give a fuller response.' }
+    ]
+  },
+  {
+    them: { native: '좋아요! 한강에 가서 치킨 먹어요!', rom: 'Joayo! Hangange gaseo chikin meogeoyo!', en: 'Great! Let\'s go to the Han River and eat fried chicken!' },
+    choices: [
+      { native: '정말요? 재미있겠어요! 몇 시에 만날까요?', rom: 'Jeongmallyo? Jaemiitgessseoyo! Myeot sie mannalkkayo?', correct: true, feedback: '🎉 Perfect! 정말요 = Really?, 재미있겠어요 = That sounds fun!, 몇 시에 만날까요 = What time shall we meet? A natural, warm Korean response!' },
+      { native: '알겠어요.', rom: 'Algesseoyo.', correct: false, feedback: 'Too flat — 알겠어요 just means "I see/understood". Show more enthusiasm!' },
+      { native: '치킨은 별로예요.', rom: 'Chikin-eun byeolloyeyo.', correct: false, feedback: '별로예요 = "It\'s not great." Refusing chicken in Korea? Brave choice!' }
+    ]
+  }
+];
+let krStep = 0;
+
+function krConvo(btn, correct, feedback) {
+  const choicesEl = document.getElementById('kr-choices');
+  const resultEl = document.getElementById('kr-convo-result');
+  const bodyEl = document.getElementById('kr-convo-body');
+  const stepEl = document.getElementById('kr-convo-step');
+  choicesEl.querySelectorAll('.choice-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.7'; });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  btn.style.opacity = '1';
+  resultEl.style.display = 'block';
+  resultEl.style.color = correct ? '#0f6e56' : '#791F1F';
+  resultEl.textContent = (correct ? '✓ ' : '✗ ') + feedback;
+  if (correct && krStep < krSteps.length) {
+    setTimeout(() => {
+      const next = krSteps[krStep];
+      krStep++;
+      stepEl.textContent = `Step ${krStep + 1} of 4`;
+      const youBubble = document.createElement('div');
+      youBubble.className = 'convo-bubble you';
+      youBubble.innerHTML = `<span class="native">${btn.querySelector('.choice-native').textContent}</span>`;
+      bodyEl.appendChild(youBubble);
+      const themBubble = document.createElement('div');
+      themBubble.className = 'convo-bubble them';
+      themBubble.innerHTML = `<span class="native">${next.them.native}</span><span class="rom">${next.them.rom}</span><span class="en">${next.them.en}</span>`;
+      bodyEl.appendChild(themBubble);
+      choicesEl.innerHTML = next.choices.map(c =>
+        `<button class="choice-btn" onclick="krConvo(this,${c.correct},'${c.feedback.replace(/'/g,"\\'")}')">
+          <div><span class="choice-native">${c.native}</span><span class="choice-rom">${c.rom}</span></div>
+        </button>`
+      ).join('');
+      resultEl.style.display = 'none';
+    }, 900);
+  }
+}
+</script>
+</body>
+</html>
