@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 12 — Japanese & Korean: Sightseeing & Nature</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Site cards */
+  .site-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .site-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 14px; }
+  .site-card.featured { background: #fdf9f0; border-color: #f0dfa8; }
+  .site-icon { font-size: 26px; margin-bottom: 5px; }
+  .site-name { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .site-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .site-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 5px; }
+  .site-note { font-size: 12px; color: #666; line-height: 1.6; }
+
+  /* Nature vocab grid */
+  .nature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .nature-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .nature-icon { font-size: 22px; margin-bottom: 4px; }
+  .nature-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .nature-rom { font-size: 11px; color: #888; }
+  .nature-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.amber { background: #fdf9f0; border-color: #f0dfa8; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Exclamation / wonder cards */
+  .wonder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .wonder-card { background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 12px 14px; }
+  .wonder-native { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .wonder-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .wonder-en { font-size: 13px; color: #333; font-weight: 500; }
+  .wonder-use { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Omiyage / souvenir interactive */
+  .omiyage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .omiyage-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px; }
+  .omiyage-icon { font-size: 24px; margin-bottom: 5px; }
+  .omiyage-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .omiyage-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .omiyage-region { font-size: 12px; color: #185FA5; font-weight: 500; margin-bottom: 4px; }
+  .omiyage-note { font-size: 12px; color: #666; line-height: 1.5; }
+
+  /* Grammar blocks */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Interactive sightseeing planner */
+  .planner { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .planner-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+  .planner-body { padding: 14px; }
+  .planner-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .planner-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .planner-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .planner-btn:hover { background: #f0f0ee; }
+  .planner-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .planner-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .planner-result-title { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; font-weight: 600; }
+  .planner-phrase { font-size: 19px; color: #1a1a18; margin-bottom: 3px; }
+  .planner-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .planner-en { font-size: 13px; color: #333; font-weight: 500; }
+  .planner-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Hiking level cards */
+  .hike-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
+  .hike-card { display: flex; gap: 14px; align-items: flex-start; background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .hike-level { font-size: 22px; flex-shrink: 0; }
+  .hike-info { flex: 1; }
+  .hike-name { font-size: 15px; color: #1a1a18; font-weight: 500; margin-bottom: 2px; }
+  .hike-rom { font-size: 11px; color: #888; margin-bottom: 4px; }
+  .hike-desc { font-size: 12px; color: #555; line-height: 1.6; }
+  .hike-example { font-size: 12px; color: #185FA5; margin-top: 4px; font-style: italic; }
+
+  /* Intention grammar cards */
+  .intent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .intent-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .intent-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .intent-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .intent-en { font-size: 13px; color: #333; font-weight: 500; }
+  .intent-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .site-grid, .wonder-grid, .omiyage-grid, .intent-grid, .two-col { grid-template-columns: 1fr; }
+    .nature-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 12 of 16</span>
+      <h1>Sightseeing & Nature</h1>
+      <div class="subtitle">JP: Temples, shrines, wonder phrases & omiyage culture · KR: Palaces, hiking culture & -(으)려고 하다 intentions</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:75%"></div></div>
+      75% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 12 · Temples & shrines · Nature vocab · Wonder phrases · Omiyage · Recommendations</div>
+      </div>
+    </div>
+
+    <!-- Sightseeing types -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Essential sightseeing vocabulary</div>
+      <div class="section-title">8 must-know sites and what makes each unique</div>
+      <div class="site-grid">
+        <div class="site-card featured">
+          <div class="site-icon">⛩️</div>
+          <div class="site-name">神社</div>
+          <div class="site-rom">jinja</div>
+          <div class="site-en">Shinto shrine</div>
+          <div class="site-note">Dedicated to Shinto deities (kami). Marked by a torii gate (鳥居). Visitors purify hands at the temizuya (手水舎), bow twice, clap twice, pray, bow once. Over 80,000 across Japan.</div>
+        </div>
+        <div class="site-card featured">
+          <div class="site-icon">🛕</div>
+          <div class="site-name">お寺</div>
+          <div class="site-rom">otera</div>
+          <div class="site-en">Buddhist temple</div>
+          <div class="site-note">Buddhist worship sites with a main hall (本堂, hondō). Often have incense burners — waft the smoke toward yourself for good health. Many have stunning garden landscapes and pagodas (五重塔, gojūnotō).</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🏯</div>
+          <div class="site-name">城</div>
+          <div class="site-rom">shiro</div>
+          <div class="site-en">Castle</div>
+          <div class="site-note">Himeji (姫路城), Matsumoto (松本城), and Osaka Castle (大阪城) are the most impressive. Many have original keeps (天守閣, tenshukaku) dating back 400+ years. Stunning in cherry blossom season.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🌸</div>
+          <div class="site-name">公園</div>
+          <div class="site-rom">kōen</div>
+          <div class="site-en">Park</div>
+          <div class="site-note">Japanese parks are immaculately maintained. Ueno, Shinjuku Gyoen, and Maruyama Park are legendary — especially for cherry blossom (花見, hanami) season from late March through April.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🗻</div>
+          <div class="site-name">山</div>
+          <div class="site-rom">yama</div>
+          <div class="site-en">Mountain</div>
+          <div class="site-note">富士山 (Fujisan = Mt. Fuji) is Japan's highest and most iconic. Climbing season is July–August. Other highlights: Japanese Alps, Nikko's mountains, and Yakushima's ancient cedar forests.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🌊</div>
+          <div class="site-name">海岸</div>
+          <div class="site-rom">kaigan</div>
+          <div class="site-en">Coastline / Beach</div>
+          <div class="site-note">Japan has 29,751km of coastline. Okinawa has tropical-grade beaches; the Izu Peninsula offers rugged Pacific cliffs; the Japan Sea coast turns dramatic in winter with crashing waves and snow.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🎋</div>
+          <div class="site-name">庭園</div>
+          <div class="site-rom">teien</div>
+          <div class="site-en">Traditional garden</div>
+          <div class="site-note">The three great gardens of Japan: Kenroku-en (Kanazawa), Kōraku-en (Okayama), and Kairaku-en (Mito). Japanese garden design (造園, zōen) is a centuries-old art form.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🏟️</div>
+          <div class="site-name">博物館 / 美術館</div>
+          <div class="site-rom">hakubutsukan / bijutsukan</div>
+          <div class="site-en">Museum / Art museum</div>
+          <div class="site-note">TeamLab (チームラボ) digital art spaces, the Tokyo National Museum, and Naoshima's contemporary art island are world-class. Many offer audio guides in English.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nature vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Nature vocabulary</div>
+      <div class="section-title">12 nature words — describe what you see and experience</div>
+      <div class="nature-grid">
+        <div class="nature-card">
+          <div class="nature-icon">🌸</div>
+          <div class="nature-native">桜</div>
+          <div class="nature-rom">sakura</div>
+          <div class="nature-en">Cherry blossom</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🍁</div>
+          <div class="nature-native">紅葉</div>
+          <div class="nature-rom">kōyō</div>
+          <div class="nature-en">Autumn leaves</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌊</div>
+          <div class="nature-native">滝</div>
+          <div class="nature-rom">taki</div>
+          <div class="nature-en">Waterfall</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌲</div>
+          <div class="nature-native">森</div>
+          <div class="nature-rom">mori</div>
+          <div class="nature-en">Forest</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🏞️</div>
+          <div class="nature-native">湖</div>
+          <div class="nature-rom">mizuumi</div>
+          <div class="nature-en">Lake</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌅</div>
+          <div class="nature-native">夕日</div>
+          <div class="nature-rom">yūhi</div>
+          <div class="nature-en">Sunset</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌄</div>
+          <div class="nature-native">景色</div>
+          <div class="nature-rom">keshiki</div>
+          <div class="nature-en">Scenery / View</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">❄️</div>
+          <div class="nature-native">雪</div>
+          <div class="nature-rom">yuki</div>
+          <div class="nature-en">Snow</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌺</div>
+          <div class="nature-native">花</div>
+          <div class="nature-rom">hana</div>
+          <div class="nature-en">Flower</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🏝️</div>
+          <div class="nature-native">島</div>
+          <div class="nature-rom">shima</div>
+          <div class="nature-en">Island</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🦌</div>
+          <div class="nature-native">動物</div>
+          <div class="nature-rom">dōbutsu</div>
+          <div class="nature-en">Animal</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌋</div>
+          <div class="nature-native">火山</div>
+          <div class="nature-rom">kazan</div>
+          <div class="nature-en">Volcano</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wonder phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Expressing wonder & awe</div>
+      <div class="section-title">How to react when Japan takes your breath away</div>
+      <p>Japanese has a rich set of exclamations and reactive expressions. Using these spontaneously — not just reciting memorised phrases — signals to locals that you're genuinely engaged with their culture.</p>
+      <div class="wonder-grid">
+        <div class="wonder-card">
+          <div class="wonder-native">きれい！</div>
+          <div class="wonder-rom">kirei!</div>
+          <div class="wonder-en">Beautiful! / Pretty!</div>
+          <div class="wonder-use">For scenery, flowers, views</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">すごい！</div>
+          <div class="wonder-rom">sugoi!</div>
+          <div class="wonder-en">Amazing! / Wow!</div>
+          <div class="wonder-use">The most versatile exclamation</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">感動しました</div>
+          <div class="wonder-rom">kandō shimashita</div>
+          <div class="wonder-en">I was deeply moved</div>
+          <div class="wonder-use">For temples, ceremonies, art</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">壮大ですね</div>
+          <div class="wonder-rom">sōdai desu ne</div>
+          <div class="wonder-en">It's magnificent / Grand</div>
+          <div class="wonder-use">For mountains, castles, vistas</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">最高ですね！</div>
+          <div class="wonder-rom">saikō desu ne!</div>
+          <div class="wonder-en">It's the best!</div>
+          <div class="wonder-use">Enthusiastic approval of anything</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">雰囲気がいいですね</div>
+          <div class="wonder-rom">fun'iki ga ii desu ne</div>
+          <div class="wonder-en">The atmosphere is great</div>
+          <div class="wonder-use">For temple grounds, market streets</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">写真を撮ってもいいですか？</div>
+          <div class="wonder-rom">shashin wo totte mo ii desu ka?</div>
+          <div class="wonder-en">May I take a photo?</div>
+          <div class="wonder-use">Always ask at temples and of people</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">もっとゆっくり見たいです</div>
+          <div class="wonder-rom">motto yukkuri mitai desu</div>
+          <div class="wonder-en">I want to look more slowly</div>
+          <div class="wonder-use">When a tour moves too fast</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendation phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Getting & giving recommendations</div>
+      <div class="section-title">Ask locals where to go — and share what you've found</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🗺️</span>
+          <div>
+            <div class="phrase-native">おすすめの場所はありますか？</div>
+            <div class="phrase-rom">Osusume no basho wa arimasu ka?</div>
+            <div class="phrase-en">Do you have any recommended places?</div>
+            <div class="phrase-note">おすすめ (osusume) = recommendation. 場所 (basho) = place. Swap for: レストラン (restaurant), お土産 (souvenir), 観光スポット (sightseeing spot).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⏱️</span>
+          <div>
+            <div class="phrase-native">どのくらい時間がかかりますか？</div>
+            <div class="phrase-rom">Dono kurai jikan ga kakarimasu ka?</div>
+            <div class="phrase-en">How long does it take?</div>
+            <div class="phrase-note">どのくらい (dono kurai) = how much/how long. 時間がかかる (jikan ga kakaru) = to take time. Essential for planning sightseeing schedules.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎟️</span>
+          <div>
+            <div class="phrase-native">入場料はいくらですか？</div>
+            <div class="phrase-rom">Nyūjōryō wa ikura desu ka?</div>
+            <div class="phrase-en">What is the admission fee?</div>
+            <div class="phrase-note">入場料 (nyūjōryō) = admission/entrance fee. 無料 (muryō) = free. Many temples and shrines have small fees (¥500–1,000). National parks are usually free.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🕐</span>
+          <div>
+            <div class="phrase-native">何時まで開いていますか？</div>
+            <div class="phrase-rom">Nan-ji made aite imasu ka?</div>
+            <div class="phrase-en">Until what time is it open?</div>
+            <div class="phrase-note">まで (made) = until. 開いている (aite iru) = is open. Many temples close at 5pm — always check before making the journey.</div>
+          </div>
+        </div>
+        <div class="phrase-card amber">
+          <span class="phrase-icon">💬</span>
+          <div>
+            <div class="phrase-native">ここは本当によかったです！</div>
+            <div class="phrase-rom">Koko wa hontō ni yokatta desu!</div>
+            <div class="phrase-en">This place was really wonderful!</div>
+            <div class="phrase-note">よかった (yokatta) = was good (past tense of いい). 本当に (hontō ni) = truly/really. Say this to a local guide or host — it means the world to them.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive sightseeing planner JP -->
+    <div class="section">
+      <div class="section-label">Interactive · Plan your sightseeing day</div>
+      <div class="section-title">Choose a site and activity — get the Japanese phrase to use</div>
+      <div class="planner">
+        <div class="planner-header">
+          <span>🗾 観光プランナー — Sightseeing planner</span>
+        </div>
+        <div class="planner-body">
+          <div class="planner-label">Choose a site type</div>
+          <div class="planner-btns" id="jp-site-btns">
+            <button class="planner-btn" onclick="jpPlan(this,'site','神社','jinja','shrine')">⛩️ 神社 shrine</button>
+            <button class="planner-btn" onclick="jpPlan(this,'site','お寺','otera','temple')">🛕 お寺 temple</button>
+            <button class="planner-btn" onclick="jpPlan(this,'site','城','shiro','castle')">🏯 城 castle</button>
+            <button class="planner-btn" onclick="jpPlan(this,'site','庭園','teien','garden')">🎋 庭園 garden</button>
+            <button class="planner-btn" onclick="jpPlan(this,'site','博物館','hakubutsukan','museum')">🏛️ 博物館 museum</button>
+          </div>
+          <div class="planner-label" style="margin-top:10px">Choose an activity</div>
+          <div class="planner-btns" id="jp-act-btns">
+            <button class="planner-btn" onclick="jpPlan(this,'act','に行きたいです','ni ikitai desu','I want to go to')">I want to go</button>
+            <button class="planner-btn" onclick="jpPlan(this,'act','はどこですか？','wa doko desu ka?','Where is')">Find the location</button>
+            <button class="planner-btn" onclick="jpPlan(this,'act','の入場料はいくらですか？','no nyūjōryō wa ikura desu ka?','How much is entry to')">Check admission</button>
+            <button class="planner-btn" onclick="jpPlan(this,'act','はとてもよかったです','wa totemo yokatta desu','was really wonderful')">Share reaction</button>
+          </div>
+          <div class="planner-result" id="jp-planner-result">
+            <span class="planner-empty">Select a site and activity to build your phrase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Omiyage section -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · お土産 (omiyage) — Japan's gift-giving tradition</div>
+      <div class="section-title">The art of bringing back regional souvenirs</div>
+      <p>Omiyage (お土産) is far more than souvenir shopping — it's a deeply ingrained social obligation. When you visit a new place in Japan, you're expected to bring back regional food gifts for your colleagues, family, or hosts. Knowing what's special to each region is a cultural badge of honour.</p>
+      <div class="omiyage-grid">
+        <div class="omiyage-card">
+          <div class="omiyage-icon">🍪</div>
+          <div class="omiyage-native">八つ橋</div>
+          <div class="omiyage-rom">yatsuhashi</div>
+          <div class="omiyage-region">📍 Kyoto</div>
+          <div class="omiyage-note">Cinnamon-flavoured rice cakes — Kyoto's most iconic souvenir. Available in raw (生, nama) or baked form with various fillings.</div>
+        </div>
+        <div class="omiyage-card">
+          <div class="omiyage-icon">🍫</div>
+          <div class="omiyage-native">白い恋人</div>
+          <div class="omiyage-rom">Shiroi Koibito</div>
+          <div class="omiyage-region">📍 Hokkaido (Sapporo)</div>
+          <div class="omiyage-note">White chocolate cookies sandwiched between langue de chat wafers. Japan's most famous regional confection — always sells out.</div>
+        </div>
+        <div class="omiyage-card">
+          <div class="omiyage-icon">🥮</div>
+          <div class="omiyage-native">もみじ饅頭</div>
+          <div class="omiyage-rom">momiji manjū</div>
+          <div class="omiyage-region">📍 Hiroshima (Miyajima)</div>
+          <div class="omiyage-note">Maple leaf-shaped cakes filled with red bean paste. Hiroshima's signature sweet — named after the maple trees at Miyajima.</div>
+        </div>
+        <div class="omiyage-card">
+          <div class="omiyage-icon">🍢</div>
+          <div class="omiyage-native">東京ばな奈</div>
+          <div class="omiyage-rom">Tokyo Banana</div>
+          <div class="omiyage-region">📍 Tokyo</div>
+          <div class="omiyage-note">Banana-flavoured cream-filled sponge cakes in the shape of a banana. The quintessential Tokyo station souvenir — bought by millions annually.</div>
+        </div>
+        <div class="omiyage-card">
+          <div class="omiyage-icon">🦐</div>
+          <div class="omiyage-native">えびせんべい</div>
+          <div class="omiyage-rom">ebi senbei</div>
+          <div class="omiyage-region">📍 Nagoya (Ise)</div>
+          <div class="omiyage-note">Shrimp-flavoured rice crackers. A savoury classic with origins along the Pacific coast. Beautifully packaged and beloved across Japan.</div>
+        </div>
+        <div class="omiyage-card">
+          <div class="omiyage-icon">🍬</div>
+          <div class="omiyage-native">ちんすこう</div>
+          <div class="omiyage-rom">chinsukō</div>
+          <div class="omiyage-region">📍 Okinawa</div>
+          <div class="omiyage-note">Traditional Ryukyuan shortbread cookies — lard-based, crumbly, and subtly sweet. Okinawa's most beloved confection, centuries old.</div>
+        </div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎁</span>
+          <div>
+            <div class="phrase-native">これはお土産です。どうぞ。</div>
+            <div class="phrase-rom">Kore wa omiyage desu. Dōzo.</div>
+            <div class="phrase-en">This is a souvenir for you. Please accept it.</div>
+            <div class="phrase-note">どうぞ (dōzo) = please (go ahead). Use both hands when presenting a gift — a sign of respect.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🗾</span>
+          <div>
+            <div class="phrase-native">〜の名物です</div>
+            <div class="phrase-rom">[place] no meibutsu desu</div>
+            <div class="phrase-en">This is a famous specialty from [place]</div>
+            <div class="phrase-note">名物 (meibutsu) = famous local specialty. e.g. 京都の名物です = This is a Kyoto specialty. Always explain where your omiyage is from.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Omiyage etiquette:</strong> Never give one item per person — buy enough for the whole group. Present gifts with both hands and a small bow. The recipient typically doesn't open the gift immediately in front of you — this is considered polite. The packaging (包装, hōsō) matters as much as the contents in Japan.
+      </div>
+    </div>
+
+    <!-- Culture note JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌸</span>
+        <div class="culture-text">
+          <strong>花見 (hanami) — cherry blossom viewing</strong><br/>
+          Hanami (花見, "flower viewing") is one of Japan's most joyful cultural traditions. Every spring, when cherry blossoms bloom for just 1–2 weeks, entire parks fill with people sitting under the trees eating, drinking, and celebrating life's fleeting beauty. The concept of mono no aware (物の哀れ) — the poignant appreciation of impermanence — is at the heart of why the Japanese attach such meaning to a flower that blooms and falls in days. Blue tarps go down weeks in advance to reserve the best spots in popular parks. Joining a hanami picnic with locals, sharing food and drinks under falling petals, is one of the most memorable experiences Japan offers.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 12 Japanese — sightseeing & omiyage</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the difference between a 神社 (jinja) and an お寺 (otera)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">神社 is older than お寺</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">神社 is a Shinto shrine · お寺 is a Buddhist temple</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">神社 is free · お寺 charges admission</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">There is no difference — they are the same</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask "Do you have any recommended places?" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">どこがいいですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">おすすめの場所はありますか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">場所はどこですか？</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">場所が好きですか？</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which city is 八つ橋 (yatsuhashi) associated with?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Tokyo</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Hokkaido</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Kyoto</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Hiroshima</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 感動しました (kandō shimashita) express?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm hungry</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm confused</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">I was deeply moved</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I want to take a photo</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 12 · Palaces · Hiking culture · Nature vocab · Wonder phrases · -(으)려고 하다</div>
+      </div>
+    </div>
+
+    <!-- Sightseeing types Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Essential Korean sightseeing</div>
+      <div class="section-title">8 must-know sites and cultural landmarks</div>
+      <div class="site-grid">
+        <div class="site-card featured">
+          <div class="site-icon">🏯</div>
+          <div class="site-name">경복궁</div>
+          <div class="site-rom">Gyeongbokgung</div>
+          <div class="site-en">Gyeongbok Palace — Seoul's grandest</div>
+          <div class="site-note">Built in 1395, Korea's most majestic Joseon-dynasty palace. The changing of the guard (수문장 교대식) ceremony happens daily. Wear hanbok for free entry. Stunning in autumn and winter snow.</div>
+        </div>
+        <div class="site-card featured">
+          <div class="site-icon">🏙️</div>
+          <div class="site-name">북촌 한옥마을</div>
+          <div class="site-rom">Bukchon Hanok Village</div>
+          <div class="site-en">Traditional hanok village — Seoul</div>
+          <div class="site-note">A hillside neighbourhood of 900+ preserved traditional Korean houses. One of Seoul's most photographed areas. Best visited early morning before crowds arrive. Quiet neighbourhood — be respectful.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🗻</div>
+          <div class="site-name">설악산</div>
+          <div class="site-rom">Seoraksan</div>
+          <div class="site-en">Seorak Mountain National Park</div>
+          <div class="site-note">Korea's most dramatic mountain landscape — granite peaks, Buddhist temples, and cable cars. Spectacular in autumn when foliage turns crimson and gold. Near Sokcho on the east coast.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🌋</div>
+          <div class="site-name">한라산</div>
+          <div class="site-rom">Hallasan</div>
+          <div class="site-en">Halla Mountain — Jeju Island</div>
+          <div class="site-note">Korea's highest peak (1,947m) at the centre of Jeju Island. A UNESCO World Heritage site. Several hiking trails — the Seongpanak trail is the most popular full-day route to the summit crater lake.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🌊</div>
+          <div class="site-name">해운대</div>
+          <div class="site-rom">Haeundae</div>
+          <div class="site-en">Haeundae Beach — Busan</div>
+          <div class="site-note">Korea's most famous beach — long white sand, modern hotels, and a lively promenade. Busan's beach culture peaks in summer. The Haeundae sea festival draws millions.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🛕</div>
+          <div class="site-name">불국사</div>
+          <div class="site-rom">Bulguksa</div>
+          <div class="site-en">Bulguk Temple — Gyeongju</div>
+          <div class="site-note">UNESCO-listed Buddhist temple from 528 AD. One of Korea's finest examples of Silla-era architecture. Nearby Seokguram Grotto houses a breathtaking granite Buddha. Don't miss the lantern festival in spring.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🎭</div>
+          <div class="site-name">인사동</div>
+          <div class="site-rom">Insadong</div>
+          <div class="site-en">Insadong — Seoul's cultural street</div>
+          <div class="site-note">Traditional arts, galleries, teahouses, and craft shops. A wonderful contrast to Myeongdong's commercialism. Try bungeo-ppang (fish-shaped pastry) from street stalls while browsing galleries.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-icon">🏝️</div>
+          <div class="site-name">제주도</div>
+          <div class="site-rom">Jejudo</div>
+          <div class="site-en">Jeju Island — Korea's Hawaii</div>
+          <div class="site-note">Volcanic island with tangerine orchards, lava tube caves, dramatic coastlines, and haenyeo (해녀) female divers. A UNESCO triple crown site. 1-hour flight from Seoul.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nature vocabulary Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Nature vocabulary in Korean</div>
+      <div class="section-title">12 nature words — describe Korea's dramatic landscapes</div>
+      <div class="nature-grid">
+        <div class="nature-card">
+          <div class="nature-icon">🌸</div>
+          <div class="nature-native">벚꽃</div>
+          <div class="nature-rom">beotkkot</div>
+          <div class="nature-en">Cherry blossom</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🍁</div>
+          <div class="nature-native">단풍</div>
+          <div class="nature-rom">danpung</div>
+          <div class="nature-en">Autumn foliage</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌊</div>
+          <div class="nature-native">폭포</div>
+          <div class="nature-rom">pokpo</div>
+          <div class="nature-en">Waterfall</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌲</div>
+          <div class="nature-native">숲</div>
+          <div class="nature-rom">sup</div>
+          <div class="nature-en">Forest</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🏞️</div>
+          <div class="nature-native">호수</div>
+          <div class="nature-rom">hosu</div>
+          <div class="nature-en">Lake</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌅</div>
+          <div class="nature-native">노을</div>
+          <div class="nature-rom">noeul</div>
+          <div class="nature-en">Sunset / Glow</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌄</div>
+          <div class="nature-native">경치</div>
+          <div class="nature-rom">gyeongchi</div>
+          <div class="nature-en">Scenery / View</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">❄️</div>
+          <div class="nature-native">눈</div>
+          <div class="nature-rom">nun</div>
+          <div class="nature-en">Snow</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🏔️</div>
+          <div class="nature-native">등산로</div>
+          <div class="nature-rom">deungsanno</div>
+          <div class="nature-en">Hiking trail</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🏝️</div>
+          <div class="nature-native">섬</div>
+          <div class="nature-rom">seom</div>
+          <div class="nature-en">Island</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🦅</div>
+          <div class="nature-native">야생동물</div>
+          <div class="nature-rom">yasaengdongmul</div>
+          <div class="nature-en">Wildlife</div>
+        </div>
+        <div class="nature-card">
+          <div class="nature-icon">🌋</div>
+          <div class="nature-native">화산</div>
+          <div class="nature-rom">hwasan</div>
+          <div class="nature-en">Volcano</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hiking culture -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · 등산 (deungsan) — Korea's hiking culture</div>
+      <div class="section-title">Hiking is a national passion — here's the vocabulary you need</div>
+      <p>Koreans are among the world's most passionate hikers. On weekends, mountains like Bukhansan (just north of Seoul) draw tens of thousands of climbers. The hiking scene has its own fashion, etiquette, and vocabulary.</p>
+      <div class="hike-grid">
+        <div class="hike-card">
+          <span class="hike-level">🥾</span>
+          <div class="hike-info">
+            <div class="hike-name">등산 (deungsan) — mountain climbing / hiking</div>
+            <div class="hike-rom">deungsan = ascending a mountain</div>
+            <div class="hike-desc">The general word for hiking in Korea. 등산객 (deungsangaek) = hiker. 등산복 (deungsanbok) = hiking gear/clothes — Koreans take their hiking fashion seriously (often head-to-toe branded gear).</div>
+            <div class="hike-example">등산 좋아해요? — Do you like hiking?</div>
+          </div>
+        </div>
+        <div class="hike-card">
+          <span class="hike-level">🗺️</span>
+          <div class="hike-info">
+            <div class="hike-name">등산로 (deungsanno) — hiking trail</div>
+            <div class="hike-rom">deungsanno = mountain path</div>
+            <div class="hike-desc">Trail difficulty markers: 쉬운 코스 (swiun koseu = easy trail), 중간 코스 (junggan koseu = medium), 어려운 코스 (eoryeoun koseu = difficult). Most national parks have excellent trail maps in English.</div>
+            <div class="hike-example">이 등산로는 어려워요? — Is this trail difficult?</div>
+          </div>
+        </div>
+        <div class="hike-card">
+          <span class="hike-level">⛰️</span>
+          <div class="hike-info">
+            <div class="hike-name">정상 (jeongsang) — summit</div>
+            <div class="hike-rom">jeongsang = mountaintop</div>
+            <div class="hike-desc">Reaching the summit is a huge moment in Korean hiking culture. Hikers photograph themselves at the summit marker stone (정상석). Sharing summit photos is a beloved social media tradition.</div>
+            <div class="hike-example">정상까지 얼마나 걸려요? — How long to the summit?</div>
+          </div>
+        </div>
+        <div class="hike-card">
+          <span class="hike-level">🍜</span>
+          <div class="hike-info">
+            <div class="hike-name">산 위의 라면 (san wie ramen) — summit ramen</div>
+            <div class="hike-rom">literally: ramen above the mountain</div>
+            <div class="hike-desc">A beloved Korean hiking ritual — eating instant ramen at the summit or at a mountain hut (산장, sanjang). The altitude, fresh air, and achievement make it taste like the best meal of your life.</div>
+            <div class="hike-example">정상에서 라면 먹어요! — We eat ramen at the summit!</div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Hiking phrases:</strong> 조심하세요 (josimhaseyo = be careful) · 천천히 가세요 (cheoncheonhi gaseyo = go slowly) · 다 왔어요! (da wasseoyo = we're almost there!) · 경치가 정말 아름다워요 (gyeongchiga jeongmal areumdaweoyo = the view is truly beautiful).
+      </div>
+    </div>
+
+    <!-- Wonder phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Expressing wonder in Korean</div>
+      <div class="section-title">React authentically to Korea's beauty</div>
+      <div class="wonder-grid">
+        <div class="wonder-card">
+          <div class="wonder-native">아름다워요!</div>
+          <div class="wonder-rom">areumdaweoyo!</div>
+          <div class="wonder-en">It's beautiful!</div>
+          <div class="wonder-use">For scenery, nature, architecture</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">대박이에요!</div>
+          <div class="wonder-rom">daebagieyo!</div>
+          <div class="wonder-en">Amazing! / Jackpot! (slang)</div>
+          <div class="wonder-use">The most enthusiastic Korean exclamation</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">진짜 멋있어요!</div>
+          <div class="wonder-rom">jinjja meositsseoyo!</div>
+          <div class="wonder-en">It's really awesome!</div>
+          <div class="wonder-use">진짜 = really/truly (intensifier)</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">감동받았어요</div>
+          <div class="wonder-rom">gamdongrepasseoyo</div>
+          <div class="wonder-en">I was deeply moved</div>
+          <div class="wonder-use">For palaces, ceremonies, art</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">경치가 끝내줘요!</div>
+          <div class="wonder-rom">gyeongchiga kkeunnaejweoyo!</div>
+          <div class="wonder-en">The view is incredible!</div>
+          <div class="wonder-use">끝내주다 = to be stunning (colloquial)</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">분위기가 너무 좋아요</div>
+          <div class="wonder-rom">bunwigiga neomu joayo</div>
+          <div class="wonder-en">The atmosphere is so good</div>
+          <div class="wonder-use">분위기 = atmosphere/vibe</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">사진 찍어도 돼요?</div>
+          <div class="wonder-rom">sajin jjigeodo dwaeyo?</div>
+          <div class="wonder-en">May I take a photo?</div>
+          <div class="wonder-use">Always ask at palaces and temples</div>
+        </div>
+        <div class="wonder-card">
+          <div class="wonder-native">여기 또 오고 싶어요</div>
+          <div class="wonder-rom">yeogi tto ogo sipeoyo</div>
+          <div class="wonder-en">I want to come here again</div>
+          <div class="wonder-use">The warmest compliment to a place</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grammar — -(으)려고 하다 -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Grammar — -(으)려고 하다</div>
+      <div class="section-title">"I'm planning to / I intend to ~" — expressing intentions naturally</div>
+      <p>-(으)려고 하다 expresses your intention or plan to do something. It's one of the most natural ways to talk about future plans in Korean — more nuanced than simply using the future tense, because it implies you've thought about it and decided.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>The rule:</strong> Verb stem + 으려고 하다 (after a consonant) or + 려고 하다 (after a vowel). e.g. 먹다 → 먹으려고 해요 (I'm planning to eat), 가다 → 가려고 해요 (I'm planning to go), 보다 → 보려고 해요 (I'm planning to see). The 하다 conjugates normally for tense.
+      </div>
+
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">Verb stem</span><span class="formula-eq">+</span>
+          <span class="formula-piece">(으)려고 하다</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">I'm planning to / intending to ~</span>
+        </div>
+        <div class="grammar-result">경복궁에 가려고 해요.</div>
+        <div class="grammar-rom">Gyeongbokgunge garyeogo haeyo.</div>
+        <div class="grammar-en">I'm planning to go to Gyeongbok Palace.</div>
+        <div class="grammar-note">가다 → 가려고 해요. After a vowel-ending stem — no 으 needed.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">한라산을 등산하려고 해요.</div>
+        <div class="grammar-rom">Halrasaneul deungsanharyeogo haeyo.</div>
+        <div class="grammar-en">I'm planning to hike Hallasan.</div>
+        <div class="grammar-note">등산하다 → 등산하려고 해요. 하다 verbs: just add 려고 after 하.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">사진을 많이 찍으려고 해요.</div>
+        <div class="grammar-rom">Sajineul mani jjigeoryeogo haeyo.</div>
+        <div class="grammar-en">I'm planning to take a lot of photos.</div>
+        <div class="grammar-note">찍다 → 찍으려고 해요. After a consonant — add 으려고.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">내일 인사동에서 기념품을 사려고 해요.</div>
+        <div class="grammar-rom">Naeil Insadongeseo ginyeompumeul saryeogo haeyo.</div>
+        <div class="grammar-en">Tomorrow I'm planning to buy souvenirs at Insadong.</div>
+        <div class="grammar-note">사다 → 사려고 해요. A full practical sentence — notice how naturally it uses everything from previous weeks: 내일 (tomorrow), 에서 (location particle), 을 (object marker).</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">10 natural -(으)려고 해요 sentences for travellers:</p>
+      <div class="intent-grid">
+        <div class="intent-card">
+          <div class="intent-native">한복을 입으려고 해요</div>
+          <div class="intent-rom">hanboguel ibeuryeogo haeyo</div>
+          <div class="intent-en">I'm planning to wear hanbok</div>
+          <div class="intent-note">Free entry to palaces in hanbok!</div>
+        </div>
+        <div class="intent-card">
+          <div class="intent-native">야경을 보려고 해요</div>
+          <div class="intent-rom">yagyeongeul boryeogo haeyo</div>
+          <div class="intent-en">I'm planning to see the night view</div>
+          <div class="intent-note">야경 = night scenery</div>
+        </div>
+        <div class="intent-card">
+          <div class="intent-native">찜질방에 가려고 해요</div>
+          <div class="intent-rom">jjimjilbange garyeogo haeyo</div>
+          <div class="intent-en">I'm planning to go to a jjimjilbang</div>
+          <div class="intent-note">From Week 11 vocabulary!</div>
+        </div>
+        <div class="intent-card">
+          <div class="intent-native">정상에 올라가려고 해요</div>
+          <div class="intent-rom">jeongsange ollagaryeogo haeyo</div>
+          <div class="intent-en">I'm planning to climb to the summit</div>
+          <div class="intent-note">올라가다 = to go up / climb</div>
+        </div>
+        <div class="intent-card">
+          <div class="intent-native">케이블카를 타려고 해요</div>
+          <div class="intent-rom">keibeulkareul taryeogo haeyo</div>
+          <div class="intent-en">I'm planning to take the cable car</div>
+          <div class="intent-note">타다 = to ride/take</div>
+        </div>
+        <div class="intent-card">
+          <div class="intent-native">일출을 보려고 해요</div>
+          <div class="intent-rom">ilchureul boryeogo haeyo</div>
+          <div class="intent-en">I'm planning to watch the sunrise</div>
+          <div class="intent-note">일출 = sunrise — popular at Jeju!</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral" style="margin-top:12px">
+        <strong>-(으)려고 하다 vs -(을)ㄹ 수 있다 vs -(아/어)서 — keeping your grammar toolkit straight:</strong>
+        가려고 해요 = "I'm planning to go" (intention). 갈 수 있어요 = "I can go" (ability). 가서 해요 = "I go and then do" (sequence). Three different meanings — the right one changes the whole sentence!
+      </div>
+    </div>
+
+    <!-- Interactive sightseeing planner KR -->
+    <div class="section">
+      <div class="section-label">Interactive · Plan your Korean sightseeing day</div>
+      <div class="section-title">Choose a destination and intention — build the Korean sentence</div>
+      <div class="planner">
+        <div class="planner-header">
+          <span>🗺️ 관광 계획 — Sightseeing planner</span>
+        </div>
+        <div class="planner-body">
+          <div class="planner-label">Choose a destination</div>
+          <div class="planner-btns" id="kr-site-btns">
+            <button class="planner-btn" onclick="krPlan(this,'site','경복궁','Gyeongbokgung','Gyeongbok Palace')">🏯 경복궁</button>
+            <button class="planner-btn" onclick="krPlan(this,'site','북촌','Bukchon','Bukchon Village')">🏘️ 북촌</button>
+            <button class="planner-btn" onclick="krPlan(this,'site','설악산','Seoraksan','Seoraksan')">🗻 설악산</button>
+            <button class="planner-btn" onclick="krPlan(this,'site','인사동','Insadong','Insadong')">🎭 인사동</button>
+            <button class="planner-btn" onclick="krPlan(this,'site','제주도','Jejudo','Jeju Island')">🏝️ 제주도</button>
+          </div>
+          <div class="planner-label" style="margin-top:10px">Choose an intention</div>
+          <div class="planner-btns" id="kr-act-btns">
+            <button class="planner-btn" onclick="krPlan(this,'act','에 가려고 해요','e garyeogo haeyo','I\'m planning to go to')">Planning to go</button>
+            <button class="planner-btn" onclick="krPlan(this,'act','이 어디예요?','i eodiyeyo?','Where is')">Find location</button>
+            <button class="planner-btn" onclick="krPlan(this,'act','에 가서 사진 찍으려고 해요','e gaseo sajin jjigeoryeogo haeyo','I\'m going to ~ to take photos')">Go & take photos</button>
+            <button class="planner-btn" onclick="krPlan(this,'act','이 정말 아름다웠어요!','i jeongmal areumdawosseoyo!','was really beautiful!')">Share reaction</button>
+          </div>
+          <div class="planner-result" id="kr-planner-result">
+            <span class="planner-empty">Select a destination and intention to build your sentence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">👘</span>
+        <div class="culture-text">
+          <strong>한복 (hanbok) — Korea's traditional clothing</strong><br/>
+          Hanbok (한복) is Korea's traditional clothing, characterised by vibrant colours, graceful silhouettes, and natural fabrics. Women's hanbok features a short jacket (저고리, jeogori) and a full skirt (치마, chima); men's typically has baggy trousers (바지, baji) and a jacket. Today, wearing hanbok at palaces like Gyeongbokgung is hugely popular — many rental shops (한복 대여, hanbok daeyeo) surround the palace gates and offer day rentals for ₩15,000–30,000. Wearing hanbok grants free entry to most royal palaces in Seoul and creates instantly memorable photos. It's one of the best immersive cultural experiences Korea offers visitors of any age.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 12 Korean — sightseeing & -(으)려고 하다</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I'm planning to go to Jeju Island" using -(으)려고 하다?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">제주도에 갈 수 있어요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">제주도에 가려고 해요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">제주도에 가서 해요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">제주도에 가면 해요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is 등산 (deungsan)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Surfing</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Mountain hiking / climbing</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Cycling</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Swimming</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 대박이에요! mean in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm hungry</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It's expensive</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">It's amazing! / Incredible!</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It's beautiful</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct -(으)려고 하다 form of 찍다 (to take a photo)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">찍려고 해요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">찍으려고 해요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">찍어려고 해요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">찍고려고 해요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — sightseeing in both countries</div>
+    <table>
+      <tr><th>Topic</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Main site type</td><td>神社 shrine · お寺 temple · 城 castle</td><td>궁 palace · 사 temple · 한옥마을 village</td></tr>
+      <tr><td style="font-size:13px">Cherry blossom</td><td>桜 (sakura)</td><td>벚꽃 (beotkkot)</td></tr>
+      <tr><td style="font-size:13px">Autumn leaves</td><td>紅葉 (kōyō)</td><td>단풍 (danpung)</td></tr>
+      <tr><td style="font-size:13px">It's beautiful!</td><td>きれい！(kirei!)</td><td>아름다워요! (areumdaweoyo!)</td></tr>
+      <tr><td style="font-size:13px">I was deeply moved</td><td>感動しました (kandō shimashita)</td><td>감동받았어요 (gamdongrepasseoyo)</td></tr>
+      <tr><td style="font-size:13px">Recommended places?</td><td>おすすめの場所はありますか？</td><td>추천할 만한 곳 있어요?</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>Wonder phrases + omiyage culture</td><td>-(으)려고 하다 — "planning to ~"</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 13 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 13</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Work & study — talking about your job, studying Japanese, formal email phrases, and workplace vocabulary. Plus ～なければならない: "must / have to do" — expressing obligations.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Work, study & Korean pop culture — talking about your job and studies, K-drama and K-pop vocabulary, and -(아/어)야 하다: "must / have to" — expressing necessity and duty.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 12 complete · Click <a href="Week13.J&K.html">here</a> when you're ready for Week 13 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP sightseeing planner */
+let jpSite = null, jpSiteRom = null, jpAct = null, jpActRom = null, jpActEn = null;
+function jpPlan(btn, type, native, rom, en) {
+  const groupId = type === 'site' ? 'jp-site-btns' : 'jp-act-btns';
+  document.getElementById(groupId).querySelectorAll('.planner-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (type === 'site') { jpSite = native; jpSiteRom = rom; }
+  else { jpAct = native; jpActRom = rom; jpActEn = en; }
+  updateJpPlanner();
+}
+function updateJpPlanner() {
+  const el = document.getElementById('jp-planner-result');
+  if (!jpSite || !jpAct) {
+    el.innerHTML = '<span class="planner-empty">Select a site and activity to build your phrase</span>';
+    return;
+  }
+  const phrase = jpSite + jpAct;
+  const rom = jpSiteRom + ' ' + jpActRom;
+  const en = jpActEn + ' the ' + jpSite;
+  el.innerHTML = `
+    <div class="planner-result-title">Your phrase:</div>
+    <div class="planner-phrase">${phrase}</div>
+    <div class="planner-rom">${rom}</div>
+    <div class="planner-en">${en}</div>
+  `;
+}
+
+/* KR sightseeing planner */
+let krSite = null, krSiteRom = null, krSiteEn = null, krAct = null, krActRom = null, krActEn = null;
+function krPlan(btn, type, native, rom, en) {
+  const groupId = type === 'site' ? 'kr-site-btns' : 'kr-act-btns';
+  document.getElementById(groupId).querySelectorAll('.planner-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (type === 'site') { krSite = native; krSiteRom = rom; krSiteEn = en; }
+  else { krAct = native; krActRom = rom; krActEn = en; }
+  updateKrPlanner();
+}
+function updateKrPlanner() {
+  const el = document.getElementById('kr-planner-result');
+  if (!krSite || !krAct) {
+    el.innerHTML = '<span class="planner-empty">Select a destination and intention to build your sentence</span>';
+    return;
+  }
+  const phrase = krSite + krAct;
+  const rom = krSiteRom + ' ' + krActRom;
+  const en = krActEn.replace("~", krSiteEn);
+  el.innerHTML = `
+    <div class="planner-result-title">Your phrase:</div>
+    <div class="planner-phrase">${phrase}</div>
+    <div class="planner-rom">${rom}</div>
+    <div class="planner-en">${en}</div>
+  `;
+}
+</script>
+</body>
+</html>

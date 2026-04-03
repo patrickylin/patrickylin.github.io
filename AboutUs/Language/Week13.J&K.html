@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 13 — Japanese & Korean: Work, Study & Pop Culture</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Job vocab grid */
+  .job-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .job-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .job-icon { font-size: 22px; margin-bottom: 4px; }
+  .job-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .job-rom { font-size: 11px; color: #888; }
+  .job-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+
+  /* Workplace phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.blue { background: #f0f5fc; border-color: #b8d4f0; }
+  .phrase-card.purple { background: #f5f0fd; border-color: #c8b8f0; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Email phrases */
+  .email-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; overflow: hidden; margin-top: 12px; }
+  .email-header { background: #1a1a18; color: #fff; padding: 10px 14px; font-size: 12px; display: flex; gap: 10px; }
+  .email-field { opacity: 0.7; }
+  .email-body { padding: 14px; }
+  .email-line { font-size: 14px; color: #1a1a18; margin-bottom: 6px; padding: 4px 0; border-bottom: 0.5px solid #f5f5f5; display: flex; align-items: flex-start; gap: 12px; }
+  .email-line:last-child { border-bottom: none; margin-bottom: 0; }
+  .email-jp { font-size: 15px; flex: 1; }
+  .email-rom { font-size: 11px; color: #888; }
+  .email-en { font-size: 11px; color: #555; }
+
+  /* Obligation grammar */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Obligation table */
+  .oblig-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .oblig-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .oblig-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .oblig-table tr:last-child td { border-bottom: none; }
+  .oblig-dict { font-size: 16px; color: #1a1a18; display: block; }
+  .oblig-form { font-size: 16px; color: #185FA5; font-weight: 500; display: block; margin-top: 2px; }
+  .oblig-rom { font-size: 11px; color: #888; display: block; }
+  .oblig-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; display: block; }
+
+  /* Pop culture cards */
+  .pop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .pop-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 14px; }
+  .pop-card.kpop { background: #f5f0fd; border-color: #c8b8f0; }
+  .pop-card.kdrama { background: #f0f5fc; border-color: #b8d4f0; }
+  .pop-icon { font-size: 26px; margin-bottom: 5px; }
+  .pop-native { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .pop-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .pop-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 5px; }
+  .pop-note { font-size: 12px; color: #666; line-height: 1.6; }
+
+  /* Interactive email builder / obligation builder */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+  .builder-body { padding: 14px; }
+  .builder-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .builder-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .builder-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .builder-btn:hover { background: #f0f0ee; }
+  .builder-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .builder-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 80px; }
+  .builder-phrase { font-size: 19px; color: #1a1a18; margin-bottom: 3px; }
+  .builder-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .builder-en { font-size: 13px; color: #333; font-weight: 500; }
+  .builder-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Vocab pairing cards for must/have to */
+  .must-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .must-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .must-card.pos { background: #f0f8f5; border-color: #a8ddc5; }
+  .must-card.neg { background: #fdf0ed; border-color: #f5c4b0; }
+  .must-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .must-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .must-en { font-size: 13px; color: #333; font-weight: 500; }
+  .must-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .pop-grid, .must-grid, .two-col { grid-template-columns: 1fr; }
+    .job-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 13 of 16</span>
+      <h1>Work, Study & Pop Culture</h1>
+      <div class="subtitle">JP: Workplace vocab, formal email phrases & 〜なければならない · KR: Work talk, K-pop/K-drama vocabulary & -(아/어)야 하다</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:81%"></div></div>
+      81% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 13 · Job vocabulary · Workplace phrases · Formal email · 〜なければならない</div>
+      </div>
+    </div>
+
+    <!-- Job vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Job & study vocabulary</div>
+      <div class="section-title">18 occupations and study-related words</div>
+      <div class="job-grid">
+        <div class="job-card">
+          <div class="job-icon">💼</div>
+          <div class="job-native">会社員</div>
+          <div class="job-rom">kaishain</div>
+          <div class="job-en">Office worker</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">💻</div>
+          <div class="job-native">エンジニア</div>
+          <div class="job-rom">enjinia</div>
+          <div class="job-en">Engineer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📊</div>
+          <div class="job-native">営業</div>
+          <div class="job-rom">eigyō</div>
+          <div class="job-en">Sales</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🎨</div>
+          <div class="job-native">デザイナー</div>
+          <div class="job-rom">dezainā</div>
+          <div class="job-en">Designer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📚</div>
+          <div class="job-native">教師</div>
+          <div class="job-rom">kyōshi</div>
+          <div class="job-en">Teacher</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🏥</div>
+          <div class="job-native">医者</div>
+          <div class="job-rom">isha</div>
+          <div class="job-en">Doctor</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">⚖️</div>
+          <div class="job-native">弁護士</div>
+          <div class="job-rom">bengoshi</div>
+          <div class="job-en">Lawyer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🍳</div>
+          <div class="job-native">料理人</div>
+          <div class="job-rom">ryōrinin</div>
+          <div class="job-en">Chef / Cook</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🎓</div>
+          <div class="job-native">学生</div>
+          <div class="job-rom">gakusei</div>
+          <div class="job-en">Student</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🏢</div>
+          <div class="job-native">会社</div>
+          <div class="job-rom">kaisha</div>
+          <div class="job-en">Company</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">👔</div>
+          <div class="job-native">上司</div>
+          <div class="job-rom">jōshi</div>
+          <div class="job-en">Boss / Superior</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🤝</div>
+          <div class="job-native">同僚</div>
+          <div class="job-rom">dōryō</div>
+          <div class="job-en">Colleague</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📝</div>
+          <div class="job-native">会議</div>
+          <div class="job-rom">kaigi</div>
+          <div class="job-en">Meeting</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📅</div>
+          <div class="job-native">締め切り</div>
+          <div class="job-rom">shimekiri</div>
+          <div class="job-en">Deadline</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🏖️</div>
+          <div class="job-native">休暇</div>
+          <div class="job-rom">kyūka</div>
+          <div class="job-en">Holiday / Leave</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🌙</div>
+          <div class="job-native">残業</div>
+          <div class="job-rom">zangyō</div>
+          <div class="job-en">Overtime work</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📖</div>
+          <div class="job-native">勉強</div>
+          <div class="job-rom">benkyō</div>
+          <div class="job-en">Study</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🎓</div>
+          <div class="job-native">大学</div>
+          <div class="job-rom">daigaku</div>
+          <div class="job-en">University</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workplace phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Workplace & study phrases</div>
+      <div class="section-title">Talking about work and study naturally in Japanese</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏢</span>
+          <div>
+            <div class="phrase-native">〜の仕事をしています</div>
+            <div class="phrase-rom">[field]-no shigoto wo shite imasu</div>
+            <div class="phrase-en">I work in [field]</div>
+            <div class="phrase-note">仕事 (shigoto) = work/job. e.g. IT の仕事をしています = I work in IT. Use this alongside your job title for a complete answer.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🏙️</span>
+          <div>
+            <div class="phrase-native">〜に勤めています</div>
+            <div class="phrase-rom">[company name]-ni tsutomete imasu</div>
+            <div class="phrase-en">I work at [company]</div>
+            <div class="phrase-note">勤める (tsutomeru) = to work at/be employed by. More specific than 働いています — used when naming a company.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📚</span>
+          <div>
+            <div class="phrase-native">日本語を勉強しています</div>
+            <div class="phrase-rom">Nihongo wo benkyō shite imasu</div>
+            <div class="phrase-en">I am studying Japanese</div>
+            <div class="phrase-note">A sentence you can genuinely say with pride right now! 勉強している (benkyō shite iru) = is studying. Add 趣味で (shumi de = as a hobby) to clarify it's recreational.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🕐</span>
+          <div>
+            <div class="phrase-native">今日は会議があります</div>
+            <div class="phrase-rom">Kyō wa kaigi ga arimasu</div>
+            <div class="phrase-en">I have a meeting today</div>
+            <div class="phrase-note">会議 (kaigi) = meeting. 打ち合わせ (uchiawase) = informal work meeting/briefing. 出張 (shutchō) = business trip.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌙</span>
+          <div>
+            <div class="phrase-native">残業しなければなりません</div>
+            <div class="phrase-rom">Zangyō shinakereba narimasen</div>
+            <div class="phrase-en">I have to work overtime</div>
+            <div class="phrase-note">A preview of the grammar you're about to learn! 残業 (zangyō) = overtime. This sentence is unfortunately very common in Japanese office culture.</div>
+          </div>
+        </div>
+        <div class="phrase-card blue">
+          <span class="phrase-icon">🤝</span>
+          <div>
+            <div class="phrase-native">お疲れ様です</div>
+            <div class="phrase-rom">Otsukaresama desu</div>
+            <div class="phrase-en">Thank you for your hard work</div>
+            <div class="phrase-note">One of the most important Japanese workplace phrases. Said to colleagues throughout and at the end of the day — literally "you must be tired." There's no direct English equivalent.</div>
+          </div>
+        </div>
+        <div class="phrase-card blue">
+          <span class="phrase-icon">🚪</span>
+          <div>
+            <div class="phrase-native">行ってきます / 行ってらっしゃい</div>
+            <div class="phrase-rom">Ittekimasu / Itterasshai</div>
+            <div class="phrase-en">I'm heading out / Take care (response)</div>
+            <div class="phrase-note">Said when leaving home or the office. The person staying responds with いってらっしゃい. A deeply ingrained daily ritual in Japanese life and work.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formal email Japanese -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Formal email phrases</div>
+      <div class="section-title">Japanese business email — the most formal register you'll encounter</div>
+      <p>Japanese business emails (ビジネスメール, bijinesu mēru) follow a strict structure. Even if you're writing to a Japanese colleague in English, knowing these phrases shows cultural respect and sophistication.</p>
+      <div class="email-block">
+        <div class="email-header">
+          <span>📧 ビジネスメール — Business email template</span>
+        </div>
+        <div class="email-body">
+          <div class="email-line">
+            <div class="email-jp">〜株式会社 田中様</div>
+            <div>
+              <div class="email-rom">[Company] Kabushiki-gaisha Tanaka-sama</div>
+              <div class="email-en">To: Mr/Ms Tanaka, [Company] Co., Ltd.</div>
+            </div>
+          </div>
+          <div class="email-line">
+            <div class="email-jp">お世話になっております</div>
+            <div>
+              <div class="email-rom">Osewa ni natte orimasu</div>
+              <div class="email-en">"Thank you for your continued support" — mandatory opening for business emails to people you've contacted before</div>
+            </div>
+          </div>
+          <div class="email-line">
+            <div class="email-jp">〜の件でご連絡いたしました</div>
+            <div>
+              <div class="email-rom">[topic]-no ken de go-renraku itashimashita</div>
+              <div class="email-en">I am writing regarding [topic]</div>
+            </div>
+          </div>
+          <div class="email-line">
+            <div class="email-jp">ご確認のほど、よろしくお願い申し上げます</div>
+            <div>
+              <div class="email-rom">Go-kakunin no hodo, yoroshiku onegai moushiagemasu</div>
+              <div class="email-en">I would be grateful if you could review this / Please check this at your convenience</div>
+            </div>
+          </div>
+          <div class="email-line">
+            <div class="email-jp">ご不明な点がございましたら、お気軽にお問い合わせください</div>
+            <div>
+              <div class="email-rom">Go-fumei na ten ga gozaimashitara, okigaru ni otoiawase kudasai</div>
+              <div class="email-en">If you have any questions, please feel free to contact us</div>
+            </div>
+          </div>
+          <div class="email-line">
+            <div class="email-jp">どうぞよろしくお願いいたします</div>
+            <div>
+              <div class="email-rom">Dōzo yoroshiku onegai itashimasu</div>
+              <div class="email-en">Closing salutation — "I look forward to your continued cooperation"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Key email vocabulary:</strong> 様 (sama) = honorific for individuals in emails (never さん) · 株式会社 (kabushiki-gaisha) = Co., Ltd. · 件 (ken) = matter/subject · ご連絡 (go-renraku) = contact · ご確認 (go-kakunin) = confirmation/review · お問い合わせ (otoiawase) = enquiry.
+      </div>
+    </div>
+
+    <!-- 〜なければならない grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — 〜なければならない</div>
+      <div class="section-title">"Must / have to do" — expressing obligation in Japanese</div>
+      <p>This pattern expresses obligation or necessity — things you must do or have to do. It's made of the verb's negative conditional form + ならない (must not fail to). It's essential for talking about work deadlines, rules, and duties.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>Formation:</strong> Take the ない-form (negative) of any verb, change ない → なければ, then add ならない or なりません (polite). e.g. 行く → 行かない → 行かなければならない = must go. The casual short form 〜なきゃ (nakya) is very common in conversation.
+      </div>
+
+      <table class="oblig-table">
+        <tr>
+          <th>Dictionary</th>
+          <th>〜なければならない form</th>
+          <th>Meaning & example</th>
+        </tr>
+        <tr>
+          <td><span class="oblig-dict">行く</span><span class="oblig-rom">iku (to go)</span></td>
+          <td><span class="oblig-form">行かなければなりません</span><span class="oblig-rom">ikanakereba narimasen</span></td>
+          <td><span style="font-size:13px; color:#333">Must go</span><span class="oblig-ex">会議に行かなければなりません。= I must go to the meeting.</span></td>
+        </tr>
+        <tr>
+          <td><span class="oblig-dict">勉強する</span><span class="oblig-rom">benkyō suru (to study)</span></td>
+          <td><span class="oblig-form">勉強しなければなりません</span><span class="oblig-rom">benkyō shinakereba narimasen</span></td>
+          <td><span style="font-size:13px; color:#333">Must study</span><span class="oblig-ex">もっと勉強しなければなりません。= I must study more.</span></td>
+        </tr>
+        <tr>
+          <td><span class="oblig-dict">食べる</span><span class="oblig-rom">taberu (to eat)</span></td>
+          <td><span class="oblig-form">食べなければなりません</span><span class="oblig-rom">tabenakereba narimasen</span></td>
+          <td><span style="font-size:13px; color:#333">Must eat</span><span class="oblig-ex">野菜を食べなければなりません。= I must eat vegetables.</span></td>
+        </tr>
+        <tr>
+          <td><span class="oblig-dict">提出する</span><span class="oblig-rom">teishutsu suru (to submit)</span></td>
+          <td><span class="oblig-form">提出しなければなりません</span><span class="oblig-rom">teishutsu shinakereba narimasen</span></td>
+          <td><span style="font-size:13px; color:#333">Must submit</span><span class="oblig-ex">今日中に提出しなければなりません。= I must submit it by today.</span></td>
+        </tr>
+        <tr>
+          <td><span class="oblig-dict">帰る</span><span class="oblig-rom">kaeru (to return home)</span></td>
+          <td><span class="oblig-form">帰らなければなりません</span><span class="oblig-rom">kaeranakereba narimasen</span></td>
+          <td><span style="font-size:13px; color:#333">Must go home</span><span class="oblig-ex">もう帰らなければなりません。= I have to go home now.</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-green" style="margin-top:12px">
+        <strong>Casual shortcut — 〜なきゃ (nakya):</strong> In daily conversation, the full form is often shortened. 行かなければならない → 行かなきゃ (ikanakya = gotta go). 勉強しなければ → 勉強しなきゃ (benkyō shinakya = gotta study). This is what you'll hear from friends and colleagues constantly — know it when you hear it!
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Interactive — build an obligation sentence:</p>
+      <div class="builder-sim">
+        <div class="builder-header">
+          <span>📋 義務表現 — Expressing obligations</span>
+        </div>
+        <div class="builder-body">
+          <div class="builder-label">Choose an obligation</div>
+          <div class="builder-btns" id="jp-oblig-btns">
+            <button class="builder-btn" onclick="jpOblig(this,'会議に出席し','kaigi ni shusseki shi','attend the meeting')">📝 Attend meeting</button>
+            <button class="builder-btn" onclick="jpOblig(this,'報告書を書か','hōkokusho wo kaka','write the report')">📄 Write report</button>
+            <button class="builder-btn" onclick="jpOblig(this,'もっと勉強し','motto benkyō shi','study more')">📚 Study more</button>
+            <button class="builder-btn" onclick="jpOblig(this,'早く寝','hayaku ne','go to bed early')">🛌 Sleep early</button>
+            <button class="builder-btn" onclick="jpOblig(this,'運動し','undō shi','exercise')">🏃 Exercise</button>
+          </div>
+          <div class="builder-result" id="jp-oblig-result">
+            <span class="builder-empty">Select an obligation above to see it in the なければならない form</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Japanese work culture note -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏢</span>
+        <div class="culture-text">
+          <strong>働き方改革 (hataraki-kata kaikaku) — Japan's work style reform</strong><br/>
+          Japan has long been famous — and sometimes infamous — for its extreme work culture. The concept of 過労死 (karōshi = death from overwork) entered global consciousness as a genuine social crisis. In recent years, the government launched 働き方改革 (Work Style Reform) to cap overtime hours, mandate paid leave use, and promote remote work. The culture is genuinely changing — especially in tech and creative industries. Words like ワークライフバランス (work-life balance), テレワーク (telework), and 副業 (fukugyō = side job) are increasingly common. If you work with Japanese colleagues, being aware of this ongoing shift shows cultural awareness far beyond basic language ability.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 13 Japanese — work & obligation</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does お疲れ様です (otsukaresama desu) mean in a workplace context?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Good morning</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Thank you for your hard work</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm very tired today</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Please come in</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you form 〜なければならない from 行く (iku = to go)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">行きなければならない</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">行かなければならない (casual only)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">行かなければなりません</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">行ってなければならない</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 残業 (zangyō) mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Business trip</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Annual leave</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Overtime work</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Work meeting</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which phrase opens a Japanese business email to someone you've contacted before?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">はじめまして</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">よろしくお願いします</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">お世話になっております</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">どうぞよろしく</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 13 · Work & study vocab · K-pop & K-drama vocabulary · -(아/어)야 하다</div>
+      </div>
+    </div>
+
+    <!-- Korean job vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Job & study vocabulary in Korean</div>
+      <div class="section-title">18 occupations and workplace words</div>
+      <div class="job-grid">
+        <div class="job-card">
+          <div class="job-icon">💼</div>
+          <div class="job-native">회사원</div>
+          <div class="job-rom">hoesawon</div>
+          <div class="job-en">Office worker</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">💻</div>
+          <div class="job-native">개발자</div>
+          <div class="job-rom">gaebalja</div>
+          <div class="job-en">Developer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📊</div>
+          <div class="job-native">마케터</div>
+          <div class="job-rom">maketeo</div>
+          <div class="job-en">Marketer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🎨</div>
+          <div class="job-native">디자이너</div>
+          <div class="job-rom">dijaineo</div>
+          <div class="job-en">Designer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📚</div>
+          <div class="job-native">선생님</div>
+          <div class="job-rom">seonsaengnim</div>
+          <div class="job-en">Teacher</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🏥</div>
+          <div class="job-native">의사</div>
+          <div class="job-rom">uisa</div>
+          <div class="job-en">Doctor</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">⚖️</div>
+          <div class="job-native">변호사</div>
+          <div class="job-rom">byeonhosa</div>
+          <div class="job-en">Lawyer</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🍳</div>
+          <div class="job-native">요리사</div>
+          <div class="job-rom">yorisa</div>
+          <div class="job-en">Chef / Cook</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🎓</div>
+          <div class="job-native">학생</div>
+          <div class="job-rom">haksaeng</div>
+          <div class="job-en">Student</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🏢</div>
+          <div class="job-native">회사</div>
+          <div class="job-rom">hoesa</div>
+          <div class="job-en">Company</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">👔</div>
+          <div class="job-native">상사</div>
+          <div class="job-rom">sangsa</div>
+          <div class="job-en">Boss / Superior</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🤝</div>
+          <div class="job-native">동료</div>
+          <div class="job-rom">dongnyeo</div>
+          <div class="job-en">Colleague</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📝</div>
+          <div class="job-native">회의</div>
+          <div class="job-rom">hoeui</div>
+          <div class="job-en">Meeting</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📅</div>
+          <div class="job-native">마감</div>
+          <div class="job-rom">magam</div>
+          <div class="job-en">Deadline</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🏖️</div>
+          <div class="job-native">휴가</div>
+          <div class="job-rom">hyuga</div>
+          <div class="job-en">Holiday / Leave</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🌙</div>
+          <div class="job-native">야근</div>
+          <div class="job-rom">ageun</div>
+          <div class="job-en">Overtime / night work</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">📖</div>
+          <div class="job-native">공부</div>
+          <div class="job-rom">gongbu</div>
+          <div class="job-en">Study</div>
+        </div>
+        <div class="job-card">
+          <div class="job-icon">🎓</div>
+          <div class="job-native">대학교</div>
+          <div class="job-rom">daehakgyo</div>
+          <div class="job-en">University</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Work & study phrases in Korean</div>
+      <div class="section-title">Talking about your work and studies naturally</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💼</span>
+          <div>
+            <div class="phrase-native">〜에서 일하고 있어요</div>
+            <div class="phrase-rom">[company/place]-eseo ilhago isseoyo</div>
+            <div class="phrase-en">I work at [company/place]</div>
+            <div class="phrase-note">에서 (eseo) = at (a place). 일하다 (ilhada) = to work. e.g. 학교에서 일하고 있어요 = I work at a school.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📚</span>
+          <div>
+            <div class="phrase-native">한국어를 공부하고 있어요</div>
+            <div class="phrase-rom">Hangugeoreul gongbuhago isseoyo</div>
+            <div class="phrase-en">I am studying Korean</div>
+            <div class="phrase-note">A sentence you can say with genuine pride! 공부하고 있어요 = is studying (ongoing). Add 취미로 (chwimiro = as a hobby) if studying recreationally.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌙</span>
+          <div>
+            <div class="phrase-native">오늘 야근해야 해요</div>
+            <div class="phrase-rom">Oneul yageunhaeya haeyo</div>
+            <div class="phrase-en">I have to work overtime today</div>
+            <div class="phrase-note">야근하다 (yageunhada) = to work overtime/at night. A preview of the grammar pattern you're about to learn! Very relatable in Korea.</div>
+          </div>
+        </div>
+        <div class="phrase-card blue">
+          <span class="phrase-icon">🤝</span>
+          <div>
+            <div class="phrase-native">수고하셨습니다</div>
+            <div class="phrase-rom">Sugohasheosseumnida</div>
+            <div class="phrase-en">You've worked hard / Well done (formal)</div>
+            <div class="phrase-note">The Korean equivalent of お疲れ様です. Said to colleagues at end of day or after completing a task. 수고했어요 (informal) or 수고해 (casual). Use freely — it's universally appreciated.</div>
+          </div>
+        </div>
+        <div class="phrase-card blue">
+          <span class="phrase-icon">📋</span>
+          <div>
+            <div class="phrase-native">마감이 언제예요?</div>
+            <div class="phrase-rom">Magami eonjeyeyo?</div>
+            <div class="phrase-en">When is the deadline?</div>
+            <div class="phrase-note">마감 (magam) = deadline/closing. 언제 (eonje) = when. 마감이 촉박해요 (magami chokbakaeyo) = the deadline is tight.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎯</span>
+          <div>
+            <div class="phrase-native">열심히 하겠습니다</div>
+            <div class="phrase-rom">Yeolsimhi hagesseumnida</div>
+            <div class="phrase-en">I will do my best / I'll work hard</div>
+            <div class="phrase-note">열심히 (yeolsimhi) = diligently/hard. One of the most respected phrases in Korean work culture — showing commitment and effort is deeply valued.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- K-pop and K-drama vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · K-pop & K-drama vocabulary</div>
+      <div class="section-title">Korea's global cultural exports — the vocabulary behind the phenomenon</div>
+      <p>K-pop and K-dramas have introduced millions of people worldwide to Korean culture and language. Knowing the vocabulary behind these scenes helps you connect with Korean people and understand references in everyday conversation.</p>
+      <div class="pop-grid">
+        <div class="pop-card kpop">
+          <div class="pop-icon">🎤</div>
+          <div class="pop-native">아이돌</div>
+          <div class="pop-rom">aidol</div>
+          <div class="pop-en">Idol (K-pop artist)</div>
+          <div class="pop-note">A K-pop idol undergoes years of training (연습생, yeonseupssaeng = trainee) before debut. Groups like BTS (방탄소년단), BLACKPINK, and aespa have global fanbases in the hundreds of millions.</div>
+        </div>
+        <div class="pop-card kpop">
+          <div class="pop-icon">💃</div>
+          <div class="pop-native">안무</div>
+          <div class="pop-rom">anmu</div>
+          <div class="pop-en">Choreography / Dance moves</div>
+          <div class="pop-note">K-pop choreography (안무) is an art form — performed with military precision. 칼군무 (kalgungmu = knife-sharp group dancing) describes perfectly synchronised group movement.</div>
+        </div>
+        <div class="pop-card kpop">
+          <div class="pop-icon">👑</div>
+          <div class="pop-native">팬덤</div>
+          <div class="pop-rom">paendeom</div>
+          <div class="pop-en">Fandom</div>
+          <div class="pop-note">K-pop fandoms have names — BTS fans are 아미 (ARMY), BLACKPINK fans are 블링크 (BLINK). Fandom loyalty and participation (응원, eungwon = cheering) are central to K-pop culture.</div>
+        </div>
+        <div class="pop-card kpop">
+          <div class="pop-icon">🎵</div>
+          <div class="pop-native">컴백</div>
+          <div class="pop-rom">keombaek</div>
+          <div class="pop-en">Comeback (new release)</div>
+          <div class="pop-note">In K-pop, 컴백 (comeback) means an artist's return with new music — even if they never went away! It's the equivalent of a "new album release." Accompanied by promotion on music shows (음악방송, eumagbangsong).</div>
+        </div>
+        <div class="pop-card kdrama">
+          <div class="pop-icon">📺</div>
+          <div class="pop-native">드라마</div>
+          <div class="pop-rom">deurama</div>
+          <div class="pop-en">K-drama (Korean TV drama)</div>
+          <div class="pop-note">Korean dramas typically run 16 episodes, airing twice weekly. Genres include 로맨스 (romance), 스릴러 (thriller), 사극 (sageuk = historical drama). Globally distributed on Netflix, Viki, and Wavve.</div>
+        </div>
+        <div class="pop-card kdrama">
+          <div class="pop-icon">😭</div>
+          <div class="pop-native">설레다</div>
+          <div class="pop-rom">seolleda</div>
+          <div class="pop-en">Heart fluttering / excited nervousness</div>
+          <div class="pop-note">A uniquely Korean emotional concept — the excited, nervous, heart-fluttering feeling of a crush or romantic moment. Extremely common in dramas. There's no single English word for it.</div>
+        </div>
+        <div class="pop-card kdrama">
+          <div class="pop-icon">💔</div>
+          <div class="pop-native">짝사랑</div>
+          <div class="pop-rom">jjaksarang</div>
+          <div class="pop-en">One-sided love / unrequited love</div>
+          <div class="pop-note">짝 (jjak) = one side, 사랑 (sarang) = love. One of the most common K-drama storylines. 첫사랑 (cheot-sarang) = first love — another cornerstone of Korean romantic vocabulary.</div>
+        </div>
+        <div class="pop-card kdrama">
+          <div class="pop-icon">🌟</div>
+          <div class="pop-native">주인공</div>
+          <div class="pop-rom">juingong</div>
+          <div class="pop-en">Main character / protagonist</div>
+          <div class="pop-note">주인공 신드롬 (juingong sindeurom = main character syndrome) — the K-drama trope of the lead having extraordinary luck. 조연 (joyeon) = supporting character. 악역 (aknyeok) = villain.</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-purple" style="margin-top:12px">
+        <strong>K-pop vocabulary you'll hear constantly:</strong> 데뷔 (debut) · 솔로 (solo) · 그룹 (group) · 뮤직비디오 (music video) / 엠비 (MV) · 음원차트 (music chart) · 1위 (1st place) · 콘서트 (concert) · 사인회 (fan signing event) · 직캠 (fancam — individual focus video). Learning these unlocks a huge amount of Korean content online.
+      </div>
+    </div>
+
+    <!-- -(아/어)야 하다 grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — -(아/어)야 하다</div>
+      <div class="section-title">"Must / have to do" — expressing necessity and duty in Korean</div>
+      <p>-(아/어)야 하다 expresses obligation, necessity, or duty. It's the Korean equivalent of "must" or "have to" — and it's one of the most useful patterns in daily Korean conversation, from work deadlines to personal responsibilities.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>The rule:</strong> Take the 아/어-form of the verb (same as -(아/어)서 from Week 10!) and add 야 하다. Bright vowels (ㅏ/ㅗ) → 아야 하다. Dark vowels → 어야 하다. 하다 verbs → 해야 하다. e.g. 가다 → 가야 해요 (must go), 먹다 → 먹어야 해요 (must eat), 공부하다 → 공부해야 해요 (must study).
+      </div>
+
+      <div class="must-grid">
+        <div class="must-card pos">
+          <div class="must-native">가야 해요</div>
+          <div class="must-rom">gaya haeyo</div>
+          <div class="must-en">Must go / Have to go</div>
+          <div class="must-note">가다 → 가 + 야 하다</div>
+        </div>
+        <div class="must-card pos">
+          <div class="must-native">공부해야 해요</div>
+          <div class="must-rom">gongbuhaeya haeyo</div>
+          <div class="must-en">Must study</div>
+          <div class="must-note">공부하다 → 공부해 + 야 하다</div>
+        </div>
+        <div class="must-card pos">
+          <div class="must-native">먹어야 해요</div>
+          <div class="must-rom">meogeoya haeyo</div>
+          <div class="must-en">Must eat</div>
+          <div class="must-note">먹다 → 먹어 + 야 하다</div>
+        </div>
+        <div class="must-card pos">
+          <div class="must-native">일어나야 해요</div>
+          <div class="must-rom">ireona ya haeyo</div>
+          <div class="must-en">Must get up</div>
+          <div class="must-note">일어나다 → 일어나 + 야 하다</div>
+        </div>
+        <div class="must-card neg">
+          <div class="must-native">안 가도 돼요</div>
+          <div class="must-rom">an gado dwaeyo</div>
+          <div class="must-en">Don't have to go / It's OK not to go</div>
+          <div class="must-note">안 + verb + 도 돼요 = don't have to. Different from "must not"!</div>
+        </div>
+        <div class="must-card neg">
+          <div class="must-native">가면 안 돼요</div>
+          <div class="must-rom">gamyeon an dwaeyo</div>
+          <div class="must-en">Must not go / Cannot go</div>
+          <div class="must-note">-(으)면 안 되다 = must not / prohibited. Critical distinction!</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral" style="margin-top:12px">
+        <strong>Three important distinctions:</strong> 가야 해요 = "must go" (obligation). 안 가도 돼요 = "don't have to go" (no obligation). 가면 안 돼요 = "must not go" (prohibition). Getting these mixed up can cause real confusion — memorise all three!
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">-(아/어)야 하다 in work and daily life:</p>
+
+      <div class="grammar-block">
+        <div class="grammar-result">오늘 마감이라서 일찍 일어나야 해요.</div>
+        <div class="grammar-rom">Oneul magamiraso iljjik ireonaya haeyo.</div>
+        <div class="grammar-en">Because today is the deadline, I have to get up early.</div>
+        <div class="grammar-note">마감이라서 (because it's deadline) + 일찍 (early) + 일어나야 해요 (must get up). Uses -(아/어)서 from Week 10!</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">한국어를 더 열심히 공부해야 해요.</div>
+        <div class="grammar-rom">Hangugeoreul deo yeolsimhi gongbuhaeya haeyo.</div>
+        <div class="grammar-en">I must study Korean harder.</div>
+        <div class="grammar-note">더 열심히 = harder/more diligently. A sentence you can genuinely say — and mean!</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">드라마 보기 전에 숙제를 해야 해요.</div>
+        <div class="grammar-rom">Deurama bogi jeone sukjereul haeya haeyo.</div>
+        <div class="grammar-en">I must do my homework before watching dramas.</div>
+        <div class="grammar-note">보기 전에 (before watching) + 숙제 (homework) + 해야 해요 (must do). 전에 = before — a new useful connector!</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Interactive — obligation sentence builder:</p>
+      <div class="builder-sim">
+        <div class="builder-header">
+          <span>📋 의무 표현 — Expressing obligations</span>
+        </div>
+        <div class="builder-body">
+          <div class="builder-label">Choose an obligation</div>
+          <div class="builder-btns" id="kr-oblig-btns">
+            <button class="builder-btn" onclick="krOblig(this,'회의에 참석해','hoeui-e chamseokae','attend the meeting','가다 → 가야 해요')">📝 Attend meeting</button>
+            <button class="builder-btn" onclick="krOblig(this,'보고서를 써','bogoseoreul sseo','write the report','쓰다 → 써야 해요')">📄 Write report</button>
+            <button class="builder-btn" onclick="krOblig(this,'더 열심히 공부해','deo yeolsimhi gongbuhae','study harder','공부하다 → 공부해야 해요')">📚 Study harder</button>
+            <button class="builder-btn" onclick="krOblig(this,'일찍 자','iljjik ja','go to bed early','자다 → 자야 해요')">🛌 Sleep early</button>
+            <button class="builder-btn" onclick="krOblig(this,'운동해','undonghae','exercise','운동하다 → 운동해야 해요')">🏃 Exercise</button>
+          </div>
+          <div class="builder-result" id="kr-oblig-result">
+            <span class="builder-empty">Select an obligation above to see it in -(아/어)야 해요 form</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌏</span>
+        <div class="culture-text">
+          <strong>한류 (Hallyu) — the Korean Wave</strong><br/>
+          한류 (Hallyu = Korean Wave) refers to the global spread of Korean popular culture — music, dramas, films, food, beauty, and language — that began in the 1990s and exploded globally in the 2010s. BTS broke Western chart records. Parasite won the Academy Award for Best Picture. Squid Game became Netflix's most-watched series. Approximately 100 million people worldwide are now estimated to be learning Korean — many motivated entirely by love of Korean pop culture. This makes Korean one of the fastest-growing language learning communities in the world. You're part of this wave. The connection between pop culture enthusiasm and language acquisition is no accident — emotional investment in a culture creates the deepest, most durable learning.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 13 Korean — work, pop culture & -(아/어)야 하다</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I must study" using -(아/어)야 하다?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">공부하면 돼요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">공부해야 해요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">공부할 수 있어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">공부하려고 해요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the difference between 안 가도 돼요 and 가면 안 돼요?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">They mean the same thing</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">안 가도 돼요 = don't have to go · 가면 안 돼요 = must not go</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">안 가도 돼요 = must not go · 가면 안 돼요 = don't have to go</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Both mean "I can go"</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 설레다 (seolleda) mean — the emotion common in K-dramas?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Deep sadness and longing</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Anger at being betrayed</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Heart-fluttering excited nervousness (from a crush)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Relief after a difficult situation</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 수고하셨습니다 (sugohasheosseumnida) mean in Korean work culture?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Good morning, everyone</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm leaving work now</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">You've worked hard / Well done (end of day)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Please join our meeting</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — work culture in both countries</div>
+    <table>
+      <tr><th>Topic</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Office worker</td><td>会社員 (kaishain)</td><td>회사원 (hoesawon)</td></tr>
+      <tr><td style="font-size:13px">Overtime</td><td>残業 (zangyō)</td><td>야근 (ageun)</td></tr>
+      <tr><td style="font-size:13px">Deadline</td><td>締め切り (shimekiri)</td><td>마감 (magam)</td></tr>
+      <tr><td style="font-size:13px">Well done today</td><td>お疲れ様です (otsukaresama desu)</td><td>수고하셨습니다 (sugohasheosseumnida)</td></tr>
+      <tr><td style="font-size:13px">I must go</td><td>行かなければなりません (ikanakereba narimasen)</td><td>가야 해요 (gaya haeyo)</td></tr>
+      <tr><td style="font-size:13px">Must study more</td><td>もっと勉強しなければなりません</td><td>더 열심히 공부해야 해요</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>〜なければならない — must/have to</td><td>-(아/어)야 하다 — must/have to</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 14 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 14</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Relationships & emotions — talking about family, friendship, expressing feelings, and the language of love. Plus 〜たい (tai-form): "I want to do ~" — expressing desires and wishes.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Relationships & emotions in Korean — family vocabulary, expressing feelings, and terms of endearment. Plus -(으)ㄹ 것 같다: "It seems like / I think it will ~" — expressing guesses and predictions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 13 complete · Click <a href="Week14.J&K.html">here</a> when you're ready for Week 14 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP obligation builder */
+const jpObligData = {
+  'attend the meeting': { verb: '会議に出席し', rom: 'kaigi ni shusseki shi', neg: 'nakereba narimasen' },
+  'write the report':   { verb: '報告書を書か', rom: 'hōkokusho wo kaka', neg: 'nakereba narimasen' },
+  'study more':         { verb: 'もっと勉強し', rom: 'motto benkyō shi', neg: 'nakereba narimasen' },
+  'go to bed early':    { verb: '早く寝', rom: 'hayaku ne', neg: 'nakereba narimasen' },
+  'exercise':           { verb: '運動し', rom: 'undō shi', neg: 'nakereba narimasen' },
+};
+function jpOblig(btn, verb, rom, en) {
+  document.getElementById('jp-oblig-btns').querySelectorAll('.builder-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const phrase = verb + 'なければなりません';
+  const romPhrase = rom + 'nakereba narimasen';
+  const el = document.getElementById('jp-oblig-result');
+  el.innerHTML = `
+    <div class="builder-phrase">${phrase}</div>
+    <div class="builder-rom">${romPhrase}</div>
+    <div class="builder-en">I must ${en}.</div>
+    <div style="font-size:11px; color:#aaa; margin-top:6px; font-style:italic">Casual: ${verb.replace(/し$/,'').replace(/か$/,'か').replace(/寝$/,'寝')}なきゃ — (nakya)</div>
+  `;
+}
+
+/* KR obligation builder */
+function krOblig(btn, verb, rom, en, note) {
+  document.getElementById('kr-oblig-btns').querySelectorAll('.builder-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const phrase = verb + '야 해요';
+  const romPhrase = rom + 'ya haeyo';
+  const el = document.getElementById('kr-oblig-result');
+  el.innerHTML = `
+    <div class="builder-phrase">${phrase}</div>
+    <div class="builder-rom">${romPhrase}</div>
+    <div class="builder-en">I must / have to ${en}.</div>
+    <div style="font-size:11px; color:#aaa; margin-top:6px; font-style:italic">Formation: ${note}</div>
+  `;
+}
+</script>
+</body>
+</html>
