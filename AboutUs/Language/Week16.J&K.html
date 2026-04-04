@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 16 — Grand Finale: Japanese & Korean Complete Review</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  /* Celebration header */
+  .celebration { background: linear-gradient(135deg, #1a1a18 0%, #2d2d2a 100%); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; color: #fff; text-align: center; }
+  .celebration-emoji { font-size: 48px; margin-bottom: 12px; }
+  .celebration-title { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+  .celebration-sub { font-size: 14px; opacity: 0.75; line-height: 1.7; }
+  .stat-row { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 500; color: #7de8a8; display: block; }
+  .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Grammar toolkit cards */
+  .grammar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .grammar-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .grammar-card.mastered { background: #f0f8f5; border-color: #a8ddc5; }
+  .g-week { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; font-weight: 600; }
+  .g-pattern { font-size: 16px; color: #185FA5; font-weight: 500; margin-bottom: 2px; }
+  .g-meaning { font-size: 12px; color: #333; margin-bottom: 4px; }
+  .g-example { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Survival scenario simulator */
+  .scenario-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .scenario-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+  .scenario-tabs { display: flex; border-bottom: 0.5px solid #eee; overflow-x: auto; }
+  .scenario-tab { padding: 9px 14px; font-size: 12px; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; flex-shrink: 0; }
+  .scenario-tab.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
+  .scenario-body { padding: 14px; }
+  .scenario-situation { background: #fff; border: 0.5px solid #eee; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 13px; color: #555; }
+  .scenario-situation strong { color: #1a1a18; }
+  .convo-row { margin-bottom: 10px; }
+  .convo-speaker { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; font-weight: 600; }
+  .convo-bubble { border-radius: 10px; padding: 10px 13px; font-size: 14px; display: inline-block; max-width: 90%; }
+  .convo-bubble.local { background: #fff; border: 0.5px solid #e5e4e0; color: #1a1a18; }
+  .convo-bubble.you { background: #f0f5fc; border: 0.5px solid #b8d4f0; color: #185FA5; }
+  .convo-rom { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .convo-en { font-size: 11px; color: #555; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 14px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 17px; color: #1a1a18; margin-bottom: 1px; }
+  .phrase-rom { font-size: 11px; color: #888; margin-bottom: 1px; }
+  .phrase-en { font-size: 12px; color: #333; font-weight: 500; }
+  .phrase-week { font-size: 10px; color: #aaa; margin-top: 3px; }
+
+  /* Final quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+  .quiz-score { background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 10px; padding: 12px 16px; margin-top: 12px; font-size: 14px; color: #0f6e56; display: none; text-align: center; }
+
+  /* Next steps cards */
+  .nextsteps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .nextstep-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px; }
+  .nextstep-card.featured { background: #fdf9f0; border-color: #f0dfa8; }
+  .nextstep-icon { font-size: 24px; margin-bottom: 6px; }
+  .nextstep-title { font-size: 14px; color: #1a1a18; font-weight: 500; margin-bottom: 4px; }
+  .nextstep-desc { font-size: 12px; color: #555; line-height: 1.6; }
+  .nextstep-tag { display: inline-block; background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 6px; padding: 2px 8px; font-size: 11px; color: #185FA5; margin-top: 5px; }
+
+  /* Week timeline */
+  .timeline { margin-top: 12px; }
+  .timeline-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .timeline-week { font-size: 11px; font-weight: 600; color: #fff; background: #1a1a18; border-radius: 6px; padding: 2px 7px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+  .timeline-week.jp { background: #D85A30; }
+  .timeline-week.kr { background: #185FA5; }
+  .timeline-week.both { background: #1D9E75; }
+  .timeline-content { font-size: 13px; color: #333; line-height: 1.5; }
+  .timeline-content strong { color: #1a1a18; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-gold { background: #fdfaec; border-left: 3px solid #d4a800; }
+
+  /* Final message */
+  .final-message { background: #1a1a18; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; color: #fff; }
+  .final-message h2 { font-size: 20px; font-weight: 500; margin-bottom: 12px; }
+  .final-message p { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
+  .final-jp { font-size: 22px; color: #f0c060; text-align: center; margin: 16px 0 4px; }
+  .final-kr { font-size: 22px; color: #7de8a8; text-align: center; margin-bottom: 4px; }
+  .final-rom { font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; }
+
+  /* Progress bar complete */
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .grammar-grid, .nextsteps-grid { grid-template-columns: 1fr; }
+    .stat-row { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Celebration banner -->
+  <div class="celebration">
+    <div class="celebration-emoji">🎉🎌🇰🇷🎉</div>
+    <div class="celebration-title">Week 16 — The Grand Finale</div>
+    <div class="celebration-sub">You started with あいうえお and 안녕하세요.<br/>Look how far you've come.</div>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">16</span>
+        <span class="stat-label">Weeks</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Languages</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">Grammar patterns</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">600+</span>
+        <span class="stat-label">Words & phrases</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       FULL COURSE TIMELINE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">📚</span>
+      <div>
+        <div class="lang-title">Your Complete Learning Journey</div>
+        <div class="lang-sub">16 weeks · Everything you've covered — all in one place</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">The full curriculum — what you've mastered</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-week both">W1</span>
+          <div class="timeline-content"><strong>Scripts & Sounds</strong> — Hiragana vowels + か row · Hangul consonants, vowels & syllable blocks</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W2</span>
+          <div class="timeline-content"><strong>More Script + First Phrases</strong> — さ/た/な rows · Hangul aspirated consonants & compound vowels · First 10 survival phrases in each language</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week jp">W3 JP</span>
+          <div class="timeline-content"><strong>Katakana</strong> — All 46 katakana characters · Loanword vocabulary · Lookalike pairs (シ/ツ, ン/ソ)</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week kr">W3 KR</span>
+          <div class="timeline-content"><strong>받침 (Batchim) + First Sentences</strong> — 7 final consonant sounds · SOV word order · 4 essential particles · First 6 sentence patterns</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W4</span>
+          <div class="timeline-content"><strong>Numbers</strong> — JP: 1–10,000, counters, time, prices · KR: Two number systems (native & Sino-Korean), ages, time, prices</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W5</span>
+          <div class="timeline-content"><strong>Dates & Verbs</strong> — JP: Days, months, calendar, appointment phrases · KR: Calendar + verb conjugation (present, past, question, negative)</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W6</span>
+          <div class="timeline-content"><strong>Food & Dining</strong> — 12 essential dishes each · Ordering, dietary restrictions, etiquette · Interactive menus · Spice levels (KR) · Dashi warning (JP)</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W7</span>
+          <div class="timeline-content"><strong>Getting Around</strong> — JP: Shinkansen, Suica, station signs, ticket machine · KR: Seoul subway, T-money, KTX · Direction words · KR adjectives bonus</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W8</span>
+          <div class="timeline-content"><strong>Shopping</strong> — Colours, sizes, shop types · Tax-free shopping (JP) · K-beauty (KR) · Shopping phrases · KR comparison grammar (A보다 B가 더)</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W9</span>
+          <div class="timeline-content"><strong>Health & Emergencies</strong> — Emergency numbers · Body parts · Symptoms · Pharmacy vocab · JP: て-form (request, ongoing, permission) · KR: -(으)면 conditional</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W10</span>
+          <div class="timeline-content"><strong>Social Situations</strong> — Self-introduction templates · Hobbies & opinions · Compliments · JP: Keigo speech levels · KR: -(아/어)서 cause-and-effect</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W11</span>
+          <div class="timeline-content"><strong>Accommodation</strong> — 6 accommodation types each · Check-in phrases · JP: Ryokan etiquette + potential form · KR: Jjimjilbang guide + -(으)ㄹ 수 있다/없다</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W12</span>
+          <div class="timeline-content"><strong>Sightseeing & Nature</strong> — Shrines vs temples · Palaces · Hiking culture · Wonder phrases · JP: Omiyage culture · KR: -(으)려고 하다 intentions</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W13</span>
+          <div class="timeline-content"><strong>Work, Study & Pop Culture</strong> — Job vocabulary · Workplace phrases · JP: Business email + なければならない · KR: K-pop/K-drama vocab + -(아/어)야 하다</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W14</span>
+          <div class="timeline-content"><strong>Relationships & Emotions</strong> — Family vocabulary · 12 emotion words · Love phrases · JP: 〜たい (want to) · KR: -(으)ㄹ 것 같다 (seems like / predictions)</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W15</span>
+          <div class="timeline-content"><strong>Weather & Seasons</strong> — Four seasons with cultural context · 12 weather words each · JP: 〜ている for ongoing states · KR: -(으)ㄴ/는 noun modification</div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-week both">W16</span>
+          <div class="timeline-content"><strong>Grand Finale</strong> — Full grammar toolkit review · Survival scenario conversations · Final challenge quiz · Next steps guide</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE GRAND REVIEW
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語 Grand Review</div>
+        <div class="lang-sub">Your complete Japanese grammar toolkit · Survival scenarios · Final challenge</div>
+      </div>
+    </div>
+
+    <!-- Grammar toolkit JP -->
+    <div class="section">
+      <div class="section-label">Your Japanese grammar toolkit — 15 patterns mastered</div>
+      <div class="section-title">Every grammar pattern you've learned, in one place</div>
+      <div class="grammar-grid">
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 3</div>
+          <div class="g-pattern">〜です / 〜ます</div>
+          <div class="g-meaning">Polite speech — teineigo baseline</div>
+          <div class="g-example">食べます。これです。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 3</div>
+          <div class="g-pattern">〜か (question)</div>
+          <div class="g-meaning">Turns any statement into a question</div>
+          <div class="g-example">いくらですか？</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 4</div>
+          <div class="g-pattern">Number + Counter</div>
+          <div class="g-meaning">枚・本・冊・人・杯 etc.</div>
+          <div class="g-example">コーヒー一杯ください。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 5</div>
+          <div class="g-pattern">〜から / 〜まで</div>
+          <div class="g-meaning">From ~ / Until ~</div>
+          <div class="g-example">9時から5時まで。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 8</div>
+          <div class="g-pattern">〜のほうが〜より</div>
+          <div class="g-meaning">~ is more ~ than ~</div>
+          <div class="g-example">こちらのほうが安いです。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 9</div>
+          <div class="g-pattern">て-form + ください</div>
+          <div class="g-meaning">Please do ~</div>
+          <div class="g-example">ゆっくり話してください。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 9</div>
+          <div class="g-pattern">て-form + います</div>
+          <div class="g-meaning">Currently doing ~</div>
+          <div class="g-example">薬を飲んでいます。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 9</div>
+          <div class="g-pattern">て-form + もいいですか</div>
+          <div class="g-meaning">May I do ~?</div>
+          <div class="g-example">座ってもいいですか？</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 11</div>
+          <div class="g-pattern">Potential form 〜られる/〜える</div>
+          <div class="g-meaning">Can do ~</div>
+          <div class="g-example">日本語が話せます。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 12</div>
+          <div class="g-pattern">〜のが好きです</div>
+          <div class="g-meaning">I like doing ~</div>
+          <div class="g-example">写真を撮るのが好きです。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 13</div>
+          <div class="g-pattern">〜なければならない</div>
+          <div class="g-meaning">Must / have to ~</div>
+          <div class="g-example">行かなければなりません。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 14</div>
+          <div class="g-pattern">〜たいです</div>
+          <div class="g-meaning">I want to ~</div>
+          <div class="g-example">日本に行きたいです。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 14</div>
+          <div class="g-pattern">〜と思います</div>
+          <div class="g-meaning">I think that ~</div>
+          <div class="g-example">いいと思います。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 15</div>
+          <div class="g-pattern">〜ています (state)</div>
+          <div class="g-meaning">Is in a state resulting from ~</div>
+          <div class="g-example">桜が咲いています。</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 15</div>
+          <div class="g-pattern">〜ています (habit)</div>
+          <div class="g-meaning">Habitually / regularly does ~</div>
+          <div class="g-example">毎日勉強しています。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Survival scenario JP -->
+    <div class="section">
+      <div class="section-label">Survival scenarios — putting it all together</div>
+      <div class="section-title">3 complete conversations using everything you've learned</div>
+      <div class="scenario-sim">
+        <div class="scenario-header">
+          <span>🗾 日本語シナリオ — Japanese Scenarios</span>
+        </div>
+        <div class="scenario-tabs">
+          <div class="scenario-tab active" onclick="jpScenario(this,0)">🏮 Restaurant</div>
+          <div class="scenario-tab" onclick="jpScenario(this,1)">🚉 Train station</div>
+          <div class="scenario-tab" onclick="jpScenario(this,2)">🏨 Hotel check-in</div>
+        </div>
+        <div class="scenario-body" id="jp-scenario-body">
+          <div class="scenario-situation"><strong>📍 Situation:</strong> You're at a ramen restaurant. You want to order, ask about spice, and request the bill.</div>
+          <div class="convo-row">
+            <div class="convo-speaker">Staff</div>
+            <div class="convo-bubble local">いらっしゃいませ！何名様ですか？</div>
+            <div class="convo-rom">Irasshaimase! Nan-mei-sama desu ka?</div>
+            <div class="convo-en">Welcome! How many people?</div>
+          </div>
+          <div class="convo-row" style="text-align:right">
+            <div class="convo-speaker" style="text-align:right">You</div>
+            <div class="convo-bubble you">一人です。すみません、醤油ラーメンをひとつお願いします。辛くしないでください。</div>
+            <div class="convo-rom" style="text-align:right">Hitori desu. Sumimasen, shōyu rāmen wo hitotsu onegaishimasu. Karakunishinai de kudasai.</div>
+            <div class="convo-en" style="text-align:right">Just me. Excuse me, one soy sauce ramen please. Please don't make it spicy.</div>
+          </div>
+          <div class="convo-row">
+            <div class="convo-speaker">Staff</div>
+            <div class="convo-bubble local">かしこまりました。少々お待ちください。</div>
+            <div class="convo-rom">Kashikomarimashita. Shōshō omachi kudasai.</div>
+            <div class="convo-en">Understood. Please wait a moment.</div>
+          </div>
+          <div class="convo-row" style="text-align:right">
+            <div class="convo-speaker" style="text-align:right">You (after eating)</div>
+            <div class="convo-bubble you">すみません！お会計をお願いします。とてもおいしかったです！</div>
+            <div class="convo-rom" style="text-align:right">Sumimasen! Okaikei wo onegaishimasu. Totemo oishikatta desu!</div>
+            <div class="convo-en" style="text-align:right">Excuse me! The bill please. It was really delicious!</div>
+          </div>
+          <div style="font-size:11px; color:#aaa; margin-top:10px; font-style:italic">Grammar used: 〜です (W3) · 〜をひとつお願いします (W6) · て-form + ください (W9) · 〜かった (W14 past tense)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 20 most useful JP phrases -->
+    <div class="section">
+      <div class="section-label">The 20 most powerful Japanese phrases — your forever toolkit</div>
+      <div class="section-title">If you only remember 20 things, make it these</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl"><span class="phrase-icon">🙇</span><div><div class="phrase-native">すみません</div><div class="phrase-rom">Sumimasen</div><div class="phrase-en">Excuse me / Sorry / Thank you (the most useful word in Japan)</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🙏</span><div><div class="phrase-native">ありがとうございます</div><div class="phrase-rom">Arigatou gozaimasu</div><div class="phrase-en">Thank you very much</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🍽️</span><div><div class="phrase-native">これをください</div><div class="phrase-rom">Kore wo kudasai</div><div class="phrase-en">This one, please</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">💴</span><div><div class="phrase-native">いくらですか？</div><div class="phrase-rom">Ikura desu ka?</div><div class="phrase-en">How much is it?</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🤔</span><div><div class="phrase-native">わかりません</div><div class="phrase-rom">Wakarimasen</div><div class="phrase-en">I don't understand</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🗺️</span><div><div class="phrase-native">〜はどこですか？</div><div class="phrase-rom">[place]-wa doko desu ka?</div><div class="phrase-en">Where is [place]?</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🚪</span><div><div class="phrase-native">見ているだけです</div><div class="phrase-rom">Mite iru dake desu</div><div class="phrase-en">I'm just looking</div><div class="phrase-week">Week 8</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">📸</span><div><div class="phrase-native">写真を撮ってもいいですか？</div><div class="phrase-rom">Shashin wo totte mo ii desu ka?</div><div class="phrase-en">May I take a photo?</div><div class="phrase-week">Week 9</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🏥</span><div><div class="phrase-native">〜が痛いです</div><div class="phrase-rom">[body part]-ga itai desu</div><div class="phrase-en">My [body part] hurts</div><div class="phrase-week">Week 9</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🚨</span><div><div class="phrase-native">救急車を呼んでください！</div><div class="phrase-rom">Kyūkyūsha wo yonde kudasai!</div><div class="phrase-en">Please call an ambulance!</div><div class="phrase-week">Week 9</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🙇</span><div><div class="phrase-native">はじめまして。よろしくお願いします。</div><div class="phrase-rom">Hajimemashite. Yoroshiku onegaishimasu.</div><div class="phrase-en">Nice to meet you. Please treat me well.</div><div class="phrase-week">Week 10</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">💪</span><div><div class="phrase-native">頑張ってね</div><div class="phrase-rom">Ganbatte ne</div><div class="phrase-en">Do your best / Hang in there</div><div class="phrase-week">Week 14</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🌸</span><div><div class="phrase-native">きれいですね</div><div class="phrase-rom">Kirei desu ne</div><div class="phrase-en">It's beautiful, isn't it</div><div class="phrase-week">Week 12</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">😊</span><div><div class="phrase-native">楽しかったです！</div><div class="phrase-rom">Tanoshikatta desu!</div><div class="phrase-en">That was so fun!</div><div class="phrase-week">Week 14</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🤝</span><div><div class="phrase-native">お疲れ様です</div><div class="phrase-rom">Otsukaresama desu</div><div class="phrase-en">Thank you for your hard work</div><div class="phrase-week">Week 13</div></div></div>
+      </div>
+    </div>
+
+    <!-- Final JP quiz -->
+    <div class="section">
+      <div class="section-label">Final Japanese challenge quiz — across all 15 weeks</div>
+      <div class="section-title">8 questions covering the full course</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">W3 · What is the katakana for "coffee" (コーヒー)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">ka-hi (かひ)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'correct')">kōhī (コーヒー)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">kohi (こひ)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">kōfii (コーフィー)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W9 · Build the て-form of 飲む (nomu = to drink)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">飲いて (nomiite)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'correct')">飲んで (nonde)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">飲して (nomishite)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">飲って (nomitte)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W11 · How do you say "I can speak Japanese" using the potential form?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">日本語を話したいです</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">日本語を話しています</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'correct')">日本語が話せます</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">日本語を話さなければなりません</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W13 · How do you say "I must go to the meeting" using 〜なければならない?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">会議に行きたいです</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'correct')">会議に行かなければなりません</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">会議に行けます</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">会議に行っています</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W15 · What type of 〜ている is 東京に住んでいます?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">Action in progress</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'correct')">Resulting state (lives in Tokyo)</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">Habitual action</button>
+          <button class="quiz-btn" onclick="jpFinalAnswer(this,'wrong')">Future intention</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-score" id="jp-score"></div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN GRAND REVIEW
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어 Grand Review</div>
+        <div class="lang-sub">Your complete Korean grammar toolkit · Survival scenarios · Final challenge</div>
+      </div>
+    </div>
+
+    <!-- Grammar toolkit KR -->
+    <div class="section">
+      <div class="section-label">Your Korean grammar toolkit — 15 patterns mastered</div>
+      <div class="section-title">Every Korean grammar pattern, in one place</div>
+      <div class="grammar-grid">
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 3</div>
+          <div class="g-pattern">은/는 · 이/가 · 을/를 · 에</div>
+          <div class="g-meaning">Topic, subject, object, location particles</div>
+          <div class="g-example">저는 커피를 마셔요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 5</div>
+          <div class="g-pattern">아/어요 (present) · 았/었어요 (past)</div>
+          <div class="g-meaning">Polite verb conjugation</div>
+          <div class="g-example">먹어요 / 먹었어요</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 8</div>
+          <div class="g-pattern">A보다 B가 더 〜</div>
+          <div class="g-meaning">B is more ~ than A</div>
+          <div class="g-example">이것보다 저것이 더 싸요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 8</div>
+          <div class="g-pattern">제일 / 가장 〜</div>
+          <div class="g-meaning">The most ~ (superlative)</div>
+          <div class="g-example">이게 제일 좋아요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 9</div>
+          <div class="g-pattern">-(으)면</div>
+          <div class="g-meaning">If / when ~ (conditional)</div>
+          <div class="g-example">아프면 병원에 가세요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 10</div>
+          <div class="g-pattern">-(아/어)서</div>
+          <div class="g-meaning">Because ~ / so ~ (cause-effect)</div>
+          <div class="g-example">피곤해서 일찍 잤어요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 11</div>
+          <div class="g-pattern">-(으)ㄹ 수 있다/없다</div>
+          <div class="g-meaning">Can / cannot do ~</div>
+          <div class="g-example">한국어를 할 수 있어요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 12</div>
+          <div class="g-pattern">-(으)려고 하다</div>
+          <div class="g-meaning">Planning to / intending to ~</div>
+          <div class="g-example">경복궁에 가려고 해요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 13</div>
+          <div class="g-pattern">-(아/어)야 하다</div>
+          <div class="g-meaning">Must / have to ~</div>
+          <div class="g-example">공부해야 해요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 13</div>
+          <div class="g-pattern">안 〜도 돼요 vs 〜면 안 돼요</div>
+          <div class="g-meaning">Don't have to vs must not</div>
+          <div class="g-example">안 가도 돼요 / 가면 안 돼요</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 14</div>
+          <div class="g-pattern">〜고 싶다</div>
+          <div class="g-meaning">Want to ~</div>
+          <div class="g-example">보고 싶어요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 14</div>
+          <div class="g-pattern">-(으)ㄹ 것 같다</div>
+          <div class="g-meaning">Seems like ~ / I think it will ~</div>
+          <div class="g-example">비가 올 것 같아요.</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 15</div>
+          <div class="g-pattern">Adj + (으)ㄴ + Noun</div>
+          <div class="g-meaning">Adjective modifier before noun</div>
+          <div class="g-example">추운 날씨 / 아름다운 경치</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 15</div>
+          <div class="g-pattern">Verb + 는 + Noun (present)</div>
+          <div class="g-meaning">The noun that verbs (present)</div>
+          <div class="g-example">내리는 눈 / 가는 사람</div>
+        </div>
+        <div class="grammar-card mastered">
+          <div class="g-week">Week 15</div>
+          <div class="g-pattern">Verb + (으)ㄴ + Noun (past)</div>
+          <div class="g-meaning">The noun that was verbed (past)</div>
+          <div class="g-example">먹은 음식 / 본 영화</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Survival scenario KR -->
+    <div class="section">
+      <div class="section-label">Survival scenarios — putting it all together</div>
+      <div class="section-title">3 complete Korean conversations using everything you've learned</div>
+      <div class="scenario-sim">
+        <div class="scenario-header">
+          <span>🇰🇷 한국어 시나리오 — Korean Scenarios</span>
+        </div>
+        <div class="scenario-tabs">
+          <div class="scenario-tab active" onclick="krScenario(this,0)">🍜 Restaurant</div>
+          <div class="scenario-tab" onclick="krScenario(this,1)">🚇 Subway</div>
+          <div class="scenario-tab" onclick="krScenario(this,2)">🏨 Hotel</div>
+        </div>
+        <div class="scenario-body" id="kr-scenario-body">
+          <div class="scenario-situation"><strong>📍 Situation:</strong> You're at a Korean BBQ restaurant. You want to order samgyeopsal, ask for less spice, and request the bill.</div>
+          <div class="convo-row">
+            <div class="convo-speaker">Staff</div>
+            <div class="convo-bubble local">어서오세요! 몇 분이세요?</div>
+            <div class="convo-rom">Eoseooseyo! Myeot buniseyo?</div>
+            <div class="convo-en">Welcome! How many people?</div>
+          </div>
+          <div class="convo-row" style="text-align:right">
+            <div class="convo-speaker" style="text-align:right">You</div>
+            <div class="convo-bubble you">두 명이요. 삼겹살 2인분 주세요. 그리고 덜 맵게 해주실 수 있어요?</div>
+            <div class="convo-rom" style="text-align:right">Du myeong-iyo. Samgyeopsal i-inbun juseyo. Geurigo deol maepge haejusil su isseoyo?</div>
+            <div class="convo-en" style="text-align:right">Two people. Please give us 2 portions of samgyeopsal. And could you make it less spicy?</div>
+          </div>
+          <div class="convo-row">
+            <div class="convo-speaker">Staff</div>
+            <div class="convo-bubble local">네, 알겠습니다! 반찬도 더 필요하시면 말씀해 주세요.</div>
+            <div class="convo-rom">Ne, algessseumnida! Banchanjo deo piryohasimyeon malsseum-hae juseyo.</div>
+            <div class="convo-en">Yes, understood! If you need more banchan, please let us know.</div>
+          </div>
+          <div class="convo-row" style="text-align:right">
+            <div class="convo-speaker" style="text-align:right">You (after eating)</div>
+            <div class="convo-bubble you">저기요! 계산해 주세요. 정말 맛있었어요!</div>
+            <div class="convo-rom" style="text-align:right">Jeogiyo! Gyesan-hae juseyo. Jeongmal masisseoyo!</div>
+            <div class="convo-en" style="text-align:right">Excuse me! The bill please. It was really delicious!</div>
+          </div>
+          <div style="font-size:11px; color:#aaa; margin-top:10px; font-style:italic">Grammar used: 두 명이요 (W4) · 주세요 (W2) · 덜 맵게 해주실 수 있어요 (W11 potential) · -(으)면 (W9) · 맛있었어요 (W6)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 20 Korean phrases -->
+    <div class="section">
+      <div class="section-label">The 20 most powerful Korean phrases — your forever toolkit</div>
+      <div class="section-title">If you only remember 20 things, make it these</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl"><span class="phrase-icon">👋</span><div><div class="phrase-native">안녕하세요</div><div class="phrase-rom">Annyeonghaseyo</div><div class="phrase-en">Hello (formal) — the universal Korean greeting</div><div class="phrase-week">Week 1</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🙏</span><div><div class="phrase-native">감사합니다</div><div class="phrase-rom">Gamsahamnida</div><div class="phrase-en">Thank you (formal)</div><div class="phrase-week">Week 1</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🍽️</span><div><div class="phrase-native">이거 주세요</div><div class="phrase-rom">Igeo juseyo</div><div class="phrase-en">This one, please</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">💴</span><div><div class="phrase-native">얼마예요?</div><div class="phrase-rom">Eolmayeyo?</div><div class="phrase-en">How much is it?</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🚻</span><div><div class="phrase-native">화장실이 어디예요?</div><div class="phrase-rom">Hwajangsiri eodiyeyo?</div><div class="phrase-en">Where is the bathroom?</div><div class="phrase-week">Week 2</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🌶️</span><div><div class="phrase-native">덜 맵게 해주세요</div><div class="phrase-rom">Deol maepge haejuseyo</div><div class="phrase-en">Please make it less spicy</div><div class="phrase-week">Week 6</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">⏹️</span><div><div class="phrase-native">여기서 세워 주세요</div><div class="phrase-rom">Yeogiseo sewo juseyo</div><div class="phrase-en">Please stop here (taxi)</div><div class="phrase-week">Week 7</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">💄</span><div><div class="phrase-native">다른 색상 있어요?</div><div class="phrase-rom">Dareun saeksang isseoyo?</div><div class="phrase-en">Do you have another colour?</div><div class="phrase-week">Week 8</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🏥</span><div><div class="phrase-native">〜이/가 아파요</div><div class="phrase-rom">[body part]-i/ga apayo</div><div class="phrase-en">My [body part] hurts</div><div class="phrase-week">Week 9</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🚨</span><div><div class="phrase-native">구급차 불러 주세요!</div><div class="phrase-rom">Gugeuпча bulleo juseyo!</div><div class="phrase-en">Please call an ambulance!</div><div class="phrase-week">Week 9</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🙌</span><div><div class="phrase-native">처음 뵙겠습니다. 잘 부탁드립니다.</div><div class="phrase-rom">Cheoeum boepgesseumnida. Jal butakdeurimnida.</div><div class="phrase-en">Nice to meet you. Please take care of me.</div><div class="phrase-week">Week 10</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🎉</span><div><div class="phrase-native">재미있었어요!</div><div class="phrase-rom">Jaemiisseosseoyo!</div><div class="phrase-en">That was fun!</div><div class="phrase-week">Week 10</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">💪</span><div><div class="phrase-native">힘내요!</div><div class="phrase-rom">Himnaeyo!</div><div class="phrase-en">Cheer up! / Hang in there!</div><div class="phrase-week">Week 14</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">❤️</span><div><div class="phrase-native">보고 싶어요</div><div class="phrase-rom">Bogo sipeoyo</div><div class="phrase-en">I miss you / I want to see you</div><div class="phrase-week">Week 14</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🌸</span><div><div class="phrase-native">대박이에요!</div><div class="phrase-rom">Daebagieyo!</div><div class="phrase-en">Amazing! (the most enthusiastic Korean exclamation)</div><div class="phrase-week">Week 12</div></div></div>
+      </div>
+    </div>
+
+    <!-- Final KR quiz -->
+    <div class="section">
+      <div class="section-label">Final Korean challenge quiz — across all 15 weeks</div>
+      <div class="section-title">8 questions covering the full course</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">W3 · What particle marks the OBJECT of a sentence (after a vowel)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">은</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">이</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'correct')">를</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">에</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W4 · When telling the time in Korean, which number system do you use for HOURS?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'correct')">Native Korean (하나, 둘, 셋...)</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">Sino-Korean (일, 이, 삼...)</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">Either works</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">English numbers</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W10 · Which grammar pattern means "because I was tired, I slept early"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">피곤하면 일찍 잤어요</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'correct')">피곤해서 일찍 잤어요</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">피곤하려고 일찍 잤어요</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">피곤할 것 같아서 잤어요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W13 · What is the difference between 안 가도 돼요 and 가면 안 돼요?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">They mean the same thing</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'correct')">안 가도 돼요 = don't have to go · 가면 안 돼요 = must not go</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">Both mean "you cannot go"</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">안 가도 돼요 is more polite</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W15 · How do you modify 춥다 (cold) before the noun 날씨 (weather)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">춥는 날씨</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">춥은 날씨</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'correct')">추운 날씨</button>
+          <button class="quiz-btn" onclick="krFinalAnswer(this,'wrong')">춥고 날씨</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-score" id="kr-score"></div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- ══════════════════════════════
+       NEXT STEPS
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🚀</span>
+      <div>
+        <div class="lang-title">Your Next Steps — Where to Go From Here</div>
+        <div class="lang-sub">This course was the foundation. Here's how to keep growing.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Recommended next steps — both languages</div>
+      <div class="section-title">You're now an elementary learner — here's what to do next</div>
+      <div class="nextsteps-grid">
+        <div class="nextstep-card featured">
+          <div class="nextstep-icon">📱</div>
+          <div class="nextstep-title">Daily practice apps</div>
+          <div class="nextstep-desc">Duolingo or LingoDeer for JP · Duolingo for KR. 10–15 minutes daily is worth more than 2 hours once a week. Consistency is everything.</div>
+          <span class="nextstep-tag">Free to start</span>
+        </div>
+        <div class="nextstep-card featured">
+          <div class="nextstep-icon">📺</div>
+          <div class="nextstep-title">Passive immersion</div>
+          <div class="nextstep-desc">Watch Japanese anime or Korean dramas with subtitles. Start with subtitles in English, progress to subtitles in the target language. Listening ear develops fastest through immersion.</div>
+          <span class="nextstep-tag">Netflix / Viki / Crunchyroll</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">🎌</div>
+          <div class="nextstep-title">Japanese: Complete hiragana & kanji</div>
+          <div class="nextstep-desc">Finish learning all 46 hiragana and 46 katakana if not done. Then begin the JLPT N5 kanji list (100 characters). Wanikani app makes kanji systematic and memorable.</div>
+          <span class="nextstep-tag">Next milestone: JLPT N5</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">🇰🇷</div>
+          <div class="nextstep-title">Korean: Complete Hangul mastery</div>
+          <div class="nextstep-desc">You can read Hangul — now build reading speed. Read menus, signs, and subtitles. Korean vocabulary expands very fast because Hangul is fully phonetic.</div>
+          <span class="nextstep-tag">Next milestone: TOPIK I</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">💬</div>
+          <div class="nextstep-title">Find a language exchange partner</div>
+          <div class="nextstep-desc">Apps like HelloTalk, Tandem, or Speaky connect you with native speakers who want to learn English. Real conversation is the fastest accelerator after this foundation course.</div>
+          <span class="nextstep-tag">HelloTalk / Tandem</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">📖</div>
+          <div class="nextstep-title">Get a textbook for each language</div>
+          <div class="nextstep-desc">JP: Genki I (highly recommended, used in universities worldwide). KR: Talk To Me in Korean Level 1 (free online + paid workbook). Both are excellent, structured, and fun.</div>
+          <span class="nextstep-tag">Genki · TTMIK</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">✈️</div>
+          <div class="nextstep-title">Plan a trip!</div>
+          <div class="nextstep-desc">You now have enough to travel independently in Japan and Korea. Ordering food, navigating transport, checking into hotels, talking to locals — you can do all of it. Go and use what you've learned.</div>
+          <span class="nextstep-tag">The best classroom is the country</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">🤖</div>
+          <div class="nextstep-title">Keep using Claude!</div>
+          <div class="nextstep-desc">Ask me to quiz you on specific grammar, explain a sentence you encountered, write practice dialogues, or create new weekly material at the next level. I'm here whenever you want to continue.</div>
+          <span class="nextstep-tag">Always available</span>
+        </div>
+      </div>
+
+      <div class="tip-box tip-gold" style="margin-top:16px">
+        <strong>The honest truth about language learning:</strong> You now have a strong elementary foundation in two of the world's most fascinating languages. The gap between elementary and conversational is filled by one thing — consistent exposure and use. 15 minutes a day of listening, speaking, or reading will get you there faster than any course. The language lives in the moments you use it, not the moments you study it.
+      </div>
+    </div>
+
+    <!-- Where you stand -->
+    <div class="section">
+      <div class="section-label">Where you stand now</div>
+      <div class="section-title">A realistic assessment of your level after 16 weeks</div>
+      <table>
+        <tr><th>Skill</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+        <tr><td>Reading (script)</td><td>Hiragana ✅ · Katakana ✅ · Kanji: beginning</td><td>Hangul fully readable ✅</td></tr>
+        <tr><td>Listening</td><td>Slow, clear speech with known vocab</td><td>Slow, clear speech with known vocab</td></tr>
+        <tr><td>Speaking</td><td>Survival situations + basic conversation</td><td>Survival situations + basic conversation</td></tr>
+        <tr><td>Grammar</td><td>15 core patterns, polite register</td><td>15 core patterns, polite register</td></tr>
+        <tr><td>Vocabulary</td><td>~400 words and phrases</td><td>~400 words and phrases</td></tr>
+        <tr><td>Cultural knowledge</td><td>Deep — 16 weeks of context</td><td>Deep — 16 weeks of context</td></tr>
+        <tr><td>Equivalent level</td><td>JLPT N5 (approaching)</td><td>TOPIK I (level 1–2)</td></tr>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- Final message -->
+  <div class="final-message">
+    <h2>おめでとうございます & 축하해요! 🎉</h2>
+    <p>You committed to learning two of the world's most beautiful and intricate languages — simultaneously — and you saw it through. That takes genuine dedication.</p>
+    <p>In 16 weeks you've gone from zero to someone who can read Japanese scripts, navigate Korean grammar, order food, ask for directions, check into a hotel, express how you feel, and connect with people in ways that cross cultural lines.</p>
+    <p>The journey doesn't end here — it starts here. Every Japanese person who hears you say すみません, every Korean who hears 보고 싶어요 — they will feel genuinely touched that you made the effort. Language is the deepest form of respect you can show another culture.</p>
+    <div class="final-jp">またいつか会いましょう。</div>
+    <div class="final-rom" style="color:rgba(255,255,255,0.45); margin-bottom:10px">Mata itsuka aimashō. — Let's meet again someday.</div>
+    <div class="final-kr">언제 또 만나요. 화이팅!</div>
+    <div class="final-rom">Eonje tto mannayo. Hwaiting! — Let's meet again. Keep going!</div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa; margin-top:2rem;">
+    Week 16 complete · Course complete · The adventure continues 🎌🇰🇷✨
+  </div>
+
+</div>
+
+<script>
+/* Scenario switchers */
+const jpScenarios = [
+  {
+    situation: '📍 Situation: You\'re at a ramen restaurant. You want to order, ask about spice, and request the bill.',
+    rows: [
+      { speaker:'Staff', bubble:'local', text:'いらっしゃいませ！何名様ですか？', rom:'Irasshaimase! Nan-mei-sama desu ka?', en:'Welcome! How many people?' },
+      { speaker:'You', bubble:'you', text:'一人です。すみません、醤油ラーメンをひとつお願いします。辛くしないでください。', rom:'Hitori desu. Sumimasen, shōyu rāmen wo hitotsu onegaishimasu. Karakunishinai de kudasai.', en:'Just me. One soy sauce ramen please. Please don\'t make it spicy.' },
+      { speaker:'Staff', bubble:'local', text:'かしこまりました。少々お待ちください。', rom:'Kashikomarimashita. Shōshō omachi kudasai.', en:'Understood. Please wait a moment.' },
+      { speaker:'You (after eating)', bubble:'you', text:'すみません！お会計をお願いします。とてもおいしかったです！', rom:'Sumimasen! Okaikei wo onegaishimasu. Totemo oishikatta desu!', en:'Excuse me! The bill please. It was really delicious!' }
+    ],
+    grammar: 'Grammar used: 〜です (W3) · 〜をひとつお願いします (W6) · て-form + ください (W9) · 〜かった (W14 past tense)'
+  },
+  {
+    situation: '📍 Situation: You\'re at a train station. You need to find the right platform for Kyoto.',
+    rows: [
+      { speaker:'You', bubble:'you', text:'すみません、京都行きは何番線ですか？', rom:'Sumimasen, Kyōto-yuki wa nan-ban-sen desu ka?', en:'Excuse me, which platform for Kyoto?' },
+      { speaker:'Station staff', bubble:'local', text:'14番線です。新幹線のぞみに乗ってください。', rom:'Jūyon-ban-sen desu. Shinkansen Nozomi ni notte kudasai.', en:'Platform 14. Please take the Shinkansen Nozomi.' },
+      { speaker:'You', bubble:'you', text:'ありがとうございます。自由席はありますか？', rom:'Arigatou gozaimasu. Jiyūseki wa arimasu ka?', en:'Thank you. Are there unreserved seats?' },
+      { speaker:'Station staff', bubble:'local', text:'はい、8号車から10号車が自由席です。', rom:'Hai, hachi-gōsha kara jūgōsha ga jiyūseki desu.', en:'Yes, cars 8 to 10 are unreserved.' }
+    ],
+    grammar: 'Grammar used: すみません (W2) · 〜行き (W7 transport) · 〜をお願いします (W2) · 〜はありますか (W2) · から (W5)'
+  },
+  {
+    situation: '📍 Situation: You\'re checking into a hotel. You have a reservation and want a quiet room.',
+    rows: [
+      { speaker:'You', bubble:'you', text:'チェックインをお願いします。スミスと申します。予約しています。', rom:'Chekkuin wo onegaishimasu. Sumisu to moushimasu. Yoyaku shite imasu.', en:'I\'d like to check in. My name is Smith. I have a reservation.' },
+      { speaker:'Front desk', bubble:'local', text:'スミス様、いらっしゃいませ。シングルのお部屋ですね。', rom:'Sumisu-sama, irasshaimase. Shinguru no oheya desu ne.', en:'Welcome, Mr/Ms Smith. A single room, yes.' },
+      { speaker:'You', bubble:'you', text:'はい。できれば、静かな部屋をお願いしたいです。', rom:'Hai. Dekireba, shizuka na heya wo onegaishitai desu.', en:'Yes. If possible, I\'d like a quiet room.' },
+      { speaker:'Front desk', bubble:'local', text:'かしこまりました。高い階のお部屋を用意いたします。', rom:'Kashikomarimashita. Takai kai no oheya wo yōi itashimasu.', en:'Of course. I\'ll prepare a room on a higher floor.' }
+    ],
+    grammar: 'Grammar used: 〜と申します (W10) · 〜ています (W15 state) · 〜たいです (W14) · できれば (if possible) · Potential form (W11)'
+  }
+];
+
+function jpScenario(tab, idx) {
+  document.querySelectorAll('.scenario-sim .scenario-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const s = jpScenarios[idx];
+  let html = `<div class="scenario-situation"><strong>📍 Situation:</strong> ${s.situation}</div>`;
+  s.rows.forEach(r => {
+    const isYou = r.bubble === 'you';
+    html += `<div class="convo-row"${isYou?' style="text-align:right"':''}>
+      <div class="convo-speaker"${isYou?' style="text-align:right"':''}>${r.speaker}</div>
+      <div class="convo-bubble ${r.bubble}">${r.text}</div>
+      <div class="convo-rom"${isYou?' style="text-align:right"':''}>${r.rom}</div>
+      <div class="convo-en"${isYou?' style="text-align:right"':''}>${r.en}</div>
+    </div>`;
+  });
+  html += `<div style="font-size:11px; color:#aaa; margin-top:10px; font-style:italic">${s.grammar}</div>`;
+  document.getElementById('jp-scenario-body').innerHTML = html;
+}
+
+const krScenarios = [
+  {
+    situation: '📍 Situation: You\'re at a Korean BBQ restaurant. You want to order samgyeopsal and request the bill.',
+    rows: [
+      { speaker:'Staff', bubble:'local', text:'어서오세요! 몇 분이세요?', rom:'Eoseooseyo! Myeot buniseyo?', en:'Welcome! How many people?' },
+      { speaker:'You', bubble:'you', text:'두 명이요. 삼겹살 2인분 주세요. 덜 맵게 해주실 수 있어요?', rom:'Du myeong-iyo. Samgyeopsal i-inbun juseyo. Deol maepge haejusil su isseoyo?', en:'Two people. 2 portions of samgyeopsal please. Could you make it less spicy?' },
+      { speaker:'Staff', bubble:'local', text:'네, 알겠습니다! 반찬 더 필요하시면 말씀해 주세요.', rom:'Ne, algessseumnida! Banchan deo piryohasimyeon malsseum-hae juseyo.', en:'Yes! If you need more banchan, please let us know.' },
+      { speaker:'You (after eating)', bubble:'you', text:'저기요! 계산해 주세요. 정말 맛있었어요!', rom:'Jeogiyo! Gyesan-hae juseyo. Jeongmal masisseoyo!', en:'Excuse me! The bill please. It was really delicious!' }
+    ],
+    grammar: 'Grammar used: 두 명이요 (W4) · 주세요 (W2) · -(으)ㄹ 수 있어요 (W11) · -(으)면 (W9) · 맛있었어요 (W6)'
+  },
+  {
+    situation: '📍 Situation: You\'re lost near Seoul subway. You need to find line 2 and ask about transfers.',
+    rows: [
+      { speaker:'You', bubble:'you', text:'저기요, 실례합니다. 2호선이 어디예요?', rom:'Jeogiyo, sillehamnida. I-hoseon-i eodiyeyo?', en:'Excuse me. Where is Line 2?' },
+      { speaker:'Passerby', bubble:'local', text:'저쪽으로 가시면 돼요. 에스컬레이터 내려가세요.', rom:'Jeojjog-euro gasimyeon dwaeyo. Eseukeolleiteo naeryeogaseyo.', en:'Go that way. Go down the escalator.' },
+      { speaker:'You', bubble:'you', text:'감사합니다! 강남역에서 환승할 수 있어요?', rom:'Gamsahamnida! Gangnam-yeogeso hwanseunghal su isseoyo?', en:'Thank you! Can I transfer at Gangnam station?' },
+      { speaker:'Passerby', bubble:'local', text:'네, 신분당선으로 갈아탈 수 있어요.', rom:'Ne, Sinbundang-seoneuro garatal su isseoyo.', en:'Yes, you can transfer to the Shinbundang line.' }
+    ],
+    grammar: 'Grammar used: 저기요 (W6) · 어디예요 (W2) · 감사합니다 (W1) · -(으)ㄹ 수 있다 (W11) · 에서 (W3)'
+  },
+  {
+    situation: '📍 Situation: You\'re checking into a Korean guesthouse and want a quiet room.',
+    rows: [
+      { speaker:'You', bubble:'you', text:'안녕하세요. 체크인 하려고요. 김 이름으로 예약했어요.', rom:'Annyeonghaseyo. Chekeu-in haryeogoyo. Kim ireumeuro yeyakhasseoyo.', en:'Hello. I\'d like to check in. I have a reservation under Kim.' },
+      { speaker:'Receptionist', bubble:'local', text:'어서오세요! 여권 보여 주세요.', rom:'Eoseooseyo! Yeogwon boyeo juseyo.', en:'Welcome! Please show your passport.' },
+      { speaker:'You', bubble:'you', text:'네. 가능하면 조용한 방으로 주실 수 있어요?', rom:'Ne. Ganeunnghamyeon joyonghan bangeuro jusil su isseoyo?', en:'Yes. If possible, could you give me a quiet room?' },
+      { speaker:'Receptionist', bubble:'local', text:'물론이죠! 높은 층 방으로 드릴게요.', rom:'Mullon-ijyo! Nopseun cheung bang-euro deurilgeyo.', en:'Of course! I\'ll give you a room on a higher floor.' }
+    ],
+    grammar: 'Grammar used: 안녕하세요 (W1) · -(으)려고 하다 (W12) · 예약했어요 (W5 past tense) · -(으)ㄹ 수 있다 (W11) · -(으)ㄴ noun modifier (W15)'
+  }
+];
+
+function krScenario(tab, idx) {
+  document.querySelectorAll('.scenario-sim .scenario-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const s = krScenarios[idx];
+  let html = `<div class="scenario-situation"><strong>📍 Situation:</strong> ${s.situation}</div>`;
+  s.rows.forEach(r => {
+    const isYou = r.bubble === 'you';
+    html += `<div class="convo-row"${isYou?' style="text-align:right"':''}>
+      <div class="convo-speaker"${isYou?' style="text-align:right"':''}>${r.speaker}</div>
+      <div class="convo-bubble ${r.bubble}">${r.text}</div>
+      <div class="convo-rom"${isYou?' style="text-align:right"':''}>${r.rom}</div>
+      <div class="convo-en"${isYou?' style="text-align:right"':''}>${r.en}</div>
+    </div>`;
+  });
+  html += `<div style="font-size:11px; color:#aaa; margin-top:10px; font-style:italic">${s.grammar}</div>`;
+  document.getElementById('kr-scenario-body').innerHTML = html;
+}
+
+/* JP Final quiz */
+let jpCorrect = 0, jpTotal = 0;
+function jpFinalAnswer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  if (group.querySelector('.quiz-btn.correct, .quiz-btn.wrong')) return;
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct!' : '✗ Not quite — check the week reference above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+  jpTotal++;
+  if (result === 'correct') jpCorrect++;
+  if (jpTotal === 5) {
+    const scoreEl = document.getElementById('jp-score');
+    scoreEl.style.display = 'block';
+    scoreEl.innerHTML = `🎌 Final Japanese score: <strong>${jpCorrect}/5</strong> — ${jpCorrect === 5 ? '完璧です！(Kanpeki desu = Perfect!)' : jpCorrect >= 3 ? 'よくできました！(Yoku dekimashita = Well done!)' : 'もう少し復習しましょう (Review a little more)'}`;
+  }
+}
+
+/* KR Final quiz */
+let krCorrect = 0, krTotal = 0;
+function krFinalAnswer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  if (group.querySelector('.quiz-btn.correct, .quiz-btn.wrong')) return;
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct!' : '✗ Not quite — check the week reference above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+  krTotal++;
+  if (result === 'correct') krCorrect++;
+  if (krTotal === 5) {
+    const scoreEl = document.getElementById('kr-score');
+    scoreEl.style.display = 'block';
+    scoreEl.innerHTML = `🇰🇷 Final Korean score: <strong>${krCorrect}/5</strong> — ${krCorrect === 5 ? '완벽해요！(Wanbyeokhaeyo = Perfect!)' : krCorrect >= 3 ? '잘 했어요！(Jal haesseoyo = Well done!)' : '조금 더 복습해요 (Review a little more)'}`;
+  }
+}
+</script>
+</body>
+</html>

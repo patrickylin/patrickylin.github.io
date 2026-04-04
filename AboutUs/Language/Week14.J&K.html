@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 14 — Japanese & Korean: Relationships & Emotions</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Family grid */
+  .family-tree { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .family-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .family-card.highlight { background: #fdf9f0; border-color: #f0dfa8; }
+  .family-icon { font-size: 22px; margin-bottom: 4px; }
+  .family-native { font-size: 16px; color: #1a1a18; margin-bottom: 1px; }
+  .family-native2 { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .family-rom { font-size: 10px; color: #888; }
+  .family-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+  .family-note { font-size: 10px; color: #aaa; margin-top: 2px; }
+
+  /* Emotion grid */
+  .emotion-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+  .emotion-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .emotion-icon { font-size: 22px; margin-bottom: 4px; }
+  .emotion-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .emotion-rom { font-size: 11px; color: #888; margin-bottom: 2px; }
+  .emotion-en { font-size: 13px; color: #333; font-weight: 500; }
+  .emotion-ex { font-size: 12px; color: #1D9E75; margin-top: 4px; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.pink { background: #fdf0f5; border-color: #f0b8d0; }
+  .phrase-card.blue { background: #f0f5fc; border-color: #b8d4f0; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Grammar blocks */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Tai-form table */
+  .tai-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .tai-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .tai-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .tai-table tr:last-child td { border-bottom: none; }
+  .tai-dict { font-size: 16px; color: #1a1a18; display: block; }
+  .tai-form { font-size: 16px; color: #185FA5; font-weight: 500; display: block; margin-top: 2px; }
+  .tai-rom { font-size: 11px; color: #888; display: block; }
+  .tai-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; display: block; }
+
+  /* Interactive wish builder */
+  .wish-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .wish-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+  .wish-body { padding: 14px; }
+  .wish-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .wish-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .wish-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .wish-btn:hover { background: #f0f0ee; }
+  .wish-btn.selected { background: #fdf0f5; border-color: #f0b8d0; color: #8a1a44; font-weight: 500; }
+  .wish-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 80px; }
+  .wish-phrase { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .wish-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .wish-en { font-size: 13px; color: #333; font-weight: 500; }
+  .wish-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Prediction cards */
+  .pred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .pred-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .pred-native { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .pred-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .pred-en { font-size: 13px; color: #333; font-weight: 500; }
+  .pred-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; }
+
+  /* Love phrases special styling */
+  .love-phrase-card { background: #fdf0f5; border: 0.5px solid #f0b8d0; border-radius: 12px; padding: 14px 16px; margin-top: 8px; }
+  .love-native { font-size: 22px; color: #1a1a18; margin-bottom: 3px; }
+  .love-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .love-en { font-size: 14px; color: #333; font-weight: 500; }
+  .love-note { font-size: 12px; color: #888; margin-top: 5px; font-style: italic; line-height: 1.5; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-pink { background: #fdf0f5; border-left: 3px solid #e91e8c; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .family-tree { grid-template-columns: repeat(2, 1fr); }
+    .emotion-grid, .pred-grid, .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 14 of 16</span>
+      <h1>Relationships & Emotions</h1>
+      <div class="subtitle">JP: Family vocabulary, expressing feelings & 〜たい · KR: Family, love language & -(으)ㄹ 것 같다</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:87%"></div></div>
+      87% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 14 · Family · Emotions · Love phrases · 〜たい (want to ~)</div>
+      </div>
+    </div>
+
+    <!-- Family vocabulary JP -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Family vocabulary — the in-group / out-group distinction</div>
+      <div class="section-title">Japanese has TWO sets of family words — one for your family, one for others'</div>
+      <p>This is one of the most fascinating quirks of Japanese. When talking about your own family you use humble words; when talking about someone else's family you use honorific words. This reflects the core Japanese value of humbling yourself while elevating others.</p>
+      <div class="family-tree">
+        <div class="family-card highlight">
+          <div class="family-icon">👴</div>
+          <div class="family-native">祖父 / おじいさん</div>
+          <div class="family-native2" style="font-size:10px; color:#888">sofu / ojiisan</div>
+          <div class="family-en">Grandfather</div>
+          <div class="family-note">Your own / others'</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👵</div>
+          <div class="family-native">祖母 / おばあさん</div>
+          <div class="family-native2" style="font-size:10px; color:#888">sobo / obaasan</div>
+          <div class="family-en">Grandmother</div>
+          <div class="family-note">Your own / others'</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👨</div>
+          <div class="family-native">父 / お父さん</div>
+          <div class="family-native2" style="font-size:10px; color:#888">chichi / otōsan</div>
+          <div class="family-en">Father</div>
+          <div class="family-note">Your own / others'</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👩</div>
+          <div class="family-native">母 / お母さん</div>
+          <div class="family-native2" style="font-size:10px; color:#888">haha / okāsan</div>
+          <div class="family-en">Mother</div>
+          <div class="family-note">Your own / others'</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👦</div>
+          <div class="family-native">兄 / お兄さん</div>
+          <div class="family-native2" style="font-size:10px; color:#888">ani / oniisan</div>
+          <div class="family-en">Older brother</div>
+          <div class="family-note">Your own / others'</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👧</div>
+          <div class="family-native">姉 / お姉さん</div>
+          <div class="family-native2" style="font-size:10px; color:#888">ane / onēsan</div>
+          <div class="family-en">Older sister</div>
+          <div class="family-note">Your own / others'</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">👶</div>
+          <div class="family-native">弟</div>
+          <div class="family-native2" style="font-size:10px; color:#888">otōto</div>
+          <div class="family-en">Younger brother</div>
+          <div class="family-note">Same word for both</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">👶</div>
+          <div class="family-native">妹</div>
+          <div class="family-native2" style="font-size:10px; color:#888">imōto</div>
+          <div class="family-en">Younger sister</div>
+          <div class="family-note">Same word for both</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">💑</div>
+          <div class="family-native">夫 / 妻</div>
+          <div class="family-native2" style="font-size:10px; color:#888">otto / tsuma</div>
+          <div class="family-en">Husband / Wife</div>
+          <div class="family-note">Your own spouse</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">🧒</div>
+          <div class="family-native">子供</div>
+          <div class="family-native2" style="font-size:10px; color:#888">kodomo</div>
+          <div class="family-en">Child / Children</div>
+          <div class="family-note">Generic term</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">👨‍👩‍👧‍👦</div>
+          <div class="family-native">家族</div>
+          <div class="family-native2" style="font-size:10px; color:#888">kazoku</div>
+          <div class="family-en">Family</div>
+          <div class="family-note">General term</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">❤️</div>
+          <div class="family-native">彼氏 / 彼女</div>
+          <div class="family-native2" style="font-size:10px; color:#888">kareshi / kanojo</div>
+          <div class="family-en">Boyfriend / Girlfriend</div>
+          <div class="family-note">Romantic partner</div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>The golden rule:</strong> Use humble forms (父 chichi, 母 haha, 兄 ani...) when referring to your OWN family to outsiders. Use honorific forms (お父さん otōsan, お母さん okāsan, お兄さん oniisan...) when referring to SOMEONE ELSE'S family. e.g. "私の父は医者です" (My father is a doctor) — never "私のお父さんは…" in formal speech.
+      </div>
+    </div>
+
+    <!-- Emotions JP -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Emotions & feelings</div>
+      <div class="section-title">12 essential emotion words — and how to express them naturally</div>
+      <div class="emotion-grid">
+        <div class="emotion-card">
+          <div class="emotion-icon">😊</div>
+          <div class="emotion-native">嬉しい</div>
+          <div class="emotion-rom">ureshii</div>
+          <div class="emotion-en">Happy / Glad</div>
+          <div class="emotion-ex">会えて嬉しいです = Happy to meet you</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😢</div>
+          <div class="emotion-native">悲しい</div>
+          <div class="emotion-rom">kanashii</div>
+          <div class="emotion-en">Sad</div>
+          <div class="emotion-ex">とても悲しいです = I'm very sad</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😠</div>
+          <div class="emotion-native">怒っている</div>
+          <div class="emotion-rom">okotte iru</div>
+          <div class="emotion-en">Angry</div>
+          <div class="emotion-ex">少し怒っています = I'm a little angry</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😰</div>
+          <div class="emotion-native">心配</div>
+          <div class="emotion-rom">shinpai</div>
+          <div class="emotion-en">Worried / Anxious</div>
+          <div class="emotion-ex">心配しています = I'm worried</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😳</div>
+          <div class="emotion-native">恥ずかしい</div>
+          <div class="emotion-rom">hazukashii</div>
+          <div class="emotion-en">Embarrassed / Shy</div>
+          <div class="emotion-ex">恥ずかしい！= How embarrassing!</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😌</div>
+          <div class="emotion-native">安心した</div>
+          <div class="emotion-rom">anshin shita</div>
+          <div class="emotion-en">Relieved</div>
+          <div class="emotion-ex">安心しました = I'm relieved</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">🤩</div>
+          <div class="emotion-native">楽しい</div>
+          <div class="emotion-rom">tanoshii</div>
+          <div class="emotion-en">Fun / Enjoyable</div>
+          <div class="emotion-ex">とても楽しかった！= It was so fun!</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😔</div>
+          <div class="emotion-native">寂しい</div>
+          <div class="emotion-rom">sabishii</div>
+          <div class="emotion-en">Lonely / Lonesome</div>
+          <div class="emotion-ex">寂しいですね = It's lonely, isn't it</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😤</div>
+          <div class="emotion-native">びっくりした</div>
+          <div class="emotion-rom">bikkuri shita</div>
+          <div class="emotion-en">Surprised / Startled</div>
+          <div class="emotion-ex">びっくりしました！= I was surprised!</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">🥰</div>
+          <div class="emotion-native">幸せ</div>
+          <div class="emotion-rom">shiawase</div>
+          <div class="emotion-en">Happy / Blissful</div>
+          <div class="emotion-ex">幸せです = I am happy</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😤</div>
+          <div class="emotion-native">羨ましい</div>
+          <div class="emotion-rom">urayamashii</div>
+          <div class="emotion-en">Envious / Jealous</div>
+          <div class="emotion-ex">羨ましいです！= I'm so envious!</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">🥺</div>
+          <div class="emotion-native">懐かしい</div>
+          <div class="emotion-rom">natsukashii</div>
+          <div class="emotion-en">Nostalgic / Fondly missed</div>
+          <div class="emotion-ex">懐かしいですね = How nostalgic</div>
+        </div>
+      </div>
+      <div class="tip-box tip-pink">
+        <strong>懐かしい (natsukashii)</strong> deserves special mention — it expresses a warm, bittersweet feeling of nostalgia for something from the past that you miss fondly. It's considered one of the most beautiful uniquely Japanese emotional concepts. Use it when you encounter something that reminds you of the past.
+      </div>
+    </div>
+
+    <!-- Love and relationship phrases JP -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Relationship & love phrases</div>
+      <div class="section-title">Expressions of care, affection, and connection</div>
+      <div class="phrase-list">
+        <div class="phrase-card pink">
+          <span class="phrase-icon">💕</span>
+          <div>
+            <div class="phrase-native">好きです</div>
+            <div class="phrase-rom">Suki desu</div>
+            <div class="phrase-en">I like you / I love you (mild)</div>
+            <div class="phrase-note">The standard way to express romantic interest in Japanese. Less intense than 愛している — 好き is used for everything from confessing a crush to saying you enjoy something.</div>
+          </div>
+        </div>
+        <div class="phrase-card pink">
+          <span class="phrase-icon">❤️</span>
+          <div>
+            <div class="phrase-native">愛しています</div>
+            <div class="phrase-rom">Aishite imasu</div>
+            <div class="phrase-en">I love you (deep, profound)</div>
+            <div class="phrase-note">Much stronger and rarer than 好き. Reserved for committed, serious relationships. Japanese couples rarely say this casually — it carries enormous weight. Often expressed through actions, not words.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">😊</span>
+          <div>
+            <div class="phrase-native">あなたといると楽しいです</div>
+            <div class="phrase-rom">Anata to iru to tanoshii desu</div>
+            <div class="phrase-en">I have fun when I'm with you</div>
+            <div class="phrase-note">A natural, warm expression of enjoying someone's company — often more meaningful than a direct "I love you" in Japanese culture.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤗</span>
+          <div>
+            <div class="phrase-native">いつもありがとう</div>
+            <div class="phrase-rom">Itsumo arigatō</div>
+            <div class="phrase-en">Thank you, as always</div>
+            <div class="phrase-note">いつも (itsumo) = always. A deeply warm expression said to someone who is consistently there for you — family, partner, or close friend.</div>
+          </div>
+        </div>
+        <div class="phrase-card pink">
+          <span class="phrase-icon">💌</span>
+          <div>
+            <div class="phrase-native">付き合ってください</div>
+            <div class="phrase-rom">Tsukiatte kudasai</div>
+            <div class="phrase-en">Please go out with me / Will you date me?</div>
+            <div class="phrase-note">The formal way to ask someone to be your girlfriend/boyfriend in Japan. 付き合う (tsukiau) = to go out with. This is considered a serious, meaningful confession (告白, kokuhaku).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌸</span>
+          <div>
+            <div class="phrase-native">あなたのことが心配です</div>
+            <div class="phrase-rom">Anata no koto ga shinpai desu</div>
+            <div class="phrase-en">I'm worried about you</div>
+            <div class="phrase-note">〜のことが心配 = worried about ~. Expressing concern is a key form of affection in Japanese culture — showing you're thinking about someone.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💪</span>
+          <div>
+            <div class="phrase-native">頑張ってね</div>
+            <div class="phrase-rom">Ganbatte ne</div>
+            <div class="phrase-en">Do your best / Hang in there</div>
+            <div class="phrase-note">One of the most-used encouraging phrases in Japanese — said to anyone facing a challenge. 頑張る (ganbaru) = to do one's best/persevere. ね softens it to a warm, caring tone.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 〜たい grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — 〜たい (tai-form)</div>
+      <div class="section-title">"I want to ~" — expressing desires and wishes</div>
+      <p>The たい-form attaches to the verb stem to express what you want to do. It conjugates like an い-adjective — so you can make it past tense (たかった = wanted to), negative (たくない = don't want to), and more.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>Formation:</strong> Remove ます from the polite verb form, add たい. e.g. 食べます → 食べたい (want to eat) · 行きます → 行きたい (want to go) · 会います → 会いたい (want to meet). In polite speech: add です → 食べたいです.
+      </div>
+
+      <table class="tai-table">
+        <tr>
+          <th>Dictionary</th>
+          <th>〜たい form</th>
+          <th>Meaning & example sentence</th>
+        </tr>
+        <tr>
+          <td><span class="tai-dict">行く<span style="font-size:11px; color:#888; display:block">iku (go)</span></span></td>
+          <td><span class="tai-form">行きたい<span class="tai-rom">ikitai</span></span></td>
+          <td>Want to go<span class="tai-ex">日本に行きたいです。= I want to go to Japan.</span></td>
+        </tr>
+        <tr>
+          <td><span class="tai-dict">食べる<span style="font-size:11px; color:#888; display:block">taberu (eat)</span></span></td>
+          <td><span class="tai-form">食べたい<span class="tai-rom">tabetai</span></span></td>
+          <td>Want to eat<span class="tai-ex">ラーメンが食べたいです。= I want to eat ramen.</span></td>
+        </tr>
+        <tr>
+          <td><span class="tai-dict">会う<span style="font-size:11px; color:#888; display:block">au (meet)</span></span></td>
+          <td><span class="tai-form">会いたい<span class="tai-rom">aitai</span></span></td>
+          <td>Want to meet / Miss (someone)<span class="tai-ex">あなたに会いたいです。= I want to see you / I miss you.</span></td>
+        </tr>
+        <tr>
+          <td><span class="tai-dict">話す<span style="font-size:11px; color:#888; display:block">hanasu (speak)</span></span></td>
+          <td><span class="tai-form">話したい<span class="tai-rom">hanashitai</span></span></td>
+          <td>Want to speak<span class="tai-ex">もっと話したいです。= I want to talk more.</span></td>
+        </tr>
+        <tr>
+          <td><span class="tai-dict">知る<span style="font-size:11px; color:#888; display:block">shiru (know)</span></span></td>
+          <td><span class="tai-form">知りたい<span class="tai-rom">shiritai</span></span></td>
+          <td>Want to know<span class="tai-ex">もっとあなたのことを知りたいです。= I want to know more about you.</span></td>
+        </tr>
+        <tr>
+          <td><span class="tai-dict">帰る<span style="font-size:11px; color:#888; display:block">kaeru (return home)</span></span></td>
+          <td><span class="tai-form">帰りたい<span class="tai-rom">kaeritai</span></span></td>
+          <td>Want to go home<span class="tai-ex">早く帰りたいです。= I want to go home soon.</span></td>
+        </tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">たい-form tenses — it conjugates like an adjective:</p>
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">食べたい</span><span class="formula-eq">→</span>
+          <span class="formula-piece">食べたいです (present want)</span>
+          <span class="formula-eq">→</span>
+          <span class="formula-piece">食べたかったです (wanted to)</span>
+          <span class="formula-eq">→</span>
+          <span class="formula-piece">食べたくないです (don't want to)</span>
+        </div>
+        <div class="grammar-result">あなたに会いたかったです。</div>
+        <div class="grammar-rom">Anata ni aitakatta desu.</div>
+        <div class="grammar-en">I wanted to see you. / I've missed you.</div>
+        <div class="grammar-note">One of the most heartfelt sentences in Japanese — past tense たかった conveys longing. Perfect for reunions.</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Interactive — build a wish sentence:</p>
+      <div class="wish-sim">
+        <div class="wish-header">
+          <span>💭 〜たい — What do you want to do?</span>
+        </div>
+        <div class="wish-body">
+          <div class="wish-label">Choose your wish</div>
+          <div class="wish-btns" id="jp-wish-btns">
+            <button class="wish-btn" onclick="jpWish(this,'日本に行き','Nihon ni iki','go to Japan')">✈️ Go to Japan</button>
+            <button class="wish-btn" onclick="jpWish(this,'温泉に入り','onsen ni hairi','enter a hot spring')">♨️ Try an onsen</button>
+            <button class="wish-btn" onclick="jpWish(this,'日本語を話し','Nihongo wo hanashi','speak Japanese')">🗣️ Speak Japanese</button>
+            <button class="wish-btn" onclick="jpWish(this,'友達を作り','tomodachi wo tsukuri','make friends')">🤝 Make friends</button>
+            <button class="wish-btn" onclick="jpWish(this,'桜を見','sakura wo mi','see cherry blossoms')">🌸 See cherry blossoms</button>
+            <button class="wish-btn" onclick="jpWish(this,'あなたに会い','anata ni ai','see you again')">💙 See you again</button>
+          </div>
+          <div class="wish-result" id="jp-wish-result">
+            <span class="wish-empty">Select a wish to build your たい sentence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💝</span>
+        <div class="culture-text">
+          <strong>愛の表現 — How love is expressed in Japan</strong><br/>
+          Japanese people express love differently from many Western cultures — less through words, more through actions. The concept of 気遣い (kizukai = thoughtful consideration for others) means that quietly making someone's coffee, remembering their preferences, or showing up when they need you carries far more emotional weight than saying "I love you." The phrase 大切にします (taisetsu ni shimasu = I will cherish you) is considered deeply romantic — far more so than a casual 愛している. When a Japanese person says 一緒にいると安心する (issho ni iru to anshin suru = I feel at ease when I'm with you), that is perhaps the highest form of romantic expression in the culture.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 14 Japanese — relationships & 〜たい</div>
+      <div class="quiz-item">
+        <div class="quiz-q">When talking to a stranger about your father, which word do you use?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">お父さん (otōsan)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">父 (chichi)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">パパ (papa)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">お父様 (otōsama)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I want to go to Japan" using 〜たい?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">日本に行けます</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">日本に行きたいです</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">日本に行かなければなりません</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">日本に行っています</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the past tense of 食べたい (tabetai = want to eat)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べたいました</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">食べたかったです</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べたかれました</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">食べたくなりました</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 懐かしい (natsukashii) express?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Excitement about the future</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Deep sadness</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Warm, bittersweet nostalgia for the past</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Relief after a difficult time</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 14 · Family · Emotions · Love language · -(으)ㄹ 것 같다</div>
+      </div>
+    </div>
+
+    <!-- Family vocabulary Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Family vocabulary in Korean</div>
+      <div class="section-title">Korean family terms — and the age-based honorific system</div>
+      <p>Korean family vocabulary reflects the culture's deep respect for age hierarchy. Crucially, Korean has different words depending on whether YOU are older or younger than the person — and whether you're male or female speaking.</p>
+      <div class="family-tree">
+        <div class="family-card highlight">
+          <div class="family-icon">👴</div>
+          <div class="family-native">할아버지</div>
+          <div class="family-native2" style="font-size:10px; color:#888">harabeoji</div>
+          <div class="family-en">Grandfather</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👵</div>
+          <div class="family-native">할머니</div>
+          <div class="family-native2" style="font-size:10px; color:#888">halmeoni</div>
+          <div class="family-en">Grandmother</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👨</div>
+          <div class="family-native">아버지 / 아빠</div>
+          <div class="family-native2" style="font-size:10px; color:#888">abeoji / appa</div>
+          <div class="family-en">Father (formal / casual)</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👩</div>
+          <div class="family-native">어머니 / 엄마</div>
+          <div class="family-native2" style="font-size:10px; color:#888">eomeoni / eomma</div>
+          <div class="family-en">Mother (formal / casual)</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👦</div>
+          <div class="family-native">오빠 / 형</div>
+          <div class="family-native2" style="font-size:10px; color:#888">oppa / hyeong</div>
+          <div class="family-en">Older brother</div>
+          <div class="family-note">Girl speaking / Boy speaking</div>
+        </div>
+        <div class="family-card highlight">
+          <div class="family-icon">👧</div>
+          <div class="family-native">언니 / 누나</div>
+          <div class="family-native2" style="font-size:10px; color:#888">eonni / nuna</div>
+          <div class="family-en">Older sister</div>
+          <div class="family-note">Girl speaking / Boy speaking</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">👶</div>
+          <div class="family-native">남동생</div>
+          <div class="family-native2" style="font-size:10px; color:#888">namdongsaeng</div>
+          <div class="family-en">Younger brother</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">👶</div>
+          <div class="family-native">여동생</div>
+          <div class="family-native2" style="font-size:10px; color:#888">yeodongsaeng</div>
+          <div class="family-en">Younger sister</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">💑</div>
+          <div class="family-native">남편 / 아내</div>
+          <div class="family-native2" style="font-size:10px; color:#888">nampyeon / anae</div>
+          <div class="family-en">Husband / Wife</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">🧒</div>
+          <div class="family-native">아이 / 자녀</div>
+          <div class="family-native2" style="font-size:10px; color:#888">ai / janyeo</div>
+          <div class="family-en">Child / Children</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">👨‍👩‍👧‍👦</div>
+          <div class="family-native">가족</div>
+          <div class="family-native2" style="font-size:10px; color:#888">gajok</div>
+          <div class="family-en">Family</div>
+        </div>
+        <div class="family-card">
+          <div class="family-icon">❤️</div>
+          <div class="family-native">남자친구 / 여자친구</div>
+          <div class="family-native2" style="font-size:10px; color:#888">namjachingu / yeojachingu</div>
+          <div class="family-en">Boyfriend / Girlfriend</div>
+        </div>
+      </div>
+      <div class="tip-box tip-pink">
+        <strong>오빠 (oppa) explained:</strong> This word — a girl calling an older boy or man 오빠 — has become globally known through K-dramas. It means "older brother" but is used between girls and older boys they're close to, or as a term of endearment for a boyfriend. 형 (hyeong) is the equivalent for boys calling an older male friend.
+      </div>
+    </div>
+
+    <!-- Emotions Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Emotions & feelings in Korean</div>
+      <div class="section-title">12 essential emotion words — express your inner world</div>
+      <div class="emotion-grid">
+        <div class="emotion-card">
+          <div class="emotion-icon">😊</div>
+          <div class="emotion-native">기뻐요</div>
+          <div class="emotion-rom">gippeoyo</div>
+          <div class="emotion-en">Happy / Glad</div>
+          <div class="emotion-ex">만나서 기뻐요 = Glad to meet you</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😢</div>
+          <div class="emotion-native">슬퍼요</div>
+          <div class="emotion-rom">seulpeoyo</div>
+          <div class="emotion-en">Sad</div>
+          <div class="emotion-ex">너무 슬퍼요 = I'm so sad</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😠</div>
+          <div class="emotion-native">화가 났어요</div>
+          <div class="emotion-rom">hwaga nasseoyo</div>
+          <div class="emotion-en">Angry / Upset</div>
+          <div class="emotion-ex">조금 화가 났어요 = I'm a little upset</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😰</div>
+          <div class="emotion-native">걱정돼요</div>
+          <div class="emotion-rom">geokjeongdwaeyo</div>
+          <div class="emotion-en">Worried</div>
+          <div class="emotion-ex">많이 걱정돼요 = I'm very worried</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😳</div>
+          <div class="emotion-native">부끄러워요</div>
+          <div class="emotion-rom">bukkeureoweoyo</div>
+          <div class="emotion-en">Embarrassed / Shy</div>
+          <div class="emotion-ex">너무 부끄러워요 = I'm so embarrassed</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😌</div>
+          <div class="emotion-native">안심됐어요</div>
+          <div class="emotion-rom">ansimddwasseoyo</div>
+          <div class="emotion-en">Relieved</div>
+          <div class="emotion-ex">정말 안심됐어요 = I'm really relieved</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">🤩</div>
+          <div class="emotion-native">신나요</div>
+          <div class="emotion-rom">sinnayo</div>
+          <div class="emotion-en">Excited / Thrilled</div>
+          <div class="emotion-ex">너무 신나요! = I'm so excited!</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😔</div>
+          <div class="emotion-native">외로워요</div>
+          <div class="emotion-rom">oeroweoyo</div>
+          <div class="emotion-en">Lonely</div>
+          <div class="emotion-ex">조금 외로워요 = I feel a bit lonely</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">😤</div>
+          <div class="emotion-native">놀랐어요</div>
+          <div class="emotion-rom">nollasseoyo</div>
+          <div class="emotion-en">Surprised</div>
+          <div class="emotion-ex">정말 놀랐어요! = I was really surprised!</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">🥰</div>
+          <div class="emotion-native">행복해요</div>
+          <div class="emotion-rom">haengbokhaeyo</div>
+          <div class="emotion-en">Happy / Blissful</div>
+          <div class="emotion-ex">정말 행복해요 = I'm truly happy</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">🥺</div>
+          <div class="emotion-native">보고 싶어요</div>
+          <div class="emotion-rom">bogo sipeoyo</div>
+          <div class="emotion-en">I miss you / I want to see you</div>
+          <div class="emotion-ex">보고 싶었어요 = I've missed you</div>
+        </div>
+        <div class="emotion-card">
+          <div class="emotion-icon">💫</div>
+          <div class="emotion-native">설레요</div>
+          <div class="emotion-rom">seollaeyo</div>
+          <div class="emotion-en">Heart fluttering (from Week 13!)</div>
+          <div class="emotion-ex">너무 설레요 = My heart is fluttering</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Love phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Love & relationship phrases in Korean</div>
+      <div class="section-title">Expressions of affection — from casual to heartfelt</div>
+
+      <div class="love-phrase-card">
+        <div class="love-native">사랑해요 💕</div>
+        <div class="love-rom">saranghaeyo</div>
+        <div class="love-en">I love you (polite)</div>
+        <div class="love-note">The classic expression of love — 사랑 (sarang) means love. Casual: 사랑해 (saranghae). Very commonly said between couples, and also between close friends and family in Korean culture — less weighted than the English equivalent.</div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:12px">
+        <div class="phrase-card pink">
+          <span class="phrase-icon">💙</span>
+          <div>
+            <div class="phrase-native">좋아해요</div>
+            <div class="phrase-rom">joahaeyo</div>
+            <div class="phrase-en">I like you (romantic interest)</div>
+            <div class="phrase-note">좋아하다 = to like. The step before 사랑해요 — used to confess feelings. 좋아해요 is warm and genuine without the intensity of 사랑해요.</div>
+          </div>
+        </div>
+        <div class="phrase-card pink">
+          <span class="phrase-icon">🥺</span>
+          <div>
+            <div class="phrase-native">보고 싶어요</div>
+            <div class="phrase-rom">bogo sipeoyo</div>
+            <div class="phrase-en">I miss you / I want to see you</div>
+            <div class="phrase-note">보다 (to see) + 고 싶다 (want to). One of the most used and most heartfelt phrases in Korean — said to partners, family, and close friends equally.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">😊</span>
+          <div>
+            <div class="phrase-native">같이 있으면 행복해요</div>
+            <div class="phrase-rom">gachi isseumyeon haengbokhaeyo</div>
+            <div class="phrase-en">I'm happy when I'm with you</div>
+            <div class="phrase-note">같이 (gachi) = together + -(으)면 (if/when) + 행복해요 (I'm happy). Uses grammar from Week 9! A beautifully natural expression of happiness in someone's company.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💪</span>
+          <div>
+            <div class="phrase-native">힘내요!</div>
+            <div class="phrase-rom">himnaeyo!</div>
+            <div class="phrase-en">Cheer up! / Hang in there!</div>
+            <div class="phrase-note">힘 (him) = strength + 내다 (to produce). The Korean equivalent of 頑張って — said to anyone facing difficulty. Shows deep care and solidarity.</div>
+          </div>
+        </div>
+        <div class="phrase-card pink">
+          <span class="phrase-icon">💍</span>
+          <div>
+            <div class="phrase-native">사귀어요</div>
+            <div class="phrase-rom">saguieoyo</div>
+            <div class="phrase-en">We are dating / going out</div>
+            <div class="phrase-note">사귀다 (saguida) = to date/go out. 사귀자 (saguja) = "let's date" — the casual proposal to start a relationship. 사귄 지 얼마나 됐어요? = How long have you been dating?</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤗</span>
+          <div>
+            <div class="phrase-native">항상 고마워요</div>
+            <div class="phrase-rom">hangsang gomawoyo</div>
+            <div class="phrase-en">Thank you, always</div>
+            <div class="phrase-note">항상 (hangsang) = always. 고마워요 (gomawoyo) = thank you (casual-warm). Deeply touching when said to someone consistently in your life.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- -(으)ㄹ 것 같다 grammar -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — -(으)ㄹ 것 같다</div>
+      <div class="section-title">"It seems like ~ / I think it will ~" — guesses, predictions, and impressions</div>
+      <p>-(으)ㄹ 것 같다 expresses a guess, prediction, or subjective impression. It's one of the most natural-sounding patterns in Korean — native speakers use it constantly to soften statements, share opinions, and express uncertainty politely.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>Formation:</strong> Verb/adjective stem + (으)ㄹ 것 같다 for future/present guesses (after consonant: 을 것 같다, after vowel/ㄹ: ㄹ 것 같다). For past guesses: verb + (은/ㄴ) 것 같다. 것 같다 conjugates like 하다: 것 같아요 (polite), 것 같아 (casual).
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">Future / present guesses:</p>
+
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">Verb stem</span><span class="formula-eq">+</span>
+          <span class="formula-piece">(으)ㄹ 것 같아요</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">"I think it will ~" / "It seems like ~"</span>
+        </div>
+        <div class="grammar-result">비가 올 것 같아요.</div>
+        <div class="grammar-rom">Biga ol geot gatayo.</div>
+        <div class="grammar-en">It looks like it's going to rain.</div>
+        <div class="grammar-note">오다 (to come/rain) → 올 것 같아요. A future prediction based on evidence (dark clouds).</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">이 영화 재미있을 것 같아요.</div>
+        <div class="grammar-rom">I yeonghwa jaemiisseul geot gatayo.</div>
+        <div class="grammar-en">This movie seems like it'll be interesting.</div>
+        <div class="grammar-note">재미있다 → 재미있을 것 같아요. An impression before experiencing something.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">그 사람 좋아할 것 같아요.</div>
+        <div class="grammar-rom">Geu saram joahal geot gatayo.</div>
+        <div class="grammar-en">I think you'll like that person.</div>
+        <div class="grammar-note">좋아하다 → 좋아할 것 같아요. Predicting someone else's reaction.</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Past guesses — "it seems like ~ happened":</p>
+
+      <div class="grammar-block">
+        <div class="grammar-formula">
+          <span class="formula-piece">Verb stem</span><span class="formula-eq">+</span>
+          <span class="formula-piece">(은/ㄴ) 것 같아요</span><span class="formula-eq">=</span>
+          <span style="font-size:13px; color:#1D9E75; font-weight:500">"It seems like ~ happened"</span>
+        </div>
+        <div class="grammar-result">그 사람 많이 힘든 것 같아요.</div>
+        <div class="grammar-rom">Geu saram mani himdeun geot gatayo.</div>
+        <div class="grammar-en">That person seems to be having a hard time.</div>
+        <div class="grammar-note">힘들다 (to be difficult/hard) → 힘든 것 같아요. A compassionate observation — very natural when showing empathy.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">피곤한 것 같아요. 좀 쉬세요.</div>
+        <div class="grammar-rom">Pigonhan geot gatayo. Jom swiseyo.</div>
+        <div class="grammar-en">You seem tired. Please rest a bit.</div>
+        <div class="grammar-note">피곤하다 → 피곤한 것 같아요. Softening an observation with 것 같아요 makes it caring rather than blunt.</div>
+      </div>
+
+      <div class="tip-box tip-blue" style="margin-top:12px">
+        <strong>Why it sounds natural:</strong> Using 것 같아요 softens statements — it's the difference between "You're tired" (blunt) and "You seem tired" (caring). Koreans use it constantly to express opinions without being imposing: 맛있을 것 같아요 (it seems like it'll be delicious) rather than 맛있어요 (it's delicious) before tasting. It's one of the key patterns that makes your Korean sound fluent and socially aware.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">-(으)ㄹ 것 같다 in relationships and emotions:</p>
+      <div class="pred-grid">
+        <div class="pred-card">
+          <div class="pred-native">잘 될 것 같아요</div>
+          <div class="pred-rom">jal doel geot gatayo</div>
+          <div class="pred-en">I think it'll work out well</div>
+          <div class="pred-note">잘 되다 = to go well. Reassuring someone about their situation.</div>
+        </div>
+        <div class="pred-card">
+          <div class="pred-native">좋아하는 것 같아요</div>
+          <div class="pred-rom">joahaneun geot gatayo</div>
+          <div class="pred-en">It seems like (they) like (you)</div>
+          <div class="pred-note">The classic K-drama friend observation!</div>
+        </div>
+        <div class="pred-card">
+          <div class="pred-native">많이 그리울 것 같아요</div>
+          <div class="pred-rom">mani geuriul geot gatayo</div>
+          <div class="pred-en">I think I'll miss you a lot</div>
+          <div class="pred-note">그립다 (to miss) → 그리울 것 같아요. Said when saying goodbye.</div>
+        </div>
+        <div class="pred-card">
+          <div class="pred-native">괜찮을 것 같아요</div>
+          <div class="pred-rom">gwaenchaneul geot gatayo</div>
+          <div class="pred-en">I think it'll be okay</div>
+          <div class="pred-note">괜찮다 (to be okay) → 괜찮을 것 같아요. Comforting and reassuring.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💝</span>
+        <div class="culture-text">
+          <strong>빼빼로 데이와 발렌타인 데이 — Korea's gift-giving love holidays</strong><br/>
+          Korea has multiple "couple holidays" throughout the year — one for every month on the 14th, in fact. The most famous: 발렌타인 데이 (Valentine's Day, Feb 14) where women give men chocolate, and 화이트 데이 (White Day, March 14) where men return the gesture with candy. But the most uniquely Korean is 빼빼로 데이 (Pepero Day, November 11) — 11/11 looks like four Pepero sticks — where friends, couples, and even colleagues exchange these long chocolate biscuit sticks. The date 11/11 is also the most popular wedding date in Korea. Beyond romantic love, Korean culture expresses deep care through 밥은 먹었어? (bap-eun meogeosseo? = "Have you eaten?") — asking whether someone has eaten is one of the most common ways Koreans show they care.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 14 Korean — relationships & -(으)ㄹ 것 같다</div>
+      <div class="quiz-item">
+        <div class="quiz-q">A girl calls her older male friend 오빠 (oppa). What does this mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Younger brother</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Older brother (used by girls for older males)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Uncle</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Boyfriend (only romantic use)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I miss you" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">사랑해요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">보고 싶어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">좋아해요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">그리워해요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 비가 올 것 같아요 mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It is raining</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It was raining yesterday</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">It looks like it's going to rain</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I hope it rains</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct -(으)ㄹ 것 같다 form for a future prediction using 좋다 (to be good)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">좋은 것 같아요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">좋을 것 같아요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">좋아서 것 같아요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">좋으면 것 같아요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — relationships & emotions</div>
+    <table>
+      <tr><th>Topic</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">I love you (mild)</td><td>好きです (suki desu)</td><td>좋아해요 (joahaeyo)</td></tr>
+      <tr><td style="font-size:13px">I love you (deep)</td><td>愛しています (aishite imasu)</td><td>사랑해요 (saranghaeyo)</td></tr>
+      <tr><td style="font-size:13px">I miss you</td><td>会いたいです (aitai desu)</td><td>보고 싶어요 (bogo sipeoyo)</td></tr>
+      <tr><td style="font-size:13px">I'm happy</td><td>幸せです (shiawase desu)</td><td>행복해요 (haengbokhaeyo)</td></tr>
+      <tr><td style="font-size:13px">Hang in there!</td><td>頑張ってね！(ganbatte ne)</td><td>힘내요！(himnaeyo)</td></tr>
+      <tr><td style="font-size:13px">Thank you, always</td><td>いつもありがとう (itsumo arigatō)</td><td>항상 고마워요 (hangsang gomawoyo)</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>〜たい — "I want to ~" (desire)</td><td>-(으)ㄹ 것 같다 — "seems like / I think ~"</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 15 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 15</div>
+    <div class="two-col">
+      <div class="col-card jp">
+        <div class="col-lang">🇯🇵 Japanese</div>
+        <div class="col-content">Weather, seasons & describing the world around you. Plus 〜ている (te-iru) for ongoing states — "the door is open", "it's snowing" — and building complex descriptive sentences.</div>
+      </div>
+      <div class="col-card kr">
+        <div class="col-lang">🇰🇷 Korean</div>
+        <div class="col-content">Weather, seasons, and the natural world in Korean. Plus -(으)ㄴ/는 noun modification — turning verbs and adjectives into descriptors before nouns — the key to rich, complex Korean sentences.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 14 complete · One week before the final! Click <a href="Week15.J&K.html">here</a> when you're ready for Week 15 🎌🇰🇷
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP wish builder */
+const jpWishData = {
+  '✈️ Go to Japan':        { stem:'日本に行き', rom:'Nihon ni iki', en:'go to Japan' },
+  '♨️ Try an onsen':       { stem:'温泉に入り', rom:'onsen ni hairi', en:'enter a hot spring' },
+  '🗣️ Speak Japanese':     { stem:'日本語を話し', rom:'Nihongo wo hanashi', en:'speak Japanese' },
+  '🤝 Make friends':       { stem:'友達を作り', rom:'tomodachi wo tsukuri', en:'make friends' },
+  '🌸 See cherry blossoms':{ stem:'桜を見', rom:'sakura wo mi', en:'see cherry blossoms' },
+  '💙 See you again':      { stem:'あなたに会い', rom:'anata ni ai', en:'see you again' },
+};
+function jpWish(btn, stem, rom, en) {
+  document.getElementById('jp-wish-btns').querySelectorAll('.wish-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const phrase = stem + 'たいです。';
+  const romPhrase = rom + 'tai desu.';
+  const neg = stem + 'たくないです';
+  const past = stem + 'たかったです';
+  const el = document.getElementById('jp-wish-result');
+  el.innerHTML = `
+    <div class="wish-phrase">${phrase}</div>
+    <div class="wish-rom">${romPhrase}</div>
+    <div class="wish-en">I want to ${en}.</div>
+    <div style="font-size:11px; color:#aaa; margin-top:8px; line-height:1.9">
+      Past: <strong style="color:#1a1a18">${past}</strong> — I wanted to ${en}<br/>
+      Negative: <strong style="color:#1a1a18">${neg}</strong> — I don't want to ${en}
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

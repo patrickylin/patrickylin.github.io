@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 15 — Japanese & Korean: Weather, Seasons & Describing the World</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Season cards */
+  .season-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
+  .season-card { border-radius: 12px; padding: 14px; }
+  .season-card.spring { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .season-card.summer { background: #fdf6ec; border: 0.5px solid #f0d090; }
+  .season-card.autumn { background: #fdf3ec; border: 0.5px solid #f0c4a8; }
+  .season-card.winter { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .season-icon { font-size: 28px; margin-bottom: 6px; }
+  .season-native { font-size: 20px; color: #1a1a18; margin-bottom: 2px; }
+  .season-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .season-en { font-size: 13px; color: #333; font-weight: 500; margin-bottom: 6px; }
+  .season-desc { font-size: 12px; color: #555; line-height: 1.6; }
+  .season-vocab { font-size: 12px; color: #333; margin-top: 6px; background: rgba(255,255,255,0.6); border-radius: 6px; padding: 5px 8px; line-height: 1.8; }
+
+  /* Weather word grid */
+  .weather-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .weather-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; }
+  .weather-icon { font-size: 24px; margin-bottom: 4px; }
+  .weather-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .weather-rom { font-size: 11px; color: #888; }
+  .weather-en { font-size: 12px; color: #333; font-weight: 500; margin-top: 2px; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 13px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.blue { background: #f0f5fc; border-color: #b8d4f0; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Interactive weather forecast */
+  .forecast-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .forecast-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+  .forecast-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-bottom: 0.5px solid #eee; }
+  .forecast-day { padding: 12px 8px; text-align: center; cursor: pointer; border-right: 0.5px solid #eee; transition: background 0.15s; }
+  .forecast-day:last-child { border-right: none; }
+  .forecast-day:hover { background: #f0f0ee; }
+  .forecast-day.active { background: #f0f5fc; border-bottom: 2px solid #378ADD; }
+  .forecast-day-name { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .forecast-day-icon { font-size: 22px; margin: 4px 0; }
+  .forecast-day-temp { font-size: 13px; color: #333; font-weight: 500; }
+  .forecast-detail { padding: 14px; min-height: 90px; }
+  .forecast-native { font-size: 19px; color: #1a1a18; margin-bottom: 3px; }
+  .forecast-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .forecast-en { font-size: 13px; color: #333; font-weight: 500; }
+  .forecast-extra { font-size: 12px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Te-iru state table */
+  .state-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .state-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .state-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .state-table tr:last-child td { border-bottom: none; }
+  .state-verb { font-size: 16px; color: #1a1a18; display: block; }
+  .state-form { font-size: 16px; color: #185FA5; font-weight: 500; display: block; margin-top: 2px; }
+  .state-rom { font-size: 11px; color: #888; display: block; }
+  .state-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; display: block; }
+
+  /* Grammar blocks */
+  .grammar-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .grammar-formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .formula-piece { background: #fff; border: 0.5px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #444; }
+  .formula-eq { color: #ccc; font-size: 14px; }
+  .grammar-result { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .grammar-rom { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .grammar-en { font-size: 13px; color: #333; font-weight: 500; }
+  .grammar-note { font-size: 11px; color: #aaa; margin-top: 5px; font-style: italic; }
+
+  /* Noun modification examples */
+  .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .mod-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .mod-base { font-size: 13px; color: #aaa; margin-bottom: 4px; }
+  .mod-result { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .mod-rom { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .mod-en { font-size: 13px; color: #333; font-weight: 500; }
+
+  /* Interactive description builder */
+  .desc-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .desc-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .desc-body { padding: 14px; }
+  .desc-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .desc-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .desc-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .desc-btn:hover { background: #f0f0ee; }
+  .desc-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .desc-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 80px; }
+  .desc-phrase { font-size: 20px; color: #1a1a18; margin-bottom: 3px; }
+  .desc-rom { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .desc-en { font-size: 13px; color: #333; font-weight: 500; }
+  .desc-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Compare / preview */
+  .compare-section { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .col-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .season-grid, .mod-grid, .two-col { grid-template-columns: 1fr; }
+    .weather-grid { grid-template-columns: repeat(2, 1fr); }
+    .forecast-days { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 15 of 16</span>
+      <h1>Weather, Seasons & Describing the World</h1>
+      <div class="subtitle">JP: Seasons, weather vocab & 〜ている for ongoing states · KR: Weather talk & noun modification with -(으)ㄴ/는</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px"><div class="progress-fill" style="width:93%"></div></div>
+      93% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       JAPANESE
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇯🇵</span>
+      <div>
+        <div class="lang-title">Japanese — 日本語</div>
+        <div class="lang-sub">Week 15 · Four seasons · Weather vocabulary · Describing states · 〜ている (ongoing)</div>
+      </div>
+    </div>
+
+    <!-- Four seasons JP -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Japan's four seasons</div>
+      <div class="section-title">四季 (shiki) — each season has deep cultural significance in Japan</div>
+      <p>Japan's four seasons are central to its culture, poetry, food, clothing, and festivals. Mentioning the season is the most natural way to start a weather conversation — and shows cultural fluency.</p>
+      <div class="season-grid">
+        <div class="season-card spring">
+          <div class="season-icon">🌸</div>
+          <div class="season-native">春</div>
+          <div class="season-rom">haru</div>
+          <div class="season-en">Spring (March–May)</div>
+          <div class="season-desc">Cherry blossoms, new school year, warm but unpredictable. Japan's most beloved season.</div>
+          <div class="season-vocab">桜 (sakura) · 花粉 (kafun = pollen) · 暖かい (atatakai = warm) · 花見 (hanami)</div>
+        </div>
+        <div class="season-card summer">
+          <div class="season-icon">☀️</div>
+          <div class="season-native">夏</div>
+          <div class="season-rom">natsu</div>
+          <div class="season-en">Summer (June–August)</div>
+          <div class="season-desc">Rainy season (梅雨 tsuyu), intense heat and humidity, fireworks festivals, cicadas.</div>
+          <div class="season-vocab">蒸し暑い (mushiatsui = humid hot) · 台風 (taifū = typhoon) · 花火 (hanabi = fireworks)</div>
+        </div>
+        <div class="season-card autumn">
+          <div class="season-icon">🍁</div>
+          <div class="season-native">秋</div>
+          <div class="season-rom">aki</div>
+          <div class="season-en">Autumn (September–November)</div>
+          <div class="season-desc">Crimson maple leaves, harvest festivals, crisp clear skies — Japan's second most beloved season.</div>
+          <div class="season-vocab">紅葉 (kōyō = autumn leaves) · 涼しい (suzushii = cool) · 食欲の秋 (appetite autumn!)</div>
+        </div>
+        <div class="season-card winter">
+          <div class="season-icon">❄️</div>
+          <div class="season-native">冬</div>
+          <div class="season-rom">fuyu</div>
+          <div class="season-en">Winter (December–February)</div>
+          <div class="season-desc">Snow in mountains, ski resorts, kotatsu heated tables, illumination festivals, hot pot meals.</div>
+          <div class="season-vocab">雪 (yuki = snow) · 寒い (samui = cold) · こたつ (kotatsu) · 鍋 (nabe = hot pot)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weather vocabulary JP -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Weather vocabulary</div>
+      <div class="section-title">12 essential weather words — describe any day in Japan</div>
+      <div class="weather-grid">
+        <div class="weather-card">
+          <div class="weather-icon">☀️</div>
+          <div class="weather-native">晴れ</div>
+          <div class="weather-rom">hare</div>
+          <div class="weather-en">Sunny / Clear</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">☁️</div>
+          <div class="weather-native">曇り</div>
+          <div class="weather-rom">kumori</div>
+          <div class="weather-en">Cloudy</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌧️</div>
+          <div class="weather-native">雨</div>
+          <div class="weather-rom">ame</div>
+          <div class="weather-en">Rain</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">❄️</div>
+          <div class="weather-native">雪</div>
+          <div class="weather-rom">yuki</div>
+          <div class="weather-en">Snow</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">💨</div>
+          <div class="weather-native">風</div>
+          <div class="weather-rom">kaze</div>
+          <div class="weather-en">Wind</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">⛈️</div>
+          <div class="weather-native">嵐</div>
+          <div class="weather-rom">arashi</div>
+          <div class="weather-en">Storm</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌡️</div>
+          <div class="weather-native">暑い</div>
+          <div class="weather-rom">atsui</div>
+          <div class="weather-en">Hot</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🥶</div>
+          <div class="weather-native">寒い</div>
+          <div class="weather-rom">samui</div>
+          <div class="weather-en">Cold</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌤️</div>
+          <div class="weather-native">涼しい</div>
+          <div class="weather-rom">suzushii</div>
+          <div class="weather-en">Cool / Pleasant</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌫️</div>
+          <div class="weather-native">霧</div>
+          <div class="weather-rom">kiri</div>
+          <div class="weather-en">Fog / Mist</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌈</div>
+          <div class="weather-native">虹</div>
+          <div class="weather-rom">niji</div>
+          <div class="weather-en">Rainbow</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">💧</div>
+          <div class="weather-native">湿気</div>
+          <div class="weather-rom">shikke</div>
+          <div class="weather-en">Humidity</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weather phrases JP -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Weather conversation phrases</div>
+      <div class="section-title">Talk about the weather — Japan's most universal small talk topic</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">☀️</span>
+          <div>
+            <div class="phrase-native">今日はいい天気ですね</div>
+            <div class="phrase-rom">Kyō wa ii tenki desu ne</div>
+            <div class="phrase-en">It's nice weather today, isn't it</div>
+            <div class="phrase-note">天気 (tenki) = weather. The ね at the end invites agreement — one of the most natural conversation openers in Japanese. Works with any weather word.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌧️</span>
+          <div>
+            <div class="phrase-native">雨が降っています</div>
+            <div class="phrase-rom">Ame ga futte imasu</div>
+            <div class="phrase-en">It is raining (currently)</div>
+            <div class="phrase-note">降る (furu) = to fall (rain/snow). 降っています = is currently falling. This is the 〜ている form you're learning today — the rain is an ongoing state.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌡️</span>
+          <div>
+            <div class="phrase-native">今日は何度ですか？</div>
+            <div class="phrase-rom">Kyō wa nan-do desu ka?</div>
+            <div class="phrase-en">What temperature is it today?</div>
+            <div class="phrase-note">度 (do) = degrees. 〜度です = it's ~ degrees. Japan uses Celsius. 25度 = 25°C (comfortable). 35度以上 = 35°C+ (dangerous summer heat).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">☂️</span>
+          <div>
+            <div class="phrase-native">傘を持っていきますか？</div>
+            <div class="phrase-rom">Kasa wo motte ikimasu ka?</div>
+            <div class="phrase-en">Are you taking an umbrella?</div>
+            <div class="phrase-note">傘 (kasa) = umbrella. 持っていく (motte iku) = to take/bring along. Japanese people are meticulous about checking rain forecasts — umbrellas are a national obsession.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌸</span>
+          <div>
+            <div class="phrase-native">今年の春は暖かいですね</div>
+            <div class="phrase-rom">Kotoshi no haru wa atatakai desu ne</div>
+            <div class="phrase-en">This year's spring is warm, isn't it</div>
+            <div class="phrase-note">今年の (kotoshi no) = this year's. Seasonal comparisons are a very natural Japanese conversation topic — especially about cherry blossoms and autumn leaves.</div>
+          </div>
+        </div>
+        <div class="phrase-card blue">
+          <span class="phrase-icon">🌀</span>
+          <div>
+            <div class="phrase-native">台風が来ています</div>
+            <div class="phrase-rom">Taifū ga kite imasu</div>
+            <div class="phrase-en">A typhoon is coming (approaching)</div>
+            <div class="phrase-note">台風 (taifū) = typhoon. 来ている (kite iru) = is coming (ongoing approach). Japan has a typhoon season (September–October) — knowing this phrase is genuinely useful.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive weather forecast JP -->
+    <div class="section">
+      <div class="section-label">Interactive · 5-day Japanese weather forecast</div>
+      <div class="section-title">Click each day to read the forecast in Japanese</div>
+      <div class="forecast-sim">
+        <div class="forecast-header">
+          <span>🗾 東京の天気予報 — Tokyo Weather Forecast</span>
+        </div>
+        <div class="forecast-days">
+          <div class="forecast-day active" onclick="jpForecast(this,0)">
+            <div class="forecast-day-name">MON</div>
+            <div class="forecast-day-icon">☀️</div>
+            <div class="forecast-day-temp">26°C</div>
+          </div>
+          <div class="forecast-day" onclick="jpForecast(this,1)">
+            <div class="forecast-day-name">TUE</div>
+            <div class="forecast-day-icon">🌤️</div>
+            <div class="forecast-day-temp">24°C</div>
+          </div>
+          <div class="forecast-day" onclick="jpForecast(this,2)">
+            <div class="forecast-day-name">WED</div>
+            <div class="forecast-day-icon">🌧️</div>
+            <div class="forecast-day-temp">19°C</div>
+          </div>
+          <div class="forecast-day" onclick="jpForecast(this,3)">
+            <div class="forecast-day-name">THU</div>
+            <div class="forecast-day-icon">⛈️</div>
+            <div class="forecast-day-temp">17°C</div>
+          </div>
+          <div class="forecast-day" onclick="jpForecast(this,4)">
+            <div class="forecast-day-name">FRI</div>
+            <div class="forecast-day-icon">🌤️</div>
+            <div class="forecast-day-temp">22°C</div>
+          </div>
+        </div>
+        <div class="forecast-detail" id="jp-forecast-detail">
+          <div class="forecast-native">月曜日は晴れです。気温は26度です。</div>
+          <div class="forecast-rom">Getsuyōbi wa hare desu. Kion wa nijūroku-do desu.</div>
+          <div class="forecast-en">Monday is sunny. The temperature is 26°C.</div>
+          <div class="forecast-extra">☀️ Perfect for sightseeing! 日傘 (higasa = parasol) recommended.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 〜ている for ongoing states -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — 〜ている for ongoing states</div>
+      <div class="section-title">Beyond "is doing" — 〜ている describes resulting states and habitual actions</div>
+      <p>You already know 〜ています means "is currently doing" (from Week 9's て-form lesson). Now we go deeper — 〜ている also describes ongoing states that result from a past action, and regular habitual activities. This distinction is crucial for natural Japanese.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>Three uses of 〜ている:</strong> (1) Action in progress: 食べています = is eating right now. (2) Resulting state: 結婚しています = is married (resulted from getting married). (3) Habit/routine: 毎日走っています = runs every day (habitually). All use the same form — context tells you which meaning applies.
+      </div>
+
+      <table class="state-table">
+        <tr>
+          <th>Use</th>
+          <th>Verb + ている</th>
+          <th>Natural meaning</th>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Action in progress</td>
+          <td>
+            <span class="state-form">雨が降っています<span class="state-rom">ame ga futte imasu</span></span>
+          </td>
+          <td style="font-size:13px; color:#333">It is raining (right now)<span class="state-ex">Look outside — the rain is actively falling.</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Resulting state</td>
+          <td>
+            <span class="state-form">窓が開いています<span class="state-rom">mado ga aite imasu</span></span>
+          </td>
+          <td style="font-size:13px; color:#333">The window is open<span class="state-ex">Someone opened it — now it's in the open state.</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Resulting state</td>
+          <td>
+            <span class="state-form">結婚しています<span class="state-rom">kekkon shite imasu</span></span>
+          </td>
+          <td style="font-size:13px; color:#333">Is married<span class="state-ex">The wedding happened — married is the current state.</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Habit / routine</td>
+          <td>
+            <span class="state-form">毎日日本語を勉強しています<span class="state-rom">mainichi Nihongo wo benkyō shite imasu</span></span>
+          </td>
+          <td style="font-size:13px; color:#333">Studies Japanese every day<span class="state-ex">An ongoing regular activity — a true statement about you!</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Resulting state</td>
+          <td>
+            <span class="state-form">電気がついています<span class="state-rom">denki ga tsuite imasu</span></span>
+          </td>
+          <td style="font-size:13px; color:#333">The light is on<span class="state-ex">Someone switched it on — the on-state is ongoing.</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:12px; color:#666; font-weight:500">Occupation</td>
+          <td>
+            <span class="state-form">東京に住んでいます<span class="state-rom">Tōkyō ni sunde imasu</span></span>
+          </td>
+          <td style="font-size:13px; color:#333">Lives in Tokyo<span class="state-ex">Moved there — living there is the ongoing state.</span></td>
+        </tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">〜ている in weather and nature:</p>
+      <div class="grammar-block">
+        <div class="grammar-result">雪が積もっています。</div>
+        <div class="grammar-rom">Yuki ga tsumotte imasu.</div>
+        <div class="grammar-en">Snow is piled up / accumulating.</div>
+        <div class="grammar-note">積もる (tsumoru) = to pile up/accumulate. The snow has been falling and is now in a piled-up state.</div>
+      </div>
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">桜が咲いています。</div>
+        <div class="grammar-rom">Sakura ga saite imasu.</div>
+        <div class="grammar-en">The cherry blossoms are in bloom.</div>
+        <div class="grammar-note">咲く (saku) = to bloom. The blossoms bloomed — and are now in the bloomed/blooming state. One of the most beautiful sentences in Japanese.</div>
+      </div>
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">風が強く吹いています。</div>
+        <div class="grammar-rom">Kaze ga tsuyoku futte imasu.</div>
+        <div class="grammar-en">The wind is blowing strongly.</div>
+        <div class="grammar-note">強く (tsuyoku) = strongly. 吹く (fuku) = to blow. 吹いています = is blowing (ongoing).</div>
+      </div>
+
+      <div class="tip-box tip-green">
+        <strong>Negative state — 〜ていません:</strong> The window is not open = 窓が開いていません (mado ga aite imasen). It's not raining = 雨が降っていません (ame ga futte imasen). Simply replace います with いません for any 〜ている state.
+      </div>
+    </div>
+
+    <!-- Culture JP -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌸</span>
+        <div class="culture-text">
+          <strong>季語 (kigo) — seasonal words in Japanese poetry</strong><br/>
+          Japan's awareness of nature and seasons runs so deep that traditional haiku poetry (俳句) requires a 季語 (kigo = seasonal reference word) — a single word that places the poem in a specific season. 桜 (cherry blossom) = spring · 蛍 (firefly) = summer · 紅葉 (autumn leaves) = autumn · 雪 (snow) = winter. This poetic tradition reflects how deeply seasons are woven into Japanese identity. When a Japanese person mentions the weather, they're not just making small talk — they're connecting with something profound. The phrase 春らしくなりましたね (haru-rashiku narimashita ne = it's started to feel like spring, hasn't it) is one of the warmest things you can say to someone in late February or early March.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz JP -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 15 Japanese — weather & 〜ている</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 雨が降っています mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It rained yesterday</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">It is raining (currently)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">It will rain tomorrow</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I like rain</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What kind of 〜ている is 結婚しています (kekkon shite imasu)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Action in progress — getting married right now</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">Resulting state — is married</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Habitual action — gets married regularly</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Future plan — will get married</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which word means "cool / pleasant temperature" in Japanese?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">暑い (atsui)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">寒い (samui)</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">涼しい (suzushii)</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">暖かい (atatakai)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "The cherry blossoms are in bloom" using 〜ている?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">桜が咲きました</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">桜が咲きたいです</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">桜が咲いています</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">桜が咲かなければなりません</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Japanese -->
+
+
+  <!-- ══════════════════════════════
+       KOREAN
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇰🇷</span>
+      <div>
+        <div class="lang-title">Korean — 한국어</div>
+        <div class="lang-sub">Week 15 · Four seasons · Weather vocab · -(으)ㄴ/는 noun modification</div>
+      </div>
+    </div>
+
+    <!-- Four seasons Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Korea's four seasons</div>
+      <div class="section-title">사계절 (sagyejeol) — Korea's dramatic seasonal contrasts</div>
+      <p>Korea has sharper seasonal contrasts than Japan — winters are colder, summers are hotter, and the monsoon (장마, jangma) is more intense. Each season brings its own culture, food, and events.</p>
+      <div class="season-grid">
+        <div class="season-card spring">
+          <div class="season-icon">🌸</div>
+          <div class="season-native">봄</div>
+          <div class="season-rom">bom</div>
+          <div class="season-en">Spring (March–May)</div>
+          <div class="season-desc">Cherry blossoms, yellow dust from China (황사 hwangsa), mild temperatures. Best season for outdoor festivals.</div>
+          <div class="season-vocab">벚꽃 (beotkkot) · 황사 (hwangsa = yellow dust) · 따뜻하다 (ttatteuthada = warm)</div>
+        </div>
+        <div class="season-card summer">
+          <div class="season-icon">☀️</div>
+          <div class="season-native">여름</div>
+          <div class="season-rom">yeoreum</div>
+          <div class="season-en">Summer (June–August)</div>
+          <div class="season-desc">장마 rainy season (June–July), then intense heat and humidity. Beach culture, watermelon, iced coffee obsession.</div>
+          <div class="season-vocab">장마 (jangma = monsoon) · 덥다 (deopda = hot) · 습하다 (seupada = humid)</div>
+        </div>
+        <div class="season-card autumn">
+          <div class="season-icon">🍁</div>
+          <div class="season-native">가을</div>
+          <div class="season-rom">gaeul</div>
+          <div class="season-en">Autumn (September–November)</div>
+          <div class="season-desc">Korea's most beautiful season — vivid 단풍 (danpung = autumn foliage), crisp skies, harvest festivals, hiking season peak.</div>
+          <div class="season-vocab">단풍 (danpung) · 시원하다 (siwonhada = cool/refreshing) · 추석 (chuseok)</div>
+        </div>
+        <div class="season-card winter">
+          <div class="season-icon">❄️</div>
+          <div class="season-native">겨울</div>
+          <div class="season-rom">gyeoul</div>
+          <div class="season-en">Winter (December–February)</div>
+          <div class="season-desc">Bitterly cold with heavy snow in the north — but also ski resorts, 찜질방 culture, hot 삼겹살 dinners, and dazzling LED festivals.</div>
+          <div class="season-vocab">눈 (nun = snow) · 춥다 (chupda = cold) · 패딩 (paeding = padded jacket — everyone wears one)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weather vocabulary Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Weather vocabulary in Korean</div>
+      <div class="section-title">12 essential weather words</div>
+      <div class="weather-grid">
+        <div class="weather-card">
+          <div class="weather-icon">☀️</div>
+          <div class="weather-native">맑아요</div>
+          <div class="weather-rom">mallgayo</div>
+          <div class="weather-en">Clear / Sunny</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">☁️</div>
+          <div class="weather-native">흐려요</div>
+          <div class="weather-rom">heuryeoyo</div>
+          <div class="weather-en">Cloudy / Overcast</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌧️</div>
+          <div class="weather-native">비가 와요</div>
+          <div class="weather-rom">biga wayo</div>
+          <div class="weather-en">It's raining</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">❄️</div>
+          <div class="weather-native">눈이 와요</div>
+          <div class="weather-rom">nuni wayo</div>
+          <div class="weather-en">It's snowing</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">💨</div>
+          <div class="weather-native">바람이 불어요</div>
+          <div class="weather-rom">barami bureoyo</div>
+          <div class="weather-en">It's windy</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">⛈️</div>
+          <div class="weather-native">천둥이 쳐요</div>
+          <div class="weather-rom">cheondungi chyeoyo</div>
+          <div class="weather-en">It's thundering</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌡️</div>
+          <div class="weather-native">더워요</div>
+          <div class="weather-rom">deoweoyo</div>
+          <div class="weather-en">Hot</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🥶</div>
+          <div class="weather-native">추워요</div>
+          <div class="weather-rom">chuweoyo</div>
+          <div class="weather-en">Cold</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌤️</div>
+          <div class="weather-native">시원해요</div>
+          <div class="weather-rom">siwonhaeyo</div>
+          <div class="weather-en">Cool / Refreshing</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌫️</div>
+          <div class="weather-native">안개가 껴요</div>
+          <div class="weather-rom">angaega kkyeoyo</div>
+          <div class="weather-en">Foggy</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">🌈</div>
+          <div class="weather-native">무지개</div>
+          <div class="weather-rom">mujigae</div>
+          <div class="weather-en">Rainbow</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">💧</div>
+          <div class="weather-native">습해요</div>
+          <div class="weather-rom">seupaeyo</div>
+          <div class="weather-en">Humid</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Korean weather pattern:</strong> Rain/snow use 오다 (oda = to come) — 비가 와요 (rain comes) / 눈이 와요 (snow comes). Wind uses 불다 (bulda = to blow) — 바람이 불어요. Temperature adjectives conjugate directly: 더워요 (hot), 추워요 (cold), 시원해요 (cool). This pattern feels very natural once you know it.
+      </div>
+    </div>
+
+    <!-- Weather phrases Korean -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Weather conversation phrases</div>
+      <div class="section-title">Natural Korean weather small talk</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">☀️</span>
+          <div>
+            <div class="phrase-native">오늘 날씨가 정말 좋네요!</div>
+            <div class="phrase-rom">Oneul nalssiga jeongmal jone yo!</div>
+            <div class="phrase-en">The weather today is really nice!</div>
+            <div class="phrase-note">날씨 (nalssi) = weather. 좋네요 (joneyo) = it's nice (네요 adds a tone of pleasant discovery/shared observation). The most natural Korean weather opener.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌧️</span>
+          <div>
+            <div class="phrase-native">오늘 비가 올 것 같아요</div>
+            <div class="phrase-rom">Oneul biga ol geot gatayo</div>
+            <div class="phrase-en">It looks like it'll rain today</div>
+            <div class="phrase-note">비가 오다 → 비가 올 것 같아요. Uses -(으)ㄹ 것 같다 from Week 14! Weather prediction is a perfect use case for this grammar.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌡️</span>
+          <div>
+            <div class="phrase-native">오늘 몇 도예요?</div>
+            <div class="phrase-rom">Oneul myeot doyeyo?</div>
+            <div class="phrase-en">What temperature is it today?</div>
+            <div class="phrase-note">도 (do) = degrees Celsius. 영하 (yeongha) = below zero. e.g. 영하 10도 = minus 10°C — common in Korean winters!</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">☂️</span>
+          <div>
+            <div class="phrase-native">우산 가져가요?</div>
+            <div class="phrase-rom">Usan gajyeogayo?</div>
+            <div class="phrase-en">Are you bringing an umbrella?</div>
+            <div class="phrase-note">우산 (usan) = umbrella. 가져가다 (gajyeogada) = to take/bring with you. Koreans check the 기상청 (weather app) religiously during 장마 season.</div>
+          </div>
+        </div>
+        <div class="phrase-card blue">
+          <span class="phrase-icon">🍂</span>
+          <div>
+            <div class="phrase-native">이제 제법 가을 날씨네요</div>
+            <div class="phrase-rom">Ije jepop gaeul nalssineyo</div>
+            <div class="phrase-en">It's starting to feel properly autumnal now</div>
+            <div class="phrase-note">이제 = now. 제법 = quite/properly. 가을 날씨 = autumn weather. 〜네요 = pleasant discovery/shared observation ending. A beautiful seasonal observation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive weather forecast KR -->
+    <div class="section">
+      <div class="section-label">Interactive · 5-day Korean weather forecast</div>
+      <div class="section-title">Click each day to read the forecast in Korean</div>
+      <div class="forecast-sim">
+        <div class="forecast-header">
+          <span>🇰🇷 서울 날씨 예보 — Seoul Weather Forecast</span>
+        </div>
+        <div class="forecast-days">
+          <div class="forecast-day active" onclick="krForecast(this,0)">
+            <div class="forecast-day-name">월요일</div>
+            <div class="forecast-day-icon">☀️</div>
+            <div class="forecast-day-temp">24°C</div>
+          </div>
+          <div class="forecast-day" onclick="krForecast(this,1)">
+            <div class="forecast-day-name">화요일</div>
+            <div class="forecast-day-icon">🌤️</div>
+            <div class="forecast-day-temp">22°C</div>
+          </div>
+          <div class="forecast-day" onclick="krForecast(this,2)">
+            <div class="forecast-day-name">수요일</div>
+            <div class="forecast-day-icon">🌧️</div>
+            <div class="forecast-day-temp">18°C</div>
+          </div>
+          <div class="forecast-day" onclick="krForecast(this,3)">
+            <div class="forecast-day-name">목요일</div>
+            <div class="forecast-day-icon">⛈️</div>
+            <div class="forecast-day-temp">15°C</div>
+          </div>
+          <div class="forecast-day" onclick="krForecast(this,4)">
+            <div class="forecast-day-name">금요일</div>
+            <div class="forecast-day-icon">🌤️</div>
+            <div class="forecast-day-temp">20°C</div>
+          </div>
+        </div>
+        <div class="forecast-detail" id="kr-forecast-detail">
+          <div class="forecast-native">월요일은 맑고 따뜻해요. 기온은 24도예요.</div>
+          <div class="forecast-rom">Woryoil-eun malgo ttatteuthaeyo. Gion-eun isipsado-yeyo.</div>
+          <div class="forecast-en">Monday is clear and warm. The temperature is 24°C.</div>
+          <div class="forecast-extra">☀️ 나들이하기 좋은 날이에요! (Good day for an outing!)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- -(으)ㄴ/는 noun modification — the big grammar lesson -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Grammar — -(으)ㄴ/는 noun modification</div>
+      <div class="section-title">Turn verbs and adjectives into noun modifiers — the key to rich Korean sentences</div>
+      <p>In Korean, verbs and adjectives can directly modify nouns — like attaching "the ~ that ~" in English. This is called noun modification (관형사형, gwanhyeongsahyeong) and it's one of the most powerful and frequently used structures in Korean. Once you master it, your sentences become dramatically richer.</p>
+
+      <div class="tip-box tip-amber" style="margin-bottom:12px">
+        <strong>The three forms:</strong> Adjectives use (으)ㄴ before a noun: 예쁜 꽃 (pretty flower). Action verbs in present use 는: 먹는 사람 (the person who is eating). Action verbs in past use (으)ㄴ: 먹은 음식 (the food I ate). Future/guessing uses (으)ㄹ: 먹을 음식 (the food I will eat).
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">Adjective modifiers — (으)ㄴ:</p>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <div class="mod-base">춥다 (cold) + 날씨 (weather)</div>
+          <div class="mod-result">추운 날씨</div>
+          <div class="mod-rom">chuun nalssi</div>
+          <div class="mod-en">Cold weather</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-base">맑다 (clear) + 하늘 (sky)</div>
+          <div class="mod-result">맑은 하늘</div>
+          <div class="mod-rom">malgeun haneul</div>
+          <div class="mod-en">Clear sky</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-base">따뜻하다 (warm) + 봄날 (spring day)</div>
+          <div class="mod-result">따뜻한 봄날</div>
+          <div class="mod-rom">ttatteutan bomnal</div>
+          <div class="mod-en">A warm spring day</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-base">아름답다 (beautiful) + 경치 (scenery)</div>
+          <div class="mod-result">아름다운 경치</div>
+          <div class="mod-rom">areumdaun gyeongchi</div>
+          <div class="mod-en">Beautiful scenery</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Action verb modifiers — 는 (present) and (으)ㄴ (past):</p>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <div class="mod-base">내리다 (to fall/descend) present</div>
+          <div class="mod-result">내리는 눈</div>
+          <div class="mod-rom">naerineun nun</div>
+          <div class="mod-en">Snow that is falling</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-base">가다 (to go) present</div>
+          <div class="mod-result">가는 사람</div>
+          <div class="mod-rom">ganeun saram</div>
+          <div class="mod-en">The person who is going</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-base">먹다 (to eat) past</div>
+          <div class="mod-result">먹은 음식</div>
+          <div class="mod-rom">meogeun eumsik</div>
+          <div class="mod-en">The food (I) ate</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-base">보다 (to see) future</div>
+          <div class="mod-result">볼 영화</div>
+          <div class="mod-rom">bol yeonghwa</div>
+          <div class="mod-en">The movie (I) will see</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Full sentences using noun modification:</p>
+
+      <div class="grammar-block">
+        <div class="grammar-result">어제 먹은 음식이 맛있었어요.</div>
+        <div class="grammar-rom">Eoje meogeun eumsigi masisseoyo.</div>
+        <div class="grammar-en">The food I ate yesterday was delicious.</div>
+        <div class="grammar-note">먹은 (ate — past modifier) + 음식 (food) = "the food that I ate". Then the whole phrase becomes the subject.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">내일 볼 영화 예매했어요?</div>
+        <div class="grammar-rom">Naeil bol yeonghwa yemaehasseoyo?</div>
+        <div class="grammar-en">Did you book tickets for the movie you're seeing tomorrow?</div>
+        <div class="grammar-note">볼 (will see — future modifier) + 영화 (movie) = "the movie we will see". 예매하다 = to pre-book.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">창문 밖에 내리는 눈이 예뻐요.</div>
+        <div class="grammar-rom">Changmun bake naerineun nuni yeppeoyo.</div>
+        <div class="grammar-en">The snow falling outside the window is pretty.</div>
+        <div class="grammar-note">내리는 (falling — present modifier) + 눈 (snow) = "the snow that is falling". A naturally beautiful Korean sentence.</div>
+      </div>
+
+      <div class="grammar-block" style="margin-top:8px">
+        <div class="grammar-result">좋아하는 사람이 있어요?</div>
+        <div class="grammar-rom">Joahaneun sarami isseoyo?</div>
+        <div class="grammar-en">Is there someone you like (romantically)?</div>
+        <div class="grammar-note">좋아하는 (like — present modifier) + 사람 (person) = "a person that you like". One of the most K-drama lines ever.</div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Interactive — build a description:</p>
+      <div class="desc-sim">
+        <div class="desc-header">🌟 관형사형 만들기 — Build a noun description</div>
+        <div class="desc-body">
+          <div class="desc-label">Choose a descriptor</div>
+          <div class="desc-btns" id="kr-desc-adj-btns">
+            <button class="desc-btn" onclick="krDesc(this,'adj','춥다','추운','chuun','cold')">🥶 춥다 (cold)</button>
+            <button class="desc-btn" onclick="krDesc(this,'adj','따뜻하다','따뜻한','ttatteutan','warm')">☀️ 따뜻하다 (warm)</button>
+            <button class="desc-btn" onclick="krDesc(this,'adj','아름답다','아름다운','areumdaun','beautiful')">🌸 아름답다 (beautiful)</button>
+            <button class="desc-btn" onclick="krDesc(this,'adj','맛있다','맛있는','masinneun','delicious')">🍜 맛있다 (delicious)</button>
+          </div>
+          <div class="desc-label" style="margin-top:10px">Choose a noun</div>
+          <div class="desc-btns" id="kr-desc-noun-btns">
+            <button class="desc-btn" onclick="krDesc(this,'noun','날씨','nalssi','weather')">🌤️ 날씨 (weather)</button>
+            <button class="desc-btn" onclick="krDesc(this,'noun','계절','gyejeol','season')">🍁 계절 (season)</button>
+            <button class="desc-btn" onclick="krDesc(this,'noun','사람','saram','person')">🧑 사람 (person)</button>
+            <button class="desc-btn" onclick="krDesc(this,'noun','음식','eumsik','food')">🍱 음식 (food)</button>
+          </div>
+          <div class="desc-result" id="kr-desc-result">
+            <span class="desc-empty">Select a descriptor and noun to build your Korean phrase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture KR -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌧️</span>
+        <div class="culture-text">
+          <strong>장마 (jangma) — Korea's monsoon season and its culture</strong><br/>
+          Korea's 장마 (monsoon rainy season, usually late June through mid-July) is one of the most distinctive weather events in East Asia. For three to four weeks, it rains almost daily — sometimes in torrential downpours. Korean culture has adapted beautifully: 비 오는 날 (rainy days) are considered perfect for 파전과 막걸리 (pajeon and makgeolli = Korean pancake and rice wine) — a beloved pairing said to have originated because the sound of sizzling pancakes resembles the sound of rain. 비 오는 날에는 파전이 생각나요 (on rainy days I think of pajeon) — you'll hear this constantly from Koreans. Rain in Korea isn't just weather; it's an invitation to slow down, cook, and connect.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz KR -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 15 Korean — weather & noun modification</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "It's raining" in Korean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">눈이 와요</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">비가 와요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">바람이 불어요</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">날씨가 맑아요</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you modify 춥다 (cold) to describe 날씨 (weather)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">춥는 날씨</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">춥어 날씨</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">추운 날씨</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">춥고 날씨</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does 어제 먹은 음식이 맛있었어요 mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I want to eat delicious food tomorrow</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">The food I ate yesterday was delicious</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">I'm eating delicious food now</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">Please make me delicious food</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which modifier form is used for a PRESENT action verb before a noun?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(this,'wrong')">(으)ㄴ</button>
+          <button class="quiz-btn" onclick="answer(this,'correct')">는</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">(으)ㄹ</button>
+          <button class="quiz-btn" onclick="answer(this,'wrong')">았/었</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Korean -->
+
+
+  <!-- Side-by-side comparison -->
+  <div class="compare-section">
+    <div class="section-label" style="margin-bottom:10px">Side-by-side — weather & describing the world</div>
+    <table>
+      <tr><th>Topic</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th></tr>
+      <tr><td style="font-size:13px">Nice weather!</td><td>いい天気ですね (ii tenki desu ne)</td><td>날씨가 좋네요 (nalssiga joneyo)</td></tr>
+      <tr><td style="font-size:13px">It's raining</td><td>雨が降っています (ame ga futte imasu)</td><td>비가 와요 (biga wayo)</td></tr>
+      <tr><td style="font-size:13px">It's cold</td><td>寒いです (samui desu)</td><td>추워요 (chuweoyo)</td></tr>
+      <tr><td style="font-size:13px">Cherry blossoms blooming</td><td>桜が咲いています (sakura ga saite imasu)</td><td>벚꽃이 피고 있어요 (beotkkochi pigo isseoyo)</td></tr>
+      <tr><td style="font-size:13px">Autumn leaves</td><td>紅葉 (kōyō)</td><td>단풍 (danpung)</td></tr>
+      <tr><td style="font-size:13px">Beautiful scenery</td><td>きれいな景色 (kirei na keshiki)</td><td>아름다운 경치 (areumdaun gyeongchi)</td></tr>
+      <tr><td style="font-size:13px">Key grammar</td><td>〜ている — ongoing states & resulting conditions</td><td>-(으)ㄴ/는 — noun modification (the person who ~, the food that ~)</td></tr>
+    </table>
+  </div>
+
+  <!-- Week 16 preview — the FINAL week! -->
+  <div class="preview-box" style="background: linear-gradient(135deg, #f0f8f5 0%, #f0f5fc 100%); border-color: #a8ddc5;">
+    <div class="section-label" style="color: #0f6e56;">🎉 Coming up — Week 16: The Grand Finale!</div>
+    <p style="font-size:14px; color:#333; font-weight:500; margin-bottom:12px">One week left! The final session brings everything together.</p>
+    <div class="two-col">
+      <div class="col-card jp" style="border-color: #d4a8e0; background: #fdf5ff;">
+        <div class="col-lang">🇯🇵 Japanese — Grand Review</div>
+        <div class="col-content">A complete recap journey through all 15 weeks — the full grammar toolkit, a final challenge conversation, reflection on how far you've come, and your next steps for continuing the journey beyond this course.</div>
+      </div>
+      <div class="col-card kr" style="border-color: #d4a8e0; background: #fdf5ff;">
+        <div class="col-lang">🇰🇷 Korean — Grand Review</div>
+        <div class="col-content">The same for Korean — a full recap of all grammar patterns learned, survival scenario practice, a cultural celebration of both languages, and a personalised guide to continuing your studies.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 15 complete · One final week to go! Click <a href="Week16.J&K.html">here</a> for the grand finale 🎌🇰🇷✨
+  </div>
+
+</div>
+
+<script>
+/* Quiz */
+function answer(btn, result) {
+  const group = btn.closest('.quiz-item');
+  const btns = group.querySelectorAll('.quiz-btn');
+  const feedback = group.querySelector('.quiz-feedback');
+  btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+  btn.style.opacity = '1';
+  btn.classList.add(result);
+  feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+  feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+}
+
+/* JP forecast */
+const jpForecasts = [
+  { native: '月曜日は晴れです。気温は26度です。', rom: 'Getsuyōbi wa hare desu. Kion wa nijūroku-do desu.', en: 'Monday is sunny. The temperature is 26°C.', extra: '☀️ Perfect for sightseeing! 日傘 (higasa = parasol) recommended.' },
+  { native: '火曜日は晴れ時々曇りです。25度ぐらいです。', rom: 'Kayōbi wa hare tokidoki kumori desu. Nijūgo-do gurai desu.', en: 'Tuesday is partly cloudy. Around 25°C.', extra: '🌤️ 時々 (tokidoki) = sometimes. A useful weather word!' },
+  { native: '水曜日は雨が降ります。気温は19度です。', rom: 'Suiyōbi wa ame ga furimasu. Kion wa jūku-do desu.', en: 'Wednesday it will rain. The temperature is 19°C.', extra: '🌧️ 傘を忘れずに！(kasa wo wasurezu ni = Don\'t forget your umbrella!)' },
+  { native: '木曜日は雷雨の予報です。17度まで下がります。', rom: 'Mokuyōbi wa raiu no yohō desu. Jūnana-do made sagarimasu.', en: 'Thursday a thunderstorm is forecast. It will drop to 17°C.', extra: '⛈️ 雷雨 (raiu) = thunderstorm. 外出注意 (outside caution) on stormy days.' },
+  { native: '金曜日は回復して晴れてきます。22度です。', rom: 'Kin\'yōbi wa kaifuku shite harete kimasu. Nijūni-do desu.', en: 'Friday weather recovers and clears up. 22°C.', extra: '🌤️ 回復 (kaifuku) = recovery. 週末は良い天気！(Great weekend weather coming!)' }
+];
+function jpForecast(dayEl, idx) {
+  document.querySelectorAll('.forecast-sim .forecast-day').forEach(d => d.classList.remove('active'));
+  dayEl.classList.add('active');
+  const f = jpForecasts[idx];
+  document.getElementById('jp-forecast-detail').innerHTML = `
+    <div class="forecast-native">${f.native}</div>
+    <div class="forecast-rom">${f.rom}</div>
+    <div class="forecast-en">${f.en}</div>
+    <div class="forecast-extra">${f.extra}</div>
+  `;
+}
+
+/* KR forecast */
+const krForecasts = [
+  { native: '월요일은 맑고 따뜻해요. 기온은 24도예요.', rom: 'Woryoil-eun malgo ttatteuthaeyo. Gion-eun isipsado-yeyo.', en: 'Monday is clear and warm. The temperature is 24°C.', extra: '☀️ 나들이하기 좋은 날이에요! (Good day for an outing!)' },
+  { native: '화요일은 구름이 조금 있지만 맑아요. 22도예요.', rom: 'Hwayoil-eun gureumi jogeumm itjiman mallgayo. Isipido-yeyo.', en: 'Tuesday has a few clouds but is clear. 22°C.', extra: '🌤️ 조금 (jogeumm) = a little. 있지만 (itjiman) = but/although.' },
+  { native: '수요일은 비가 와요. 우산을 챙기세요! 기온 18도예요.', rom: 'Suyoil-eun biga wayo. Usaneul chaengiseoyo! Gion sipaldoye yo.', en: 'Wednesday it rains. Bring an umbrella! Temperature 18°C.', extra: '🌧️ 챙기다 (chaengida) = to prepare/pack. Very useful word!' },
+  { native: '목요일은 천둥번개가 칠 수 있어요. 15도까지 내려가요.', rom: 'Mogyoil-eun cheondungbeongaega chil su isseoyo. Sip-o-deo-kkaji naeryeogayo.', en: 'Thursday there may be thunderstorms. It drops to 15°C.', extra: '⛈️ 천둥번개 (cheondungbeongae) = thunder and lightning. 칠 수 있어요 = may strike.' },
+  { native: '금요일부터 날씨가 다시 좋아져요. 기온은 20도예요.', rom: 'Geumyoilbuteo nalssiga dasi joajyeoyo. Gion-eun isipdo-yeyo.', en: 'From Friday the weather gets nice again. Temperature is 20°C.', extra: '🌤️ 좋아지다 (joajida) = to get better/improve. 부터 = from (a point in time).' }
+];
+function krForecast(dayEl, idx) {
+  const sim = dayEl.closest('.forecast-sim');
+  sim.querySelectorAll('.forecast-day').forEach(d => d.classList.remove('active'));
+  dayEl.classList.add('active');
+  const f = krForecasts[idx];
+  document.getElementById('kr-forecast-detail').innerHTML = `
+    <div class="forecast-native">${f.native}</div>
+    <div class="forecast-rom">${f.rom}</div>
+    <div class="forecast-en">${f.en}</div>
+    <div class="forecast-extra">${f.extra}</div>
+  `;
+}
+
+/* KR description builder */
+let krAdj = null, krAdjMod = null, krAdjRom = null, krAdjEn = null;
+let krNoun = null, krNounRom = null, krNounEn = null;
+
+function krDesc(btn, type, base, modified, rom, en) {
+  const groupId = type === 'adj' ? 'kr-desc-adj-btns' : 'kr-desc-noun-btns';
+  document.getElementById(groupId).querySelectorAll('.desc-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (type === 'adj') { krAdj = base; krAdjMod = modified; krAdjRom = rom; krAdjEn = en; }
+  else { krNoun = base; krNounRom = rom; krNounEn = en; }
+  updateKrDesc();
+}
+
+function updateKrDesc() {
+  const el = document.getElementById('kr-desc-result');
+  if (!krAdj || !krNoun) {
+    el.innerHTML = '<span class="desc-empty">Select a descriptor and noun to build your Korean phrase</span>';
+    return;
+  }
+  const phrase = krAdjMod + ' ' + krNoun;
+  const rom = krAdjRom + ' ' + krNounRom;
+  el.innerHTML = `
+    <div class="desc-phrase">${phrase}</div>
+    <div class="desc-rom">${rom}</div>
+    <div class="desc-en">${krAdjEn.charAt(0).toUpperCase() + krAdjEn.slice(1)} ${krNounEn}</div>
+    <div style="font-size:11px; color:#aaa; margin-top:6px; font-style:italic">Formation: ${krAdj} → ${krAdjMod} (modifier form) + ${krNoun}</div>
+  `;
+}
+</script>
+</body>
+</html>
