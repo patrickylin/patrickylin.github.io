@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 1 — English & Spanish: Alphabet, Sounds & Pronunciation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  /* Intro banner */
+  .intro-banner { background: linear-gradient(135deg, #f0f5fc 0%, #fdf9f0 100%); border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; display: flex; gap: 16px; align-items: center; }
+  .intro-flags { font-size: 36px; flex-shrink: 0; }
+  .intro-text { font-size: 13px; color: #444; line-height: 1.7; }
+  .intro-text strong { color: #1a1a18; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Alphabet display */
+  .alphabet-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .letter-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; width: 44px; height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s; }
+  .letter-card:hover { background: #f0f5fc; border-color: #b8d4f0; }
+  .letter-card.vowel { background: #f0f8f5; border-color: #a8ddc5; }
+  .letter-card.active { background: #f0f5fc; border-color: #378ADD; }
+  .letter-upper { font-size: 16px; font-weight: 500; color: #1a1a18; line-height: 1; }
+  .letter-lower { font-size: 11px; color: #888; }
+
+  /* Letter detail panel */
+  .letter-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 12px; min-height: 80px; }
+  .ld-letter { font-size: 48px; font-weight: 500; color: #185FA5; margin-bottom: 4px; }
+  .ld-type { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+  .ld-sound { font-size: 14px; color: #333; margin-bottom: 4px; }
+  .ld-examples { font-size: 13px; color: #1D9E75; font-style: italic; }
+  .ld-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Sound cards */
+  .sound-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .sound-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .sound-card.vowel { background: #f0f8f5; border-color: #a8ddc5; }
+  .sound-card.consonant { background: #f0f5fc; border-color: #b8d4f0; }
+  .sound-symbol { font-size: 22px; color: #1a1a18; margin-bottom: 3px; font-family: serif; }
+  .sound-name { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .sound-ex { font-size: 13px; color: #333; font-weight: 500; }
+  .sound-more { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Spanish vowel cards */
+  .vowel-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px; }
+  .vowel-card { background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 10px; padding: 12px 8px; text-align: center; }
+  .vowel-big { font-size: 32px; font-weight: 500; color: #0f6e56; margin-bottom: 4px; }
+  .vowel-sound { font-size: 13px; color: #555; margin-bottom: 2px; }
+  .vowel-hint { font-size: 11px; color: #aaa; }
+
+  /* Spanish special chars */
+  .special-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .special-card { background: #fdf9f0; border: 0.5px solid #f0dfa8; border-radius: 10px; padding: 12px; text-align: center; }
+  .special-char { font-size: 28px; color: #1a1a18; margin-bottom: 4px; }
+  .special-name { font-size: 12px; color: #888; margin-bottom: 3px; }
+  .special-sound { font-size: 13px; color: #333; font-weight: 500; }
+  .special-ex { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Pronunciation rule cards */
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .rule-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 13px 14px; }
+  .rule-title { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+  .rule-desc { font-size: 12px; color: #555; line-height: 1.6; }
+  .rule-ex { font-size: 13px; color: #185FA5; margin-top: 6px; font-weight: 500; }
+  .rule-contrast { font-size: 11px; color: #aaa; margin-top: 2px; font-style: italic; }
+
+  /* Four-way comparison */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .fourway-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .fw-card { border-radius: 10px; padding: 12px 10px; text-align: center; }
+  .fw-card.jp { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .fw-card.kr { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .fw-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .fw-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .fw-lang { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .fw-flag { font-size: 20px; margin-bottom: 4px; }
+  .fw-native { font-size: 16px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .fw-rom { font-size: 11px; color: #888; margin-bottom: 2px; }
+  .fw-en { font-size: 12px; color: #555; font-weight: 500; }
+
+  /* Interactive pronunciation checker */
+  .pronun-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .pronun-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .pronun-body { padding: 14px; }
+  .pronun-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .pronun-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .pronun-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 14px; cursor: pointer; transition: all 0.15s; }
+  .pronun-btn:hover { background: #f0f0ee; }
+  .pronun-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .pronun-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 80px; }
+  .pronun-word { font-size: 28px; color: #1a1a18; margin-bottom: 4px; }
+  .pronun-ipa { font-size: 16px; color: #888; font-family: serif; margin-bottom: 4px; }
+  .pronun-tip { font-size: 13px; color: #333; margin-bottom: 4px; }
+  .pronun-compare { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; }
+  .pronun-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Word cards */
+  .word-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .word-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .word-native { font-size: 20px; color: #1a1a18; margin-bottom: 2px; }
+  .word-ipa { font-size: 12px; color: #888; font-family: serif; margin-bottom: 2px; }
+  .word-en { font-size: 13px; color: #333; font-weight: 500; }
+  .word-note { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral { background: #fdf0ed; border-left: 3px solid #D85A30; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  @media (max-width: 520px) {
+    .fourway-grid { grid-template-columns: repeat(2, 1fr); }
+    .sound-grid, .rule-grid, .word-grid, .two-col { grid-template-columns: 1fr; }
+    .vowel-grid { grid-template-columns: repeat(3, 1fr); }
+    .special-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 1 of 16</span>
+      <h1>Alphabet, Sounds & Pronunciation</h1>
+      <div class="subtitle">EN: What makes English pronunciation so complex · ES: Why Spanish pronunciation is beautifully consistent</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:6%;"></div></div>
+      6% complete
+    </div>
+  </div>
+
+  <div class="intro-banner">
+    <div class="intro-flags">🇬🇧🇪🇸</div>
+    <div class="intro-text">
+      Welcome to your new language adventure! This course follows the same format as your Japanese &amp; Korean journey. Each week covers both languages side by side — with interactive exercises, cultural notes, and cross-language comparisons. <strong>Bonus feature:</strong> we'll regularly compare all four languages you've studied — Japanese, Korean, English, and Spanish — to reveal the beautiful patterns connecting them.
+    </div>
+  </div>
+
+
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 1 · The alphabet · Vowel sounds · The great pronunciation challenge</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">English — the world's most widely spoken second language</div>
+      <p>English is the global language of business, science, aviation, diplomacy, and pop culture. It's spoken by approximately 1.5 billion people — but only 400 million as a first language. That means <strong>most English speakers in the world learned it as a second language</strong>, just like you're helping someone do now.</p>
+      <p>English belongs to the Germanic branch of the Indo-European family — but it's been shaped by Latin, French, Old Norse, and dozens of other languages. This messy history is exactly why English pronunciation is so irregular. A language built by invaders and immigrants never got to standardise itself neatly.</p>
+      <div class="tip-box tip-blue">
+        <strong>The great irony of English:</strong> English is considered one of the easier languages to start learning — basic sentences come quickly. But it's one of the hardest to master — its spelling system, irregular verbs, idioms, and subtle social registers take years to fully command. This makes it uniquely rewarding to teach well from the very beginning.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 1 · The English alphabet</div>
+      <div class="section-title">26 letters — 5 vowels, 21 consonants — and a pronunciation system that defies logic</div>
+      <p>Click any letter to learn its name, sound, and key examples. Vowels are highlighted in green.</p>
+      <div class="alphabet-row" id="en-alphabet"></div>
+      <div class="letter-detail" id="en-letter-detail">
+        <div class="ld-empty">Tap any letter above to explore its sounds and examples</div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>The English spelling problem:</strong> The letters A, E, I, O, U each represent multiple different sounds. The letter "A" alone makes at least 7 different sounds: <em>cat, cake, car, call, care, about, many</em>. This is the single biggest challenge for English learners — and why phonics (the study of sound-letter relationships) is taught as a subject in English schools.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 2 · The English vowel sounds</div>
+      <div class="section-title">English has 20 vowel sounds — but only 5 vowel letters to represent them</div>
+      <p>This mismatch is the heart of English pronunciation difficulty. Compare: Spanish has 5 vowel letters and 5 vowel sounds — perfect correspondence. English has 5 vowel letters and 20 vowel sounds. The result: learners must memorise pronunciation word by word.</p>
+      <div class="sound-grid">
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/æ/</div>
+          <div class="sound-name">Short A — "trap vowel"</div>
+          <div class="sound-ex">cat · hat · man · apple</div>
+          <div class="sound-more">Mouth wide open, tongue low and forward</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/eɪ/</div>
+          <div class="sound-name">Long A — "face vowel"</div>
+          <div class="sound-ex">cake · name · rain · they</div>
+          <div class="sound-more">A glide from /e/ toward /ɪ/</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/ɪ/</div>
+          <div class="sound-name">Short I — "kit vowel"</div>
+          <div class="sound-ex">sit · him · big · busy</div>
+          <div class="sound-more">Relaxed — not quite "ee"</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/iː/</div>
+          <div class="sound-name">Long E / I — "fleece vowel"</div>
+          <div class="sound-ex">see · me · feet · key</div>
+          <div class="sound-more">Lips slightly spread, tense</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/ɒ/</div>
+          <div class="sound-name">Short O — "lot vowel"</div>
+          <div class="sound-ex">hot · dog · stop · wash</div>
+          <div class="sound-more">Lips rounded, mouth open (British English)</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/əʊ/</div>
+          <div class="sound-name">Long O — "goat vowel"</div>
+          <div class="sound-ex">no · go · home · show</div>
+          <div class="sound-more">Glides from /ə/ toward /ʊ/</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/ʌ/</div>
+          <div class="sound-name">Short U — "strut vowel"</div>
+          <div class="sound-ex">cup · sun · love · blood</div>
+          <div class="sound-more">Central, relaxed — very common in English</div>
+        </div>
+        <div class="sound-card vowel">
+          <div class="sound-symbol">/ə/</div>
+          <div class="sound-name">Schwa — "comma vowel"</div>
+          <div class="sound-ex">about · the · banana · doctor</div>
+          <div class="sound-more">The most common sound in English! Unstressed syllables</div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>The schwa /ə/ — the most important sound in English:</strong> The schwa is a short, neutral "uh" sound that appears in almost every multi-syllable English word. "banana" = bə-NAH-nə. "about" = ə-BOUT. "doctor" = DOC-tə. Learning where schwas appear is the key to natural English rhythm. Japanese and Korean learners often give every syllable equal weight — English requires stressed syllables to be longer and louder, with unstressed syllables reduced to schwas.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 3 · Key English pronunciation rules</div>
+      <div class="section-title">The patterns that bring order to English spelling chaos</div>
+      <div class="rule-grid">
+        <div class="rule-card">
+          <div class="rule-title">1. Silent E rule</div>
+          <div class="rule-desc">A final silent "e" makes the preceding vowel say its name (long sound).</div>
+          <div class="rule-ex">kit → kite · hop → hope · mad → made</div>
+          <div class="rule-contrast">The e is silent but changes the whole word!</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">2. Vowel team rule</div>
+          <div class="rule-desc">When two vowels go walking, the first one does the talking (usually).</div>
+          <div class="rule-ex">rain · meat · coat · read</div>
+          <div class="rule-contrast">But: "ei" in "weird", "ie" in "friend" break this rule!</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">3. Word stress</div>
+          <div class="rule-desc">English words have one stressed syllable — louder, longer, clearer than the rest.</div>
+          <div class="rule-ex">PH-o-to · pho-TO-gra-phy · PHO-to-graph</div>
+          <div class="rule-contrast">Same root word — stress shifts completely!</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">4. "TH" sounds</div>
+          <div class="rule-desc">English has two TH sounds that don't exist in Japanese, Korean, or Spanish.</div>
+          <div class="rule-ex">voiced /ð/: this · the · that · mother</div>
+          <div class="rule-contrast">voiceless /θ/: think · three · thank · tooth</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">5. R vs L distinction</div>
+          <div class="rule-desc">English /r/ and /l/ are completely different sounds. Japanese and Korean learners often struggle with this distinction.</div>
+          <div class="rule-ex">rice vs lice · right vs light · read vs lead</div>
+          <div class="rule-contrast">In Japanese, ら/り/る/れ/ろ sits between R and L</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">6. Contractions</div>
+          <div class="rule-desc">English commonly shortens words in speech — learners must recognise both forms.</div>
+          <div class="rule-ex">I am → I'm · do not → don't · they are → they're</div>
+          <div class="rule-contrast">Contractions are essential for natural spoken English</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Interactive · English pronunciation explorer</div>
+      <div class="section-title">The words that confuse every English learner — click to explore</div>
+      <div class="pronun-sim">
+        <div class="pronun-header">🔊 Tricky English Pronunciations</div>
+        <div class="pronun-body">
+          <div class="pronun-label">Choose a word to explore</div>
+          <div class="pronun-btns" id="en-pronun-btns">
+            <button class="pronun-btn en-word" 
+              data-word="though" 
+              data-ipa="/ðoʊ/" 
+              data-tip="The GH is completely silent — sounds like 'tho'. Related: through /θruː/, tough /tʌf/, cough /kɒf/ — same -ough, four different sounds!" 
+              data-compare="Compare: Japanese とお (tō) is phonetically consistent. English -ough is not.">though</button>
+            
+            <button class="pronun-btn en-word" 
+              data-word="colonel" 
+              data-ipa="/ˈkɜːnəl/" 
+              data-tip="Pronounced exactly like 'kernel' — the L is silent, the first O sounds like 'er'. One of English's most notorious spelling-pronunciation gaps." 
+              data-compare="There is no L sound anywhere in the spoken word!">colonel</button>
+            
+            <button class="pronun-btn en-word" 
+              data-word="worcestershire" 
+              data-ipa="/ˈwʊstəʃə/" 
+              data-tip="Pronounced 'Wooster-sheer' — 13 letters reduced to 4 syllables. The -shire suffix (county) becomes just '-sheer'." 
+              data-compare="-cester, -shire, -ester all reduce similarly: Leicester = 'Lester'">worcestershire</button>
+            
+            <button class="pronun-btn en-word" 
+              data-word="read / read" 
+              data-ipa="read" 
+              data-tip="Both present and past tense spellings are identical — but pronounced differently: present = /riːd/ (reed), past = /rɛd/ (red)." 
+              data-compare="Context tells you which pronunciation to use!">read / read</button>
+            
+            <button class="pronun-btn en-word" 
+              data-word="queue" 
+              data-ipa="/kjuː/" 
+              data-tip="Just the letter Q sounds like 'kew' — the other four letters are completely silent. English's shortest pronunciation relative to its length." 
+              data-compare="Queue = 5 letters, but only 1 sound is pronounced!">queue</button>
+            
+            <button class="pronun-btn en-word" 
+              data-word="wednesday" 
+              data-ipa="/ˈwɛnzdeɪ/" 
+              data-tip="The D in the middle is completely silent — 'Wed-nes-day' is written but 'Wenz-day' is spoken. Named after Norse god Woden." 
+              data-compare="All days except Saturday and Sunday hide their origins!">wednesday</button>
+          </div>
+          <div class="pronun-result" id="en-pronun-result">
+            <div class="pronun-empty">Select a word above to explore its pronunciation mysteries</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 4 · First words for English learners</div>
+      <div class="section-title">10 essential words with pronunciation guidance</div>
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-native">Hello</div>
+          <div class="word-ipa">/həˈloʊ/</div>
+          <div class="word-en">Greeting — any time of day</div>
+          <div class="word-note">hə = schwa. The stress is on -LO not HEL-</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Thank you</div>
+          <div class="word-ipa">/ˈθæŋk juː/</div>
+          <div class="word-en">Express gratitude</div>
+          <div class="word-note">The TH requires tongue between teeth — /θ/ not /t/ or /s/</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Please</div>
+          <div class="word-ipa">/pliːz/</div>
+          <div class="word-en">Polite request marker</div>
+          <div class="word-note">The -ease is a long /iː/ sound. Not "plees"!</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Sorry</div>
+          <div class="word-ipa">/ˈsɒri/</div>
+          <div class="word-en">Apology / excuse me</div>
+          <div class="word-note">British: /ˈsɒri/ · American: /ˈsɔːri/ — regional variation!</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Excuse me</div>
+          <div class="word-ipa">/ɪkˈskjuːz miː/</div>
+          <div class="word-en">Get attention / apologise mildly</div>
+          <div class="word-note">Stress on -SCUSE. The C is pronounced /z/ before E</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Goodbye</div>
+          <div class="word-ipa">/ɡʊdˈbaɪ/</div>
+          <div class="word-en">Farewell</div>
+          <div class="word-note">Originally "God be with you" — shortened over centuries!</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Yes / No</div>
+          <div class="word-ipa">/jɛs/ · /noʊ/</div>
+          <div class="word-en">Agreement / disagreement</div>
+          <div class="word-note">"Yeah" /jæ/ is casual. "Yep", "Nope" even more casual</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Water</div>
+          <div class="word-ipa">/ˈwɔːtə/</div>
+          <div class="word-en">The most-asked-for thing</div>
+          <div class="word-note">British: /ˈwɔːtə/ · American: /ˈwɑːɾər/ — the T flaps to D!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌍</span>
+        <div class="culture-text">
+          <strong>Which English? British vs American vs World Englishes</strong><br/>
+          English is not one language — it's a family of closely related dialects. British English (UK) and American English differ in spelling (colour vs color), pronunciation (bath /bɑːθ/ vs /bæθ/), vocabulary (lift vs elevator, biscuit vs cookie), and even grammar (I've just eaten vs I just ate). Then there are Australian, Canadian, Indian, Singaporean, Nigerian, and hundreds of other World English varieties — each legitimate and vibrant. When teaching English, it's worth deciding which standard to use as a model while acknowledging that all varieties are valid. The most globally understood varieties are General American and Received Pronunciation (BBC English).
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 1 English — alphabet & pronunciation</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How many vowel SOUNDS does English have?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">5</button>
+          <button class="quiz-btn" data-answer="wrong">10</button>
+          <button class="quiz-btn" data-answer="correct">Around 20</button>
+          <button class="quiz-btn" data-answer="wrong">26</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the schwa sound /ə/?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">The sound of the letter A</button>
+          <button class="quiz-btn" data-answer="correct">A neutral "uh" sound in unstressed syllables</button>
+          <button class="quiz-btn" data-answer="wrong">The sound only found in the word "the"</button>
+          <button class="quiz-btn" data-answer="wrong">A sound only in British English</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does the Silent E rule state?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Final E is always pronounced</button>
+          <button class="quiz-btn" data-answer="correct">Final E is silent but makes the preceding vowel long</button>
+          <button class="quiz-btn" data-answer="wrong">Final E changes the consonant before it</button>
+          <button class="quiz-btn" data-answer="wrong">Final E only appears in French words</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Why is English pronunciation particularly challenging for Japanese and Korean learners?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">English has too many letters</button>
+          <button class="quiz-btn" data-answer="correct">English uses word stress and schwas</button>
+          <button class="quiz-btn" data-answer="wrong">English has no vowels</button>
+          <button class="quiz-btn" data-answer="wrong">English words are too short</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 1 · The alphabet · 5 perfect vowels · Pronunciation consistency</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Big picture</div>
+      <div class="section-title">Spanish — the world's second most spoken language by native speakers</div>
+      <p>Spanish has approximately 500 million native speakers across Spain, Latin America, parts of Africa, and the Philippines. It's the official language of 20 countries — more than any other language. In the United States alone, over 41 million people speak Spanish as their first language.</p>
+      <p>Spanish belongs to the Romance language family — descended directly from Latin, alongside French, Italian, Portuguese, and Romanian. This shared heritage means that once you know Spanish, other Romance languages become dramatically easier to learn.</p>
+      <div class="tip-box tip-green">
+        <strong>The great news for pronunciation:</strong> Spanish is one of the most phonetically consistent languages in the world. Unlike English, where you must memorise how to pronounce every word individually, Spanish has a nearly perfect relationship between spelling and sound — once you know the rules, you can read any Spanish word aloud correctly. This is Spanish's greatest gift to the learner.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 1 · The Spanish alphabet</div>
+      <div class="section-title">El alfabeto — 27 letters, one extra that English doesn't have</div>
+      <p>The Spanish alphabet has 27 letters — all 26 English letters plus <strong>Ñ</strong> (eñe), which represents a unique sound. Until 2010, CH and LL were also treated as separate letters — so older Spanish dictionaries order words differently!</p>
+      <div class="alphabet-row" id="es-alphabet"></div>
+      <div class="letter-detail" id="es-letter-detail">
+        <div class="ld-empty">Tap any letter above to explore its Spanish sound</div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Key difference from English:</strong> In Spanish, letters are consistent. The letter B always sounds like /b/. The letter A always sounds like /a/. Once you learn the alphabet sounds, you can read any Spanish word correctly — something English can't offer!
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 2 · Las vocales — the 5 Spanish vowels</div>
+      <div class="section-title">5 letters · 5 sounds · Perfect consistency — the foundation of everything</div>
+      <p>This is where Spanish shines most brightly. Each vowel has exactly one sound, always pronounced the same way, regardless of position. Compare this with English's 20+ vowel sounds from just 5 letters!</p>
+      <div class="vowel-grid">
+        <div class="vowel-card">
+          <div class="vowel-big">A</div>
+          <div class="vowel-sound">/a/</div>
+          <div class="vowel-hint">like "ah" in "spa" — always!</div>
+        </div>
+        <div class="vowel-card">
+          <div class="vowel-big">E</div>
+          <div class="vowel-sound">/e/</div>
+          <div class="vowel-hint">like "eh" in "pet" — always!</div>
+        </div>
+        <div class="vowel-card">
+          <div class="vowel-big">I</div>
+          <div class="vowel-sound">/i/</div>
+          <div class="vowel-hint">like "ee" in "see" — always!</div>
+        </div>
+        <div class="vowel-card">
+          <div class="vowel-big">O</div>
+          <div class="vowel-sound">/o/</div>
+          <div class="vowel-hint">like "oh" in "go" — always!</div>
+        </div>
+        <div class="vowel-card">
+          <div class="vowel-big">U</div>
+          <div class="vowel-sound">/u/</div>
+          <div class="vowel-hint">like "oo" in "moon" — always!</div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Notice anything familiar?</strong> Spanish's 5 vowels sound remarkably similar to Japanese's 5 vowels (あいうえお = a-i-u-e-o)! Both languages have clean, pure vowel sounds with no ambiguity. This is one of the reasons Spanish pronunciation feels accessible to Japanese speakers — and why learning both languages simultaneously makes surprising sense.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 3 · Special characters & unique sounds</div>
+      <div class="section-title">6 sounds in Spanish that English doesn't have — or handles differently</div>
+      <div class="special-grid">
+        <div class="special-card">
+          <div class="special-char">Ñ ñ</div>
+          <div class="special-name">eñe</div>
+          <div class="special-sound">/ɲ/ — like "ny" in "canyon"</div>
+          <div class="special-ex">España · mañana · niño · año</div>
+        </div>
+        <div class="special-card">
+          <div class="special-char">RR rr</div>
+          <div class="special-name">erre doble</div>
+          <div class="special-sound">Trilled /r/ — tongue vibrates</div>
+          <div class="special-ex">perro · tierra · arroz · carro</div>
+        </div>
+        <div class="special-card">
+          <div class="special-char">LL ll</div>
+          <div class="special-name">elle</div>
+          <div class="special-sound">/ʝ/ — like "y" in "yes" (most dialects)</div>
+          <div class="special-ex">llama · lluvia · pollo · ella</div>
+        </div>
+        <div class="special-card">
+          <div class="special-char">J j</div>
+          <div class="special-name">jota</div>
+          <div class="special-sound">/x/ — like Scottish "loch" or German "Bach"</div>
+          <div class="special-ex">jamón · hijo · rojo · viaje</div>
+        </div>
+        <div class="special-card">
+          <div class="special-char">G g</div>
+          <div class="special-name">ge</div>
+          <div class="special-sound">/x/ before E/I · /g/ elsewhere</div>
+          <div class="special-ex">gente /x/ · gato /g/</div>
+        </div>
+        <div class="special-card">
+          <div class="special-char">C c</div>
+          <div class="special-name">ce</div>
+          <div class="special-sound">/s/ before E/I · /k/ elsewhere</div>
+          <div class="special-ex">ciudad /s/ · casa /k/</div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>The rolled R (RR):</strong> The double-R trill is the sound most learners find hardest. The tongue tip vibrates rapidly against the roof of the mouth. Practice by saying "butter" very quickly — the T flapping in American English is close to a single Spanish R (como · pero). The double R needs several rapid flaps. Don't worry if it takes weeks — it always does!
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 4 · Spanish pronunciation rules</div>
+      <div class="section-title">The rules that make Spanish so learnable — and a few surprises</div>
+      <div class="rule-grid">
+        <div class="rule-card">
+          <div class="rule-title">1. Accent marks (tildes)</div>
+          <div class="rule-desc">An accent mark (´) shows which syllable to stress when it falls outside the normal pattern.</div>
+          <div class="rule-ex">café · mamá · está · fútbol</div>
+          <div class="rule-contrast">Also distinguishes words: sí (yes) vs si (if)</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">2. Default stress rules</div>
+          <div class="rule-desc">Words ending in a vowel, N, or S: stress the second-to-last syllable. Words ending in other consonants: stress the last syllable.</div>
+          <div class="rule-ex">ha-BLO · CA-sa · ciu-DAD</div>
+          <div class="rule-contrast">No accent mark needed if it follows the default</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">3. H is always silent</div>
+          <div class="rule-desc">Unlike English, Spanish H is never pronounced. It's a completely silent letter in all positions.</div>
+          <div class="rule-ex">hola = /ola/ · hotel = /oˈtel/</div>
+          <div class="rule-contrast">English: H is silent only in "hour", "honest" etc.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">4. B and V sound the same</div>
+          <div class="rule-desc">In Spanish, B and V are pronounced identically — both as a soft /b/ sound. The difference is purely spelling.</div>
+          <div class="rule-ex">boca (mouth) · vaca (cow) — same /b/ sound!</div>
+          <div class="rule-contrast">English strictly separates /b/ and /v/</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">5. No silent letters (mostly)</div>
+          <div class="rule-desc">Every letter in Spanish is pronounced — except H, and U in QUE/QUI combinations.</div>
+          <div class="rule-ex">que = /ke/ · quiero = /ˈkjeɾo/</div>
+          <div class="rule-contrast">Compare English: knight, lamb, psychology...</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-title">6. Spanish R vs English R</div>
+          <div class="rule-desc">Single Spanish R is a quick tap of the tongue — lighter than English R. English R is never trilled.</div>
+          <div class="rule-ex">pero (but) = one tap · perro (dog) = trill</div>
+          <div class="rule-contrast">The distinction between pero/perro changes meaning!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Interactive · Spanish pronunciation practice</div>
+      <div class="section-title">Your first Spanish words — click to explore sounds</div>
+      <div class="pronun-sim">
+        <div class="pronun-header">🔊 Primeras palabras — First words</div>
+        <div class="pronun-body">
+          <div class="pronun-label">Choose a word</div>
+          <div class="pronun-btns" id="es-pronun-btns">
+            <button class="pronun-btn es-word" 
+              data-word="Hola" 
+              data-ipa="/ˈola/" 
+              data-tip="The H is completely silent! Just say 'oh-la'. Stress on the first syllable: O-la. The most universal Spanish greeting." 
+              data-compare="Japanese: こんにちは (konnichiwa) · Korean: 안녕하세요">Hola</button>
+            
+            <button class="pronun-btn es-word" 
+              data-word="Gracias" 
+              data-ipa="/ˈɡɾa.sjas/" 
+              data-tip="Three syllables: GRA-syas. The C before I = /s/ sound. The A is pure /a/ — never a schwa!" 
+              data-compare="In Spain, C before I/E = /θ/ (like English 'th') — 'gra-thyas'">Gracias</button>
+            
+            <button class="pronun-btn es-word" 
+              data-word="Buenos días" 
+              data-ipa="/ˈbwenos ˈdi.as/" 
+              data-tip="Good morning. BWEH-nos DEE-as. The U after B creates a /w/ glide. Días has the accent on the I." 
+              data-compare="Used until about midday — then buenas tardes (afternoon)">Buenos días</button>
+            
+            <button class="pronun-btn es-word" 
+              data-word="Por favor" 
+              data-ipa="/poɾ faˈβoɾ/" 
+              data-tip="Please. por fa-VOR. The R at the end is a soft tap — not English R. V = soft /b/ sound." 
+              data-compare="The most polite addition to any request in Spanish">Por favor</button>
+            
+            <button class="pronun-btn es-word" 
+              data-word="España" 
+              data-ipa="/esˈpa.ɲa/" 
+              data-tip="Spain. es-PA-nya. The Ñ = /ɲ/ — like 'ny' in canyon. All 6 letters are pronounced!" 
+              data-compare="Notice: no silent letters at all — pure Spanish consistency">España</button>
+            
+            <button class="pronun-btn es-word" 
+              data-word="Mucho gusto" 
+              data-ipa="/ˈmu.tʃo ˈɡus.to/" 
+              data-tip="Nice to meet you. MOO-cho GOO-sto. CH = /tʃ/ always in Spanish (like English 'church')." 
+              data-compare="Also: encantado/a (delighted to meet you) — gender changes!">Mucho gusto</button>
+          </div>
+          <div class="pronun-result" id="es-pronun-result">
+            <div class="pronun-empty">Select a word above to explore its pronunciation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Lesson 5 · Your first Spanish words</div>
+      <div class="section-title">10 essential words — fully readable once you know the rules</div>
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-native">Hola</div>
+          <div class="word-ipa">/ˈola/</div>
+          <div class="word-en">Hello / Hi</div>
+          <div class="word-note">H silent. Works any time of day. Casual and warm.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Gracias</div>
+          <div class="word-ipa">/ˈɡɾasjas/</div>
+          <div class="word-en">Thank you</div>
+          <div class="word-note">You already know this one! GRA-syas.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Sí / No</div>
+          <div class="word-ipa">/si/ · /no/</div>
+          <div class="word-en">Yes / No</div>
+          <div class="word-note">Accent on Sí distinguishes it from si (if).</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Por favor</div>
+          <div class="word-ipa">/poɾ faˈβoɾ/</div>
+          <div class="word-en">Please</div>
+          <div class="word-note">Literally "for favour". Goes at end of requests.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Buenos días</div>
+          <div class="word-ipa">/ˈbwenos ˈdias/</div>
+          <div class="word-en">Good morning</div>
+          <div class="word-note">Until ~noon. Buenas tardes = afternoon. Buenas noches = evening/night.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Adiós</div>
+          <div class="word-ipa">/aˈðjos/</div>
+          <div class="word-en">Goodbye</div>
+          <div class="word-note">Literally "to God" — same origin as "adieu". Accent on -OS.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">Agua</div>
+          <div class="word-ipa">/ˈaɣwa/</div>
+          <div class="word-en">Water</div>
+          <div class="word-note">The GU = /gw/. One of the first words every traveller needs!</div>
+        </div>
+        <div class="word-card">
+          <div class="word-native">¿Cómo estás?</div>
+          <div class="word-ipa">/ˈkomo esˈtas/</div>
+          <div class="word-en">How are you? (casual)</div>
+          <div class="word-note">Inverted ¿ at the start — Spanish punctuation quirk!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌎</span>
+        <div class="culture-text">
+          <strong>Which Spanish? Spain vs Latin America</strong><br/>
+          Just as English varies between British and American, Spanish varies significantly between Spain and the 19 Latin American countries where it's spoken. The most notable difference: in Spain, C before E/I and Z are pronounced /θ/ (like English "th") — so "gracias" sounds like "gra-thyas". In Latin America, these are pronounced /s/ — "gra-syas". This is called <em>ceceo</em> (Spain) vs <em>seseo</em> (Latin America). Vocabulary also differs: in Spain a car is "coche", in Mexico "carro", in Argentina "auto". Neither is more "correct" — they're simply different regional standards, both beautiful and valid.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 1 Spanish — alphabet & pronunciation</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How many vowel sounds does Spanish have?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="correct">5 — one sound per vowel</button>
+          <button class="quiz-btn" data-answer="wrong">10</button>
+          <button class="quiz-btn" data-answer="wrong">20</button>
+          <button class="quiz-btn" data-answer="wrong">27</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How is the letter H pronounced in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Like English H — a breath of air</button>
+          <button class="quiz-btn" data-answer="wrong">Like the J sound — /x/</button>
+          <button class="quiz-btn" data-answer="correct">It is completely silent</button>
+          <button class="quiz-btn" data-answer="wrong">Like the Y sound</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is special about the letter Ñ in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">It's silent like H</button>
+          <button class="quiz-btn" data-answer="wrong">It sounds like the English N</button>
+          <button class="quiz-btn" data-answer="correct">It makes a /ɲ/ "ny" sound</button>
+          <button class="quiz-btn" data-answer="wrong">It's the same as double N</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "please" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Gracias</button>
+          <button class="quiz-btn" data-answer="wrong">Hola</button>
+          <button class="quiz-btn" data-answer="correct">Por favor</button>
+          <button class="quiz-btn" data-answer="wrong">Adiós</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — all four languages you know</div>
+    <div class="section-title" style="margin-bottom:4px">The same concept expressed in Japanese, Korean, English & Spanish</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">One of the great joys of studying multiple languages — seeing the same idea refracted through four different lenses.</p>
+
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px">Hello</td>
+        <td>こんにちは<br/><span style="font-size:11px; color:#888">konnichiwa</span></td>
+        <td>안녕하세요<br/><span style="font-size:11px; color:#888">annyeonghaseyo</span></td>
+        <td>Hello<br/><span style="font-size:11px; color:#888">/həˈloʊ/</span></td>
+        <td>Hola<br/><span style="font-size:11px; color:#888">/ˈola/</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">Thank you</td>
+        <td>ありがとう<br/><span style="font-size:11px; color:#888">arigatou</span></td>
+        <td>감사합니다<br/><span style="font-size:11px; color:#888">gamsahamnida</span></td>
+        <td>Thank you<br/><span style="font-size:11px; color:#888">/θæŋk juː/</span></td>
+        <td>Gracias<br/><span style="font-size:11px; color:#888">/ˈɡɾasjas/</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">Water</td>
+        <td>水 (みず)<br/><span style="font-size:11px; color:#888">mizu</span></td>
+        <td>물<br/><span style="font-size:11px; color:#888">mul</span></td>
+        <td>Water<br/><span style="font-size:11px; color:#888">/ˈwɔːtə/</span></td>
+        <td>Agua<br/><span style="font-size:11px; color:#888">/ˈaɣwa/</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">Vowel sounds</td>
+        <td>5 vowels<br/><span style="font-size:11px; color:#888">あいうえお — pure & consistent</span></td>
+        <td>21 vowels<br/><span style="font-size:11px; color:#888">complex — includes diphthongs</span></td>
+        <td>~20 vowel sounds<br/><span style="font-size:11px; color:#888">5 letters — wildly inconsistent</span></td>
+        <td>5 vowels<br/><span style="font-size:11px; color:#888">5 letters — perfectly consistent!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">Script type</td>
+        <td>Syllabic + logographic<br/><span style="font-size:11px; color:#888">Hiragana/Katakana/Kanji</span></td>
+        <td>Alphabetic blocks<br/><span style="font-size:11px; color:#888">Hangul — phonetic blocks</span></td>
+        <td>Alphabet<br/><span style="font-size:11px; color:#888">Latin — 26 letters</span></td>
+        <td>Alphabet<br/><span style="font-size:11px; color:#888">Latin — 27 letters (+ Ñ)</span></td>
+      </tr>
+    </table>
+
+    <div class="tip-box tip-green" style="margin-top:14px">
+      <strong>The vowel insight:</strong> Japanese and Spanish share the same 5 pure vowel sounds — /a/, /i/, /u/, /e/, /o/. This is why Japanese speakers often find Spanish pronunciation intuitive. English and Korean both have far more vowel complexity. This four-way view reveals patterns invisible when studying any single language alone!
+    </div>
+  </div>
+
+
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 2</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Basic sentence structure · Subject-Verb-Object order · Articles (a, an, the) — one of English's trickiest concepts for speakers of article-free languages like Japanese and Korean · First essential phrases.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Gender in Spanish — why every noun is masculine or feminine · Articles (el, la, un, una) · Basic greetings and introductions · Your first verb: ser and estar (two ways to say "to be").</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 1 complete · Click <a href="Week2.E&S.html">here</a> when you're ready for Week 2 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* English alphabet data */
+  const enLetterData = {
+    A: { type: 'Vowel', sounds: 'Multiple sounds: /æ/ cat · /eɪ/ cake · /ɑː/ car · /ə/ about', examples: 'apple · cake · car · about · many', vowel: true },
+    B: { type: 'Consonant', sounds: '/b/ — like Spanish B/V', examples: 'ball · book · baby · above', vowel: false },
+    C: { type: 'Consonant', sounds: '/k/ before A,O,U (cat) · /s/ before E,I,Y (city)', examples: 'cat · city · come · nice', vowel: false },
+    D: { type: 'Consonant', sounds: '/d/ — but often flaps to /r/ in American English between vowels', examples: 'dog · day · ladder (= "ladder")', vowel: false },
+    E: { type: 'Vowel', sounds: 'Multiple: /e/ bed · /iː/ me · /ə/ the · often silent (cake)', examples: 'bed · me · the · cake', vowel: true },
+    F: { type: 'Consonant', sounds: '/f/ — consistent', examples: 'fish · fly · coffee · off', vowel: false },
+    G: { type: 'Consonant', sounds: '/ɡ/ hard (go) · /dʒ/ soft before E,I,Y (gem, gym)', examples: 'go · gem · big · age', vowel: false },
+    H: { type: 'Consonant', sounds: '/h/ breath sound · silent in "hour", "honest", "heir"', examples: 'hello · house · hour (silent!)', vowel: false },
+    I: { type: 'Vowel', sounds: 'Multiple: /ɪ/ sit · /aɪ/ kite · /iː/ machine · /ə/ pencil', examples: 'sit · kite · pizza · pencil', vowel: true },
+    J: { type: 'Consonant', sounds: '/dʒ/ — always (unlike Spanish J!)', examples: 'jump · joy · major · enjoy', vowel: false },
+    K: { type: 'Consonant', sounds: '/k/ — but silent before N (knife, know, knight)', examples: 'key · king · knife (K silent!)', vowel: false },
+    L: { type: 'Consonant', sounds: '/l/ — clear L at start · dark L at end of syllable', examples: 'love · ball · milk · feel', vowel: false },
+    M: { type: 'Consonant', sounds: '/m/ — very consistent', examples: 'moon · man · summer · him', vowel: false },
+    N: { type: 'Consonant', sounds: '/n/ — but /ŋ/ before K,G (bank, ring)', examples: 'nice · no · ring · bank', vowel: false },
+    O: { type: 'Vowel', sounds: 'Multiple: /ɒ/ hot · /oʊ/ go · /ʌ/ love · /uː/ do · /ə/ today', examples: 'hot · go · love · do · today', vowel: true },
+    P: { type: 'Consonant', sounds: '/p/ — silent before N,S at start (psychology, pneumonia)', examples: 'pen · phone · psychology (P silent!)', vowel: false },
+    Q: { type: 'Consonant', sounds: 'Always /kw/ before U, or /k/ in borrowings · never alone', examples: 'queen · quiet · queue · unique', vowel: false },
+    R: { type: 'Consonant', sounds: '/r/ — English R is never trilled. Tongue curls back — very different from Spanish R!', examples: 'run · car · very · fire', vowel: false },
+    S: { type: 'Consonant', sounds: '/s/ (sit) · /z/ between vowels or at end (is, has, dogs)', examples: 'sit · is · dogs · sugar', vowel: false },
+    T: { type: 'Consonant', sounds: '/t/ · flap /r/ in American English · /ʃ/ in -tion (nation)', examples: 'top · nation · butter (flap)', vowel: false },
+    U: { type: 'Vowel', sounds: 'Multiple: /ʌ/ cup · /uː/ blue · /jʊ/ music · /ə/ focus', examples: 'cup · blue · music · focus', vowel: true },
+    V: { type: 'Consonant', sounds: '/v/ — lower lip touches upper teeth. Distinct from B (unlike Spanish!)', examples: 'very · voice · love · river', vowel: false },
+    W: { type: 'Consonant', sounds: '/w/ glide · silent before R (write, wrong)', examples: 'water · win · write (W silent!)', vowel: false },
+    X: { type: 'Consonant', sounds: '/ks/ (box) · /ɡz/ (exam) · /z/ at start (xylophone)', examples: 'box · exam · xylophone', vowel: false },
+    Y: { type: 'Consonant or Vowel', sounds: 'Consonant /j/ at start · vowel /ɪ/ or /aɪ/ elsewhere', examples: 'yes · my · gym · happy', vowel: false },
+    Z: { type: 'Consonant', sounds: '/z/ in English · /θ/ or /s/ in Spanish!', examples: 'zoo · zero · pizza · buzz', vowel: false }
+  };
+
+  const enLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const enAlpha = document.getElementById('en-alphabet');
+  
+  enLetters.forEach(l => {
+    const card = document.createElement('div');
+    const isVowel = (enLetterData[l] && enLetterData[l].vowel) ? ' vowel' : '';
+    card.className = 'letter-card' + isVowel;
+    card.innerHTML = `<span class="letter-upper">${l}</span><span class="letter-lower">${l.toLowerCase()}</span>`;
+    
+    card.addEventListener('click', () => {
+      document.querySelectorAll('#en-alphabet .letter-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const d = enLetterData[l];
+      document.getElementById('en-letter-detail').innerHTML = `
+        <div class="ld-letter">${l} ${l.toLowerCase()}</div>
+        <div class="ld-type">${d.type}</div>
+        <div class="ld-sound"><strong>Sound(s):</strong> ${d.sounds}</div>
+        <div class="ld-examples" style="margin-top:6px"><strong>Examples:</strong> ${d.examples}</div>
+      `;
+    });
+    
+    enAlpha.appendChild(card);
+  });
+
+  /* Spanish alphabet data */
+  const esLetterData = {
+    A: { sound: '/a/ — always like "ah" in spa', examples: 'agua · amor · amigo', note: 'Pure, consistent — never changes!' },
+    B: { sound: '/b/ — same as V in Spanish!', examples: 'bueno · boca · libro', note: 'B and V are identical in Spanish' },
+    C: { sound: '/k/ before A,O,U · /s/ (or /θ/ in Spain) before E,I', examples: 'casa /k/ · ciudad /s/', note: 'Context determines the sound' },
+    D: { sound: '/d/ at start · soft /ð/ between vowels', examples: 'día · Madrid · nada', note: 'Like the TH in "the" between vowels' },
+    E: { sound: '/e/ — always like "eh" in pet', examples: 'español · este · leche', note: 'Pure, consistent — no surprises!' },
+    F: { sound: '/f/ — same as English', examples: 'favor · fácil · café', note: 'One of Spanish\'s simplest letters' },
+    G: { sound: '/x/ (like J) before E,I · /g/ elsewhere · /gw/ in GUE/GUI', examples: 'gente /x/ · gato /g/', note: 'Context-dependent, like C' },
+    H: { sound: 'SILENT — never pronounced!', examples: 'hola · hotel · hacer', note: 'H is the silent surprise of Spanish' },
+    I: { sound: '/i/ — always like "ee" in see', examples: 'isla · inglés · sí', note: 'Pure and consistent — love it!' },
+    J: { sound: '/x/ — like Scottish "loch" or clearing throat', examples: 'jamón · hijo · viaje', note: 'Stronger than English H — guttural' },
+    K: { sound: '/k/ — only in foreign words', examples: 'kilómetro · karate · kiosco', note: 'Rare in Spanish — mostly loanwords' },
+    L: { sound: '/l/ — clear, consistent', examples: 'luna · libro · fácil', note: 'Same as English L — no issues!' },
+    M: { sound: '/m/ — consistent', examples: 'mamá · mucho · amor', note: 'Reliable, straightforward' },
+    N: { sound: '/n/ — consistent · /m/ before B,P', examples: 'noche · no · uno', note: 'And its famous cousin: Ñ!' },
+    Ñ: { sound: '/ɲ/ — like "ny" in canyon', examples: 'España · mañana · niño', note: 'The letter unique to Spanish!' },
+    O: { sound: '/o/ — always like "oh" in go', examples: 'ojo · hola · amor', note: 'Pure and consistent!' },
+    P: { sound: '/p/ — no puff of air (unlike English)', examples: 'padre · por · español', note: 'Less aspirated than English P' },
+    Q: { sound: '/k/ — always in QUE/QUI, U is silent', examples: 'que · quiero · quien', note: 'Simpler than English Q/QU!' },
+    R: { sound: 'Single tap /ɾ/ · trilled /r/ at start of word or RR', examples: 'pero (tap) · perro (trill)', note: 'The hardest sound for many learners' },
+    S: { sound: '/s/ — consistent, never /z/ as in English', examples: 'sol · casa · español', note: 'No /z/ variation — simpler than English!' },
+    T: { sound: '/t/ — no flapping, no /ʃ/ — pure and consistent', examples: 'tú · tiempo · está', note: 'Much simpler than English T!' },
+    U: { sound: '/u/ — always like "oo" in moon', examples: 'usted · mucho · azul', note: 'Pure — never becomes /ʌ/ or /ə/' },
+    V: { sound: '/b/ — identical to B!', examples: 'vaca · vida · nuevo', note: 'B and V are the same sound in Spanish' },
+    W: { sound: '/w/ or /b/ — only in foreign words', examples: 'wifi · whisky · waterpolo', note: 'Very rare in native Spanish words' },
+    X: { sound: '/ks/ usually · /x/ in some words · /s/ in Mexico', examples: 'extra /ks/ · México /x/', note: 'Context-dependent — varies by word' },
+    Y: { sound: '/ʝ/ like "y" in yes · or /i/ when alone', examples: 'yo · hoy · playa', note: 'Y alone means "and" in Spanish!' },
+    Z: { sound: '/s/ in Latin America · /θ/ in Spain', examples: 'zapato · azul · pizza', note: 'The Spain vs LatAm divide!' }
+  };
+
+  const esLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  const esVowels = new Set(['A','E','I','O','U']);
+  const esAlpha = document.getElementById('es-alphabet');
+  
+  esLetters.forEach(l => {
+    const card = document.createElement('div');
+    card.className = 'letter-card' + (esVowels.has(l) ? ' vowel' : '');
+    card.style.width = l === 'Ñ' ? '52px' : '44px';
+    const fontSize = l === 'Ñ' ? '13px' : '16px';
+    card.innerHTML = `<span class="letter-upper" style="font-size:${fontSize}">${l}</span><span class="letter-lower">${l.toLowerCase()}</span>`;
+    
+    card.addEventListener('click', () => {
+      document.querySelectorAll('#es-alphabet .letter-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const d = esLetterData[l];
+      document.getElementById('es-letter-detail').innerHTML = `
+        <div class="ld-letter">${l} ${l.toLowerCase()}</div>
+        <div class="ld-type">Spanish letter</div>
+        <div class="ld-sound"><strong>Sound:</strong> ${d.sound}</div>
+        <div class="ld-examples" style="margin-top:4px"><strong>Examples:</strong> ${d.examples}</div>
+        <div style="font-size:11px; color:#aaa; margin-top:4px; font-style:italic">${d.note}</div>
+      `;
+    });
+    
+    esAlpha.appendChild(card);
+  });
+
+  /* Quiz Logic */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const group = this.closest('.quiz-item');
+      const btns = group.querySelectorAll('.quiz-btn');
+      const feedback = group.querySelector('.quiz-feedback');
+      const result = this.dataset.answer;
+
+      btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(result);
+      
+      feedback.textContent = result === 'correct' ? '✓ Correct! Great work.' : '✗ Not quite — review the section above.';
+      feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* English Pronunciation Logic */
+  document.querySelectorAll('.en-word').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.en-word').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      
+      document.getElementById('en-pronun-result').innerHTML = `
+        <div class="pronun-word">${this.dataset.word}</div>
+        <div class="pronun-ipa">${this.dataset.ipa}</div>
+        <div class="pronun-tip">${this.dataset.tip}</div>
+        <div class="pronun-compare">🌏 ${this.dataset.compare}</div>
+      `;
+    });
+  });
+
+  /* Spanish Pronunciation Logic */
+  document.querySelectorAll('.es-word').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.es-word').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      
+      document.getElementById('es-pronun-result').innerHTML = `
+        <div class="pronun-word">${this.dataset.word}</div>
+        <div class="pronun-ipa">${this.dataset.ipa}</div>
+        <div class="pronun-tip">${this.dataset.tip}</div>
+        <div class="pronun-compare">🌏 ${this.dataset.compare}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
