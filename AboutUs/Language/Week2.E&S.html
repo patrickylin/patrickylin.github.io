@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 2 — English & Spanish: Sentences, Articles & "To Be"</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Word order diagram */
+  .word-order { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+  .wo-block { border-radius: 10px; padding: 10px 16px; text-align: center; min-width: 80px; }
+  .wo-block.subject { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .wo-block.verb    { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .wo-block.object  { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .wo-block.adv     { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .wo-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .wo-word  { font-size: 17px; font-weight: 500; color: #1a1a18; }
+  .wo-arrow { font-size: 20px; color: #ccc; }
+  .wo-example { font-size: 13px; color: #555; margin-top: 10px; line-height: 1.7; }
+
+  /* Article table */
+  .article-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .article-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .article-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .article-table tr:last-child td { border-bottom: none; }
+  .art-word { font-size: 18px; color: #185FA5; font-weight: 500; }
+  .art-rule { font-size: 13px; color: #333; }
+  .art-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* To-be conjugation */
+  .conj-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .conj-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .conj-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-pronoun { font-size: 15px; color: #888; }
+  .conj-form    { font-size: 20px; font-weight: 500; color: #185FA5; }
+  .conj-es-form { font-size: 20px; font-weight: 500; color: #D85030; }
+  .conj-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Gender grid */
+  .gender-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .gender-card { border-radius: 12px; padding: 14px; }
+  .gender-card.masc { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .gender-card.fem  { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .gender-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .gender-article { font-size: 28px; font-weight: 500; margin-bottom: 6px; }
+  .gender-card.masc .gender-article { color: #185FA5; }
+  .gender-card.fem  .gender-article { color: #a8246e; }
+  .gender-rule { font-size: 13px; color: #333; margin-bottom: 6px; line-height: 1.6; }
+  .gender-examples { font-size: 12px; color: #555; line-height: 1.8; }
+
+  /* Ser vs Estar split */
+  .serestar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .se-card { border-radius: 12px; padding: 14px; }
+  .se-card.ser  { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .se-card.estar { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .se-verb { font-size: 22px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+  .se-subtitle { font-size: 12px; color: #888; margin-bottom: 10px; }
+  .se-uses { font-size: 13px; color: #333; line-height: 1.8; }
+  .se-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Interactive article / gender builder */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .builder-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .builder-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .builder-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 14px; cursor: pointer; transition: all 0.15s; }
+  .builder-btn:hover { background: #f0f0ee; }
+  .builder-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .builder-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .result-article { font-size: 14px; color: #aaa; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .result-phrase  { font-size: 28px; color: #1a1a18; margin-bottom: 4px; }
+  .result-ipa     { font-size: 13px; color: #888; font-family: serif; margin-bottom: 4px; }
+  .result-en      { font-size: 14px; color: #333; font-weight: 500; }
+  .result-note    { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; }
+  .result-empty   { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Four-way comparison */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .gender-grid, .serestar-grid, .two-col { grid-template-columns: 1fr; }
+    .word-order { gap: 4px; }
+    .wo-block { min-width: 60px; padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 2 of 16</span>
+      <h1>Sentences, Articles & "To Be"</h1>
+      <div class="subtitle">EN: Word order · Articles (a/an/the) · Am/Is/Are · First phrases · ES: Noun gender · El/La/Un/Una · Ser vs Estar</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:12%;"></div></div>
+      12% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 2 · SVO word order · Articles · The verb "to be" · First phrases</div>
+      </div>
+    </div>
+
+    <!-- Word order EN -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Word order — Subject · Verb · Object</div>
+      <div class="section-title">English is an SVO language — the order of words carries the meaning</div>
+      <p>English word order is strict. Unlike Japanese and Korean (which are SOV — Subject Object Verb), English places the verb immediately after the subject, and the object after the verb. Changing this order usually produces nonsense or a completely different meaning.</p>
+
+      <div class="word-order">
+        <div class="wo-block subject"><div class="wo-label">Subject</div><div class="wo-word">The cat</div></div>
+        <div class="wo-arrow">→</div>
+        <div class="wo-block verb"><div class="wo-label">Verb</div><div class="wo-word">drinks</div></div>
+        <div class="wo-arrow">→</div>
+        <div class="wo-block object"><div class="wo-label">Object</div><div class="wo-word">milk</div></div>
+      </div>
+      <div class="wo-example">
+        ✅ <strong>The cat drinks milk.</strong> — Correct SVO order.<br/>
+        ❌ <strong>Milk drinks the cat.</strong> — Wrong — now the milk is doing the drinking!<br/>
+        ❌ <strong>The cat milk drinks.</strong> — Wrong — this is SOV (Japanese/Korean pattern) — not English!
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>The big difference from Japanese &amp; Korean:</strong> In Japanese you say 猫はミルクを飲む — literally "cat milk drinks" (SOV). In Korean: 고양이가 우유를 마셔요 — also "cat milk drinks". English insists on the verb between subject and object. This single difference takes time to internalise for East Asian language speakers — but once it clicks, it feels completely natural.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Word order and questions — English inverts subject and verb:</p>
+      <div class="wo-example" style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:12px 14px; font-size:13px; line-height:2;">
+        Statement: <strong>She is a teacher.</strong> (Subject → Verb → Object)<br/>
+        Question:  <strong>Is she a teacher?</strong> (Verb → Subject → Object — inverted!)<br/>
+        Statement: <strong>You speak English.</strong><br/>
+        Question:  <strong>Do you speak English?</strong> (Add "do" as a helper verb for most verbs)
+      </div>
+    </div>
+
+    <!-- Articles EN -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Articles — a, an, the</div>
+      <div class="section-title">The hardest concept for Japanese &amp; Korean speakers — languages with no articles at all</div>
+      <p>Japanese and Korean have no equivalent of "a", "an", or "the". These tiny words are among the most frequent in English — and among the most difficult to master, because native speakers use them instinctively based on a complex set of rules about definiteness, countability, and shared knowledge.</p>
+
+      <table class="article-table">
+        <tr>
+          <th>Article</th>
+          <th>Name</th>
+          <th>When to use</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td><span class="art-word">a</span></td>
+          <td style="font-size:13px">Indefinite<br/>(before consonant sound)</td>
+          <td class="art-rule">First mention · one of many · any member of a group · before consonant sounds</td>
+          <td><span class="art-ex">a cat · a book · a university (/juː/ starts with consonant sound!)</span></td>
+        </tr>
+        <tr>
+          <td><span class="art-word">an</span></td>
+          <td style="font-size:13px">Indefinite<br/>(before vowel sound)</td>
+          <td class="art-rule">Same as "a" — but used before vowel sounds only</td>
+          <td><span class="art-ex">an apple · an hour (/aʊ/ — H is silent!) · an umbrella</span></td>
+        </tr>
+        <tr>
+          <td><span class="art-word">the</span></td>
+          <td style="font-size:13px">Definite</td>
+          <td class="art-rule">Specific/known item · previously mentioned · unique things · superlatives</td>
+          <td><span class="art-ex">the cat (we know which one) · the Sun · the best restaurant</span></td>
+        </tr>
+        <tr>
+          <td><span class="art-word">—</span></td>
+          <td style="font-size:13px">Zero article</td>
+          <td class="art-rule">Plural generalisations · uncountable nouns · proper nouns · abstract ideas</td>
+          <td><span class="art-ex">Cats are animals. · Water is life. · Tokyo is big. · Love is kind.</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>The a/an trap:</strong> It's the sound that matters, not the spelling. "An hour" — because H is silent and "hour" starts with the vowel sound /aʊ/. "A university" — because despite starting with U, it's pronounced /juː/ which starts with the consonant sound /j/. Always ask: what sound does the next word START with?
+      </div>
+
+      <div class="tip-box tip-coral" style="margin-top:8px">
+        <strong>The definite article "the" — the hardest rule:</strong> Use "the" when both the speaker and listener know which specific thing is meant. "I saw a dog. The dog was big." — First mention: "a dog". Second mention: "the dog" (now we both know which dog). This shared-knowledge concept is entirely absent from Japanese and Korean — making it one of the most common article errors in learner English.
+      </div>
+    </div>
+
+    <!-- The verb "to be" EN -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The verb "to be" — am / is / are</div>
+      <div class="section-title">English's most essential verb — and its most irregular one</div>
+      <p>The verb "to be" is the most common verb in English — and the most irregular. It has three present tense forms (am, is, are) that must be memorised. It's used to describe identity, state, location, and much more.</p>
+
+      <table class="conj-table">
+        <tr>
+          <th>Pronoun</th>
+          <th>"To be" form</th>
+          <th>Contracted</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">I</td>
+          <td><span class="conj-form">am</span></td>
+          <td style="font-size:16px; color:#555">I'm</td>
+          <td class="conj-ex">I am a student. / I'm happy.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">You</td>
+          <td><span class="conj-form">are</span></td>
+          <td style="font-size:16px; color:#555">You're</td>
+          <td class="conj-ex">You are a teacher. / You're welcome.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">He / She / It</td>
+          <td><span class="conj-form">is</span></td>
+          <td style="font-size:16px; color:#555">He's / She's / It's</td>
+          <td class="conj-ex">She is from Spain. / It's cold today.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">We</td>
+          <td><span class="conj-form">are</span></td>
+          <td style="font-size:16px; color:#555">We're</td>
+          <td class="conj-ex">We are friends. / We're ready.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">They</td>
+          <td><span class="conj-form">are</span></td>
+          <td style="font-size:16px; color:#555">They're</td>
+          <td class="conj-ex">They are students. / They're here.</td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-purple">
+        <strong>Negatives and questions with "to be":</strong><br/>
+        Negative: add "not" after the verb → I am not tired. / She is not here. → Contracted: I'm not · She isn't · They aren't<br/>
+        Question: invert subject and verb → Are you a student? · Is she here? · Am I right?<br/>
+        "To be" is the only verb in English that doesn't need "do/does" to make a question — it inverts directly.
+      </div>
+    </div>
+
+    <!-- First English phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · First English phrases</div>
+      <div class="section-title">Greetings, introductions &amp; essential social phrases</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">👋</span>
+          <div>
+            <div class="phrase-native">Hello / Hi / Hey</div>
+            <div class="phrase-sub">Formal → Informal</div>
+            <div class="phrase-en">Greetings — from formal to very casual</div>
+            <div class="phrase-note">Hello = neutral/polite · Hi = casual · Hey = very casual or to get attention. Time-of-day greetings: Good morning · Good afternoon · Good evening.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">😊</span>
+          <div>
+            <div class="phrase-native">How are you?</div>
+            <div class="phrase-sub">/haʊ ɑː juː/</div>
+            <div class="phrase-en">Standard greeting question (not always a real question!)</div>
+            <div class="phrase-note">In English, "How are you?" is often a greeting ritual — the expected answer is "Fine, thanks" or "Good, thanks" — not a detailed health report! This surprises many learners.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙋</span>
+          <div>
+            <div class="phrase-native">My name is [name]. / I'm [name].</div>
+            <div class="phrase-sub">Formal / Casual</div>
+            <div class="phrase-en">Introducing yourself</div>
+            <div class="phrase-note">"My name is Patrick" = formal. "I'm Patrick" = natural and casual. "Call me Patrick" = very relaxed. Notice: the verb "to be" appears in every version!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌍</span>
+          <div>
+            <div class="phrase-native">I'm from [country/city].</div>
+            <div class="phrase-sub">/aɪm frɒm/</div>
+            <div class="phrase-en">Saying where you're from</div>
+            <div class="phrase-note">Compare with Japanese: 〜から来ました (kara kimashita) · Spanish: Soy de [place]. English uses "from" as a preposition. No particle system like Japanese/Korean!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤝</span>
+          <div>
+            <div class="phrase-native">Nice to meet you.</div>
+            <div class="phrase-sub">/naɪs tə miːt juː/</div>
+            <div class="phrase-en">Meeting someone for the first time</div>
+            <div class="phrase-note">Full form: "It's nice to meet you." The "It's" is often dropped in speech. Response: "Nice to meet you too." Compare Japanese よろしくお願いします — English is far less ceremonial.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙏</span>
+          <div>
+            <div class="phrase-native">Thank you. / Thanks. / Cheers.</div>
+            <div class="phrase-sub">Formal → Casual → British</div>
+            <div class="phrase-en">Expressing gratitude</div>
+            <div class="phrase-note">Thank you = polite · Thanks = casual · Cheers = British casual. Response options: "You're welcome" · "No problem" · "Of course" · "Don't mention it" · "My pleasure".</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚪</span>
+          <div>
+            <div class="phrase-native">Goodbye / Bye / See you later.</div>
+            <div class="phrase-sub">Formal → Casual</div>
+            <div class="phrase-en">Farewells</div>
+            <div class="phrase-note">Also: Take care · Have a good one · Catch you later · Talk soon. English farewells are relaxed compared to the ceremonial さようなら (sayōnara) or the warm 또 만나요 (tto mannayo).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive article builder EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Article builder</div>
+      <div class="section-title">Select a noun — get the correct article and an explanation</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Which article — a, an, or the?</div>
+        <div class="builder-body">
+          <div class="builder-label">Choose a noun</div>
+          <div class="builder-btns" id="en-article-btns">
+            <button class="builder-btn en-noun"
+              data-article="an"
+              data-phrase="an apple"
+              data-ipa="/ən ˈæpəl/"
+              data-en="an apple (one apple — first mention)"
+              data-note="A → AN because 'apple' starts with the vowel sound /æ/. It is indefinite — any apple.">
+              apple 🍎
+            </button>
+            <button class="builder-btn en-noun"
+              data-article="a"
+              data-phrase="a cat"
+              data-ipa="/ə kæt/"
+              data-en="a cat (one cat — first mention)"
+              data-note="A because 'cat' starts with the consonant sound /k/. Indefinite — any cat.">
+              cat 🐱
+            </button>
+            <button class="builder-btn en-noun"
+              data-article="the"
+              data-phrase="the Sun"
+              data-ipa="/ðə sʌn/"
+              data-en="the Sun (unique — there is only one)"
+              data-note="THE because the Sun is unique. We all know which one. Also: the Moon · the Earth · the Internet.">
+              Sun ☀️
+            </button>
+            <button class="builder-btn en-noun"
+              data-article="an"
+              data-phrase="an hour"
+              data-ipa="/ən ˈaʊər/"
+              data-en="an hour (indefinite — one hour)"
+              data-note="AN because 'hour' begins with the vowel sound /aʊ/ — the H is silent! Spelling says H, pronunciation says vowel.">
+              hour ⏰
+            </button>
+            <button class="builder-btn en-noun"
+              data-article="a"
+              data-phrase="a university"
+              data-ipa="/ə juːnɪˈvɜːsɪti/"
+              data-en="a university (indefinite — one university)"
+              data-note="A (not AN!) because 'university' begins with /j/ — a consonant sound — despite starting with the letter U. The sound is what matters.">
+              university 🎓
+            </button>
+            <button class="builder-btn en-noun"
+              data-article="—"
+              data-phrase="Water is life."
+              data-ipa="/ˈwɔːtər ɪz laɪf/"
+              data-en="No article — water is uncountable and used as a generalisation"
+              data-note="Zero article for uncountable nouns used generally. Also: Music is beautiful. · Love is important. · Time flies.">
+              water 💧
+            </button>
+          </div>
+          <div class="builder-result" id="en-article-result">
+            <div class="result-empty">Select a noun above to see which article it takes — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🫖</span>
+        <div class="culture-text">
+          <strong>English politeness — indirect and understated</strong><br/>
+          English politeness operates very differently from Japanese or Korean politeness systems. Where Japanese has explicit grammatical levels of formality (keigo), English relies on indirectness, softening language, and understatement. "Could you possibly help me?" is more polite than "Help me." "I was wondering if you might have a moment" is more polite still. British English is particularly famous for extreme understatement — "not bad" often means "excellent", "a bit difficult" can mean "completely impossible", and "I might pop round" is a firm commitment. Learning to read this indirectness is as important as learning the grammar itself.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 2 English — word order, articles &amp; to be</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What word order does English use?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">SOV — Subject Object Verb (like Japanese &amp; Korean)</button>
+          <button class="quiz-btn" data-answer="correct">SVO — Subject Verb Object</button>
+          <button class="quiz-btn" data-answer="wrong">VSO — Verb Subject Object</button>
+          <button class="quiz-btn" data-answer="wrong">Free order — any arrangement works</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is correct — "a hour" or "an hour"? Why?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">A hour — because it starts with H, a consonant</button>
+          <button class="quiz-btn" data-answer="correct">An hour — because H is silent and it starts with the vowel sound /aʊ/</button>
+          <button class="quiz-btn" data-answer="wrong">Both are correct — it depends on the dialect</button>
+          <button class="quiz-btn" data-answer="wrong">Neither — you should say "the hour"</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Complete: "She ___ a doctor. They ___ students."</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">are / is</button>
+          <button class="quiz-btn" data-answer="correct">is / are</button>
+          <button class="quiz-btn" data-answer="wrong">am / are</button>
+          <button class="quiz-btn" data-answer="wrong">is / is</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Why don't you say "a water" in English?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Water always takes "the"</button>
+          <button class="quiz-btn" data-answer="wrong">Water starts with W so uses "an"</button>
+          <button class="quiz-btn" data-answer="correct">Water is uncountable — uncountable nouns used as generalisations take no article</button>
+          <button class="quiz-btn" data-answer="wrong">You can say "a water" — it is always correct</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 2 · Noun gender · El/La/Un/Una · Greetings · Ser vs Estar</div>
+      </div>
+    </div>
+
+    <!-- Word order ES -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Spanish word order — SVO with flexibility</div>
+      <div class="section-title">Spanish is SVO like English — but with much more flexibility</div>
+      <p>Like English, Spanish is fundamentally SVO (Subject Verb Object). But Spanish has considerably more word order freedom because its verb endings show who is doing what — making the subject often redundant.</p>
+      <div class="word-order">
+        <div class="wo-block subject"><div class="wo-label">Subject</div><div class="wo-word">El gato</div></div>
+        <div class="wo-arrow">→</div>
+        <div class="wo-block verb"><div class="wo-label">Verb</div><div class="wo-word">bebe</div></div>
+        <div class="wo-arrow">→</div>
+        <div class="wo-block object"><div class="wo-label">Object</div><div class="wo-word">leche</div></div>
+      </div>
+      <div class="wo-example">
+        ✅ <strong>El gato bebe leche.</strong> — The cat drinks milk. (SVO — most common)<br/>
+        ✅ <strong>Bebe leche el gato.</strong> — Also correct — Spanish verbs carry the subject information!<br/>
+        ✅ <strong>Bebo café.</strong> — I drink coffee. (Subject pronoun "yo" dropped — the verb ending -o tells you it's "I")
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Subject pronouns are often dropped in Spanish!</strong> Because verb endings encode who is doing the action, Spanish speakers routinely omit subject pronouns: "Hablo español" = "I speak Spanish" — no "yo" needed. This is called <em>pro-drop</em> and it's a feature English doesn't have — you must always say "I speak", never just "Speak Spanish."
+      </div>
+    </div>
+
+    <!-- Noun gender ES -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Noun gender — every noun is masculine or feminine</div>
+      <div class="section-title">El / La — the single most important concept to understand about Spanish nouns</div>
+      <p>Every noun in Spanish has a grammatical gender — masculine or feminine. This isn't about biology (though it often correlates) — it's a grammatical category that affects the article, adjective, and pronoun that accompany every noun. Mastering gender is the foundation of Spanish grammar.</p>
+      <div class="gender-grid">
+        <div class="gender-card masc">
+          <div class="gender-label">Masculine</div>
+          <div class="gender-article">el / un</div>
+          <div class="gender-rule">Most nouns ending in -o are masculine. Also: male beings, days of the week, months, languages, mountains, rivers, oceans.</div>
+          <div class="gender-examples">
+            el libro (the book)<br/>
+            el gato (the cat)<br/>
+            el hombre (the man)<br/>
+            un coche (a car)<br/>
+            el lunes (Monday)<br/>
+            el español (Spanish language)
+          </div>
+        </div>
+        <div class="gender-card fem">
+          <div class="gender-label">Feminine</div>
+          <div class="gender-article">la / una</div>
+          <div class="gender-rule">Most nouns ending in -a are feminine. Also: female beings, letters of the alphabet, islands, countries ending in -a.</div>
+          <div class="gender-examples">
+            la casa (the house)<br/>
+            la gata (the female cat)<br/>
+            la mujer (the woman)<br/>
+            una mesa (a table)<br/>
+            la ciudad (the city)<br/>
+            España (Spain — feminine)
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>Exceptions and tricks:</strong> Not every -o word is masculine or every -a word feminine. El mapa (map) = masculine despite ending in -a. La mano (hand) = feminine despite ending in -o. Words of Greek origin ending in -ma are masculine: el problema, el programa, el tema, el idioma. When in doubt, learn the article alongside every new noun — always learn "el libro", not just "libro".
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">The four Spanish articles — a complete picture:</p>
+      <table class="article-table">
+        <tr><th></th><th>Definite (the)</th><th>Indefinite (a/an)</th></tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Masculine singular</td>
+          <td><span class="art-word">el</span> <span class="art-ex">— el libro (the book)</span></td>
+          <td><span class="art-word">un</span> <span class="art-ex">— un libro (a book)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Feminine singular</td>
+          <td><span class="art-word">la</span> <span class="art-ex">— la casa (the house)</span></td>
+          <td><span class="art-word">una</span> <span class="art-ex">— una casa (a house)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Masculine plural</td>
+          <td><span class="art-word">los</span> <span class="art-ex">— los libros (the books)</span></td>
+          <td><span class="art-word">unos</span> <span class="art-ex">— unos libros (some books)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Feminine plural</td>
+          <td><span class="art-word">las</span> <span class="art-ex">— las casas (the houses)</span></td>
+          <td><span class="art-word">unas</span> <span class="art-ex">— unas casas (some houses)</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Interactive gender builder -->
+    <div class="section">
+      <div class="section-label">Interactive · Gender &amp; article explorer</div>
+      <div class="section-title">Click a Spanish noun — learn its gender, article and pronunciation</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 ¿El o La? — Masculine or Feminine?</div>
+        <div class="builder-body">
+          <div class="builder-label">Choose a noun</div>
+          <div class="builder-btns" id="es-gender-btns">
+            <button class="builder-btn es-noun"
+              data-article="el"
+              data-phrase="el libro"
+              data-ipa="/el ˈliβɾo/"
+              data-en="the book (masculine)"
+              data-note="Ends in -O → masculine. Rule works here! Always say 'el libro' — never 'la libro'.">
+              libro 📖
+            </button>
+            <button class="builder-btn es-noun"
+              data-article="la"
+              data-phrase="la casa"
+              data-ipa="/la ˈkasa/"
+              data-en="the house (feminine)"
+              data-note="Ends in -A → feminine. La casa. Plural: las casas. Adjectives must match: la casa blanca (the white house).">
+              casa 🏠
+            </button>
+            <button class="builder-btn es-noun"
+              data-article="el"
+              data-phrase="el problema"
+              data-ipa="/el pɾoˈβlema/"
+              data-en="the problem (masculine — exception!)"
+              data-note="Ends in -A but is MASCULINE! Greek-origin words ending in -ma are masculine: el problema, el programa, el tema, el idioma. Memorise these!">
+              problema ⚠️
+            </button>
+            <button class="builder-btn es-noun"
+              data-article="la"
+              data-phrase="la mano"
+              data-ipa="/la ˈmano/"
+              data-en="the hand (feminine — exception!)"
+              data-note="Ends in -O but is FEMININE! La mano is one of Spanish's most famous exceptions. Always learn it as 'la mano' — never 'el mano'.">
+              mano ✋
+            </button>
+            <button class="builder-btn es-noun"
+              data-article="la"
+              data-phrase="la ciudad"
+              data-ipa="/la θjuˈðað/"
+              data-en="the city (feminine)"
+              data-note="Nouns ending in -dad, -tad, -tud, -ión, -umbre are almost always feminine. La ciudad · la libertad · la canción · la nación.">
+              ciudad 🏙️
+            </button>
+            <button class="builder-btn es-noun"
+              data-article="el"
+              data-phrase="el español"
+              data-ipa="/el espaˈɲol/"
+              data-en="the Spanish language (masculine)"
+              data-note="Languages are always masculine in Spanish: el español · el japonés · el coreano · el inglés · el francés. A useful pattern to memorise!">
+              español 🇪🇸
+            </button>
+          </div>
+          <div class="builder-result" id="es-gender-result">
+            <div class="result-empty">Select a noun above to discover its gender and article</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ser vs Estar -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Ser vs Estar — two verbs that both mean "to be"</div>
+      <div class="section-title">The most famous challenge in Spanish — and one of the most fascinating</div>
+      <p>Where English has one verb "to be", Spanish has two: <strong>ser</strong> and <strong>estar</strong>. The choice between them changes the meaning dramatically. Learning when to use each is one of the central skills of Spanish grammar — and one that native English speakers find genuinely surprising.</p>
+      <div class="serestar-grid">
+        <div class="se-card ser">
+          <div class="se-verb">SER</div>
+          <div class="se-subtitle">Permanent · Essential · Identity</div>
+          <div class="se-uses">
+            👤 Identity: <strong>Soy Patrick.</strong> (I am Patrick.)<br/>
+            🌍 Origin: <strong>Soy de Japón.</strong> (I am from Japan.)<br/>
+            💼 Occupation: <strong>Eres médico.</strong> (You are a doctor.)<br/>
+            🕐 Time: <strong>Son las tres.</strong> (It is three o'clock.)<br/>
+            🎨 Inherent traits: <strong>El cielo es azul.</strong> (The sky is blue.)<br/>
+            📦 Material: <strong>La mesa es de madera.</strong> (The table is made of wood.)
+          </div>
+          <div class="se-ex">
+            Yo soy · Tú eres · Él/Ella es<br/>
+            Nosotros somos · Ellos son
+          </div>
+        </div>
+        <div class="se-card estar">
+          <div class="se-verb">ESTAR</div>
+          <div class="se-subtitle">Temporary · State · Location</div>
+          <div class="se-uses">
+            📍 Location: <strong>Estoy en Tokio.</strong> (I am in Tokyo.)<br/>
+            😊 Temporary state: <strong>Estás cansado.</strong> (You are tired.)<br/>
+            🤒 Health: <strong>Ella está enferma.</strong> (She is sick.)<br/>
+            🏃 Ongoing action: <strong>Estoy comiendo.</strong> (I am eating.)<br/>
+            💭 Mood/feeling: <strong>Estamos felices.</strong> (We are happy.)<br/>
+            🔄 Changeable quality: <strong>El café está frío.</strong> (The coffee is cold.)
+          </div>
+          <div class="se-ex">
+            Yo estoy · Tú estás · Él/Ella está<br/>
+            Nosotros estamos · Ellos están
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>The classic ser/estar contrast:</strong> "Él es aburrido" (ser) = He is a boring person — a character trait. "Él está aburrido" (estar) = He is bored right now — a temporary state. Same person, same adjective, completely different meaning! The ser/estar distinction encodes whether a quality is seen as permanent or temporary — a deeply philosophical difference baked into the grammar.
+      </div>
+    </div>
+
+    <!-- Greetings and introductions ES -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Spanish greetings &amp; introductions</div>
+      <div class="section-title">Your first Spanish conversations — using ser, estar, and gender together</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🌞</span>
+          <div>
+            <div class="phrase-native">Buenos días / Buenas tardes / Buenas noches</div>
+            <div class="phrase-sub">/ˈbwenos ˈdias/ · /ˈbwenas ˈtaɾðes/ · /ˈbwenas ˈnotʃes/</div>
+            <div class="phrase-en">Good morning / Good afternoon / Good evening</div>
+            <div class="phrase-note">Notice: días (days) is masculine → buenos. But tardes (afternoons) and noches (nights) are feminine → buenas. Gender agreement in action from your very first phrases!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">😊</span>
+          <div>
+            <div class="phrase-native">¿Cómo estás? / ¿Cómo está usted?</div>
+            <div class="phrase-sub">Casual / Formal</div>
+            <div class="phrase-en">How are you?</div>
+            <div class="phrase-note">Uses ESTAR — because your current state/health is temporary! Response: Muy bien, gracias (Very well, thanks) · Bien (Good) · Más o menos (So-so) · Regular (Not great).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙋</span>
+          <div>
+            <div class="phrase-native">Me llamo [nombre]. / Soy [nombre].</div>
+            <div class="phrase-sub">/me ˈʎamo/ · /soi/</div>
+            <div class="phrase-en">My name is [name]. / I am [name].</div>
+            <div class="phrase-note">Me llamo = literally "I call myself" (a reflexive verb — Week 5!). Soy uses SER — because your name is a permanent identity. ¿Cómo te llamas? = What is your name? (casual)</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌍</span>
+          <div>
+            <div class="phrase-native">Soy de [país/ciudad].</div>
+            <div class="phrase-sub">/soi ðe/</div>
+            <div class="phrase-en">I am from [country/city].</div>
+            <div class="phrase-note">Uses SER — origin is considered permanent. Soy de Japón · Soy de España · Soy de México. ¿De dónde eres? = Where are you from? (casual)</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤝</span>
+          <div>
+            <div class="phrase-native">Mucho gusto. / Encantado/a.</div>
+            <div class="phrase-sub">/ˈmutʃo ˈɡusto/ · /enkanˈtaðo/</div>
+            <div class="phrase-en">Nice to meet you. / Delighted to meet you.</div>
+            <div class="phrase-note">Encantado = masculine speaker · Encantada = feminine speaker. Your first example of adjective gender agreement with the speaker! Response: Igualmente (Likewise) or El gusto es mío (The pleasure is mine).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📍</span>
+          <div>
+            <div class="phrase-native">Estoy en [lugar].</div>
+            <div class="phrase-sub">/esˈtoi en/</div>
+            <div class="phrase-en">I am in/at [place].</div>
+            <div class="phrase-note">Uses ESTAR — location is always temporary (you could move!). Estoy en Tokio · Estoy en casa · Estoy en el aeropuerto. Compare: SER for origin, ESTAR for current location.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💃</span>
+        <div class="culture-text">
+          <strong>Tú vs Usted — formality in Spanish</strong><br/>
+          Spanish has two ways to say "you" — tú (informal, singular) and usted (formal, singular). This distinction carries enormous social weight. Using tú with someone who expects usted can feel disrespectful; using usted with a close friend can feel cold and distancing. In Spain, the shift from usted to tú happens quickly — even in professional settings. In Latin America, usted is used much more broadly, even between friends in some countries (particularly Colombia). A safe rule: use usted with anyone older, more senior, or whom you've just met in a formal context, and follow their lead. Also note: ustedes (you all) is used across all registers in Latin America, while Spain uses vosotros for informal plural.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 2 Spanish — gender, articles &amp; ser/estar</div>
+      <div class="quiz-item">
+        <div class="quiz-q">¿El o La? — What is the correct article for "problema"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="correct">El problema — masculine (Greek -ma words are masculine)</button>
+          <button class="quiz-btn" data-answer="wrong">La problema — feminine (ends in -a)</button>
+          <button class="quiz-btn" data-answer="wrong">Un problema — you use the indefinite article always</button>
+          <button class="quiz-btn" data-answer="wrong">No article — abstract nouns take none</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">¿Ser o Estar? — "Estoy en Madrid." Why is ESTAR used?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Because Madrid is a proper noun</button>
+          <button class="quiz-btn" data-answer="wrong">Because the speaker is Spanish</button>
+          <button class="quiz-btn" data-answer="correct">Because location is temporary — you are in Madrid right now but could move</button>
+          <button class="quiz-btn" data-answer="wrong">Both ser and estar work for location</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "Buenos días" literally mean, and why is it "buenos" not "buenas"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Good morning — días is feminine so buenas</button>
+          <button class="quiz-btn" data-answer="correct">Good morning — días (days) is masculine so buenos agrees with the masculine noun</button>
+          <button class="quiz-btn" data-answer="wrong">Good morning — the adjective buenos never changes</button>
+          <button class="quiz-btn" data-answer="wrong">Good day — it means something different from "good morning"</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"Él es aburrido" vs "Él está aburrido" — what is the difference?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">No difference — both mean the same thing</button>
+          <button class="quiz-btn" data-answer="wrong">Es = informal · está = formal</button>
+          <button class="quiz-btn" data-answer="correct">Es aburrido = He is a boring person (character trait) · Está aburrido = He is bored right now (temporary state)</button>
+          <button class="quiz-btn" data-answer="wrong">Es aburrido = past tense · está aburrido = present tense</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — word order &amp; "to be"</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages handle the same fundamental ideas</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">This week's cross-language view reveals a major split — East meets West in word order!</p>
+
+    <table>
+      <tr><th>Feature</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Word order</td>
+        <td>SOV<br/><span style="font-size:11px; color:#888">Subject Object Verb<br/>猫はミルクを飲む</span></td>
+        <td>SOV<br/><span style="font-size:11px; color:#888">Subject Object Verb<br/>고양이가 우유를 마셔요</span></td>
+        <td>SVO<br/><span style="font-size:11px; color:#888">Subject Verb Object<br/>The cat drinks milk</span></td>
+        <td>SVO (flexible)<br/><span style="font-size:11px; color:#888">Subject Verb Object<br/>El gato bebe leche</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Articles</td>
+        <td>None<br/><span style="font-size:11px; color:#888">No "a" or "the" — context indicates</span></td>
+        <td>None<br/><span style="font-size:11px; color:#888">No articles — context indicates</span></td>
+        <td>a / an / the<br/><span style="font-size:11px; color:#888">No gender — one set of articles</span></td>
+        <td>el/la/un/una<br/><span style="font-size:11px; color:#888">Gender-matched articles</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">I am Patrick</td>
+        <td>パトリックです<br/><span style="font-size:11px; color:#888">Patorikku desu<br/>(no pronoun needed)</span></td>
+        <td>저는 패트릭이에요<br/><span style="font-size:11px; color:#888">Jeoneun Paeteureok-ieyo</span></td>
+        <td>I am Patrick.<br/><span style="font-size:11px; color:#888">Subject always required</span></td>
+        <td>Soy Patrick.<br/><span style="font-size:11px; color:#888">Yo often dropped — verb ending tells us!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Noun gender</td>
+        <td>No grammatical gender<br/><span style="font-size:11px; color:#888">Nouns have no gender</span></td>
+        <td>No grammatical gender<br/><span style="font-size:11px; color:#888">Nouns have no gender</span></td>
+        <td>No grammatical gender<br/><span style="font-size:11px; color:#888">"The" works for all nouns</span></td>
+        <td>Masculine &amp; feminine<br/><span style="font-size:11px; color:#888">Every noun has a gender</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"To be"</td>
+        <td>です / だ (desu/da)<br/><span style="font-size:11px; color:#888">One copula · also いる/ある for existence</span></td>
+        <td>이에요/예요 / 있어요<br/><span style="font-size:11px; color:#888">Copula + existence verb</span></td>
+        <td>am / is / are<br/><span style="font-size:11px; color:#888">One verb — three forms</span></td>
+        <td>ser / estar<br/><span style="font-size:11px; color:#888">Two verbs — permanent vs temporary!</span></td>
+      </tr>
+    </table>
+
+    <div class="tip-box tip-blue" style="margin-top:14px">
+      <strong>The great East-West divide:</strong> Japanese and Korean are SOV — the verb comes at the end. English and Spanish are SVO — the verb comes in the middle. This is one of the most fundamental typological differences in world languages. Interestingly, about 45% of the world's languages are SOV, and about 42% are SVO — so both patterns are roughly equally common globally!
+    </div>
+  </div>
+
+
+  <!-- Week 3 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 3</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Present simple tense · Regular and irregular verbs · The -s ending (he/she/it) · Negatives with "don't" and "doesn't" · Question formation with "do" · Essential everyday verbs.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Present tense verbs — the three verb families (-ar, -er, -ir) · Regular conjugation patterns · The most common irregular verbs (tener, ir, querer) · Numbers 1–100.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 2 complete · Click <a href="Week3.E&S.html">here</a> when you're ready for Week 3 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const allBtns  = group.querySelectorAll('.quiz-btn');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return; // already answered
+
+      allBtns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English article builder ── */
+  const enNounData = {
+    'apple 🍎':      { article: 'an',  phrase: 'an apple',      ipa: '/ən ˈæpəl/',          en: 'an apple (one apple — indefinite)',              note: 'AN because "apple" starts with the vowel sound /æ/. Indefinite — any apple.' },
+    'cat 🐱':        { article: 'a',   phrase: 'a cat',         ipa: '/ə kæt/',              en: 'a cat (one cat — indefinite)',                   note: 'A because "cat" starts with the consonant sound /k/. Indefinite — any cat.' },
+    'Sun ☀️':        { article: 'the', phrase: 'the Sun',       ipa: '/ðə sʌn/',             en: 'the Sun (unique — there is only one)',            note: 'THE because the Sun is unique. We all know which one. Also: the Moon · the Earth · the Internet.' },
+    'hour ⏰':       { article: 'an',  phrase: 'an hour',       ipa: '/ən ˈaʊər/',           en: 'an hour (indefinite — one hour)',                note: 'AN because "hour" begins with the vowel sound /aʊ/ — the H is silent!' },
+    'university 🎓': { article: 'a',   phrase: 'a university',  ipa: '/ə juːnɪˈvɜːsɪti/',   en: 'a university (indefinite)',                      note: 'A (not AN!) because "university" begins with /j/ — a consonant sound — despite the letter U.' },
+    'water 💧':      { article: '—',   phrase: 'Water is life.',ipa: '/ˈwɔːtər ɪz laɪf/',   en: 'No article — water is uncountable and general',  note: 'Zero article for uncountable nouns used as generalisations: Music · Love · Time · Water.' },
+  };
+
+  document.querySelectorAll('.en-noun').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-noun').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+
+      const d = this.dataset;
+      document.getElementById('en-article-result').innerHTML = `
+        <div class="result-article">Article: ${d.article}</div>
+        <div class="result-phrase">${d.phrase}</div>
+        <div class="result-ipa">${d.ipa}</div>
+        <div class="result-en">${d.en}</div>
+        <div class="result-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish gender builder ── */
+  document.querySelectorAll('.es-noun').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-noun').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+
+      const d = this.dataset;
+      const genderLabel = d.article === 'el' || d.article === 'un' ? 'Masculine 🔵' : 'Feminine 🩷';
+      document.getElementById('es-gender-result').innerHTML = `
+        <div class="result-article">${genderLabel} — article: ${d.article}</div>
+        <div class="result-phrase">${d.phrase}</div>
+        <div class="result-ipa">${d.ipa}</div>
+        <div class="result-en">${d.en}</div>
+        <div class="result-note">${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
