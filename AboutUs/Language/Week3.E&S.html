@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 3 — English & Spanish: Present Tense & Numbers</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Verb conjugation tables */
+  .conj-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .conj-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .conj-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-pronoun { font-size: 14px; color: #888; }
+  .conj-form    { font-size: 20px; font-weight: 500; color: #185FA5; }
+  .conj-neg     { font-size: 14px; color: #D85A30; }
+  .conj-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+  .conj-ending  { color: #D85A30; }
+
+  /* Three-family cards (Spanish) */
+  .family-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+  .family-card { border-radius: 12px; padding: 14px; }
+  .family-card.ar { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .family-card.er { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .family-card.ir { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .family-name { font-size: 24px; font-weight: 500; color: #1a1a18; margin-bottom: 2px; }
+  .family-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .family-ex { font-size: 13px; color: #333; line-height: 1.8; }
+
+  /* Verb grid */
+  .verb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .verb-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .verb-infinitive { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .verb-rom        { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .verb-en         { font-size: 13px; color: #333; font-weight: 500; }
+  .verb-example    { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .verb-card.irregular { background: #fdf9f0; border-color: #f0dfa8; }
+
+  /* Number grids */
+  .number-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+  .num-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 8px 6px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .num-card:hover { background: #f0f5fc; border-color: #b8d4f0; }
+  .num-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .num-digit  { font-size: 15px; font-weight: 500; color: #185FA5; }
+  .num-word   { font-size: 11px; color: #555; margin-top: 2px; }
+  .num-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 70px; }
+  .nd-number  { font-size: 32px; color: #185FA5; font-weight: 500; margin-bottom: 2px; }
+  .nd-word    { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .nd-note    { font-size: 12px; color: #555; }
+  .nd-empty   { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Interactive conjugation explorer */
+  .conj-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .conj-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .conj-body { padding: 14px; }
+  .conj-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .conj-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .conj-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 14px; cursor: pointer; transition: all 0.15s; }
+  .conj-btn:hover { background: #f0f0ee; }
+  .conj-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .conj-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .cr-verb     { font-size: 22px; color: #1a1a18; margin-bottom: 8px; }
+  .cr-table    { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: 13px; }
+  .cr-row      { display: flex; gap: 8px; padding: 4px 0; border-bottom: 0.5px solid #f5f5f5; }
+  .cr-pro      { color: #888; min-width: 80px; }
+  .cr-form     { color: #185FA5; font-weight: 500; font-size: 15px; }
+  .cr-empty    { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Sentence builder */
+  .sent-builder { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .sb-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .sb-body { padding: 14px; }
+  .sb-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .sb-col { flex: 1; min-width: 120px; }
+  .sb-col-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 6px; }
+  .sb-col-btns { display: flex; flex-direction: column; gap: 5px; }
+  .sb-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 7px; padding: 7px 10px; font-size: 13px; cursor: pointer; transition: all 0.15s; text-align: left; }
+  .sb-btn:hover { background: #f0f0ee; }
+  .sb-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .sb-output { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 70px; }
+  .sb-sentence    { font-size: 22px; color: #1a1a18; margin-bottom: 3px; }
+  .sb-translation { font-size: 14px; color: #333; font-weight: 500; }
+  .sb-note        { font-size: 12px; color: #1D9E75; margin-top: 4px; font-style: italic; }
+  .sb-empty       { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Four-way comparison */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .family-grid { grid-template-columns: 1fr; }
+    .verb-grid { grid-template-columns: 1fr; }
+    .number-grid { grid-template-columns: repeat(4, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .cr-table { grid-template-columns: 1fr; }
+    .sb-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 3 of 16</span>
+      <h1>Present Tense Verbs & Numbers</h1>
+      <div class="subtitle">EN: Present simple · -s rule · Do/Does · Negatives · 20 essential verbs · ES: Three verb families · Regular conjugation · Key irregulars · Numbers 1–100</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:18%;"></div></div>
+      18% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 3 · Present simple · The mysterious -s rule · Negatives · Questions · 20 core verbs</div>
+      </div>
+    </div>
+
+    <!-- Present simple overview EN -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The present simple tense</div>
+      <div class="section-title">What it expresses — and one very strange rule</div>
+      <p>The present simple tense in English describes habits, routines, facts, and general truths. It is NOT used for things happening right now — that requires the present continuous (I am eating — Week 5). This distinction surprises many learners.</p>
+
+      <div class="tip-box tip-blue">
+        <strong>Present simple = routine, fact, general truth:</strong><br/>
+        ✅ I drink coffee every morning. (routine)<br/>
+        ✅ Water boils at 100°C. (scientific fact)<br/>
+        ✅ She works at a hospital. (general situation)<br/>
+        ❌ I drink coffee right now. → Should be: I am drinking coffee. (happening NOW = continuous)
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">The present simple — full conjugation of "to work":</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Affirmative</th><th>Negative</th><th>Example</th></tr>
+        <tr>
+          <td class="conj-pronoun">I</td>
+          <td><span class="conj-form">work</span></td>
+          <td class="conj-neg">don't work</td>
+          <td class="conj-ex">I work in Tokyo. / I don't work on Sundays.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">You</td>
+          <td><span class="conj-form">work</span></td>
+          <td class="conj-neg">don't work</td>
+          <td class="conj-ex">You work hard. / You don't work here.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">He / She / It</td>
+          <td><span class="conj-form">work<span class="conj-ending">s</span></span></td>
+          <td class="conj-neg">doesn't work</td>
+          <td class="conj-ex">She works at a school. / He doesn't work late.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">We</td>
+          <td><span class="conj-form">work</span></td>
+          <td class="conj-neg">don't work</td>
+          <td class="conj-ex">We work together. / We don't work weekends.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">They</td>
+          <td><span class="conj-form">work</span></td>
+          <td class="conj-neg">don't work</td>
+          <td class="conj-ex">They work in London. / They don't work today.</td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-coral">
+        <strong>The -s rule — English's most surprising verb rule:</strong> In every tense, English verbs look the same for all pronouns — EXCEPT for he/she/it in the present simple, which adds -s or -es. "I eat · you eat · we eat · they eat" — but "he eat<strong>s</strong>". This is one of the most common errors in learner English and requires deliberate practice. Spanish does this far more consistently across all pronouns, making it ironically simpler!
+      </div>
+    </div>
+
+    <!-- Spelling rules for -s -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · The -s ending — spelling rules</div>
+      <div class="section-title">How to add -s correctly to he/she/it verbs</div>
+      <table class="conj-table">
+        <tr><th>Rule</th><th>When</th><th>Examples</th></tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Add -s</td>
+          <td style="font-size:13px; color:#555">Most verbs</td>
+          <td class="conj-ex">eat → eats · run → runs · speak → speaks · read → reads</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Add -es</td>
+          <td style="font-size:13px; color:#555">Verbs ending in -sh, -ch, -s, -x, -z, -o</td>
+          <td class="conj-ex">wash → washes · watch → watches · go → goes · do → does · fix → fixes</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">-y → -ies</td>
+          <td style="font-size:13px; color:#555">Verbs ending in consonant + y</td>
+          <td class="conj-ex">study → studies · cry → cries · fly → flies · try → tries</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Keep -ys</td>
+          <td style="font-size:13px; color:#555">Verbs ending in vowel + y</td>
+          <td class="conj-ex">play → plays · stay → stays · say → says · pay → pays</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px; font-weight:500">Irregular</td>
+          <td style="font-size:13px; color:#555">have and be are special</td>
+          <td class="conj-ex">have → has · be → is</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Questions with do/does EN -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Questions &amp; negatives with Do / Does</div>
+      <div class="section-title">The helper verb "do" — English's question-making machine</div>
+      <p>Most English verbs cannot form questions by inverting subject and verb (that only works with "to be" and modal verbs like can, will, should). For all other verbs, English needs a "helper" — <strong>do</strong> (for I/you/we/they) or <strong>does</strong> (for he/she/it).</p>
+
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; margin-top:12px; font-size:13px; line-height:2.2;">
+        <strong>Statement → Question → Negative:</strong><br/>
+        You <strong>speak</strong> Japanese. → <strong>Do</strong> you speak Japanese? → You <strong>don't</strong> speak Japanese.<br/>
+        She <strong>likes</strong> coffee. → <strong>Does</strong> she like coffee? → She <strong>doesn't</strong> like coffee.<br/>
+        They <strong>live</strong> in Seoul. → <strong>Do</strong> they live in Seoul? → They <strong>don't</strong> live in Seoul.
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>Critical rule:</strong> When you use <em>does</em> or <em>doesn't</em>, the main verb goes back to its base form — the -s disappears! "She like<strong>s</strong> coffee" → "Does she like coffee?" (not "Does she likes coffee?"). The -s moved to "does", so it can't appear on the main verb too. This is one of the most common learner errors in English.
+      </div>
+    </div>
+
+    <!-- 20 essential English verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · 20 essential English verbs</div>
+      <div class="section-title">The verbs you'll use in almost every conversation</div>
+      <div class="verb-grid">
+        <div class="verb-card">
+          <div class="verb-infinitive">to have</div>
+          <div class="verb-en">to possess / experience</div>
+          <div class="verb-example">I have a question. She has blue eyes.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to go</div>
+          <div class="verb-en">to move / travel</div>
+          <div class="verb-example">I go to work by train.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to make</div>
+          <div class="verb-en">to create / produce</div>
+          <div class="verb-example">She makes coffee every morning.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to get</div>
+          <div class="verb-en">to obtain / become / arrive</div>
+          <div class="verb-example">I get the bus. He gets tired easily.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to know</div>
+          <div class="verb-en">to be aware of / be familiar with</div>
+          <div class="verb-example">Do you know this song?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to think</div>
+          <div class="verb-en">to believe / consider</div>
+          <div class="verb-example">I think it's a good idea.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to want</div>
+          <div class="verb-en">to desire / wish for</div>
+          <div class="verb-example">What do you want to eat?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to see</div>
+          <div class="verb-en">to perceive visually / to understand</div>
+          <div class="verb-example">I see what you mean. Do you see that?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to come</div>
+          <div class="verb-en">to move toward / arrive</div>
+          <div class="verb-example">Can you come here, please?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to look</div>
+          <div class="verb-en">to direct your eyes / appear</div>
+          <div class="verb-example">Look at that! She looks happy.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to use</div>
+          <div class="verb-en">to employ / operate</div>
+          <div class="verb-example">Do you use chopsticks?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to find</div>
+          <div class="verb-en">to locate / discover</div>
+          <div class="verb-example">I can't find my keys.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to say</div>
+          <div class="verb-en">to speak / express in words</div>
+          <div class="verb-example">What does she say? He says hello.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to tell</div>
+          <div class="verb-en">to inform / instruct</div>
+          <div class="verb-example">Tell me about yourself.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to eat</div>
+          <div class="verb-en">to consume food</div>
+          <div class="verb-example">What do you eat for breakfast?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to drink</div>
+          <div class="verb-en">to consume liquid</div>
+          <div class="verb-example">She drinks green tea every day.</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to like</div>
+          <div class="verb-en">to enjoy / be fond of</div>
+          <div class="verb-example">Do you like spicy food?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to live</div>
+          <div class="verb-en">to reside / be alive</div>
+          <div class="verb-example">Where do you live?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to speak</div>
+          <div class="verb-en">to communicate verbally</div>
+          <div class="verb-example">Do you speak any other languages?</div>
+        </div>
+        <div class="verb-card">
+          <div class="verb-infinitive">to understand</div>
+          <div class="verb-en">to comprehend</div>
+          <div class="verb-example">I don't understand. Can you repeat?</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-green">
+        <strong>Say vs Tell — a common confusion:</strong> "Say" focuses on the words spoken. "Tell" requires a person to tell — always followed by a person. "She says hello" ✅ · "She tells hello" ❌ · "She tells me hello" ✅ · "Tell me your name" ✅ · "Say me your name" ❌. This say/tell distinction doesn't exist in Spanish (both = decir) or Japanese/Korean.
+      </div>
+    </div>
+
+    <!-- Interactive sentence builder EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Present simple sentence builder</div>
+      <div class="section-title">Choose a subject, verb, and object — build a correct English sentence</div>
+      <div class="sent-builder">
+        <div class="sb-header">🇬🇧 Build an English present simple sentence</div>
+        <div class="sb-body">
+          <div class="sb-row">
+            <div class="sb-col">
+              <div class="sb-col-label">Subject</div>
+              <div class="sb-col-btns" id="en-subject-btns">
+                <button class="sb-btn en-subject" data-subject="I" data-is3rd="false">I</button>
+                <button class="sb-btn en-subject" data-subject="She" data-is3rd="true">She</button>
+                <button class="sb-btn en-subject" data-subject="He" data-is3rd="true">He</button>
+                <button class="sb-btn en-subject" data-subject="We" data-is3rd="false">We</button>
+                <button class="sb-btn en-subject" data-subject="They" data-is3rd="false">They</button>
+              </div>
+            </div>
+            <div class="sb-col">
+              <div class="sb-col-label">Verb (base)</div>
+              <div class="sb-col-btns" id="en-verb-btns">
+                <button class="sb-btn en-verb" data-base="eat" data-third="eats" data-neg="eat">eat</button>
+                <button class="sb-btn en-verb" data-base="study" data-third="studies" data-neg="study">study</button>
+                <button class="sb-btn en-verb" data-base="speak" data-third="speaks" data-neg="speak">speak</button>
+                <button class="sb-btn en-verb" data-base="live" data-third="lives" data-neg="live">live</button>
+                <button class="sb-btn en-verb" data-base="like" data-third="likes" data-neg="like">like</button>
+              </div>
+            </div>
+            <div class="sb-col">
+              <div class="sb-col-label">Object / Place</div>
+              <div class="sb-col-btns" id="en-object-btns">
+                <button class="sb-btn en-object" data-object="sushi">sushi 🍣</button>
+                <button class="sb-btn en-object" data-object="Japanese">Japanese 🇯🇵</button>
+                <button class="sb-btn en-object" data-object="in Seoul">in Seoul 🇰🇷</button>
+                <button class="sb-btn en-object" data-object="English">English 🇬🇧</button>
+                <button class="sb-btn en-object" data-object="Spanish">Spanish 🇪🇸</button>
+              </div>
+            </div>
+          </div>
+          <div class="sb-output" id="en-sent-output">
+            <div class="sb-empty">Choose a subject, verb, and object to build your sentence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🗣️</span>
+        <div class="culture-text">
+          <strong>The tyranny of "do" — why English questions sound so strange to other language speakers</strong><br/>
+          Almost every language in the world forms questions by simply changing intonation or inverting words. English does this too — but only for "to be" and modal verbs. For all other verbs, it requires inserting a meaningless helper "do" that carries no semantic content at all. "You like coffee" → "Do you like coffee?" The word "do" adds nothing in meaning — it's a purely grammatical carrier. This "do support" (as linguists call it) is almost unique to English among the world's major languages. It emerged during the Middle English period and linguists still debate exactly why. The result: English question formation is one of the first things learners must simply memorise rather than derive from logic.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 3 English — present simple &amp; verbs</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correct present simple for "she / study"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">She study every day.</button>
+          <button class="quiz-btn" data-answer="wrong">She studys every day.</button>
+          <button class="quiz-btn" data-answer="correct">She studies every day.</button>
+          <button class="quiz-btn" data-answer="wrong">She is study every day.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you make "She likes coffee" into a question?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Likes she coffee?</button>
+          <button class="quiz-btn" data-answer="wrong">Does she likes coffee?</button>
+          <button class="quiz-btn" data-answer="correct">Does she like coffee?</button>
+          <button class="quiz-btn" data-answer="wrong">Do she like coffee?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">When is the present simple NOT used in English?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">For habits and routines</button>
+          <button class="quiz-btn" data-answer="wrong">For scientific facts</button>
+          <button class="quiz-btn" data-answer="correct">For actions happening right now at this moment</button>
+          <button class="quiz-btn" data-answer="wrong">For general truths</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is correct — "She says me hello" or "She tells me hello"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">She says me hello</button>
+          <button class="quiz-btn" data-answer="correct">She tells me hello</button>
+          <button class="quiz-btn" data-answer="wrong">Both are correct</button>
+          <button class="quiz-btn" data-answer="wrong">Neither — you must say "She greets me"</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 3 · Three verb families · Regular conjugation · Key irregulars · Numbers 1–100</div>
+      </div>
+    </div>
+
+    <!-- Three verb families -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The three verb families</div>
+      <div class="section-title">All Spanish verbs belong to one of three families — defined by their infinitive ending</div>
+      <p>Spanish verbs are categorised by the last two letters of their infinitive (dictionary) form. Each family has its own set of present tense endings. Learn the endings for each family and you can conjugate thousands of regular verbs immediately.</p>
+      <div class="family-grid">
+        <div class="family-card ar">
+          <div class="family-name">-AR</div>
+          <div class="family-label">First family · Most common</div>
+          <div class="family-ex">
+            habl<strong>ar</strong> (to speak)<br/>
+            com<strong>ar</strong> — wait, that's wrong!<br/>
+            trabaj<strong>ar</strong> (to work)<br/>
+            escuch<strong>ar</strong> (to listen)<br/>
+            caminar (to walk)<br/>
+            cocinar (to cook)
+          </div>
+        </div>
+        <div class="family-card er">
+          <div class="family-name">-ER</div>
+          <div class="family-label">Second family</div>
+          <div class="family-ex">
+            com<strong>er</strong> (to eat)<br/>
+            beb<strong>er</strong> (to drink)<br/>
+            le<strong>er</strong> (to read)<br/>
+            corr<strong>er</strong> (to run)<br/>
+            vend<strong>er</strong> (to sell)<br/>
+            comprend<strong>er</strong> (to understand)
+          </div>
+        </div>
+        <div class="family-card ir">
+          <div class="family-name">-IR</div>
+          <div class="family-label">Third family</div>
+          <div class="family-ex">
+            viv<strong>ir</strong> (to live)<br/>
+            escrib<strong>ir</strong> (to write)<br/>
+            abr<strong>ir</strong> (to open)<br/>
+            recib<strong>ir</strong> (to receive)<br/>
+            sufr<strong>ir</strong> (to suffer)<br/>
+            compart<strong>ir</strong> (to share)
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>The -ar family is by far the largest</strong> — and the most productive. Any new verb borrowed into Spanish (including from English) takes the -ar ending: googlear (to google), tuitear (to tweet), formatear (to format). When in doubt about a new verb, it's almost certainly -ar.
+      </div>
+    </div>
+
+    <!-- Regular conjugation tables -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Regular present tense conjugation</div>
+      <div class="section-title">The endings for all three families — learn these six rows for each</div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">-AR family: hablar (to speak)</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Ending</th><th>Full form</th><th>Example</th></tr>
+        <tr><td class="conj-pronoun">yo (I)</td><td style="color:#D85A30; font-size:16px; font-weight:500">-o</td><td><span class="conj-form">hablo</span></td><td class="conj-ex">Hablo español. (I speak Spanish.)</td></tr>
+        <tr><td class="conj-pronoun">tú (you)</td><td style="color:#D85A30; font-size:16px; font-weight:500">-as</td><td><span class="conj-form">hablas</span></td><td class="conj-ex">¿Hablas inglés? (Do you speak English?)</td></tr>
+        <tr><td class="conj-pronoun">él/ella (he/she)</td><td style="color:#D85A30; font-size:16px; font-weight:500">-a</td><td><span class="conj-form">habla</span></td><td class="conj-ex">Ella habla japonés. (She speaks Japanese.)</td></tr>
+        <tr><td class="conj-pronoun">nosotros (we)</td><td style="color:#D85A30; font-size:16px; font-weight:500">-amos</td><td><span class="conj-form">hablamos</span></td><td class="conj-ex">Hablamos mucho. (We talk a lot.)</td></tr>
+        <tr><td class="conj-pronoun">vosotros (you all, Spain)</td><td style="color:#D85A30; font-size:16px; font-weight:500">-áis</td><td><span class="conj-form">habláis</span></td><td class="conj-ex">¿Habláis despacio? (Do you all speak slowly?)</td></tr>
+        <tr><td class="conj-pronoun">ellos/ellas (they)</td><td style="color:#D85A30; font-size:16px; font-weight:500">-an</td><td><span class="conj-form">hablan</span></td><td class="conj-ex">Hablan muy rápido. (They speak very fast.)</td></tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">-ER family: comer (to eat) and -IR family: vivir (to live)</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>-ER ending</th><th>comer</th><th>-IR ending</th><th>vivir</th></tr>
+        <tr><td class="conj-pronoun">yo</td><td style="color:#185FA5; font-weight:500">-o</td><td><span class="conj-form" style="color:#185FA5">como</span></td><td style="color:#8e44ad; font-weight:500">-o</td><td><span class="conj-form" style="color:#8e44ad">vivo</span></td></tr>
+        <tr><td class="conj-pronoun">tú</td><td style="color:#185FA5; font-weight:500">-es</td><td><span class="conj-form" style="color:#185FA5">comes</span></td><td style="color:#8e44ad; font-weight:500">-es</td><td><span class="conj-form" style="color:#8e44ad">vives</span></td></tr>
+        <tr><td class="conj-pronoun">él/ella</td><td style="color:#185FA5; font-weight:500">-e</td><td><span class="conj-form" style="color:#185FA5">come</span></td><td style="color:#8e44ad; font-weight:500">-e</td><td><span class="conj-form" style="color:#8e44ad">vive</span></td></tr>
+        <tr><td class="conj-pronoun">nosotros</td><td style="color:#185FA5; font-weight:500">-emos</td><td><span class="conj-form" style="color:#185FA5">comemos</span></td><td style="color:#8e44ad; font-weight:500">-imos</td><td><span class="conj-form" style="color:#8e44ad">vivimos</span></td></tr>
+        <tr><td class="conj-pronoun">vosotros</td><td style="color:#185FA5; font-weight:500">-éis</td><td><span class="conj-form" style="color:#185FA5">coméis</span></td><td style="color:#8e44ad; font-weight:500">-ís</td><td><span class="conj-form" style="color:#8e44ad">vivís</span></td></tr>
+        <tr><td class="conj-pronoun">ellos/ellas</td><td style="color:#185FA5; font-weight:500">-en</td><td><span class="conj-form" style="color:#185FA5">comen</span></td><td style="color:#8e44ad; font-weight:500">-en</td><td><span class="conj-form" style="color:#8e44ad">viven</span></td></tr>
+      </table>
+
+      <div class="tip-box tip-blue">
+        <strong>The elegant pattern:</strong> -ER and -IR are nearly identical — only nosotros (-emos vs -imos) and vosotros (-éis vs -ís) differ. And notice: the yo form of ALL three families ends in -o. This consistency is one of Spanish's great gifts to the learner — far more regular than English!
+      </div>
+    </div>
+
+    <!-- Interactive conjugation explorer -->
+    <div class="section">
+      <div class="section-label">Interactive · Verb conjugation explorer</div>
+      <div class="section-title">Select a verb — see its full present tense conjugation</div>
+      <div class="conj-sim">
+        <div class="conj-header">🇪🇸 Conjugación del presente — Present tense explorer</div>
+        <div class="conj-body">
+          <div class="conj-label">Choose a verb</div>
+          <div class="conj-btns" id="es-verb-btns">
+            <button class="conj-btn es-verb"
+              data-verb="hablar"
+              data-en="to speak"
+              data-family="-ar"
+              data-yo="hablo" data-tu="hablas" data-el="habla"
+              data-nos="hablamos" data-vos="habláis" data-ellos="hablan">
+              hablar (speak)
+            </button>
+            <button class="conj-btn es-verb"
+              data-verb="trabajar"
+              data-en="to work"
+              data-family="-ar"
+              data-yo="trabajo" data-tu="trabajas" data-el="trabaja"
+              data-nos="trabajamos" data-vos="trabajáis" data-ellos="trabajan">
+              trabajar (work)
+            </button>
+            <button class="conj-btn es-verb"
+              data-verb="comer"
+              data-en="to eat"
+              data-family="-er"
+              data-yo="como" data-tu="comes" data-el="come"
+              data-nos="comemos" data-vos="coméis" data-ellos="comen">
+              comer (eat)
+            </button>
+            <button class="conj-btn es-verb"
+              data-verb="beber"
+              data-en="to drink"
+              data-family="-er"
+              data-yo="bebo" data-tu="bebes" data-el="bebe"
+              data-nos="bebemos" data-vos="bebéis" data-ellos="beben">
+              beber (drink)
+            </button>
+            <button class="conj-btn es-verb"
+              data-verb="vivir"
+              data-en="to live"
+              data-family="-ir"
+              data-yo="vivo" data-tu="vives" data-el="vive"
+              data-nos="vivimos" data-vos="vivís" data-ellos="viven">
+              vivir (live)
+            </button>
+            <button class="conj-btn es-verb"
+              data-verb="escribir"
+              data-en="to write"
+              data-family="-ir"
+              data-yo="escribo" data-tu="escribes" data-el="escribe"
+              data-nos="escribimos" data-vos="escribís" data-ellos="escriben">
+              escribir (write)
+            </button>
+          </div>
+          <div class="conj-result" id="es-conj-result">
+            <div class="cr-empty">Select a verb above to see its full conjugation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key irregular verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Key irregular verbs — the ones you need most</div>
+      <div class="section-title">These 5 verbs are irregular but appear in almost every conversation</div>
+      <div class="verb-grid">
+        <div class="verb-card irregular">
+          <div class="verb-infinitive">tener</div>
+          <div class="verb-rom">to have (to possess)</div>
+          <div class="verb-en">tengo · tienes · tiene · tenemos · tenéis · tienen</div>
+          <div class="verb-example">Tengo hambre. (I am hungry — lit. "I have hunger")</div>
+        </div>
+        <div class="verb-card irregular">
+          <div class="verb-infinitive">ir</div>
+          <div class="verb-rom">to go</div>
+          <div class="verb-en">voy · vas · va · vamos · vais · van</div>
+          <div class="verb-example">¿Adónde vas? (Where are you going?)</div>
+        </div>
+        <div class="verb-card irregular">
+          <div class="verb-infinitive">querer</div>
+          <div class="verb-rom">to want / to love</div>
+          <div class="verb-en">quiero · quieres · quiere · queremos · queréis · quieren</div>
+          <div class="verb-example">Quiero un café. (I want a coffee.)</div>
+        </div>
+        <div class="verb-card irregular">
+          <div class="verb-infinitive">poder</div>
+          <div class="verb-rom">to be able to / can</div>
+          <div class="verb-en">puedo · puedes · puede · podemos · podéis · pueden</div>
+          <div class="verb-example">¿Puedes ayudarme? (Can you help me?)</div>
+        </div>
+        <div class="verb-card irregular">
+          <div class="verb-infinitive">hacer</div>
+          <div class="verb-rom">to do / to make</div>
+          <div class="verb-en">hago · haces · hace · hacemos · hacéis · hacen</div>
+          <div class="verb-example">¿Qué haces? (What are you doing?)</div>
+        </div>
+        <div class="verb-card irregular">
+          <div class="verb-infinitive">saber</div>
+          <div class="verb-rom">to know (facts/how to)</div>
+          <div class="verb-en">sé · sabes · sabe · sabemos · sabéis · saben</div>
+          <div class="verb-example">No sé. (I don't know.)</div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>Tener vs tener — the "I am hungry" trap:</strong> Spanish expresses many physical/emotional states with TENER (to have) rather than SER/ESTAR. "I am hungry" = Tengo hambre (I HAVE hunger). "I am thirsty" = Tengo sed. "I am cold" = Tengo frío. "I am sleepy" = Tengo sueño. "I am afraid" = Tengo miedo. "I am 30 years old" = Tengo 30 años. English speakers constantly want to say "estoy hambre" — but Spanish says "I have hunger". Learn these tener expressions as fixed phrases.
+      </div>
+    </div>
+
+    <!-- Spanish numbers -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Numbers 1–100</div>
+      <div class="section-title">Los números — click any number to learn the Spanish word</div>
+      <div class="number-grid" id="es-number-grid"></div>
+      <div class="num-detail" id="es-num-detail">
+        <div class="nd-empty">Tap any number above to learn its Spanish name</div>
+      </div>
+      <div class="tip-box tip-amber" style="margin-top:12px">
+        <strong>Key number patterns:</strong> 16–19 have two forms — the traditional three-word form (diez y seis) and the modern contracted form (dieciséis). From 21 upward: veintiuno (21), veintidós (22)... but treinta y uno (31), treinta y dos (32) — note the "y" returns! 100 = cien · 101 = ciento uno. The gender alert: uno becomes un before masculine nouns (un libro) and una before feminine nouns (una casa) — even in compound numbers: veintiún libros, veintiuna casas.
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">⏰</span>
+        <div class="culture-text">
+          <strong>Spanish time culture — la hora española</strong><br/>
+          Numbers and time in Spain follow a famously relaxed schedule. Lunch (la comida) — the main meal of the day — is eaten between 2pm and 4pm. Dinner (la cena) begins no earlier than 9pm, often at 10pm or later. Shops may close for a siesta between 2pm and 5pm in smaller towns. Social plans are fluid — arriving 20–30 minutes after the agreed time is entirely normal and not considered rude. The phrase <em>ahora mismo</em> (right now) can mean anything from two minutes to two hours. This relaxed relationship with time is an essential cultural context for the numbers and time expressions you're learning — in Spain, time is a suggestion, not a deadline.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 3 Spanish — verb families, conjugation &amp; numbers</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the yo (I) form of hablar (to speak) in the present tense?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">hablas</button>
+          <button class="quiz-btn" data-answer="correct">hablo</button>
+          <button class="quiz-btn" data-answer="wrong">habla</button>
+          <button class="quiz-btn" data-answer="wrong">hablamos</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I am hungry" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Estoy hambre.</button>
+          <button class="quiz-btn" data-answer="wrong">Soy hambriento.</button>
+          <button class="quiz-btn" data-answer="correct">Tengo hambre.</button>
+          <button class="quiz-btn" data-answer="wrong">Hago hambre.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which verb family does "comer" (to eat) belong to?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">-AR family</button>
+          <button class="quiz-btn" data-answer="correct">-ER family</button>
+          <button class="quiz-btn" data-answer="wrong">-IR family</button>
+          <button class="quiz-btn" data-answer="wrong">It is irregular</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "Can you help me?" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">¿Quieres ayudarme?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Sabes ayudarme?</button>
+          <button class="quiz-btn" data-answer="correct">¿Puedes ayudarme?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Tienes ayudarme?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — verbs &amp; "I speak"</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages conjugate verbs</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">One of the most revealing cross-language comparisons — how much does a verb change by pronoun?</p>
+    <table>
+      <tr><th>Pronoun</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px">I speak</td>
+        <td>話します<br/><span style="font-size:11px; color:#888">hanashimasu</span></td>
+        <td>말해요<br/><span style="font-size:11px; color:#888">malhaeyo</span></td>
+        <td>I speak<br/><span style="font-size:11px; color:#888">base form</span></td>
+        <td>hablo<br/><span style="font-size:11px; color:#888">-o ending</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">You speak</td>
+        <td>話します<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>말해요<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>you speak<br/><span style="font-size:11px; color:#888">base form</span></td>
+        <td>hablas<br/><span style="font-size:11px; color:#888">-as ending</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">He/She speaks</td>
+        <td>話します<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>말해요<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>he speak<strong>s</strong><br/><span style="font-size:11px; color:#888">-s added only here!</span></td>
+        <td>habla<br/><span style="font-size:11px; color:#888">-a ending</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">We speak</td>
+        <td>話します<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>말해요<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>we speak<br/><span style="font-size:11px; color:#888">base form</span></td>
+        <td>hablamos<br/><span style="font-size:11px; color:#888">-amos ending</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px">They speak</td>
+        <td>話します<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>말해요<br/><span style="font-size:11px; color:#888">same form!</span></td>
+        <td>they speak<br/><span style="font-size:11px; color:#888">base form</span></td>
+        <td>hablan<br/><span style="font-size:11px; color:#888">-an ending</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-purple" style="margin-top:14px">
+      <strong>The fascinating spectrum:</strong> Japanese and Korean barely change the verb at all — one form works for all persons (politeness level matters more than pronoun). English changes it only once — the notorious he/she/it -s. Spanish changes it six times — every pronoun gets a unique ending. This spectrum reveals how differently languages can encode the same grammatical information. Spanish's approach means subject pronouns can often be dropped (the ending already tells you who!), while English needs its pronouns every time.
+    </div>
+  </div>
+
+
+  <!-- Week 4 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 4</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Numbers 1–1,000 · Telling the time · Days and months · Calendar vocabulary · Asking "What time is it?" and "What's the date?" — practical everyday English.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Telling the time in Spanish · Days of the week and months · Calendar phrases · Talking about schedules · Numbers 100–1,000,000 · The date format difference between Spanish and English.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 3 complete · Click <a href="Week4.E&S.html">here</a> when you're ready for Week 4 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English sentence builder ── */
+  let enSubject = null, enIs3rd = false, enVerb = null, enObject = null;
+
+  function updateEnSentence() {
+    const out = document.getElementById('en-sent-output');
+    if (!enSubject || !enVerb || !enObject) {
+      out.innerHTML = '<div class="sb-empty">Choose a subject, verb, and object to build your sentence</div>';
+      return;
+    }
+    const verbForm  = enIs3rd ? enVerb.third : enVerb.base;
+    const negHelper = enIs3rd ? "doesn't" : "don't";
+    const sentence  = `${enSubject} ${verbForm} ${enObject}.`;
+    const negative  = `${enSubject} ${negHelper} ${enVerb.base} ${enObject}.`;
+    const question  = enIs3rd
+      ? `Does ${enSubject.toLowerCase()} ${enVerb.base} ${enObject}?`
+      : `Do ${enSubject.toLowerCase()} ${enVerb.base} ${enObject}?`;
+    out.innerHTML = `
+      <div class="sb-sentence">✅ ${sentence}</div>
+      <div class="sb-translation">❌ ${negative}</div>
+      <div class="sb-note">❓ ${question}</div>
+    `;
+  }
+
+  document.querySelectorAll('.en-subject').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-subject').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      enSubject = this.dataset.subject;
+      enIs3rd   = this.dataset.is3rd === 'true';
+      updateEnSentence();
+    });
+  });
+
+  document.querySelectorAll('.en-verb').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-verb').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      enVerb = { base: this.dataset.base, third: this.dataset.third, neg: this.dataset.neg };
+      updateEnSentence();
+    });
+  });
+
+  document.querySelectorAll('.en-object').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-object').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      enObject = this.dataset.object;
+      updateEnSentence();
+    });
+  });
+
+  /* ── Spanish verb conjugation explorer ── */
+  document.querySelectorAll('.es-verb').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-verb').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-conj-result').innerHTML = `
+        <div class="cr-verb">${d.verb} <span style="font-size:14px; color:#888; font-weight:400">(${d.en}) · ${d.family}</span></div>
+        <div class="cr-table">
+          <div class="cr-row"><span class="cr-pro">yo</span><span class="cr-form">${d.yo}</span></div>
+          <div class="cr-row"><span class="cr-pro">nosotros</span><span class="cr-form">${d.nos}</span></div>
+          <div class="cr-row"><span class="cr-pro">tú</span><span class="cr-form">${d.tu}</span></div>
+          <div class="cr-row"><span class="cr-pro">vosotros</span><span class="cr-form">${d.vos}</span></div>
+          <div class="cr-row"><span class="cr-pro">él/ella</span><span class="cr-form">${d.el}</span></div>
+          <div class="cr-row"><span class="cr-pro">ellos/ellas</span><span class="cr-form">${d.ellos}</span></div>
+        </div>
+      `;
+    });
+  });
+
+  /* ── Spanish number grid ── */
+  const esNumbers = {
+    1:  { word: 'uno',         note: 'uno → un (masc) / una (fem) before nouns' },
+    2:  { word: 'dos',         note: '' },
+    3:  { word: 'tres',        note: '' },
+    4:  { word: 'cuatro',      note: '' },
+    5:  { word: 'cinco',       note: '' },
+    6:  { word: 'seis',        note: '' },
+    7:  { word: 'siete',       note: '' },
+    8:  { word: 'ocho',        note: '' },
+    9:  { word: 'nueve',       note: '' },
+    10: { word: 'diez',        note: '' },
+    11: { word: 'once',        note: 'Irregular — must be memorised' },
+    12: { word: 'doce',        note: 'Irregular — must be memorised' },
+    13: { word: 'trece',       note: 'Irregular — must be memorised' },
+    14: { word: 'catorce',     note: 'Irregular — must be memorised' },
+    15: { word: 'quince',      note: 'Irregular — must be memorised' },
+    16: { word: 'dieciséis',   note: 'Contracted from diez y seis — accent on the é!' },
+    17: { word: 'diecisiete',  note: 'Contracted from diez y siete' },
+    18: { word: 'dieciocho',   note: 'Contracted from diez y ocho' },
+    19: { word: 'diecinueve',  note: 'Contracted from diez y nueve' },
+    20: { word: 'veinte',      note: 'Key round number — base for 21–29' },
+    21: { word: 'veintiuno',   note: 'veintiún before masculine nouns (veintiún años)' },
+    22: { word: 'veintidós',   note: 'Accent on the ó' },
+    23: { word: 'veintitrés',  note: 'Accent on the é' },
+    24: { word: 'veinticuatro',note: '' },
+    25: { word: 'veinticinco', note: '' },
+    26: { word: 'veintiséis',  note: 'Accent on the é' },
+    27: { word: 'veintisiete', note: '' },
+    28: { word: 'veintiocho',  note: '' },
+    29: { word: 'veintinueve', note: '' },
+    30: { word: 'treinta',     note: '30s: treinta y uno, treinta y dos... (with "y")' },
+    40: { word: 'cuarenta',    note: '40s: cuarenta y uno, cuarenta y dos...' },
+    50: { word: 'cincuenta',   note: '50s: cincuenta y uno, cincuenta y dos...' },
+    60: { word: 'sesenta',     note: '60s: sesenta y uno...' },
+    70: { word: 'setenta',     note: '70s: setenta y uno...' },
+    80: { word: 'ochenta',     note: '80s: ochenta y uno...' },
+    90: { word: 'noventa',     note: '90s: noventa y uno...' },
+    100:{ word: 'cien',        note: 'cien = exactly 100 · ciento = 101+  (ciento uno, ciento dos...)' },
+  };
+
+  const displayNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,40,50,60,70,80,90,100];
+  const grid = document.getElementById('es-number-grid');
+
+  displayNums.forEach(n => {
+    const card = document.createElement('div');
+    card.className = 'num-card';
+    card.innerHTML = `<div class="num-digit">${n}</div><div class="num-word">${esNumbers[n].word}</div>`;
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.num-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const d = esNumbers[n];
+      document.getElementById('es-num-detail').innerHTML = `
+        <div class="nd-number">${n}</div>
+        <div class="nd-word">${d.word}</div>
+        ${d.note ? `<div class="nd-note">${d.note}</div>` : ''}
+      `;
+    });
+    grid.appendChild(card);
+  });
+
+});
+</script>
+</body>
+</html>
