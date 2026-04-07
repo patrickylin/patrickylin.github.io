@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 5 — English & Spanish: Present Continuous & Past Tense</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Tense comparison panels */
+  .tense-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .tc-card { border-radius: 12px; padding: 14px; }
+  .tc-card.simple { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .tc-card.continuous { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .tc-card.past { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .tc-card.present { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .tc-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .tc-formula { font-size: 14px; color: #185FA5; font-weight: 500; margin-bottom: 8px; background: rgba(255,255,255,0.6); border-radius: 6px; padding: 5px 9px; display: inline-block; }
+  .tc-uses { font-size: 13px; color: #333; line-height: 1.8; }
+  .tc-ex { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 5px; line-height: 1.8; }
+
+  /* Conjugation tables */
+  .conj-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .conj-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .conj-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-pronoun { font-size: 14px; color: #888; }
+  .conj-form    { font-size: 19px; font-weight: 500; color: #185FA5; }
+  .conj-es-form { font-size: 19px; font-weight: 500; color: #D85030; }
+  .conj-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+  .conj-ending  { color: #D85A30; }
+
+  /* Stative verb grid */
+  .stative-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .sv-card { background: #fdf0ed; border: 0.5px solid #f5c4b0; border-radius: 10px; padding: 11px 12px; }
+  .sv-category { font-size: 10px; color: #D85A30; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 4px; }
+  .sv-verbs { font-size: 13px; color: #1a1a18; line-height: 1.7; }
+  .sv-note { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* -ing spelling rules */
+  .spelling-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .sp-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .sp-rule { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 3px; }
+  .sp-when { font-size: 12px; color: #555; margin-bottom: 4px; }
+  .sp-ex   { font-size: 13px; color: #185FA5; font-weight: 500; }
+
+  /* Past tense endings table */
+  .past-family { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
+  .pf-title { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 10px; }
+
+  /* Irregular verb grid */
+  .irreg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .irreg-card { background: #fdf9f0; border: 0.5px solid #f0dfa8; border-radius: 10px; padding: 12px 14px; }
+  .irreg-card.important { background: #fdf0f5; border-color: #f0b8d0; }
+  .irreg-inf  { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .irreg-en   { font-size: 12px; color: #888; margin-bottom: 4px; }
+  .irreg-forms { font-size: 13px; color: #D85030; font-weight: 500; line-height: 1.7; }
+  .irreg-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+
+  /* Interactive scenario explorer */
+  .scenario-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .scenario-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .scenario-body { padding: 14px; }
+  .sc-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .sc-btns  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .sc-btn   { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .sc-btn:hover   { background: #f0f0ee; }
+  .sc-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .sc-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .sc-sentence { font-size: 22px; color: #1a1a18; margin-bottom: 4px; }
+  .sc-breakdown { font-size: 13px; color: #555; margin-bottom: 4px; }
+  .sc-note  { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 5px; }
+  .sc-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Timeline diagram */
+  .timeline-diagram { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .tl-line { display: flex; align-items: center; gap: 0; margin: 8px 0; }
+  .tl-past  { background: #fdf9f0; border: 0.5px solid #f0dfa8; border-radius: 8px 0 0 8px; padding: 8px 14px; flex: 1; font-size: 13px; color: #333; }
+  .tl-now   { background: #1a1a18; color: #fff; padding: 8px 12px; font-size: 12px; text-align: center; flex-shrink: 0; }
+  .tl-future { background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 0 8px 8px 0; padding: 8px 14px; flex: 1; font-size: 13px; color: #333; }
+  .tl-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 6px; }
+  .tl-arrow { font-size: 18px; color: #ccc; padding: 0 4px; }
+
+  /* Four-way comparison */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .tense-compare, .spelling-grid, .irreg-grid, .two-col { grid-template-columns: 1fr; }
+    .stative-grid { grid-template-columns: repeat(2, 1fr); }
+    .tl-line { flex-direction: column; gap: 4px; }
+    .tl-past, .tl-future, .tl-now { border-radius: 8px; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 5 of 16</span>
+      <h1>Present Continuous & Past Tense</h1>
+      <div class="subtitle">EN: "I am eating" · Simple vs continuous · Stative verbs · -ing spelling · ES: Pretérito indefinido · Three family past endings · 10 key irregular past forms</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:31%;"></div></div>
+      31% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 5 · Present continuous · Simple vs continuous · Stative verbs · -ing spelling rules</div>
+      </div>
+    </div>
+
+    <!-- Simple vs Continuous -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Present simple vs present continuous</div>
+      <div class="section-title">The distinction that defines English tense — and confuses almost every learner</div>
+      <p>This is the heart of English tense usage. Japanese and Korean don't make this distinction at all — one verb form covers both "I eat" and "I am eating". Spanish makes a weaker version of it. English is strict: the two tenses mean fundamentally different things and cannot be swapped.</p>
+
+      <div class="tense-compare">
+        <div class="tc-card simple">
+          <div class="tc-label">Present Simple</div>
+          <div class="tc-formula">I eat / She eats</div>
+          <div class="tc-uses">
+            📅 Habit or routine<br/>
+            🌍 General truth or fact<br/>
+            📍 Permanent situation<br/>
+            ❤️ Opinion or preference
+          </div>
+          <div class="tc-ex">
+            I eat breakfast at 7am. (habit)<br/>
+            Fish live in water. (fact)<br/>
+            She works in Tokyo. (permanent)<br/>
+            He likes jazz. (preference)
+          </div>
+        </div>
+        <div class="tc-card continuous">
+          <div class="tc-label">Present Continuous</div>
+          <div class="tc-formula">I am eating / She is eating</div>
+          <div class="tc-uses">
+            ⏱️ Happening right now<br/>
+            📆 Temporary situation<br/>
+            🔄 Changing / developing trend<br/>
+            📅 Future arrangement (informal)
+          </div>
+          <div class="tc-ex">
+            I am eating lunch. (right now)<br/>
+            She is living in Tokyo this year. (temporary)<br/>
+            Prices are rising. (trend)<br/>
+            We are meeting at 3pm. (arranged)
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The classic contrast pair — "I live" vs "I am living":</strong><br/>
+        "I live in Tokyo." = This is my permanent home. I live there always.<br/>
+        "I am living in Tokyo." = I'm here temporarily — for a project, a year abroad, while looking for somewhere else.<br/>
+        Same verb, same city — completely different meaning! This nuance is invisible in Japanese (東京に住んでいます covers both) and in most learner English, where this distinction is frequently overlooked.
+      </div>
+    </div>
+
+    <!-- Present continuous formation -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Forming the present continuous</div>
+      <div class="section-title">am / is / are + verb-ing — simple to form, important to get right</div>
+
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>To be</th><th>+ verb-ing</th><th>Example</th></tr>
+        <tr>
+          <td class="conj-pronoun">I</td>
+          <td><span class="conj-form">am</span></td>
+          <td style="font-size:16px; color:#555">working</td>
+          <td class="conj-ex">I am working from home today.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">You</td>
+          <td><span class="conj-form">are</span></td>
+          <td style="font-size:16px; color:#555">reading</td>
+          <td class="conj-ex">You are reading this right now!</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">He / She / It</td>
+          <td><span class="conj-form">is</span></td>
+          <td style="font-size:16px; color:#555">eating</td>
+          <td class="conj-ex">She is eating lunch at her desk.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">We</td>
+          <td><span class="conj-form">are</span></td>
+          <td style="font-size:16px; color:#555">learning</td>
+          <td class="conj-ex">We are learning English together.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">They</td>
+          <td><span class="conj-form">are</span></td>
+          <td style="font-size:16px; color:#555">travelling</td>
+          <td class="conj-ex">They are travelling through Spain.</td>
+        </tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Negative and question forms:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:12px 14px; font-size:13px; line-height:2.1;">
+        <strong>Negative:</strong> She <strong>is not eating</strong> / She <strong>isn't eating</strong> / She<strong>'s not eating</strong><br/>
+        <strong>Question:</strong> <strong>Is</strong> she eating? · <strong>Are</strong> you working? · <strong>What are</strong> you doing?<br/>
+        <strong>Short answer:</strong> "Are you working?" → "Yes, I am." / "No, I'm not." (never "Yes, I'm.")
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">-ing spelling rules — 4 patterns to know:</p>
+      <div class="spelling-grid">
+        <div class="sp-card">
+          <div class="sp-rule">1. Most verbs — just add -ing</div>
+          <div class="sp-when">Base form ends in consonant or vowel+consonant cluster</div>
+          <div class="sp-ex">eat→eating · read→reading · sleep→sleeping · rain→raining</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-rule">2. Drop silent -e, then add -ing</div>
+          <div class="sp-when">Base form ends in silent -e</div>
+          <div class="sp-ex">make→making · write→writing · come→coming · live→living</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-rule">3. Double the final consonant</div>
+          <div class="sp-when">Short verb, single vowel + single consonant</div>
+          <div class="sp-ex">run→running · sit→sitting · swim→swimming · stop→stopping</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-rule">4. -ie verbs → change to -y</div>
+          <div class="sp-when">Base form ends in -ie</div>
+          <div class="sp-ex">die→dying · lie→lying · tie→tying</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>The doubling rule — when exactly?</strong> Double the final consonant only when the verb has ONE syllable AND ends in a single consonant preceded by a single vowel: run (r-u-n) → running ✅. But: read (has two vowels) → reading ✅ (no doubling). Visit (two syllables, stress on first) → visiting ✅ (no doubling). Begin (two syllables, stress on second) → beginning ✅ (double!). The stress position matters for two-syllable verbs.
+      </div>
+    </div>
+
+    <!-- Stative verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Stative verbs — the verbs that refuse -ing</div>
+      <div class="section-title">A critical rule: some verbs almost never use the continuous form</div>
+      <p>Stative verbs describe states rather than actions — mental states, emotions, senses, possessions. In English, these verbs strongly resist the continuous form. "I am knowing the answer" is wrong. "I know the answer" is correct. This rule is uniquely important to English — Spanish, Japanese, and Korean don't have this restriction.</p>
+
+      <div class="stative-grid">
+        <div class="sv-card">
+          <div class="sv-category">Mental states</div>
+          <div class="sv-verbs">know · believe · think* · understand · remember · forget · mean · seem</div>
+          <div class="sv-note">*think = opinion (stative) · think = consider (action)</div>
+        </div>
+        <div class="sv-card">
+          <div class="sv-category">Emotions & feelings</div>
+          <div class="sv-verbs">love · hate · like · want · need · prefer · wish · care · fear</div>
+          <div class="sv-note">These describe states of feeling, not ongoing actions</div>
+        </div>
+        <div class="sv-card">
+          <div class="sv-category">Senses</div>
+          <div class="sv-verbs">see · hear · smell* · taste* · feel*</div>
+          <div class="sv-note">*smell/taste/feel can be actions: "She is smelling the flowers"</div>
+        </div>
+        <div class="sv-card">
+          <div class="sv-category">Possession</div>
+          <div class="sv-verbs">have* · own · possess · belong</div>
+          <div class="sv-note">*have = possession (stative) · "having lunch" = action ✅</div>
+        </div>
+        <div class="sv-card">
+          <div class="sv-category">Existence / being</div>
+          <div class="sv-verbs">be · exist · contain · consist · include</div>
+          <div class="sv-note">Exceptions: "You are being rude" = temporary behaviour ✅</div>
+        </div>
+        <div class="sv-card">
+          <div class="sv-category">Measurements</div>
+          <div class="sv-verbs">weigh · measure · cost · equal</div>
+          <div class="sv-note">These express facts, not ongoing processes</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The "think" trap — stative vs dynamic:</strong> Some verbs have BOTH a stative meaning (no -ing) and a dynamic action meaning (uses -ing). "I think this is correct." = opinion/belief (stative — no -ing). "I am thinking about the problem." = ongoing mental process (dynamic — -ing OK!). Same applies to: "I have a car" (possession — no -ing) vs "I am having lunch" (action — -ing fine). The meaning shifts between state and action.
+      </div>
+    </div>
+
+    <!-- Interactive scenario EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Simple or continuous?</div>
+      <div class="section-title">Choose a scenario — see which tense is correct and why</div>
+      <div class="scenario-sim">
+        <div class="scenario-header">🇬🇧 Present simple or present continuous?</div>
+        <div class="scenario-body">
+          <div class="sc-label">Choose a scenario</div>
+          <div class="sc-btns" id="en-scenario-btns">
+            <button class="sc-btn en-scenario"
+              data-sentence="She is eating sushi right now."
+              data-breakdown="is eating = present continuous (am/is/are + -ing)"
+              data-note="RIGHT NOW at this moment → continuous. Compare: She eats sushi every Friday. (habit → simple)">
+              🍣 Eating sushi right now
+            </button>
+            <button class="sc-btn en-scenario"
+              data-sentence="He works at a hospital."
+              data-breakdown="works = present simple (he/she/it + -s)"
+              data-note="PERMANENT SITUATION → simple. Compare: He is working at a hospital this year. (temporary → continuous)">
+              🏥 His permanent job
+            </button>
+            <button class="sc-btn en-scenario"
+              data-sentence="I don't understand this question."
+              data-breakdown="don't understand = stative verb — no -ing possible!"
+              data-note="UNDERSTAND is a stative verb. 'I am not understanding' is wrong in English. Stative verbs always use the simple form.">
+              🤔 Not understanding
+            </button>
+            <button class="sc-btn en-scenario"
+              data-sentence="They are moving to Seoul next month."
+              data-breakdown="are moving = present continuous used for future arrangement"
+              data-note="FUTURE ARRANGEMENT → continuous. This is a planned, arranged future event. 'They move to Seoul' would sound like a general habit.">
+              📦 Moving next month (planned)
+            </button>
+            <button class="sc-btn en-scenario"
+              data-sentence="Temperatures are rising every year."
+              data-breakdown="are rising = present continuous for a developing trend"
+              data-note="CHANGING TREND → continuous. 'Temperatures rise' would imply a routine, not a trend. Continuous captures the sense of ongoing change.">
+              🌡️ Temperatures (trend)
+            </button>
+            <button class="sc-btn en-scenario"
+              data-sentence="I love Japanese food."
+              data-breakdown="love = stative verb — no -ing possible!"
+              data-note="LOVE is a stative verb (emotion). 'I am loving Japanese food' is grammatically wrong in standard English (though you may see it in advertising!).">
+              ❤️ Loving Japanese food
+            </button>
+          </div>
+          <div class="sc-result" id="en-scenario-result">
+            <div class="sc-empty">Choose a scenario above to see which tense is used — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💬</span>
+        <div class="culture-text">
+          <strong>"What are you doing?" — the continuous as social glue</strong><br/>
+          The present continuous does remarkable social work in English. "I'm just calling to say hello." "We're thinking of visiting Japan." "She's doing really well." Notice how the continuous tense softens and humanises statements — it implies things are in motion, in progress, alive. Compared to the blunter present simple ("I call." "We think about visiting." "She does well."), the continuous form gives English conversation a warmer, more tentative, more human quality. Many learners over-use the present simple when native speakers would reach for continuous — and the result, while grammatically defensible, can sound unexpectedly cold or abrupt.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 5 English — present continuous &amp; stative verbs</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I am knowing the answer.</button>
+          <button class="quiz-btn" data-answer="correct">I know the answer.</button>
+          <button class="quiz-btn" data-answer="wrong">I am know the answer.</button>
+          <button class="quiz-btn" data-answer="wrong">I knowing the answer.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the -ing form of "swim"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">swiming</button>
+          <button class="quiz-btn" data-answer="wrong">swimeing</button>
+          <button class="quiz-btn" data-answer="correct">swimming</button>
+          <button class="quiz-btn" data-answer="wrong">swimmeing</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"She works at a hospital" vs "She is working at a hospital" — what is the key difference?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">No difference — both mean the same thing</button>
+          <button class="quiz-btn" data-answer="correct">Simple = permanent situation · Continuous = temporary arrangement</button>
+          <button class="quiz-btn" data-answer="wrong">Simple = past · Continuous = present</button>
+          <button class="quiz-btn" data-answer="wrong">Simple = formal · Continuous = informal</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which of these CAN use the -ing form?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">know</button>
+          <button class="quiz-btn" data-answer="wrong">belong</button>
+          <button class="quiz-btn" data-answer="wrong">love</button>
+          <button class="quiz-btn" data-answer="correct">run</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 5 · Pretérito indefinido · Regular past endings · 10 key irregulars · Talking about the past</div>
+      </div>
+    </div>
+
+    <!-- Overview of Spanish past -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The Spanish past — an overview</div>
+      <div class="section-title">Spanish has two main past tenses — this week we learn the first and most essential one</div>
+      <p>Spanish has several past tenses, but two are critical for beginners: the <strong>pretérito indefinido</strong> (preterite) and the <strong>pretérito imperfecto</strong> (imperfect). This week focuses on the preterite — used for completed actions with a clear endpoint in the past.</p>
+
+      <div class="timeline-diagram">
+        <div class="tl-label">When to use pretérito indefinido:</div>
+        <div class="tl-line">
+          <div class="tl-past" style="border-radius:8px; text-align:left;">
+            ✅ Completed past actions<br/>
+            <span style="font-size:12px; color:#888">Ayer comí sushi. (Yesterday I ate sushi.)<br/>Fui a Madrid en 2022. (I went to Madrid in 2022.)</span>
+          </div>
+        </div>
+        <div style="font-size:13px; color:#555; margin-top:10px; line-height:1.8;">
+          🕐 Specific time: <em>ayer, anoche, el lunes, en 2020, hace dos años</em><br/>
+          🔢 Number of times: <em>Lo visité tres veces. (I visited it three times.)</em><br/>
+          📋 Sequence of events: <em>Llegué, comí, y dormí. (I arrived, ate, and slept.)</em><br/>
+          ⏱️ Actions with a clear beginning and end: <em>Estudié español durante dos horas. (I studied Spanish for two hours.)</em>
+        </div>
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>A useful memory rule:</strong> The pretérito indefinido is the "snap photo" tense — it captures a completed moment or sequence of moments. The imperfect (coming in Week 7) is the "video camera" tense — it describes ongoing background situations. "Llovía cuando llegué" = It was raining (ongoing background — imperfect) when I arrived (completed moment — preterite).
+      </div>
+    </div>
+
+    <!-- Regular past endings -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Regular past tense endings — all three families</div>
+      <div class="section-title">The preterite endings — notice the written accent marks on yo and él/ella</div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">-AR family: hablar (to speak)</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Ending</th><th>Full form</th><th>Example</th></tr>
+        <tr><td class="conj-pronoun">yo</td><td style="color:#D85A30; font-size:16px; font-weight:500">-é</td><td><span class="conj-form">hablé</span></td><td class="conj-ex">Hablé con ella ayer. (I spoke with her yesterday.)</td></tr>
+        <tr><td class="conj-pronoun">tú</td><td style="color:#D85A30; font-size:16px; font-weight:500">-aste</td><td><span class="conj-form">hablaste</span></td><td class="conj-ex">¿Hablaste con Juan? (Did you speak with Juan?)</td></tr>
+        <tr><td class="conj-pronoun">él/ella</td><td style="color:#D85A30; font-size:16px; font-weight:500">-ó</td><td><span class="conj-form">habló</span></td><td class="conj-ex">Ella habló muy rápido. (She spoke very fast.)</td></tr>
+        <tr><td class="conj-pronoun">nosotros</td><td style="color:#D85A30; font-size:16px; font-weight:500">-amos</td><td><span class="conj-form">hablamos</span></td><td class="conj-ex">Hablamos toda la noche. (We talked all night.)</td></tr>
+        <tr><td class="conj-pronoun">vosotros</td><td style="color:#D85A30; font-size:16px; font-weight:500">-asteis</td><td><span class="conj-form">hablasteis</span></td><td class="conj-ex">¿Hablasteis en español? (Did you all speak in Spanish?)</td></tr>
+        <tr><td class="conj-pronoun">ellos/ellas</td><td style="color:#D85A30; font-size:16px; font-weight:500">-aron</td><td><span class="conj-form">hablaron</span></td><td class="conj-ex">Hablaron durante horas. (They talked for hours.)</td></tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">-ER and -IR families: comer / vivir (endings are identical!)</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>-ER/-IR ending</th><th>comer (ate)</th><th>vivir (lived)</th></tr>
+        <tr><td class="conj-pronoun">yo</td><td style="color:#185FA5; font-weight:500; font-size:15px">-í</td><td><span class="conj-form" style="color:#185FA5">comí</span></td><td><span class="conj-form" style="color:#185FA5">viví</span></td></tr>
+        <tr><td class="conj-pronoun">tú</td><td style="color:#185FA5; font-weight:500; font-size:15px">-iste</td><td><span class="conj-form" style="color:#185FA5">comiste</span></td><td><span class="conj-form" style="color:#185FA5">viviste</span></td></tr>
+        <tr><td class="conj-pronoun">él/ella</td><td style="color:#185FA5; font-weight:500; font-size:15px">-ió</td><td><span class="conj-form" style="color:#185FA5">comió</span></td><td><span class="conj-form" style="color:#185FA5">vivió</span></td></tr>
+        <tr><td class="conj-pronoun">nosotros</td><td style="color:#185FA5; font-weight:500; font-size:15px">-imos</td><td><span class="conj-form" style="color:#185FA5">comimos</span></td><td><span class="conj-form" style="color:#185FA5">vivimos</span></td></tr>
+        <tr><td class="conj-pronoun">vosotros</td><td style="color:#185FA5; font-weight:500; font-size:15px">-isteis</td><td><span class="conj-form" style="color:#185FA5">comisteis</span></td><td><span class="conj-form" style="color:#185FA5">vivisteis</span></td></tr>
+        <tr><td class="conj-pronoun">ellos/ellas</td><td style="color:#185FA5; font-weight:500; font-size:15px">-ieron</td><td><span class="conj-form" style="color:#185FA5">comieron</span></td><td><span class="conj-form" style="color:#185FA5">vivieron</span></td></tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>The accent mark matters!</strong> Hablo (I speak — present) vs hablé (I spoke — past). Habló (he/she spoke — past) vs habló without accent would be ambiguous. The written accent marks on yo (-é, -í) and él/ella (-ó, -ió) distinguish past from present. Omitting them is a spelling error that can genuinely confuse meaning — take them seriously.
+      </div>
+    </div>
+
+    <!-- Key irregular verbs in past -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Irregular preterite verbs — the essential 10</div>
+      <div class="section-title">These don't follow the rules — but they appear in almost every conversation</div>
+      <p>The most irregular preterites in Spanish are unfortunately the most common verbs. The good news: ser and ir share identical past forms (context always clarifies which is which!), and most of the common irregulars follow an "-uv-", "-ij-", or "-u-" stem pattern.</p>
+
+      <div class="irreg-grid">
+        <div class="irreg-card important">
+          <div class="irreg-inf">ser / ir</div>
+          <div class="irreg-en">to be / to go — identical past forms!</div>
+          <div class="irreg-forms">fui · fuiste · fue · fuimos · fuisteis · fueron</div>
+          <div class="irreg-ex">Fui al mercado. (I went to the market.) · Fue increíble. (It was incredible.)</div>
+        </div>
+        <div class="irreg-card important">
+          <div class="irreg-inf">tener</div>
+          <div class="irreg-en">to have</div>
+          <div class="irreg-forms">tuve · tuviste · tuvo · tuvimos · tuvisteis · tuvieron</div>
+          <div class="irreg-ex">Tuve un problema. (I had a problem.)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">estar</div>
+          <div class="irreg-en">to be (state/location)</div>
+          <div class="irreg-forms">estuve · estuviste · estuvo · estuvimos · estuvisteis · estuvieron</div>
+          <div class="irreg-ex">Estuve en Madrid. (I was in Madrid.)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">hacer</div>
+          <div class="irreg-en">to do / to make</div>
+          <div class="irreg-forms">hice · hiciste · hizo · hicimos · hicisteis · hicieron</div>
+          <div class="irreg-ex">¿Qué hiciste ayer? (What did you do yesterday?)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">poder</div>
+          <div class="irreg-en">to be able to / could</div>
+          <div class="irreg-forms">pude · pudiste · pudo · pudimos · pudisteis · pudieron</div>
+          <div class="irreg-ex">No pude dormir. (I couldn't sleep.)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">querer</div>
+          <div class="irreg-en">to want / wanted</div>
+          <div class="irreg-forms">quise · quisiste · quiso · quisimos · quisisteis · quisieron</div>
+          <div class="irreg-ex">Quise llamarte. (I wanted to call you.)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">venir</div>
+          <div class="irreg-en">to come</div>
+          <div class="irreg-forms">vine · viniste · vino · vinimos · vinisteis · vinieron</div>
+          <div class="irreg-ex">¿De dónde viniste? (Where did you come from?)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">decir</div>
+          <div class="irreg-en">to say / to tell</div>
+          <div class="irreg-forms">dije · dijiste · dijo · dijimos · dijisteis · dijeron</div>
+          <div class="irreg-ex">¿Qué dijo? (What did he/she say?)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">saber</div>
+          <div class="irreg-en">to know (found out)</div>
+          <div class="irreg-forms">supe · supiste · supo · supimos · supisteis · supieron</div>
+          <div class="irreg-ex">Lo supe en seguida. (I found out immediately.)</div>
+        </div>
+        <div class="irreg-card">
+          <div class="irreg-inf">dar</div>
+          <div class="irreg-en">to give</div>
+          <div class="irreg-forms">di · diste · dio · dimos · disteis · dieron</div>
+          <div class="irreg-ex">Me dio su número. (He/she gave me their number.)</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-purple">
+        <strong>The ser / ir coincidence:</strong> Ser (to be) and ir (to go) have exactly the same preterite forms — fui, fuiste, fue, fuimos, fuisteis, fueron. This sounds alarming but almost never causes confusion in practice, because context makes the meaning obvious: "Fui al supermercado" = I went to the supermarket (ir). "Fue una sorpresa" = It was a surprise (ser). Spanish grammar's occasional coincidences are actually a gift — one set of forms to memorise for two verbs.
+      </div>
+    </div>
+
+    <!-- Time expressions with past -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Time expressions that trigger the preterite</div>
+      <div class="section-title">These words signal a completed past action — always use the preterite with them</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📅</span>
+          <div>
+            <div class="phrase-native">ayer · anoche · anteayer</div>
+            <div class="phrase-sub">/aˈʝer/ · /aˈnotʃe/ · /anteaˈʝer/</div>
+            <div class="phrase-en">yesterday · last night · the day before yesterday</div>
+            <div class="phrase-note">Ayer comí paella. · Anoche vi una película. · Anteayer llegué a Madrid. Always preterite — these name a specific completed day.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📆</span>
+          <div>
+            <div class="phrase-native">el lunes · la semana pasada · el mes pasado · el año pasado</div>
+            <div class="phrase-en">last Monday · last week · last month · last year</div>
+            <div class="phrase-note">El lunes fui al médico. · La semana pasada trabajé mucho. The word "pasado/a" (past/last) is a strong signal to use the preterite.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⏱️</span>
+          <div>
+            <div class="phrase-native">hace + time + que / hace [time]</div>
+            <div class="phrase-sub">/ˈase/</div>
+            <div class="phrase-en">ago / [time] ago</div>
+            <div class="phrase-note">Llegué hace dos horas. (I arrived two hours ago.) Lo conocí hace tres años. (I met him/her three years ago.) Hace + time + que + preterite = very natural Spanish storytelling.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🔢</span>
+          <div>
+            <div class="phrase-native">una vez · dos veces · tres veces</div>
+            <div class="phrase-en">once · twice · three times</div>
+            <div class="phrase-note">Lo intenté tres veces. (I tried it three times.) Fui a Japón dos veces. (I went to Japan twice.) Counting completed occurrences always triggers the preterite.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive past tense ES -->
+    <div class="section">
+      <div class="section-label">Interactive · Build a past tense sentence</div>
+      <div class="section-title">Choose a subject and verb — see the complete preterite form</div>
+      <div class="scenario-sim">
+        <div class="scenario-header">🇪🇸 Pretérito indefinido — sentence builder</div>
+        <div class="scenario-body">
+          <div class="sc-label">Choose a subject + verb combination</div>
+          <div class="sc-btns" id="es-past-btns">
+            <button class="sc-btn es-past"
+              data-sentence="Ayer comí una paella deliciosa."
+              data-breakdown="comer (to eat) → comí (yo, preterite -ER: -í)"
+              data-note="Ayer (yesterday) is a classic preterite trigger. -ER family yo form: -í with accent.">
+              🍛 I ate paella (ayer)
+            </button>
+            <button class="sc-btn es-past"
+              data-sentence="¿Adónde fuiste el fin de semana?"
+              data-breakdown="ir (to go) → fuiste (tú, preterite — fully irregular)"
+              data-note="Ir is one of the most common irregular verbs. Fuiste = you went. El fin de semana (the weekend) is a completed time period.">
+              📍 You went (weekend) where?
+            </button>
+            <button class="sc-btn es-past"
+              data-sentence="Ella trabajó hasta las diez anoche."
+              data-breakdown="trabajar (to work) → trabajó (él/ella, preterite -AR: -ó)"
+              data-note="Anoche (last night) triggers preterite. -AR family él/ella form: -ó with accent. Note: habló/trabajó/llegó all follow this pattern.">
+              💼 She worked (last night)
+            </button>
+            <button class="sc-btn es-past"
+              data-sentence="Vivimos en Madrid hace diez años."
+              data-breakdown="vivir (to live) → vivimos (nosotros, preterite -IR: -imos)"
+              data-note="Hace diez años (ten years ago) signals a completed past situation. Nosotros preterite -IR is identical to present! Context of hace... clarifies it's past.">
+              🏠 We lived in Madrid (10 years ago)
+            </button>
+            <button class="sc-btn es-past"
+              data-sentence="No pude dormir bien anoche."
+              data-breakdown="poder (can/to be able) → pude (yo, irregular preterite)"
+              data-note="No pude = I couldn't (completed inability). The preterite of poder often implies a one-time inability rather than a general one. A very natural expression.">
+              😴 I couldn't sleep (last night)
+            </button>
+            <button class="sc-btn es-past"
+              data-sentence="¿Qué hicieron ustedes el año pasado?"
+              data-breakdown="hacer (to do/make) → hicieron (ellos/ellas, irregular preterite)"
+              data-note="El año pasado (last year) is a completed time period → preterite. Hicieron is the ellos form of hacer's irregular past. Ustedes = formal 'you all' used in Latin America.">
+              🗓️ What did they do? (last year)
+            </button>
+          </div>
+          <div class="sc-result" id="es-past-result">
+            <div class="sc-empty">Choose a combination above to see the preterite sentence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">📖</span>
+        <div class="culture-text">
+          <strong>Spain vs Latin America — two different past tenses in daily use</strong><br/>
+          Here is one of the most striking regional differences in Spanish: in Spain, the pretérito perfecto (he comido = I have eaten) is used for recent past actions connected to the present — exactly like English "I have eaten." The pretérito indefinido (comí) is reserved for more distant, disconnected past events. But in most of Latin America, the pretérito indefinido (comí) is used for ALL past actions, recent or distant — the perfecto (he comido) is used much less. So a Spaniard says "Esta mañana he desayunado" (This morning I have had breakfast) while a Mexican says "Esta mañana desayuné" (This morning I had breakfast). Both are completely correct — just different regional preferences. This week's preterite indefinido is safe and understood everywhere.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 5 Spanish — pretérito indefinido</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the yo form of hablar in the preterite?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">hablo</button>
+          <button class="quiz-btn" data-answer="wrong">habla</button>
+          <button class="quiz-btn" data-answer="correct">hablé</button>
+          <button class="quiz-btn" data-answer="wrong">hablaste</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I went to the market" using ir?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Voy al mercado.</button>
+          <button class="quiz-btn" data-answer="wrong">Iba al mercado.</button>
+          <button class="quiz-btn" data-answer="correct">Fui al mercado.</button>
+          <button class="quiz-btn" data-answer="wrong">Iré al mercado.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Ser and ir have the same preterite forms. Which sentence means "It was incredible"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Fui increíble. (uses ir)</button>
+          <button class="quiz-btn" data-answer="correct">Fue increíble. (uses ser — context clarifies)</button>
+          <button class="quiz-btn" data-answer="wrong">Era increíble. (imperfect — different tense)</button>
+          <button class="quiz-btn" data-answer="wrong">Es increíble. (present tense)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which time expression always triggers the preterite tense?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">siempre (always)</button>
+          <button class="quiz-btn" data-answer="wrong">todos los días (every day)</button>
+          <button class="quiz-btn" data-answer="correct">ayer (yesterday)</button>
+          <button class="quiz-btn" data-answer="wrong">normalmente (normally)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — expressing the past &amp; ongoing actions</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages handle tense — revealing very different approaches</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">The simple vs continuous distinction is unique to English — and the past tense reveals how differently languages encode time.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I eat" (habit)</td>
+        <td>食べます<br/><span style="font-size:11px; color:#888">tabemasu<br/>One form for habit AND right now</span></td>
+        <td>먹어요<br/><span style="font-size:11px; color:#888">meogeayo<br/>One form for habit AND right now</span></td>
+        <td>I eat<br/><span style="font-size:11px; color:#888">Present simple — habit/routine only</span></td>
+        <td>Como<br/><span style="font-size:11px; color:#888">Also covers both habit and right now (in casual speech)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I am eating" (now)</td>
+        <td>食べています<br/><span style="font-size:11px; color:#888">tabete imasu<br/>(same form as "I eat"!)</span></td>
+        <td>먹고 있어요<br/><span style="font-size:11px; color:#888">meokgo isseoyo<br/>Has a continuous form!</span></td>
+        <td>I am eating<br/><span style="font-size:11px; color:#888">Mandatory distinction — must use -ing</span></td>
+        <td>Estoy comiendo<br/><span style="font-size:11px; color:#888">Estar + gerund — exists but used less strictly</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I ate" (past)</td>
+        <td>食べました<br/><span style="font-size:11px; color:#888">tabemashita<br/>Add -mashita for past</span></td>
+        <td>먹었어요<br/><span style="font-size:11px; color:#888">meogeosseoyo<br/>Add -었어요 for past</span></td>
+        <td>I ate<br/><span style="font-size:11px; color:#888">Irregular! eat→ate (strong verb)</span></td>
+        <td>Comí<br/><span style="font-size:11px; color:#888">Preterite -í ending (regular)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Stative verb rule</td>
+        <td>No restriction<br/><span style="font-size:11px; color:#888">知っています = I know (て-form used)</span></td>
+        <td>No restriction<br/><span style="font-size:11px; color:#888">알아요 = I know (no -ing restriction)</span></td>
+        <td>Yes — strict<br/><span style="font-size:11px; color:#888">I know ✅ I am knowing ❌</span></td>
+        <td>No restriction<br/><span style="font-size:11px; color:#888">Sé / Estoy sabiendo — both possible</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Number of past tenses</td>
+        <td>1 main past<br/><span style="font-size:11px; color:#888">~た form covers most past</span></td>
+        <td>1 main past<br/><span style="font-size:11px; color:#888">-었/았어요 covers most past</span></td>
+        <td>Many!<br/><span style="font-size:11px; color:#888">Simple/continuous/perfect/perfect continuous</span></td>
+        <td>5+ past tenses<br/><span style="font-size:11px; color:#888">Indefinido/imperfecto/perfecto/pluscuamperfecto...</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-green" style="margin-top:14px">
+      <strong>The simple/continuous insight:</strong> English is unique among these four languages in strictly requiring a different form for "right now" vs "habitually". Spanish has the estar + gerund (estoy comiendo) but uses it less rigidly — simple present works fine for right now. Japanese and Korean handle both meanings with one form, relying on context (今 = now, 毎日 = every day) to clarify. English forces the distinction grammatically. This is one reason English feels unforgiving to learners — you cannot take a shortcut.
+    </div>
+  </div>
+
+
+  <!-- Week 6 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 6</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Past simple tense — regular verbs (-ed endings) · Irregular verb list · Past negatives and questions with "did" · Time expressions for the past · Storytelling in English.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Food and dining — essential vocabulary for restaurants · Ordering food and drink · Dietary restrictions · The imperfect tense (pretérito imperfecto) — describing background situations and past habits.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 5 complete · Click <a href="Week6.E&S.html">here</a> when you're ready for Week 6 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English scenario explorer ── */
+  document.querySelectorAll('.en-scenario').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-scenario').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-scenario-result').innerHTML = `
+        <div class="sc-sentence">✅ ${d.sentence}</div>
+        <div class="sc-breakdown">📐 <strong>Structure:</strong> ${d.breakdown}</div>
+        <div class="sc-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish past tense builder ── */
+  document.querySelectorAll('.es-past').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-past').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-past-result').innerHTML = `
+        <div class="sc-sentence">✅ ${d.sentence}</div>
+        <div class="sc-breakdown">📐 <strong>Formation:</strong> ${d.breakdown}</div>
+        <div class="sc-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
