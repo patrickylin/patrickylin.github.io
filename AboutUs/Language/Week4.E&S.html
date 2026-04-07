@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 4 — English & Spanish: Numbers, Time & Calendar</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Number reference table */
+  .num-ref { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+  .num-ref-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 8px 10px; }
+  .nrc-digit { font-size: 16px; font-weight: 500; color: #185FA5; }
+  .nrc-word  { font-size: 12px; color: #333; }
+  .nrc-note  { font-size: 10px; color: #aaa; font-style: italic; margin-top: 1px; }
+
+  /* Large numbers */
+  .large-num-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .lnum-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .lnum-digit { font-size: 20px; font-weight: 500; color: #185FA5; margin-bottom: 2px; }
+  .lnum-word  { font-size: 16px; color: #1a1a18; margin-bottom: 2px; }
+  .lnum-note  { font-size: 12px; color: #555; }
+  .lnum-ex    { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Clock face interactive */
+  .clock-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .clock-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .clock-body { padding: 14px; }
+  .clock-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .clock-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .clock-btn { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 7px 13px; font-size: 14px; cursor: pointer; transition: all 0.15s; }
+  .clock-btn:hover { background: #f0f0ee; }
+  .clock-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .clock-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .cr-time-big  { font-size: 36px; font-weight: 500; color: #185FA5; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+  .cr-en-formal { font-size: 18px; color: #1a1a18; margin-bottom: 2px; }
+  .cr-en-casual { font-size: 14px; color: #555; margin-bottom: 2px; }
+  .cr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .cr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Calendar grid */
+  .cal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .cal-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px 12px; }
+  .cal-num  { font-size: 11px; color: #aaa; margin-bottom: 2px; }
+  .cal-en   { font-size: 15px; color: #1a1a18; font-weight: 500; }
+  .cal-es   { font-size: 13px; color: #185FA5; }
+  .cal-note { font-size: 11px; color: #888; margin-top: 2px; font-style: italic; }
+
+  /* Day cards */
+  .day-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+  .day-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 9px 8px; text-align: center; }
+  .day-card.weekend { background: #f0f8f5; border-color: #a8ddc5; }
+  .day-en { font-size: 13px; font-weight: 500; color: #1a1a18; }
+  .day-es { font-size: 13px; color: #185FA5; }
+  .day-rom { font-size: 10px; color: #aaa; margin-top: 2px; }
+
+  /* Date format comparison */
+  .date-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .dc-card { border-radius: 12px; padding: 14px; }
+  .dc-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .dc-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .dc-lang   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .dc-format { font-size: 20px; color: #1a1a18; font-weight: 500; margin-bottom: 4px; }
+  .dc-note   { font-size: 12px; color: #555; line-height: 1.6; }
+  .dc-ex     { font-size: 13px; color: #1D9E75; font-style: italic; margin-top: 5px; }
+
+  /* Ordinal cards */
+  .ord-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+  .ord-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 9px 8px; text-align: center; }
+  .ord-num  { font-size: 14px; font-weight: 500; color: #185FA5; }
+  .ord-en   { font-size: 12px; color: #333; }
+  .ord-es   { font-size: 12px; color: #D85030; margin-top: 1px; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way comparison */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .num-ref { grid-template-columns: repeat(3, 1fr); }
+    .large-num-grid, .date-compare, .two-col { grid-template-columns: 1fr; }
+    .cal-grid { grid-template-columns: repeat(2, 1fr); }
+    .day-grid, .ord-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 4 of 16</span>
+      <h1>Numbers, Time & Calendar</h1>
+      <div class="subtitle">EN: Large numbers · Telling the time · Days, months & dates · ES: Numbers to a million · Las horas · El calendario · Date format differences</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:25%;"></div></div>
+      25% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 4 · Numbers to a billion · Telling the time · Ordinals · Days, months & dates</div>
+      </div>
+    </div>
+
+    <!-- Numbers EN -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Numbers — from 1 to a billion</div>
+      <div class="section-title">The English number system — regular, logical, and full of "and"</div>
+      <p>English numbers follow a consistent, predictable pattern from 1 upward. The main quirks are the irregular teens (eleven, twelve, thirteen...) and the British/American "and" rule for hundreds.</p>
+
+      <div class="num-ref">
+        <div class="num-ref-card"><div class="nrc-digit">1–12</div><div class="nrc-word">one · two · three · four · five · six · seven · eight · nine · ten · eleven · twelve</div><div class="nrc-note">Irregular — must memorise</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">13–19</div><div class="nrc-word">thirteen · fourteen · fifteen · sixteen · seventeen · eighteen · nineteen</div><div class="nrc-note">-teen suffix (note: thir-, fif-, eigh-)</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">20–90</div><div class="nrc-word">twenty · thirty · forty · fifty · sixty · seventy · eighty · ninety</div><div class="nrc-note">-ty suffix (note: twen-, for-, fif-, eigh-)</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">21–99</div><div class="nrc-word">twenty-one · thirty-five · forty-eight</div><div class="nrc-note">Hyphen joins tens and units</div></div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Large numbers:</p>
+      <div class="large-num-grid">
+        <div class="lnum-card">
+          <div class="lnum-digit">100</div>
+          <div class="lnum-word">one hundred</div>
+          <div class="lnum-note">British English: 101 = "one hundred and one". American English: "one hundred one" (no "and").</div>
+          <div class="lnum-ex">I have one hundred and fifty books.</div>
+        </div>
+        <div class="lnum-card">
+          <div class="lnum-digit">1,000</div>
+          <div class="lnum-word">one thousand</div>
+          <div class="lnum-note">1,500 = "one thousand five hundred" or "fifteen hundred". Both are correct.</div>
+          <div class="lnum-ex">The hotel costs two thousand dollars.</div>
+        </div>
+        <div class="lnum-card">
+          <div class="lnum-digit">1,000,000</div>
+          <div class="lnum-word">one million</div>
+          <div class="lnum-note">Always singular: "five million" (never "five millions" unless standalone).</div>
+          <div class="lnum-ex">Tokyo has fourteen million people.</div>
+        </div>
+        <div class="lnum-card">
+          <div class="lnum-digit">1,000,000,000</div>
+          <div class="lnum-word">one billion</div>
+          <div class="lnum-note">Note: British "billion" historically meant a million million. Now both UK and US use the American billion (10⁹).</div>
+          <div class="lnum-ex">The world has eight billion people.</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>The "and" rule:</strong> British English inserts "and" before the last part of a number: 101 = "one hundred and one" · 1,256 = "one thousand two hundred and fifty-six". American English usually omits the "and". Both are understood globally — but knowing this prevents confusion when listening to British broadcasts or reading UK texts.
+      </div>
+    </div>
+
+    <!-- Ordinals EN -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Ordinal numbers</div>
+      <div class="section-title">First, second, third... — for dates, floors, positions, rankings</div>
+      <div class="ord-grid">
+        <div class="ord-card"><div class="ord-num">1st</div><div class="ord-en">first</div></div>
+        <div class="ord-card"><div class="ord-num">2nd</div><div class="ord-en">second</div></div>
+        <div class="ord-card"><div class="ord-num">3rd</div><div class="ord-en">third</div></div>
+        <div class="ord-card"><div class="ord-num">4th</div><div class="ord-en">fourth</div></div>
+        <div class="ord-card"><div class="ord-num">5th</div><div class="ord-en">fifth</div></div>
+        <div class="ord-card"><div class="ord-num">6th</div><div class="ord-en">sixth</div></div>
+        <div class="ord-card"><div class="ord-num">7th</div><div class="ord-en">seventh</div></div>
+        <div class="ord-card"><div class="ord-num">8th</div><div class="ord-en">eighth</div></div>
+        <div class="ord-card"><div class="ord-num">9th</div><div class="ord-en">ninth</div></div>
+        <div class="ord-card"><div class="ord-num">10th</div><div class="ord-en">tenth</div></div>
+        <div class="ord-card"><div class="ord-num">11th</div><div class="ord-en">eleventh</div></div>
+        <div class="ord-card"><div class="ord-num">12th</div><div class="ord-en">twelfth</div></div>
+        <div class="ord-card"><div class="ord-num">20th</div><div class="ord-en">twentieth</div></div>
+        <div class="ord-card"><div class="ord-num">21st</div><div class="ord-en">twenty-first</div></div>
+        <div class="ord-card"><div class="ord-num">30th</div><div class="ord-en">thirtieth</div></div>
+        <div class="ord-card"><div class="ord-num">31st</div><div class="ord-en">thirty-first</div></div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>The -th pattern:</strong> Most ordinals just add -th to the cardinal (four → fourth · six → sixth). But watch the irregulars: one→first · two→second · three→third · five→fifth · eight→eighth · nine→ninth · twelve→twelfth. For -y endings: twenty→twentieth (y→ie+th). These 7 irregular forms are heavily used and must be memorised.
+      </div>
+    </div>
+
+    <!-- Telling the time EN -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Telling the time</div>
+      <div class="section-title">What time is it? — English has two distinct systems (and one very confusing one)</div>
+      <p>English has a formal digital system (3:15 = "three fifteen") and a traditional analogue system using "past", "to", "half", and "quarter". Native speakers use both interchangeably — learners must recognise both.</p>
+
+      <div class="clock-sim">
+        <div class="clock-header">🕐 What time is it? — Click a time to learn how to say it</div>
+        <div class="clock-body">
+          <div class="clock-label">Choose a time</div>
+          <div class="clock-btns" id="en-time-btns">
+            <button class="clock-btn en-time"
+              data-time="3:00"
+              data-formal="Three o'clock"
+              data-casual="Three"
+              data-note="O'clock is used only for exact hours. The apostrophe in o'clock comes from 'of the clock' — an old English phrase.">
+              3:00
+            </button>
+            <button class="clock-btn en-time"
+              data-time="3:15"
+              data-formal="Three fifteen"
+              data-casual="Quarter past three"
+              data-note="Quarter = 15 minutes (a quarter of an hour). Both forms are equally natural — 'quarter past' is more British.">
+              3:15
+            </button>
+            <button class="clock-btn en-time"
+              data-time="3:30"
+              data-formal="Three thirty"
+              data-casual="Half past three"
+              data-note="Half past = 30 minutes past. 'Half three' (British informal) means 3:30 — not 2:30! This confuses many learners.">
+              3:30
+            </button>
+            <button class="clock-btn en-time"
+              data-time="3:45"
+              data-formal="Three forty-five"
+              data-casual="Quarter to four"
+              data-note="Quarter TO four — now we count toward the next hour. This 'to' system is very common in British English, less so in American.">
+              3:45
+            </button>
+            <button class="clock-btn en-time"
+              data-time="12:00"
+              data-formal="Twelve o'clock"
+              data-casual="Noon / Midday (PM) · Midnight (AM)"
+              data-note="12:00 PM = noon/midday. 12:00 AM = midnight. The 12-hour clock's most confusing moment — 12 PM is noon, 12 AM is midnight (not the other way around!).">
+              12:00
+            </button>
+            <button class="clock-btn en-time"
+              data-time="7:20"
+              data-formal="Seven twenty"
+              data-casual="Twenty past seven"
+              data-note="Twenty past = 20 minutes after the hour. Less common now — most speakers just say 'seven twenty'.">
+              7:20
+            </button>
+            <button class="clock-btn en-time"
+              data-time="8:50"
+              data-formal="Eight fifty"
+              data-casual="Ten to nine"
+              data-note="Ten minutes TO nine — counting toward the next hour. Native speakers often prefer 'ten to nine' over 'eight fifty' in conversation.">
+              8:50
+            </button>
+            <button class="clock-btn en-time"
+              data-time="6:05"
+              data-formal="Six oh five"
+              data-casual="Five past six"
+              data-note="'Oh' is used for zero in times: 6:05 = 'six oh five'. Also: 'five past six' using the analogue system.">
+              6:05
+            </button>
+          </div>
+          <div class="clock-result" id="en-clock-result">
+            <div class="cr-empty">Select a time above to hear how it is said in English</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🕐</span>
+          <div>
+            <div class="phrase-native">What time is it? / What's the time?</div>
+            <div class="phrase-sub">Both equally common in British English</div>
+            <div class="phrase-en">Asking for the current time</div>
+            <div class="phrase-note">American English prefers "What time is it?" Answer: "It's three o'clock" / "It's about half past two" / "It's nearly four." Adding "about" or "nearly" softens the precision.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⏰</span>
+          <div>
+            <div class="phrase-native">At what time...? / When does...?</div>
+            <div class="phrase-sub">/æt wɒt taɪm/ · /wɛn dʌz/</div>
+            <div class="phrase-en">Asking about scheduled times</div>
+            <div class="phrase-note">"At what time does the train leave?" / "When does the museum open?" The answer uses "at": "It leaves at six thirty." / "It opens at nine o'clock."</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌅</span>
+          <div>
+            <div class="phrase-native">AM and PM</div>
+            <div class="phrase-sub">ante meridiem / post meridiem</div>
+            <div class="phrase-en">Before noon and after noon</div>
+            <div class="phrase-note">AM = morning (midnight to noon). PM = afternoon/evening (noon to midnight). Common confusion: 12 AM = midnight · 12 PM = noon. Many native speakers find this unintuitive too — "12 noon" and "12 midnight" are unambiguous alternatives.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Days and months EN -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Days, months &amp; dates</div>
+      <div class="section-title">The English calendar — always capitalised, always in a specific order</div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">Days of the week — named after planets and Norse gods:</p>
+      <div class="day-grid">
+        <div class="day-card"><div class="day-en">Monday</div><div class="day-rom">Moon's day</div></div>
+        <div class="day-card"><div class="day-en">Tuesday</div><div class="day-rom">Tiw's day (Norse war god)</div></div>
+        <div class="day-card"><div class="day-en">Wednesday</div><div class="day-rom">Woden's day (Norse chief god)</div></div>
+        <div class="day-card"><div class="day-en">Thursday</div><div class="day-rom">Thor's day (Norse thunder god)</div></div>
+        <div class="day-card"><div class="day-en">Friday</div><div class="day-rom">Frigg's day (Norse love goddess)</div></div>
+        <div class="day-card weekend"><div class="day-en">Saturday</div><div class="day-rom">Saturn's day (Roman god)</div></div>
+        <div class="day-card weekend"><div class="day-en">Sunday</div><div class="day-rom">Sun's day</div></div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">The date format — the source of enormous international confusion:</p>
+      <div class="date-compare">
+        <div class="dc-card en">
+          <div class="dc-lang">🇬🇧 British English</div>
+          <div class="dc-format">DD/MM/YYYY</div>
+          <div class="dc-note">Day first, then month, then year. The 4th of July = 04/07/2025. Spoken: "the fourth of July" or "July the fourth".</div>
+          <div class="dc-ex">Written: 25/12/2025 = Christmas Day<br/>Spoken: "the twenty-fifth of December"</div>
+        </div>
+        <div class="dc-card es">
+          <div class="dc-lang">🇺🇸 American English</div>
+          <div class="dc-format">MM/DD/YYYY</div>
+          <div class="dc-note">Month first — opposite to British! 04/07/2025 in American English = April 7th, not July 4th. This causes real-world confusion.</div>
+          <div class="dc-ex">Written: 12/25/2025 = Christmas Day<br/>Spoken: "December twenty-fifth"</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The date format danger zone:</strong> 01/04/2025 means January 4th in the US but April 1st in the UK. When the day is above 12, the confusion disappears (25/12 can only be December 25th). But dates like 03/04 are genuinely ambiguous internationally. The ISO 8601 standard (YYYY-MM-DD) was invented precisely to eliminate this confusion — but everyday English ignores it completely.
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📅</span>
+          <div>
+            <div class="phrase-native">What's the date today? / What day is it?</div>
+            <div class="phrase-en">Asking about the date or day</div>
+            <div class="phrase-note">"It's Monday." / "It's the fifteenth of March." / "Today is March fifteenth." Note: ordinals are used when speaking dates — you SAY "the fifteenth" but you WRITE "March 15".</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🗓️</span>
+          <div>
+            <div class="phrase-native">On Monday · In March · In 2025 · At Christmas</div>
+            <div class="phrase-en">Prepositions with time — on/in/at</div>
+            <div class="phrase-note">ON = days and specific dates (on Monday · on 25th December). IN = months, years, seasons (in March · in 2025 · in summer). AT = times of day and holidays (at 3pm · at Christmas · at midnight). This on/in/at system must be memorised.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🕰️</span>
+        <div class="culture-text">
+          <strong>The 12-hour clock — and why the world is moving to 24-hour time</strong><br/>
+          English-speaking countries (particularly the UK, US, and Australia) cling to the 12-hour AM/PM clock more than almost any other culture. Most of Europe, Japan, Korea, and Latin America primarily use the 24-hour clock (14:00 = 2 PM) in official contexts. This means that English learners from these backgrounds must learn a new system — and vice versa. An interesting linguistic note: the BBC, airports, railways, and the military all use 24-hour time even in English. The 12-hour clock is primarily a conversational convention, not an official one. When learning or teaching English time expressions, it's worth knowing both — "fifteen hundred hours" (15:00) alongside "three o'clock in the afternoon."
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 4 English — numbers, time &amp; calendar</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say 3:45 using the analogue time system?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Quarter past three</button>
+          <button class="quiz-btn" data-answer="wrong">Half past three</button>
+          <button class="quiz-btn" data-answer="correct">Quarter to four</button>
+          <button class="quiz-btn" data-answer="wrong">Three quarters past three</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the ordinal form of "five"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">fiveth</button>
+          <button class="quiz-btn" data-answer="wrong">fiveteenth</button>
+          <button class="quiz-btn" data-answer="correct">fifth</button>
+          <button class="quiz-btn" data-answer="wrong">fiver</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which preposition goes with days of the week?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">in Monday</button>
+          <button class="quiz-btn" data-answer="wrong">at Monday</button>
+          <button class="quiz-btn" data-answer="correct">on Monday</button>
+          <button class="quiz-btn" data-answer="wrong">by Monday</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">The date 04/07 in American English refers to which date?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">4th of July (Independence Day)</button>
+          <button class="quiz-btn" data-answer="correct">April 7th</button>
+          <button class="quiz-btn" data-answer="wrong">July 4th — same as British English</button>
+          <button class="quiz-btn" data-answer="wrong">The 4th week of the 7th month</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 4 · Numbers to a million · Las horas · Días y meses · El formato de fecha</div>
+      </div>
+    </div>
+
+    <!-- Large numbers ES -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Numbers 100 to 1,000,000</div>
+      <div class="section-title">Los números grandes — and an important gender surprise</div>
+
+      <div class="large-num-grid">
+        <div class="lnum-card">
+          <div class="lnum-digit">100</div>
+          <div class="lnum-word">cien / ciento</div>
+          <div class="lnum-note">cien = exactly 100 · ciento = 101 and above. "Ciento uno", "ciento cincuenta".</div>
+          <div class="lnum-ex">Cien euros · ciento veinte personas</div>
+        </div>
+        <div class="lnum-card">
+          <div class="lnum-digit">200–900</div>
+          <div class="lnum-word">doscientos · trescientos...</div>
+          <div class="lnum-note">Hundreds have gender! Masculine: doscientos libros. Feminine: doscientas personas. This applies to all hundreds!</div>
+          <div class="lnum-ex">doscientos euros · doscientas casas</div>
+        </div>
+        <div class="lnum-card">
+          <div class="lnum-digit">1,000</div>
+          <div class="lnum-word">mil</div>
+          <div class="lnum-note">mil never takes "un" before it — just "mil", not "un mil". 2,000 = dos mil.</div>
+          <div class="lnum-ex">mil personas · dos mil años</div>
+        </div>
+        <div class="lnum-card">
+          <div class="lnum-digit">1,000,000</div>
+          <div class="lnum-word">un millón</div>
+          <div class="lnum-note">un millón DOES take the article. "Un millón de euros" — note: millón requires "de" before a noun.</div>
+          <div class="lnum-ex">un millón de personas · dos millones de euros</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">The hundreds — with gender agreement:</p>
+      <div class="num-ref">
+        <div class="num-ref-card"><div class="nrc-digit">100</div><div class="nrc-word">cien/ciento</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">200</div><div class="nrc-word">doscientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">300</div><div class="nrc-word">trescientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">400</div><div class="nrc-word">cuatrocientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">500</div><div class="nrc-word">quinientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">600</div><div class="nrc-word">seiscientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">700</div><div class="nrc-word">setecientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">800</div><div class="nrc-word">ochocientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">900</div><div class="nrc-word">novecientos/as</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">1,000</div><div class="nrc-word">mil</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">10,000</div><div class="nrc-word">diez mil</div></div>
+        <div class="num-ref-card"><div class="nrc-digit">1,000,000</div><div class="nrc-word">un millón</div></div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The gender surprise in hundreds:</strong> Spanish hundreds agree in gender with the noun they modify. "quinientos euros" (500 euros — masculine) but "quinientas personas" (500 people — feminine). This is unique to the hundreds — thousands and millions don't change for gender. Note that 500 = quinientos (not cincocientos!) and 700 = setecientos (not sietecientos!) — these two are frequently misspelled.
+      </div>
+    </div>
+
+    <!-- Telling the time ES -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Telling the time — Las horas</div>
+      <div class="section-title">¿Qué hora es? — Spanish time is elegant and logical</div>
+      <p>Spanish time uses the verb ser (to be) — because time is seen as a permanent/defining fact. Crucially: only 1 o'clock uses singular "Es la una" — all other hours use plural "Son las dos/tres/cuatro...".</p>
+
+      <div class="clock-sim">
+        <div class="clock-header">🕐 ¿Qué hora es? — Click a time to learn the Spanish</div>
+        <div class="clock-body">
+          <div class="clock-label">Elige una hora — Choose a time</div>
+          <div class="clock-btns" id="es-time-btns">
+            <button class="clock-btn es-time"
+              data-time="1:00"
+              data-formal="Es la una."
+              data-casual="Es la una en punto."
+              data-note="SINGULAR — only 1 o'clock uses 'es la una'. All others use 'son las'. En punto = exactly / on the dot.">
+              1:00
+            </button>
+            <button class="clock-btn es-time"
+              data-time="3:00"
+              data-formal="Son las tres."
+              data-casual="Son las tres en punto."
+              data-note="PLURAL — Son las tres/cuatro/cinco... All hours except 1 use 'son las'. The hour is feminine: la una, las dos.">
+              3:00
+            </button>
+            <button class="clock-btn es-time"
+              data-time="3:15"
+              data-formal="Son las tres y cuarto."
+              data-casual="Son las tres y quince."
+              data-note="Y cuarto = and a quarter (15 min). Y quince works too. Both are natural — cuarto is more colloquial.">
+              3:15
+            </button>
+            <button class="clock-btn es-time"
+              data-time="3:30"
+              data-formal="Son las tres y media."
+              data-casual="Son las tres y treinta."
+              data-note="Y media = and a half (30 min). Media agrees with hora (feminine). Son las tres y media is the most natural expression.">
+              3:30
+            </button>
+            <button class="clock-btn es-time"
+              data-time="3:45"
+              data-formal="Son las cuatro menos cuarto."
+              data-casual="Son las tres y cuarenta y cinco."
+              data-note="Menos cuarto = minus a quarter — now we subtract from the NEXT hour (cuatro). Spain tends to use 'menos'; Latin America often prefers 'y cuarenta y cinco'.">
+              3:45
+            </button>
+            <button class="clock-btn es-time"
+              data-time="12:00"
+              data-formal="Es mediodía. / Es medianoche."
+              data-casual="Son las doce."
+              data-note="Mediodía = midday/noon. Medianoche = midnight. These special words avoid the AM/PM confusion. Son las doce works for both noon and midnight (context clarifies).">
+              12:00
+            </button>
+            <button class="clock-btn es-time"
+              data-time="8:20"
+              data-formal="Son las ocho y veinte."
+              data-casual="Son las ocho y veinte."
+              data-note="Y veinte = and twenty minutes. No special words needed — just hour y minutes. Simple!">
+              8:20
+            </button>
+            <button class="clock-btn es-time"
+              data-time="7:50"
+              data-formal="Son las ocho menos diez."
+              data-casual="Son las siete y cincuenta."
+              data-note="Menos diez = minus ten — we subtract 10 from the next hour (ocho). Latin American speakers often prefer 'siete y cincuenta' to avoid the subtraction.">
+              7:50
+            </button>
+          </div>
+          <div class="clock-result" id="es-clock-result">
+            <div class="cr-empty">Selecciona una hora arriba — Select a time above</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-green" style="margin-top:12px">
+        <strong>De la mañana / de la tarde / de la noche:</strong> Instead of AM/PM, Spanish specifies: de la mañana (morning, ~midnight to noon) · de la tarde (afternoon, ~noon to sunset) · de la noche (evening/night, ~sunset to midnight). "Son las tres de la tarde" = it's 3 in the afternoon. "Son las diez de la noche" = it's 10 at night. More descriptive and less ambiguous than AM/PM!
+      </div>
+    </div>
+
+    <!-- Days and months ES -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Days, months &amp; the Spanish calendar</div>
+      <div class="section-title">El calendario español — lowercase, Latin roots, Monday first</div>
+      <p>Two immediate differences from English: days and months are NOT capitalised in Spanish (unless starting a sentence), and the week officially starts on <strong>Monday</strong>, not Sunday.</p>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">Días de la semana — Days of the week (named after planets, like English!):</p>
+      <div class="day-grid">
+        <div class="day-card"><div class="day-en">Monday</div><div class="day-es">lunes</div><div class="day-rom">Luna (Moon)</div></div>
+        <div class="day-card"><div class="day-en">Tuesday</div><div class="day-es">martes</div><div class="day-rom">Marte (Mars)</div></div>
+        <div class="day-card"><div class="day-en">Wednesday</div><div class="day-es">miércoles</div><div class="day-rom">Mercurio (Mercury)</div></div>
+        <div class="day-card"><div class="day-en">Thursday</div><div class="day-es">jueves</div><div class="day-rom">Júpiter (Jupiter)</div></div>
+        <div class="day-card"><div class="day-en">Friday</div><div class="day-es">viernes</div><div class="day-rom">Venus (Venus)</div></div>
+        <div class="day-card weekend"><div class="day-en">Saturday</div><div class="day-es">sábado</div><div class="day-rom">Sabbath (Hebrew origin!)</div></div>
+        <div class="day-card weekend"><div class="day-en">Sunday</div><div class="day-es">domingo</div><div class="day-rom">Dominicus (Lord's day)</div></div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Meses del año — Months of the year:</p>
+      <div class="cal-grid">
+        <div class="cal-card"><div class="cal-num">1</div><div class="cal-en">January</div><div class="cal-es">enero</div><div class="cal-note">Janus (Roman god of beginnings)</div></div>
+        <div class="cal-card"><div class="cal-num">2</div><div class="cal-en">February</div><div class="cal-es">febrero</div><div class="cal-note">Februa (Roman purification festival)</div></div>
+        <div class="cal-card"><div class="cal-num">3</div><div class="cal-en">March</div><div class="cal-es">marzo</div><div class="cal-note">Marte (Mars, Roman god of war)</div></div>
+        <div class="cal-card"><div class="cal-num">4</div><div class="cal-en">April</div><div class="cal-es">abril</div><div class="cal-note">Latin aperire (to open — spring buds)</div></div>
+        <div class="cal-card"><div class="cal-num">5</div><div class="cal-en">May</div><div class="cal-es">mayo</div><div class="cal-note">Maia (Roman goddess of growth)</div></div>
+        <div class="cal-card"><div class="cal-num">6</div><div class="cal-en">June</div><div class="cal-es">junio</div><div class="cal-note">Juno (Roman goddess, wife of Jupiter)</div></div>
+        <div class="cal-card"><div class="cal-num">7</div><div class="cal-en">July</div><div class="cal-es">julio</div><div class="cal-note">Julius Caesar — named after him!</div></div>
+        <div class="cal-card"><div class="cal-num">8</div><div class="cal-en">August</div><div class="cal-es">agosto</div><div class="cal-note">Augustus Caesar — the emperor</div></div>
+        <div class="cal-card"><div class="cal-num">9</div><div class="cal-en">September</div><div class="cal-es">septiembre</div><div class="cal-note">Septem = 7 (was the 7th month originally!)</div></div>
+        <div class="cal-card"><div class="cal-num">10</div><div class="cal-en">October</div><div class="cal-es">octubre</div><div class="cal-note">Octo = 8 (was the 8th month)</div></div>
+        <div class="cal-card"><div class="cal-num">11</div><div class="cal-en">November</div><div class="cal-es">noviembre</div><div class="cal-note">Novem = 9 (was the 9th month)</div></div>
+        <div class="cal-card"><div class="cal-num">12</div><div class="cal-en">December</div><div class="cal-es">diciembre</div><div class="cal-note">Decem = 10 (was the 10th month)</div></div>
+      </div>
+
+      <div class="tip-box tip-blue" style="margin-top:12px">
+        <strong>Spanish date format — DD/MM/YYYY, like British English:</strong> Spain and Latin America use day/month/year — agreeing with British English, not American. Christmas Day = 25/12/2025. How to say a date: "el veinticinco de diciembre de dos mil veinticinco" (the 25th of December 2025). The structure is: el [day] de [month] de [year]. Unlike English, Spanish doesn't use ordinals for dates — it uses cardinal numbers: el cinco (the 5th), not el quinto.
+      </div>
+    </div>
+
+    <!-- Date phrases ES -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Essential time &amp; date phrases</div>
+      <div class="section-title">Talking about when things happen — prepositions of time in Spanish</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🕐</span>
+          <div>
+            <div class="phrase-native">¿Qué hora es? / ¿A qué hora...?</div>
+            <div class="phrase-sub">/ke ˈoɾa es/ · /a ke ˈoɾa/</div>
+            <div class="phrase-en">What time is it? / At what time...?</div>
+            <div class="phrase-note">¿A qué hora llega el tren? = At what time does the train arrive? Answer: "A las tres y media" (At half past three). The preposition "a" = at (for times).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📅</span>
+          <div>
+            <div class="phrase-native">¿Qué día es hoy? / ¿A cuántos estamos?</div>
+            <div class="phrase-sub">What day is today? / What's the date? (lit. "To how many are we?")</div>
+            <div class="phrase-en">Asking the day and date</div>
+            <div class="phrase-note">¿A cuántos estamos? is the uniquely Spanish way of asking the date — literally "at how many [of the month] are we?". Answer: "Estamos a quince de marzo" (It's the 15th of March).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🗓️</span>
+          <div>
+            <div class="phrase-native">El lunes · En marzo · En 2025 · A las tres</div>
+            <div class="phrase-en">Prepositions with time</div>
+            <div class="phrase-note">El [day] = on [day] — no "en" for days! En [month/year] = in [month/year]. A las [time] = at [time]. "El lunes voy al médico" (On Monday I go to the doctor). "En marzo hace frío" (In March it's cold).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">⏩</span>
+          <div>
+            <div class="phrase-native">hoy · mañana · ayer · pasado mañana</div>
+            <div class="phrase-sub">today · tomorrow · yesterday · the day after tomorrow</div>
+            <div class="phrase-en">Essential time reference words</div>
+            <div class="phrase-note">Note: mañana means BOTH "tomorrow" AND "morning" — context clarifies. "Hasta mañana" = See you tomorrow. "Por la mañana" = in the morning. Also: la semana pasada (last week) · la semana que viene (next week).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🎉</span>
+        <div class="culture-text">
+          <strong>Fiestas nacionales — Spain's calendar of celebration</strong><br/>
+          Spain has more public holidays than almost any other European country — 14 national holidays plus additional regional ones, meaning some regions celebrate up to 17 days per year. The most culturally significant: <em>Semana Santa</em> (Holy Week before Easter) — elaborate processions fill city streets for an entire week. <em>El Día de la Hispanidad</em> (October 12th) celebrates Spanish-speaking culture globally. <em>La Nochevieja</em> (New Year's Eve) brings a uniquely Spanish tradition — eating 12 grapes at midnight, one for each stroke of the clock, each grape representing good luck for a month of the coming year. And <em>La Navidad</em> (Christmas) in Spain centres not on December 25th but on January 6th — <em>El Día de los Reyes Magos</em> (Three Kings Day), when children receive their gifts. Knowing these calendar landmarks makes the language come alive with cultural context.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 4 Spanish — numbers, time &amp; calendar</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "It's 1 o'clock" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Son las una.</button>
+          <button class="quiz-btn" data-answer="correct">Es la una.</button>
+          <button class="quiz-btn" data-answer="wrong">Son los uno.</button>
+          <button class="quiz-btn" data-answer="wrong">Es el uno.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "500 houses" in Spanish? (house = casa, feminine)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">quinientos casas</button>
+          <button class="quiz-btn" data-answer="correct">quinientas casas</button>
+          <button class="quiz-btn" data-answer="wrong">cinco cientos casas</button>
+          <button class="quiz-btn" data-answer="wrong">quiniente casas</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Are days and months capitalised in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Yes — always capitalised like in English</button>
+          <button class="quiz-btn" data-answer="correct">No — lowercase unless starting a sentence</button>
+          <button class="quiz-btn" data-answer="wrong">Only months are capitalised</button>
+          <button class="quiz-btn" data-answer="wrong">Only days are capitalised</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "mañana" mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Only "tomorrow"</button>
+          <button class="quiz-btn" data-answer="wrong">Only "morning"</button>
+          <button class="quiz-btn" data-answer="correct">Both "tomorrow" and "morning" — context tells you which</button>
+          <button class="quiz-btn" data-answer="wrong">Evening</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — numbers &amp; time</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages handle time and calendar</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Fascinating contrasts emerge — especially around date formats, ordinals, and how languages express the time of day.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Date format</td>
+        <td>YYYY/MM/DD<br/><span style="font-size:11px; color:#888">2025年12月25日<br/>Year first — logical!</span></td>
+        <td>YYYY/MM/DD<br/><span style="font-size:11px; color:#888">2025년 12월 25일<br/>Same as Japanese</span></td>
+        <td>DD/MM/YYYY (UK)<br/>MM/DD/YYYY (US)<br/><span style="font-size:11px; color:#888">Two conflicting standards!</span></td>
+        <td>DD/MM/YYYY<br/><span style="font-size:11px; color:#888">25/12/2025<br/>Matches British English</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">What time is it?</td>
+        <td>何時ですか？<br/><span style="font-size:11px; color:#888">nan-ji desu ka?<br/>Uses です (desu)</span></td>
+        <td>몇 시예요?<br/><span style="font-size:11px; color:#888">myeot si-yeyo?<br/>Uses 이에요 (ieyo)</span></td>
+        <td>What time is it?<br/><span style="font-size:11px; color:#888">Uses "to be" (is)</span></td>
+        <td>¿Qué hora es?<br/><span style="font-size:11px; color:#888">Uses ser (es)<br/>Son las... for 2+</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">3:30</td>
+        <td>3時30分<br/><span style="font-size:11px; color:#888">san-ji sanjuppun<br/>Digital only</span></td>
+        <td>3시 30분<br/><span style="font-size:11px; color:#888">se-si samsip-bun<br/>Digital only</span></td>
+        <td>Three thirty<br/>Half past three<br/><span style="font-size:11px; color:#888">Two systems!</span></td>
+        <td>Son las tres y media<br/><span style="font-size:11px; color:#888">Elegant fraction system</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Days capitalised?</td>
+        <td>N/A — no alphabet<br/><span style="font-size:11px; color:#888">月火水木金土日<br/>Characters don't capitalise</span></td>
+        <td>N/A — no alphabet<br/><span style="font-size:11px; color:#888">월화수목금토일<br/>Hangul doesn't capitalise</span></td>
+        <td>Yes — always<br/><span style="font-size:11px; color:#888">Monday, January</span></td>
+        <td>No — lowercase<br/><span style="font-size:11px; color:#888">lunes, enero</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Ordinals for dates?</td>
+        <td>No — just cardinal numbers<br/><span style="font-size:11px; color:#888">1日, 2日... (1st, 2nd...)</span></td>
+        <td>No — just cardinal numbers<br/><span style="font-size:11px; color:#888">1일, 2일...</span></td>
+        <td>Yes — ordinals spoken<br/><span style="font-size:11px; color:#888">"the twenty-fifth of December"</span></td>
+        <td>No — cardinals<br/><span style="font-size:11px; color:#888">el veinticinco de diciembre</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-purple" style="margin-top:14px">
+      <strong>The date format insight:</strong> Japanese and Korean both use the most logical format — Year/Month/Day (largest unit first, like how we write addresses largest first). Spanish and British English share Day/Month/Year. American English alone uses the counter-intuitive Month/Day/Year. The ISO 8601 international standard agrees with Japan and Korea — YYYY-MM-DD is the globally unambiguous format, yet everyday English ignores it entirely!
+    </div>
+  </div>
+
+
+  <!-- Week 5 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 5</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Present continuous tense — "I am eating" · The crucial difference between present simple and continuous · Common action verbs · Stative verbs that refuse to use -ing · Describing what's happening right now.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">The past tense — pretérito indefinido (completed past actions) · Regular past tense endings for all three verb families · The 10 most important irregular past tense verbs · Talking about what you did.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 4 complete · Click <a href="Week5.E&S.html">here</a> when you're ready for Week 5 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English clock explorer ── */
+  document.querySelectorAll('.en-time').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-time').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-clock-result').innerHTML = `
+        <div class="cr-time-big">${d.time}</div>
+        <div class="cr-en-formal">📖 Formal / Digital: <strong>${d.formal}</strong></div>
+        <div class="cr-en-casual">🗣️ Analogue / Casual: <strong>${d.casual}</strong></div>
+        <div class="cr-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish clock explorer ── */
+  document.querySelectorAll('.es-time').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-time').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-clock-result').innerHTML = `
+        <div class="cr-time-big">${d.time}</div>
+        <div class="cr-en-formal">📖 Standard: <strong>${d.formal}</strong></div>
+        <div class="cr-en-casual">🗣️ Alternative: <strong>${d.casual}</strong></div>
+        <div class="cr-note">${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
