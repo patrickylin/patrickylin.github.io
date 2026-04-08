@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 7 — English & Spanish: Modals, Past Continuous & Getting Around</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Past continuous panels */
+  .pc-panel { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 12px; font-size: 13px; line-height: 2.2; }
+
+  /* Interrupted action diagram */
+  .interrupt-diagram { display: flex; align-items: center; gap: 0; margin-top: 12px; flex-wrap: wrap; }
+  .id-block { border-radius: 8px; padding: 10px 14px; font-size: 13px; }
+  .id-block.ongoing { background: #f5f0fd; border: 0.5px solid #c8b8f0; flex: 2; }
+  .id-block.interrupt { background: #f0f5fc; border: 0.5px solid #b8d4f0; flex: 1; text-align: center; }
+  .id-block.result { background: #f0f8f5; border: 0.5px solid #a8ddc5; flex: 2; }
+  .id-arrow { font-size: 20px; color: #ccc; padding: 0 6px; flex-shrink: 0; }
+  .id-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 3px; font-weight: 600; }
+  .id-text { font-size: 14px; color: #1a1a18; font-weight: 500; }
+  .id-form { font-size: 12px; color: #888; margin-top: 2px; }
+
+  /* Modal verb table */
+  .modal-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .modal-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .modal-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .modal-table tr:last-child td { border-bottom: none; }
+  .modal-word { font-size: 18px; color: #185FA5; font-weight: 500; }
+  .modal-past { font-size: 13px; color: #888; }
+  .modal-use  { font-size: 13px; color: #333; line-height: 1.7; }
+  .modal-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Modal strength scale */
+  .modal-scale { display: flex; gap: 6px; margin-top: 12px; align-items: stretch; flex-wrap: wrap; }
+  .ms-item { border-radius: 8px; padding: 10px 12px; flex: 1; min-width: 80px; text-align: center; }
+  .ms-item.weak   { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .ms-item.medium { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .ms-item.strong { background: #fdf0ed; border: 0.5px solid #f5c4b0; }
+  .ms-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
+  .ms-modals { font-size: 14px; color: #1a1a18; font-weight: 500; line-height: 1.6; }
+
+  /* Transport vocab grid */
+  .transport-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .tr-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 10px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .tr-card:hover   { background: #f0f5fc; border-color: #b8d4f0; }
+  .tr-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .tr-icon { font-size: 26px; margin-bottom: 4px; }
+  .tr-es   { font-size: 14px; color: #1a1a18; font-weight: 500; margin-bottom: 1px; }
+  .tr-en   { font-size: 11px; color: #555; }
+  .tr-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .trd-es    { font-size: 22px; color: #1a1a18; margin-bottom: 2px; }
+  .trd-pron  { font-size: 12px; color: #888; font-family: serif; margin-bottom: 3px; }
+  .trd-en    { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .trd-note  { font-size: 12px; color: #555; line-height: 1.6; }
+  .trd-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Direction phrases */
+  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .dir-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 13px; }
+  .dir-es   { font-size: 17px; color: #1a1a18; margin-bottom: 2px; }
+  .dir-pron { font-size: 11px; color: #888; font-family: serif; margin-bottom: 2px; }
+  .dir-en   { font-size: 13px; color: #333; font-weight: 500; }
+  .dir-note { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Future tense table */
+  .conj-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .conj-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .conj-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-pronoun { font-size: 14px; color: #888; }
+  .conj-form    { font-size: 19px; font-weight: 500; color: #0a7c6e; }
+  .conj-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+  .conj-ending  { color: #D85A30; }
+
+  /* ir a + infinitive vs future */
+  .future-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .fc-card { border-radius: 12px; padding: 14px; }
+  .fc-card.ir-a   { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .fc-card.simple { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .fc-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .fc-formula { font-size: 14px; font-weight: 500; margin-bottom: 8px; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; }
+  .fc-card.ir-a   .fc-formula { color: #0f6e56; }
+  .fc-card.simple .fc-formula { color: #185FA5; }
+  .fc-uses { font-size: 13px; color: #333; line-height: 1.8; }
+  .fc-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Interactive modal builder */
+  .modal-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .modal-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .modal-body { padding: 14px; }
+  .mb-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .mb-btns  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .mb-btn   { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .mb-btn:hover    { background: #f0f0ee; }
+  .mb-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .mb-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .mbr-sentence  { font-size: 21px; color: #1a1a18; margin-bottom: 4px; }
+  .mbr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .mbr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .mbr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .future-compare, .two-col { grid-template-columns: 1fr; }
+    .transport-grid { grid-template-columns: repeat(2, 1fr); }
+    .dir-grid { grid-template-columns: 1fr; }
+    .modal-scale { flex-direction: column; }
+    .interrupt-diagram { flex-direction: column; gap: 6px; }
+    .id-block { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 7 of 16</span>
+      <h1>Modals, Past Continuous & Getting Around</h1>
+      <div class="subtitle">EN: Past continuous · Interrupted past · Modal verbs (can/could/will/should/must) · ES: Transport vocabulary · Directions · Future tense · Ir + a + infinitive</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:43%;"></div></div>
+      43% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 7 · Past continuous · Interrupted past action · 6 essential modal verbs · Nuance and obligation</div>
+      </div>
+    </div>
+
+    <!-- Past continuous -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Past continuous — was/were + verb-ing</div>
+      <div class="section-title">The ongoing background of the past — the interrupted action pattern</div>
+      <p>The past continuous describes an action that was in progress at a specific past moment. It's formed with <strong>was/were + verb-ing</strong> — exactly like the present continuous but with past "to be". Its most important use in storytelling is the interrupted action pattern: something was happening when something else suddenly occurred.</p>
+
+      <div class="interrupt-diagram">
+        <div class="id-block ongoing">
+          <span class="id-label">Ongoing background (past continuous)</span>
+          <div class="id-text">I was sleeping</div>
+          <div class="id-form">was + sleeping</div>
+        </div>
+        <div class="id-arrow">⚡</div>
+        <div class="id-block interrupt">
+          <span class="id-label">Trigger word</span>
+          <div class="id-text">when</div>
+          <div class="id-form">or "while"</div>
+        </div>
+        <div class="id-arrow">→</div>
+        <div class="id-block result">
+          <span class="id-label">Interrupting event (past simple)</span>
+          <div class="id-text">the phone rang</div>
+          <div class="id-form">past simple — snap!</div>
+        </div>
+      </div>
+
+      <div class="pc-panel" style="margin-top:14px;">
+        <strong>The four main patterns:</strong><br/>
+        🎥 + ⚡ <em>I <strong>was reading</strong> when she <strong>called</strong>.</em> — Ongoing action interrupted by sudden event.<br/>
+        🎥 + 🎥 <em>While I <strong>was cooking</strong>, she <strong>was cleaning</strong>.</em> — Two ongoing actions happening simultaneously.<br/>
+        🖼️ <em>At 8pm last night, I <strong>was watching</strong> a film.</em> — Activity in progress at a specific past time.<br/>
+        🎥 → <em>It <strong>was raining</strong>, so we <strong>stayed</strong> inside.</em> — Background → consequence.
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>Was vs were:</strong> I/he/she/it → <strong>was</strong>. You/we/they → <strong>were</strong>. Negative: wasn't / weren't. Question: Was she sleeping? Were they working? — exactly like present continuous but in the past. The same stative verb restriction applies: "I was knowing" ❌ — stative verbs don't use continuous forms in the past either.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Past simple vs past continuous — the classic contrast:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.3;">
+        "She <strong>was walking</strong> home when it <strong>started</strong> to rain." — Walking was the background; the rain was the interruption.<br/>
+        "She <strong>walked</strong> home and it <strong>rained</strong>." — Two completed sequential events, no overlap implied.<br/>
+        "While they <strong>were talking</strong>, I <strong>finished</strong> my coffee." — Their talking was the backdrop to my finishing.<br/>
+        "What <strong>were</strong> you <strong>doing</strong> at 9pm last night?" — Asking about activity in progress at a specific time.
+      </div>
+    </div>
+
+    <!-- Modal verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Modal verbs — the six you need most</div>
+      <div class="section-title">Can · Could · Will · Would · Should · Must — the grammar of possibility and obligation</div>
+      <p>Modal verbs are auxiliary verbs that add meaning about ability, possibility, permission, obligation, and prediction. They have special grammar rules: no -s for he/she/it, no infinitive "to", always followed by the base form of the main verb, and no direct past form (they use workarounds).</p>
+
+      <table class="modal-table">
+        <tr>
+          <th style="width:90px">Modal</th>
+          <th style="width:80px">Past form</th>
+          <th>Core meanings &amp; examples</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="modal-word">can</div>
+            <div class="modal-past">past: could</div>
+          </td>
+          <td><span style="font-size:14px; color:#555;">could</span></td>
+          <td>
+            <div class="modal-use">
+              💪 Ability: <em>I <strong>can</strong> speak Japanese.</em><br/>
+              🔓 Permission (informal): <em>You <strong>can</strong> sit here.</em><br/>
+              🤔 Possibility: <em>It <strong>can</strong> get very cold in winter.</em>
+            </div>
+            <div class="modal-ex">Can you help me? · She can't drive. · Can I open the window?</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="modal-word">could</div>
+            <div class="modal-past">no past form</div>
+          </td>
+          <td><span style="font-size:14px; color:#555;">—</span></td>
+          <td>
+            <div class="modal-use">
+              📜 Past ability: <em>When I was young, I <strong>could</strong> run fast.</em><br/>
+              🎩 Polite request: <em><strong>Could</strong> you say that again?</em><br/>
+              💭 Remote possibility: <em>It <strong>could</strong> rain later.</em>
+            </div>
+            <div class="modal-ex">Could you help me? (politer than Can) · I couldn't understand.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="modal-word">will</div>
+            <div class="modal-past">past: would</div>
+          </td>
+          <td><span style="font-size:14px; color:#555;">would</span></td>
+          <td>
+            <div class="modal-use">
+              🔮 Future prediction: <em>It <strong>will</strong> rain tomorrow.</em><br/>
+              🤝 Instant decision/offer: <em>I<strong>'ll</strong> carry that for you.</em><br/>
+              ✊ Determination: <em>I <strong>will</strong> finish this.</em>
+            </div>
+            <div class="modal-ex">Will you be there? · I'll call you later. · It won't be easy.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="modal-word">would</div>
+            <div class="modal-past">no past form</div>
+          </td>
+          <td><span style="font-size:14px; color:#555;">—</span></td>
+          <td>
+            <div class="modal-use">
+              🎩 Polite request: <em><strong>Would</strong> you like some tea?</em><br/>
+              💭 Hypothetical: <em>I <strong>would</strong> travel more if I had time.</em><br/>
+              🔄 Past habit: <em>We <strong>would</strong> always eat together.</em>
+            </div>
+            <div class="modal-ex">I'd love to. · Would you mind? · She would sing every morning.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="modal-word">should</div>
+            <div class="modal-past">past: should have</div>
+          </td>
+          <td><span style="font-size:14px; color:#555;">should have</span></td>
+          <td>
+            <div class="modal-use">
+              💡 Advice/recommendation: <em>You <strong>should</strong> see a doctor.</em><br/>
+              📐 Expectation: <em>The train <strong>should</strong> arrive at noon.</em><br/>
+              😬 Mild obligation: <em>I <strong>should</strong> call my parents.</em>
+            </div>
+            <div class="modal-ex">You shouldn't worry. · Should I bring anything? · She should be here soon.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="modal-word">must</div>
+            <div class="modal-past">past: had to</div>
+          </td>
+          <td><span style="font-size:14px; color:#555;">had to</span></td>
+          <td>
+            <div class="modal-use">
+              🔴 Strong obligation: <em>You <strong>must</strong> wear a seatbelt.</em><br/>
+              🕵️ Strong deduction: <em>She <strong>must</strong> be tired — she worked 12 hours.</em><br/>
+              ⚠️ Must not = prohibition: <em>You <strong>must not</strong> park here.</em>
+            </div>
+            <div class="modal-ex">I must finish this today. · It must be cold outside. · You mustn't lie.</div>
+          </td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>Must not vs Don't have to — the critical difference:</strong><br/>
+        "You <strong>must not</strong> use your phone here." = Prohibition — it is forbidden.<br/>
+        "You <strong>don't have to</strong> use your phone here." = No obligation — you can if you want, but it isn't required.<br/>
+        This distinction is essential. Confusing them can cause serious misunderstanding — telling someone "you must not pay" when you mean "you don't have to pay" is the opposite of your intention!
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Modal strength — from weak to strong:</p>
+      <div class="modal-scale">
+        <div class="ms-item weak">
+          <div class="ms-label">Weak / Tentative</div>
+          <div class="ms-modals">could · might · may</div>
+        </div>
+        <div class="ms-item medium">
+          <div class="ms-label">Medium</div>
+          <div class="ms-modals">should · ought to · would</div>
+        </div>
+        <div class="ms-item strong">
+          <div class="ms-label">Strong / Certain</div>
+          <div class="ms-modals">will · must · have to</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive modal builder -->
+    <div class="section">
+      <div class="section-label">Interactive · Modal verb selector</div>
+      <div class="section-title">Choose a situation — see which modal fits and why</div>
+      <div class="modal-sim">
+        <div class="modal-header">🇬🇧 Which modal? — Real situations</div>
+        <div class="modal-body">
+          <div class="mb-label">Choose a situation</div>
+          <div class="mb-btns" id="en-modal-btns">
+            <button class="mb-btn en-modal"
+              data-sentence="You should see a doctor about that cough."
+              data-breakdown="should = advice / recommendation (not compulsory — you'd be wise to)"
+              data-note="Should gives advice without forcing. 'You must see a doctor' is much stronger — almost an order. 'You could see a doctor' is even softer — just a suggestion.">
+              🩺 Giving health advice
+            </button>
+            <button class="mb-btn en-modal"
+              data-sentence="You must show your passport at the border."
+              data-breakdown="must = strong obligation / rule (no choice — it is required)"
+              data-note="Must is used for rules and regulations — laws, official requirements. The alternative 'have to' is equally strong: 'You have to show your passport.' Both are correct here.">
+              🛂 Border control rule
+            </button>
+            <button class="mb-btn en-modal"
+              data-sentence="Could you pass me the salt, please?"
+              data-breakdown="could = polite request (softer than 'can you')"
+              data-note="Could is more polite than Can for requests. 'Can you pass the salt?' is fine but direct. 'Could you pass the salt?' adds courtesy. 'Would you mind passing the salt?' is even more formal.">
+              🧂 Polite request at dinner
+            </button>
+            <button class="mb-btn en-modal"
+              data-sentence="I'll carry your bag — it looks heavy."
+              data-breakdown="will = spontaneous offer / instant decision (made at the moment of speaking)"
+              data-note="'Will' for offers is always spontaneous — decided right now. Compare 'I'm going to carry your bag' = pre-planned. The apostrophe form 'I'll' is the natural spoken form.">
+              🎒 Spontaneous offer to help
+            </button>
+            <button class="mb-btn en-modal"
+              data-sentence="You don't have to come if you don't want to."
+              data-breakdown="don't have to = no obligation (you are free to choose)"
+              data-note="Don't have to = no compulsion. Completely different from 'must not' (= prohibited). 'You don't have to come' means your presence is optional — not forbidden!">
+              🚪 No obligation situation
+            </button>
+            <button class="mb-btn en-modal"
+              data-sentence="She must be at least forty — she's been working here since 2005."
+              data-breakdown="must = strong logical deduction (the speaker is very certain)"
+              data-note="Must for deduction = the speaker calculates something must be true based on evidence. 'She must be tired' (I can see she is exhausted). Different from obligation — same word, different meaning!">
+              🧮 Logical deduction
+            </button>
+          </div>
+          <div class="mb-result" id="en-modal-result">
+            <div class="mbr-empty">Choose a situation above to see which modal fits — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🎩</span>
+        <div class="culture-text">
+          <strong>Modals as politeness markers — the British art of softening</strong><br/>
+          In British English especially, modal verbs do enormous social work as politeness softeners. The progression "Can you help?" → "Could you help?" → "Would you be able to help?" → "I was wondering if you might possibly be able to help?" represents a scale of increasing deference and formality. Moving up the scale doesn't change the factual request — it signals more social distance, more respect, or higher stakes. Native British speakers navigate this scale instinctively, and learners who only know "can" and "must" often come across as blunter than intended. A key insight: in English, the more words you use to make a request, the more polite you are being — brevity can accidentally read as rudeness.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 7 English — past continuous &amp; modal verbs</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence uses the past continuous correctly?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I was sleep when the alarm rang.</button>
+          <button class="quiz-btn" data-answer="correct">I was sleeping when the alarm rang.</button>
+          <button class="quiz-btn" data-answer="wrong">I sleeping when the alarm rang.</button>
+          <button class="quiz-btn" data-answer="wrong">I was slept when the alarm rang.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the difference between "You must not park here" and "You don't have to park here"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">No difference — both mean parking is forbidden</button>
+          <button class="quiz-btn" data-answer="correct">Must not = forbidden · Don't have to = optional (no obligation)</button>
+          <button class="quiz-btn" data-answer="wrong">Must not is past tense · Don't have to is present</button>
+          <button class="quiz-btn" data-answer="wrong">Don't have to is more polite than must not</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which modal is best for giving friendly advice?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">must</button>
+          <button class="quiz-btn" data-answer="wrong">will</button>
+          <button class="quiz-btn" data-answer="correct">should</button>
+          <button class="quiz-btn" data-answer="wrong">must not</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"She must be tired" — what does "must" express here?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">A rule — she is required to be tired</button>
+          <button class="quiz-btn" data-answer="wrong">A polite request for her to be tired</button>
+          <button class="quiz-btn" data-answer="correct">A strong logical deduction — the speaker is almost certain she is tired</button>
+          <button class="quiz-btn" data-answer="wrong">A future prediction about tiredness</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 7 · Transport vocabulary · Asking directions · Future simple · Ir + a + infinitive · Modal expressions</div>
+      </div>
+    </div>
+
+    <!-- Transport vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Transport vocabulary — medios de transporte</div>
+      <div class="section-title">Getting around Spain and Latin America — click any transport to explore</div>
+      <div class="transport-grid" id="es-transport-grid">
+        <div class="tr-card"
+          data-es="el tren / el AVE"
+          data-pron="/el tɾen/ · /el ˈaβe/"
+          data-en="train / high-speed train"
+          data-note="Spain's AVE (Alta Velocidad Española) is one of Europe's best high-speed networks — Madrid to Barcelona in under 3 hours. RENFE is the national rail operator. Coger el tren (Spain) / tomar el tren (LatAm) = to take the train.">
+          <div class="tr-icon">🚄</div>
+          <div class="tr-es">el tren / AVE</div>
+          <div class="tr-en">train</div>
+        </div>
+        <div class="tr-card"
+          data-es="el metro"
+          data-pron="/el ˈmetɾo/"
+          data-en="underground / subway"
+          data-note="Madrid's metro is one of Europe's largest — 13 lines covering the entire city. Mexico City's Metro is one of the world's busiest. La línea (the line), el andén (the platform), la salida (the exit), el transbordo (the transfer/change).">
+          <div class="tr-icon">🚇</div>
+          <div class="tr-es">el metro</div>
+          <div class="tr-en">underground</div>
+        </div>
+        <div class="tr-card"
+          data-es="el autobús / el bus"
+          data-pron="/el autoˈbus/"
+          data-en="bus"
+          data-note="El autobús (formal) · el bus (casual) · el micro (Chile/Peru) · el camión (Mexico). Long-distance coaches are excellent in Spain and Latin America — often faster than driving. La parada = bus stop.">
+          <div class="tr-icon">🚌</div>
+          <div class="tr-es">el autobús</div>
+          <div class="tr-en">bus</div>
+        </div>
+        <div class="tr-card"
+          data-es="el taxi / el Uber"
+          data-pron="/el ˈtaksi/"
+          data-en="taxi / ride-hailing"
+          data-note="Taxis in Spain are black and white (Madrid) or yellow and black (Barcelona). Always use official licensed taxis or recognised apps. ¿Me puede llevar a...? (Could you take me to...?) is more polite than stating the destination bluntly.">
+          <div class="tr-icon">🚕</div>
+          <div class="tr-es">el taxi</div>
+          <div class="tr-en">taxi</div>
+        </div>
+        <div class="tr-card"
+          data-es="el avión"
+          data-pron="/el aˈβjon/"
+          data-en="aeroplane"
+          data-note="El avión (plane) · el aeropuerto (airport) · la terminal (terminal) · el vuelo (flight) · facturar el equipaje (to check in luggage) · el embarque (boarding) · la pista (runway). Spain's main hubs: Madrid-Barajas (MAD) and Barcelona-El Prat (BCN).">
+          <div class="tr-icon">✈️</div>
+          <div class="tr-es">el avión</div>
+          <div class="tr-en">aeroplane</div>
+        </div>
+        <div class="tr-card"
+          data-es="el barco / el ferry"
+          data-pron="/el ˈbaɾko/"
+          data-en="boat / ferry"
+          data-note="Spain has important ferry routes to the Balearic Islands (Mallorca, Ibiza, Menorca), Morocco, and the Canary Islands. El barco = boat/ship · el ferry = ferry · el crucero = cruise ship · el puerto = port/harbour.">
+          <div class="tr-icon">⛴️</div>
+          <div class="tr-es">el barco</div>
+          <div class="tr-en">boat / ferry</div>
+        </div>
+        <div class="tr-card"
+          data-es="el coche / el carro"
+          data-pron="/el ˈkotʃe/ · /el ˈkaro/"
+          data-en="car"
+          data-note="El coche (Spain) · el carro (Mexico, Colombia) · el auto (Argentina, Chile). Alquilar un coche = to hire a car. El aparcamiento / el estacionamiento = car park. Conducir (Spain) / manejar (LatAm) = to drive.">
+          <div class="tr-icon">🚗</div>
+          <div class="tr-es">el coche / carro</div>
+          <div class="tr-en">car</div>
+        </div>
+        <div class="tr-card"
+          data-es="la bicicleta / el patinete"
+          data-pron="/la biθiˈkleta/"
+          data-en="bicycle / scooter"
+          data-note="Cycling culture is huge in Spain — BiciMAD in Madrid, Bicing in Barcelona. El patinete eléctrico (electric scooter) is increasingly popular. Ir en bici = to go by bike. Many Spanish cities have excellent cycle infrastructure.">
+          <div class="tr-icon">🚲</div>
+          <div class="tr-es">la bicicleta</div>
+          <div class="tr-en">bicycle / scooter</div>
+        </div>
+        <div class="tr-card"
+          data-es="a pie / andando"
+          data-pron="/a ˈpje/ · /anˈdando/"
+          data-en="on foot / walking"
+          data-note="Ir a pie / ir andando = to go on foot. Caminar = to walk. Spanish cities are highly walkable — many historic centres are pedestrianised. ¿Está lejos a pie? (Is it far on foot?) is an essential question.">
+          <div class="tr-icon">🚶</div>
+          <div class="tr-es">a pie / andando</div>
+          <div class="tr-en">on foot</div>
+        </div>
+      </div>
+      <div class="tr-detail" id="es-transport-detail">
+        <div class="trd-empty">Tap any transport above to learn vocabulary and cultural context</div>
+      </div>
+    </div>
+
+    <!-- Asking directions -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Pedir direcciones — asking for directions</div>
+      <div class="section-title">The vocabulary to navigate any Spanish-speaking city</div>
+      <div class="dir-grid">
+        <div class="dir-card">
+          <div class="dir-es">todo recto / todo derecho</div>
+          <div class="dir-pron">/ˈtoðo ˈrekto/</div>
+          <div class="dir-en">straight ahead</div>
+          <div class="dir-note">Spain uses recto · LatAm often uses derecho</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">a la derecha</div>
+          <div class="dir-pron">/a la ðeˈɾetʃa/</div>
+          <div class="dir-en">to the right</div>
+          <div class="dir-note">Gire a la derecha = turn right</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">a la izquierda</div>
+          <div class="dir-pron">/a la iθˈkjeɾða/</div>
+          <div class="dir-en">to the left</div>
+          <div class="dir-note">Gire a la izquierda = turn left</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">al final de la calle</div>
+          <div class="dir-pron">/al fiˈnal ðe la ˈkaʎe/</div>
+          <div class="dir-en">at the end of the street</div>
+          <div class="dir-note">La calle = street · la avenida = avenue</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">en el semáforo</div>
+          <div class="dir-pron">/en el seˈmafoɾo/</div>
+          <div class="dir-en">at the traffic lights</div>
+          <div class="dir-note">Very common landmark reference</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">cruce / la esquina</div>
+          <div class="dir-pron">/ˈkɾuθe/ · /la esˈkina/</div>
+          <div class="dir-en">crossroads / corner</div>
+          <div class="dir-note">En la esquina = on the corner</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">¿A cuánto está?</div>
+          <div class="dir-pron">/a ˈkwanto esˈta/</div>
+          <div class="dir-en">How far is it?</div>
+          <div class="dir-note">Está a cinco minutos a pie (5 min walk)</div>
+        </div>
+        <div class="dir-card">
+          <div class="dir-es">Está muy cerca / lejos</div>
+          <div class="dir-pron">/esˈta mui ˈθeɾka/ · /ˈlexos/</div>
+          <div class="dir-en">It's very near / far</div>
+          <div class="dir-note">Cerca (near) · lejos (far) — essential!</div>
+        </div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px;">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🗺️</span>
+          <div>
+            <div class="phrase-native">Perdona, ¿sabes dónde está...?</div>
+            <div class="phrase-sub">/peɾˈðona ˈsaβes ˈðonde esˈta/</div>
+            <div class="phrase-en">Excuse me, do you know where [place] is?</div>
+            <div class="phrase-note">Perdona (informal) · Perdone (formal). ¿Sabes...? = Do you know...? A polite opener before asking for directions. Never just blurt out "¿Dónde está?" — the softener makes all the difference.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚇</span>
+          <div>
+            <div class="phrase-native">¿Cómo llego a...? / ¿Cómo se va a...?</div>
+            <div class="phrase-sub">/ˈkomo ˈʎeɡo a/ · /ˈkomo se ˈβa a/</div>
+            <div class="phrase-en">How do I get to...? / How do you get to...?</div>
+            <div class="phrase-note">¿Cómo llego a la estación? = How do I get to the station? ¿Cómo se va al aeropuerto? = How do you get to the airport? (impersonal se — very natural).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🎫</span>
+          <div>
+            <div class="phrase-native">Un billete para... / Un billete de ida y vuelta a...</div>
+            <div class="phrase-sub">/un biˈʎete ˈpaɾa/ · /iˈða i ˈbwelta/</div>
+            <div class="phrase-en">A ticket to... / A return ticket to...</div>
+            <div class="phrase-note">Billete (Spain) · boleto (LatAm) = ticket. Ida = one way (lit. "going"). Ida y vuelta = return (lit. "going and return"). ¿En qué andén sale el tren? = Which platform does the train leave from?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Future tense -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The future tense — futuro simple</div>
+      <div class="section-title">Attach the future endings directly to the infinitive — elegantly simple</div>
+      <p>The Spanish future simple is one of the most elegant tenses to learn: you simply add the future endings directly to the full infinitive (for ALL three verb families — no stem change needed for regular verbs). The endings are the same for -ar, -er, and -ir verbs.</p>
+
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Ending</th><th>hablar (speak)</th><th>comer (eat)</th><th>vivir (live)</th></tr>
+        <tr>
+          <td class="conj-pronoun">yo</td>
+          <td style="color:#D85A30; font-size:15px; font-weight:500">-é</td>
+          <td><span class="conj-form">hablaré</span></td>
+          <td><span class="conj-form">comeré</span></td>
+          <td><span class="conj-form">viviré</span></td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">tú</td>
+          <td style="color:#D85A30; font-size:15px; font-weight:500">-ás</td>
+          <td><span class="conj-form">hablarás</span></td>
+          <td><span class="conj-form">comerás</span></td>
+          <td><span class="conj-form">vivirás</span></td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">él/ella</td>
+          <td style="color:#D85A30; font-size:15px; font-weight:500">-á</td>
+          <td><span class="conj-form">hablará</span></td>
+          <td><span class="conj-form">comerá</span></td>
+          <td><span class="conj-form">vivirá</span></td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">nosotros</td>
+          <td style="color:#D85A30; font-size:15px; font-weight:500">-emos</td>
+          <td><span class="conj-form">hablaremos</span></td>
+          <td><span class="conj-form">comeremos</span></td>
+          <td><span class="conj-form">viviremos</span></td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">vosotros</td>
+          <td style="color:#D85A30; font-size:15px; font-weight:500">-éis</td>
+          <td><span class="conj-form">hablaréis</span></td>
+          <td><span class="conj-form">comeréis</span></td>
+          <td><span class="conj-form">viviréis</span></td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">ellos/ellas</td>
+          <td style="color:#D85A30; font-size:15px; font-weight:500">-án</td>
+          <td><span class="conj-form">hablarán</span></td>
+          <td><span class="conj-form">comerán</span></td>
+          <td><span class="conj-form">vivirán</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-green">
+        <strong>Key irregular future stems — only 12 verbs break the pattern:</strong><br/>
+        tener → tendr- (tendré) · salir → saldr- (saldré) · venir → vendr- (vendré)<br/>
+        poder → podr- (podré) · saber → sabr- (sabré) · haber → habr- (habrá)<br/>
+        querer → querr- (querré) · hacer → har- (haré) · decir → dir- (diré)<br/>
+        poner → pondr- (pondré) · caber → cabr- (cabré) · valer → valdr- (valdrá)<br/>
+        Once you know the irregular stems, the endings are always the same — so 12 stems to memorise vs 12 × 6 = 72 irregular forms. Memorise the stems!
+      </div>
+    </div>
+
+    <!-- Ir + a + infinitive -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Ir + a + infinitive — "going to" in Spanish</div>
+      <div class="section-title">The everyday alternative to the future — plans, intentions, near future</div>
+      <p>Just like English "going to", Spanish uses <strong>ir + a + infinitive</strong> to express plans and intentions — and it's used far more frequently in everyday conversation than the future simple, which tends to sound more formal or distant.</p>
+
+      <div class="future-compare">
+        <div class="fc-card ir-a">
+          <div class="fc-label">Ir + a + infinitive (going to)</div>
+          <div class="fc-formula">voy a · vas a · va a · vamos a · vais a · van a</div>
+          <div class="fc-uses">
+            📅 Near future / planned event<br/>
+            🎯 Personal intention<br/>
+            💬 Everyday casual speech<br/>
+            🔮 Prediction based on present evidence
+          </div>
+          <div class="fc-ex">
+            Voy a comer paella esta noche.<br/>
+            (I'm going to eat paella tonight.)<br/>
+            Va a llover — mira las nubes.<br/>
+            (It's going to rain — look at the clouds.)
+          </div>
+        </div>
+        <div class="fc-card simple">
+          <div class="fc-label">Future simple (futuro simple)</div>
+          <div class="fc-formula">hablaré · comerás · vivirá...</div>
+          <div class="fc-uses">
+            🔮 More distant future<br/>
+            📜 Formal predictions / promises<br/>
+            ❓ Wondering / speculation<br/>
+            📰 Written language / news
+          </div>
+          <div class="fc-ex">
+            Comeré paella algún día en Valencia.<br/>
+            (I will eat paella in Valencia someday.)<br/>
+            ¿Estará en casa? (I wonder if she's home.)
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>Vamos a — the double-duty expression:</strong> "Vamos a" literally means "We are going to" (future intention) but is also used as a direct command / suggestion: "¡Vamos a comer!" = Let's eat! / We're going to eat! Context clarifies which meaning applies. "¡Vamos!" alone = Let's go! / Come on! — one of the most energetic words in Spanish.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Modal expressions — power phrases with poder, deber, tener que:</p>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">💪</span>
+          <div>
+            <div class="phrase-native">poder + infinitivo — can / to be able to</div>
+            <div class="phrase-sub">puedo · puedes · puede · podemos · podéis · pueden</div>
+            <div class="phrase-en">Ability and permission</div>
+            <div class="phrase-note">¿Puedes ayudarme? (Can you help me?) · No puedo dormir (I can't sleep) · ¿Se puede fumar aquí? (Can one smoke here? — impersonal). Poder is the Spanish equivalent of "can" and is used constantly.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⚖️</span>
+          <div>
+            <div class="phrase-native">deber + infinitivo — should / ought to</div>
+            <div class="phrase-sub">debo · debes · debe · debemos · debéis · deben</div>
+            <div class="phrase-en">Moral obligation / strong advice</div>
+            <div class="phrase-note">Debes descansar más. (You should rest more.) · Debemos llegar a tiempo. (We ought to arrive on time.) Deber is stronger than English "should" — it implies a moral duty. For softer advice, use debería (conditional): Deberías llamarle.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🔴</span>
+          <div>
+            <div class="phrase-native">tener que + infinitivo — have to / must</div>
+            <div class="phrase-sub">tengo que · tienes que · tiene que...</div>
+            <div class="phrase-en">Obligation / necessity</div>
+            <div class="phrase-note">Tengo que estudiar más. (I have to study more.) · Tienes que ver esa película. (You have to see that film.) This is the most common way to express obligation in conversational Spanish — stronger than deber but less harsh than must.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive future / transport builder -->
+    <div class="section">
+      <div class="section-label">Interactive · Future sentence builder</div>
+      <div class="section-title">Choose a subject + plan — see ir a vs future simple in action</div>
+      <div class="modal-sim">
+        <div class="modal-header">🇪🇸 El futuro — ir a vs futuro simple</div>
+        <div class="modal-body">
+          <div class="mb-label">Choose a travel scenario</div>
+          <div class="mb-btns" id="es-future-btns">
+            <button class="mb-btn es-future"
+              data-ir="Voy a coger el tren a las ocho."
+              data-fut="Cogeré el tren mañana por la mañana."
+              data-note="Ir a = specific plan for today/tonight (near, personal). Future simple = more distant/formal statement. Both correct — register and proximity differ.">
+              🚄 Taking the train
+            </button>
+            <button class="mb-btn es-future"
+              data-ir="Vamos a pedir un taxi."
+              data-fut="Pediremos un taxi cuando lleguemos."
+              data-note="Vamos a = immediate group decision (let's get a taxi). Future = when we arrive (more conditional context). Notice: ir a feels spontaneous, future feels more planned/formal.">
+              🚕 Getting a taxi
+            </button>
+            <button class="mb-btn es-future"
+              data-ir="¿Vas a visitar Madrid este verano?"
+              data-fut="¿Visitarás Madrid este verano?"
+              data-note="Both mean 'Will you visit Madrid this summer?' but ir a sounds more natural in conversation. The future simple version is equally correct but slightly more formal.">
+              🏙️ Visiting Madrid
+            </button>
+            <button class="mb-btn es-future"
+              data-ir="Va a llover esta tarde — mira las nubes."
+              data-fut="Lloverá esta tarde según la previsión."
+              data-note="Ir a = prediction based on visible evidence (the clouds). Future simple = prediction from forecast (external information source). A perfect contrast of the two futures!">
+              🌧️ Rain prediction
+            </button>
+            <button class="mb-btn es-future"
+              data-ir="Voy a aprender español este año."
+              data-fut="Aprenderé español — lo prometo."
+              data-note="Ir a = personal intention (going to). Future simple = solemn promise (will). 'Lo prometo' reinforces the commitment. Future simple adds formality and determination to a promise.">
+              📚 Learning Spanish
+            </button>
+          </div>
+          <div class="mb-result" id="es-future-result">
+            <div class="mbr-empty">Choose a scenario to compare ir a vs the future simple</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🚄</span>
+        <div class="culture-text">
+          <strong>La red de AVE — Spain's high-speed rail revolution</strong><br/>
+          Spain has the longest high-speed rail network in Europe and the second longest in the world after China — over 3,700km of track. The AVE (Alta Velocidad Española — the acronym also means "bird" in Spanish, a deliberate wordplay) transformed how Spaniards travel. Madrid to Seville in under 2.5 hours. Madrid to Barcelona in 2h30. The trains are punctual, comfortable, and significantly cheaper than flying once you factor in airport time. Interestingly, Spain chose a unique track gauge for its AVE — the same as France's TGV standard — breaking from the wider "Iberian gauge" used by older Spanish trains. This decision was controversial but visionary: it integrated Spain into the European high-speed network. For Spanish learners, the AVE is a wonderful example of a word with multiple meanings — and proof that Spain takes its infrastructure as seriously as its language.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 7 Spanish — transport, directions &amp; future tense</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I'm going to visit Madrid" using ir + a?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Visitaré Madrid.</button>
+          <button class="quiz-btn" data-answer="correct">Voy a visitar Madrid.</button>
+          <button class="quiz-btn" data-answer="wrong">Visito Madrid.</button>
+          <button class="quiz-btn" data-answer="wrong">He visitado Madrid.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the yo future form of tener (to have)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">teneré</button>
+          <button class="quiz-btn" data-answer="wrong">tenerá</button>
+          <button class="quiz-btn" data-answer="correct">tendré</button>
+          <button class="quiz-btn" data-answer="wrong">tendrás</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "straight ahead" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">a la derecha</button>
+          <button class="quiz-btn" data-answer="wrong">a la izquierda</button>
+          <button class="quiz-btn" data-answer="correct">todo recto</button>
+          <button class="quiz-btn" data-answer="wrong">al final</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which expression means "you have to" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">puedes + infinitivo</button>
+          <button class="quiz-btn" data-answer="wrong">debes + infinitivo</button>
+          <button class="quiz-btn" data-answer="correct">tienes que + infinitivo</button>
+          <button class="quiz-btn" data-answer="wrong">vas a + infinitivo</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — expressing future &amp; ability</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages say "I will go" and "I can help"</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Modal verbs and future expressions reveal fascinating structural differences — from dedicated tenses to verb compounds to particle systems.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I will go"</td>
+        <td>行きます / 行くつもりです<br/><span style="font-size:11px; color:#888">ikimasu / iku tsumori desu<br/>(intention: "I intend to go")</span></td>
+        <td>갈 거예요<br/><span style="font-size:11px; color:#888">gal geoyeyo<br/>(-(으)ㄹ 거예요 = will/going to)</span></td>
+        <td>I will go / I'm going to go<br/><span style="font-size:11px; color:#888">Modal (will) or "going to" periphrasis</span></td>
+        <td>Iré / Voy a ir<br/><span style="font-size:11px; color:#888">Future tense OR ir + a + inf.</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I can help"</td>
+        <td>手伝えます<br/><span style="font-size:11px; color:#888">tetsudaemasu<br/>(potential form of the verb)</span></td>
+        <td>도와드릴 수 있어요<br/><span style="font-size:11px; color:#888">-(으)ㄹ 수 있다 construction</span></td>
+        <td>I can help<br/><span style="font-size:11px; color:#888">Modal verb "can" + base form</span></td>
+        <td>Puedo ayudar<br/><span style="font-size:11px; color:#888">poder (conjugated) + infinitive</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"You should rest"</td>
+        <td>休んだほうがいい<br/><span style="font-size:11px; color:#888">yasunda hō ga ii<br/>("it would be better to rest")</span></td>
+        <td>쉬는 게 좋겠어요<br/><span style="font-size:11px; color:#888">"it would be good to rest"</span></td>
+        <td>You should rest<br/><span style="font-size:11px; color:#888">Modal "should" + base form</span></td>
+        <td>Deberías descansar<br/><span style="font-size:11px; color:#888">deber conditional + infinitive</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">How modals work</td>
+        <td>Verb-ending changes<br/><span style="font-size:11px; color:#888">Potential, conditional, etc. built into verb morphology</span></td>
+        <td>Auxiliary constructions<br/><span style="font-size:11px; color:#888">-(으)ㄹ 수 있다, -(아/어)야 하다 etc. — post-verbal structures</span></td>
+        <td>Separate modal verbs<br/><span style="font-size:11px; color:#888">Can, could, will, would, should, must — invariant forms</span></td>
+        <td>Conjugated auxiliary verbs<br/><span style="font-size:11px; color:#888">Poder, deber, tener que — conjugate like regular verbs</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-purple" style="margin-top:14px">
+      <strong>The modality spectrum:</strong> Every language needs to express what is possible, obligatory, permitted, or desired — but the mechanisms differ radically. Japanese builds ability into the verb itself (potential form). Korean uses post-verbal auxiliary constructions. English uses invariant modal verbs (can never adds -s). Spanish uses fully conjugated verbs (puedo/puedes/puede...). Same communicative need — four completely different solutions. This is what makes comparative language study so illuminating.
+    </div>
+  </div>
+
+
+  <!-- Week 8 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 8</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Shopping vocabulary · Describing things (adjectives and adverbs) · Comparatives and superlatives (bigger, the biggest) · Expressing preferences · Countable and uncountable nouns.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Shopping in Spanish · Gustar and verbs like it (me gusta, me encantan) · Adjective agreement (gender and number) · Comparatives and superlatives · Colours and descriptions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 7 complete · Click <a href="Week8.E&S.html">here</a> when you're ready for Week 8 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English modal selector ── */
+  document.querySelectorAll('.en-modal').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-modal').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-modal-result').innerHTML = `
+        <div class="mbr-sentence">✅ ${d.sentence}</div>
+        <div class="mbr-breakdown">📐 <strong>Why:</strong> ${d.breakdown}</div>
+        <div class="mbr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish transport grid ── */
+  document.querySelectorAll('#es-transport-grid .tr-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-transport-grid .tr-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-transport-detail').innerHTML = `
+        <div class="trd-es">${d.es}</div>
+        <div class="trd-pron">${d.pron}</div>
+        <div class="trd-en">${d.en}</div>
+        <div class="trd-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish future builder ── */
+  document.querySelectorAll('.es-future').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-future').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-future-result').innerHTML = `
+        <div class="mbr-sentence">🟢 <strong>Ir + a:</strong> ${d.ir}</div>
+        <div class="mbr-breakdown">🔵 <strong>Future simple:</strong> ${d.fut}</div>
+        <div class="mbr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
