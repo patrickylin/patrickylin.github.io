@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 8 — English & Spanish: Shopping, Adjectives & Descriptions</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Adjective vs adverb panels */
+  .adj-adv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .aa-card { border-radius: 12px; padding: 14px; }
+  .aa-card.adj { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .aa-card.adv { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .aa-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .aa-formula { font-size: 14px; font-weight: 500; margin-bottom: 8px; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; }
+  .aa-card.adj .aa-formula { color: #0f6e56; }
+  .aa-card.adv .aa-formula { color: #185FA5; }
+  .aa-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .aa-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 5px; line-height: 1.8; }
+
+  /* Comparative table */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .comp-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .comp-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-base { font-size: 15px; color: #1a1a18; }
+  .comp-form { font-size: 15px; color: #185FA5; font-weight: 500; }
+  .comp-sup  { font-size: 15px; color: #D85030; font-weight: 500; }
+  .comp-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 2px; display: block; }
+
+  /* Countable / uncountable */
+  .cu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .cu-card { border-radius: 12px; padding: 14px; }
+  .cu-card.count   { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .cu-card.uncount { background: #fdf0ed; border: 0.5px solid #f5c4b0; }
+  .cu-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .cu-rule  { font-size: 13px; color: #333; line-height: 1.8; margin-bottom: 6px; }
+  .cu-words { font-size: 13px; color: #555; line-height: 1.9; }
+
+  /* Shopping phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Colour swatches */
+  .colour-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .colour-card { border-radius: 10px; overflow: hidden; border: 0.5px solid #e5e4e0; }
+  .colour-swatch { height: 44px; }
+  .colour-info { padding: 8px 10px; background: #fff; }
+  .colour-es { font-size: 14px; color: #1a1a18; font-weight: 500; }
+  .colour-en { font-size: 11px; color: #888; }
+  .colour-note { font-size: 10px; color: #aaa; margin-top: 2px; font-style: italic; }
+
+  /* Gustar diagram */
+  .gustar-block { background: #fdf9f0; border: 0.5px solid #f0dfa8; border-radius: 12px; padding: 14px 16px; margin-top: 12px; }
+  .gb-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 10px; }
+  .gb-row   { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+  .gb-iop   { background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 6px; padding: 5px 10px; font-size: 14px; color: #185FA5; font-weight: 500; }
+  .gb-verb  { background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 6px; padding: 5px 10px; font-size: 14px; color: #0f6e56; font-weight: 500; }
+  .gb-noun  { background: #fdf0f5; border: 0.5px solid #f0b8d0; border-radius: 6px; padding: 5px 10px; font-size: 14px; color: #8a1a44; font-weight: 500; }
+  .gb-arrow { font-size: 18px; color: #ccc; }
+  .gb-result { font-size: 15px; color: #1a1a18; font-style: italic; }
+  .gb-en    { font-size: 12px; color: #555; margin-top: 2px; }
+
+  /* Gustar conjugation */
+  .gustar-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .gustar-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .gustar-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .gustar-table tr:last-child td { border-bottom: none; }
+  .gt-pronoun { font-size: 13px; color: #888; }
+  .gt-iop     { font-size: 16px; color: #185FA5; font-weight: 500; }
+  .gt-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Adjective agreement grid */
+  .agree-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+  .agree-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 8px; padding: 10px; text-align: center; }
+  .agree-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; font-weight: 600; }
+  .agree-form  { font-size: 16px; color: #1a1a18; font-weight: 500; }
+  .agree-ex    { font-size: 11px; color: #555; margin-top: 3px; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn   { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 21px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .adj-adv-grid, .cu-grid, .two-col { grid-template-columns: 1fr; }
+    .colour-grid { grid-template-columns: repeat(3, 1fr); }
+    .agree-grid  { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 8 of 16</span>
+      <h1>Shopping, Adjectives & Descriptions</h1>
+      <div class="subtitle">EN: Adjectives &amp; adverbs · Comparatives &amp; superlatives · Countable/uncountable · Shopping phrases · ES: Gustar · Adjective agreement · Colours · Shopping vocabulary</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:50%;"></div></div>
+      50% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 8 · Adjectives &amp; adverbs · Comparatives &amp; superlatives · Countable/uncountable · Shopping</div>
+      </div>
+    </div>
+
+    <!-- Adjectives and adverbs -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Adjectives &amp; adverbs</div>
+      <div class="section-title">Words that describe — and the crucial difference between them</div>
+      <p>Adjectives describe nouns (things, people, places). Adverbs describe verbs, adjectives, or other adverbs. English keeps them strictly separate — a distinction that Spanish, Japanese, and Korean handle very differently.</p>
+      <div class="adj-adv-grid">
+        <div class="aa-card adj">
+          <div class="aa-label">Adjective — describes a noun</div>
+          <div class="aa-formula">Adjective + Noun  /  Noun + be + Adjective</div>
+          <div class="aa-uses">
+            Comes before the noun it modifies, or after a linking verb (be, seem, look, feel, taste, smell).<br/>
+            No change for gender or number — one form fits all!
+          </div>
+          <div class="aa-ex">
+            a <strong>fast</strong> car · a <strong>beautiful</strong> city<br/>
+            The soup is <strong>hot</strong>. · She seems <strong>tired</strong>.<br/>
+            three <strong>interesting</strong> books (no plural -s on adj!)
+          </div>
+        </div>
+        <div class="aa-card adv">
+          <div class="aa-label">Adverb — describes a verb or adjective</div>
+          <div class="aa-formula">Most adjectives + -ly  →  adverb</div>
+          <div class="aa-uses">
+            Modifies how, when, where, or to what degree an action happens. Position is flexible — but usually after the verb or at the sentence end.
+          </div>
+          <div class="aa-ex">
+            She drives <strong>quickly</strong>. (how)<br/>
+            He speaks <strong>very clearly</strong>. (degree + how)<br/>
+            I <strong>completely</strong> agree. (degree)<br/>
+            It's <strong>incredibly</strong> hot today. (degree + adj)
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>The -ly rule and its exceptions:</strong> Most adverbs add -ly to the adjective: slow→slowly · careful→carefully · happy→happily (y→ily). But several common adverbs are identical to their adjectives — no -ly: fast (adj &amp; adv) · hard · early · late · high · low. And "good" (adj) → "well" (adv): "She is a good singer" vs "She sings well." Never say "She sings good" — one of the most frequent errors in learner English.
+      </div>
+    </div>
+
+    <!-- Comparatives and superlatives -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Comparatives &amp; superlatives</div>
+      <div class="section-title">Bigger, the biggest — comparing things in English</div>
+      <p>English forms comparatives and superlatives in two ways: with <strong>-er / -est</strong> endings (for short adjectives) or with <strong>more / most</strong> (for longer adjectives). The rule of thumb: one syllable uses -er/-est; three or more syllables use more/most; two syllables can go either way.</p>
+
+      <table class="comp-table">
+        <tr><th>Base adjective</th><th>Comparative (-er / more)</th><th>Superlative (-est / most)</th></tr>
+        <tr>
+          <td class="comp-base">fast</td>
+          <td><span class="comp-form">faster</span></td>
+          <td><span class="comp-sup">the fastest</span><span class="comp-ex">Tokyo is the fastest city in the world.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">big</td>
+          <td><span class="comp-form">bigger</span></td>
+          <td><span class="comp-sup">the biggest</span><span class="comp-ex">China is the biggest country by population.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">happy</td>
+          <td><span class="comp-form">happier</span></td>
+          <td><span class="comp-sup">the happiest</span><span class="comp-ex">She was the happiest person in the room.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">expensive</td>
+          <td><span class="comp-form">more expensive</span></td>
+          <td><span class="comp-sup">the most expensive</span><span class="comp-ex">This is the most expensive restaurant in town.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">interesting</td>
+          <td><span class="comp-form">more interesting</span></td>
+          <td><span class="comp-sup">the most interesting</span><span class="comp-ex">That was the most interesting lecture I've heard.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">good</td>
+          <td><span class="comp-form">better</span></td>
+          <td><span class="comp-sup">the best</span><span class="comp-ex">This is the best sushi I've ever eaten.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">bad</td>
+          <td><span class="comp-form">worse</span></td>
+          <td><span class="comp-sup">the worst</span><span class="comp-ex">That was the worst film I've ever seen.</span></td>
+        </tr>
+        <tr>
+          <td class="comp-base">far</td>
+          <td><span class="comp-form">farther / further</span></td>
+          <td><span class="comp-sup">the farthest / furthest</span><span class="comp-ex">Which station is further from the centre?</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-blue">
+        <strong>Key comparative structures:</strong><br/>
+        A is <strong>-er / more ~ than</strong> B: "Tokyo is bigger <strong>than</strong> Osaka."<br/>
+        A is <strong>as ~ as</strong> B: "Korean food is <strong>as</strong> spicy <strong>as</strong> I expected."<br/>
+        A is <strong>not as ~ as</strong> B: "This hotel is <strong>not as</strong> expensive <strong>as</strong> the other one."<br/>
+        The <strong>-er, the -er</strong>: "The <strong>harder</strong> you work, the <strong>better</strong> the results."
+      </div>
+    </div>
+
+    <!-- Countable and uncountable -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Countable &amp; uncountable nouns</div>
+      <div class="section-title">A hidden grammar system that determines articles and quantity words</div>
+      <p>English nouns divide into two categories that affect the words used with them. This system doesn't exist in Japanese or Korean, and works differently in Spanish — making it a genuinely novel concept for East Asian language speakers.</p>
+      <div class="cu-grid">
+        <div class="cu-card count">
+          <div class="cu-label">Countable — can be counted</div>
+          <div class="cu-rule">Use a/an, a number, or many/few. Can be singular or plural.</div>
+          <div class="cu-words">
+            a book · three books · <strong>many</strong> books · <strong>a few</strong> books<br/>
+            an apple · five apples · <strong>several</strong> apples<br/>
+            a chair · <strong>how many</strong> chairs?<br/><br/>
+            ✅ Can say: <em>one book, two books, a book</em>
+          </div>
+        </div>
+        <div class="cu-card uncount">
+          <div class="cu-label">Uncountable — cannot be directly counted</div>
+          <div class="cu-rule">No a/an, no plural -s. Use much/little. Needs a "measure word" to count portions.</div>
+          <div class="cu-words">
+            water · rice · music · information<br/>
+            advice · furniture · luggage · weather<br/>
+            <strong>much</strong> water · <strong>a little</strong> milk<br/><br/>
+            ❌ Cannot say: <em>a water, two rices, an information</em><br/>
+            ✅ Instead say: <em>a glass of water, two bowls of rice, a piece of information</em>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>Common uncountable traps for learners:</strong> advice (NOT "an advice") · news (NOT "a news") · information (NOT "an information") · luggage/baggage (NOT "a luggage") · furniture (NOT "a furniture") · progress (NOT "a progress") · research (NOT "a research") · work when meaning employment (NOT "a work" — but "a piece of work" ✅). These are among the most frequent errors in learner English because the corresponding words in other languages ARE countable.
+      </div>
+    </div>
+
+    <!-- Shopping phrases EN -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Shopping phrases</div>
+      <div class="section-title">Everything from browsing to buying in English</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🛍️</span>
+          <div>
+            <div class="phrase-native">I'm just looking, thanks.</div>
+            <div class="phrase-en">Polite response when a shop assistant approaches</div>
+            <div class="phrase-note">The most-used phrase in any English-speaking shop. Prevents an unwanted sales pitch while being completely polite. Equivalent: "Just browsing, thanks."</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💰</span>
+          <div>
+            <div class="phrase-native">How much is this / are these?</div>
+            <div class="phrase-en">Asking the price (singular / plural)</div>
+            <div class="phrase-note">Note the singular/plural switch: "How much <strong>is</strong> this?" (one item) vs "How much <strong>are</strong> these?" (multiple items). Also: "What's the price of...?" or "How much does it cost?"</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">👗</span>
+          <div>
+            <div class="phrase-native">Do you have this in a different size / colour?</div>
+            <div class="phrase-en">Asking for alternatives</div>
+            <div class="phrase-note">Size vocabulary: extra small (XS) · small (S) · medium (M) · large (L) · extra large (XL). British English: colour. American English: color. Both understood globally.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🔄</span>
+          <div>
+            <div class="phrase-native">Can I try this on? / Where are the fitting rooms?</div>
+            <div class="phrase-en">Trying on clothing</div>
+            <div class="phrase-note">Fitting rooms (UK) = changing rooms (UK/AUS) = dressing rooms (US). "Try on" = phrasal verb meaning to put on clothing to see if it fits. "I'll take it" = I'll buy it.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💳</span>
+          <div>
+            <div class="phrase-native">I'll take it. / Could I pay by card?</div>
+            <div class="phrase-en">Deciding to buy / payment method</div>
+            <div class="phrase-note">Contactless (tap to pay) is now universal in the UK. "Do you accept card?" / "Is contactless OK?" Cash is declining rapidly — many UK shops are card-only since 2020.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">↩️</span>
+          <div>
+            <div class="phrase-native">I'd like to return / exchange this, please.</div>
+            <div class="phrase-en">Returns and exchanges</div>
+            <div class="phrase-note">Return = give it back for a refund. Exchange = swap it for something else. "I have the receipt." / "It doesn't fit." / "It's faulty." — reasons for returning. Most shops have a 28–30 day return policy.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive comparatives EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Comparative &amp; superlative builder</div>
+      <div class="section-title">Choose an adjective — see comparative and superlative forms with examples</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Comparative &amp; superlative explorer</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose an adjective</div>
+          <div class="bl-btns" id="en-comp-btns">
+            <button class="bl-btn en-comp"
+              data-base="cheap"
+              data-comp="cheaper"
+              data-sup="the cheapest"
+              data-rule="1 syllable → add -er / -est"
+              data-ex-comp="This jacket is cheaper than the other one."
+              data-ex-sup="That market has the cheapest vegetables in the city.">
+              cheap 💰
+            </button>
+            <button class="bl-btn en-comp"
+              data-base="beautiful"
+              data-comp="more beautiful"
+              data-sup="the most beautiful"
+              data-rule="3 syllables → use more / most"
+              data-ex-comp="Kyoto is more beautiful than I expected."
+              data-ex-sup="That was the most beautiful sunset I've ever seen.">
+              beautiful 🌅
+            </button>
+            <button class="bl-btn en-comp"
+              data-base="good"
+              data-comp="better"
+              data-sup="the best"
+              data-rule="Irregular — must memorise!"
+              data-ex-comp="This coffee is much better than yesterday's."
+              data-ex-sup="This is the best ramen I've ever eaten.">
+              good ⭐
+            </button>
+            <button class="bl-btn en-comp"
+              data-base="large"
+              data-comp="larger"
+              data-sup="the largest"
+              data-rule="Silent -e → add -r / -st only"
+              data-ex-comp="The new apartment is larger than the old one."
+              data-ex-sup="Tokyo is the largest city in the world.">
+              large 📐
+            </button>
+            <button class="bl-btn en-comp"
+              data-base="hot"
+              data-comp="hotter"
+              data-sup="the hottest"
+              data-rule="1 syllable, short vowel + consonant → double the consonant"
+              data-ex-comp="August is hotter than June in Spain."
+              data-ex-sup="July is the hottest month of the year.">
+              hot 🔥
+            </button>
+            <button class="bl-btn en-comp"
+              data-base="far"
+              data-comp="further / farther"
+              data-sup="the furthest / farthest"
+              data-rule="Irregular — two acceptable forms!"
+              data-ex-comp="The station is further than I thought."
+              data-ex-sup="Which is the furthest planet from the Sun?">
+              far 🌍
+            </button>
+          </div>
+          <div class="bl-result" id="en-comp-result">
+            <div class="blr-empty">Choose an adjective above to explore its comparative and superlative forms</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏬</span>
+        <div class="culture-text">
+          <strong>British shopping culture — queuing, politeness, and the art of the receipt</strong><br/>
+          Shopping in Britain comes with unwritten social rules as firm as any grammar rule. The queue (line) is sacred — jumping it is one of the most serious social offences in British culture. Shop assistants are addressed politely and thanked even for the smallest interaction. "Cheers" (casual thank you) is ubiquitous. Bargaining over prices is not done in mainstream shops — but is perfectly acceptable in markets, car boot sales, and independent traders. The phrase "I'm just looking" is so deeply embedded that shop assistants will immediately back away upon hearing it. And the receipt (always kept!) is essential — British consumer law gives strong rights to returns and refunds, making the paper trail genuinely valuable. Unlike Japan (where wrapping and presentation are paramount), British shopping culture prizes efficiency, practicality, and value for money above all.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 8 English — adjectives, comparatives &amp; shopping</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">She sings good.</button>
+          <button class="quiz-btn" data-answer="correct">She sings well.</button>
+          <button class="quiz-btn" data-answer="wrong">She sings goodly.</button>
+          <button class="quiz-btn" data-answer="wrong">She is singing good.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the comparative of "good"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">gooder</button>
+          <button class="quiz-btn" data-answer="wrong">more good</button>
+          <button class="quiz-btn" data-answer="correct">better</button>
+          <button class="quiz-btn" data-answer="wrong">the best</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which of these is an uncountable noun in English?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">book</button>
+          <button class="quiz-btn" data-answer="wrong">apple</button>
+          <button class="quiz-btn" data-answer="correct">advice</button>
+          <button class="quiz-btn" data-answer="wrong">chair</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask the price of multiple items in a shop?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">How much is these?</button>
+          <button class="quiz-btn" data-answer="correct">How much are these?</button>
+          <button class="quiz-btn" data-answer="wrong">How many are these?</button>
+          <button class="quiz-btn" data-answer="wrong">What price is these?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 8 · Gustar &amp; verbs like it · Adjective agreement · Colours · Shopping vocabulary</div>
+      </div>
+    </div>
+
+    <!-- Gustar -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Gustar — the verb that works backwards</div>
+      <div class="section-title">The most surprising grammar pattern in Spanish — and one of the most beautiful</div>
+      <p>Gustar means "to please" or "to be pleasing to" — not "to like". The subject of gustar is the thing being liked, not the person doing the liking. This reversal trips up English speakers because English puts the liker first, but Spanish puts the liked thing first.</p>
+
+      <div class="gustar-block">
+        <div class="gb-title">How gustar works — the structure reversed:</div>
+        <div class="gb-row">
+          <div class="gb-iop">me</div>
+          <div class="gb-arrow">+</div>
+          <div class="gb-verb">gusta</div>
+          <div class="gb-arrow">+</div>
+          <div class="gb-noun">el café</div>
+          <div class="gb-arrow">→</div>
+          <div>
+            <div class="gb-result">Me gusta el café.</div>
+            <div class="gb-en">I like coffee. (lit. "Coffee pleases me.")</div>
+          </div>
+        </div>
+        <div class="gb-row" style="margin-top:10px;">
+          <div class="gb-iop">me</div>
+          <div class="gb-arrow">+</div>
+          <div class="gb-verb">gustan</div>
+          <div class="gb-arrow">+</div>
+          <div class="gb-noun">los gatos</div>
+          <div class="gb-arrow">→</div>
+          <div>
+            <div class="gb-result">Me gustan los gatos.</div>
+            <div class="gb-en">I like cats. (lit. "Cats please me.") — plural noun → gustan!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The two forms of gustar:</strong> <strong>gusta</strong> — when the subject (the liked thing) is singular or an infinitive: "Me gusta el chocolate" · "Me gusta nadar". <strong>gustan</strong> — when the subject is plural: "Me gustan las películas de acción" · "Me gustan los idiomas." The person doing the liking is NEVER the subject — they appear as an indirect object pronoun (me, te, le, nos, os, les).
+      </div>
+
+      <table class="gustar-table">
+        <tr><th>Person</th><th>Indirect object pronoun</th><th>Example</th><th>English</th></tr>
+        <tr><td class="gt-pronoun">I</td><td><span class="gt-iop">me</span></td><td class="gt-ex">Me gusta el jazz.</td><td style="font-size:12px; color:#555">I like jazz.</td></tr>
+        <tr><td class="gt-pronoun">You (informal)</td><td><span class="gt-iop">te</span></td><td class="gt-ex">¿Te gustan las tapas?</td><td style="font-size:12px; color:#555">Do you like tapas?</td></tr>
+        <tr><td class="gt-pronoun">He / She / You (formal)</td><td><span class="gt-iop">le</span></td><td class="gt-ex">Le gusta mucho bailar.</td><td style="font-size:12px; color:#555">She/He loves to dance.</td></tr>
+        <tr><td class="gt-pronoun">We</td><td><span class="gt-iop">nos</span></td><td class="gt-ex">Nos gustan los idiomas.</td><td style="font-size:12px; color:#555">We like languages.</td></tr>
+        <tr><td class="gt-pronoun">You all (Spain)</td><td><span class="gt-iop">os</span></td><td class="gt-ex">¿Os gusta la paella?</td><td style="font-size:12px; color:#555">Do you all like paella?</td></tr>
+        <tr><td class="gt-pronoun">They / You all (formal)</td><td><span class="gt-iop">les</span></td><td class="gt-ex">Les encanta el flamenco.</td><td style="font-size:12px; color:#555">They love flamenco.</td></tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Other verbs that work like gustar — the "backwards" verb family:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.2;">
+        <strong>encantar</strong> — to love (stronger than gustar): <em>Me encanta el sushi.</em> (I love sushi.)<br/>
+        <strong>molestar</strong> — to bother / to annoy: <em>Me molesta el ruido.</em> (Noise bothers me.)<br/>
+        <strong>interesar</strong> — to interest: <em>¿Te interesa la historia?</em> (Are you interested in history?)<br/>
+        <strong>doler</strong> — to hurt / ache: <em>Me duele la cabeza.</em> (My head hurts.)<br/>
+        <strong>quedar</strong> — to fit / suit: <em>¿Te queda bien?</em> (Does it fit you well?)<br/>
+        <strong>faltar</strong> — to be missing / to lack: <em>Me faltan cinco euros.</em> (I'm five euros short.)
+      </div>
+    </div>
+
+    <!-- Adjective agreement -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Adjective agreement — concuerda con el sustantivo</div>
+      <div class="section-title">Every Spanish adjective must match its noun in gender AND number</div>
+      <p>This is one of the most fundamental — and most practised — aspects of Spanish. Every adjective must agree with the noun it modifies in both gender (masculine/feminine) and number (singular/plural). English adjectives never change — "a red car", "red cars", "a red house" all use "red". Spanish changes the adjective every time.</p>
+
+      <div class="agree-grid">
+        <div class="agree-card">
+          <div class="agree-label">Masc. Singular</div>
+          <div class="agree-form">rojo</div>
+          <div class="agree-ex">el coche rojo</div>
+        </div>
+        <div class="agree-card">
+          <div class="agree-label">Fem. Singular</div>
+          <div class="agree-form">roja</div>
+          <div class="agree-ex">la casa roja</div>
+        </div>
+        <div class="agree-card">
+          <div class="agree-label">Masc. Plural</div>
+          <div class="agree-form">rojos</div>
+          <div class="agree-ex">los coches rojos</div>
+        </div>
+        <div class="agree-card">
+          <div class="agree-label">Fem. Plural</div>
+          <div class="agree-form">rojas</div>
+          <div class="agree-ex">las casas rojas</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>Adjectives ending in -e or a consonant — no feminine change:</strong> Adjectives ending in -e have only singular/plural forms: grande→grandes (no gender change). Adjectives ending in a consonant also don't change for gender: azul→azules · joven→jóvenes · feliz→felices. Only adjectives ending in -o change to -a for feminine. Nationalities ending in a consonant DO add -a: español→española · francés→francesa · inglés→inglesa.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Position matters — before or after the noun changes meaning!</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.2;">
+        <strong>After the noun</strong> (most adjectives — distinguishing/classifying):<br/>
+        <em>un hombre pobre</em> = a poor man (financially poor)<br/>
+        <em>una ciudad grande</em> = a large city<br/><br/>
+        <strong>Before the noun</strong> (emphatic / emotional / certain adjectives):<br/>
+        <em>un pobre hombre</em> = a poor man (pitiable — changes meaning!)<br/>
+        <em>una gran ciudad</em> = a great city (grande→gran before noun = great, not large)<br/><br/>
+        <strong>Always before the noun:</strong> numbers · possessives · demonstratives · bueno/malo (can precede — bueno→buen / malo→mal)
+      </div>
+    </div>
+
+    <!-- Colours -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Los colores — colours in Spanish</div>
+      <div class="section-title">Colours that agree — and some surprising exceptions</div>
+      <div class="colour-grid">
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#e63946;"></div>
+          <div class="colour-info"><div class="colour-es">rojo/a</div><div class="colour-en">red</div><div class="colour-note">agrees: rojo/roja/rojos/rojas</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#2196f3;"></div>
+          <div class="colour-info"><div class="colour-es">azul</div><div class="colour-en">blue</div><div class="colour-note">ends in -l: azul/azul/azules/azules</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#4caf50;"></div>
+          <div class="colour-info"><div class="colour-es">verde</div><div class="colour-en">green</div><div class="colour-note">ends in -e: verde/verde/verdes/verdes</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#ff9800;"></div>
+          <div class="colour-info"><div class="colour-es">naranja</div><div class="colour-en">orange</div><div class="colour-note">invariable! naranja for all genders &amp; numbers</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#9c27b0;"></div>
+          <div class="colour-info"><div class="colour-es">morado/a</div><div class="colour-en">purple</div><div class="colour-note">agrees fully: morado/morada</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#795548;"></div>
+          <div class="colour-info"><div class="colour-es">marrón</div><div class="colour-en">brown</div><div class="colour-note">marrón/marrón/marrones/marrones</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#f5f5f5; border:0.5px solid #eee;"></div>
+          <div class="colour-info"><div class="colour-es">blanco/a</div><div class="colour-en">white</div><div class="colour-note">agrees fully: blanco/blanca</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#212121;"></div>
+          <div class="colour-info"><div class="colour-es">negro/a</div><div class="colour-en">black</div><div class="colour-note">agrees fully: negro/negra</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#ffd700;"></div>
+          <div class="colour-info"><div class="colour-es">amarillo/a</div><div class="colour-en">yellow</div><div class="colour-note">agrees fully: amarillo/amarilla</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#9e9e9e;"></div>
+          <div class="colour-info"><div class="colour-es">gris</div><div class="colour-en">grey</div><div class="colour-note">gris/gris/grises/grises</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#ff69b4;"></div>
+          <div class="colour-info"><div class="colour-es">rosa</div><div class="colour-en">pink</div><div class="colour-note">invariable like naranja! rosa for all</div></div>
+        </div>
+        <div class="colour-card">
+          <div class="colour-swatch" style="background:#00bcd4;"></div>
+          <div class="colour-info"><div class="colour-es">celeste</div><div class="colour-en">sky blue</div><div class="colour-note">ends in -e: celeste/celeste/celestes</div></div>
+        </div>
+      </div>
+      <div class="tip-box tip-purple">
+        <strong>Invariable colours — the exception:</strong> Some colours borrowed from nouns don't change at all: <strong>naranja</strong> (orange — from the fruit), <strong>rosa</strong> (pink — from the flower), <strong>crema</strong> (cream), <strong>violeta</strong> (violet), <strong>café</strong> (coffee-coloured — Latin America). "La camisa naranja" · "El coche naranja" · "Las casas naranja" — no change! This surprises learners who've just memorised the agreement rules.
+      </div>
+    </div>
+
+    <!-- Shopping phrases ES -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · De compras — shopping in Spanish</div>
+      <div class="section-title">From browsing to bargaining — everything you need in a Spanish shop</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">👀</span>
+          <div>
+            <div class="phrase-native">Solo estoy mirando, gracias.</div>
+            <div class="phrase-sub">/ˈsolo esˈtoi miˈɾando ˈɡɾasjas/</div>
+            <div class="phrase-en">I'm just looking, thank you.</div>
+            <div class="phrase-note">The essential phrase to buy yourself peace in any Spanish shop. Uses estar (estoy mirando — present continuous) because it's a temporary ongoing action. Utterly universal.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💰</span>
+          <div>
+            <div class="phrase-native">¿Cuánto cuesta esto? / ¿Cuánto vale?</div>
+            <div class="phrase-sub">/ˈkwanto ˈkwesta/ · /ˈkwanto ˈβale/</div>
+            <div class="phrase-en">How much does this cost?</div>
+            <div class="phrase-note">Costar and valer both mean "to cost". ¿Cuánto cuesta? = How much does it cost? ¿Cuánto cuesta todo? = How much is everything? ¿Tiene algo más barato? = Do you have something cheaper?</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">👗</span>
+          <div>
+            <div class="phrase-native">¿Lo tiene en otra talla / en otro color?</div>
+            <div class="phrase-sub">/lo ˈtjene en ˈotɾa ˈtaʎa/</div>
+            <div class="phrase-en">Do you have it in another size / colour?</div>
+            <div class="phrase-note">La talla = clothing size (S, M, L) · el número = shoe size. ¿Me lo puedo probar? = Can I try it on? El probador = fitting room. ¿Me queda bien? = Does it suit/fit me?</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏷️</span>
+          <div>
+            <div class="phrase-native">¿Está en oferta? / ¿Tiene descuento?</div>
+            <div class="phrase-sub">/esˈta en oˈfeɾta/ · /ˈtjene desˈkwento/</div>
+            <div class="phrase-en">Is it on offer? / Do you have a discount?</div>
+            <div class="phrase-note">Las rebajas = the sales (January and July in Spain — huge shopping events). La oferta = offer/deal. El descuento = discount. ¿Acepta tarjeta? = Do you accept card?</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🛒</span>
+          <div>
+            <div class="phrase-native">Me lo llevo. / ¿Me puede dar una bolsa?</div>
+            <div class="phrase-sub">/me lo ˈʎeβo/ · /me ˈpweðe ˈðaɾ ˈuna ˈbolsa/</div>
+            <div class="phrase-en">I'll take it. / Could you give me a bag?</div>
+            <div class="phrase-note">Me lo llevo = I'll take it (lit. "I'll take it with me"). Bags (bolsas) are charged in Spain — usually €0.05–0.10 each, like much of Europe. Bring your own reusable bag (bolsa reutilizable)!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">↩️</span>
+          <div>
+            <div class="phrase-native">Quisiera devolver esto. Tengo el ticket.</div>
+            <div class="phrase-sub">/kiˈsjeɾa ðeβolˈβeɾ ˈesto/</div>
+            <div class="phrase-en">I'd like to return this. I have the receipt.</div>
+            <div class="phrase-note">Quisiera (I would like — conditional of querer) is beautifully polite for requests. Devolver = to return (something). El ticket / el recibo / la factura = receipt. Consumer rights in Spain are strong — keep your receipt!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive gustar builder -->
+    <div class="section">
+      <div class="section-label">Interactive · Gustar sentence builder</div>
+      <div class="section-title">Choose who likes what — build the correct gustar sentence</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 Gustar — ¿A quién le gusta qué?</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a "liker + thing liked" pair</div>
+          <div class="bl-btns" id="es-gustar-btns">
+            <button class="bl-btn es-gustar"
+              data-sentence="Me gusta el flamenco."
+              data-breakdown="Me (I) + gusta (singular verb — el flamenco is singular) + el flamenco"
+              data-en="I like flamenco."
+              data-note="Singular noun → gusta. The real subject is 'el flamenco', not 'me'. Me just tells us who is pleased.">
+              😊 I like flamenco
+            </button>
+            <button class="bl-btn es-gustar"
+              data-sentence="Me gustan los idiomas."
+              data-breakdown="Me (I) + gustan (PLURAL verb — los idiomas is plural) + los idiomas"
+              data-en="I like languages."
+              data-note="Plural noun → gustan. This is the most common mistake — forgetting to switch to gustan for plural subjects.">
+              📚 I like languages
+            </button>
+            <button class="bl-btn es-gustar"
+              data-sentence="¿Te gusta el café?"
+              data-breakdown="Te (you) + gusta (singular — el café is singular) + el café"
+              data-en="Do you like coffee?"
+              data-note="Te = you (informal). Questions with gustar simply use intonation — no word inversion needed! ¿Te gusta? is exactly the same order as the statement, just said as a question.">
+              ☕ Do you like coffee?
+            </button>
+            <button class="bl-btn es-gustar"
+              data-sentence="Le encanta bailar."
+              data-breakdown="Le (he/she) + encanta (encantar = to love; singular — bailar is an infinitive) + bailar"
+              data-en="She loves dancing / to dance."
+              data-note="Encantar (to love) works exactly like gustar. Infinitives always trigger the singular form — gusta/encanta, never gustan/encantan.">
+              💃 She loves dancing
+            </button>
+            <button class="bl-btn es-gustar"
+              data-sentence="Nos gustan las películas de terror."
+              data-breakdown="Nos (we) + gustan (plural — las películas is plural) + las películas de terror"
+              data-en="We like horror films."
+              data-note="Nos = we. Plural noun → gustan. Notice the full phrase 'películas de terror' (lit. 'films of terror') — Spanish uses 'de + noun' where English often uses a compound noun.">
+              🎬 We like horror films
+            </button>
+            <button class="bl-btn es-gustar"
+              data-sentence="No me gusta el ruido."
+              data-breakdown="No + me + gusta (singular — el ruido) + el ruido"
+              data-en="I don't like noise."
+              data-note="Negation: just add 'no' before the indirect object pronoun. No me gusta · No te gustan · No le encanta. Simple!">
+              🔇 I don't like noise
+            </button>
+          </div>
+          <div class="bl-result" id="es-gustar-result">
+            <div class="blr-empty">Choose a pair above to see the gustar sentence built correctly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🛍️</span>
+        <div class="culture-text">
+          <strong>Las rebajas — Spain's legendary January and July sales</strong><br/>
+          Spain's <em>rebajas</em> (sales) are a national institution. They begin officially on January 7th (the day after Three Kings Day — Reyes) and in July (the day after the summer school term ends). Unlike rolling promotions common in the UK or US, Spain's rebajas are concentrated events — and Spaniards take them seriously. Major department stores (El Corte Inglés, Zara, Mango) see queues before opening. Discounts can reach 50–70% on genuine stock. The January rebajas are particularly beloved — a tradition of treating yourself after the Christmas gifting season, when <em>tú mereces algo</em> (you deserve something). Learning to navigate a Spanish sale — "¿Hay rebajas?" (Are there sales on?), "¿Cuánto es con el descuento?" (How much is it with the discount?), "¿Está incluido en las rebajas?" (Is it included in the sale?) — is as culturally important as any grammar lesson.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 8 Spanish — gustar, adjective agreement &amp; shopping</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I like languages" using gustar?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Me gusta los idiomas.</button>
+          <button class="quiz-btn" data-answer="correct">Me gustan los idiomas.</button>
+          <button class="quiz-btn" data-answer="wrong">Yo gusto los idiomas.</button>
+          <button class="quiz-btn" data-answer="wrong">Me gustas los idiomas.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "the white houses" in Spanish? (house = casa, feminine)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">las casas blanco</button>
+          <button class="quiz-btn" data-answer="wrong">las casas blancos</button>
+          <button class="quiz-btn" data-answer="correct">las casas blancas</button>
+          <button class="quiz-btn" data-answer="wrong">los casas blancos</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which colour is INVARIABLE in Spanish (doesn't change for gender)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">rojo</button>
+          <button class="quiz-btn" data-answer="wrong">blanco</button>
+          <button class="quiz-btn" data-answer="correct">naranja</button>
+          <button class="quiz-btn" data-answer="wrong">negro</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask "Can I try this on?" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">¿Puedo comprar esto?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Me queda bien?</button>
+          <button class="quiz-btn" data-answer="correct">¿Me lo puedo probar?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Tiene otra talla?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — "I like" &amp; describing things</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages express liking — and whether adjectives agree</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">The gustar reversal is one of the most revealing cross-language contrasts — and adjective agreement shows a sharp East/West divide.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I like coffee"</td>
+        <td>コーヒーが好きです<br/><span style="font-size:11px; color:#888">Kōhī ga suki desu<br/>(Coffee-is-liked — adjective 好き!)</span></td>
+        <td>커피를 좋아해요<br/><span style="font-size:11px; color:#888">Keopi-reul joahaeyo<br/>(Coffee-[obj]-like)</span></td>
+        <td>I like coffee.<br/><span style="font-size:11px; color:#888">Subject = I (the liker)<br/>Verb = like</span></td>
+        <td>Me gusta el café.<br/><span style="font-size:11px; color:#888">Subject = el café (the liked thing!)<br/>Verb agrees with the subject</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Adjective agreement</td>
+        <td>No agreement<br/><span style="font-size:11px; color:#888">赤い車 · 赤い家<br/>Same form — no gender/number</span></td>
+        <td>No agreement<br/><span style="font-size:11px; color:#888">빨간 차 · 빨간 집<br/>Same form always</span></td>
+        <td>No agreement<br/><span style="font-size:11px; color:#888">red car · red cars · red house<br/>Never changes!</span></td>
+        <td>Full agreement<br/><span style="font-size:11px; color:#888">coche rojo · coches rojos<br/>casa roja · casas rojas</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Adjective position</td>
+        <td>Before noun always<br/><span style="font-size:11px; color:#888">赤い車 (red car)<br/>Adjective precedes noun</span></td>
+        <td>Before noun always<br/><span style="font-size:11px; color:#888">빨간 차 (red car)<br/>Adjective precedes noun</span></td>
+        <td>Before noun (usually)<br/><span style="font-size:11px; color:#888">a red car<br/>or after linking verb: it is red</span></td>
+        <td>Usually after noun<br/><span style="font-size:11px; color:#888">un coche rojo<br/>Before = different meaning!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Comparatives</td>
+        <td>〜より〜の方が<br/><span style="font-size:11px; color:#888">A-yori B-no hō ga ii<br/>(B is better than A)</span></td>
+        <td>A보다 B가 더<br/><span style="font-size:11px; color:#888">A boda B-ga deo<br/>(B more than A)</span></td>
+        <td>-er than / more ~ than<br/><span style="font-size:11px; color:#888">bigger than · more beautiful than</span></td>
+        <td>más ~ que / menos ~ que<br/><span style="font-size:11px; color:#888">más grande que · menos caro que</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-green" style="margin-top:14px">
+      <strong>The adjective agreement divide:</strong> Japanese, Korean, and English all have zero adjective agreement — the adjective never changes regardless of the noun. Spanish stands apart — every adjective must match in gender and number. This is one of the clearest structural differences between East Asian languages + English on one side, and the Romance languages on the other. Interestingly, Japanese 好き (suki = liked) works similarly to gustar — the liking is expressed as an adjective applied to the liked object, not as a verb with the liker as subject!
+    </div>
+  </div>
+
+
+  <!-- Week 9 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 9</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Present perfect tense — "I have eaten" · The crucial difference between present perfect and past simple · Ever / never / already / yet / just · Connecting the past to the present.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Health and emergencies — body vocabulary · Describing symptoms · At the pharmacy · Conditional tense (I would) — expressing hypotheticals and polite requests in Spanish.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 8 complete — halfway through the course! Click <a href="Week9.E&S.html">here</a> when you're ready for Week 9 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English comparative builder ── */
+  document.querySelectorAll('.en-comp').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-comp').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-comp-result').innerHTML = `
+        <div class="blr-sentence">
+          <span style="color:#888; font-size:15px">Base:</span> ${d.base} →
+          <span style="color:#185FA5; font-weight:600">${d.comp}</span> →
+          <span style="color:#D85030; font-weight:600">${d.sup}</span>
+        </div>
+        <div class="blr-breakdown">📐 <strong>Rule:</strong> ${d.rule}</div>
+        <div class="blr-note">📘 Comparative: <em>${d['ex-comp']}</em></div>
+        <div class="blr-note">🏆 Superlative: <em>${d['ex-sup']}</em></div>
+      `;
+    });
+  });
+
+  /* ── Spanish gustar builder ── */
+  document.querySelectorAll('.es-gustar').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-gustar').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-gustar-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Structure:</strong> ${d.breakdown}</div>
+        <div class="blr-breakdown">🇬🇧 <strong>English:</strong> ${d.en}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
