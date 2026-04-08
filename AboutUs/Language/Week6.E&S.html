@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 6 — English & Spanish: Past Simple & Food and Dining</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* -ed spelling rules */
+  .spelling-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .sp-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .sp-rule { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 3px; }
+  .sp-when { font-size: 12px; color: #555; margin-bottom: 5px; }
+  .sp-ex   { font-size: 13px; color: #185FA5; font-weight: 500; line-height: 1.8; }
+
+  /* Irregular verb table */
+  .irreg-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .irreg-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .irreg-table td { padding: 9px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .irreg-table tr:last-child td { border-bottom: none; }
+  .irr-base { font-size: 16px; color: #1a1a18; font-weight: 500; }
+  .irr-past { font-size: 16px; color: #185FA5; font-weight: 500; }
+  .irr-mean { font-size: 12px; color: #888; }
+  .irr-ex   { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Past did/didn't structure */
+  .did-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px 16px; margin-top: 12px; font-size: 13px; line-height: 2.2; }
+
+  /* Story block */
+  .story-block { background: #fdf9f0; border: 0.5px solid #f0dfa8; border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
+  .story-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .story-text { font-size: 14px; color: #333; line-height: 2; }
+  .story-text .past { color: #185FA5; font-weight: 500; }
+  .story-text .time { color: #D85A30; font-style: italic; }
+
+  /* Food vocabulary grid */
+  .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .food-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 12px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .food-card:hover { background: #f0f5fc; border-color: #b8d4f0; }
+  .food-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .food-icon   { font-size: 26px; margin-bottom: 4px; }
+  .food-es     { font-size: 15px; color: #1a1a18; font-weight: 500; margin-bottom: 1px; }
+  .food-en     { font-size: 12px; color: #333; }
+  .food-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .fd-es       { font-size: 22px; color: #1a1a18; margin-bottom: 2px; }
+  .fd-pron     { font-size: 12px; color: #888; font-family: serif; margin-bottom: 3px; }
+  .fd-en       { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .fd-note     { font-size: 12px; color: #555; line-height: 1.6; }
+  .fd-empty    { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Menu / ordering phrases */
+  .menu-sim { background: #fdf9f0; border: 0.5px solid #f0dfa8; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .menu-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+  .menu-body { padding: 14px; }
+  .menu-tabs { display: flex; gap: 0; border-bottom: 0.5px solid #e5e4e0; margin-bottom: 12px; overflow-x: auto; }
+  .menu-tab { padding: 8px 16px; font-size: 12px; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+  .menu-tab.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
+  .menu-content { display: none; }
+  .menu-content.active { display: block; }
+  .menu-phrase { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; padding: 10px 12px; background: #fff; border: 0.5px solid #eee; border-radius: 8px; }
+  .mp-icon   { font-size: 18px; flex-shrink: 0; }
+  .mp-es     { font-size: 16px; color: #1a1a18; margin-bottom: 1px; }
+  .mp-pron   { font-size: 11px; color: #888; margin-bottom: 1px; }
+  .mp-en     { font-size: 12px; color: #333; font-weight: 500; }
+  .mp-note   { font-size: 11px; color: #aaa; margin-top: 2px; font-style: italic; }
+
+  /* Imperfect tense table */
+  .conj-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .conj-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .conj-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-pronoun { font-size: 14px; color: #888; }
+  .conj-form    { font-size: 19px; font-weight: 500; color: #8e44ad; }
+  .conj-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Imperfect vs Preterite contrast */
+  .tense-contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .tc-card { border-radius: 12px; padding: 14px; }
+  .tc-card.pret { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .tc-card.imp  { background: #f5f0fd; border: 0.5px solid #c8b8f0; }
+  .tc-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .tc-formula { font-size: 14px; font-weight: 500; margin-bottom: 8px; padding: 5px 9px; border-radius: 6px; display: inline-block; background: rgba(255,255,255,0.6); }
+  .tc-card.pret .tc-formula { color: #185FA5; }
+  .tc-card.imp  .tc-formula { color: #8e44ad; }
+  .tc-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .tc-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Interactive explorer */
+  .explorer-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .explorer-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .explorer-body { padding: 14px; }
+  .ex-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .ex-btns  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .ex-btn   { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .ex-btn:hover   { background: #f0f0ee; }
+  .ex-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .ex-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 90px; }
+  .er-sentence  { font-size: 21px; color: #1a1a18; margin-bottom: 4px; }
+  .er-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .er-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .er-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .spelling-grid, .tense-contrast, .two-col { grid-template-columns: 1fr; }
+    .food-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 6 of 16</span>
+      <h1>Past Simple & Food and Dining</h1>
+      <div class="subtitle">EN: Past simple (-ed & irregulars) · Did/didn't · Storytelling in the past · ES: Food vocabulary · Ordering · Imperfect tense · Preterite vs imperfect</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:37%;"></div></div>
+      37% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 6 · Past simple · -ed endings · 30 key irregular verbs · Did/didn't · Storytelling</div>
+      </div>
+    </div>
+
+    <!-- Past simple overview -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The past simple — what it expresses</div>
+      <div class="section-title">English's most fundamental way of talking about completed past events</div>
+      <p>The past simple describes actions or situations that were completed in the past — with no connection to the present. It corresponds roughly to the Spanish <em>pretérito indefinido</em> you learned last week. The key question: when did it happen? If it's finished and in the past, past simple is almost always correct.</p>
+
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; margin-top:12px; font-size:13px; line-height:2.2;">
+        <strong>Past simple is used for:</strong><br/>
+        ✅ Completed single action: <em>She <strong>called</strong> me yesterday.</em><br/>
+        ✅ Sequence of past events: <em>I <strong>woke</strong> up, <strong>showered</strong>, and <strong>left</strong> the house.</em><br/>
+        ✅ Past habits (no longer true): <em>He <strong>played</strong> football every Saturday. (but not now)</em><br/>
+        ✅ Past states: <em>They <strong>lived</strong> in Seoul for three years.</em><br/>
+        ✅ With specific past times: <em>We <strong>met</strong> in 2019. I <strong>saw</strong> her last week.</em>
+      </div>
+    </div>
+
+    <!-- Regular past -ed -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Regular verbs — the -ed ending</div>
+      <div class="section-title">The same -ed ending for all pronouns — English's most regular feature</div>
+      <p>Regular past tense is beautifully simple: add <strong>-ed</strong> to the base form, and it stays the same for every pronoun. I worked · You worked · She worked · We worked · They worked. Unlike Spanish (which changes ending for every pronoun) or the present tense (which adds -s for he/she/it) — the past simple regular form never changes.</p>
+
+      <div class="spelling-grid">
+        <div class="sp-card">
+          <div class="sp-rule">1. Most verbs — add -ed</div>
+          <div class="sp-when">Base form ends in a consonant or a vowel-pair</div>
+          <div class="sp-ex">work→worked · play→played · visit→visited · rain→rained · open→opened</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-rule">2. Silent -e — add just -d</div>
+          <div class="sp-when">Base form already ends in -e</div>
+          <div class="sp-ex">love→loved · use→used · arrive→arrived · like→liked · hope→hoped</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-rule">3. Consonant + y → -ied</div>
+          <div class="sp-when">Ends in consonant + y (same rule as -s endings)</div>
+          <div class="sp-ex">study→studied · try→tried · carry→carried · cry→cried</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-rule">4. Double the consonant + -ed</div>
+          <div class="sp-when">Short verb, single vowel + single consonant (stressed)</div>
+          <div class="sp-ex">stop→stopped · plan→planned · chat→chatted · drop→dropped</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>-ed pronunciation — three different sounds:</strong> The -ed ending is not always pronounced "ed"! After voiced sounds: /d/ — called /kɔːld/ · lived /lɪvd/. After voiceless sounds: /t/ — walked /wɔːkt/ · cooked /kʊkt/. After t or d: /ɪd/ — wanted /ˈwɒntɪd/ · needed /ˈniːdɪd/. This is why English learners sometimes struggle to hear the past tense — the ending can be almost inaudible (/t/) in fast speech.
+      </div>
+    </div>
+
+    <!-- Irregular verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Irregular verbs — the 30 you must know</div>
+      <div class="section-title">No -ed here — these verbs change their entire form in the past</div>
+      <p>About 200 common English verbs are irregular — they don't add -ed in the past. Instead, they change their vowel, their ending, or both (and some don't change at all). The most frequent verbs in English tend to be the most irregular — which is why they must simply be memorised.</p>
+
+      <table class="irreg-table">
+        <tr><th>Base</th><th>Past</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td class="irr-base">be</td><td class="irr-past">was / were</td><td class="irr-mean">to be</td><td class="irr-ex">I was tired. They were happy.</td></tr>
+        <tr><td class="irr-base">have</td><td class="irr-past">had</td><td class="irr-mean">to have</td><td class="irr-ex">She had a great idea.</td></tr>
+        <tr><td class="irr-base">do</td><td class="irr-past">did</td><td class="irr-mean">to do</td><td class="irr-ex">What did you do?</td></tr>
+        <tr><td class="irr-base">go</td><td class="irr-past">went</td><td class="irr-mean">to go</td><td class="irr-ex">We went to Kyoto last year.</td></tr>
+        <tr><td class="irr-base">get</td><td class="irr-past">got</td><td class="irr-mean">to get/receive</td><td class="irr-ex">I got your message.</td></tr>
+        <tr><td class="irr-base">make</td><td class="irr-past">made</td><td class="irr-mean">to make</td><td class="irr-ex">She made coffee.</td></tr>
+        <tr><td class="irr-base">say</td><td class="irr-past">said</td><td class="irr-mean">to say</td><td class="irr-ex">He said goodbye.</td></tr>
+        <tr><td class="irr-base">come</td><td class="irr-past">came</td><td class="irr-mean">to come</td><td class="irr-ex">She came early.</td></tr>
+        <tr><td class="irr-base">see</td><td class="irr-past">saw</td><td class="irr-mean">to see</td><td class="irr-ex">I saw a great film.</td></tr>
+        <tr><td class="irr-base">know</td><td class="irr-past">knew</td><td class="irr-mean">to know</td><td class="irr-ex">Nobody knew the answer.</td></tr>
+        <tr><td class="irr-base">take</td><td class="irr-past">took</td><td class="irr-mean">to take</td><td class="irr-ex">He took the train.</td></tr>
+        <tr><td class="irr-base">think</td><td class="irr-past">thought</td><td class="irr-mean">to think</td><td class="irr-ex">I thought it was good.</td></tr>
+        <tr><td class="irr-base">find</td><td class="irr-past">found</td><td class="irr-mean">to find</td><td class="irr-ex">She found her keys.</td></tr>
+        <tr><td class="irr-base">give</td><td class="irr-past">gave</td><td class="irr-mean">to give</td><td class="irr-ex">They gave me a gift.</td></tr>
+        <tr><td class="irr-base">tell</td><td class="irr-past">told</td><td class="irr-mean">to tell</td><td class="irr-ex">He told me the truth.</td></tr>
+        <tr><td class="irr-base">eat</td><td class="irr-past">ate</td><td class="irr-mean">to eat</td><td class="irr-ex">We ate sushi for dinner.</td></tr>
+        <tr><td class="irr-base">drink</td><td class="irr-past">drank</td><td class="irr-mean">to drink</td><td class="irr-ex">She drank green tea.</td></tr>
+        <tr><td class="irr-base">buy</td><td class="irr-past">bought</td><td class="irr-mean">to buy</td><td class="irr-ex">I bought a new book.</td></tr>
+        <tr><td class="irr-base">meet</td><td class="irr-past">met</td><td class="irr-mean">to meet</td><td class="irr-ex">We met at the airport.</td></tr>
+        <tr><td class="irr-base">leave</td><td class="irr-past">left</td><td class="irr-mean">to leave</td><td class="irr-ex">The train left at nine.</td></tr>
+        <tr><td class="irr-base">speak</td><td class="irr-past">spoke</td><td class="irr-mean">to speak</td><td class="irr-ex">She spoke very clearly.</td></tr>
+        <tr><td class="irr-base">write</td><td class="irr-past">wrote</td><td class="irr-mean">to write</td><td class="irr-ex">He wrote a long email.</td></tr>
+        <tr><td class="irr-base">read</td><td class="irr-past">read*</td><td class="irr-mean">to read</td><td class="irr-ex">I read that book last month. (*same spelling, pronounced /rɛd/)</td></tr>
+        <tr><td class="irr-base">feel</td><td class="irr-past">felt</td><td class="irr-mean">to feel</td><td class="irr-ex">I felt nervous before the exam.</td></tr>
+        <tr><td class="irr-base">put</td><td class="irr-past">put*</td><td class="irr-mean">to put</td><td class="irr-ex">She put it on the table. (*no change)</td></tr>
+        <tr><td class="irr-base">sit</td><td class="irr-past">sat</td><td class="irr-mean">to sit</td><td class="irr-ex">We sat outside.</td></tr>
+        <tr><td class="irr-base">run</td><td class="irr-past">ran</td><td class="irr-mean">to run</td><td class="irr-ex">She ran 10km yesterday.</td></tr>
+        <tr><td class="irr-base">sleep</td><td class="irr-past">slept</td><td class="irr-mean">to sleep</td><td class="irr-ex">He slept for ten hours.</td></tr>
+        <tr><td class="irr-base">begin</td><td class="irr-past">began</td><td class="irr-mean">to begin</td><td class="irr-ex">The meeting began late.</td></tr>
+        <tr><td class="irr-base">win</td><td class="irr-past">won</td><td class="irr-mean">to win</td><td class="irr-ex">Japan won the match.</td></tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>Patterns in irregular verbs:</strong> Many irregulars follow vowel-shift patterns — a useful shortcut: <em>i→a→u</em> pattern: begin/began · sing/sang · swim/swam · drink/drank · ring/rang. <em>ee→e</em> pattern: feel/felt · sleep/slept · keep/kept · sweep/swept. <em>Old English -ought</em>: think/thought · buy/bought · bring/brought · catch/caught · teach/taught. Spotting these vowel patterns makes groups of verbs easier to remember together.
+      </div>
+    </div>
+
+    <!-- Did/Didn't questions and negatives -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Negatives &amp; questions — Did and Didn't</div>
+      <div class="section-title">Just like the present "do/does" — past questions use "did" for everything</div>
+      <p>In the past simple, ALL verbs (regular and irregular) use <strong>did</strong> for questions and <strong>didn't</strong> for negatives — regardless of the pronoun. And just like with does/doesn't in the present, the main verb goes back to its base form when did/didn't appears.</p>
+
+      <div class="did-block">
+        <strong>Statement → Negative → Question:</strong><br/>
+        She <strong>went</strong> to Seoul. → She <strong>didn't go</strong> to Seoul. → <strong>Did</strong> she <strong>go</strong> to Seoul?<br/>
+        I <strong>ate</strong> breakfast. → I <strong>didn't eat</strong> breakfast. → <strong>Did</strong> you <strong>eat</strong> breakfast?<br/>
+        They <strong>worked</strong> late. → They <strong>didn't work</strong> late. → <strong>Did</strong> they <strong>work</strong> late?<br/>
+        He <strong>was</strong> tired. → He <strong>wasn't</strong> tired. → <strong>Was</strong> he tired? (be inverts directly — no did!)
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The base form rule — critical!</strong> When did or didn't appears, the main verb MUST return to its base form — even if it was irregular! "Did she went?" ❌ → "Did she go?" ✅. "I didn't ate" ❌ → "I didn't eat" ✅. The past is carried entirely by "did" — the main verb is set free. Exception: the verb <em>to be</em> doesn't use did — it uses was/were for all forms and inverts directly for questions.
+      </div>
+    </div>
+
+    <!-- Story block -->
+    <div class="section">
+      <div class="section-label">Lesson 5 · Storytelling in the past</div>
+      <div class="section-title">A short story using past simple — notice all the irregular and regular past forms</div>
+      <div class="story-block">
+        <div class="story-title">📖 A day in Kyoto</div>
+        <div class="story-text">
+          <span class="time">Last spring</span>, I <span class="past">visited</span> Kyoto for the first time. I <span class="past">woke</span> up early and <span class="past">took</span> the shinkansen from Tokyo. When I <span class="past">arrived</span>, it <span class="past">was</span> raining lightly. I <span class="past">bought</span> an umbrella at the station and <span class="past">walked</span> to my hotel. In the afternoon, I <span class="past">went</span> to Fushimi Inari and <span class="past">climbed</span> through hundreds of torii gates. The view <span class="past">took</span> my breath away. <span class="time">That evening</span>, I <span class="past">ate</span> at a small ramen restaurant near the river. The chef <span class="past">didn't speak</span> English, and I <span class="past">didn't speak</span> much Japanese — but we <span class="past">smiled</span> and <span class="past">understood</span> each other anyway. I <span class="past">slept</span> wonderfully that night.
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Past time connectors for storytelling:</strong> last spring/week/year · yesterday · in [year] · at first · then · after that · suddenly · finally · in the end · when + past clause · before/after + -ing. These connectors link past events naturally and make English narratives flow. Notice how "when I arrived, it was raining" combines past simple (completed arrival) and past continuous (ongoing background rain) — a pattern covered more fully in Week 7.
+      </div>
+    </div>
+
+    <!-- Interactive past explorer EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Past simple sentence builder</div>
+      <div class="section-title">Choose a scenario — see the statement, negative, and question forms</div>
+      <div class="explorer-sim">
+        <div class="explorer-header">🇬🇧 Past simple — three forms at once</div>
+        <div class="explorer-body">
+          <div class="ex-label">Choose a verb + scenario</div>
+          <div class="ex-btns" id="en-past-btns">
+            <button class="ex-btn en-past"
+              data-statement="She went to Tokyo last year."
+              data-negative="She didn't go to Tokyo last year."
+              data-question="Did she go to Tokyo last year?"
+              data-note="go → went (irregular). But went disappears in negative/question — base form 'go' returns!">
+              ✈️ go to Tokyo
+            </button>
+            <button class="ex-btn en-past"
+              data-statement="They ate ramen for dinner."
+              data-negative="They didn't eat ramen for dinner."
+              data-question="Did they eat ramen for dinner?"
+              data-note="eat → ate (irregular). Didn't + eat (base form). Regular pattern for all irregular verbs in negative/question.">
+              🍜 eat ramen
+            </button>
+            <button class="ex-btn en-past"
+              data-statement="He studied Japanese every evening."
+              data-negative="He didn't study Japanese every evening."
+              data-question="Did he study Japanese every evening?"
+              data-note="study → studied (consonant+y → ied). Regular verb. Didn't + study (base form, -ied disappears).">
+              📚 study Japanese
+            </button>
+            <button class="ex-btn en-past"
+              data-statement="I was nervous before the presentation."
+              data-negative="I wasn't nervous before the presentation."
+              data-question="Was I nervous before the presentation?"
+              data-note="BE is special — was/wasn't/Was? No 'did' needed! To be inverts directly in questions.">
+              😰 was nervous (to be)
+            </button>
+            <button class="ex-btn en-past"
+              data-statement="We bought souvenirs at the market."
+              data-negative="We didn't buy souvenirs at the market."
+              data-question="Did we buy souvenirs at the market?"
+              data-note="buy → bought (irregular -ought pattern). Base form 'buy' returns in negative/question.">
+              🛍️ buy souvenirs
+            </button>
+            <button class="ex-btn en-past"
+              data-statement="She stopped the car suddenly."
+              data-negative="She didn't stop the car suddenly."
+              data-question="Did she stop the car suddenly?"
+              data-note="stop → stopped (double p — short verb, single vowel + single consonant). Regular verb.">
+              🚗 stop the car
+            </button>
+          </div>
+          <div class="ex-result" id="en-past-result">
+            <div class="er-empty">Choose a scenario above to see all three past simple forms</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">📚</span>
+        <div class="culture-text">
+          <strong>Why English has so many irregular verbs — and why the most common words are the most irregular</strong><br/>
+          English irregular verbs are the fossils of Old English — a highly inflected Germanic language where vowel changes (called ablaut) signalled tense. "Sing / sang / sung" follows the same pattern as German "singen / sang / gesungen". Over centuries, regular -ed endings replaced most of these patterns — but the most frequently used verbs survived because they were spoken too often to be "corrected." This is a universal linguistic principle: the more a word is used, the more resistant it is to regularisation. Go/went is so common that even children who know the -ed rule say "went" automatically. This is why the irregular verbs in English are almost exactly the words you need most — they are the irreplaceable core of the language.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 6 English — past simple</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the past simple of "go"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">goed</button>
+          <button class="quiz-btn" data-answer="wrong">goes</button>
+          <button class="quiz-btn" data-answer="correct">went</button>
+          <button class="quiz-btn" data-answer="wrong">gone</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correctly formed?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Did she went to the market?</button>
+          <button class="quiz-btn" data-answer="correct">Did she go to the market?</button>
+          <button class="quiz-btn" data-answer="wrong">Did she goes to the market?</button>
+          <button class="quiz-btn" data-answer="wrong">She did go to the market?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How is the -ed pronounced in "walked"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">/ɪd/ — as in "wanted"</button>
+          <button class="quiz-btn" data-answer="wrong">/d/ — as in "called"</button>
+          <button class="quiz-btn" data-answer="correct">/t/ — because "walk" ends in a voiceless /k/ sound</button>
+          <button class="quiz-btn" data-answer="wrong">The -ed is silent</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the past simple of "study"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">studyed</button>
+          <button class="quiz-btn" data-answer="wrong">studded</button>
+          <button class="quiz-btn" data-answer="correct">studied</button>
+          <button class="quiz-btn" data-answer="wrong">studided</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 6 · Food vocabulary · Ordering in restaurants · Pretérito imperfecto · Preterite vs Imperfect</div>
+      </div>
+    </div>
+
+    <!-- Food vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Food vocabulary — vocabulario de comida</div>
+      <div class="section-title">Essential Spanish food words — click any item to learn more</div>
+      <div class="food-grid" id="es-food-grid">
+        <div class="food-card" data-es="el pan" data-pron="/el pan/" data-en="bread" data-note="Bread is central to Spanish meals — pan is served with almost every dish. El pan de pueblo (village bread) is particularly prized. Pan integral = wholegrain bread.">
+          <div class="food-icon">🍞</div>
+          <div class="food-es">el pan</div>
+          <div class="food-en">bread</div>
+        </div>
+        <div class="food-card" data-es="el aceite de oliva" data-pron="/el aˈθeite ðe oˈliβa/" data-en="olive oil" data-note="Spain is the world's largest producer of olive oil. Extra virgin (virgen extra) is standard on Spanish tables. Dipping bread in olive oil is the authentic Spanish way — not butter.">
+          <div class="food-icon">🫒</div>
+          <div class="food-es">el aceite</div>
+          <div class="food-en">olive oil</div>
+        </div>
+        <div class="food-card" data-es="la paella" data-pron="/la paˈeʎa/" data-en="paella" data-note="Spain's most iconic dish — saffron rice with seafood, chicken, or vegetables. Originally from Valencia. The LL in paella = /ʎ/ or /ʝ/ (like Y). Never stir it — let the socarrat (crispy bottom) form!">
+          <div class="food-icon">🥘</div>
+          <div class="food-es">la paella</div>
+          <div class="food-en">paella</div>
+        </div>
+        <div class="food-card" data-es="las tapas" data-pron="/las ˈtapas/" data-en="tapas (small dishes)" data-note="Small dishes served with drinks. In Spain, tapas are often free with a drink — in Andalusia especially. Tapear (to go for tapas) is a beloved social ritual. Popular tapas: patatas bravas, croquetas, gambas al ajillo.">
+          <div class="food-icon">🍽️</div>
+          <div class="food-es">las tapas</div>
+          <div class="food-en">tapas</div>
+        </div>
+        <div class="food-card" data-es="el jamón" data-pron="/el xaˈmon/" data-en="cured ham" data-note="Jamón ibérico (from black Iberian pigs, acorn-fed) is one of the world's finest foods. The J = /x/ guttural sound. Jamón serrano is the everyday variety. Entire legs hang in bars and homes across Spain.">
+          <div class="food-icon">🥩</div>
+          <div class="food-es">el jamón</div>
+          <div class="food-en">cured ham</div>
+        </div>
+        <div class="food-card" data-es="la tortilla española" data-pron="/la torˈtiʎa/" data-en="Spanish omelette" data-note="NOT a Mexican tortilla! La tortilla española (also tortilla de patatas) is a thick egg and potato omelette — one of Spain's most beloved everyday dishes. Served hot or at room temperature. The debate: with or without onion (cebolla) is a fierce national argument.">
+          <div class="food-icon">🍳</div>
+          <div class="food-es">la tortilla</div>
+          <div class="food-en">Spanish omelette</div>
+        </div>
+        <div class="food-card" data-es="el gazpacho" data-pron="/el ɡaθˈpatʃo/" data-en="cold tomato soup" data-note="Cold blended soup of tomatoes, cucumber, peppers, garlic, and olive oil — a summer staple from Andalusia. Served chilled, often in a glass. Rich in vitamins and deeply refreshing in Spanish summer heat.">
+          <div class="food-icon">🍅</div>
+          <div class="food-es">el gazpacho</div>
+          <div class="food-en">cold tomato soup</div>
+        </div>
+        <div class="food-card" data-es="el churro" data-pron="/el ˈtʃuro/" data-en="fried dough stick" data-note="Fried dough sticks served with thick hot chocolate (chocolate con churros) — the classic Spanish breakfast or late-night snack. CH always = /tʃ/ in Spanish (like English 'church'). Irresistible on cold winter mornings.">
+          <div class="food-icon">🍩</div>
+          <div class="food-es">el churro</div>
+          <div class="food-en">fried dough</div>
+        </div>
+        <div class="food-card" data-es="el vino" data-pron="/el ˈbino/" data-en="wine" data-note="Spain is the world's third largest wine producer. Rioja (red), Albariño (white), and Cava (sparkling) are the most celebrated. Vino tinto = red wine · vino blanco = white wine · vino rosado = rosé.">
+          <div class="food-icon">🍷</div>
+          <div class="food-es">el vino</div>
+          <div class="food-en">wine</div>
+        </div>
+        <div class="food-card" data-es="el agua" data-pron="/el ˈaɣwa/" data-en="water" data-note="Note: agua is FEMININE (la agua) but takes EL in the singular because it starts with a stressed A sound — to avoid the harsh aa sound of 'la agua'. Plural: las aguas. Con gas = sparkling · sin gas = still.">
+          <div class="food-icon">💧</div>
+          <div class="food-es">el agua*</div>
+          <div class="food-en">water (*fem. exception)</div>
+        </div>
+        <div class="food-card" data-es="el marisco" data-pron="/el maˈɾisko/" data-en="seafood" data-note="Spain's coastal regions excel in seafood. Gambas (prawns), mejillones (mussels), pulpo (octopus), and calamares (squid) are ubiquitous. Galicia in northwest Spain is considered the seafood capital — their pulpo a la gallega is legendary.">
+          <div class="food-icon">🦐</div>
+          <div class="food-es">el marisco</div>
+          <div class="food-en">seafood</div>
+        </div>
+        <div class="food-card" data-es="el postre" data-pron="/el ˈpostɾe/" data-en="dessert" data-note="Classic Spanish desserts: flan (caramel custard) · crema catalana (like crème brûlée) · tarta de Santiago (almond cake from Galicia) · arroz con leche (rice pudding). ¿Qué hay de postre? = What's for dessert?">
+          <div class="food-icon">🍮</div>
+          <div class="food-es">el postre</div>
+          <div class="food-en">dessert</div>
+        </div>
+      </div>
+      <div class="food-detail" id="es-food-detail">
+        <div class="fd-empty">Tap any food item above to learn more about it</div>
+      </div>
+    </div>
+
+    <!-- Ordering in a restaurant -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · En el restaurante — ordering food in Spanish</div>
+      <div class="section-title">Everything from arriving to paying the bill</div>
+      <div class="menu-sim">
+        <div class="menu-header">
+          <span>🍽️ En el restaurante — At the restaurant</span>
+        </div>
+        <div class="menu-body">
+          <div class="menu-tabs" id="es-menu-tabs">
+            <div class="menu-tab active" data-tab="arrival">🚪 Arriving</div>
+            <div class="menu-tab" data-tab="ordering">🍴 Ordering</div>
+            <div class="menu-tab" data-tab="during">💬 During the meal</div>
+            <div class="menu-tab" data-tab="paying">💳 Paying</div>
+          </div>
+
+          <div class="menu-content active" id="tab-arrival">
+            <div class="menu-phrase">
+              <span class="mp-icon">🪑</span>
+              <div>
+                <div class="mp-es">Una mesa para dos, por favor.</div>
+                <div class="mp-pron">/ˈuna ˈmesa ˈpaɾa ðos poɾ faˈβoɾ/</div>
+                <div class="mp-en">A table for two, please.</div>
+                <div class="mp-note">The most useful opening line. Change dos to tres, cuatro, cinco... for larger groups.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">📋</span>
+              <div>
+                <div class="mp-es">¿Nos puede traer la carta, por favor?</div>
+                <div class="mp-pron">/nos ˈpweðe tɾaˈeɾ la ˈkaɾta/</div>
+                <div class="mp-en">Could you bring us the menu, please?</div>
+                <div class="mp-note">La carta = the menu. La carta del día = today's menu. El menú del día = fixed-price lunch menu — excellent value in Spain.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">🕐</span>
+              <div>
+                <div class="mp-es">Tenemos reserva a nombre de...</div>
+                <div class="mp-pron">/teˈnemos reˈserβa a ˈnombɾe ðe/</div>
+                <div class="mp-en">We have a reservation under the name of...</div>
+                <div class="mp-note">La reserva = the reservation. Hacer una reserva = to make a reservation. Essential for popular restaurants, especially on weekends.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-content" id="tab-ordering">
+            <div class="menu-phrase">
+              <span class="mp-icon">🍽️</span>
+              <div>
+                <div class="mp-es">¿Qué me recomienda?</div>
+                <div class="mp-pron">/ke me rekoˈmjenda/</div>
+                <div class="mp-en">What do you recommend?</div>
+                <div class="mp-note">A brilliant opener — shows confidence and gets you the best dish. The waiter will appreciate it.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">✋</span>
+              <div>
+                <div class="mp-es">Para mí, la paella, por favor. / Yo quiero...</div>
+                <div class="mp-pron">/ˈpaɾa mi la paˈeʎa/ · /ʝo ˈkjeɾo/</div>
+                <div class="mp-en">For me, the paella, please. / I want...</div>
+                <div class="mp-note">Para mí = for me (very natural when ordering). Yo quiero is direct but correct. The more polite form: ¿Me podría traer...? (Could you bring me...?)</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">🌶️</span>
+              <div>
+                <div class="mp-es">¿Tiene algo sin gluten / sin mariscos?</div>
+                <div class="mp-pron">/ˈtjene ˈalɡo sin ˈɡluten/</div>
+                <div class="mp-en">Do you have anything without gluten / without seafood?</div>
+                <div class="mp-note">Sin = without. Soy alérgico/a a... = I am allergic to... Soy vegetariano/a = I am vegetarian. Soy vegano/a = I am vegan.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">🍷</span>
+              <div>
+                <div class="mp-es">¿Nos trae una botella de vino tinto, por favor?</div>
+                <div class="mp-pron">/nos ˈtɾae ˈuna boˈteʎa/</div>
+                <div class="mp-en">Could you bring us a bottle of red wine, please?</div>
+                <div class="mp-note">Una botella de = a bottle of. Una copa de = a glass of. Una jarra de agua = a jug of water — often free in Spanish restaurants.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-content" id="tab-during">
+            <div class="menu-phrase">
+              <span class="mp-icon">😋</span>
+              <div>
+                <div class="mp-es">¡Está riquísimo! / ¡Qué rico!</div>
+                <div class="mp-pron">/esˈta riˈkisimo/ · /ke ˈriko/</div>
+                <div class="mp-en">It's delicious! / How delicious!</div>
+                <div class="mp-note">Rico/a = tasty/delicious (also means rich). Riquísimo = the superlative (-ísimo). Note: ESTAR is used — taste is a temporary state. Say this to the chef and they will love you forever.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">🧂</span>
+              <div>
+                <div class="mp-es">¿Me puede traer más pan / sal / agua?</div>
+                <div class="mp-pron">/me ˈpweðe tɾaˈeɾ mas pan/</div>
+                <div class="mp-en">Could you bring me more bread / salt / water?</div>
+                <div class="mp-note">Más = more. ¿Me puede traer...? = Could you bring me...? Polite and natural for making requests during a meal.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">🫙</span>
+              <div>
+                <div class="mp-es">No me gusta(n)... / Tengo alergia a...</div>
+                <div class="mp-pron">/no me ˈɡusta/ · /ˈteŋɡo aˈleɾxja/</div>
+                <div class="mp-en">I don't like... / I have an allergy to...</div>
+                <div class="mp-note">Gustar works backwards: No me gusta el cilantro (cilantro doesn't please me). No me gustan las aceitunas (olives don't please me) — plural noun = gustan. This gustar pattern is covered properly in Week 8.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-content" id="tab-paying">
+            <div class="menu-phrase">
+              <span class="mp-icon">💳</span>
+              <div>
+                <div class="mp-es">La cuenta, por favor. / ¿Nos trae la cuenta?</div>
+                <div class="mp-pron">/la ˈkwenta poɾ faˈβoɾ/</div>
+                <div class="mp-en">The bill, please. / Could you bring us the bill?</div>
+                <div class="mp-note">La cuenta = the bill/check. Note: In Spain, the waiter will NOT bring the bill until you ask — it would be considered rude to rush you. Always request it explicitly.</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">🤲</span>
+              <div>
+                <div class="mp-es">¿Está incluido el servicio? / ¿Se puede pagar con tarjeta?</div>
+                <div class="mp-pron">/esˈta inkluˈiðo el serˈβiθjo/</div>
+                <div class="mp-en">Is service included? / Can I pay by card?</div>
+                <div class="mp-note">Tipping in Spain is optional and usually modest (rounding up or 5–10%). Unlike the US, tips are a pleasant gesture not an obligation. Most restaurants now accept card (tarjeta).</div>
+              </div>
+            </div>
+            <div class="menu-phrase">
+              <span class="mp-icon">👋</span>
+              <div>
+                <div class="mp-es">Todo estuvo delicioso. ¡Muchas gracias!</div>
+                <div class="mp-pron">/ˈtoðo esˈtuβo ðeliˈθjoso/</div>
+                <div class="mp-en">Everything was delicious. Thank you so much!</div>
+                <div class="mp-note">Estuvo = past tense of estar — used here because the meal is now over (completed experience). A warm farewell that will make the restaurant staff smile.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imperfect tense -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The imperfect tense — pretérito imperfecto</div>
+      <div class="section-title">The "background" past — ongoing states, habits, and descriptions</div>
+      <p>The pretérito imperfecto is the second essential Spanish past tense. Where the preterite captures completed "snap photo" moments, the imperfect describes the ongoing background — habitual past actions, states that lasted, and descriptions of how things <em>were</em>.</p>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px">-AR imperfect: hablar (to speak)</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Ending</th><th>Form</th><th>Example</th></tr>
+        <tr><td class="conj-pronoun">yo</td><td style="color:#8e44ad; font-size:16px; font-weight:500">-aba</td><td><span class="conj-form">hablaba</span></td><td class="conj-ex">Cuando era niño, hablaba mucho. (When I was a child, I used to talk a lot.)</td></tr>
+        <tr><td class="conj-pronoun">tú</td><td style="color:#8e44ad; font-size:16px; font-weight:500">-abas</td><td><span class="conj-form">hablabas</span></td><td class="conj-ex">¿Hablabas español de niño? (Did you speak Spanish as a child?)</td></tr>
+        <tr><td class="conj-pronoun">él/ella</td><td style="color:#8e44ad; font-size:16px; font-weight:500">-aba</td><td><span class="conj-form">hablaba</span></td><td class="conj-ex">Ella siempre hablaba muy despacio. (She always used to speak slowly.)</td></tr>
+        <tr><td class="conj-pronoun">nosotros</td><td style="color:#8e44ad; font-size:16px; font-weight:500">-ábamos</td><td><span class="conj-form">hablábamos</span></td><td class="conj-ex">Hablábamos horas por teléfono. (We used to talk for hours on the phone.)</td></tr>
+        <tr><td class="conj-pronoun">vosotros</td><td style="color:#8e44ad; font-size:16px; font-weight:500">-abais</td><td><span class="conj-form">hablabais</span></td><td class="conj-ex">¿Hablabais catalán en casa? (Did you all speak Catalan at home?)</td></tr>
+        <tr><td class="conj-pronoun">ellos/ellas</td><td style="color:#8e44ad; font-size:16px; font-weight:500">-aban</td><td><span class="conj-form">hablaban</span></td><td class="conj-ex">Hablaban todo el día. (They talked all day long.)</td></tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">-ER/-IR imperfect (same endings): comer / vivir</p>
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>-ER/-IR ending</th><th>comía (ate)</th><th>vivía (lived)</th></tr>
+        <tr><td class="conj-pronoun">yo</td><td style="color:#8e44ad; font-weight:500">-ía</td><td><span class="conj-form">comía</span></td><td><span class="conj-form">vivía</span></td></tr>
+        <tr><td class="conj-pronoun">tú</td><td style="color:#8e44ad; font-weight:500">-ías</td><td><span class="conj-form">comías</span></td><td><span class="conj-form">vivías</span></td></tr>
+        <tr><td class="conj-pronoun">él/ella</td><td style="color:#8e44ad; font-weight:500">-ía</td><td><span class="conj-form">comía</span></td><td><span class="conj-form">vivía</span></td></tr>
+        <tr><td class="conj-pronoun">nosotros</td><td style="color:#8e44ad; font-weight:500">-íamos</td><td><span class="conj-form">comíamos</span></td><td><span class="conj-form">vivíamos</span></td></tr>
+        <tr><td class="conj-pronoun">vosotros</td><td style="color:#8e44ad; font-weight:500">-íais</td><td><span class="conj-form">comíais</span></td><td><span class="conj-form">vivíais</span></td></tr>
+        <tr><td class="conj-pronoun">ellos</td><td style="color:#8e44ad; font-weight:500">-ían</td><td><span class="conj-form">comían</span></td><td><span class="conj-form">vivían</span></td></tr>
+      </table>
+
+      <div class="tip-box tip-purple">
+        <strong>Only 3 irregular imperfect verbs — the most regular tense in Spanish!</strong> The imperfect has almost no irregular verbs. Only three break the pattern: ser → era/eras/era/éramos/erais/eran · ir → iba/ibas/iba/íbamos/ibais/iban · ver → veía/veías/veía/veíamos/veíais/veían. Every other verb — including all the verbs that were irregular in the preterite — is completely regular in the imperfect. This makes it a huge relief to learn after the preterite's many exceptions.
+      </div>
+    </div>
+
+    <!-- Preterite vs Imperfect -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Preterite vs Imperfect — the essential contrast</div>
+      <div class="section-title">The most important distinction in Spanish tense — together they tell the full story</div>
+      <div class="tense-contrast">
+        <div class="tc-card pret">
+          <div class="tc-label">Pretérito Indefinido</div>
+          <div class="tc-formula">comí · fui · hablé</div>
+          <div class="tc-uses">
+            📸 Completed action (snap photo)<br/>
+            ⏱️ Specific time / duration<br/>
+            🔢 Number of occurrences<br/>
+            📋 Sequence of events
+          </div>
+          <div class="tc-ex">
+            Ayer <strong>fui</strong> al mercado.<br/>
+            (Yesterday I went to the market.)<br/>
+            <strong>Comí</strong> paella tres veces.<br/>
+            (I ate paella three times.)
+          </div>
+        </div>
+        <div class="tc-card imp">
+          <div class="tc-label">Pretérito Imperfecto</div>
+          <div class="tc-formula">comía · era · hablaba</div>
+          <div class="tc-uses">
+            🎥 Background / ongoing state<br/>
+            🔄 Habitual past action (used to)<br/>
+            🖼️ Description in the past<br/>
+            🕐 Time, age, feelings in the past
+          </div>
+          <div class="tc-ex">
+            De niño, <strong>iba</strong> al mercado todos los sábados.<br/>
+            (As a child, I used to go to the market every Saturday.)<br/>
+            <strong>Hacía</strong> mucho calor aquel día.<br/>
+            (It was very hot that day.)
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber" style="margin-top:14px">
+        <strong>The classic combined sentence:</strong> "Llovía cuando llegué." — It was raining (imperfect — ongoing background) when I arrived (preterite — completed event that interrupted). This pattern — imperfect sets the scene, preterite delivers the action — is the engine of Spanish storytelling. "Mientras comíamos (imp.), sonó (pret.) el teléfono." = While we were eating, the phone rang. Two tenses, one vivid moment.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Key trigger words for each tense:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.2;">
+        <strong style="color:#185FA5">Preterite triggers:</strong> ayer · anoche · el lunes · en 2020 · hace dos años · una vez · de repente · de pronto · finalmente<br/>
+        <strong style="color:#8e44ad">Imperfect triggers:</strong> siempre · normalmente · a veces · todos los días · de niño/a · antes · generalmente · cuando era joven
+      </div>
+    </div>
+
+    <!-- Interactive preterite vs imperfect -->
+    <div class="section">
+      <div class="section-label">Interactive · Preterite or imperfect?</div>
+      <div class="section-title">Choose a context — see which tense is used and why</div>
+      <div class="explorer-sim">
+        <div class="explorer-header">🇪🇸 ¿Indefinido o Imperfecto?</div>
+        <div class="explorer-body">
+          <div class="ex-label">Choose a context</div>
+          <div class="ex-btns" id="es-tense-btns">
+            <button class="ex-btn es-tense"
+              data-sentence="De niña, comía paella todos los domingos."
+              data-breakdown="comía = imperfect (-ER: -ía) — habitual repeated action in childhood"
+              data-note="De niña (as a girl) + todos los domingos (every Sunday) = habitual → imperfect. There is no specific Sunday — it describes a recurring background habit.">
+              👧 Ate paella every Sunday as a child
+            </button>
+            <button class="ex-btn es-tense"
+              data-sentence="Ayer comí paella en un restaurante de Valencia."
+              data-breakdown="comí = preterite (-ER: -í) — specific completed action yesterday"
+              data-note="Ayer (yesterday) is a specific completed time → preterite. One specific meal, one specific day, completed. The snap-photo tense captures it perfectly.">
+              📅 Ate paella yesterday (specific)
+            </button>
+            <button class="ex-btn es-tense"
+              data-sentence="Llovía cuando llegamos a Madrid."
+              data-breakdown="llovía = imperfect (background) · llegamos = preterite (completed arrival)"
+              data-note="Classic combined sentence: the rain was ongoing background (imperfect) when the arrival happened (preterite). The imperfect paints the scene; the preterite delivers the event.">
+              🌧️ It was raining when we arrived
+            </button>
+            <button class="ex-btn es-tense"
+              data-sentence="Antes vivía en Tokio, pero el año pasado me mudé a Madrid."
+              data-breakdown="vivía = imperfect (past ongoing state) · me mudé = preterite (completed move)"
+              data-note="Antes vivía (I used to live — ongoing past state → imperfect). Me mudé (I moved — specific completed action → preterite). Both in one natural sentence!">
+              🏠 Used to live in Tokyo / moved to Madrid
+            </button>
+            <button class="ex-btn es-tense"
+              data-sentence="El restaurante estaba lleno y hacía mucho calor."
+              data-breakdown="estaba = imperfect (description of state) · hacía = imperfect (description of weather)"
+              data-note="Both verbs describe background states — what the restaurant WAS LIKE (not what happened). Descriptions in the past always use the imperfect.">
+              🍽️ The restaurant was full and hot (description)
+            </button>
+            <button class="ex-btn es-tense"
+              data-sentence="De repente, el camarero se cayó con toda la bandeja."
+              data-breakdown="se cayó = preterite (sudden completed action — snap photo!)"
+              data-note="De repente (suddenly) is a classic preterite trigger — it signals an abrupt interruption of the background. The waiter falling is a specific completed event, not background.">
+              💥 Suddenly the waiter fell (interruption)
+            </button>
+          </div>
+          <div class="ex-result" id="es-tense-result">
+            <div class="er-empty">Choose a context above to see which tense is used — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🍽️</span>
+        <div class="culture-text">
+          <strong>La sobremesa — the untranslatable art of sitting after the meal</strong><br/>
+          In Spain, the meal doesn't end when the food is finished. <em>La sobremesa</em> (literally "over the table") is the time spent lingering after eating — talking, laughing, drinking coffee or a small glass of something — sometimes for hours. It is considered rude to rush from the table. The restaurant expects you to stay. Asking for the bill immediately after dessert would signal you didn't enjoy yourself. La sobremesa is where friendships deepen, business deals are made informally, and families reconnect. There is no direct English or Japanese equivalent — the concept that the best part of a meal might be the two hours after eating is uniquely Mediterranean. La sobremesa is one of the most beautiful things about Spanish culture, and knowing the word unlocks a whole dimension of how Spanish speakers relate to food, time, and each other.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 6 Spanish — food, imperfect &amp; preterite vs imperfect</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the yo imperfect form of hablar (to speak)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">hablé</button>
+          <button class="quiz-btn" data-answer="wrong">hablo</button>
+          <button class="quiz-btn" data-answer="correct">hablaba</button>
+          <button class="quiz-btn" data-answer="wrong">hablaré</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which tense fits: "De niño, _____ (comer) mucha paella"? (As a child, I used to eat a lot of paella)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">comí (preterite)</button>
+          <button class="quiz-btn" data-answer="correct">comía (imperfect)</button>
+          <button class="quiz-btn" data-answer="wrong">como (present)</button>
+          <button class="quiz-btn" data-answer="wrong">comeré (future)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">In "Llovía cuando llegué" — why is llovía in the imperfect?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Because it happened in the past</button>
+          <button class="quiz-btn" data-answer="correct">Because rain was an ongoing background state that was interrupted by my arrival</button>
+          <button class="quiz-btn" data-answer="wrong">Because llover is an irregular verb</button>
+          <button class="quiz-btn" data-answer="wrong">Because cuando always requires the imperfect</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask for the bill in a Spanish restaurant?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">¿El menú, por favor?</button>
+          <button class="quiz-btn" data-answer="wrong">¿La carta, por favor?</button>
+          <button class="quiz-btn" data-answer="correct">La cuenta, por favor.</button>
+          <button class="quiz-btn" data-answer="wrong">¿El precio, por favor?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — "I used to eat" &amp; food culture</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages express habitual past actions</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">The imperfect / "used to" concept is expressed very differently across the four languages — revealing contrasting ways of encoding time and habit.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I ate" (once)</td>
+        <td>食べました<br/><span style="font-size:11px; color:#888">tabemashita<br/>Past polite form</span></td>
+        <td>먹었어요<br/><span style="font-size:11px; color:#888">meogeosseoyo<br/>Past form</span></td>
+        <td>I ate<br/><span style="font-size:11px; color:#888">Simple past — irregular</span></td>
+        <td>comí<br/><span style="font-size:11px; color:#888">Preterite — completed</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I used to eat" (habit)</td>
+        <td>食べていました<br/><span style="font-size:11px; color:#888">tabete imashita<br/>Continuous past OR<br/>よく食べた (yoku tabeta)</span></td>
+        <td>먹었어요<br/><span style="font-size:11px; color:#888">Same past form!<br/>Context (자주 = often) clarifies</span></td>
+        <td>I used to eat / I would eat<br/><span style="font-size:11px; color:#888">Special "used to" construction</span></td>
+        <td>comía<br/><span style="font-size:11px; color:#888">Imperfect — dedicated tense for this!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Tense distinction</td>
+        <td>One past form<br/><span style="font-size:11px; color:#888">Aspect marked by context and て-form</span></td>
+        <td>One main past form<br/><span style="font-size:11px; color:#888">Context carries the distinction</span></td>
+        <td>Simple / used to / would<br/><span style="font-size:11px; color:#888">Lexical distinction (different words)</span></td>
+        <td>Preterite / Imperfect<br/><span style="font-size:11px; color:#888">Grammatical distinction (different tenses)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Food culture word</td>
+        <td>いただきます<br/><span style="font-size:11px; color:#888">Itadakimasu — said before eating<br/>(no equivalent in English/Spanish)</span></td>
+        <td>잘 먹겠습니다<br/><span style="font-size:11px; color:#888">Jal meokgesseumnida — "I will eat well"<br/>said before meals</span></td>
+        <td>Bon appétit (borrowed!)<br/><span style="font-size:11px; color:#888">English has no native pre-meal expression — borrows from French!</span></td>
+        <td>¡Que aproveche!<br/><span style="font-size:11px; color:#888">"May it benefit you" — said to someone eating</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-amber" style="margin-top:14px">
+      <strong>The "used to" insight:</strong> Spanish grammaticalises the past habit distinction — it has a whole dedicated tense (imperfect) for it. English handles it lexically — with the phrase "used to" or "would". Japanese and Korean rely heavily on context. This reveals something deep about each language: Spanish trusts its grammar to carry meaning, English trusts its vocabulary, and East Asian languages trust shared context. None is better — they're just beautifully different strategies.
+    </div>
+  </div>
+
+
+  <!-- Week 7 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 7</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Past continuous — "I was eating when..." · Simple vs continuous in the past · The interrupted past action pattern · Modal verbs introduction (can, could, will, would, should, must) · Expressing ability, possibility, and obligation.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Getting around — transport vocabulary · Asking for directions · The future tense (futuro simple) · Ir + a + infinitive (going to) · Modal expressions with poder, deber, and tener que.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 6 complete · Click <a href="Week7.E&S.html">here</a> when you're ready for Week 7 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English past simple explorer ── */
+  document.querySelectorAll('.en-past').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-past').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-past-result').innerHTML = `
+        <div class="er-sentence">✅ ${d.statement}</div>
+        <div class="er-breakdown">❌ ${d.negative}</div>
+        <div class="er-breakdown">❓ ${d.question}</div>
+        <div class="er-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish food grid ── */
+  document.querySelectorAll('#es-food-grid .food-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-food-grid .food-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-food-detail').innerHTML = `
+        <div class="fd-es">${d.es}</div>
+        <div class="fd-pron">${d.pron}</div>
+        <div class="fd-en">${d.en}</div>
+        <div class="fd-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Restaurant menu tabs ── */
+  document.querySelectorAll('#es-menu-tabs .menu-tab').forEach(tab => {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('#es-menu-tabs .menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-content').forEach(c => c.classList.remove('active'));
+      this.classList.add('active');
+      const target = document.getElementById('tab-' + this.dataset.tab);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  /* ── Spanish tense explorer ── */
+  document.querySelectorAll('.es-tense').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-tense').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-tense-result').innerHTML = `
+        <div class="er-sentence">✅ ${d.sentence}</div>
+        <div class="er-breakdown">📐 <strong>Formation:</strong> ${d.breakdown}</div>
+        <div class="er-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
