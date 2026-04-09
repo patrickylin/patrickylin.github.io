@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 9 — English & Spanish: Present Perfect & Health</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Tense contrast panels */
+  .tense-contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .tc-card { border-radius: 12px; padding: 14px; }
+  .tc-card.perf { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .tc-card.past { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .tc-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .tc-formula { font-size: 14px; font-weight: 500; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 8px; }
+  .tc-card.perf .tc-formula { color: #0f6e56; }
+  .tc-card.past .tc-formula { color: #185FA5; }
+  .tc-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .tc-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Perfect tense table */
+  .conj-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .conj-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .conj-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-pronoun { font-size: 14px; color: #888; }
+  .conj-form    { font-size: 19px; font-weight: 500; color: #0f6e56; }
+  .conj-es-form { font-size: 19px; font-weight: 500; color: #D85030; }
+  .conj-ex      { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Adverb chips */
+  .adverb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .adv-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 13px; }
+  .adv-word { font-size: 16px; color: #185FA5; font-weight: 500; margin-bottom: 2px; }
+  .adv-rule { font-size: 12px; color: #555; margin-bottom: 3px; }
+  .adv-ex   { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Body parts grid */
+  .body-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .body-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .body-card:hover   { background: #f0f5fc; border-color: #b8d4f0; }
+  .body-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .body-icon { font-size: 24px; margin-bottom: 4px; }
+  .body-es   { font-size: 14px; color: #1a1a18; font-weight: 500; margin-bottom: 1px; }
+  .body-en   { font-size: 11px; color: #555; }
+  .body-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .bd-es    { font-size: 22px; color: #1a1a18; margin-bottom: 2px; }
+  .bd-pron  { font-size: 12px; color: #888; font-family: serif; margin-bottom: 3px; }
+  .bd-en    { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .bd-note  { font-size: 12px; color: #555; line-height: 1.6; }
+  .bd-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Conditional table */
+  .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .cond-card { border-radius: 12px; padding: 14px; }
+  .cond-card.real { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .cond-card.hyp  { background: #f5f0fd; border: 0.5px solid #c8b8f0; }
+  .cond-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .cond-formula { font-size: 13px; font-weight: 500; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 8px; }
+  .cond-card.real .cond-formula { color: #0f6e56; }
+  .cond-card.hyp  .cond-formula { color: #8e44ad; }
+  .cond-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .cond-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl     { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-card.urgent { background: #fdf0ed; border-color: #f5c4b0; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Interactive builder */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn   { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 20px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .tense-contrast, .cond-grid, .two-col { grid-template-columns: 1fr; }
+    .body-grid, .adverb-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 9 of 16</span>
+      <h1>Present Perfect & Health</h1>
+      <div class="subtitle">EN: "I have eaten" · Perfect vs past simple · Ever/never/already/yet/just · ES: Body vocabulary · Health phrases · Conditional tense · Polite requests</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:56%;"></div></div>
+      56% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 9 · Present perfect · have/has + past participle · Perfect vs past simple · Key adverbs</div>
+      </div>
+    </div>
+
+    <!-- What is the present perfect -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The present perfect — connecting past to present</div>
+      <div class="section-title">Have/has + past participle — the tense that bridges then and now</div>
+      <p>The present perfect describes past events that have a connection to the present moment — either because the result is still relevant, because the time is not finished, or because the exact time is unknown or unimportant. It's formed with <strong>have/has + past participle</strong>.</p>
+      <div class="tense-contrast">
+        <div class="tc-card perf">
+          <div class="tc-label">Present Perfect</div>
+          <div class="tc-formula">have/has + past participle</div>
+          <div class="tc-uses">
+            🔗 Past action, present result<br/>
+            ⏳ Unfinished time period<br/>
+            🌍 Life experience (ever/never)<br/>
+            🆕 Very recent action (just)<br/>
+            ❓ No specific time given
+          </div>
+          <div class="tc-ex">
+            I <strong>have lost</strong> my keys. (result: I can't get in)<br/>
+            She <strong>has lived</strong> here for ten years. (still now)<br/>
+            <strong>Have</strong> you ever <strong>eaten</strong> sushi?<br/>
+            I<strong>'ve just</strong> finished the report.
+          </div>
+        </div>
+        <div class="tc-card past">
+          <div class="tc-label">Past Simple</div>
+          <div class="tc-formula">verb-ed / irregular past</div>
+          <div class="tc-uses">
+            ✅ Completed, no present link<br/>
+            📅 Specific time mentioned<br/>
+            🔚 Finished time period<br/>
+            📋 Sequence of events
+          </div>
+          <div class="tc-ex">
+            I <strong>lost</strong> my keys yesterday. (specific time)<br/>
+            She <strong>lived</strong> in Seoul in 2019. (finished period)<br/>
+            <strong>Did</strong> you <strong>eat</strong> sushi last night?<br/>
+            I <strong>finished</strong> the report at 5pm.
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-coral">
+        <strong>The single most important rule:</strong> If a specific past time is mentioned (yesterday, last week, in 2019, at 6pm) — use past simple. The present perfect never goes with specific finished times. "I <strong>have seen</strong> that film yesterday." ❌ → "I <strong>saw</strong> that film yesterday." ✅ The word "yesterday" kills the present perfect every time.
+      </div>
+    </div>
+
+    <!-- Formation -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Forming the present perfect</div>
+      <div class="section-title">Have / has + past participle — and irregular past participles to memorise</div>
+
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Auxiliary</th><th>Contracted</th><th>Negative</th><th>Example</th></tr>
+        <tr>
+          <td class="conj-pronoun">I / You / We / They</td>
+          <td><span class="conj-form">have</span></td>
+          <td style="font-size:15px; color:#555">'ve</td>
+          <td style="font-size:13px; color:#D85A30">haven't</td>
+          <td class="conj-ex">I've visited Japan twice.</td>
+        </tr>
+        <tr>
+          <td class="conj-pronoun">He / She / It</td>
+          <td><span class="conj-form">has</span></td>
+          <td style="font-size:15px; color:#555">'s</td>
+          <td style="font-size:13px; color:#D85A30">hasn't</td>
+          <td class="conj-ex">She's never tried sushi.</td>
+        </tr>
+      </table>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Past participles — regular and key irregulars:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.2;">
+        <strong>Regular</strong> (same as past simple): work→<strong>worked</strong> · play→<strong>played</strong> · visit→<strong>visited</strong><br/>
+        <strong>Irregular — same as past simple:</strong> buy→<strong>bought</strong> · think→<strong>thought</strong> · bring→<strong>brought</strong><br/>
+        <strong>Irregular — different from past simple:</strong><br/>
+        go→went→<strong>gone</strong> · eat→ate→<strong>eaten</strong> · see→saw→<strong>seen</strong> · write→wrote→<strong>written</strong><br/>
+        take→took→<strong>taken</strong> · speak→spoke→<strong>spoken</strong> · give→gave→<strong>given</strong> · do→did→<strong>done</strong><br/>
+        be→was/were→<strong>been</strong> · know→knew→<strong>known</strong> · swim→swam→<strong>swum</strong> · fly→flew→<strong>flown</strong>
+      </div>
+      <div class="tip-box tip-amber">
+        <strong>Been vs gone:</strong> "She <strong>has been</strong> to Japan." = She went and has come back. "She <strong>has gone</strong> to Japan." = She went and is still there — she's not here now. This been/gone distinction is unique to the present perfect and causes frequent confusion.
+      </div>
+    </div>
+
+    <!-- Key adverbs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The present perfect's key adverbs</div>
+      <div class="section-title">Ever · Never · Already · Yet · Just · For · Since — each triggers the perfect</div>
+      <div class="adverb-grid">
+        <div class="adv-card">
+          <div class="adv-word">ever</div>
+          <div class="adv-rule">In questions — at any time in life. Always with present perfect.</div>
+          <div class="adv-ex">Have you <strong>ever</strong> eaten durian?</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-word">never</div>
+          <div class="adv-rule">Not at any time — negative experience.</div>
+          <div class="adv-ex">I've <strong>never</strong> been to Brazil.</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-word">already</div>
+          <div class="adv-rule">Sooner than expected — positive statement.</div>
+          <div class="adv-ex">I've <strong>already</strong> seen that film.</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-word">yet</div>
+          <div class="adv-rule">Up to now — questions and negatives only.</div>
+          <div class="adv-ex">Have you eaten <strong>yet</strong>? · I haven't eaten <strong>yet</strong>.</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-word">just</div>
+          <div class="adv-rule">Very recently — moments ago.</div>
+          <div class="adv-ex">She's <strong>just</strong> arrived at the station.</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-word">for / since</div>
+          <div class="adv-rule">Duration: for + period · since + start point.</div>
+          <div class="adv-ex">I've lived here <strong>for</strong> five years / <strong>since</strong> 2019.</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <strong>Already vs yet — position matters:</strong> <em>Already</em> goes between have and the participle, or at the end (positive): "I've <strong>already</strong> eaten." / "I've eaten <strong>already</strong>." <em>Yet</em> goes only at the end of questions and negatives: "Have you eaten <strong>yet</strong>?" / "I haven't eaten <strong>yet</strong>." Never: "I've yet eaten" ❌ or "Have you already eaten?" (implies surprise) — subtle but real.
+      </div>
+    </div>
+
+    <!-- Interactive builder EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Perfect vs past simple</div>
+      <div class="section-title">Choose a scenario — see which tense is correct and why</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Present perfect or past simple?</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a scenario</div>
+          <div class="bl-btns" id="en-perf-btns">
+            <button class="bl-btn en-perf"
+              data-sentence="Have you ever visited Kyoto?"
+              data-tense="Present perfect"
+              data-note="EVER + life experience question → always present perfect. No specific time — asking about any point in your whole life. Compare: 'Did you visit Kyoto last year?' (specific time → past simple).">
+              🏯 Ever visited Kyoto?
+            </button>
+            <button class="bl-btn en-perf"
+              data-sentence="I saw that film yesterday."
+              data-tense="Past simple"
+              data-note="YESTERDAY is a specific finished time → past simple. 'I have seen that film yesterday' is wrong. Specific time words always kill the present perfect.">
+              🎬 Saw film yesterday
+            </button>
+            <button class="bl-btn en-perf"
+              data-sentence="She has just sent the email."
+              data-tense="Present perfect"
+              data-note="JUST = moments ago → present perfect. The email was sent very recently and the result (it's sent) is relevant now. 'She just sent the email' (American English) also works in informal US speech.">
+              📧 Just sent the email
+            </button>
+            <button class="bl-btn en-perf"
+              data-sentence="I haven't eaten yet — I'm starving."
+              data-tense="Present perfect"
+              data-note="YET in a negative → present perfect. The eating hasn't happened up to now — and now is when it matters (starving!). Yet always refers to 'up to the present moment'.">
+              🍽️ Haven't eaten yet
+            </button>
+            <button class="bl-btn en-perf"
+              data-sentence="He moved to Madrid in 2021."
+              data-tense="Past simple"
+              data-note="IN 2021 is a specific finished year → past simple. If we removed the year: 'He has moved to Madrid' (present perfect — result still relevant). The year makes it past simple.">
+              🏙️ Moved to Madrid in 2021
+            </button>
+            <button class="bl-btn en-perf"
+              data-sentence="We've lived here for three years."
+              data-tense="Present perfect"
+              data-note="FOR + duration + still living there now → present perfect. The living started in the past and continues to the present. Compare: 'We lived there for three years' (past simple — we no longer live there).">
+              🏠 Lived here for 3 years
+            </button>
+          </div>
+          <div class="bl-result" id="en-perf-result">
+            <div class="blr-empty">Choose a scenario above to see which tense applies — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🇺🇸</span>
+        <div class="culture-text">
+          <strong>British vs American present perfect — a genuine divide</strong><br/>
+          British English uses the present perfect consistently for recent actions with present relevance: "I've just eaten." "Have you done your homework yet?" American English often uses the past simple in the same situations: "I just ate." "Did you do your homework yet?" Both are grammatically correct within their own variety — but mixing them can sound odd. "Did you eat yet?" is natural in New York; it sounds unusual in London. This is one of the clearest grammatical differences between the two major English varieties, and a useful reminder that "correct English" often depends on which English you're using. As a teacher of English, it's worth choosing a consistent standard and sticking to it — while acknowledging the other variety exists.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 9 English — present perfect</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I have seen that film yesterday.</button>
+          <button class="quiz-btn" data-answer="correct">I saw that film yesterday.</button>
+          <button class="quiz-btn" data-answer="wrong">I have saw that film yesterday.</button>
+          <button class="quiz-btn" data-answer="wrong">I did see that film yesterday.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"She has gone to Japan" vs "She has been to Japan" — what is the difference?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">No difference — both mean the same</button>
+          <button class="quiz-btn" data-answer="correct">Gone = she is still there · Been = she went and came back</button>
+          <button class="quiz-btn" data-answer="wrong">Gone = past simple · Been = present perfect</button>
+          <button class="quiz-btn" data-answer="wrong">Been is more formal than gone</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which adverb goes only at the END of questions and negative sentences?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">already</button>
+          <button class="quiz-btn" data-answer="wrong">just</button>
+          <button class="quiz-btn" data-answer="wrong">ever</button>
+          <button class="quiz-btn" data-answer="correct">yet</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the past participle of "go"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">went</button>
+          <button class="quiz-btn" data-answer="wrong">goed</button>
+          <button class="quiz-btn" data-answer="correct">gone</button>
+          <button class="quiz-btn" data-answer="wrong">going</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 9 · Body parts · Health &amp; symptoms · Pharmacy · Conditional tense · Polite requests</div>
+      </div>
+    </div>
+
+    <!-- Body parts -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · El cuerpo — body parts</div>
+      <div class="section-title">12 essential body parts — click any to learn vocabulary and useful phrases</div>
+      <div class="body-grid" id="es-body-grid">
+        <div class="body-card"
+          data-es="la cabeza"
+          data-pron="/la kaˈβeθa/"
+          data-en="head"
+          data-note="Me duele la cabeza = I have a headache (lit. 'the head hurts me'). Dolor de cabeza = headache. Mareo = dizziness. La cabeza also used figuratively: 'Eso no me cabe en la cabeza' (That doesn't fit in my head = I can't understand it).">
+          <div class="body-icon">🤕</div>
+          <div class="body-es">la cabeza</div>
+          <div class="body-en">head</div>
+        </div>
+        <div class="body-card"
+          data-es="el estómago"
+          data-pron="/el esˈtomaɡo/"
+          data-en="stomach"
+          data-note="Me duele el estómago = I have a stomachache. Tengo náuseas = I feel nauseous. La tripa (informal, Spain) also means belly/stomach. El dolor de estómago is very common — especially after a big Spanish feast!">
+          <div class="body-icon">🫃</div>
+          <div class="body-es">el estómago</div>
+          <div class="body-en">stomach</div>
+        </div>
+        <div class="body-card"
+          data-es="la garganta"
+          data-pron="/la ɡaɾˈɡanta/"
+          data-en="throat"
+          data-note="Me duele la garganta = I have a sore throat. Tengo la garganta irritada = My throat is irritated. Pastillas para la garganta = throat lozenges. La angina = tonsillitis — very common in Spanish children.">
+          <div class="body-icon">🫁</div>
+          <div class="body-es">la garganta</div>
+          <div class="body-en">throat</div>
+        </div>
+        <div class="body-card"
+          data-es="la espalda"
+          data-pron="/la esˈpalda/"
+          data-en="back"
+          data-note="Me duele la espalda = I have a backache. Dolor de espalda is one of Spain's most common medical complaints. El lumbago = lower back pain. Tengo contractura = I have a muscle spasm/knot.">
+          <div class="body-icon">🔙</div>
+          <div class="body-es">la espalda</div>
+          <div class="body-en">back</div>
+        </div>
+        <div class="body-card"
+          data-es="el pecho"
+          data-pron="/el ˈpetʃo/"
+          data-en="chest"
+          data-note="Me duele el pecho = I have chest pain. Opresión en el pecho = chest tightness. Important: chest pain (dolor de pecho) is taken very seriously — always go to urgencias (A&E) if severe. El pecho also means breast.">
+          <div class="body-icon">🫀</div>
+          <div class="body-es">el pecho</div>
+          <div class="body-en">chest</div>
+        </div>
+        <div class="body-card"
+          data-es="el brazo / la mano"
+          data-pron="/el ˈbɾaθo/ · /la ˈmano/"
+          data-en="arm / hand"
+          data-note="El brazo = arm · La mano = hand (remember: la mano is feminine despite ending in -o!). Me he torcido el tobillo = I've twisted my ankle. Me he roto el brazo = I've broken my arm. La muñeca = wrist.">
+          <div class="body-icon">💪</div>
+          <div class="body-es">el brazo</div>
+          <div class="body-en">arm / hand</div>
+        </div>
+        <div class="body-card"
+          data-es="la pierna / el pie"
+          data-pron="/la ˈpjeɾna/ · /el ˈpje/"
+          data-en="leg / foot"
+          data-note="La pierna = leg · El pie = foot. Me he torcido el tobillo = I've twisted my ankle (tobillo = ankle). La rodilla = knee. Tengo una ampolla = I have a blister — very relevant after a day of sightseeing!">
+          <div class="body-icon">🦵</div>
+          <div class="body-es">la pierna</div>
+          <div class="body-en">leg / foot</div>
+        </div>
+        <div class="body-card"
+          data-es="los ojos"
+          data-pron="/los ˈoxos/"
+          data-en="eyes"
+          data-note="Me pican los ojos = My eyes are itchy (common with allergies). Tengo conjuntivitis = I have conjunctivitis. La vista = eyesight. Las gafas = glasses (Spain) · los lentes/anteojos = glasses (LatAm). Las lentillas = contact lenses.">
+          <div class="body-icon">👁️</div>
+          <div class="body-es">los ojos</div>
+          <div class="body-en">eyes</div>
+        </div>
+        <div class="body-card"
+          data-es="la nariz"
+          data-pron="/la naˈɾiθ/"
+          data-en="nose"
+          data-note="Tengo la nariz taponada = My nose is blocked/stuffy. Me moquea la nariz = My nose is running. Tengo hemorragia nasal = I have a nosebleed. La sinusitis = sinusitis. Estornudo mucho = I'm sneezing a lot.">
+          <div class="body-icon">👃</div>
+          <div class="body-es">la nariz</div>
+          <div class="body-en">nose</div>
+        </div>
+        <div class="body-card"
+          data-es="la oreja / el oído"
+          data-pron="/la oˈɾexa/ · /el oˈiðo/"
+          data-en="ear"
+          data-note="La oreja = the outer ear (what you see). El oído = the inner ear (what hears). Me duele el oído = I have an earache (inner). La otitis = ear infection. ¡Qué buen oído tienes! = What a good ear you have (for music)!">
+          <div class="body-icon">👂</div>
+          <div class="body-es">la oreja / oído</div>
+          <div class="body-en">ear (outer/inner)</div>
+        </div>
+        <div class="body-card"
+          data-es="la rodilla"
+          data-pron="/la roˈðiʎa/"
+          data-en="knee"
+          data-note="Me duele la rodilla = My knee hurts. Me he roto la rodilla = I've broken my knee. Tengo el ligamento roto = I have a torn ligament. La rodilla is a common injury in hiking — very relevant given Spain's mountain culture.">
+          <div class="body-icon">🦿</div>
+          <div class="body-es">la rodilla</div>
+          <div class="body-en">knee</div>
+        </div>
+        <div class="body-card"
+          data-es="la muñeca / el tobillo"
+          data-pron="/la muˈɲeka/ · /el toˈβiʎo/"
+          data-en="wrist / ankle"
+          data-note="La muñeca = wrist (also = doll!). El tobillo = ankle. Me he torcido el tobillo = I've twisted my ankle. Me he esguinzado la muñeca = I've sprained my wrist. Both are common sports injuries.">
+          <div class="body-icon">🤸</div>
+          <div class="body-es">muñeca / tobillo</div>
+          <div class="body-en">wrist / ankle</div>
+        </div>
+      </div>
+      <div class="body-detail" id="es-body-detail">
+        <div class="bd-empty">Tap any body part above to learn vocabulary and useful health phrases</div>
+      </div>
+    </div>
+
+    <!-- Health phrases -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · En el médico — at the doctor's</div>
+      <div class="section-title">Describing symptoms, getting help, and the Spanish healthcare system</div>
+      <div class="phrase-list">
+        <div class="phrase-card urgent">
+          <span class="phrase-icon">🚨</span>
+          <div>
+            <div class="phrase-native">¡Llame a una ambulancia! / Necesito ayuda.</div>
+            <div class="phrase-sub">/ˈʎame a ˈuna ambuˈlanθja/</div>
+            <div class="phrase-en">Call an ambulance! / I need help.</div>
+            <div class="phrase-note">Emergency number in Spain: 112 (European standard) · 061 (medical emergencies). ¡Es una emergencia! = It's an emergency! ¡Auxilio! = Help! These are the phrases you hope never to need but must know.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🏥</span>
+          <div>
+            <div class="phrase-native">Necesito ver a un médico. / ¿Dónde está el centro de salud?</div>
+            <div class="phrase-sub">/neθeˈsito ˈβeɾ a un ˈmeðiko/</div>
+            <div class="phrase-en">I need to see a doctor. / Where is the health centre?</div>
+            <div class="phrase-note">El centro de salud = GP/health centre. El hospital = hospital. Urgencias = A&amp;E / Emergency Department. La farmacia = pharmacy. El médico de cabecera = GP (family doctor).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤒</span>
+          <div>
+            <div class="phrase-native">Me duele(n)... / Tengo dolor de...</div>
+            <div class="phrase-sub">/me ˈdwele/ · /ˈteŋɡo doˈloɾ ðe/</div>
+            <div class="phrase-en">I have pain in... / I have a ... ache</div>
+            <div class="phrase-note">Me duele + singular: Me duele la cabeza (headache). Me duelen + plural: Me duelen los pies (my feet hurt). Tengo dolor de muelas = toothache. Tengo fiebre = I have a fever.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💊</span>
+          <div>
+            <div class="phrase-native">¿Puede darme algo para...? / ¿Tiene analgésicos?</div>
+            <div class="phrase-sub">/ˈpweðe ˈðaɾme ˈalɡo ˈpaɾa/</div>
+            <div class="phrase-en">Can you give me something for...? / Do you have painkillers?</div>
+            <div class="phrase-note">Un analgésico = painkiller. Un antiinflamatorio = anti-inflammatory. El ibuprofeno / el paracetamol = ibuprofen / paracetamol. La receta = prescription. Sin receta = over the counter (OTC).</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🌡️</span>
+          <div>
+            <div class="phrase-native">Soy alérgico/a a... / Tomo medicación para...</div>
+            <div class="phrase-sub">/soi aˈleɾxiko a/</div>
+            <div class="phrase-en">I am allergic to... / I take medication for...</div>
+            <div class="phrase-note">Soy alérgico/a a la penicilina (I am allergic to penicillin). Tomo medicación para la tensión (I take medication for blood pressure). Essential information to communicate clearly at any medical appointment.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">📋</span>
+          <div>
+            <div class="phrase-native">¿Desde cuándo le duele? / ¿Tiene seguro médico?</div>
+            <div class="phrase-sub">/ˈdesðe ˈkwando le ˈdwele/</div>
+            <div class="phrase-en">How long has it been hurting? / Do you have health insurance?</div>
+            <div class="phrase-note">Questions a Spanish doctor will ask you. Desde hace tres días (for three days). La tarjeta sanitaria = health card. El seguro médico privado = private health insurance. EU citizens can use the EHIC card in Spain.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conditional tense -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The conditional tense — el condicional</div>
+      <div class="section-title">"Would" in Spanish — hypotheticals, polite requests, and dreams</div>
+      <p>The Spanish conditional expresses what <strong>would</strong> happen — hypothetical situations, polite requests, and wishes. It uses the same irregular stems as the future tense, but different endings. The good news: regular verbs add the endings directly to the infinitive, just like the future!</p>
+
+      <table class="conj-table">
+        <tr><th>Pronoun</th><th>Ending</th><th>hablar</th><th>comer</th><th>vivir</th></tr>
+        <tr><td class="conj-pronoun">yo</td><td style="color:#8e44ad; font-size:15px; font-weight:500">-ía</td><td><span class="conj-es-form" style="color:#8e44ad">hablaría</span></td><td><span class="conj-es-form" style="color:#8e44ad">comería</span></td><td><span class="conj-es-form" style="color:#8e44ad">viviría</span></td></tr>
+        <tr><td class="conj-pronoun">tú</td><td style="color:#8e44ad; font-size:15px; font-weight:500">-ías</td><td><span class="conj-es-form" style="color:#8e44ad">hablarías</span></td><td><span class="conj-es-form" style="color:#8e44ad">comerías</span></td><td><span class="conj-es-form" style="color:#8e44ad">vivirías</span></td></tr>
+        <tr><td class="conj-pronoun">él/ella</td><td style="color:#8e44ad; font-size:15px; font-weight:500">-ía</td><td><span class="conj-es-form" style="color:#8e44ad">hablaría</span></td><td><span class="conj-es-form" style="color:#8e44ad">comería</span></td><td><span class="conj-es-form" style="color:#8e44ad">viviría</span></td></tr>
+        <tr><td class="conj-pronoun">nosotros</td><td style="color:#8e44ad; font-size:15px; font-weight:500">-íamos</td><td><span class="conj-es-form" style="color:#8e44ad">hablaríamos</span></td><td><span class="conj-es-form" style="color:#8e44ad">comeríamos</span></td><td><span class="conj-es-form" style="color:#8e44ad">viviríamos</span></td></tr>
+        <tr><td class="conj-pronoun">vosotros</td><td style="color:#8e44ad; font-size:15px; font-weight:500">-íais</td><td><span class="conj-es-form" style="color:#8e44ad">hablaríais</span></td><td><span class="conj-es-form" style="color:#8e44ad">comeríais</span></td><td><span class="conj-es-form" style="color:#8e44ad">viviríais</span></td></tr>
+        <tr><td class="conj-pronoun">ellos</td><td style="color:#8e44ad; font-size:15px; font-weight:500">-ían</td><td><span class="conj-es-form" style="color:#8e44ad">hablarían</span></td><td><span class="conj-es-form" style="color:#8e44ad">comerían</span></td><td><span class="conj-es-form" style="color:#8e44ad">vivirían</span></td></tr>
+      </table>
+
+      <div class="tip-box tip-purple">
+        <strong>Same irregular stems as the future!</strong> tener→tendr- (tendría) · salir→saldr- (saldría) · venir→vendr- (vendría) · poder→podr- (podría) · hacer→har- (haría) · decir→dir- (diría) · querer→querr- (querría). Once you know the future irregulars (Week 7), the conditional stems are free — same stems, different endings (-ía instead of -é/-ás/-á etc.).
+      </div>
+
+      <div class="cond-grid">
+        <div class="cond-card real">
+          <div class="cond-label">Real / Possible conditions (si + present)</div>
+          <div class="cond-formula">Si + present → future</div>
+          <div class="cond-uses">
+            If something is genuinely possible:<br/>
+            Si + present indicative →<br/>
+            future or imperative
+          </div>
+          <div class="cond-ex">
+            Si tienes fiebre, ve al médico.<br/>
+            (If you have a fever, go to the doctor.)<br/>
+            Si llueve, cogeremos el taxi.<br/>
+            (If it rains, we'll take the taxi.)
+          </div>
+        </div>
+        <div class="cond-card hyp">
+          <div class="cond-label">Hypothetical / Unlikely (si + imperfect subj.)</div>
+          <div class="cond-formula">Si + imperfect subj. → conditional</div>
+          <div class="cond-uses">
+            If something is hypothetical or unlikely:<br/>
+            Si + imperfect subjunctive →<br/>
+            conditional (would)
+          </div>
+          <div class="cond-ex">
+            Si tuviera dinero, viajaría a Japón.<br/>
+            (If I had money, I would travel to Japan.)<br/>
+            Si pudiera, estudiaría más español.<br/>
+            (If I could, I would study more Spanish.)
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">The conditional as a politeness tool — its most practical use:</p>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎩</span>
+          <div>
+            <div class="phrase-native">¿Podría ayudarme? / ¿Me traería la carta?</div>
+            <div class="phrase-sub">/poˈðɾia/ · /me tɾaˈeɾia/</div>
+            <div class="phrase-en">Could you help me? / Could you bring me the menu?</div>
+            <div class="phrase-note">Podría (conditional of poder) = could — far more polite than puede (present). This is exactly like English: "Can you help?" vs "Could you help?" — the conditional adds courtesy distance. Use it in restaurants, hotels, and formal contexts.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💭</span>
+          <div>
+            <div class="phrase-native">Quisiera... / Me gustaría...</div>
+            <div class="phrase-sub">/kiˈsjeɾa/ · /me ɡustaˈɾia/</div>
+            <div class="phrase-en">I would like... (polite)</div>
+            <div class="phrase-note">Quisiera (conditional of querer) = I would like — the most elegant way to make a request. Me gustaría + infinitive = I would like to [do something]. Both are considerably more polite than quiero (I want) — the Spanish equivalent of "I'd like" vs "I want".</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌟</span>
+          <div>
+            <div class="phrase-native">¿Qué harías si...? / Yo que tú...</div>
+            <div class="phrase-sub">/ke aˈɾias si/ · /ʝo ke ˈtu/</div>
+            <div class="phrase-en">What would you do if...? / If I were you...</div>
+            <div class="phrase-note">¿Qué harías si tuvieras un millón de euros? = What would you do if you had a million euros? Yo que tú, descansaría = If I were you, I would rest. Yo en tu lugar... = In your place... These are wonderful conversation starters.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive conditional builder ES -->
+    <div class="section">
+      <div class="section-label">Interactive · Conditional sentence builder</div>
+      <div class="section-title">Choose a wish or polite request — see the conditional in action</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 El condicional — would &amp; polite requests</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a scenario</div>
+          <div class="bl-btns" id="es-cond-btns">
+            <button class="bl-btn es-cond"
+              data-sentence="Quisiera una mesa para dos, por favor."
+              data-breakdown="quisiera = conditional of querer (to want/wish) — yo form"
+              data-note="Quisiera is the gold standard for polite requests in Spanish restaurants and shops. Much softer than 'Quiero' (I want). The conditional adds gracious distance.">
+              🍽️ Polite restaurant request
+            </button>
+            <button class="bl-btn es-cond"
+              data-sentence="¿Podría hablar más despacio, por favor?"
+              data-breakdown="podría = conditional of poder (to be able) — él/ella/usted form"
+              data-note="Podría (could) is more polite than puede (can). Perfect for asking someone to slow down, repeat, or help. The standard polite request form in formal situations.">
+              🗣️ Could you speak slower?
+            </button>
+            <button class="bl-btn es-cond"
+              data-sentence="Si tuviera más tiempo, aprendería chino."
+              data-breakdown="tuviera = imperfect subjunctive of tener · aprendería = conditional of aprender"
+              data-note="The classic hypothetical: Si + imperfect subjunctive → conditional. 'If I had more time, I would learn Chinese.' The subjunctive (tuviera) signals it's hypothetical — not actually happening.">
+              💭 If I had time (hypothetical)
+            </button>
+            <button class="bl-btn es-cond"
+              data-sentence="Me gustaría visitar la Sagrada Família."
+              data-breakdown="gustaría = conditional of gustar · me = indirect object pronoun"
+              data-note="Me gustaría + infinitive = I would like to [do]. The conditional of gustar — just like 'I would like' in English. More elegant than 'Quiero visitar' (I want to visit).">
+              🏛️ I would like to visit
+            </button>
+            <button class="bl-btn es-cond"
+              data-sentence="¿Qué harías si te tocara la lotería?"
+              data-breakdown="harías = conditional of hacer (you) · tocara = imperfect subjunctive of tocar"
+              data-note="What would you do if you won the lottery? A classic conversation starter using the hypothetical conditional structure. Tocar la lotería = to win the lottery (lit. 'the lottery touches you').">
+              🎰 What would you do?
+            </button>
+            <button class="bl-btn es-cond"
+              data-sentence="Yo que tú, descansaría un poco."
+              data-breakdown="descansaría = conditional of descansar (to rest) — yo form"
+              data-note="Yo que tú (If I were you) is a fixed expression always followed by the conditional. A warm, sympathetic way to give advice. Compare: 'En tu lugar...' (In your place) — same structure.">
+              💡 If I were you...
+            </button>
+          </div>
+          <div class="bl-result" id="es-cond-result">
+            <div class="blr-empty">Choose a scenario above to see the conditional in action</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🏥</span>
+        <div class="culture-text">
+          <strong>La sanidad española — Spain's healthcare system</strong><br/>
+          Spain has one of the world's best public healthcare systems — consistently ranked in the top ten globally. The <em>Sistema Nacional de Salud</em> (SNS) provides universal free healthcare to all residents and EU citizens with an EHIC card. The first port of call for non-emergencies is the <em>centro de salud</em> (health centre), where your <em>médico de cabecera</em> (GP) can refer you to specialists. Pharmacies (farmacias — marked with a green cross) are remarkably accessible: Spanish pharmacists are highly trained and can recommend treatments for minor ailments without a prescription. They are the first stop for colds, minor injuries, and common complaints — a deeply embedded cultural habit. The word <em>farmacia</em> is cognate with "pharmacy" in English and "farmacia" in Italian — you'll spot the green cross instantly across Spain and Latin America.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 9 Spanish — health &amp; conditional tense</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "My head hurts" in Spanish using doler?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Me duelen la cabeza.</button>
+          <button class="quiz-btn" data-answer="correct">Me duele la cabeza.</button>
+          <button class="quiz-btn" data-answer="wrong">Tengo doler de cabeza.</button>
+          <button class="quiz-btn" data-answer="wrong">Mi cabeza duele.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the yo conditional form of tener (to have)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">tenería</button>
+          <button class="quiz-btn" data-answer="wrong">tenerá</button>
+          <button class="quiz-btn" data-answer="correct">tendría</button>
+          <button class="quiz-btn" data-answer="wrong">tenería</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is the most polite way to say "I want a coffee" to a waiter?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Quiero un café.</button>
+          <button class="quiz-btn" data-answer="wrong">Dame un café.</button>
+          <button class="quiz-btn" data-answer="correct">Quisiera un café, por favor.</button>
+          <button class="quiz-btn" data-answer="wrong">Necesito un café.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">La oreja and el oído both mean "ear" — what is the difference?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">La oreja is formal · el oído is informal</button>
+          <button class="quiz-btn" data-answer="correct">La oreja = the outer ear (visible) · el oído = the inner ear (hearing organ)</button>
+          <button class="quiz-btn" data-answer="wrong">They are completely synonymous with no difference</button>
+          <button class="quiz-btn" data-answer="wrong">La oreja is used in Spain · el oído in Latin America</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — "I have eaten" &amp; "I would like"</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages express present perfect and polite hypotheticals</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">The present perfect reveals a fascinating spectrum — and "would like" shows different strategies for embedding politeness in grammar.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I have eaten"</td>
+        <td>食べました<br/><span style="font-size:11px; color:#888">tabemashita<br/>Past polite — no separate perfect tense</span></td>
+        <td>먹었어요<br/><span style="font-size:11px; color:#888">meogeosseoyo<br/>Past — context shows present relevance</span></td>
+        <td>I have eaten<br/><span style="font-size:11px; color:#888">have + past participle<br/>Dedicated perfect tense</span></td>
+        <td>He comido<br/><span style="font-size:11px; color:#888">haber + participio<br/>Used mainly in Spain</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"Have you ever...?"</td>
+        <td>〜したことがありますか<br/><span style="font-size:11px; color:#888">...shita koto ga arimasu ka<br/>("do you have the experience of...")</span></td>
+        <td>〜해 본 적 있어요?<br/><span style="font-size:11px; color:#888">...hae bon jeok isseoyo?<br/>("have you ever tried...")</span></td>
+        <td>Have you ever...?<br/><span style="font-size:11px; color:#888">Present perfect + ever</span></td>
+        <td>¿Has...alguna vez?<br/><span style="font-size:11px; color:#888">Present perfect + alguna vez</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I would like..."</td>
+        <td>〜がほしいです<br/><span style="font-size:11px; color:#888">...ga hoshii desu<br/>(want adjective + desu)</span></td>
+        <td>〜고 싶어요<br/><span style="font-size:11px; color:#888">...go sipeoyo<br/>(want-to construction)</span></td>
+        <td>I would like...<br/><span style="font-size:11px; color:#888">Modal would + like</span></td>
+        <td>Quisiera / Me gustaría<br/><span style="font-size:11px; color:#888">Conditional of querer/gustar</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"If I had money..."</td>
+        <td>お金があれば...<br/><span style="font-size:11px; color:#888">okane ga areba...<br/>Conditional form (-eba)</span></td>
+        <td>돈이 있으면...<br/><span style="font-size:11px; color:#888">doni isseumyeon...<br/>-(으)면 conditional</span></td>
+        <td>If I had money...<br/><span style="font-size:11px; color:#888">Past simple in if-clause (hypothetical)</span></td>
+        <td>Si tuviera dinero...<br/><span style="font-size:11px; color:#888">Imperfect subjunctive in si-clause</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-green" style="margin-top:14px">
+      <strong>The perfect tense insight:</strong> Japanese and Korean have no dedicated present perfect tense — they use their past tense and rely on context to show present relevance. English and Spanish both have dedicated perfect tenses (have + participle / haber + participio) — but use them differently: British English uses it for any recent past with present relevance, while in Latin America Spanish speakers often prefer the preterite. The grammar is similar but the usage habits diverge across cultures.
+    </div>
+  </div>
+
+
+  <!-- Week 10 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 10</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Prepositions — the small words with big meaning · In/on/at for time and place · Phrasal verbs (the most challenging part of English!) · 20 essential phrasal verbs · How to approach them systematically.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Reflexive verbs — levantarse, llamarse, sentirse · Daily routine vocabulary · The subjunctive mood — introduction and most essential uses · Expressing doubt, desire, and emotion with subjunctive.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 9 complete · Click <a href="Week10.E&S.html">here</a> when you're ready for Week 10 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English perfect explorer ── */
+  document.querySelectorAll('.en-perf').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-perf').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-perf-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Tense:</strong> ${d.tense}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish body parts grid ── */
+  document.querySelectorAll('#es-body-grid .body-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-body-grid .body-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-body-detail').innerHTML = `
+        <div class="bd-es">${d.es}</div>
+        <div class="bd-pron">${d.pron}</div>
+        <div class="bd-en">${d.en}</div>
+        <div class="bd-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish conditional builder ── */
+  document.querySelectorAll('.es-cond').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-cond').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-cond-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Formation:</strong> ${d.breakdown}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
