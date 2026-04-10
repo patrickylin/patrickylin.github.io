@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 11 — English & Spanish: Relative Clauses, Passive Voice & Por vs Para</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Relative pronoun table */
+  .rel-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .rel-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .rel-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .rel-table tr:last-child td { border-bottom: none; }
+  .rel-pron { font-size: 17px; color: #185FA5; font-weight: 500; }
+  .rel-use  { font-size: 13px; color: #333; }
+  .rel-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Defining vs non-defining */
+  .clause-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .cc-card { border-radius: 12px; padding: 14px; }
+  .cc-card.def  { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .cc-card.ndef { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .cc-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .cc-rule    { font-size: 13px; color: #333; line-height: 1.8; margin-bottom: 8px; }
+  .cc-ex      { font-size: 13px; color: #1a1a18; line-height: 2; }
+  .cc-note    { font-size: 11px; color: #888; margin-top: 6px; font-style: italic; }
+
+  /* Passive voice */
+  .passive-arrow { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .pa-block { border-radius: 8px; padding: 10px 14px; }
+  .pa-block.active  { background: #f0f8f5; border: 0.5px solid #a8ddc5; flex: 1; }
+  .pa-block.passive { background: #f5f0fd; border: 0.5px solid #c8b8f0; flex: 1; }
+  .pa-arrow { font-size: 22px; color: #ccc; flex-shrink: 0; }
+  .pa-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
+  .pa-sentence { font-size: 15px; color: #1a1a18; font-weight: 500; }
+  .pa-note { font-size: 12px; color: #555; margin-top: 2px; }
+
+  /* Por vs Para cards */
+  .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .pp-card { border-radius: 12px; padding: 14px; }
+  .pp-card.por  { background: #fff8f0; border: 0.5px solid #f5dfc0; }
+  .pp-card.para { background: #f0f4ff; border: 0.5px solid #c5d0f5; }
+  .pp-word  { font-size: 26px; font-weight: 500; margin-bottom: 6px; }
+  .pp-card.por  .pp-word { color: #D85030; }
+  .pp-card.para .pp-word { color: #185FA5; }
+  .pp-core  { font-size: 13px; color: #666; margin-bottom: 10px; font-style: italic; }
+  .pp-uses  { font-size: 13px; color: #333; line-height: 2; }
+  .pp-ex    { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Time clause table */
+  .time-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .time-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .time-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .time-table tr:last-child td { border-bottom: none; }
+  .time-conj { font-size: 16px; color: #185FA5; font-weight: 500; }
+  .time-rule { font-size: 13px; color: #333; }
+  .time-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label  { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns   { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn    { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 20px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .clause-compare, .pp-grid, .two-col { grid-template-columns: 1fr; }
+    .passive-arrow { flex-direction: column; }
+    .pa-block { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 11 of 16</span>
+      <h1>Relative Clauses, Passive Voice & Por vs Para</h1>
+      <div class="subtitle">EN: Who/which/that/where clauses · Defining vs non-defining · Passive voice · ES: Subjunctive with time clauses · Por vs para fully explained</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:68%;"></div></div>
+      68% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 11 · Relative clauses · Who/which/that/whose/where · Passive voice · When to use each</div>
+      </div>
+    </div>
+
+    <!-- Relative clauses overview -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Relative clauses — joining sentences elegantly</div>
+      <div class="section-title">Who, which, that, whose, where — the connectors that build complex sentences</div>
+      <p>A relative clause is a subordinate clause that gives more information about a noun. Instead of saying two short sentences ("I met a woman. She speaks five languages.") you can join them into one fluent sentence: "I met a woman <strong>who speaks five languages</strong>." Relative clauses are what separate beginner sentences from genuinely natural English.</p>
+
+      <table class="rel-table">
+        <tr>
+          <th style="width:80px">Pronoun</th>
+          <th>Used for</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">who</span></td>
+          <td class="rel-use">People — as subject of the clause</td>
+          <td><span class="rel-ex">The teacher <strong>who</strong> taught me Japanese was from Kyoto. · The people <strong>who</strong> live next door are very kind.</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">whom</span></td>
+          <td class="rel-use">People — as object (formal). Often replaced by "who" in speech.</td>
+          <td><span class="rel-ex">The colleague <strong>whom</strong> I respect most has retired. (Formal) · The colleague <strong>who</strong> I respect most... (Spoken)</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">which</span></td>
+          <td class="rel-use">Things and animals</td>
+          <td><span class="rel-ex">The film <strong>which</strong> won the award was Spanish. · The car <strong>which</strong> broke down is being repaired.</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">that</span></td>
+          <td class="rel-use">People or things — in defining clauses only (can replace who/which)</td>
+          <td><span class="rel-ex">The book <strong>that</strong> I recommended is excellent. · The person <strong>that</strong> called you is waiting.</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">whose</span></td>
+          <td class="rel-use">Possession — for people and things</td>
+          <td><span class="rel-ex">The author <strong>whose</strong> book I loved is speaking tonight. · A company <strong>whose</strong> profits have tripled.</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">where</span></td>
+          <td class="rel-use">Places</td>
+          <td><span class="rel-ex">The city <strong>where</strong> I grew up has changed a lot. · Is this the restaurant <strong>where</strong> we met?</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">when</span></td>
+          <td class="rel-use">Times</td>
+          <td><span class="rel-ex">I remember the day <strong>when</strong> I first arrived in Japan. · There are moments <strong>when</strong> words aren't enough.</span></td>
+        </tr>
+        <tr>
+          <td><span class="rel-pron">why</span></td>
+          <td class="rel-use">Reasons (after "the reason")</td>
+          <td><span class="rel-ex">That's the reason <strong>why</strong> I left. · Do you know the reason <strong>why</strong> she's upset?</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-blue">
+        <strong>Can you drop "that"?</strong> In defining relative clauses, "that" can often be omitted when it is the OBJECT of the clause: "The book <strong>that</strong> I read was amazing." → "The book I read was amazing." ✅ But never drop it when it is the SUBJECT: "The person <strong>that</strong> called you..." → ~~"The person called you..."~~ ❌ (changes the meaning completely). This omission is called a "zero relative" and is extremely common in spoken English.
+      </div>
+    </div>
+
+    <!-- Defining vs non-defining -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Defining vs non-defining clauses</div>
+      <div class="section-title">The comma that changes everything — essential information vs bonus information</div>
+      <p>This distinction is one of the most important — and most overlooked — aspects of English relative clauses. The difference is not just punctuation; it changes the logical meaning of the sentence.</p>
+
+      <div class="clause-compare">
+        <div class="cc-card def">
+          <div class="cc-label">Defining (restrictive) — NO commas</div>
+          <div class="cc-rule">The clause is ESSENTIAL to identify which noun is meant. Remove it and the sentence loses its specific meaning. "That" can be used.</div>
+          <div class="cc-ex">
+            The students <strong>who work hard</strong> will pass.<br/>
+            <span style="font-size:11px; color:#555">(Only those who work hard — not all students)</span><br/><br/>
+            I want the book <strong>that is on the table</strong>.<br/>
+            <span style="font-size:11px; color:#555">(That specific book — not any book)</span>
+          </div>
+          <div class="cc-note">No commas. "That" allowed. Clause cannot be removed without changing meaning.</div>
+        </div>
+        <div class="cc-card ndef">
+          <div class="cc-label">Non-defining (non-restrictive) — WITH commas</div>
+          <div class="cc-rule">The clause adds EXTRA information about an already-identified noun. Remove it and the core meaning stays intact. "That" is NOT used — only who/which.</div>
+          <div class="cc-ex">
+            My sister, <strong>who lives in Madrid</strong>, is visiting next week.<br/>
+            <span style="font-size:11px; color:#555">(I have one sister — the clause just adds where she lives)</span><br/><br/>
+            The Eiffel Tower, <strong>which was built in 1889</strong>, attracts millions.<br/>
+            <span style="font-size:11px; color:#555">(We already know which tower — built date is extra info)</span>
+          </div>
+          <div class="cc-note">Commas required. Never "that". Clause can be removed — sentence still makes sense.</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The sister test:</strong> "My sister who lives in Madrid is visiting" (no commas) implies you have MORE THAN ONE sister, and you're specifying which one. "My sister, who lives in Madrid, is visiting" (commas) implies you have ONE sister, and you're adding where she lives as bonus information. The comma is not decoration — it signals whether the clause is identifying or merely commenting. In speech, this difference is marked by a pause.
+      </div>
+    </div>
+
+    <!-- Passive voice -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · The passive voice</div>
+      <div class="section-title">Be + past participle — shifting the focus from doer to receiver</div>
+      <p>The passive voice moves the focus from who does the action (the agent) to what receives the action (the patient). It's formed with <strong>be + past participle</strong> in any tense. English uses the passive more than most languages — particularly in formal, academic, scientific, and journalistic writing.</p>
+
+      <div class="passive-arrow">
+        <div class="pa-block active">
+          <div class="pa-label">Active — focus on the doer</div>
+          <div class="pa-sentence">Shakespeare <span style="color:#185FA5">wrote</span> Hamlet.</div>
+          <div class="pa-note">Subject = Shakespeare (agent) · Verb = wrote · Object = Hamlet</div>
+        </div>
+        <div class="pa-arrow">→</div>
+        <div class="pa-block passive">
+          <div class="pa-label">Passive — focus on the work</div>
+          <div class="pa-sentence">Hamlet <span style="color:#8e44ad">was written</span> by Shakespeare.</div>
+          <div class="pa-note">Subject = Hamlet (patient) · Verb = was written · Agent = by Shakespeare (optional)</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Passive in different tenses:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.3;">
+        <strong>Present simple:</strong> English <strong>is spoken</strong> in over 50 countries.<br/>
+        <strong>Past simple:</strong> The Eiffel Tower <strong>was built</strong> in 1889.<br/>
+        <strong>Present perfect:</strong> Three people <strong>have been arrested</strong>.<br/>
+        <strong>Future:</strong> The results <strong>will be announced</strong> tomorrow.<br/>
+        <strong>Modal:</strong> This problem <strong>must be solved</strong> immediately.<br/>
+        <strong>Continuous:</strong> The bridge <strong>is being repaired</strong> at the moment.
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>When to use the passive — four good reasons:</strong><br/>
+        1. <strong>Agent unknown:</strong> "My bike was stolen." (We don't know who took it.)<br/>
+        2. <strong>Agent obvious/unimportant:</strong> "He was arrested." (Obviously by police.)<br/>
+        3. <strong>Focus on the result:</strong> "The report has been completed." (Result matters, not who did it.)<br/>
+        4. <strong>Formal/impersonal style:</strong> "Mistakes were made." (Classic political evasion — passive hides the agent deliberately!)<br/>
+        Avoid overusing passive in conversation — it can sound distant and evasive. In academic and scientific writing, it's the standard.
+      </div>
+    </div>
+
+    <!-- Interactive relative clause builder EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Relative clause builder</div>
+      <div class="section-title">Choose a pair of sentences — see how they combine into a relative clause</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Joining sentences with relative clauses</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a sentence pair</div>
+          <div class="bl-btns" id="en-rel-btns">
+            <button class="bl-btn en-rel"
+              data-s1="I met a woman. She speaks five languages."
+              data-combined="I met a woman who speaks five languages."
+              data-pronoun="who — person as subject"
+              data-note="'She' is the subject of the second clause. Replace with WHO. Defining clause — no commas, identifies which woman.">
+              👩 Woman / speaks languages
+            </button>
+            <button class="bl-btn en-rel"
+              data-s1="The restaurant was excellent. We ate there last night."
+              data-combined="The restaurant where we ate last night was excellent."
+              data-pronoun="where — place"
+              data-note="'There' refers to the restaurant (a place). Replace with WHERE. Note the word order shift — 'where we ate last night' moves to follow the noun it describes.">
+              🍽️ Restaurant / ate there
+            </button>
+            <button class="bl-btn en-rel"
+              data-s1="My neighbour plays guitar beautifully. His daughter is my student."
+              data-combined="My neighbour, whose daughter is my student, plays guitar beautifully."
+              data-pronoun="whose — possession (non-defining with commas)"
+              data-note="WHOSE replaces 'his' — showing possession. Non-defining clause (commas) because we already know which neighbour. 'That' cannot be used here.">
+              🎸 Neighbour / his daughter
+            </button>
+            <button class="bl-btn en-rel"
+              data-s1="The book changed my life. I read it last year."
+              data-combined="The book that I read last year changed my life."
+              data-pronoun="that — object of defining clause (can be dropped!)"
+              data-note="'It' is the object of 'read'. Replace with THAT (or WHO/WHICH). Because THAT is the object, it can be omitted: 'The book I read last year changed my life.' ✅ Zero relative.">
+              📖 Book / I read it
+            </button>
+            <button class="bl-btn en-rel"
+              data-s1="Mount Fuji is the highest mountain in Japan. It has been sacred for centuries."
+              data-combined="Mount Fuji, which has been sacred for centuries, is the highest mountain in Japan."
+              data-pronoun="which — thing (non-defining with commas)"
+              data-note="Non-defining because Mount Fuji is already uniquely identified. Extra information about sacredness added in commas. THAT cannot replace WHICH in non-defining clauses.">
+              🗻 Mount Fuji / sacred
+            </button>
+            <button class="bl-btn en-rel"
+              data-s1="I remember the day. I arrived in Japan on that day."
+              data-combined="I remember the day when I arrived in Japan."
+              data-pronoun="when — time"
+              data-note="WHEN refers to 'the day' (a time). Alternatively: 'the day that I arrived' or 'the day I arrived' (zero relative). All three are correct — WHEN is slightly more formal.">
+              📅 Day / I arrived
+            </button>
+          </div>
+          <div class="bl-result" id="en-rel-result">
+            <div class="blr-empty">Choose a pair above to see how the relative clause is formed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">📰</span>
+        <div class="culture-text">
+          <strong>The passive voice — power, evasion, and the art of non-apology</strong><br/>
+          The passive voice does more than grammar in English — it is a tool of power and a shield of accountability. Politicians who say "mistakes were made" instead of "I made mistakes" use the passive to acknowledge a problem while erasing responsibility. Corporations issue statements saying "your data was compromised" rather than "we lost your data." Scientists write "the experiment was conducted" rather than "I conducted" to project objectivity. And the British passive is particularly beloved for extreme politeness: "It has been noted that..." (someone complained), "It would be appreciated if..." (please do this). Understanding the passive isn't just grammar — it's learning to read between the lines of English communication. When you hear the passive in public life, ask: who is the missing agent, and why are they hidden?
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 11 English — relative clauses &amp; passive voice</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which relative pronoun refers to places?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">who</button>
+          <button class="quiz-btn" data-answer="wrong">which</button>
+          <button class="quiz-btn" data-answer="correct">where</button>
+          <button class="quiz-btn" data-answer="wrong">whose</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"My brother, who lives in Seoul, is visiting." — What does the comma tell us?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">The speaker has more than one brother</button>
+          <button class="quiz-btn" data-answer="correct">The speaker has one brother — the clause adds extra (non-essential) information about where he lives</button>
+          <button class="quiz-btn" data-answer="wrong">The clause can be replaced with "that"</button>
+          <button class="quiz-btn" data-answer="wrong">The brother is currently in Seoul</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you make "Someone stole my bike" into a passive sentence?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">My bike stolen.</button>
+          <button class="quiz-btn" data-answer="correct">My bike was stolen.</button>
+          <button class="quiz-btn" data-answer="wrong">My bike has stolen.</button>
+          <button class="quiz-btn" data-answer="wrong">My bike is steal.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">In "The book that I read was amazing" — can "that" be removed?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">No — "that" is always required</button>
+          <button class="quiz-btn" data-answer="correct">Yes — "that" is the object of the clause, so it can be dropped: "The book I read was amazing"</button>
+          <button class="quiz-btn" data-answer="wrong">No — only "which" can be removed</button>
+          <button class="quiz-btn" data-answer="wrong">Yes — but only in American English</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 11 · Subjunctive with time clauses · Por vs para — fully explained</div>
+      </div>
+    </div>
+
+    <!-- Subjunctive with time clauses -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Subjunctive with time clauses</div>
+      <div class="section-title">Cuando, hasta que, antes de que — time conjunctions that trigger the subjunctive</div>
+      <p>Spanish time conjunctions behave differently depending on whether they refer to something that has already happened (past/present habit — indicative) or something that has NOT yet happened (future/hypothetical — subjunctive). This distinction is one of the subtlest and most revealing aspects of the subjunctive.</p>
+
+      <table class="time-table">
+        <tr>
+          <th style="width:110px">Conjunction</th>
+          <th>Meaning</th>
+          <th>With indicative (past/habitual)</th>
+          <th>With subjunctive (future/hypothetical)</th>
+        </tr>
+        <tr>
+          <td><span class="time-conj">cuando</span></td>
+          <td class="time-rule">when</td>
+          <td><span class="time-ex">Cuando llegué, ya había comido. (When I arrived — it already happened)</span></td>
+          <td><span class="time-ex">Cuando llegues, te llamaré. (When you arrive — future, hasn't happened yet)</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-conj">hasta que</span></td>
+          <td class="time-rule">until</td>
+          <td><span class="time-ex">Esperé hasta que llegó. (I waited until she arrived — completed)</span></td>
+          <td><span class="time-ex">Espera hasta que llegue. (Wait until she arrives — future)</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-conj">antes de que</span></td>
+          <td class="time-rule">before</td>
+          <td>—</td>
+          <td><span class="time-ex">Llámame antes de que salgas. (Call me before you leave — ALWAYS subjunctive)</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-conj">en cuanto</span></td>
+          <td class="time-rule">as soon as</td>
+          <td><span class="time-ex">En cuanto llegó, comimos. (As soon as she arrived — past)</span></td>
+          <td><span class="time-ex">En cuanto llegues, comemos. (As soon as you arrive — future)</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-conj">después de que</span></td>
+          <td class="time-rule">after</td>
+          <td><span class="time-ex">Después de que comió, se fue. (After she ate — past)</span></td>
+          <td><span class="time-ex">Después de que comas, sal. (After you eat — future)</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-conj">mientras</span></td>
+          <td class="time-rule">while / as long as</td>
+          <td><span class="time-ex">Mientras trabajaba, escuchaba música. (While working — habitual)</span></td>
+          <td><span class="time-ex">Puedes quedarte mientras te portes bien. (As long as you behave — condition)</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>The golden rule:</strong> If the action in the time clause has NOT YET HAPPENED at the time of speaking — use the subjunctive. "Cuando llegues" (When you arrive — you haven't arrived yet) → subjunctive. "Cuando llegaste" (When you arrived — it already happened) → indicative past. The future is inherently uncertain and unrealised, so Spanish treats it as subjunctive territory. This rule applies to ALL time conjunctions except antes de que, which ALWAYS requires subjunctive regardless of tense.
+      </div>
+
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📞</span>
+          <div>
+            <div class="phrase-native">Llámame cuando llegues al aeropuerto.</div>
+            <div class="phrase-en">Call me when you get to the airport.</div>
+            <div class="phrase-note">Cuando + subjunctive (llegues) — the arrival hasn't happened yet. In English, "when you get" also uses present (not future) — both languages treat this future time clause as non-future in form!</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⏳</span>
+          <div>
+            <div class="phrase-native">Espera aquí hasta que vuelva.</div>
+            <div class="phrase-en">Wait here until I come back.</div>
+            <div class="phrase-note">Hasta que + subjunctive (vuelva) — the return is in the future. Contrast: "Esperé hasta que volvió" (I waited until she came back — past indicative because it already happened).</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🚪</span>
+          <div>
+            <div class="phrase-native">Avísame antes de que te vayas.</div>
+            <div class="phrase-en">Let me know before you leave.</div>
+            <div class="phrase-note">Antes de que ALWAYS takes subjunctive (vayas = subjunctive of irse). There is no indicative version of antes de que — it grammatically implies a future, unrealised event by definition.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">✅</span>
+          <div>
+            <div class="phrase-native">En cuanto termines, dímelo.</div>
+            <div class="phrase-en">As soon as you finish, tell me.</div>
+            <div class="phrase-note">En cuanto + subjunctive (termines) — the finishing is future. This is a very natural phrase in Spanish workplaces and everyday conversation. "En cuanto terminé, te llamé" (As soon as I finished, I called you) = past indicative.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Por vs Para -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Por vs Para — the most confusing pair in Spanish</div>
+      <div class="section-title">Both translate as "for" — but they mean completely different things</div>
+      <p>Both <em>por</em> and <em>para</em> can translate as "for" in English — which is why they cause such persistent confusion. The key insight: <strong>por</strong> looks backward (cause, exchange, duration, movement through) while <strong>para</strong> looks forward (purpose, destination, deadline, recipient). Think of <em>por</em> as "because of / through / in exchange for" and <em>para</em> as "in order to / for the benefit of / by the time of".</p>
+
+      <div class="pp-grid">
+        <div class="pp-card por">
+          <div class="pp-word">POR</div>
+          <div class="pp-core">Cause · Exchange · Duration · Movement through · On behalf of</div>
+          <div class="pp-uses">
+            <strong>Because of / due to:</strong><br/>
+            <span class="pp-ex">Lo hice por amor. (I did it because of love.)</span><br/><br/>
+            <strong>In exchange for:</strong><br/>
+            <span class="pp-ex">Te doy €10 por el libro. (I'll give you €10 for the book.)</span><br/><br/>
+            <strong>Duration of time:</strong><br/>
+            <span class="pp-ex">Estudié por tres horas. (I studied for three hours.)</span><br/><br/>
+            <strong>Movement through / along:</strong><br/>
+            <span class="pp-ex">Pasamos por Madrid. (We passed through Madrid.)</span><br/><br/>
+            <strong>On behalf of / in place of:</strong><br/>
+            <span class="pp-ex">Habló por todos nosotros. (He spoke for all of us.)</span><br/><br/>
+            <strong>Means of communication:</strong><br/>
+            <span class="pp-ex">Te llamo por teléfono. (I'll call you by phone.)</span><br/><br/>
+            <strong>Passive agent:</strong><br/>
+            <span class="pp-ex">Fue escrito por Cervantes. (Written by Cervantes.)</span>
+          </div>
+        </div>
+        <div class="pp-card para">
+          <div class="pp-word">PARA</div>
+          <div class="pp-core">Purpose · Destination · Deadline · Recipient · Opinion</div>
+          <div class="pp-uses">
+            <strong>Purpose / in order to:</strong><br/>
+            <span class="pp-ex">Estudio para aprender. (I study in order to learn.)</span><br/><br/>
+            <strong>Recipient / intended for:</strong><br/>
+            <span class="pp-ex">Este regalo es para ti. (This gift is for you.)</span><br/><br/>
+            <strong>Destination (going toward):</strong><br/>
+            <span class="pp-ex">Salgo para Madrid mañana. (I leave for Madrid tomorrow.)</span><br/><br/>
+            <strong>Deadline (by a time):</strong><br/>
+            <span class="pp-ex">Lo necesito para el lunes. (I need it by Monday.)</span><br/><br/>
+            <strong>Opinion / perspective:</strong><br/>
+            <span class="pp-ex">Para mí, es demasiado picante. (For me / in my opinion, it's too spicy.)</span><br/><br/>
+            <strong>Employer / working for:</strong><br/>
+            <span class="pp-ex">Trabajo para una empresa japonesa. (I work for a Japanese company.)</span><br/><br/>
+            <strong>Unexpected contrast:</strong><br/>
+            <span class="pp-ex">Para ser su primer intento, está muy bien. (For a first attempt, it's very good.)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-coral">
+        <strong>The classic contrast pair:</strong><br/>
+        "Compré flores <strong>por</strong> ti." = I bought flowers because of you / on account of you (you caused the action).<br/>
+        "Compré flores <strong>para</strong> ti." = I bought flowers for you (you are the intended recipient).<br/>
+        Same words, completely different meaning! Por looks at WHY something was done (cause). Para looks at WHO benefits or WHERE it goes (purpose/recipient). This distinction unlocks the whole system.
+      </div>
+
+      <div class="tip-box tip-purple" style="margin-top:8px;">
+        <strong>A memory shortcut:</strong><br/>
+        <strong>POR</strong> = <strong>P</strong>ast causes · <strong>O</strong>n behalf of · <strong>R</strong>outes (through/along) · exchange · duration · means<br/>
+        <strong>PARA</strong> = <strong>P</strong>urpose · <strong>A</strong>ddressed to (recipient) · <strong>R</strong>eaching a place (destination) · <strong>A</strong>rbitrary deadline<br/>
+        Neither is perfect, but the directional image helps: por = looking back at causes, para = looking forward to goals.
+      </div>
+    </div>
+
+    <!-- Interactive por vs para explorer -->
+    <div class="section">
+      <div class="section-label">Interactive · Por vs Para explorer</div>
+      <div class="section-title">Choose a sentence — discover which preposition is used and why</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 ¿Por o Para?</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a scenario</div>
+          <div class="bl-btns" id="es-porpara-btns">
+            <button class="bl-btn es-porpara"
+              data-sentence="Este café es para ti."
+              data-prep="PARA — recipient"
+              data-note="Para = the coffee is intended FOR YOU (recipient). If it were POR: 'Este café es por ti' = This coffee is because of you / on your account — very different! Para identifies who receives or benefits.">
+              ☕ This coffee is for you
+            </button>
+            <button class="bl-btn es-porpara"
+              data-sentence="Lo hice todo por amor."
+              data-prep="POR — cause / motivation"
+              data-note="Por = BECAUSE OF love (love was the cause/motivation). If para: 'Lo hice para el amor' would be very unnatural. Por expresses why you did something — the reason behind the action.">
+              ❤️ Did it all for love
+            </button>
+            <button class="bl-btn es-porpara"
+              data-sentence="Necesito el informe para el viernes."
+              data-prep="PARA — deadline"
+              data-note="Para = BY Friday (deadline). This is always para — deadlines look forward to a time limit. Por viernes would be incorrect here. Para sets a temporal horizon.">
+              📋 Need it by Friday
+            </button>
+            <button class="bl-btn es-porpara"
+              data-sentence="Pagué cincuenta euros por esta chaqueta."
+              data-prep="POR — exchange"
+              data-note="Por = IN EXCHANGE FOR (€50 in exchange for the jacket). Commercial exchanges always use por. Para here would be wrong — para doesn't encode exchange, only intended purpose.">
+              🧥 Paid €50 for this jacket
+            </button>
+            <button class="bl-btn es-porpara"
+              data-sentence="Estudio español para comunicarme mejor."
+              data-prep="PARA — purpose / in order to"
+              data-note="Para + infinitive = IN ORDER TO (purpose). Estudiar para = to study with the goal of. This is one of para's clearest uses. Por here would mean 'because of communicating' — backward-looking, not forward-looking.">
+              📚 Study Spanish to communicate better
+            </button>
+            <button class="bl-btn es-porpara"
+              data-sentence="Para ser principiante, hablas muy bien."
+              data-prep="PARA — unexpected contrast / opinion"
+              data-note="Para = considering that you are / for someone who is... This para signals a surprising contrast between expectation and reality. 'For a beginner, you speak very well' implies surprise that a beginner speaks so well.">
+              🌟 For a beginner, you speak well
+            </button>
+          </div>
+          <div class="bl-result" id="es-porpara-result">
+            <div class="blr-empty">Choose a scenario above to see por or para — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">📚</span>
+        <div class="culture-text">
+          <strong>El Instituto Cervantes — the guardian of the Spanish language</strong><br/>
+          Just as France has the Académie française and Japan has the Agency for Cultural Affairs overseeing language, Spain has the <em>Real Academia Española</em> (RAE) — founded in 1713 — whose motto is <em>"Limpia, fija y da esplendor"</em> (It cleans, fixes and gives splendour). The RAE publishes the authoritative dictionary of Spanish and issues rulings on grammar, spelling and new words. Unlike the Académie française (which famously resists foreign loanwords), the RAE tends to be more pragmatic — it accepted <em>tuit</em> (tweet) and <em>selfi</em> (selfie) into the dictionary. Alongside the RAE, the <em>Instituto Cervantes</em> (named after Miguel de Cervantes, author of Don Quijote) promotes Spanish language and culture worldwide — running schools in 90 countries and administering the DELE examinations. Together they represent the fascinating question of who "owns" a language spoken by 500 million people across 20 countries, each with their own vibrant regional variety.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 11 Spanish — time clauses &amp; por vs para</div>
+      <div class="quiz-item">
+        <div class="quiz-q">"Llámame cuando _____ (llegar) al hotel." — Which form of llegar is needed?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">llegas (present indicative)</button>
+          <button class="quiz-btn" data-answer="wrong">llegarás (future)</button>
+          <button class="quiz-btn" data-answer="correct">llegues (present subjunctive — future event not yet happened)</button>
+          <button class="quiz-btn" data-answer="wrong">llegabas (imperfect)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is correct: "Este regalo es ___ mi madre" (This gift is for my mother — she will receive it)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">por — it's a gift because of her</button>
+          <button class="quiz-btn" data-answer="correct">para — she is the intended recipient</button>
+          <button class="quiz-btn" data-answer="wrong">Both are equally correct</button>
+          <button class="quiz-btn" data-answer="wrong">Neither — use "a" instead</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "I studied for three hours"? (duration)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="correct">Estudié por tres horas.</button>
+          <button class="quiz-btn" data-answer="wrong">Estudié para tres horas.</button>
+          <button class="quiz-btn" data-answer="wrong">Estudié durante para tres horas.</button>
+          <button class="quiz-btn" data-answer="wrong">Estudié en tres horas.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Why does "antes de que" ALWAYS take the subjunctive?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Because it is a preposition, not a conjunction</button>
+          <button class="quiz-btn" data-answer="correct">Because "before" always refers to something that has NOT YET HAPPENED — it is inherently future and unrealised</button>
+          <button class="quiz-btn" data-answer="wrong">Because it is a three-word expression</button>
+          <button class="quiz-btn" data-answer="wrong">It doesn't always — it depends on the tense of the main verb</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — relative clauses &amp; passive voice</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages join clauses and shift focus from doer to receiver</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Relative clauses and passive constructions reveal fundamentally different strategies for linking information across the world's languages.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"The man who speaks Japanese"</td>
+        <td>日本語を話す男性<br/><span style="font-size:11px; color:#888">Nihongo wo hanasu dansei<br/>Clause PRECEDES noun — no relative pronoun!</span></td>
+        <td>일본어를 하는 남자<br/><span style="font-size:11px; color:#888">Ilboneo-reul haneun namja<br/>Clause PRECEDES noun — -(으)는 marker</span></td>
+        <td>The man who speaks Japanese<br/><span style="font-size:11px; color:#888">Clause FOLLOWS noun — relative pronoun "who"</span></td>
+        <td>El hombre que habla japonés<br/><span style="font-size:11px; color:#888">Clause FOLLOWS noun — que (universal relative)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Relative pronouns</td>
+        <td>None!<br/><span style="font-size:11px; color:#888">No relative pronoun — the verb form marks the clause</span></td>
+        <td>-(으)ㄴ/는 verb endings<br/><span style="font-size:11px; color:#888">Verb ending marks the modifier — no separate pronoun</span></td>
+        <td>who/which/that/whose/where<br/><span style="font-size:11px; color:#888">Multiple pronouns for different referents</span></td>
+        <td>que (universal)<br/><span style="font-size:11px; color:#888">One word covers who/which/that — much simpler!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Passive "was built"</td>
+        <td>建てられました<br/><span style="font-size:11px; color:#888">tateraremashita<br/>Passive built into verb ending (-られる)</span></td>
+        <td>지어졌어요<br/><span style="font-size:11px; color:#888">jieojyeosseoyo<br/>Passive via verb suffix (-지다/-아/어지다)</span></td>
+        <td>was built<br/><span style="font-size:11px; color:#888">be + past participle (separate auxiliary)</span></td>
+        <td>fue construido<br/><span style="font-size:11px; color:#888">ser + past participle (agrees in gender!)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"For" (cause vs purpose)</td>
+        <td>ために (tame ni)<br/><span style="font-size:11px; color:#888">Purpose AND cause use same particle — context clarifies</span></td>
+        <td>을/를 위해 · 때문에<br/><span style="font-size:11px; color:#888">위해 = purpose · 때문에 = cause/because — different words!</span></td>
+        <td>for (one word!)<br/><span style="font-size:11px; color:#888">English uses the same "for" for both — ambiguous without context</span></td>
+        <td>por (cause) / para (purpose)<br/><span style="font-size:11px; color:#888">Spanish explicitly distinguishes — most precise of the four!</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-green" style="margin-top:14px">
+      <strong>The relative clause direction:</strong> English and Spanish place relative clauses AFTER the noun they modify (post-nominal). Japanese and Korean place them BEFORE the noun (pre-nominal) — and don't need a relative pronoun at all, because the verb ending itself signals that the clause is modifying something. This reflects the SOV/SVO divide seen throughout this course. Spanish's universal relative pronoun <em>que</em> (which covers who/which/that) is actually simpler than English's multiple relative pronouns — one of Spanish's quiet elegances.
+    </div>
+  </div>
+
+
+  <!-- Week 12 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 12</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Reported speech — "She said that..." · Direct to indirect speech · Tense backshift · Reporting verbs (say, tell, ask, explain, suggest) · Reported questions and commands.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Travel and sightseeing vocabulary · Describing places and landscapes · Subjunctive with purpose clauses (para que, a fin de que) · Relative clauses with subjunctive (busco a alguien que...).</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 11 complete · Click <a href="Week12.E&S.html">here</a> when you're ready for Week 12 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English relative clause builder ── */
+  document.querySelectorAll('.en-rel').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-rel').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-rel-result').innerHTML = `
+        <div class="blr-breakdown" style="font-size:13px; color:#888; margin-bottom:6px;">
+          Two sentences: <em>${d.s1}</em>
+        </div>
+        <div class="blr-sentence">✅ ${d.combined}</div>
+        <div class="blr-breakdown">📐 <strong>Relative pronoun:</strong> ${d.pronoun}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish por vs para explorer ── */
+  document.querySelectorAll('.es-porpara').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-porpara').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-porpara-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Preposition:</strong> ${d.prep}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
