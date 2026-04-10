@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 10 — English & Spanish: Prepositions, Phrasal Verbs & Reflexive Verbs</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Preposition grid */
+  .prep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .prep-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 13px; }
+  .prep-word { font-size: 18px; color: #185FA5; font-weight: 500; margin-bottom: 3px; }
+  .prep-uses { font-size: 12px; color: #333; line-height: 1.7; }
+  .prep-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+
+  /* Phrasal verb table */
+  .pv-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .pv-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .pv-table td { padding: 9px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .pv-table tr:last-child td { border-bottom: none; }
+  .pv-verb { font-size: 16px; color: #185FA5; font-weight: 500; }
+  .pv-mean { font-size: 13px; color: #333; }
+  .pv-ex   { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Reflexive verb conjugation */
+  .refl-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .refl-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .refl-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+  .refl-table tr:last-child td { border-bottom: none; }
+  .refl-pronoun { font-size: 14px; color: #888; }
+  .refl-pro  { font-size: 16px; color: #D85A30; font-weight: 500; }
+  .refl-form { font-size: 16px; color: #185FA5; font-weight: 500; }
+  .refl-ex   { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Daily routine timeline */
+  .routine-list { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+  .routine-item { display: flex; gap: 12px; align-items: flex-start; background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px 13px; }
+  .routine-time { font-size: 12px; color: #aaa; font-weight: 600; min-width: 52px; flex-shrink: 0; margin-top: 2px; }
+  .routine-es   { font-size: 15px; color: #1a1a18; margin-bottom: 1px; }
+  .routine-en   { font-size: 12px; color: #555; }
+  .routine-verb { font-size: 11px; color: #185FA5; font-weight: 600; margin-top: 2px; }
+
+  /* Subjunctive intro panels */
+  .subj-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .sc-card { border-radius: 12px; padding: 14px; }
+  .sc-card.ind { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .sc-card.sub { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .sc-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .sc-formula { font-size: 13px; font-weight: 500; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 8px; }
+  .sc-card.ind .sc-formula { color: #185FA5; }
+  .sc-card.sub .sc-formula { color: #BA7517; }
+  .sc-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .sc-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn   { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 20px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 19px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .prep-grid { grid-template-columns: repeat(2, 1fr); }
+    .subj-compare, .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 10 of 16</span>
+      <h1>Prepositions, Phrasal Verbs & Reflexive Verbs</h1>
+      <div class="subtitle">EN: In/on/at · Prepositions of movement · 20 essential phrasal verbs · ES: Reflexive verbs · Daily routine · Subjunctive mood — introduction</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:62%;"></div></div>
+      62% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 10 · Prepositions of place, time &amp; movement · 20 essential phrasal verbs</div>
+      </div>
+    </div>
+
+    <!-- Prepositions overview -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Prepositions — the small words that cause big problems</div>
+      <div class="section-title">In, on, at, by, for, with, from, to... — no language maps them the same way</div>
+      <p>Prepositions are among the hardest parts of any language because they don't translate directly. The preposition you use in Japanese or Spanish for a given concept is often completely different from English — and even within English, the same preposition covers wildly different meanings. They must be learned as set phrases rather than rules.</p>
+
+      <div class="prep-grid">
+        <div class="prep-card">
+          <div class="prep-word">in</div>
+          <div class="prep-uses">
+            Inside an enclosed space<br/>
+            Months, years, seasons<br/>
+            Cities, countries, rooms<br/>
+            Long periods (in the morning)
+          </div>
+          <div class="prep-ex">in the box · in March · in Tokyo · in 2024 · in the kitchen · in summer · in the morning</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">on</div>
+          <div class="prep-uses">
+            Surface contact<br/>
+            Days of the week, dates<br/>
+            Transport (on the bus/train)<br/>
+            Media (on TV, on the phone)
+          </div>
+          <div class="prep-ex">on the table · on Monday · on 5th May · on the bus · on TV · on the internet · on the wall</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">at</div>
+          <div class="prep-uses">
+            Specific point in time<br/>
+            Specific place / address<br/>
+            Events and activities<br/>
+            Speed, temperature, price
+          </div>
+          <div class="prep-ex">at 3pm · at the station · at home · at work · at the party · at 100km/h · at Christmas</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">by</div>
+          <div class="prep-uses">
+            Deadline (by = no later than)<br/>
+            Transport method (by car)<br/>
+            Agent in passive voice<br/>
+            Close proximity
+          </div>
+          <div class="prep-ex">by 5pm · by car · by train · written by · by the window · by the sea</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">for</div>
+          <div class="prep-uses">
+            Duration of time<br/>
+            Purpose or benefit<br/>
+            Exchange (pay for, thank for)<br/>
+            Support / in favour of
+          </div>
+          <div class="prep-ex">for three years · for you · wait for · thank you for · a gift for · vote for</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">since</div>
+          <div class="prep-uses">
+            Start point in time<br/>
+            (Used with present perfect)<br/>
+            Contrast with "for":<br/>
+            since = point · for = duration
+          </div>
+          <div class="prep-ex">since 2019 · since Monday · since childhood · I've lived here since 2019 vs for five years</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">to / from</div>
+          <div class="prep-uses">
+            Direction toward / away from<br/>
+            Range (from X to Y)<br/>
+            Recipient (give to)<br/>
+            Origin (come from)
+          </div>
+          <div class="prep-ex">go to Tokyo · come from Spain · from 9 to 5 · give it to me · a letter to you</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">into / out of</div>
+          <div class="prep-uses">
+            Movement going inside<br/>
+            Movement going outside<br/>
+            Change of state<br/>
+            Translate into / out of
+          </div>
+          <div class="prep-ex">walk into the room · get out of bed · turn into · translate into Spanish</div>
+        </div>
+        <div class="prep-card">
+          <div class="prep-word">through / across</div>
+          <div class="prep-uses">
+            Through = inside and out the other side<br/>
+            Across = from one side to other (surface)
+          </div>
+          <div class="prep-ex">walk through a tunnel · swim across a river · through the forest · across the street</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>The in/on/at time system:</strong> Think of a funnel — biggest to smallest. <strong>in</strong> = large periods (years, months, seasons, parts of day: in the morning). <strong>on</strong> = medium units (days, dates: on Monday, on 14th February). <strong>at</strong> = precise points (exact times, holidays as moments: at 3pm, at Christmas, at midnight). Exception: <em>at night</em> (not "in night") — English is not always logical!
+      </div>
+    </div>
+
+    <!-- Phrasal verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Phrasal verbs — the heart of natural English</div>
+      <div class="section-title">Verb + particle = completely new meaning — the most challenging part of English</div>
+      <p>Phrasal verbs combine a verb with a preposition or adverb particle to create a meaning that is often completely unrelated to the individual words. They are extremely common in spoken and informal written English — and largely absent in formal writing. Native speakers use them constantly; learners must simply build a collection of them over time.</p>
+
+      <div class="tip-box tip-blue">
+        <strong>Why phrasal verbs are hard — and how to approach them:</strong> "Put" means to place something. But "put off" = postpone · "put up with" = tolerate · "put on" = wear / gain weight · "put out" = extinguish · "put down" = criticise / euthanise · "put through" = connect (a call). The particle completely transforms the meaning. There is no shortcut — they must be learned in context, one by one. Group them by base verb, and always learn them with an example sentence rather than just a definition.
+      </div>
+
+      <table class="pv-table">
+        <tr><th>Phrasal verb</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td><span class="pv-verb">give up</span></td><td class="pv-mean">to stop doing / to quit</td><td class="pv-ex">She gave up smoking last year.</td></tr>
+        <tr><td><span class="pv-verb">find out</span></td><td class="pv-mean">to discover / learn information</td><td class="pv-ex">Did you find out what time the train leaves?</td></tr>
+        <tr><td><span class="pv-verb">take off</span></td><td class="pv-mean">to remove (clothing) / plane leaves ground</td><td class="pv-ex">Take off your shoes at the door. · The plane took off at noon.</td></tr>
+        <tr><td><span class="pv-verb">put off</span></td><td class="pv-mean">to postpone / to discourage</td><td class="pv-ex">Don't put off until tomorrow what you can do today.</td></tr>
+        <tr><td><span class="pv-verb">set up</span></td><td class="pv-mean">to establish / to arrange / to prepare</td><td class="pv-ex">They set up a new company last year.</td></tr>
+        <tr><td><span class="pv-verb">turn up</span></td><td class="pv-mean">to arrive / to increase volume</td><td class="pv-ex">He never turned up to the meeting. · Turn up the music!</td></tr>
+        <tr><td><span class="pv-verb">call off</span></td><td class="pv-mean">to cancel</td><td class="pv-ex">The match was called off due to rain.</td></tr>
+        <tr><td><span class="pv-verb">come across</span></td><td class="pv-mean">to find by chance / to seem</td><td class="pv-ex">I came across an old photo. · He comes across as confident.</td></tr>
+        <tr><td><span class="pv-verb">look into</span></td><td class="pv-mean">to investigate / research</td><td class="pv-ex">The police looked into the incident.</td></tr>
+        <tr><td><span class="pv-verb">get away with</span></td><td class="pv-mean">to escape consequences</td><td class="pv-ex">He always gets away with being late.</td></tr>
+        <tr><td><span class="pv-verb">bring up</span></td><td class="pv-mean">to raise a child / to mention a topic</td><td class="pv-ex">She brought up an interesting point. · He was brought up in Osaka.</td></tr>
+        <tr><td><span class="pv-verb">carry on</span></td><td class="pv-mean">to continue</td><td class="pv-ex">Carry on — don't let me interrupt you.</td></tr>
+        <tr><td><span class="pv-verb">pick up</span></td><td class="pv-mean">to collect / to learn informally / to improve</td><td class="pv-ex">I picked up some Spanish on holiday. · Can you pick me up at 6?</td></tr>
+        <tr><td><span class="pv-verb">run out of</span></td><td class="pv-mean">to have no more of something</td><td class="pv-ex">We've run out of coffee — I need to buy more.</td></tr>
+        <tr><td><span class="pv-verb">sort out</span></td><td class="pv-mean">to resolve / to organise</td><td class="pv-ex">We need to sort out the problem with the booking.</td></tr>
+        <tr><td><span class="pv-verb">break down</span></td><td class="pv-mean">car stops working / person loses control emotionally</td><td class="pv-ex">My car broke down on the motorway. · She broke down in tears.</td></tr>
+        <tr><td><span class="pv-verb">get over</span></td><td class="pv-mean">to recover from illness or difficulty</td><td class="pv-ex">It took weeks to get over the flu.</td></tr>
+        <tr><td><span class="pv-verb">look forward to</span></td><td class="pv-mean">to anticipate with pleasure</td><td class="pv-ex">I'm looking forward to the holidays. (+ noun or -ing!)</td></tr>
+        <tr><td><span class="pv-verb">put up with</span></td><td class="pv-mean">to tolerate / endure</td><td class="pv-ex">I can't put up with this noise any longer.</td></tr>
+        <tr><td><span class="pv-verb">go through</span></td><td class="pv-mean">to experience difficulty / to examine carefully</td><td class="pv-ex">She went through a difficult time last year.</td></tr>
+      </table>
+
+      <div class="tip-box tip-green">
+        <strong>Separable vs inseparable phrasal verbs:</strong> Some phrasal verbs can be split: "Turn the music up" ✅ = "Turn up the music" ✅. But with pronouns, they MUST be split: "Turn it up" ✅ — never "Turn up it" ❌. Inseparable phrasal verbs cannot be split at all: "I came across an old friend" ✅ — never "I came an old friend across" ❌. Three-word phrasal verbs (put up with, look forward to, get away with) are always inseparable.
+      </div>
+    </div>
+
+    <!-- Interactive phrasal verb explorer -->
+    <div class="section">
+      <div class="section-label">Interactive · Phrasal verb explorer</div>
+      <div class="section-title">Choose a phrasal verb — see its meaning, usage and separability</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Phrasal verbs in context</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a phrasal verb</div>
+          <div class="bl-btns" id="en-pv-btns">
+            <button class="bl-btn en-pv"
+              data-pv="look forward to"
+              data-mean="to anticipate something with pleasure"
+              data-example="I'm really looking forward to our trip to Spain!"
+              data-grammar="INSEPARABLE · Always followed by noun or -ing: look forward to the weekend / look forward to seeing you. Never: 'look forward to see you' ❌"
+              data-note="One of English's most-used polite phrases — perfect for ending emails and messages. The -ing rule trips up many learners.">
+              look forward to 😊
+            </button>
+            <button class="bl-btn en-pv"
+              data-pv="find out"
+              data-mean="to discover or learn something — especially information you didn't know"
+              data-example="I finally found out what happened at the meeting."
+              data-grammar="SEPARABLE: find out the answer / find the answer out. With pronoun: find it out ✅ (must separate) — never 'find out it' ❌"
+              data-note="Very common in questions: 'Did you find out what time the film starts?' Much more natural than 'Did you discover the time?'">
+              find out 🔍
+            </button>
+            <button class="bl-btn en-pv"
+              data-pv="give up"
+              data-mean="to stop doing something, especially a habit or attempt"
+              data-example="She gave up coffee and hasn't looked back."
+              data-grammar="SEPARABLE: give up smoking / give smoking up. Also: give up on someone/something = abandon hope: 'Don't give up on me!'"
+              data-note="Also used for surrendering: 'The suspect gave himself up to police.' Multiple meanings — all involve stopping or surrendering something.">
+              give up 🚭
+            </button>
+            <button class="bl-btn en-pv"
+              data-pv="put up with"
+              data-mean="to tolerate something unpleasant without complaining"
+              data-example="How do you put up with the noise from the street?"
+              data-grammar="THREE-WORD PHRASAL VERB — always inseparable. Cannot split: 'put it up with' ❌. Always: 'put up with it' ✅"
+              data-note="A very British expression — perfectly captures the cultural art of stoic endurance. 'I'm just putting up with it' is quintessentially English.">
+              put up with 😤
+            </button>
+            <button class="bl-btn en-pv"
+              data-pv="run out of"
+              data-mean="to use all of something so none remains"
+              data-example="We've run out of time — we need to finish now."
+              data-grammar="THREE-WORD PHRASAL VERB — always inseparable. Run out of patience / run out of money / run out of ideas."
+              data-note="Extremely common in everyday speech. 'I've run out of ideas' is far more natural than 'I have no more ideas' in casual English.">
+              run out of 📦
+            </button>
+            <button class="bl-btn en-pv"
+              data-pv="break down"
+              data-mean="(1) car / machine stops working · (2) person loses emotional control · (3) to analyse in detail"
+              data-example="My car broke down on the way to work. / She broke down when she heard the news."
+              data-grammar="INTRANSITIVE (usually cannot be separated). Break down by yourself — no object needed. Can be made passive: 'The figures are broken down by region.'"
+              data-note="One of English's most versatile phrasal verbs — machines, people, and data can all 'break down'. Context makes the meaning clear every time.">
+              break down ⚙️
+            </button>
+          </div>
+          <div class="bl-result" id="en-pv-result">
+            <div class="blr-empty">Choose a phrasal verb above to explore its meaning and grammar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💬</span>
+        <div class="culture-text">
+          <strong>Phrasal verbs as a register marker — why they matter so much</strong><br/>
+          One of the clearest signs that someone has reached an advanced level of English is their natural, unselfconscious use of phrasal verbs. Formal English avoids them — an academic paper says "postpone", "investigate", "tolerate", "discover". Conversational English reaches for "put off", "look into", "put up with", "find out". The same person switches between these registers constantly. Learners who only know the Latin-root formal synonyms sound educated but slightly robotic in conversation; learners who know the phrasal verbs sound genuinely natural. This is why phrasal verbs appear so frequently in English language tests — they are reliable markers of authentic fluency. The goal isn't to memorise lists, but to absorb them through exposure — TV, films, podcasts, and conversations with native speakers.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 10 English — prepositions &amp; phrasal verbs</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which preposition is correct: "I was born ___ 1990"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">on</button>
+          <button class="quiz-btn" data-answer="correct">in</button>
+          <button class="quiz-btn" data-answer="wrong">at</button>
+          <button class="quiz-btn" data-answer="wrong">by</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "look forward to" mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">to look ahead physically</button>
+          <button class="quiz-btn" data-answer="wrong">to remember the past</button>
+          <button class="quiz-btn" data-answer="correct">to anticipate something with pleasure</button>
+          <button class="quiz-btn" data-answer="wrong">to investigate something</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I'm looking forward to see you.</button>
+          <button class="quiz-btn" data-answer="correct">I'm looking forward to seeing you.</button>
+          <button class="quiz-btn" data-answer="wrong">I'm looking forward see you.</button>
+          <button class="quiz-btn" data-answer="wrong">I look forward to see you.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"Put up with" is a three-word phrasal verb. What does this mean for its grammar?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">It can be freely separated: "put it up with"</button>
+          <button class="quiz-btn" data-answer="correct">It is always inseparable — the three words must stay together</button>
+          <button class="quiz-btn" data-answer="wrong">The object goes in the middle: "put the noise up with"</button>
+          <button class="quiz-btn" data-answer="wrong">It can only be used in the past tense</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 10 · Verbos reflexivos · Daily routine · Subjunctive mood — introduction</div>
+      </div>
+    </div>
+
+    <!-- Reflexive verbs overview -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Verbos reflexivos — reflexive verbs</div>
+      <div class="section-title">When the subject and object are the same person — doing it to yourself</div>
+      <p>Reflexive verbs describe actions that the subject performs on itself. They are identified by the pronoun <strong>se</strong> attached to the infinitive (levantarse, llamarse, sentirse). Spanish uses reflexive verbs far more broadly than English — many actions that English describes with ordinary verbs require reflexive constructions in Spanish.</p>
+
+      <div class="tip-box tip-coral">
+        <strong>Reflexive vs non-reflexive — the meaning shifts:</strong><br/>
+        <strong>lavar</strong> = to wash (something): <em>Lavo el coche.</em> (I wash the car.)<br/>
+        <strong>lavarse</strong> = to wash oneself: <em>Me lavo las manos.</em> (I wash my hands.)<br/>
+        <strong>llamar</strong> = to call: <em>Llamo a mi madre.</em> (I call my mother.)<br/>
+        <strong>llamarse</strong> = to be called: <em>Me llamo Patrick.</em> (I am called Patrick.)<br/>
+        <strong>ir</strong> = to go: <em>Voy al mercado.</em> (I go to the market.)<br/>
+        <strong>irse</strong> = to leave / go away: <em>Me voy — hasta mañana.</em> (I'm leaving — see you tomorrow.)
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Conjugating reflexive verbs — levantarse (to get up):</p>
+      <table class="refl-table">
+        <tr><th>Pronoun</th><th>Reflexive pronoun</th><th>Verb form</th><th>Full form</th><th>English</th></tr>
+        <tr>
+          <td class="refl-pronoun">yo</td>
+          <td><span class="refl-pro">me</span></td>
+          <td><span class="refl-form">levanto</span></td>
+          <td style="font-size:15px; color:#1a1a18; font-weight:500">me levanto</td>
+          <td class="refl-ex">I get up</td>
+        </tr>
+        <tr>
+          <td class="refl-pronoun">tú</td>
+          <td><span class="refl-pro">te</span></td>
+          <td><span class="refl-form">levantas</span></td>
+          <td style="font-size:15px; color:#1a1a18; font-weight:500">te levantas</td>
+          <td class="refl-ex">you get up</td>
+        </tr>
+        <tr>
+          <td class="refl-pronoun">él/ella</td>
+          <td><span class="refl-pro">se</span></td>
+          <td><span class="refl-form">levanta</span></td>
+          <td style="font-size:15px; color:#1a1a18; font-weight:500">se levanta</td>
+          <td class="refl-ex">he/she gets up</td>
+        </tr>
+        <tr>
+          <td class="refl-pronoun">nosotros</td>
+          <td><span class="refl-pro">nos</span></td>
+          <td><span class="refl-form">levantamos</span></td>
+          <td style="font-size:15px; color:#1a1a18; font-weight:500">nos levantamos</td>
+          <td class="refl-ex">we get up</td>
+        </tr>
+        <tr>
+          <td class="refl-pronoun">vosotros</td>
+          <td><span class="refl-pro">os</span></td>
+          <td><span class="refl-form">levantáis</span></td>
+          <td style="font-size:15px; color:#1a1a18; font-weight:500">os levantáis</td>
+          <td class="refl-ex">you all get up</td>
+        </tr>
+        <tr>
+          <td class="refl-pronoun">ellos/ellas</td>
+          <td><span class="refl-pro">se</span></td>
+          <td><span class="refl-form">levantan</span></td>
+          <td style="font-size:15px; color:#1a1a18; font-weight:500">se levantan</td>
+          <td class="refl-ex">they get up</td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>Pronoun placement rules:</strong> The reflexive pronoun goes BEFORE a conjugated verb: <em>Me levanto.</em> But AFTER and attached to an infinitive: <em>Quiero levantarme.</em> Or BEFORE the conjugated auxiliary: <em>Me quiero levantar.</em> Both are correct when there is an auxiliary verb — the pronoun can float to either position. With a gerund (-ando/-iendo), it attaches: <em>Estoy levantándome.</em>
+      </div>
+    </div>
+
+    <!-- Daily routine -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · La rutina diaria — daily routine</div>
+      <div class="section-title">A typical Spanish day — built almost entirely from reflexive verbs</div>
+      <div class="routine-list">
+        <div class="routine-item">
+          <div class="routine-time">7:00</div>
+          <div>
+            <div class="routine-es">Me despierto y me levanto.</div>
+            <div class="routine-en">I wake up and get up.</div>
+            <div class="routine-verb">despertarse (to wake up) · levantarse (to get up)</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">7:10</div>
+          <div>
+            <div class="routine-es">Me ducho y me lavo el pelo.</div>
+            <div class="routine-en">I shower and wash my hair.</div>
+            <div class="routine-verb">ducharse (to shower) · lavarse (to wash oneself)</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">7:30</div>
+          <div>
+            <div class="routine-es">Me visto y me peino.</div>
+            <div class="routine-en">I get dressed and comb my hair.</div>
+            <div class="routine-verb">vestirse (to get dressed — stem-changing!) · peinarse (to comb hair)</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">7:45</div>
+          <div>
+            <div class="routine-es">Me maquillo y me pongo el abrigo.</div>
+            <div class="routine-en">I put on make-up and put on my coat.</div>
+            <div class="routine-verb">maquillarse (to put on make-up) · ponerse (to put on clothing — irregular!)</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">8:00</div>
+          <div>
+            <div class="routine-es">Desayuno con calma — el café es sagrado.</div>
+            <div class="routine-en">I have breakfast calmly — coffee is sacred.</div>
+            <div class="routine-verb">desayunar (NOT reflexive! — just eating)</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">14:00</div>
+          <div>
+            <div class="routine-es">Como con la familia o los compañeros.</div>
+            <div class="routine-en">I eat lunch with family or colleagues.</div>
+            <div class="routine-verb">comer (not reflexive) — la comida is the main meal in Spain</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">22:30</div>
+          <div>
+            <div class="routine-es">Me relajo, me quito la ropa y me acuesto.</div>
+            <div class="routine-en">I relax, take off my clothes and go to bed.</div>
+            <div class="routine-verb">relajarse · quitarse (to take off clothing) · acostarse (to go to bed — stem-changing!)</div>
+          </div>
+        </div>
+        <div class="routine-item">
+          <div class="routine-time">23:00</div>
+          <div>
+            <div class="routine-es">Me duermo enseguida. ¡Buenas noches!</div>
+            <div class="routine-en">I fall asleep immediately. Good night!</div>
+            <div class="routine-verb">dormirse (to fall asleep — stem-changing: me duermo)</div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box tip-green">
+        <strong>Stem-changing reflexive verbs to know:</strong> <em>vestirse</em> (e→i): me visto · te vistes · se viste · nos vestimos. <em>acostarse</em> (o→ue): me acuesto · te acuestas · se acuesta · nos acostamos. <em>dormirse</em> (o→ue): me duermo · te duermes · se duerme · nos dormimos. These stem changes happen in the same persons as all o→ue and e→i verbs — all except nosotros and vosotros.
+      </div>
+    </div>
+
+    <!-- Subjunctive introduction -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · El subjuntivo — introduction to the subjunctive mood</div>
+      <div class="section-title">The most misunderstood feature of Spanish — and the most rewarding to master</div>
+      <p>The subjunctive is a grammatical <em>mood</em> (not a tense) that expresses subjectivity — doubt, desire, emotion, uncertainty, hypotheticals, and recommendations. It contrasts with the indicative mood (the "normal" mood you've been using) which states facts. English has traces of the subjunctive ("If I <em>were</em> you", "I suggest he <em>be</em> there") but Spanish uses it extensively and constantly.</p>
+
+      <div class="subj-compare">
+        <div class="sc-card ind">
+          <div class="sc-label">Indicative — stating facts</div>
+          <div class="sc-formula">Regular tenses — what IS</div>
+          <div class="sc-uses">
+            ✅ Objective statements<br/>
+            📋 Facts and certainties<br/>
+            🔮 Definite future plans<br/>
+            📅 Regular past/present/future
+          </div>
+          <div class="sc-ex">
+            Sé que <strong>hablas</strong> español. (I know you speak Spanish — FACT)<br/>
+            Es verdad que <strong>llueve</strong> mucho. (It's true it rains a lot.)<br/>
+            Creo que <strong>viene</strong>. (I think he's coming — fairly certain)
+          </div>
+        </div>
+        <div class="sc-card sub">
+          <div class="sc-label">Subjunctive — expressing subjectivity</div>
+          <div class="sc-formula">Subjunctive forms — what MIGHT BE / is desired</div>
+          <div class="sc-uses">
+            💭 Doubt and uncertainty<br/>
+            ❤️ Desire and recommendation<br/>
+            😢 Emotion and reaction<br/>
+            ❓ Negated belief / unknown
+          </div>
+          <div class="sc-ex">
+            Espero que <strong>hables</strong> español. (I hope you speak Spanish — desire)<br/>
+            No creo que <strong>llueva</strong>. (I don't think it will rain — doubt)<br/>
+            Quiero que <strong>vengas</strong>. (I want you to come — desire)
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:16px; margin-bottom:8px">Forming the present subjunctive — the "opposite vowel" trick:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.2;">
+        <strong>Step 1:</strong> Take the yo present indicative form: hablar → habl<strong>o</strong> · comer → com<strong>o</strong> · vivir → viv<strong>o</strong><br/>
+        <strong>Step 2:</strong> Drop the -o: habl- · com- · viv-<br/>
+        <strong>Step 3:</strong> Add the OPPOSITE vowel endings (-AR verbs get -E endings; -ER/-IR get -A endings):<br/>
+        <strong>-AR subjunctive:</strong> hable · hables · hable · hablemos · habléis · hablen<br/>
+        <strong>-ER/-IR subjunctive:</strong> coma/viva · comas/vivas · coma/viva · comamos/vivamos · comáis/viváis · coman/vivan
+      </div>
+
+      <div class="tip-box tip-purple">
+        <strong>The WEIRDO acronym — when to use the subjunctive:</strong><br/>
+        <strong>W</strong>ishes: Quiero que vengas. (I want you to come.)<br/>
+        <strong>E</strong>motion: Me alegra que estés aquí. (I'm glad you're here.)<br/>
+        <strong>I</strong>mpersonal expressions: Es importante que estudies. (It's important that you study.)<br/>
+        <strong>R</strong>ecommendations/requests: Te recomiendo que pruebes la paella. (I recommend you try the paella.)<br/>
+        <strong>D</strong>oubt/denial: No creo que sea verdad. (I don't think it's true.)<br/>
+        <strong>O</strong>jalá (hopefully): ¡Ojalá haga buen tiempo! (Hopefully the weather will be good!)<br/>
+        When any of these WEIRDO triggers appears in the first clause + que + new subject → subjunctive in the second clause.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Essential subjunctive trigger phrases:</p>
+      <div class="phrase-list">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙏</span>
+          <div>
+            <div class="phrase-native">Espero que + subjuntivo</div>
+            <div class="phrase-en">I hope that... (desire/wish)</div>
+            <div class="phrase-note">Espero que tengas un buen día. (I hope you have a good day.) · Espero que llegues pronto. (I hope you arrive soon.) One of the most natural and useful subjunctive triggers.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">😊</span>
+          <div>
+            <div class="phrase-native">Me alegra que + subjuntivo</div>
+            <div class="phrase-en">I'm glad that... (emotion)</div>
+            <div class="phrase-note">Me alegra que estés aquí. (I'm glad you're here.) · Me alegra que te guste. (I'm glad you like it.) Emotion about another person's action → subjunctive.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">⚠️</span>
+          <div>
+            <div class="phrase-native">Es importante/necesario que + subjuntivo</div>
+            <div class="phrase-en">It's important/necessary that... (impersonal expression)</div>
+            <div class="phrase-note">Es importante que practiques cada día. (It's important that you practise every day.) Impersonal expressions (es + adjective + que) ALWAYS trigger the subjunctive — no exceptions.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🎯</span>
+          <div>
+            <div class="phrase-native">Te recomiendo que + subjuntivo</div>
+            <div class="phrase-en">I recommend that you... (recommendation)</div>
+            <div class="phrase-note">Te recomiendo que pruebes el gazpacho. (I recommend you try the gazpacho.) · Te sugiero que llegues pronto. (I suggest you arrive early.) Recommendation verbs: recomendar, sugerir, aconsejar, pedir — all trigger subjunctive.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive subjunctive builder -->
+    <div class="section">
+      <div class="section-label">Interactive · Subjunctive vs indicative explorer</div>
+      <div class="section-title">Choose a situation — see which mood is used and why</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 ¿Indicativo o subjuntivo?</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a situation</div>
+          <div class="bl-btns" id="es-subj-btns">
+            <button class="bl-btn es-subj"
+              data-sentence="Sé que hablas japonés muy bien."
+              data-mood="Indicative — hablas"
+              data-note="Saber que (to know that) introduces a FACT → indicative. 'I know you speak Japanese' is certain — no subjunctive needed. Compare: 'No creo que hables...' (I don't believe you speak) → subjunctive because it's a doubt.">
+              ✅ I know you speak Japanese
+            </button>
+            <button class="bl-btn es-subj"
+              data-sentence="Espero que haga buen tiempo mañana."
+              data-mood="Subjunctive — haga (hacer, irregular subjunctive)"
+              data-note="Esperar que (to hope that) expresses a WISH → subjunctive. Haga is the subjunctive of hacer — note the irregular yo form hago → drop -o → hag- + -a endings. Hacer is irregular in the subjunctive.">
+              🌤️ I hope it's good weather
+            </button>
+            <button class="bl-btn es-subj"
+              data-sentence="Es importante que te levantes temprano."
+              data-mood="Subjunctive — te levantes (reflexive levantarse)"
+              data-note="Es importante que is an IMPERSONAL EXPRESSION → always subjunctive. Levantarse becomes te levantes in subjunctive — the reflexive pronoun stays, the verb takes subjunctive ending.">
+              ⏰ It's important to get up early
+            </button>
+            <button class="bl-btn es-subj"
+              data-sentence="No creo que sea tan difícil."
+              data-mood="Subjunctive — sea (ser, irregular subjunctive)"
+              data-note="No creer que (to not believe that) expresses DOUBT → subjunctive. If it were 'Creo que es...' (I believe it IS...) → indicative. The negation of belief always triggers the subjunctive.">
+              🤔 I don't think it's that hard
+            </button>
+            <button class="bl-btn es-subj"
+              data-sentence="Me alegra que estéis aquí con nosotros."
+              data-mood="Subjunctive — estéis (estar, subjunctive vosotros form)"
+              data-note="Me alegra que (I'm glad that) expresses an EMOTION about someone else's action → subjunctive. The emotion is in the first clause; the subjunctive is in the second. If same subject: Me alegra estar aquí (I'm glad to be here) → infinitive, no que, no subjunctive.">
+              😊 I'm glad you're all here
+            </button>
+            <button class="bl-btn es-subj"
+              data-sentence="¡Ojalá pueda venir a la fiesta!"
+              data-mood="Subjunctive — pueda (poder, irregular subjunctive)"
+              data-note="Ojalá (hopefully / I wish) ALWAYS triggers the subjunctive — no exceptions. It comes from Arabic 'wa-šāʾa llāh' (if God wills it) and is one of Spanish's most expressive words. No 'que' needed after ojalá.">
+              🎉 Hopefully I can come to the party!
+            </button>
+          </div>
+          <div class="bl-result" id="es-subj-result">
+            <div class="blr-empty">Choose a situation above to see indicative vs subjunctive in action</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌅</span>
+        <div class="culture-text">
+          <strong>La rutina española — a different rhythm of life</strong><br/>
+          The Spanish daily routine is famously out of step with Northern European and East Asian schedules — and wonderfully so. The working day often splits into two blocks with a long midday break: <em>la jornada partida</em> (split shift) runs roughly 9am–2pm and 5pm–8pm or 9pm, with a long midday pause for <em>la comida</em> (the main meal). Many shops and businesses still close during this midday window, though larger cities are increasingly adopting <em>jornada continua</em> (continuous hours). Evenings begin late — dinner rarely before 9pm, social gatherings from 10pm onwards. Children stay up late by Northern European standards — family dinners at 10pm with children present are entirely normal. This rhythm has deep roots: the Mediterranean climate made midday rest (<em>la siesta</em>) practical for centuries. Learning the vocabulary of the Spanish daily routine is also learning to understand a fundamentally different relationship with time, work, and rest.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 10 Spanish — reflexive verbs &amp; subjunctive</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "me llamo Patrick" literally mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I call Patrick</button>
+          <button class="quiz-btn" data-answer="correct">I call myself Patrick (I am called Patrick)</button>
+          <button class="quiz-btn" data-answer="wrong">Patrick calls me</button>
+          <button class="quiz-btn" data-answer="wrong">My name writes itself Patrick</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Where does the reflexive pronoun go with a conjugated verb?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">After the verb: "levanto me"</button>
+          <button class="quiz-btn" data-answer="correct">Before the verb: "me levanto"</button>
+          <button class="quiz-btn" data-answer="wrong">At the end of the sentence</button>
+          <button class="quiz-btn" data-answer="wrong">It can go anywhere — no rule</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence requires the subjunctive?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Sé que hablas español.</button>
+          <button class="quiz-btn" data-answer="wrong">Creo que viene mañana.</button>
+          <button class="quiz-btn" data-answer="correct">Espero que vengas mañana.</button>
+          <button class="quiz-btn" data-answer="wrong">Es verdad que llueve mucho.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you form the present subjunctive of hablar for the yo form?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">hablo (same as indicative)</button>
+          <button class="quiz-btn" data-answer="wrong">habla</button>
+          <button class="quiz-btn" data-answer="correct">hable (yo indicative hablo → drop -o → habl- + opposite vowel -e)</button>
+          <button class="quiz-btn" data-answer="wrong">habli</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — reflexive verbs &amp; prepositions</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages handle "doing something to yourself" and prepositions</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Reflexive constructions and prepositions are two areas where languages diverge most dramatically — revealing deep structural differences.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I get dressed"</td>
+        <td>服を着ます<br/><span style="font-size:11px; color:#888">fuku wo kimasu<br/>(I wear clothes — no reflexive needed)</span></td>
+        <td>옷을 입어요<br/><span style="font-size:11px; color:#888">oseul ibeoyo<br/>(I wear clothes — no reflexive)</span></td>
+        <td>I get dressed<br/><span style="font-size:11px; color:#888">No reflexive pronoun — just phrasal verb</span></td>
+        <td>Me visto<br/><span style="font-size:11px; color:#888">Reflexive pronoun me required</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I feel happy"</td>
+        <td>嬉しいです<br/><span style="font-size:11px; color:#888">ureshii desu<br/>(adjective — no reflexive)</span></td>
+        <td>행복해요<br/><span style="font-size:11px; color:#888">haengbokaeyo<br/>(adjective verb)</span></td>
+        <td>I feel happy<br/><span style="font-size:11px; color:#888">No reflexive — ordinary verb</span></td>
+        <td>Me siento feliz<br/><span style="font-size:11px; color:#888">Reflexive sentirse required</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Prepositions</td>
+        <td>Postpositions!<br/><span style="font-size:11px; color:#888">Come AFTER nouns:<br/>駅に (station-at)<br/>部屋の中に (room-inside-at)</span></td>
+        <td>Postpositions!<br/><span style="font-size:11px; color:#888">Come AFTER nouns:<br/>역에서 (station-from)<br/>집에 (home-to/at)</span></td>
+        <td>Prepositions<br/><span style="font-size:11px; color:#888">Come BEFORE nouns:<br/>at the station<br/>in the room</span></td>
+        <td>Prepositions<br/><span style="font-size:11px; color:#888">Come BEFORE nouns:<br/>en la estación<br/>en la habitación</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Subjunctive mood</td>
+        <td>No subjunctive<br/><span style="font-size:11px; color:#888">Conditionals and desire expressed through verb forms and sentence-ending particles</span></td>
+        <td>No subjunctive<br/><span style="font-size:11px; color:#888">-(으)면 좋겠다 for wishes<br/>-(으)ㄹ 것 같다 for doubt</span></td>
+        <td>Faded subjunctive<br/><span style="font-size:11px; color:#888">Only traces: "if I were you" · "I suggest he be..." — mostly replaced by indicative</span></td>
+        <td>Full subjunctive<br/><span style="font-size:11px; color:#888">Actively used throughout — desire, doubt, emotion, recommendations all require it</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-amber" style="margin-top:14px">
+      <strong>Pre vs post positions — a deep typological divide:</strong> English and Spanish are prepositional languages — function words come BEFORE the noun (at the station, en la estación). Japanese and Korean are postpositional — equivalent particles come AFTER (駅に · 역에서). This reflects a broader pattern: SOV languages (Japanese, Korean) tend to put everything after the noun; SVO languages (English, Spanish) tend to put function words before. The subjunctive insight is equally striking: Spanish treats wish, doubt, and emotion as grammatically distinct realities; English and East Asian languages encode these meanings differently — through lexical choice, particles, or verb endings rather than a dedicated mood.
+    </div>
+  </div>
+
+
+  <!-- Week 11 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 11</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Relative clauses — "the man who...", "the book that...", "the city where..." · Passive voice — "It was built in 1889" · How to change the focus of a sentence without changing its meaning.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Subjunctive continued — with time clauses (cuando, hasta que, antes de que) · Expressing emotions and opinions with subjunctive · Por vs para — one of the most confusing pairs in Spanish, fully explained.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 10 complete · Click <a href="Week11.E&S.html">here</a> when you're ready for Week 11 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English phrasal verb explorer ── */
+  document.querySelectorAll('.en-pv').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-pv').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-pv-result').innerHTML = `
+        <div class="blr-sentence" style="color:#185FA5;">${d.pv}</div>
+        <div class="blr-breakdown">📖 <strong>Meaning:</strong> ${d.mean}</div>
+        <div class="blr-breakdown">📝 <strong>Example:</strong> <em>${d.example}</em></div>
+        <div class="blr-breakdown">📐 <strong>Grammar:</strong> ${d.grammar}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish subjunctive explorer ── */
+  document.querySelectorAll('.es-subj').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-subj').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-subj-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Mood:</strong> ${d.mood}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
