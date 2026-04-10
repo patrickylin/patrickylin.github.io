@@ -27,6 +27,45 @@
         min-height: 1000px;
         background-image: url('gif/back.gif'); /* The image is moved here! */
       }
+
+      /* Consistent Left-to-Right Footer for Main Pages */
+      .footer-container {
+        position: absolute; 
+        bottom: 30px; /* Pins it to the bottom of your wrapper */
+        width: 100%;
+      }
+      .footer {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+      .footer-email img {
+        width: 70px;
+        height: 70px;
+        border: none;
+        display: block;
+      }
+      .footer-text {
+        text-align: center;
+      }
+      .footer-links {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+      .footer-links a {
+        color: #1F497D;
+        text-decoration: none;
+        padding: 0 5px;
+      }
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+      .copyright {
+        font-size: 12px;
+        color: #666;
+      }
     </style>
   </head>
   <body>
@@ -163,35 +202,28 @@
           </tbody>
         </table>
       </div>
-      <div id="divBottomLine"
-        style="position: absolute; left: 10px; top: 825px;">
-        <img src="gif/horizontalLine.gif" width="570" border="0"
-          height="1"></div>
-      <div id="divE-mail" style="position: absolute; left: 30px; top: 858px;"><a
-          href="mailto:patrickylin@gmail.com"><img
-            style="border: 0px solid ; width: 70px; height: 70px;"
-            title="E-mail"
-            src="png/E-mail.png"></a></div>
-      <div id="bottomLinks"
-        style="position: absolute; left: 110px; top: 865px; width: 460px; text-align: center;">
-        <span id="Sans9BNF">
-          <a href="page2.html">About Us</a> &nbsp;|&nbsp;
-          <a href="page3.html">Photo Album</a> &nbsp;|&nbsp;
-          <a href="page4.html">Favorite Sites</a> &nbsp;|&nbsp;
-          <a href="page5.html">What's New</a>
-        </span>
-      </div>
 
-      <div id="copyright"
-        style="position: absolute; left: 110px; top: 895px; width: 460px; text-align: center;">
-        <span id="Sans8NBF">
-          Last update: April, 2026.<br>
-          &copy; Copyright 1994 - 2026, The Lin Family. All rights reserved.
-        </span>
-      </div>
-      <div id="divBottom" style="position: absolute; left: 10px; top: 950px;">
-        <img src="gif/horizontalLine.gif" width="570" border="0"
-          height="0"></div>
+      <div class="footer-container">
+        <hr style="border: 0; border-top: 1px solid #ccc; width: 80%; margin: 0 auto 20px auto;">
+        <div class="footer">
+          <div class="footer-email">
+            <a href="mailto:patrickylin@gmail.com"><img title="E-mail" src="png/E-mail.png" alt="Email"></a>
+          </div>
+          <div class="footer-text">
+            <div class="footer-links">
+              <a href="index.html">Home Page</a> |
+              <a href="page2.html">About Us</a> |
+              <a href="page3.html">Photo Album</a> |
+              <a href="page4.html">Favorite Sites</a> |
+              <a href="page5.html">What's New</a>
+            </div>
+            <div class="copyright">
+              Last update: April, 2026.<br>
+              &copy; Copyright 1994 - 2026, The Lin Family. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </div>      
 
     </div>
   </body>
