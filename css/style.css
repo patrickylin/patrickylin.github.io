@@ -33,19 +33,25 @@ body {
   position: relative; /* This anchors your global footer to the bottom of this wrapper */
 }
 
+.header-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
 /* Responsive Icon Grid (Replaces Absolute Positioning) */
 #icon-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start; /* Aligns them to the left */
-  gap: 20px;                   /* Consistent spacing between icons */
+  gap: 20px; /* Consistent spacing between icons */
   width: 100%;
   margin: 40px 0;
 }
 #icon-grid a {
   /* This formula: (100% / 8 icons) - (offset for the gaps) */
   /* Using 8.5px ensures there is always a tiny bit of "breathing room" */
-  flex: 0 0 calc(12.5% - 8.8px); 
+  flex: 0 0 calc(12.5% - 8.8px);
   display: flex;
   justify-content: center;
   align-items: center;
