@@ -1,165 +1,206 @@
-<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 4.0//EN">
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-  <meta name="Generator" content="Nvu 1.0">
-  <meta name="description" content="Love never fails">
-  <meta name="keywords" content="GOD MADE US A FAMILY">
-  <link rel="SHORTCUT ICON" type="image/x-icon" href="../../ico/the_lin.ico">
-  <link rel="stylesheet" href="style.css" type="text/css"  media="all">
-  <link rel="stylesheet" href="../../css/style.css" type="text/css">
-  <script src="script.js"></script>
-  <title>The Lin Family - Rooted and Built Up in Christ</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Love never fails">
+    <meta name="keywords" content="GOD MADE US A FAMILY">
+    <link rel="SHORTCUT ICON" type="image/x-icon" href="../../ico/the_lin.ico">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+    <script src="script.js"></script>
+    <title>The Lin Family - Loan Calculator</title>
+    <style>
+    /* Local overrides specifically for the calculator page layout */
+    .container {
+      max-width: 580px;
+      margin: 0 auto;
+      /* Extra bottom padding (120px) ensures the absolute footer from style.css has plenty of room */
+      padding: 30px 20px 120px 20px; 
+      background: rgba(255, 255, 255, 0.95);
+      min-height: 100vh;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      position: relative; /* This anchors your global footer to the bottom of this wrapper */
+    }
 
-<body style=" background-image: url(../../gif/back.gif);">
-  <div id="topLinks" style="position: absolute; top: 175px; left: 40px;">
-    <table style="width: 530px;" height: 27px; cellspacing="0" cellpadding="0"  border="0">
-      <tbody>
-        <tr>
-          <td valign="top" align="left">
-            <p id="AlignCenterP"><span id="Sans11BNF"><a href="../../index.html">Home
-                Page</a></span><span id="Sans11BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans11BNF"><a href="../../page2.html">About
-                Us</a></span><span id="Sans11BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans11BNF"><a href="../../page3.html">Photo
-                Album</a></span><span id="Sans11BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans11BNF"><a href="../../page4.html">Favorite
-                Sites</a></span><span id="Sans11BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans11BNF"><a href="../../page5.html">What's
-                New</a></span><span id="Sans11BNF"><br></span></p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="divLoanCalculator"
-    style="position: absolute; left: 125px; top: 50px;">
-    <p id="AlignCenterP"><span id="Sans40BPF">Loan Calculator</span></p>
-  </div>
+    /* Banner Styling */
+    .site-banner {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 40px auto;
+      border: none;
+    }
 
-  <div id="divMainTheme"
-    style="position: absolute; left: 350px; top: 125px;">
-    <p id="AlignRightP"><span id="Sans14INF">Rooted and Built Up in Christ</span></p>
-  </div>
+    /* Modern Calculator Form Layout (No Tables) */
+    .calculator-wrapper {
+      max-width: 550px;
+      margin: 0 auto 50px auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+    .calculator-wrapper h2 {
+      font-size: 20px;
+      color: #1F497D;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .form-group label {
+      flex: 1 1 200px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 5px;
+    }
+    .input-wrapper {
+      flex: 1 1 200px;
+      display: flex;
+      align-items: center;
+    }
+    .input-wrapper span {
+      font-size: 18px;
+      color: #555;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+    }
+    .form-control[readonly] {
+      background: #eef2f5;
+      color: #1F497D;
+      font-weight: bold;
+    }
 
-  <div id="divTopLine"
-    style="position: absolute; left: 20px; top: 200px;">
-    <img src="../../gif/horizontalLine.gif" width="570" border="0" height="1"></img>
-  </div>
+    /* Modern Button */
+    .calc-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #1F497D;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 25px 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .calc-btn:hover {
+      background-color: #153257;
+    }
+  </style>
+  </head>
 
-<!--
-  This is an HTML form that allows the user to enter data and allows
-  JavaScript to display the results it computes back to the user. The
-  form elements are embedded in a table to improve their appearance.
-  The form itself is given the name "loandata", and the fields within
-  the form are given names such as "interest" and "years". These
-  field names are used in the JavaScript code that follows the form.
-  Note that some of the form elements define "onchange" or "onclick"
-  event handlers. These specify strings of JavaScript code to be
-  executed when the user enters data or clicks on a button.
--->
-<div id="divCalculator" style="position: absolute; left: 25px; top: 200px;">
-  <main class="main">
-  <div class="loanForm" >
-    <form name="loandata">
-      <table>
-        <tr>
-          <td colspan="2"><h2 class="small">Enter Loan Information:<h2></td>
-        </tr>
-        <tr>
-          <td><p class="body">Amount of the loan:</p></td>
-          <td><p class="body">$ <input style="font-size:25px;" type="text" name="principal" size="12" onchange="calculate();"></p></td>
-        </tr>
-        <tr>
-          <td><p class="body">Annual percentage rate of interest:</p></td>
-          <td><p class="body">&nbsp&nbsp&nbsp<input style="font-size:25px;" type="text" name="interest" size="12" onchange="calculate();"> %</p></td>
-        </tr>
-        <tr>
-          <td><p class="body">Repayment period in years:</p></td>
-          <td><p class="body">&nbsp&nbsp&nbsp<input style="font-size:25px;" type="text" name="years" size="12" onchange="calculate();"> years</p></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-          <input class="favorite styled"
-           type="button"
-           value="CALCULATE"
-           onchange="calculate()"></input></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h2 class="small">Payment Information:</h2></td>
-        </tr>
-        <tr>
-          <td><p class="body">Your monthly payment will be:</p></td>
-          <td><p class="body">$ <input style="font-size:25px;" type="text" name="payment" size="12"></p></td>
-        </tr>
-        <tr>
-          <td><p class="body">Your total payment will be:</p></td>
-          <td><p class="body">$ <input style="font-size:25px;" type="text" name="total" size="12"></p></td>
-        </tr>
-        <tr>
-          <td><p class="body">Your total interest payments will be:</p></td>
-          <td><p class="body">$ <input style="font-size:25px;" type="text" name="totalinterest" size="12"></p></td>
-        </tr>
-      </table>
-    </form>
-  </div>
-  </main>
-</div>
-  <div id="divBottomLine" style="position: absolute; left: 20px; top: 950px;">
-    <img src="../../gif/horizontalLine.gif" width="570" border="0" height="1">
-  </div>
-  <div id="divE-mail" style="position: absolute; left: 30px; top: 983px;"><a href="mailto:patrickylin@gmail.com"><img
-    style="border: 0px solid ; width: 70px; height: 70px;"
-    title="E-mail"
-    src="../../png/E-mail.png"></a>
-  </div>
-  <div id="bottomLinks" style="position: absolute; left: 114px; top: 977px;">
-    <table width="432" cellspacing="0" cellpadding="0" border="0" height="36">
-      <tbody>
-        <tr>
-          <td valign="top" align="left">
-            <p id="AlignCenterP">
-              <span id="Sans9BNF"><br></span>
-            </p>
-            <p id="AlignCenterP">
-              <span id="Sans9BNF"><a href="../index.html">Home Page</a></span>
-              <span id="Sans9BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans9BNF"><a href="../../page2.html">About Us</a></span>
-              <span id="Sans9BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans9BNF"><a href="../../page3.html">Photo Album</a></span>
-              <span id="Sans9BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans9BNF"><a href="../../page4.html">Favorite Sites</a></span>
-              <span id="Sans9BNF">&nbsp;|&nbsp;</span>
-              <span id="Sans9BNF"><a href="../../page5.html">What's New</a></span>
-              <span id="Sans9BNF"><br></span>
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="copyright" style="position: absolute; left: 114px; top: 1025px;">
-    <table width="434" cellspacing="0" cellpadding="0" border="0" height="30">
-      <tbody>
-        <tr>
-          <td valign="top" align="left">
-            <p id="AlignCenterP">
-              <span id="Sans8NBF">Last update: </span>
-              <span id="Sans8NBF">Thursday, June 4, 2020.<br></span>
-            </p>
-            <p id="AlignCenterP">
-              <span id="Sans8NBF">&copy; </span>
-              <span id="Sans8NBF">Copyright 1994 - 2024, </span>
-              <span id="Sans8NBF">The Lin Family. All rights reserved.<br></span>
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="divBottom" style="position: absolute; left: 20px; top: 1075px;">
-    <img src="../../gif/horizontalLine.gif" width="570" border="0" height="0">
-  </div>
-</body>
+  <body style="background-image: url('../../gif/back.gif');">
+
+    <div class="container">
+
+      <img src="../../png/loan_banner.png" alt="Loan Calculator"
+        class="site-banner">
+
+      <div class="calculator-wrapper">
+        <form name="loandata">
+
+          <h2>Enter Loan Information:</h2>
+
+          <div class="form-group">
+            <label>Amount of the loan:</label>
+            <div class="input-wrapper">
+              <span style="margin-right: 8px;">$</span>
+              <input class="form-control" type="number" name="principal"
+                onchange="calculate()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Annual percentage rate:</label>
+            <div class="input-wrapper">
+              <input class="form-control" type="number" name="interest"
+                step="0.01" onchange="calculate()">
+              <span style="margin-left: 8px;">%</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Repayment period:</label>
+            <div class="input-wrapper">
+              <input class="form-control" type="number" name="years"
+                onchange="calculate()">
+              <span style="margin-left: 8px; font-size: 15px;">years</span>
+            </div>
+          </div>
+
+          <button class="calc-btn" type="button"
+            onclick="calculate()">CALCULATE</button>
+
+          <h2>Payment Information:</h2>
+
+          <div class="form-group">
+            <label>Your monthly payment will be:</label>
+            <div class="input-wrapper">
+              <span style="margin-right: 8px;">$</span>
+              <input class="form-control" type="text" name="payment" readonly>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Your total payment will be:</label>
+            <div class="input-wrapper">
+              <span style="margin-right: 8px;">$</span>
+              <input class="form-control" type="text" name="total" readonly>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Your total interest will be:</label>
+            <div class="input-wrapper">
+              <span style="margin-right: 8px;">$</span>
+              <input class="form-control" type="text" name="totalinterest"
+                readonly>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <hr class="footer-divider">
+
+      <div class="footer-container">
+        <div class="footer">
+          <div class="footer-email">
+            <a href="mailto:patrickylin@gmail.com"><img title="E-mail"
+                src="../../png/E-mail.png" alt="Email"></a>
+          </div>
+          <div class="footer-text">
+            <div class="footer-links">
+              <a href="../../index.html">Home Page</a> |
+              <a href="../../page2.html">About Us</a> |
+              <a href="../../page3.html">Photo Album</a> |
+              <a href="../../page4.html">Favorite Sites</a> |
+              <a href="../../page5.html">What's New</a>
+            </div>
+            <div class="copyright">
+              &copy; Copyright 1994 - 2026, The Lin Family. All rights
+              reserved.<br>
+              Last update: April, 2026.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
