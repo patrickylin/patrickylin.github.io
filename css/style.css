@@ -47,6 +47,12 @@ padding: 0 5px;
 .footer-links a:hover {
 text-decoration: underline;
 }
+.footer-divider {
+border: none;
+border-top: 1px solid #ccc;
+width: 90%;
+margin: 20px auto 20px auto;
+}
 .copyright {
 font-size: 12px;
 color: #666;
