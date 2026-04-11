@@ -38,6 +38,7 @@ text-align: center;
 .footer-links {
 margin-bottom: 5px;
 font-size: 14px;
+font-weight: bold;
 }
 .footer-links a {
 color: #1F497D;
