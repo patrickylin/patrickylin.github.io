@@ -1,168 +1,315 @@
 body {
-margin: 0; 
-padding: 0;
--webkit-text-size-adjust: 100%;
-background-color: #ffffff; /* Sets a clean solid color for the wide screen edges */
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  background-color: #ffffff; /* Sets a clean solid color for the wide screen edges */
 }
 
 #main-wrapper {
-position: relative; 
-width: 580px; 
-margin: 0 auto; 
-min-height: 1000px;
-background-image: url('../gif/back.gif'); /* The image is moved here! */
+  position: relative;
+  width: 580px;
+  margin: 0 auto;
+  min-height: 1000px;
+  background-image: url("../gif/back.gif"); /* The image is moved here! */
 }
 
-/* Consistent Left-to-Right Footer for Main Pages */
+/* Banner Styling */
+.site-banner {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 40px auto;
+  border: none;
+}
+
+.container {
+  max-width: 550px;
+  margin: 0 auto;
+  /* Extra bottom padding (120px) ensures the absolute footer from style.css has plenty of room */
+  padding: 30px 20px 30px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  min-height: 100vh;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative; /* This anchors your global footer to the bottom of this wrapper */
+}
+
+/* Responsive Icon Grid (Replaces Absolute Positioning) */
+#icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Aligns them to the left */
+  gap: 20px;                   /* Consistent spacing between icons */
+  width: 100%;
+  margin: 40px 0;
+}
+#icon-grid a {
+  /* This formula: (100% / 8 icons) - (offset for the gaps) */
+  /* Using 8.5px ensures there is always a tiny bit of "breathing room" */
+  flex: 0 0 calc(12.5% - 8.8px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#icon-grid img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+#icon-grid a:hover {
+  transform: scale(1.25); /* Slight zoom on hover */
+}
+/* Small adjustment for older WebP format support */
+#icon-grid picture img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Modern Calculator Form Layout (No Tables) */
+.calculator-wrapper {
+  max-width: 550px;
+  margin: 0 auto 50px auto;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+.calculator-wrapper h2 {
+  font-size: 20px;
+  color: #1f497d;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+.form-group label {
+  flex: 1 1 200px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 5px;
+}
+.input-wrapper {
+  flex: 1 1 200px;
+  display: flex;
+  align-items: center;
+}
+.input-wrapper span {
+  font-size: 18px;
+  color: #555;
+}
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+}
+.form-control[readonly] {
+  background: #eef2f5;
+  color: #1f497d;
+  font-weight: bold;
+}
+
+/* Modern Button */
+.calc-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #1f497d;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 25px 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+.calc-btn:hover {
+  background-color: #153257;
+}
+
+/* Modern Footer */
 .footer-container {
-position: absolute; 
-bottom: 30px; /* Pins it to the bottom of your wrapper */
-width: 100%;
-}
-.footer {
-font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 20px;
-}
-.footer-email img {
-width: 70px;
-height: 70px;
-border: none;
-display: block;
-}
-.footer-text {
-text-align: center;
-}
-.footer-links {
-margin-bottom: 5px;
-font-size: 14px;
-font-weight: bold;
-}
-.footer-links a {
-color: #1F497D;
-text-decoration: none;
-padding: 0 5px;
-}
-.footer-links a:hover {
-text-decoration: underline;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }
 .footer-divider {
-border: none;
-border-top: 1px solid #ccc;
-width: 90%;
-margin: 20px auto 20px auto;
+  border: none;
+  border-top: 1px solid #ccc;
+  width: 90%;
+  margin: 0 auto 10px auto;
+}
+.footer {
+  font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+.footer-email img {
+  width: 70px;
+  height: 70px;
+  border: none;
+  display: block;
+}
+.footer-text {
+  text-align: center;
+}
+.footer-links {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.footer-links a {
+  color: #1f497d;
+  text-decoration: none;
+  padding: 0 5px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
 }
 .copyright {
-font-size: 12px;
-color: #666;
+  font-size: 11px;
+  color: #666;
 }
 
-A:link { color: #009966 }
-A:visited { color: #ff0000 }
+/* Mobile tweak: Stacks cleanly ONLY on very small phone screens */
+@media (max-width: 500px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-text {
+    text-align: center;
+  }
+  #icon-grid {
+    gap: 15px; /* Tighter gap on phones */
+  }
+  #icon-grid a {
+    flex: 0 0 calc(25% - 15px); /* 4 icons per row on small phones */
+  }
+}
+
+A:link {
+  color: #009966;
+}
+A:visited {
+  color: #ff0000;
+}
 #Sans8NBF {
-font-family: Arial;
-font-size: 8.0pt;
-color: BLUE;
+  font-family: Arial;
+  font-size: 8pt;
+  color: BLUE;
 }
 #Sans9BNF {
-font-family: Arial;
-font-weight: bold;
-font-size: 9.0pt;
-color: NAVY;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 9pt;
+  color: NAVY;
 }
 #Sans11BNF {
-font-family: Arial;
-font-weight: bold;
-font-size: 11.0pt;
-color: NAVY;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 11pt;
+  color: NAVY;
 }
 #Sans14BPF {
-font-family: Arial Black;
-font-weight: bold;
-font-size: 14.0pt;
-color: PURPLE;
+  font-family: Arial Black;
+  font-weight: bold;
+  font-size: 14pt;
+  color: PURPLE;
 }
 #Sans14INF {
-font-family: Impact;
-font-size: 14.0pt;
-color: NAVY;
+  font-family: Impact;
+  font-size: 14pt;
+  color: NAVY;
 }
 #Sans20BPF {
-font-family: Arial;
-font-weight: bold;
-font-size: 20.0pt;
-color: DARKBLUE;
-height: 20px;
-width: 100%;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20pt;
+  color: DARKBLUE;
+  height: 20px;
+  width: 100%;
 }
 #Sans24BPF {
-font-family: Arial;
-font-weight: bold;
-font-size: 24.0pt;
-color: DARKRED;
-height: 24px;
-width: 100%;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 24pt;
+  color: DARKRED;
+  height: 24px;
+  width: 100%;
 }
 #Sans30BPF {
-font-family: Arial;
-font-weight: bold;
-font-size: 30.0pt;
-color: DARKRED;
-height: 30px;
-width: 100%;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 30pt;
+  color: DARKRED;
+  height: 30px;
+  width: 100%;
 }
 #Sans40BPF {
-font-family: Arial;
-font-weight: bold;
-font-size: 40.0pt;
-color: PURPLE;
-height: 40px;
-width: 100%;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 40pt;
+  color: PURPLE;
+  height: 40px;
+  width: 100%;
 }
 #Serif12BGF {
-font-family: Times New Roman;
-font-weight: bold;
-font-size: 12.0pt;
-color: GRAY;
+  font-family: Times New Roman;
+  font-weight: bold;
+  font-size: 12pt;
+  color: GRAY;
 }
 #Serif14BNF {
-font-family: Times New Roman;
-font-weight: bold;
-font-size: 14.0pt;
-color: NAVY;
+  font-family: Times New Roman;
+  font-weight: bold;
+  font-size: 14pt;
+  color: NAVY;
 }
 #Serif14BWF {
-font-family: Times New Roman;
-font-weight: bold;
-font-size: 14.0pt;
-color: WHITE;
+  font-family: Times New Roman;
+  font-weight: bold;
+  font-size: 14pt;
+  color: WHITE;
 }
 #Serif14NBF {
-font-family: cursive;
-font-weight: normal;
-font-size: 14.0pt;
-color: BLACK;
-}    
+  font-family: cursive;
+  font-weight: normal;
+  font-size: 14pt;
+  color: BLACK;
+}
 #Serif28BYF {
-font-family: Times New Roman;
-font-weight: bold;
-font-size: 28.0pt;
-color: YELLOW;
+  font-family: Times New Roman;
+  font-weight: bold;
+  font-size: 28pt;
+  color: YELLOW;
 }
 #AlignLeftP {
-text-align: left;
-margin-top: 0.0pt;
-margin-bottom: 0.0pt;
+  text-align: left;
+  margin-top: 0pt;
+  margin-bottom: 0pt;
 }
 #AlignCenterP {
-text-align: center;
-margin-top: 0.0pt;
-margin-bottom: 0.0pt;
+  text-align: center;
+  margin-top: 0pt;
+  margin-bottom: 0pt;
 }
 #AlignRightP {
-text-align: right;
-margin-top: 0.0pt;
-margin-bottom: 0.0pt;
+  text-align: right;
+  margin-top: 0pt;
+  margin-bottom: 0pt;
 }
