@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 14 — English & Spanish: Collocations, Idioms & False Friends</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Collocation cards */
+  .colloc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .colloc-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .colloc-verb  { font-size: 16px; color: #185FA5; font-weight: 500; margin-bottom: 4px; }
+  .colloc-pairs { font-size: 13px; color: #333; line-height: 1.8; }
+  .colloc-wrong { font-size: 12px; color: #D85A30; margin-top: 4px; font-style: italic; }
+
+  /* Idiom cards — clickable */
+  .idiom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .idiom-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; cursor: pointer; transition: background 0.15s; }
+  .idiom-card:hover    { background: #f0f5fc; border-color: #b8d4f0; }
+  .idiom-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .idiom-phrase { font-size: 15px; color: #1a1a18; font-weight: 500; margin-bottom: 2px; }
+  .idiom-teaser { font-size: 12px; color: #aaa; }
+  .idiom-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .id-phrase  { font-size: 20px; color: #185FA5; font-weight: 500; margin-bottom: 4px; }
+  .id-meaning { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .id-ex      { font-size: 13px; color: #1D9E75; font-style: italic; margin-bottom: 4px; }
+  .id-origin  { font-size: 12px; color: #888; }
+  .id-empty   { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Register comparison */
+  .register-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .reg-card { border-radius: 10px; padding: 12px; text-align: center; }
+  .reg-card.formal   { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .reg-card.neutral  { background: #f9f8f5; border: 0.5px solid #e5e4e0; }
+  .reg-card.informal { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .reg-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .reg-words { font-size: 13px; color: #1a1a18; line-height: 1.9; }
+
+  /* False friends table */
+  .ff-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .ff-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .ff-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .ff-table tr:last-child td { border-bottom: none; }
+  .ff-en   { font-size: 15px; color: #185FA5; font-weight: 500; }
+  .ff-es   { font-size: 15px; color: #D85030; font-weight: 500; }
+  .ff-trap { font-size: 12px; color: #D85A30; font-style: italic; }
+  .ff-real { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Diminutive examples */
+  .dim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .dim-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 12px; }
+  .dim-base { font-size: 16px; color: #1a1a18; font-weight: 500; margin-bottom: 2px; }
+  .dim-form { font-size: 15px; color: #185FA5; margin-bottom: 2px; }
+  .dim-aug  { font-size: 15px; color: #D85030; margin-bottom: 2px; }
+  .dim-en   { font-size: 12px; color: #555; }
+  .dim-note { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Discourse marker table */
+  .dm-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .dm-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .dm-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .dm-table tr:last-child td { border-bottom: none; }
+  .dm-marker { font-size: 15px; color: #185FA5; font-weight: 500; }
+  .dm-use    { font-size: 13px; color: #333; }
+  .dm-ex     { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label  { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns   { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn    { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 19px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .colloc-grid, .idiom-grid, .wish-grid, .two-col { grid-template-columns: 1fr; }
+    .register-grid { grid-template-columns: 1fr; }
+    .dim-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 14 of 16</span>
+      <h1>Collocations, Idioms & False Friends</h1>
+      <div class="subtitle">EN: Collocations · Essential idioms · Formal vs informal register · ES: False friends · Diminutives &amp; augmentatives · Discourse markers &amp; linking expressions</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:87%;"></div></div>
+      87% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 14 · Collocations · Essential idioms · Formal vs informal register</div>
+      </div>
+    </div>
+
+    <!-- Collocations -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Collocations — words that belong together</div>
+      <div class="section-title">Native speakers choose word partners automatically — learners must learn them deliberately</div>
+      <p>A collocation is a pair (or group) of words that naturally go together in a language. While the grammar may be technically correct with other combinations, native speakers would find them unnatural. "Do homework" ✅ — "make homework" ❌. Both are logical, but only one sounds right to a native ear. Collocations cannot be translated word for word — they must be learned as units.</p>
+
+      <div class="colloc-grid">
+        <div class="colloc-card">
+          <div class="colloc-verb">make</div>
+          <div class="colloc-pairs">
+            make a <strong>decision</strong> · a <strong>mistake</strong><br/>
+            make <strong>progress</strong> · make <strong>an effort</strong><br/>
+            make <strong>money</strong> · make a <strong>suggestion</strong><br/>
+            make <strong>friends</strong> · make <strong>a noise</strong>
+          </div>
+          <div class="colloc-wrong">❌ do a mistake · do a decision</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">do</div>
+          <div class="colloc-pairs">
+            do <strong>homework</strong> · do the <strong>washing</strong><br/>
+            do <strong>research</strong> · do <strong>business</strong><br/>
+            do your <strong>best</strong> · do <strong>exercise</strong><br/>
+            do <strong>damage</strong> · do someone a <strong>favour</strong>
+          </div>
+          <div class="colloc-wrong">❌ make homework · make research</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">take</div>
+          <div class="colloc-pairs">
+            take a <strong>photo</strong> · take a <strong>break</strong><br/>
+            take <strong>responsibility</strong> · take <strong>notes</strong><br/>
+            take a <strong>shower</strong> · take an <strong>exam</strong><br/>
+            take <strong>medicine</strong> · take <strong>action</strong>
+          </div>
+          <div class="colloc-wrong">❌ do a photo · make a shower</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">have</div>
+          <div class="colloc-pairs">
+            have a <strong>meeting</strong> · have <strong>fun</strong><br/>
+            have a <strong>conversation</strong> · have <strong>lunch</strong><br/>
+            have a <strong>problem</strong> · have a <strong>look</strong><br/>
+            have an <strong>argument</strong> · have <strong>experience</strong>
+          </div>
+          <div class="colloc-wrong">❌ make a meeting · do a conversation</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">pay</div>
+          <div class="colloc-pairs">
+            pay <strong>attention</strong> · pay a <strong>compliment</strong><br/>
+            pay a <strong>visit</strong> · pay the <strong>bill</strong><br/>
+            pay <strong>respect</strong> · pay in <strong>cash / by card</strong>
+          </div>
+          <div class="colloc-wrong">❌ give attention · do a visit (formal)</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">keep</div>
+          <div class="colloc-pairs">
+            keep a <strong>secret</strong> · keep in <strong>touch</strong><br/>
+            keep your <strong>word</strong> · keep <strong>calm</strong><br/>
+            keep a <strong>promise</strong> · keep <strong>quiet</strong>
+          </div>
+          <div class="colloc-wrong">❌ maintain a secret · conserve touch</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">set / get / catch</div>
+          <div class="colloc-pairs">
+            set a <strong>record</strong> · set a <strong>goal</strong><br/>
+            get <strong>lost</strong> · get <strong>dressed</strong> · get <strong>started</strong><br/>
+            catch a <strong>cold</strong> · catch someone's <strong>eye</strong>
+          </div>
+          <div class="colloc-wrong">❌ establish a record · receive a cold</div>
+        </div>
+        <div class="colloc-card">
+          <div class="colloc-verb">Adjective collocations</div>
+          <div class="colloc-pairs">
+            <strong>strong</strong> coffee/tea (not big/large)<br/>
+            <strong>heavy</strong> rain/traffic (not strong/big)<br/>
+            <strong>fast</strong> food (not quick food)<br/>
+            <strong>broad</strong> daylight / a <strong>broad</strong> smile
+          </div>
+          <div class="colloc-wrong">❌ big coffee · strong rain · quick food</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>Make vs do — the eternal collocation battle:</strong> The make/do distinction is one of the most persistent challenges in English. A rough guide: <em>make</em> = creating, producing, causing something to exist (make a cake, make noise, make a mistake — the mistake now exists). <em>do</em> = performing an activity or task (do exercise, do your homework, do research — the activity is being carried out). But many common collocations break this logic — "do damage", "make friends", "take an exam" — these simply must be memorised.
+      </div>
+    </div>
+
+    <!-- English idioms -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Essential English idioms — click any to explore</div>
+      <div class="section-title">The figurative expressions that pepper natural English — from formal to casual</div>
+      <p>Idioms are fixed expressions whose meaning cannot be deduced from the individual words. They are the vivid, colourful layer of language that makes conversation feel alive. Native speakers use them constantly — and learners who understand them gain immediate access to a deeper level of English communication.</p>
+
+      <div class="idiom-grid" id="en-idiom-grid">
+        <div class="idiom-card"
+          data-phrase="Hit the nail on the head"
+          data-meaning="To describe something exactly correctly"
+          data-ex="When she said the problem was communication, she really hit the nail on the head."
+          data-origin="From carpentry — hitting the nail precisely drives it in cleanly. Extended to mean precision of expression.">
+          <div class="idiom-phrase">Hit the nail on the head</div>
+          <div class="idiom-teaser">To describe something exactly right</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Under the weather"
+          data-meaning="Feeling slightly ill or unwell"
+          data-ex="I won't be coming to the office today — I'm feeling a bit under the weather."
+          data-origin="Originally a nautical term — sailors who felt sick would go below deck, literally under the weather conditions above.">
+          <div class="idiom-phrase">Under the weather</div>
+          <div class="idiom-teaser">Feeling slightly ill</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Bite off more than you can chew"
+          data-meaning="To take on more than you can handle or manage"
+          data-ex="Taking on three projects at once — I think I've bitten off more than I can chew."
+          data-origin="Literally: taking too large a mouthful of food. Figuratively extended to workloads and commitments.">
+          <div class="idiom-phrase">Bite off more than you can chew</div>
+          <div class="idiom-teaser">Take on more than you can handle</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Burn bridges"
+          data-meaning="To permanently damage a relationship or opportunity, preventing any future return"
+          data-ex="Be careful how you resign — you don't want to burn bridges with your former employer."
+          data-origin="Military — burning a bridge behind retreating troops made return impossible. Now used for irreversible social/professional damage.">
+          <div class="idiom-phrase">Burn bridges</div>
+          <div class="idiom-teaser">Permanently damage a relationship</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Beat around the bush"
+          data-meaning="To avoid getting to the main point; to talk around a subject without addressing it directly"
+          data-ex="Stop beating around the bush — just tell me what the problem is."
+          data-origin="From hunting — beaters would drive animals out of bushes by beating around (not through) them. Extended to indirect communication.">
+          <div class="idiom-phrase">Beat around the bush</div>
+          <div class="idiom-teaser">Avoid getting to the point</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="The elephant in the room"
+          data-meaning="An obvious problem that everyone is aware of but nobody wants to discuss"
+          data-ex="The budget crisis was the elephant in the room at the board meeting."
+          data-origin="An image of something too large to ignore but too awkward to mention — popularised in English in the 20th century.">
+          <div class="idiom-phrase">The elephant in the room</div>
+          <div class="idiom-teaser">An obvious issue nobody mentions</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Break the ice"
+          data-meaning="To do something that relieves tension or awkwardness, especially when meeting people for the first time"
+          data-ex="He told a joke to break the ice at the beginning of the meeting."
+          data-origin="Historical: ships would break ice to open sea lanes. Francis Bacon used it figuratively in 1625. Now the standard expression for social ease-making.">
+          <div class="idiom-phrase">Break the ice</div>
+          <div class="idiom-teaser">Relieve tension at a first meeting</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Cut corners"
+          data-meaning="To do something the easy but less correct way, usually to save time or money"
+          data-ex="The building collapsed because the contractors had cut corners on safety."
+          data-origin="Geometric — cutting the corner of a path is shorter but bypasses something. Extended to bypassing proper procedures.">
+          <div class="idiom-phrase">Cut corners</div>
+          <div class="idiom-teaser">Take shortcuts, skip proper steps</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Bite the bullet"
+          data-meaning="To endure a painful or difficult situation with courage"
+          data-ex="I didn't want to have the difficult conversation, but I just had to bite the bullet."
+          data-origin="Pre-anaesthetic surgery — patients were given a bullet to bite on to cope with the pain. Extended to facing any difficult ordeal.">
+          <div class="idiom-phrase">Bite the bullet</div>
+          <div class="idiom-teaser">Endure something difficult bravely</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="See eye to eye"
+          data-meaning="To agree with someone; to share the same viewpoint"
+          data-ex="My colleague and I don't always see eye to eye on design decisions."
+          data-origin="Literally: to be at the same eye level — seeing the same thing from the same angle. Extended to mean shared perspective.">
+          <div class="idiom-phrase">See eye to eye</div>
+          <div class="idiom-teaser">To agree with someone</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="Once in a blue moon"
+          data-meaning="Very rarely; almost never"
+          data-ex="We only visit my aunt once in a blue moon — maybe once a year."
+          data-origin="A 'blue moon' is the rare second full moon in a calendar month. Extended to mean any rare occurrence.">
+          <div class="idiom-phrase">Once in a blue moon</div>
+          <div class="idiom-teaser">Very rarely indeed</div>
+        </div>
+        <div class="idiom-card"
+          data-phrase="The ball is in your court"
+          data-meaning="It is now your responsibility to take the next action or make a decision"
+          data-ex="I've made my offer — the ball is in your court now."
+          data-origin="From tennis — when the ball crosses the net, it is the other player's turn to act. Extended to responsibility and decision-making.">
+          <div class="idiom-phrase">The ball is in your court</div>
+          <div class="idiom-teaser">It's your turn / your responsibility now</div>
+        </div>
+      </div>
+      <div class="idiom-detail" id="en-idiom-detail">
+        <div class="id-empty">Tap any idiom above to explore its full meaning, example, and origin</div>
+      </div>
+    </div>
+
+    <!-- Register -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Formal vs informal register</div>
+      <div class="section-title">The same idea expressed three ways — choosing the right level for the context</div>
+      <p>Register is the level of formality appropriate to a situation. English has a wide range — from highly formal academic writing to very casual spoken slang. Native speakers switch between registers automatically; learners must develop this same flexibility. Using the wrong register is often more jarring than a grammar mistake.</p>
+
+      <div class="register-grid">
+        <div class="reg-card formal">
+          <div class="reg-label">Formal / Written</div>
+          <div class="reg-words">
+            <strong>commence</strong> (begin)<br/>
+            <strong>terminate</strong> (end)<br/>
+            <strong>inquire</strong> (ask)<br/>
+            <strong>obtain</strong> (get)<br/>
+            <strong>sufficient</strong> (enough)<br/>
+            <strong>endeavour</strong> (try)<br/>
+            <strong>nevertheless</strong> (but)<br/>
+            <strong>consequently</strong> (so)<br/>
+            <strong>I would like to</strong> (I want to)
+          </div>
+        </div>
+        <div class="reg-card neutral">
+          <div class="reg-label">Neutral / Everyday</div>
+          <div class="reg-words">
+            <strong>start / begin</strong><br/>
+            <strong>finish / end</strong><br/>
+            <strong>ask</strong><br/>
+            <strong>get</strong><br/>
+            <strong>enough</strong><br/>
+            <strong>try</strong><br/>
+            <strong>but / however</strong><br/>
+            <strong>so / therefore</strong><br/>
+            <strong>I'd like to</strong>
+          </div>
+        </div>
+        <div class="reg-card informal">
+          <div class="reg-label">Informal / Spoken</div>
+          <div class="reg-words">
+            <strong>kick off</strong> (begin)<br/>
+            <strong>wrap up</strong> (end)<br/>
+            <strong>wonder</strong> (ask — softened)<br/>
+            <strong>grab / pick up</strong> (get)<br/>
+            <strong>loads of</strong> (enough/plenty)<br/>
+            <strong>give it a go</strong> (try)<br/>
+            <strong>still</strong> (but — spoken)<br/>
+            <strong>so anyway</strong> (transition)<br/>
+            <strong>I'm looking to</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>The Latin-Germanic register divide:</strong> English has a peculiar dual vocabulary — Latin/French-origin words tend to be formal (commence, obtain, sufficient, inquire), while Old English/Germanic words tend to be informal (start, get, enough, ask). This happened because French-speaking Normans became England's ruling class after 1066 — their French vocabulary became the language of law, administration, and prestige. Understanding this explains why "help" (Germanic) feels warmer than "assist" (Latin), and why "buy" (Germanic) sounds more casual than "purchase" (Latin/French).
+      </div>
+    </div>
+
+    <!-- Interactive collocation builder EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Collocation challenge</div>
+      <div class="section-title">Choose the correct verb partner — and see why it's the right choice</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Make, do, take or have?</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a noun — find its verb partner</div>
+          <div class="bl-btns" id="en-colloc-btns">
+            <button class="bl-btn en-colloc"
+              data-noun="a decision"
+              data-verb="MAKE a decision"
+              data-wrong="do / take / have a decision"
+              data-note="'Make a decision' — the decision is created/produced. The decision now exists where it didn't before. Make = create/produce. This is one of the most common collocations in professional English.">
+              a decision 🤔
+            </button>
+            <button class="bl-btn en-colloc"
+              data-noun="exercise"
+              data-verb="DO exercise"
+              data-wrong="make / take / have exercise"
+              data-note="'Do exercise' — you perform the activity. DO = performing an activity. Note: 'Take exercise' is also heard (somewhat old-fashioned British English), but 'do exercise' is the standard modern form.">
+              exercise 🏃
+            </button>
+            <button class="bl-btn en-colloc"
+              data-noun="a photo"
+              data-verb="TAKE a photo"
+              data-wrong="make / do / have a photo"
+              data-note="'Take a photo' — you capture/receive the image. TAKE = capturing or receiving. Interesting: in Spanish it's 'sacar una foto' (extract a photo) and in Japanese '写真を撮る' (shoot a photo) — each language has its own verb!">
+              a photo 📸
+            </button>
+            <button class="bl-btn en-colloc"
+              data-noun="a conversation"
+              data-verb="HAVE a conversation"
+              data-wrong="make / do / take a conversation"
+              data-note="'Have a conversation' — HAVE is used for experiences and interactions: have a meeting, have a chat, have an argument, have a good time. You experience the conversation, you don't create it (make) or perform it (do).">
+              a conversation 💬
+            </button>
+            <button class="bl-btn en-colloc"
+              data-noun="a mistake"
+              data-verb="MAKE a mistake"
+              data-wrong="do / take / have a mistake"
+              data-note="'Make a mistake' — the mistake is produced/created. One of the most important collocations to get right — because learners often say 'do a mistake' influenced by their native language. The mistake now exists, hence MAKE.">
+              a mistake ❌
+            </button>
+            <button class="bl-btn en-colloc"
+              data-noun="your best"
+              data-verb="DO your best"
+              data-wrong="make / take / have your best"
+              data-note="'Do your best' — a fixed expression. DO = performing to maximum effort. Also: 'do your homework', 'do your duty', 'do your part'. These all involve carrying out a responsibility or obligation, hence DO.">
+              your best ⭐
+            </button>
+          </div>
+          <div class="bl-result" id="en-colloc-result">
+            <div class="blr-empty">Choose a noun above to discover its correct verb partner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🎭</span>
+        <div class="culture-text">
+          <strong>Idioms as cultural windows — what English metaphors reveal about British culture</strong><br/>
+          Every language's idioms reveal what that culture values and fears. English is rich with sporting metaphors — "hit the ball out of the park", "move the goalposts", "a level playing field", "it's not cricket" (British: it's unfair) — reflecting the deep cultural role of sport. Naval and maritime idioms reflect Britain's seafaring history: "plain sailing", "taken aback", "cut and run", "know the ropes", "above board". Weather idioms reflect the British obsession with climate: "under the weather", "right as rain", "steal someone's thunder", "every cloud has a silver lining". Learning a language's idiom clusters gives you a map of its history and values — and makes you sound native in a way that no grammar lesson alone can achieve.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 14 English — collocations &amp; idioms</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which collocation is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">do a decision</button>
+          <button class="quiz-btn" data-answer="wrong">take a decision (most common in British English too)</button>
+          <button class="quiz-btn" data-answer="correct">make a decision</button>
+          <button class="quiz-btn" data-answer="wrong">have a decision</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "bite the bullet" mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">To eat something very fast</button>
+          <button class="quiz-btn" data-answer="wrong">To make a quick decision</button>
+          <button class="quiz-btn" data-answer="correct">To endure a difficult or painful situation with courage</button>
+          <button class="quiz-btn" data-answer="wrong">To argue with someone aggressively</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which word is the most FORMAL equivalent of "get"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">grab</button>
+          <button class="quiz-btn" data-answer="wrong">pick up</button>
+          <button class="quiz-btn" data-answer="correct">obtain</button>
+          <button class="quiz-btn" data-answer="wrong">fetch</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "the ball is in your court" mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">You are winning the game</button>
+          <button class="quiz-btn" data-answer="correct">It is now your responsibility or turn to act</button>
+          <button class="quiz-btn" data-answer="wrong">You must play sports</button>
+          <button class="quiz-btn" data-answer="wrong">The situation is in your favour</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 14 · False friends · Diminutives &amp; augmentatives · Discourse markers</div>
+      </div>
+    </div>
+
+    <!-- False friends -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Falsos amigos — false friends</div>
+      <div class="section-title">Words that look the same in English and Spanish but mean something completely different</div>
+      <p>False friends (<em>falsos amigos</em>) are words that look or sound similar across two languages but have different meanings. For English speakers learning Spanish, they are a constant source of embarrassing — and sometimes very funny — errors. The closer the words look, the more dangerous they are.</p>
+
+      <table class="ff-table">
+        <tr>
+          <th>English word</th>
+          <th>Looks like Spanish...</th>
+          <th>But actually means</th>
+          <th>Real Spanish word for it</th>
+        </tr>
+        <tr>
+          <td><span class="ff-en">embarrassed</span></td>
+          <td><span class="ff-es">embarazada</span><span class="ff-trap"> = pregnant!</span></td>
+          <td class="ff-trap">"Estoy embarazada" = I am pregnant (if you are a woman)</td>
+          <td><span class="ff-real">avergonzado/a = embarrassed · ¡Qué vergüenza! = How embarrassing!</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">actually</span></td>
+          <td><span class="ff-es">actualmente</span><span class="ff-trap"> = currently/nowadays</span></td>
+          <td class="ff-trap">"Actualmente vivo en Madrid" = I currently live in Madrid (NOT actually)</td>
+          <td><span class="ff-real">en realidad / de hecho = actually · realmente = really</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">sensible</span></td>
+          <td><span class="ff-es">sensible</span><span class="ff-trap"> = sensitive (emotionally)</span></td>
+          <td class="ff-trap">"Es muy sensible" = She is very sensitive (cries easily)</td>
+          <td><span class="ff-real">sensato/a = sensible / reasonable · razonable = reasonable</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">library</span></td>
+          <td><span class="ff-es">librería</span><span class="ff-trap"> = bookshop!</span></td>
+          <td class="ff-trap">"Voy a la librería" = I'm going to the bookshop (to buy books)</td>
+          <td><span class="ff-real">biblioteca = library (where you borrow books for free)</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">exit</span></td>
+          <td><span class="ff-es">éxito</span><span class="ff-trap"> = success!</span></td>
+          <td class="ff-trap">"¡Mucho éxito!" = Good luck! / Much success!</td>
+          <td><span class="ff-real">salida = exit · la puerta de salida = the exit door</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">lecture</span></td>
+          <td><span class="ff-es">lectura</span><span class="ff-trap"> = reading (the act)</span></td>
+          <td class="ff-trap">"La lectura es importante" = Reading is important</td>
+          <td><span class="ff-real">conferencia = lecture · clase magistral = formal lecture</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">constipated</span></td>
+          <td><span class="ff-es">constipado</span><span class="ff-trap"> = having a cold!</span></td>
+          <td class="ff-trap">"Estoy constipado" = I have a cold / blocked nose</td>
+          <td><span class="ff-real">estreñido/a = constipated · el estreñimiento = constipation</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">carpet</span></td>
+          <td><span class="ff-es">carpeta</span><span class="ff-trap"> = folder / file!</span></td>
+          <td class="ff-trap">"Pon esto en la carpeta" = Put this in the folder</td>
+          <td><span class="ff-real">la moqueta = fitted carpet · la alfombra = rug / carpet</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">fabric</span></td>
+          <td><span class="ff-es">fábrica</span><span class="ff-trap"> = factory!</span></td>
+          <td class="ff-trap">"Trabaja en una fábrica" = He works in a factory</td>
+          <td><span class="ff-real">tela = fabric/cloth · tejido = fabric/textile</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">large</span></td>
+          <td><span class="ff-es">largo</span><span class="ff-trap"> = long (not large)!</span></td>
+          <td class="ff-trap">"Una calle muy larga" = A very long street</td>
+          <td><span class="ff-real">grande = large/big · ancho/a = wide · grueso/a = thick</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">introduce</span></td>
+          <td><span class="ff-es">introducir</span><span class="ff-trap"> = to insert / to put in</span></td>
+          <td class="ff-trap">"Introduce la tarjeta" = Insert the card</td>
+          <td><span class="ff-real">presentar = to introduce someone · Te presento a mi amiga = Let me introduce my friend</span></td>
+        </tr>
+        <tr>
+          <td><span class="ff-en">pretend</span></td>
+          <td><span class="ff-es">pretender</span><span class="ff-trap"> = to try to / to aim to</span></td>
+          <td class="ff-trap">"Pretendo terminar hoy" = I intend to / aim to finish today</td>
+          <td><span class="ff-real">fingir = to pretend · hacerse el/la + adj. = to pretend to be</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-coral">
+        <strong>The most dangerous false friend of all — embarazada:</strong> Saying "Estoy embarazada" when you mean "I am embarrassed" is a legendary learner error. If you are a woman, it means you have announced a pregnancy. The correct word for embarrassed is <em>avergonzado/a</em> (from vergüenza = shame/embarrassment). The humour of this error has made it the most famous false friend in Spanish teaching — and a powerful reminder that looking similar is no guide to meaning.
+      </div>
+    </div>
+
+    <!-- Diminutives and augmentatives -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Diminutivos y aumentativos</div>
+      <div class="section-title">The suffixes that make Spanish feel warm, vivid and emotionally alive</div>
+      <p>Spanish speakers add suffixes to nouns, adjectives, and even adverbs to express size, affection, intensity, or irony. Diminutives (-ito/-ita, -illo/-illa) make things smaller or more affectionate. Augmentatives (-ón/-ona, -azo/-aza) make things bigger or more intense. These suffixes are not just about size — they carry enormous emotional weight.</p>
+
+      <div class="dim-grid">
+        <div class="dim-card">
+          <div class="dim-base">café ☕</div>
+          <div class="dim-form">cafecito</div>
+          <div class="dim-en">a nice little coffee</div>
+          <div class="dim-note">Affection, not necessarily small. "¿Un cafecito?" is a warm invitation.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">momento ⏱️</div>
+          <div class="dim-form">momentito</div>
+          <div class="dim-en">just a moment (softer)</div>
+          <div class="dim-note">"Un momentito" is politer and softer than "un momento". Widely used in Latin America.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">poco 🤏</div>
+          <div class="dim-form">poquito</div>
+          <div class="dim-en">a tiny little bit</div>
+          <div class="dim-note">"Un poquito de paciencia" = just a tiny bit of patience. Very common!</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">perro 🐕</div>
+          <div class="dim-form">perrito</div>
+          <div class="dim-aug">perrazo</div>
+          <div class="dim-en">little dog / huge dog</div>
+          <div class="dim-note">Perrito = cute little dog. Perrazo = a massive dog (augmentative with awe/intensity).</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">coche 🚗</div>
+          <div class="dim-form">cochecito</div>
+          <div class="dim-aug">cochazo</div>
+          <div class="dim-en">small/cute car / amazing car</div>
+          <div class="dim-note">Cochecito = baby carriage too! Cochazo = a fantastic expensive car (augmentative of admiration).</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">golpe 💥</div>
+          <div class="dim-form">golpecito</div>
+          <div class="dim-aug">golpazo</div>
+          <div class="dim-en">light tap / massive blow</div>
+          <div class="dim-note">Golpecito = a gentle knock. Golpazo = a huge crash. The suffix reverses the intensity entirely.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">libro 📖</div>
+          <div class="dim-form">librito</div>
+          <div class="dim-aug">librazo / librote</div>
+          <div class="dim-en">little booklet / great big book</div>
+          <div class="dim-note">Librazo can mean an impressive/excellent book — augmentatives often imply admiration.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">bueno ✅</div>
+          <div class="dim-form">buenísimo</div>
+          <div class="dim-aug">buenazo</div>
+          <div class="dim-en">excellent / very good-natured</div>
+          <div class="dim-note">-ísimo = superlative of intensity (added to adjectives). Buenazo = a really good-natured person. Es un buenazo = He's a really good soul.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-base">tarde ⏰</div>
+          <div class="dim-form">tardecita</div>
+          <div class="dim-aug">tardísimo</div>
+          <div class="dim-en">late afternoon / extremely late</div>
+          <div class="dim-note">Tardecita = the pleasant late afternoon (used affectionately in Latin America). Tardísimo = incredibly late. Diminutives apply even to time words!</div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-green">
+        <strong>Regional variation in diminutives:</strong> The use of diminutives varies significantly across Spanish-speaking regions. Latin America — particularly Mexico, Colombia, and Central America — uses diminutives far more extensively and affectionately than Spain. In Mexico, <em>ahorita</em> (diminutive of ahora = now) is famously ambiguous — it can mean immediately, soon, in a while, or never, depending on tone. <em>¿Me traes un vasito de agua?</em> (Could you bring me a little glass of water?) is softer and more polite than asking without the diminutive. Mastering diminutives is one of the fastest ways to sound natural and warm in spoken Spanish.
+      </div>
+    </div>
+
+    <!-- Discourse markers -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Conectores y marcadores del discurso</div>
+      <div class="section-title">The linking expressions that make Spanish flow naturally — beyond simple "y" and "pero"</div>
+      <p>Discourse markers are the connective tissue of language — the words and phrases that link ideas, signal contrast, introduce examples, draw conclusions, and organise speech. Moving beyond <em>y</em> (and) and <em>pero</em> (but) into richer connectors is one of the clearest signs of growing proficiency.</p>
+
+      <table class="dm-table">
+        <tr><th style="width:140px">Connector</th><th>Function</th><th>Example</th></tr>
+        <tr>
+          <td><span class="dm-marker">además</span></td>
+          <td class="dm-use">Moreover / furthermore / also — adding information</td>
+          <td><span class="dm-ex">El hotel está bien situado; además, tiene piscina. (The hotel is well located; moreover, it has a pool.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">sin embargo</span></td>
+          <td class="dm-use">However / nevertheless — introducing contrast (stronger than pero)</td>
+          <td><span class="dm-ex">Me gusta el plan; sin embargo, creo que es demasiado caro. (I like the plan; however, I think it's too expensive.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">por lo tanto</span></td>
+          <td class="dm-use">Therefore / consequently — logical conclusion</td>
+          <td><span class="dm-ex">No tenemos suficiente presupuesto; por lo tanto, debemos esperar. (We don't have enough budget; therefore, we must wait.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">de hecho</span></td>
+          <td class="dm-use">In fact / actually — emphasising or reinforcing</td>
+          <td><span class="dm-ex">No es difícil; de hecho, es bastante sencillo. (It's not difficult; in fact, it's quite simple.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">es decir</span></td>
+          <td class="dm-use">That is / in other words — clarifying or reformulating</td>
+          <td><span class="dm-ex">Habla tres idiomas; es decir, es trilingüe. (She speaks three languages; that is, she is trilingual.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">a pesar de (que)</span></td>
+          <td class="dm-use">Despite / in spite of — concession</td>
+          <td><span class="dm-ex">A pesar del frío, salimos a caminar. (Despite the cold, we went for a walk.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">por otro lado</span></td>
+          <td class="dm-use">On the other hand — presenting another perspective</td>
+          <td><span class="dm-ex">El trabajo es bien pagado; por otro lado, hay mucho estrés. (The job is well paid; on the other hand, there's a lot of stress.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">en cuanto a</span></td>
+          <td class="dm-use">As for / regarding — changing topic or focus</td>
+          <td><span class="dm-ex">En cuanto al precio, podemos negociar. (As for the price, we can negotiate.)</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">o sea</span></td>
+          <td class="dm-use">I mean / that is — casual clarification (very spoken)</td>
+          <td><span class="dm-ex">Es rarísimo, o sea, no lo entiendo. (It's very weird, I mean, I don't understand it.) — very colloquial</span></td>
+        </tr>
+        <tr>
+          <td><span class="dm-marker">así que</span></td>
+          <td class="dm-use">So / and so — informal conclusion or result</td>
+          <td><span class="dm-ex">No había taxi, así que cogimos el metro. (There was no taxi, so we took the metro.)</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-purple">
+        <strong>O sea — the Spanish "I mean":</strong> <em>O sea</em> is one of the most-used spoken discourse markers in everyday Spanish — the equivalent of English "I mean" or "like". It signals a reformulation, a clarification, or simply a conversational filler. Young Spanish speakers especially sprinkle it throughout speech: "O sea, es que no sé..." (I mean, it's just that I don't know...). Recognising it in fast native speech is as important as learning formal connectors for written language.
+      </div>
+    </div>
+
+    <!-- Interactive false friend explorer -->
+    <div class="section">
+      <div class="section-label">Interactive · False friends in action</div>
+      <div class="section-title">Choose a dangerous pair — see the trap and the correct word</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 Falsos amigos — spot the trap</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a false friend pair</div>
+          <div class="bl-btns" id="es-ff-btns">
+            <button class="bl-btn es-ff"
+              data-trap="Estoy embarazada de decirlo."
+              data-intended="I am embarrassed to say it."
+              data-actual="Estoy embarazada = I am pregnant! (if female speaker)"
+              data-correct="Estoy avergonzada de decirlo. / Me da vergüenza decirlo."
+              data-note="Embarazada comes from embarazo (pregnancy) — completely unrelated to embarrassment. The correct word is avergonzado/a (from vergüenza = shame/embarrassment). Arguably the most famous false friend mistake in the Spanish-speaking world.">
+              😳 embarrassed → embarazada
+            </button>
+            <button class="bl-btn es-ff"
+              data-trap="Actualmente vivo en Madrid."
+              data-intended="Actually, I live in Madrid."
+              data-actual="Actualmente = currently / nowadays (temporal, not emphatic)"
+              data-correct="En realidad vivo en Madrid. / De hecho, vivo en Madrid."
+              data-note="Actualmente means 'at the present time' — it's a perfectly normal Spanish word meaning 'nowadays'. The English 'actually' (meaning 'in fact') translates to 'en realidad' or 'de hecho'. This catches many English speakers who use actualmente thinking it means 'actually'.">
+              🕐 actually → actualmente
+            </button>
+            <button class="bl-btn es-ff"
+              data-trap="Voy a la librería a buscar un libro."
+              data-intended="I'm going to the library to find a book."
+              data-actual="La librería = bookshop (where you BUY books)"
+              data-correct="Voy a la biblioteca a buscar un libro."
+              data-note="La librería = bookshop. La biblioteca = library (where books are borrowed free). The confusion causes real-world problems — you end up somewhere you have to pay! Remember: bibliot-eca links to bibliography (study of books).">
+              📚 library → librería
+            </button>
+            <button class="bl-btn es-ff"
+              data-trap="El proyecto fue un gran éxito — ¿dónde está el éxito?"
+              data-intended="The project was a great success — where is the exit?"
+              data-actual="El éxito = success · La salida = exit/way out"
+              data-correct="El proyecto fue un gran éxito. ¿Dónde está la salida?"
+              data-note="Éxito (success) and exit look almost identical but mean opposites in spirit! A successful project is one you want to continue; an exit is how you leave. 'Mucho éxito' = good luck / much success. Signs saying SALIDA = EXIT — never ÉXITO.">
+              🚪 exit → éxito
+            </button>
+            <button class="bl-btn es-ff"
+              data-trap="Es una persona muy sensible — sabe lo que hacer."
+              data-intended="She is a very sensible person — she knows what to do."
+              data-actual="Sensible = emotionally sensitive (not practical/sensible)"
+              data-correct="Es una persona muy sensata — sabe lo que hacer."
+              data-note="Sensible in Spanish = emotionally sensitive, easily moved or hurt. Sensato/a = sensible, reasonable, wise. 'Es muy sensible' might mean she cries easily or is emotionally fragile — quite different from the intended compliment!">
+              🧠 sensible → sensible
+            </button>
+            <button class="bl-btn es-ff"
+              data-trap="La calle es muy larga para aparcar."
+              data-intended="The street is too large to park in."
+              data-actual="Largo = LONG (not large!) — una calle larga = a long street"
+              data-correct="La calle es demasiado estrecha para aparcar. (The street is too narrow to park.)"
+              data-note="Largo/a = long. Grande = large/big. Ancho/a = wide. This confusion leads to describing a street as 'very long' when meaning 'very wide' — producing a confusing but not disastrous sentence. Always remember: largo = long, like 'elongated'.">
+              📏 large → largo
+            </button>
+          </div>
+          <div class="bl-result" id="es-ff-result">
+            <div class="blr-empty">Choose a pair above to see the trap — and the correct Spanish</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">❤️</span>
+        <div class="culture-text">
+          <strong>El lenguaje del cariño — diminutives as emotional language in Spanish culture</strong><br/>
+          In Spanish-speaking cultures, especially in Latin America, diminutives go far beyond grammar — they are the language of warmth, intimacy, and affection. A mother calls her child <em>hijito/hijita</em> (little child/son/daughter). A grandmother offers <em>un cafecito</em> as an act of love, not just a beverage. <em>Ahorita</em> in Mexico doesn't just mean "right now" — it carries an entire attitude toward time, relationships, and the present moment. Even <em>favor</em> (favour) becomes <em>favorcito</em> when making a small, intimate request from someone you're close to. The English equivalent would be adding "little" or "dear" to everything — which sounds strange in English but feels completely natural in Spanish. This difference reveals a cultural truth: Spanish-speaking cultures tend to express emotional closeness through language modification itself, while English cultures express it more through tone and indirect signals. Learning to use diminutives is learning a new emotional vocabulary.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 14 Spanish — false friends, diminutives &amp; connectors</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the correct Spanish word for "library" (where you borrow books)?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">la librería</button>
+          <button class="quiz-btn" data-answer="correct">la biblioteca</button>
+          <button class="quiz-btn" data-answer="wrong">la lectura</button>
+          <button class="quiz-btn" data-answer="wrong">el librero</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "cafecito" express that "café" alone does not?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">That the coffee is weak or small</button>
+          <button class="quiz-btn" data-answer="correct">Warmth and affection — an emotional tone rather than just a physical size</button>
+          <button class="quiz-btn" data-answer="wrong">That it costs less</button>
+          <button class="quiz-btn" data-answer="wrong">That it is cold coffee</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which discourse marker means "however / nevertheless"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">además</button>
+          <button class="quiz-btn" data-answer="wrong">por lo tanto</button>
+          <button class="quiz-btn" data-answer="correct">sin embargo</button>
+          <button class="quiz-btn" data-answer="wrong">de hecho</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "largo" mean in Spanish — and what is the false friend trap?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Large / big — same as English "large"</button>
+          <button class="quiz-btn" data-answer="correct">Long (not large!) — large in Spanish is "grande"</button>
+          <button class="quiz-btn" data-answer="wrong">Wide / broad — similar to "large"</button>
+          <button class="quiz-btn" data-answer="wrong">Heavy — confused with "large" amounts</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — idioms, false friends &amp; diminutives</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages express things figuratively and affectionately</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Idioms and diminutives reveal the emotional and cultural personality of a language — where pure grammar cannot go.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"Hit the nail on head" equivalent</td>
+        <td>図星をさす<br/><span style="font-size:11px; color:#888">zuboshi wo sasu<br/>"point at the bull's-eye"</span></td>
+        <td>핵심을 찌르다<br/><span style="font-size:11px; color:#888">haekshimeul jjireuda<br/>"pierce the core"</span></td>
+        <td>Hit the nail on the head<br/><span style="font-size:11px; color:#888">Carpentry metaphor</span></td>
+        <td>Dar en el clavo<br/><span style="font-size:11px; color:#888">"Hit the nail" (same image!)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Diminutives</td>
+        <td>Suffixes ~っぽい · ~ちゃん<br/><span style="font-size:11px; color:#888">-chan for affection (Keiko-chan). No size diminutives.</span></td>
+        <td>아/야 + context<br/><span style="font-size:11px; color:#888">Mainly through speech level and context — no productive diminutive suffix</span></td>
+        <td>tiny / little / dear + noun<br/><span style="font-size:11px; color:#888">Words not suffixes: a little coffee · dear friend</span></td>
+        <td>-ito/-ita productive suffix<br/><span style="font-size:11px; color:#888">cafecito · poquito · tardecita — extremely productive!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Most dangerous false friend with English</td>
+        <td>マンション (manshon)<br/><span style="font-size:11px; color:#888">Looks like "mansion" but means apartment block (any size)</span></td>
+        <td>아파트 (apateu)<br/><span style="font-size:11px; color:#888">From "apartment" but means high-rise block, not an individual apartment</span></td>
+        <td>N/A — English is the source language for many false friends</td>
+        <td>embarazada<br/><span style="font-size:11px; color:#888">"embarrassed" → actually pregnant!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Key discourse marker</td>
+        <td>でも / それに / ところで<br/><span style="font-size:11px; color:#888">demo (but) · soreni (moreover) · tokorode (by the way)</span></td>
+        <td>그런데 / 게다가 / 따라서<br/><span style="font-size:11px; color:#888">geureonde (but/however) · gedaga (moreover) · ddaraseo (therefore)</span></td>
+        <td>however / moreover / therefore / in fact<br/><span style="font-size:11px; color:#888">Largely Latin-origin — formal register markers</span></td>
+        <td>sin embargo / además / por lo tanto / de hecho<br/><span style="font-size:11px; color:#888">Direct parallels to English formal connectors</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-green" style="margin-top:14px">
+      <strong>The idiom universality insight:</strong> Many idioms share the same underlying image across languages — "hit the nail on the head" in English = "dar en el clavo" in Spanish = "図星をさす" (hit the bull's eye) in Japanese = "핵심을 찌르다" (pierce the core) in Korean. Different images, same concept. This reveals that human thought patterns are often universal — we all reach for metaphors of precision, accuracy, and hitting a target. Where languages diverge most vividly is in their diminutive systems: Spanish has a rich, productive suffix system that English must approximate with separate words ("little", "dear"), while Japanese and Korean use different mechanisms entirely. The diminutive is where Spanish most beautifully differs from English — it encodes warmth into the word itself.
+    </div>
+  </div>
+
+
+  <!-- Week 15 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 15</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Formal &amp; informal letter/email writing · The complete toolkit for written English · Academic and professional writing patterns · Common writing mistakes · Punctuation guide.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Weather and seasons vocabulary · Nature and environment · The present perfect with ya/todavía and the recent past · Spanish exclamations and interjections — the emotional vocabulary of everyday speech.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 14 complete · Just two weeks to go! Click <a href="Week15.E&S.html">here</a> when you're ready for Week 15 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English idiom grid ── */
+  document.querySelectorAll('#en-idiom-grid .idiom-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#en-idiom-grid .idiom-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-idiom-detail').innerHTML = `
+        <div class="id-phrase">${d.phrase}</div>
+        <div class="id-meaning">📖 ${d.meaning}</div>
+        <div class="id-ex">💬 "${d.ex}"</div>
+        <div class="id-origin">🏛️ ${d.origin}</div>
+      `;
+    });
+  });
+
+  /* ── English collocation builder ── */
+  document.querySelectorAll('.en-colloc').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-colloc').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-colloc-result').innerHTML = `
+        <div class="blr-sentence">✅ <strong>${d.verb}</strong></div>
+        <div class="blr-breakdown">❌ <strong>Wrong:</strong> ${d.wrong}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish false friends explorer ── */
+  document.querySelectorAll('.es-ff').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-ff').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-ff-result').innerHTML = `
+        <div class="blr-breakdown" style="color:#D85A30; margin-bottom:6px;">
+          ❌ <strong>Trap sentence:</strong> <em>${d.trap}</em><br/>
+          <span style="font-size:12px;">(intended: ${d.intended})</span>
+        </div>
+        <div class="blr-breakdown">⚠️ <strong>What it actually means:</strong> ${d.actual}</div>
+        <div class="blr-sentence" style="color:#0f6e56; font-size:16px; margin-top:6px;">✅ ${d.correct}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
