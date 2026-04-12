@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 13 — English & Spanish: Conditionals, Work & Ser vs Estar</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Conditional type cards */
+  .cond-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .cond-card { border-radius: 12px; padding: 14px 16px; }
+  .cond-card.zero  { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .cond-card.first { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .cond-card.second{ background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .cond-card.third { background: #fdf0ed; border: 0.5px solid #f5c4b0; }
+  .cond-card.mixed { background: #f5f0fd; border: 0.5px solid #c8b8f0; }
+  .cond-type   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .cond-name   { font-size: 16px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+  .cond-formula{ font-size: 13px; padding: 5px 10px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 8px; }
+  .cond-card.zero   .cond-formula { color: #0f6e56; }
+  .cond-card.first  .cond-formula { color: #185FA5; }
+  .cond-card.second .cond-formula { color: #BA7517; }
+  .cond-card.third  .cond-formula { color: #D85A30; }
+  .cond-card.mixed  .cond-formula { color: #8e44ad; }
+  .cond-meaning { font-size: 13px; color: #555; margin-bottom: 8px; }
+  .cond-ex { font-size: 14px; color: #1a1a18; line-height: 2; }
+  .cond-note { font-size: 12px; color: #888; margin-top: 6px; font-style: italic; }
+
+  /* Wish / If only */
+  .wish-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .wish-card { border-radius: 12px; padding: 14px; }
+  .wish-card.present { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .wish-card.past    { background: #fdf0ed; border: 0.5px solid #f5c4b0; }
+  .wish-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .wish-formula { font-size: 13px; font-weight: 500; color: #185FA5; margin-bottom: 8px; }
+  .wish-card.past .wish-formula { color: #D85A30; }
+  .wish-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .wish-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.8; }
+
+  /* Work vocabulary grid */
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .work-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .work-card:hover    { background: #f0f5fc; border-color: #b8d4f0; }
+  .work-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .work-icon { font-size: 22px; margin-bottom: 4px; }
+  .work-es   { font-size: 13px; color: #1a1a18; font-weight: 500; line-height: 1.3; }
+  .work-en   { font-size: 11px; color: #555; margin-top: 1px; }
+  .work-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .wd-es    { font-size: 20px; color: #1a1a18; margin-bottom: 2px; }
+  .wd-pron  { font-size: 12px; color: #888; font-family: serif; margin-bottom: 3px; }
+  .wd-en    { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .wd-note  { font-size: 12px; color: #555; line-height: 1.6; }
+  .wd-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Ser vs estar advanced table */
+  .adv-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .adv-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .adv-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .adv-table tr:last-child td { border-bottom: none; }
+  .adv-ser  { font-size: 15px; color: #185FA5; font-weight: 500; }
+  .adv-esta { font-size: 15px; color: #D85030; font-weight: 500; }
+  .adv-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Impersonal se table */
+  .se-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .se-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .se-type { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .se-formula { font-size: 15px; color: #185FA5; font-weight: 500; margin-bottom: 4px; }
+  .se-rule { font-size: 12px; color: #555; margin-bottom: 5px; }
+  .se-ex   { font-size: 13px; color: #1D9E75; font-style: italic; line-height: 1.8; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label  { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns   { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn    { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 19px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 18px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .wish-grid, .two-col { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .se-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 13 of 16</span>
+      <h1>Conditionals, Work & Ser vs Estar</h1>
+      <div class="subtitle">EN: Zero/first/second/third conditionals · Mixed conditionals · Wish &amp; if only · ES: Work vocabulary · Ser vs estar advanced · Impersonal se</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:81%;"></div></div>
+      81% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 13 · Zero to third conditionals · Mixed conditionals · Wish &amp; if only for regrets</div>
+      </div>
+    </div>
+
+    <!-- Conditionals overview -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · The four conditionals — from fact to impossible regret</div>
+      <div class="section-title">If-clauses that span reality, possibility, hypothesis, and the unchangeable past</div>
+      <p>English conditionals express relationships between conditions and results. They fall into four main types, each with a specific structure and meaning — ranging from universal truths to impossible past regrets. Understanding which conditional to use is one of the clearest markers of English proficiency.</p>
+
+      <div class="cond-cards">
+
+        <div class="cond-card zero">
+          <div class="cond-type">Zero conditional</div>
+          <div class="cond-name">Universal truths &amp; general facts</div>
+          <div class="cond-formula">If + present simple → present simple</div>
+          <div class="cond-meaning">Used for things that are always true — scientific facts, habits, and cause-and-effect that is certain every time.</div>
+          <div class="cond-ex">
+            If you <strong>heat</strong> water to 100°C, it <strong>boils</strong>.<br/>
+            If I <strong>don't sleep</strong> enough, I <strong>feel</strong> terrible.<br/>
+            If it <strong>rains</strong>, the streets <strong>get</strong> wet.
+          </div>
+          <div class="cond-note">"When" can replace "if" in zero conditionals — the result is inevitable. "When you heat water..." is equally correct.</div>
+        </div>
+
+        <div class="cond-card first">
+          <div class="cond-type">First conditional</div>
+          <div class="cond-name">Real &amp; possible future conditions</div>
+          <div class="cond-formula">If + present simple → will + base form</div>
+          <div class="cond-meaning">Used for situations that are genuinely possible or likely. The speaker believes the condition could realistically happen.</div>
+          <div class="cond-ex">
+            If it <strong>rains</strong> tomorrow, I <strong>will take</strong> an umbrella.<br/>
+            If you <strong>study</strong> hard, you <strong>will pass</strong> the exam.<br/>
+            If she <strong>calls</strong>, <strong>tell</strong> her I'm busy.
+          </div>
+          <div class="cond-note">The if-clause uses present simple even though it refers to the future — never "If it will rain". The main clause uses will (or another modal: can, may, should).</div>
+        </div>
+
+        <div class="cond-card second">
+          <div class="cond-type">Second conditional</div>
+          <div class="cond-name">Hypothetical present or unlikely future</div>
+          <div class="cond-formula">If + past simple → would + base form</div>
+          <div class="cond-meaning">Used for imaginary, unlikely, or impossible present situations — and dreams. The speaker does NOT expect the condition to happen.</div>
+          <div class="cond-ex">
+            If I <strong>had</strong> more time, I <strong>would learn</strong> three languages.<br/>
+            If she <strong>lived</strong> in Tokyo, she <strong>would visit</strong> us more.<br/>
+            If I <strong>were</strong> you, I <strong>would accept</strong> the offer.
+          </div>
+          <div class="cond-note">"If I were you" uses WERE for all persons in formal English (the subjunctive survives here). "If I was you" is common in casual speech. The result clause always uses would/could/might — never will.</div>
+        </div>
+
+        <div class="cond-card third">
+          <div class="cond-type">Third conditional</div>
+          <div class="cond-name">Impossible past — regrets &amp; what-ifs</div>
+          <div class="cond-formula">If + past perfect → would have + past participle</div>
+          <div class="cond-meaning">Used for things that DIDN'T happen in the past. The condition is impossible to fulfil — history cannot be changed. Used for regrets and alternate histories.</div>
+          <div class="cond-ex">
+            If I <strong>had studied</strong> harder, I <strong>would have passed</strong>.<br/>
+            If she <strong>hadn't missed</strong> the train, she <strong>would have arrived</strong> on time.<br/>
+            If we <strong>had known</strong>, we <strong>would have helped</strong>.
+          </div>
+          <div class="cond-note">This is the "regret tense" — it always refers to something that is now impossible to change. Could have / might have can replace would have for different nuances.</div>
+        </div>
+
+        <div class="cond-card mixed">
+          <div class="cond-type">Mixed conditional</div>
+          <div class="cond-name">Past condition → present result (or vice versa)</div>
+          <div class="cond-formula">If + past perfect → would + base form</div>
+          <div class="cond-meaning">When the condition and result belong to DIFFERENT times — typically a past condition with a present consequence, or a present state that would have changed a past result.</div>
+          <div class="cond-ex">
+            If I <strong>had studied</strong> medicine, I <strong>would be</strong> a doctor now.<br/>
+            <em>(Past condition → present result)</em><br/>
+            If I <strong>were</strong> more organised, I <strong>would have finished</strong> on time.<br/>
+            <em>(Present state → past result)</em>
+          </div>
+          <div class="cond-note">Mixed conditionals cross time boundaries — a mark of sophisticated English. The key is logical consistency: which time does each clause refer to?</div>
+        </div>
+
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>The most common errors:</strong><br/>
+        ❌ "If it will rain..." → ✅ "If it rains..." (never will in the if-clause of first conditional)<br/>
+        ❌ "If I would have money..." → ✅ "If I had money..." (never would in the if-clause)<br/>
+        ❌ "If I had more time, I will..." → ✅ "If I had more time, I would..." (second conditional: would, not will)<br/>
+        The if-clause NEVER takes will or would — these appear only in the result clause.
+      </div>
+    </div>
+
+    <!-- Wish and If only -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Wish &amp; If only — expressing regrets and desires</div>
+      <div class="section-title">The grammar of longing — wishing things were different</div>
+      <p><strong>Wish</strong> and <strong>if only</strong> follow the same tense patterns as conditionals — but express feelings about present dissatisfaction, past regrets, and desires about the future. "If only" is more emphatic and emotional than "wish".</p>
+
+      <div class="wish-grid">
+        <div class="wish-card present">
+          <div class="wish-label">Wish about present / future</div>
+          <div class="wish-formula">wish / if only + past simple</div>
+          <div class="wish-uses">
+            Dissatisfaction with the present situation — wishing things were different NOW. Uses past simple (or were for all persons with "to be").
+          </div>
+          <div class="wish-ex">
+            I wish I <strong>spoke</strong> more languages.<br/>
+            I wish I <strong>were</strong> taller. (not "was" in formal English)<br/>
+            If only I <strong>lived</strong> closer to the city.<br/>
+            She wishes she <strong>had</strong> more free time.
+          </div>
+        </div>
+        <div class="wish-card past">
+          <div class="wish-label">Wish about the past</div>
+          <div class="wish-formula">wish / if only + past perfect</div>
+          <div class="wish-uses">
+            Regret about something that DID or DIDN'T happen in the past. Uses past perfect — one step further back than the wish about the present.
+          </div>
+          <div class="wish-ex">
+            I wish I <strong>had studied</strong> harder at school.<br/>
+            If only we <strong>hadn't missed</strong> the train!<br/>
+            She wishes she <strong>had travelled</strong> more when she was young.<br/>
+            If only I <strong>had known</strong> about this sooner!
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>Wish + would — for annoying habits or refusing to change:</strong> There is a third wish pattern: wish + would + base form, used when you want someone (or something) to change their behaviour — often with irritation. "I wish you <strong>would stop</strong> making that noise!" · "I wish it <strong>would stop</strong> raining." · "I wish she <strong>would reply</strong> to my messages." This is NOT used for your own behaviour — "I wish I would study more" ❌ → "I wish I studied more" ✅.
+      </div>
+    </div>
+
+    <!-- Interactive conditionals builder -->
+    <div class="section">
+      <div class="section-label">Interactive · Conditional explorer</div>
+      <div class="section-title">Choose a situation — identify the conditional type and structure</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Which conditional? — Real situations</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a situation</div>
+          <div class="bl-btns" id="en-cond-btns">
+            <button class="bl-btn en-cond"
+              data-sentence="If I win the lottery, I will travel the world."
+              data-type="First conditional — real and possible future"
+              data-formula="If + present simple (win) → will + base form (will travel)"
+              data-note="The speaker considers winning the lottery genuinely possible — not likely, but possible. First conditional encodes realistic future scenarios. Compare: 'If I WON the lottery, I WOULD travel...' (second — more hypothetical, implies lower expectation of winning).">
+              🎰 Win the lottery → travel
+            </button>
+            <button class="bl-btn en-cond"
+              data-sentence="If I were the president, I would change many things."
+              data-type="Second conditional — hypothetical present"
+              data-formula="If + past simple (were) → would + base form (would change)"
+              data-note="The speaker is NOT the president and doesn't expect to be — this is a hypothetical imagining. 'Were' (not 'was') is the formal choice for 'to be' in second conditional if-clauses — this is the English subjunctive surviving!">
+              🏛️ If I were the president
+            </button>
+            <button class="bl-btn en-cond"
+              data-sentence="If you heat ice, it melts."
+              data-type="Zero conditional — universal scientific fact"
+              data-formula="If + present simple (heat) → present simple (melts)"
+              data-note="Ice always melts when heated — no exceptions, no uncertainty. Zero conditional for immutable facts. 'When you heat ice' works equally well — the result is inevitable, not conditional in any real sense.">
+              🧊 Heat ice → it melts
+            </button>
+            <button class="bl-btn en-cond"
+              data-sentence="If she had told me earlier, I would have helped her."
+              data-type="Third conditional — impossible past regret"
+              data-formula="If + past perfect (had told) → would have + past participle (would have helped)"
+              data-note="She did NOT tell me earlier — this is in the past and cannot be changed. The third conditional expresses the regret: help was available but never given because the condition wasn't met. A backward-looking, unchangeable situation.">
+              😔 She didn't tell me — regret
+            </button>
+            <button class="bl-btn en-cond"
+              data-sentence="If I had taken that job, I would be living in Paris now."
+              data-type="Mixed conditional — past condition → present result"
+              data-formula="If + past perfect (had taken) → would + base form (would be living)"
+              data-note="Past condition: I didn't take the job. Present result: I'm not in Paris now. The if-clause is past perfect (third conditional territory), the result is present (second conditional territory). Mixed because the consequence of that past decision affects my present reality.">
+              🗼 Didn't take job → not in Paris now
+            </button>
+            <button class="bl-btn en-cond"
+              data-sentence="I wish I had learned Spanish earlier in life."
+              data-type="Wish + past perfect — past regret"
+              data-formula="wish + past perfect (had learned)"
+              data-note="Past regret — I didn't learn Spanish earlier and now wish I had. Wish follows the same tense logic as conditionals: past perfect for past regret (= third conditional territory). If only I had learned Spanish earlier! — more emphatic.">
+              📚 Wish I'd learned Spanish sooner
+            </button>
+          </div>
+          <div class="bl-result" id="en-cond-result">
+            <div class="blr-empty">Choose a situation above to identify the conditional type</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💭</span>
+        <div class="culture-text">
+          <strong>Conditionals as a window into cultural attitudes</strong><br/>
+          The way a culture uses conditionals reveals something about its relationship with possibility, regret, and the future. English's four-conditional system is unusually fine-grained — it distinguishes sharply between what is possible, what is hypothetical, and what is past and impossible. This grammatical precision reflects something broader: Anglo-American culture's emphasis on scenario planning, risk assessment, and counterfactual thinking ("what if we had done X instead?"). The third conditional — the grammar of regret and alternate histories — is particularly rich in literature, philosophy, and everyday introspection. Japanese, by contrast, tends to express hypotheticals with softer hedging language rather than grammatical mood shifts, reflecting a cultural preference for indirectness about uncertainty. Studying conditionals across languages reveals not just grammar, but how different peoples understand the relationship between actions and their consequences.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 13 English — conditionals &amp; wish</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is a correct second conditional?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">If I will have more money, I would travel.</button>
+          <button class="quiz-btn" data-answer="wrong">If I have more money, I will travel.</button>
+          <button class="quiz-btn" data-answer="correct">If I had more money, I would travel.</button>
+          <button class="quiz-btn" data-answer="wrong">If I would have more money, I travel.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"If I had studied medicine, I would be a doctor now." — Which type of conditional is this?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Second conditional</button>
+          <button class="quiz-btn" data-answer="wrong">Third conditional</button>
+          <button class="quiz-btn" data-answer="correct">Mixed conditional — past condition, present result</button>
+          <button class="quiz-btn" data-answer="wrong">First conditional</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is correct for expressing a present regret with "wish"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I wish I will speak more languages.</button>
+          <button class="quiz-btn" data-answer="wrong">I wish I have spoken more languages.</button>
+          <button class="quiz-btn" data-answer="correct">I wish I spoke more languages.</button>
+          <button class="quiz-btn" data-answer="wrong">I wish I speak more languages.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is wrong with "If it will rain, take an umbrella"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Nothing — it is perfectly correct</button>
+          <button class="quiz-btn" data-answer="correct">"Will" should not appear in the if-clause — it should be "If it rains"</button>
+          <button class="quiz-btn" data-answer="wrong">"Take" should be "will take"</button>
+          <button class="quiz-btn" data-answer="wrong">It should be second conditional: "If it rained"</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 13 · Work vocabulary · Ser vs estar advanced uses · Impersonal se constructions</div>
+      </div>
+    </div>
+
+    <!-- Work vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · El mundo laboral — the working world</div>
+      <div class="section-title">Professional vocabulary — tap any word to explore meaning and usage</div>
+      <div class="work-grid" id="es-work-grid">
+        <div class="work-card"
+          data-es="la empresa / el negocio"
+          data-pron="/la emˈpɾesa/ · /el neˈɡoθjo/"
+          data-en="company / business"
+          data-note="La empresa = company (formal). El negocio = business (broader — can mean a deal, a shop, or commerce). La multinacional = multinational company. La PYME (pequeña y mediana empresa) = SME. Montar un negocio = to start a business. Trabajar en una empresa = to work for a company.">
+          <div class="work-icon">🏢</div>
+          <div class="work-es">la empresa</div>
+          <div class="work-en">company</div>
+        </div>
+        <div class="work-card"
+          data-es="el/la jefe/a · el/la director/a"
+          data-pron="/el ˈxefe/ · /el diɾekˈtoɾ/"
+          data-en="boss / director"
+          data-note="El jefe/la jefa = boss (direct, informal). El director/la directora = director (formal title). El CEO = director ejecutivo. Rendir cuentas al jefe = to report to the boss. Mi jefe es muy exigente = My boss is very demanding. Note gender agreement: el director → la directora.">
+          <div class="work-icon">👔</div>
+          <div class="work-es">el/la jefe/a</div>
+          <div class="work-en">boss</div>
+        </div>
+        <div class="work-card"
+          data-es="la reunión / la junta"
+          data-pron="/la reu̯ˈnjon/"
+          data-en="meeting"
+          data-note="La reunión = meeting (general). La junta directiva = board meeting. Convocar una reunión = to call a meeting. Celebrar una reunión = to hold a meeting. La reunión se canceló = The meeting was cancelled. Tener reunión todo el día = to be in meetings all day — a universal professional complaint!">
+          <div class="work-icon">📊</div>
+          <div class="work-es">la reunión</div>
+          <div class="work-en">meeting</div>
+        </div>
+        <div class="work-card"
+          data-es="el sueldo / el salario"
+          data-pron="/el ˈsweldo/"
+          data-en="salary / wage"
+          data-note="El sueldo = salary (monthly). El salario = salary/wage (more formal, can be hourly). El salario mínimo = minimum wage. Cobrar el sueldo = to receive your salary. Pedir un aumento de sueldo = to ask for a pay rise. Cobrar en negro = to be paid under the table (informal economy).">
+          <div class="work-icon">💰</div>
+          <div class="work-es">el sueldo</div>
+          <div class="work-en">salary</div>
+        </div>
+        <div class="work-card"
+          data-es="el contrato / el puesto"
+          data-pron="/el konˈtɾato/ · /el ˈpwesto/"
+          data-en="contract / position/post"
+          data-note="El contrato = employment contract. El contrato indefinido = permanent contract (highly valued in Spain's job market). El contrato temporal = temporary contract. El puesto = job position/post. Solicitar un puesto = to apply for a position. Ocupar un puesto = to hold a position.">
+          <div class="work-icon">📋</div>
+          <div class="work-es">el contrato / puesto</div>
+          <div class="work-en">contract / position</div>
+        </div>
+        <div class="work-card"
+          data-es="la entrevista de trabajo"
+          data-pron="/la entreˈβista ðe tɾaˈβaxo/"
+          data-en="job interview"
+          data-note="La entrevista de trabajo = job interview. El candidato/la candidata = the candidate. El currículum (vitae) = CV/résumé. La carta de presentación = cover letter. Superar la entrevista = to pass the interview. ¿Qué experiencia tienes? = What experience do you have? Standard interview question.">
+          <div class="work-icon">🤝</div>
+          <div class="work-es">la entrevista</div>
+          <div class="work-en">job interview</div>
+        </div>
+        <div class="work-card"
+          data-es="el teletrabajo / el trabajo remoto"
+          data-pron="/el teleˈtɾaβaxo/"
+          data-en="teleworking / remote work"
+          data-note="El teletrabajo = teleworking (the established Spanish term). Trabajar desde casa = to work from home. La videoconferencia = video conference. El horario flexible = flexible hours. Spain adopted teletrabajo rapidly during the pandemic — it's now a standard part of work culture and contracts. La conciliación laboral y familiar = work-life balance.">
+          <div class="work-icon">💻</div>
+          <div class="work-es">el teletrabajo</div>
+          <div class="work-en">remote work</div>
+        </div>
+        <div class="work-card"
+          data-es="las vacaciones / la baja"
+          data-pron="/las βakaˈθjones/"
+          data-en="holiday / sick leave"
+          data-note="Las vacaciones = annual leave/holiday. España tiene 22 días laborables de vacaciones por ley = Spain legally requires 22 working days of holiday per year (one of Europe's highest). La baja por enfermedad = sick leave. La baja por maternidad/paternidad = maternity/paternity leave. Coger la baja = to go on sick leave.">
+          <div class="work-icon">🏖️</div>
+          <div class="work-es">las vacaciones / baja</div>
+          <div class="work-en">holiday / sick leave</div>
+        </div>
+        <div class="work-card"
+          data-es="despedir / dimitir / jubilarse"
+          data-pron="/despeˈðiɾ/ · /dimiˈtiɾ/"
+          data-en="to fire / resign / retire"
+          data-note="Despedir = to fire someone (transitive). Me despidieron = I was fired. Dimitir = to resign (you choose to leave). Presentar la dimisión = to hand in your resignation. Jubilarse = to retire (at end of career). La pensión = pension. La indemnización por despido = severance pay — a contentious topic in Spanish labour law!">
+          <div class="work-icon">🚪</div>
+          <div class="work-es">despedir / dimitir</div>
+          <div class="work-en">fire / resign / retire</div>
+        </div>
+      </div>
+      <div class="work-detail" id="es-work-detail">
+        <div class="wd-empty">Tap any word above to learn vocabulary and professional context</div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px;">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📧</span>
+          <div>
+            <div class="phrase-native">Le escribo para concertar una cita / reunión.</div>
+            <div class="phrase-sub">/le esˈkɾiβo ˈpaɾa konˈθeɾtaɾ ˈuna ˈθita/</div>
+            <div class="phrase-en">I am writing to arrange an appointment / meeting.</div>
+            <div class="phrase-note">Standard formal email opener. Concertar = to arrange/schedule. También: Me pongo en contacto con usted para... (I am contacting you to...). Le escribo en relación con... (I am writing with regard to...). Professional Spanish email is notably more formal than English.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💼</span>
+          <div>
+            <div class="phrase-native">Tengo X años de experiencia en el sector de...</div>
+            <div class="phrase-sub">/ˈteŋɡo aˈɲos ðe ekspeˈɾjenθja/</div>
+            <div class="phrase-en">I have X years of experience in the sector of...</div>
+            <div class="phrase-note">Essential for interviews and cover letters. El sector = sector/industry. Estar especializado/a en = to specialise in. Dominar = to be proficient in (a skill, language, software). Mi punto fuerte es... = My strong point is...</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🙋</span>
+          <div>
+            <div class="phrase-native">¿Podría explicarme cuáles serían mis responsabilidades?</div>
+            <div class="phrase-sub">/poˈðɾia eksˈplikaɾme/</div>
+            <div class="phrase-en">Could you explain what my responsibilities would be?</div>
+            <div class="phrase-note">A perfect interview question — shows engagement and uses the conditional (podría / serían) for polite, professional register. Las responsabilidades = responsibilities. Las tareas = tasks. A quién reportaría = who I would report to.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ser vs Estar advanced -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Ser vs Estar — advanced and subtle uses</div>
+      <div class="section-title">Beyond permanent vs temporary — the cases that surprise even advanced learners</div>
+      <p>You learned the fundamental ser (permanent/identity) vs estar (temporary/state/location) distinction in Week 2. But many adjectives change meaning depending on which verb accompanies them — and some situations break the permanent/temporary rule entirely.</p>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:8px;">Adjectives that CHANGE MEANING with ser vs estar:</p>
+      <table class="adv-table">
+        <tr>
+          <th>Adjective</th>
+          <th>With SER → characteristic</th>
+          <th>With ESTAR → state</th>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">aburrido</td>
+          <td><span class="adv-ser">es aburrido</span><span class="adv-ex"> = he is a boring person</span></td>
+          <td><span class="adv-esta">está aburrido</span><span class="adv-ex"> = he is bored (right now)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">listo</td>
+          <td><span class="adv-ser">es listo</span><span class="adv-ex"> = he is clever/smart</span></td>
+          <td><span class="adv-esta">está listo</span><span class="adv-ex"> = he is ready</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">malo</td>
+          <td><span class="adv-ser">es malo</span><span class="adv-ex"> = he is bad (wicked / of poor quality)</span></td>
+          <td><span class="adv-esta">está malo</span><span class="adv-ex"> = he is ill / sick</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">bueno</td>
+          <td><span class="adv-ser">es bueno</span><span class="adv-ex"> = he is good (virtuous, good quality)</span></td>
+          <td><span class="adv-esta">está bueno</span><span class="adv-ex"> = it tastes good / (colloquial) he is attractive</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">muerto</td>
+          <td><span class="adv-ser">es un hombre muerto</span><span class="adv-ex"> = it's a dead man (fact)</span></td>
+          <td><span class="adv-esta">está muerto</span><span class="adv-ex"> = he is dead (state — always estar!)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">vivo</td>
+          <td><span class="adv-ser">es muy vivo</span><span class="adv-ex"> = he is very sharp/shrewd</span></td>
+          <td><span class="adv-esta">está vivo</span><span class="adv-ex"> = he is alive (state)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">rico</td>
+          <td><span class="adv-ser">es rico</span><span class="adv-ex"> = he is rich (wealthy)</span></td>
+          <td><span class="adv-esta">está rico</span><span class="adv-ex"> = it's delicious (food/drink)</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:14px; font-weight:500; color:#1a1a18;">seguro</td>
+          <td><span class="adv-ser">es seguro</span><span class="adv-ex"> = it is safe (inherently safe — e.g. a car model)</span></td>
+          <td><span class="adv-esta">está seguro</span><span class="adv-ex"> = he is certain / sure (feeling)</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-coral">
+        <strong>The "dead" rule — estar breaks the permanent/temporary logic:</strong> Death is permanent — yet Spanish says <em>está muerto</em> (estar). Why? Because estar describes the STATE of being dead, not an inherent quality. Spanish treats death as a condition of the body — just like illness. "El soldado caído es un hombre muerto" (The fallen soldier is a dead man — ser, defining a category) vs "El soldado está muerto" (The soldier is dead — estar, describing his current state). This is one of Spanish's deepest and most revealing distinctions.
+      </div>
+
+      <div class="tip-box tip-green" style="margin-top:8px;">
+        <strong>The estar + adjective surprise — describing unexpected qualities:</strong> Normally sers describes inherent qualities. But usar estar with adjectives that usually go with ser emphasises surprise or a notable deviation from the norm: "¡Estás muy guapa hoy!" (You look really beautiful today! — normally not said/implied this way). "Este café está muy caro hoy." (This coffee is very expensive today — more expensive than expected). Estar with a "ser adjective" carries a surprise or temporary implication.
+      </div>
+    </div>
+
+    <!-- Impersonal se -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · El se impersonal y pasivo — impersonal and passive se</div>
+      <div class="section-title">Spain's elegant way of avoiding the passive — and speaking impersonally</div>
+      <p>Spanish uses <em>se</em> in several powerful constructions that avoid naming a specific subject. Where English uses the passive voice (is spoken, is sold) or impersonal "you/one/they" (you can park here, one must...), Spanish uses <em>se</em> + verb. It is one of the most frequently used constructions in everyday Spanish.</p>
+
+      <div class="se-grid">
+        <div class="se-card">
+          <div class="se-type">Impersonal se — "one / you / people"</div>
+          <div class="se-formula">se + 3rd person singular verb</div>
+          <div class="se-rule">Used when no specific subject is named — general, universal statements about what people do.</div>
+          <div class="se-ex">
+            <strong>Se trabaja mucho en España.</strong> (People work a lot in Spain.)<br/>
+            <strong>Aquí se come muy bien.</strong> (You eat very well here.)<br/>
+            <strong>Se vive bien con ese sueldo.</strong> (One lives well on that salary.)<br/>
+            <strong>¿Cómo se dice "hello" en español?</strong> (How do you say "hello" in Spanish?)
+          </div>
+        </div>
+        <div class="se-card">
+          <div class="se-type">Passive se — "it is done / are done"</div>
+          <div class="se-formula">se + verb (agrees with noun subject)</div>
+          <div class="se-rule">Used when the agent is unknown or irrelevant — verb agrees in number with the noun (not always singular!).</div>
+          <div class="se-ex">
+            <strong>Se habla español aquí.</strong> (Spanish is spoken here.)<br/>
+            <strong>Se venden pisos.</strong> (Flats are sold / for sale. — plural verb!)<br/>
+            <strong>Se necesitan camareros.</strong> (Waiters needed. — plural!)<br/>
+            <strong>Se abre a las 9.</strong> (It opens at 9 / Opens at 9.)
+          </div>
+        </div>
+        <div class="se-card">
+          <div class="se-type">Se + poder — "can be done"</div>
+          <div class="se-formula">se puede / se pueden + infinitive</div>
+          <div class="se-rule">Expressing what is allowed, possible or permitted — impersonally and politely.</div>
+          <div class="se-ex">
+            <strong>¿Se puede aparcar aquí?</strong> (Can one park here? / Is parking allowed?)<br/>
+            <strong>No se puede fumar.</strong> (Smoking is not permitted.)<br/>
+            <strong>Aquí se pueden sacar fotos.</strong> (Photos can be taken here.)<br/>
+            <strong>¿Se puede pagar con tarjeta?</strong> (Can one pay by card?)
+          </div>
+        </div>
+        <div class="se-card">
+          <div class="se-type">Se on signs &amp; notices</div>
+          <div class="se-formula">se + verb (infinitive or conjugated)</div>
+          <div class="se-rule">Extremely common on Spanish signs, notices, advertisements and menus.</div>
+          <div class="se-ex">
+            <strong>Se alquila.</strong> (For rent.)<br/>
+            <strong>Se vende.</strong> (For sale.)<br/>
+            <strong>Se busca.</strong> (Wanted.)<br/>
+            <strong>Se prohibe el paso.</strong> (No entry. / Access prohibited.)<br/>
+            <strong>Se ruega silencio.</strong> (Silence is requested. — formal)
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-purple">
+        <strong>The number agreement trap:</strong> In the passive se construction, the verb must agree in number with the noun that follows. Many learners forget this and use singular for everything. "Se habla español" ✅ (Spanish is spoken — singular). But "Se hablan tres idiomas" ✅ (Three languages are spoken — plural!). The test: ask what the subject is. If "languages" is the subject → plural verb. If there's no clear noun subject → singular. "Se vende casa" (House for sale) vs "Se venden pisos" (Flats for sale).
+      </div>
+    </div>
+
+    <!-- Interactive ser vs estar explorer -->
+    <div class="section">
+      <div class="section-label">Interactive · Ser vs estar — advanced cases</div>
+      <div class="section-title">Choose a sentence — discover which verb and why the meaning shifts</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 ¿Ser o Estar? — The subtle cases</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a situation</div>
+          <div class="bl-btns" id="es-seresta-btns">
+            <button class="bl-btn es-seresta"
+              data-sentence="Tu jefe es muy aburrido."
+              data-verb="SER — es aburrido"
+              data-note="Es aburrido = he IS a boring person — a personality trait, a characteristic. This is an essential quality, not a mood. Compare: 'Tu jefe está aburrido' = your boss IS BORED (right now) — a temporary emotional state. Same adjective, opposite verb, opposite meaning.">
+              😴 Your boss is boring (personality)
+            </button>
+            <button class="bl-btn es-seresta"
+              data-sentence="El paciente está muerto."
+              data-verb="ESTAR — está muerto (always!)"
+              data-note="Death seems permanent — yet Spanish uses ESTAR because it describes a STATE of the body. 'Está muerto' = he is dead. 'Está vivo' = he is alive. Life and death are states in Spanish grammar, not inherent qualities. This surprises many learners expecting SER.">
+              💀 The patient is dead
+            </button>
+            <button class="bl-btn es-seresta"
+              data-sentence="¡Estás muy elegante hoy!"
+              data-verb="ESTAR — estás elegante (surprise/occasion)"
+              data-note="Using ESTAR with an adjective that normally pairs with SER signals surprise or a special occasion. 'Eres elegante' = you are an elegant person (always). 'Estás elegante hoy' = you look particularly elegant today — implying this is noticeably better than usual. ESTAR adds the sense of 'for once' or 'today especially'.">
+              ✨ You look very elegant today!
+            </button>
+            <button class="bl-btn es-seresta"
+              data-sentence="¿Está listo el pedido?"
+              data-verb="ESTAR — está listo = is ready"
+              data-note="Listo with ESTAR = ready (a state). 'El pedido está listo' = The order is ready. But 'Es un chico muy listo' = He's a very clever boy (SER — intelligence is a characteristic). One adjective, two completely different meanings depending on the verb!">
+              ✅ Is the order ready?
+            </button>
+            <button class="bl-btn es-seresta"
+              data-sentence="Este restaurante está muy bien ubicado."
+              data-verb="ESTAR — location always uses estar"
+              data-note="Location of people AND things uses ESTAR — always. This is absolute: 'El restaurante está en la Plaza Mayor.' Even permanent locations (mountains, buildings) use estar because it's the spatial position that matters. SER for locations is only used for events: 'La fiesta es en mi casa' (The party is at my house — event location).">
+              📍 This restaurant is very well located
+            </button>
+            <button class="bl-btn es-seresta"
+              data-sentence="La reunión es a las tres."
+              data-verb="SER — time and events use ser"
+              data-note="Times of events use SER — not estar. 'La reunión es a las tres' (The meeting is at three). 'El concierto es el sábado' (The concert is on Saturday). Events are classified by SER even though they happen at a temporary time. This seems counterintuitive but is a fixed rule.">
+              🕐 The meeting is at three
+            </button>
+          </div>
+          <div class="bl-result" id="es-seresta-result">
+            <div class="blr-empty">Choose a situation above to explore ser vs estar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">💼</span>
+        <div class="culture-text">
+          <strong>La cultura laboral española — working life in Spain</strong><br/>
+          Spain's working culture has its own rhythm. The <em>jornada partida</em> (split working day) traditionally divides work into a morning block and an afternoon block with a long midday break — though the <em>jornada continua</em> (continuous day, finishing by 3pm) is increasingly common, especially in Madrid and among younger workers. Spanish work culture values relationships and informal communication — decisions are often made over coffee or lunch rather than in formal meetings. The concept of <em>enchufe</em> (lit. "plug") refers to connections or nepotism — knowing the right people. Labour protections in Spain are strong: the <em>Estatuto de los Trabajadores</em> (Workers' Statute) guarantees extensive rights including minimum holiday, severance pay, and restrictions on dismissal. The <em>ERE</em> (Expediente de Regulación de Empleo — collective redundancy procedure) is headline news whenever a major company invokes it. Understanding these concepts is essential for anyone navigating the Spanish professional world.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 13 Spanish — ser vs estar &amp; impersonal se</div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is the difference between "es malo" and "está malo"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">No difference — both mean "he is bad"</button>
+          <button class="quiz-btn" data-answer="correct">Es malo = he is a bad/wicked person · está malo = he is ill / sick</button>
+          <button class="quiz-btn" data-answer="wrong">Es malo = formal · está malo = informal</button>
+          <button class="quiz-btn" data-answer="wrong">Es malo = present · está malo = past</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which verb is used with "muerto" (dead) in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Ser — because death is permanent</button>
+          <button class="quiz-btn" data-answer="correct">Estar — because death is treated as a state of the body</button>
+          <button class="quiz-btn" data-answer="wrong">Either — both are correct</button>
+          <button class="quiz-btn" data-answer="wrong">Neither — a different construction is used</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence correctly uses the passive se with number agreement?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Se vende pisos.</button>
+          <button class="quiz-btn" data-answer="correct">Se venden pisos.</button>
+          <button class="quiz-btn" data-answer="wrong">Se vendemos pisos.</button>
+          <button class="quiz-btn" data-answer="wrong">Se es vende pisos.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "How do you say 'hello' in Spanish?" using se impersonal?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">¿Cómo dicen "hello" en español?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Cómo tú dices "hello" en español?</button>
+          <button class="quiz-btn" data-answer="correct">¿Cómo se dice "hello" en español?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Cómo hay que decir "hello" en español?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — conditionals &amp; "to be"</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages express hypothetical conditions and existence</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Conditionals and "to be" verbs reveal fundamentally different ways of encoding reality, possibility, and states of existence.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"If I had money..."</td>
+        <td>お金があれば...<br/><span style="font-size:11px; color:#888">okane ga areba<br/>-eba conditional — one form</span></td>
+        <td>돈이 있으면...<br/><span style="font-size:11px; color:#888">doni isseumyeon<br/>-(으)면 conditional</span></td>
+        <td>If I had money... (2nd cond.)<br/>If I had had money... (3rd cond.)<br/><span style="font-size:11px; color:#888">Two distinct structures</span></td>
+        <td>Si tuviera dinero... (subj.)<br/>Si hubiera tenido... (past subj.)<br/><span style="font-size:11px; color:#888">Imperfect/pluperfect subjunctive</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"To be" — how many verbs?</td>
+        <td>です/だ (desu/da) — copula<br/>いる (iru) — animate beings<br/>ある (aru) — inanimate things<br/><span style="font-size:11px; color:#888">3 different verbs!</span></td>
+        <td>이에요/예요 — copula<br/>있다 (itda) — existence/having<br/><span style="font-size:11px; color:#888">2 main verbs</span></td>
+        <td>is / am / are — one verb<br/><span style="font-size:11px; color:#888">One verb covers everything</span></td>
+        <td>ser — identity/permanent<br/>estar — state/location<br/><span style="font-size:11px; color:#888">2 verbs — most nuanced!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"Spanish is spoken here"</td>
+        <td>ここではスペイン語が話されます<br/><span style="font-size:11px; color:#888">Passive verbal suffix (-られる)</span></td>
+        <td>여기서 스페인어가 쓰여요<br/><span style="font-size:11px; color:#888">Passive via -어지다 suffix</span></td>
+        <td>Spanish is spoken here.<br/><span style="font-size:11px; color:#888">be + past participle passive</span></td>
+        <td>Aquí se habla español.<br/><span style="font-size:11px; color:#888">Se + verb — no passive needed!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"One / you" (impersonal)</td>
+        <td>〜ものだ / 〜ことがある<br/><span style="font-size:11px; color:#888">Various constructions, context-dependent</span></td>
+        <td>사람들이... / -는 법이다<br/><span style="font-size:11px; color:#888">사람들 (people) or set expressions</span></td>
+        <td>you / one / people / they<br/><span style="font-size:11px; color:#888">Informal "you" is most common</span></td>
+        <td>se + verb<br/><span style="font-size:11px; color:#888">One elegant construction covers all impersonal uses</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-purple" style="margin-top:14px">
+      <strong>The "to be" complexity spectrum:</strong> English uses one verb for everything — "is" covers identity, location, state, and existence. Japanese uses three different verbs depending on whether the subject is a living creature or an inanimate object. Spanish splits into two (ser/estar) based on whether the quality is inherent or temporary/locational. Korean uses two forms. This reveals something profound: English speakers perceive "being" as a single unified concept, while Japanese speakers grammatically encode the animate/inanimate distinction, and Spanish speakers grammatically encode the permanent/temporary distinction. Three languages — three fundamentally different ontologies embedded in grammar.
+    </div>
+  </div>
+
+
+  <!-- Week 14 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 14</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Collocations &amp; idioms — word partnerships that native speakers use automatically · The most essential English idioms and fixed expressions · Formal vs informal register in writing and speaking.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">False friends — palabras engañosas between English and Spanish · Advanced vocabulary — common confusions · Diminutives and augmentatives (pequeñito, grandísimo) · Connecting ideas: discourse markers and linking expressions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 13 complete · Click <a href="Week14.E&S.html">here</a> when you're ready for Week 14 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English conditional explorer ── */
+  document.querySelectorAll('.en-cond').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-cond').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-cond-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Type:</strong> ${d.type}</div>
+        <div class="blr-breakdown">🔧 <strong>Formula:</strong> ${d.formula}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish work vocabulary grid ── */
+  document.querySelectorAll('#es-work-grid .work-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-work-grid .work-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-work-detail').innerHTML = `
+        <div class="wd-es">${d.es}</div>
+        <div class="wd-pron">${d.pron}</div>
+        <div class="wd-en">${d.en}</div>
+        <div class="wd-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish ser vs estar explorer ── */
+  document.querySelectorAll('.es-seresta').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-seresta').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-seresta-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Verb used:</strong> ${d.verb}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
