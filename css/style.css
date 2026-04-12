@@ -5,14 +5,28 @@ body {
   background-color: #ffffff; /* Sets a clean solid color for the wide screen edges */
 }
 
-#main-wrapper, .container {
+#main-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   width: 580px;
   margin: 0 auto;
   position: relative;
+  min-height: 1000px; 
   background-image: url("../gif/back.gif");
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 550px; /* Slightly narrower as per your design */
+  margin: 0 auto;
+  position: relative;
+  /* Use vh here so the white box always fills the screen */
+  min-height: 100vh; 
+  background-color: rgba(255, 255, 255, 0.95);
+  background-image: url("../gif/back.gif");
+  padding: 30px 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Banner Styling */
@@ -20,7 +34,7 @@ body {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 0 auto;
   border: none;
 }
 
@@ -135,13 +149,11 @@ body {
 
 /* Modern Footer */
 .footer-container {
-  position: relative;
   margin-top: auto;
   width: 100%;
-  padding-top: 40px;
-  padding-bottom: 30px;
   text-align: center;
-  z-index: 10;
+  position: relative;
+  padding: 40px 0;
 }
 .footer-divider {
   border: none;
