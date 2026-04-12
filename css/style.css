@@ -5,12 +5,14 @@ body {
   background-color: #ffffff; /* Sets a clean solid color for the wide screen edges */
 }
 
-#main-wrapper {
-  position: relative;
+#main-wrapper, .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 580px;
   margin: 0 auto;
-  min-height: 1000px;
-  background-image: url("../gif/back.gif"); /* The image is moved here! */
+  position: relative;
+  background-image: url("../gif/back.gif");
 }
 
 /* Banner Styling */
@@ -20,17 +22,6 @@ body {
   display: block;
   margin: 0 auto 40px auto;
   border: none;
-}
-
-.container {
-  max-width: 550px;
-  margin: 0 auto;
-  /* Extra bottom padding (120px) ensures the absolute footer from style.css has plenty of room */
-  padding: 30px 20px 30px 20px;
-  background: rgba(255, 255, 255, 0.95);
-  min-height: 100vh;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  position: relative; /* This anchors your global footer to the bottom of this wrapper */
 }
 
 .header-container {
@@ -144,11 +135,13 @@ body {
 
 /* Modern Footer */
 .footer-container {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
+  position: relative;
+  margin-top: auto;
   width: 100%;
+  padding-top: 40px;
+  padding-bottom: 30px;
   text-align: center;
+  z-index: 10;
 }
 .footer-divider {
   border: none;
