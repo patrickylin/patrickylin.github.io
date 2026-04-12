@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 12 — English & Spanish: Reported Speech & Travel</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Tense backshift table */
+  .backshift-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .backshift-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .backshift-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .backshift-table tr:last-child td { border-bottom: none; }
+  .bs-direct { font-size: 14px; color: #185FA5; }
+  .bs-indirect { font-size: 14px; color: #0f6e56; }
+  .bs-tense { font-size: 12px; color: #aaa; }
+
+  /* Reporting verb grid */
+  .rv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .rv-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .rv-verb { font-size: 16px; color: #185FA5; font-weight: 500; margin-bottom: 2px; }
+  .rv-pattern { font-size: 12px; color: #888; margin-bottom: 4px; font-style: italic; }
+  .rv-ex    { font-size: 13px; color: #333; }
+  .rv-note  { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Reported question panels */
+  .rq-panel { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; font-size: 13px; line-height: 2.2; }
+
+  /* Travel vocabulary grid */
+  .travel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .travel-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .travel-card:hover   { background: #f0f5fc; border-color: #b8d4f0; }
+  .travel-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .travel-icon { font-size: 24px; margin-bottom: 4px; }
+  .travel-es   { font-size: 13px; color: #1a1a18; font-weight: 500; line-height: 1.3; }
+  .travel-en   { font-size: 11px; color: #555; margin-top: 1px; }
+  .travel-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .td-es    { font-size: 20px; color: #1a1a18; margin-bottom: 2px; }
+  .td-pron  { font-size: 12px; color: #888; font-family: serif; margin-bottom: 3px; }
+  .td-en    { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .td-note  { font-size: 12px; color: #555; line-height: 1.6; }
+  .td-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Purpose clause table */
+  .purpose-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .purpose-table th { background: #f5f4f0; color: #666; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid #eee; text-align: left; }
+  .purpose-table td { padding: 10px 12px; border-bottom: 0.5px solid #f5f5f5; vertical-align: top; }
+  .purpose-table tr:last-child td { border-bottom: none; }
+  .pt-conj { font-size: 16px; color: #185FA5; font-weight: 500; }
+  .pt-rule { font-size: 13px; color: #333; }
+  .pt-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Relative clauses with subjunctive */
+  .rel-subj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .rs-card { border-radius: 12px; padding: 14px; }
+  .rs-card.ind { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .rs-card.sub { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .rs-label   { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .rs-formula { font-size: 13px; font-weight: 500; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 8px; }
+  .rs-card.ind .rs-formula { color: #0f6e56; }
+  .rs-card.sub .rs-formula { color: #BA7517; }
+  .rs-uses { font-size: 13px; color: #333; line-height: 1.9; }
+  .rs-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 6px; line-height: 1.9; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label  { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns   { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn    { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 19px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 18px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .rv-grid, .rel-subj-grid, .two-col { grid-template-columns: 1fr; }
+    .travel-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 12 of 16</span>
+      <h1>Reported Speech & Travel</h1>
+      <div class="subtitle">EN: Direct to reported speech · Tense backshift · Reporting verbs · Reported questions · ES: Travel &amp; sightseeing vocabulary · Para que &amp; purpose clauses · Relative clauses with subjunctive</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:75%;"></div></div>
+      75% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 12 · Reported speech · Tense backshift · Reporting verbs · Reported questions &amp; commands</div>
+      </div>
+    </div>
+
+    <!-- What is reported speech -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · What is reported speech?</div>
+      <div class="section-title">When you tell someone what someone else said — without quoting them directly</div>
+      <p>Reported speech (also called indirect speech) is how we relay what someone said, thought, asked, or told us — without using their exact words. In English, this almost always involves a change of tense (backshift), a change of pronouns, and sometimes a change of time expressions. It's essential for storytelling, gossip, news, and professional communication.</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; margin-top:12px; font-size:13px; line-height:2.3;">
+        <strong>Direct speech</strong> (quoting exactly):<br/>
+        She said, <span style="color:#185FA5">"I am tired."</span> · He asked, <span style="color:#185FA5">"Are you ready?"</span><br/><br/>
+        <strong>Reported speech</strong> (relaying the message):<br/>
+        She said <span style="color:#0f6e56">she was tired.</span> · He asked <span style="color:#0f6e56">if I was ready.</span><br/><br/>
+        Notice: quotation marks disappear · "I" → "she" · "am" → "was" · "Are you" → "if I was"
+      </div>
+    </div>
+
+    <!-- Tense backshift -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Tense backshift — the central rule</div>
+      <div class="section-title">When the reporting verb is in the past, tenses shift one step back in time</div>
+      <p>When the main reporting verb is past tense (said, told, asked), the tense in the reported clause typically shifts one step back — present becomes past, past becomes past perfect, will becomes would, etc. This "backshift" is English's way of signalling that the speech happened at an earlier time.</p>
+
+      <table class="backshift-table">
+        <tr>
+          <th>Direct speech</th>
+          <th>→</th>
+          <th>Reported speech</th>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Present simple</span><br/>
+            <span class="bs-direct">"I work in Tokyo."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Past simple</span><br/>
+            <span class="bs-indirect">She said she <strong>worked</strong> in Tokyo.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Present continuous</span><br/>
+            <span class="bs-direct">"I am studying Spanish."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Past continuous</span><br/>
+            <span class="bs-indirect">He said he <strong>was studying</strong> Spanish.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Past simple</span><br/>
+            <span class="bs-direct">"I visited Kyoto."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Past perfect</span><br/>
+            <span class="bs-indirect">She said she <strong>had visited</strong> Kyoto.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Present perfect</span><br/>
+            <span class="bs-direct">"I have been to Spain."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Past perfect</span><br/>
+            <span class="bs-indirect">He said he <strong>had been</strong> to Spain.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Will (future)</span><br/>
+            <span class="bs-direct">"I will call you."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Would</span><br/>
+            <span class="bs-indirect">She said she <strong>would call</strong> me.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Can</span><br/>
+            <span class="bs-direct">"I can speak Korean."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Could</span><br/>
+            <span class="bs-indirect">He said he <strong>could</strong> speak Korean.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bs-tense">Must / Have to</span><br/>
+            <span class="bs-direct">"You must leave now."</span>
+          </td>
+          <td style="font-size:20px; color:#ccc; text-align:center;">→</td>
+          <td>
+            <span class="bs-tense">Had to</span><br/>
+            <span class="bs-indirect">She said I <strong>had to</strong> leave.</span>
+          </td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-blue">
+        <strong>When NOT to backshift:</strong> If the reported information is still true now, backshift is optional. "She said the earth is round." ✅ (still true — present fine). "She said Tokyo is the biggest city in Japan." ✅ (still true — no backshift needed). Backshift is also NOT required when the reporting verb is present: "She says she is tired." (present reporting verb — no backshift).
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:8px">Changes to time expressions and pronouns:</p>
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; font-size:13px; line-height:2.2;">
+        <strong>Pronouns:</strong> I → she/he · we → they · you → I/we · my → her/his<br/>
+        <strong>Time:</strong> now → then · today → that day · yesterday → the day before · tomorrow → the next day / the following day<br/>
+        <strong>Place:</strong> here → there · this → that · these → those<br/><br/>
+        <em>"I will meet you <strong>here</strong> <strong>tomorrow</strong>."</em><br/>
+        → She said she would meet me <strong>there</strong> <strong>the following day</strong>.
+      </div>
+    </div>
+
+    <!-- Reporting verbs -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Reporting verbs — beyond "said"</div>
+      <div class="section-title">Rich vocabulary for relaying speech — each verb carries a different nuance</div>
+      <p>English has dozens of reporting verbs, each encoding not just what was said but how it was said — the tone, intention, and type of speech act. Using varied reporting verbs is a hallmark of sophisticated English.</p>
+
+      <div class="rv-grid">
+        <div class="rv-card">
+          <div class="rv-verb">tell</div>
+          <div class="rv-pattern">tell + person + (that) clause</div>
+          <div class="rv-ex">She told me she was leaving. · He told us to be quiet.</div>
+          <div class="rv-note">Always needs a person: "told me" — never "told that" alone ❌</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">ask</div>
+          <div class="rv-pattern">ask + (person) + if/whether / wh-word</div>
+          <div class="rv-ex">She asked if I was ready. · He asked where I lived.</div>
+          <div class="rv-note">For questions — use if/whether for yes/no, wh-word for wh-questions</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">explain</div>
+          <div class="rv-pattern">explain + (to person) + that / how</div>
+          <div class="rv-ex">She explained that the train was delayed. · He explained how to use it.</div>
+          <div class="rv-note">"Explain me" ❌ → "Explain to me" ✅ — common learner error</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">suggest</div>
+          <div class="rv-pattern">suggest + -ing / that + subject + (should) + base form</div>
+          <div class="rv-ex">She suggested visiting Seville. · He suggested that we leave early.</div>
+          <div class="rv-note">"Suggest to go" ❌ — suggest never takes to + infinitive!</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">warn</div>
+          <div class="rv-pattern">warn + person + not to / that</div>
+          <div class="rv-ex">She warned me not to be late. · He warned us that it would be cold.</div>
+          <div class="rv-note">Strong reporting verb — implies potential negative consequence</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">admit</div>
+          <div class="rv-pattern">admit + -ing / that</div>
+          <div class="rv-ex">He admitted making a mistake. · She admitted that she was wrong.</div>
+          <div class="rv-note">Implies accepting something previously denied or hidden</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">deny</div>
+          <div class="rv-pattern">deny + -ing / that</div>
+          <div class="rv-ex">He denied stealing the money. · She denied that she knew him.</div>
+          <div class="rv-note">"Deny to do" ❌ — deny always uses -ing for actions</div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-verb">promise / refuse / offer / agree</div>
+          <div class="rv-pattern">verb + to + infinitive</div>
+          <div class="rv-ex">She promised to call. · He refused to answer. · She offered to help.</div>
+          <div class="rv-note">This group all take to + infinitive in reported speech</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reported questions and commands -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · Reported questions &amp; commands</div>
+      <div class="section-title">Two special patterns with their own rules</div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-bottom:6px;">Reported questions — three key changes:</p>
+      <div class="rq-panel">
+        <strong>1. No question mark, no auxiliary inversion:</strong><br/>
+        Direct: "Where <strong>do</strong> you live?" → Reported: She asked where I <strong>lived</strong>. (not "where did I live")<br/><br/>
+        <strong>2. Yes/No questions use if or whether:</strong><br/>
+        Direct: "Are you coming?" → Reported: He asked <strong>if/whether</strong> I was coming.<br/><br/>
+        <strong>3. Wh-questions keep the wh-word:</strong><br/>
+        Direct: "What time <strong>does</strong> the film start?" → Reported: She asked what time the film <strong>started</strong>.<br/>
+        Direct: "Why <strong>did</strong> you leave?" → Reported: He asked why I <strong>had left</strong>.
+      </div>
+
+      <p style="font-size:13px; font-weight:500; color:#1a1a18; margin-top:14px; margin-bottom:6px;">Reported commands and requests — use to-infinitive:</p>
+      <div class="rq-panel">
+        Direct command: "Close the door!" → She told me <strong>to close</strong> the door.<br/>
+        Direct negative: "Don't be late!" → He warned me <strong>not to be</strong> late.<br/>
+        Direct request: "Please help me." → She asked me <strong>to help</strong> her.<br/>
+        Direct invitation: "Come to my party!" → She invited me <strong>to come</strong> to her party.
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>The suggest trap — one of the most common errors:</strong> Suggest never takes to + infinitive. "She suggested to go" ❌. The correct patterns: "She suggested going" ✅ or "She suggested that we go" ✅ or "She suggested that we should go" ✅. This is frequently tested in exams and frequently wrong in learner speech — memorise it as a fixed rule.
+      </div>
+    </div>
+
+    <!-- Interactive reported speech builder EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Reported speech converter</div>
+      <div class="section-title">Choose a direct speech sentence — see how it converts to reported speech</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Direct → Reported speech</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a direct speech example</div>
+          <div class="bl-btns" id="en-rep-btns">
+            <button class="bl-btn en-rep"
+              data-direct="&quot;I am visiting Spain next week.&quot; (she said)"
+              data-reported="She said she was visiting Spain the following week."
+              data-changes="am visiting → was visiting (present continuous → past continuous backshift) · next week → the following week (time expression change)"
+              data-note="Present continuous shifts to past continuous. Time expression 'next week' shifts to 'the following week' — perspective moves back to when she spoke.">
+              ✈️ "I am visiting Spain next week."
+            </button>
+            <button class="bl-btn en-rep"
+              data-direct="&quot;Have you ever been to Japan?&quot; (he asked)"
+              data-reported="He asked if I had ever been to Japan."
+              data-changes="Have you? → if I had (present perfect → past perfect · question → if clause · you → I · no inversion)"
+              data-note="Yes/No question → reported with 'if'. No question mark, no inversion. Present perfect 'have been' shifts to past perfect 'had been'. Pronoun 'you' shifts to 'I'.">
+              🗾 "Have you ever been to Japan?"
+            </button>
+            <button class="bl-btn en-rep"
+              data-direct="&quot;Don't touch anything!&quot; (the guide told us)"
+              data-reported="The guide told us not to touch anything."
+              data-changes="Don't touch! → not to touch (negative command → not + to-infinitive · no subject needed)"
+              data-note="Commands in reported speech use to-infinitive. Negative commands use NOT TO + infinitive. No tense backshift needed for commands — the to-infinitive is tenseless.">
+              🚫 "Don't touch anything!" (command)
+            </button>
+            <button class="bl-btn en-rep"
+              data-direct="&quot;I will help you tomorrow.&quot; (she promised)"
+              data-reported="She promised to help me the following day."
+              data-changes="will → to-infinitive (promise takes to-inf) · you → me · tomorrow → the following day"
+              data-note="PROMISE takes to + infinitive in reported speech (not 'she promised that she would'). Both are correct but 'promised to' is more natural. Tomorrow shifts to 'the following day'.">
+              🤝 "I will help you tomorrow." (promise)
+            </button>
+            <button class="bl-btn en-rep"
+              data-direct="&quot;Why did you leave so early?&quot; (she asked me)"
+              data-reported="She asked me why I had left so early."
+              data-changes="Why did you leave? → why I had left (past simple → past perfect · question → statement order · you → I)"
+              data-note="Wh-question keeps the wh-word (why). No inversion — statement word order. Past simple 'did leave' shifts back to past perfect 'had left'. 'You' becomes 'I'.">
+              ❓ "Why did you leave so early?"
+            </button>
+            <button class="bl-btn en-rep"
+              data-direct="&quot;Let's try the new restaurant.&quot; (he suggested)"
+              data-reported="He suggested trying the new restaurant."
+              data-changes="Let's try → trying (suggest + -ing · Let's disappears entirely)"
+              data-note="SUGGEST takes -ing (not to-infinitive). 'Let's try' becomes simply 'trying'. Alternative: 'He suggested that we try the new restaurant.' Both correct — the -ing form is more compact.">
+              🍽️ "Let's try the new restaurant." (suggest)
+            </button>
+          </div>
+          <div class="bl-result" id="en-rep-result">
+            <div class="blr-empty">Choose a direct speech example above to see the conversion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">📡</span>
+        <div class="culture-text">
+          <strong>Reported speech in news and everyday life</strong><br/>
+          Reported speech is the backbone of journalism and gossip — two of the most socially important uses of language. In English news reporting, the choice of reporting verb carries enormous editorial weight: "The minister <em>said</em>" is neutral. "The minister <em>claimed</em>" implies scepticism. "The minister <em>admitted</em>" implies they were reluctant to say it. "The minister <em>insisted</em>" implies pushback. "The minister <em>revealed</em>" implies it was previously hidden. Native readers process these distinctions automatically — learners often miss them entirely. In everyday conversation, reported speech powers gossip: "She <em>told</em> me that...", "He <em>mentioned</em> that...", "Apparently she <em>said</em>..." The word "apparently" is particularly British — it signals that the speaker is relaying something heard second-hand and cannot verify its truth. Learning reported speech is learning to navigate both journalism and social life.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 12 English — reported speech</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Convert to reported speech: She said, "I work in a hospital."</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">She said she work in a hospital.</button>
+          <button class="quiz-btn" data-answer="correct">She said she worked in a hospital.</button>
+          <button class="quiz-btn" data-answer="wrong">She said she works in a hospital.</button>
+          <button class="quiz-btn" data-answer="wrong">She said that she is working in a hospital.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Convert to reported speech: He asked, "Are you coming to the party?"</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">He asked are you coming to the party.</button>
+          <button class="quiz-btn" data-answer="wrong">He asked if was I coming to the party.</button>
+          <button class="quiz-btn" data-answer="correct">He asked if I was coming to the party.</button>
+          <button class="quiz-btn" data-answer="wrong">He asked whether was I coming to the party.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is correct for the verb "suggest"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">She suggested to visit the museum.</button>
+          <button class="quiz-btn" data-answer="correct">She suggested visiting the museum.</button>
+          <button class="quiz-btn" data-answer="wrong">She suggested us to visit the museum.</button>
+          <button class="quiz-btn" data-answer="wrong">She suggested me visiting the museum.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Convert "I will call you tomorrow" to reported speech (she said)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">She said she will call me tomorrow.</button>
+          <button class="quiz-btn" data-answer="correct">She said she would call me the following day.</button>
+          <button class="quiz-btn" data-answer="wrong">She said she would call me tomorrow.</button>
+          <button class="quiz-btn" data-answer="wrong">She told she would call me the following day.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 12 · Travel &amp; sightseeing vocabulary · Para que &amp; purpose clauses · Relative clauses with subjunctive</div>
+      </div>
+    </div>
+
+    <!-- Travel vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Viajes y turismo — travel &amp; sightseeing vocabulary</div>
+      <div class="section-title">Essential words for exploring the Spanish-speaking world — click any to explore</div>
+      <div class="travel-grid" id="es-travel-grid">
+        <div class="travel-card"
+          data-es="el monumento / la estatua"
+          data-pron="/el monuˈmento/"
+          data-en="monument / statue"
+          data-note="Los monumentos are central to Spanish cultural identity. La estatua de la Libertad (Statue of Liberty). ¿Se puede sacar fotos? (Can you take photos?) is essential at museums and monuments. El patrimonio = cultural heritage.">
+          <div class="travel-icon">🗿</div>
+          <div class="travel-es">el monumento</div>
+          <div class="travel-en">monument</div>
+        </div>
+        <div class="travel-card"
+          data-es="el museo / la galería"
+          data-pron="/el muˈseo/"
+          data-en="museum / gallery"
+          data-note="El Museo del Prado (Madrid) and el Museo Reina Sofía are world-class. La entrada = entrance ticket. La entrada es gratuita los domingos = admission is free on Sundays (many Spanish museums offer this). El audioguía = audio guide.">
+          <div class="travel-icon">🏛️</div>
+          <div class="travel-es">el museo</div>
+          <div class="travel-en">museum</div>
+        </div>
+        <div class="travel-card"
+          data-es="la catedral / la iglesia"
+          data-pron="/la kateˈðɾal/"
+          data-en="cathedral / church"
+          data-note="Spain's cathedrals are extraordinary — La Sagrada Família (Barcelona), La Catedral de Santiago de Compostela (pilgrimage destination), La Catedral de Sevilla (world's largest Gothic cathedral). La capilla = chapel. El coro = choir/chancel.">
+          <div class="travel-icon">⛪</div>
+          <div class="travel-es">la catedral</div>
+          <div class="travel-en">cathedral / church</div>
+        </div>
+        <div class="travel-card"
+          data-es="el palacio / el castillo"
+          data-pron="/el paˈlaθjo/"
+          data-en="palace / castle"
+          data-note="El palacio Real (Madrid) · La Alhambra (Granada — one of the world's great palaces) · El Alcázar (Segovia). El castillo de... names are everywhere in Spain — over 2,500 castles! El torreón = tower. Las almenas = battlements.">
+          <div class="travel-icon">🏰</div>
+          <div class="travel-es">el palacio / castillo</div>
+          <div class="travel-en">palace / castle</div>
+        </div>
+        <div class="travel-card"
+          data-es="el paisaje / la naturaleza"
+          data-pron="/el paisˈaxe/"
+          data-en="landscape / nature"
+          data-note="El paisaje = the landscape (what you see). La naturaleza = nature (as a concept). El campo = countryside. La sierra = mountain range. La costa = coast. El sendero = hiking trail. ¡Qué paisaje tan impresionante! = What an impressive landscape!">
+          <div class="travel-icon">🏔️</div>
+          <div class="travel-es">el paisaje</div>
+          <div class="travel-en">landscape / nature</div>
+        </div>
+        <div class="travel-card"
+          data-es="la playa / el mar"
+          data-pron="/la ˈplaʝa/"
+          data-en="beach / sea"
+          data-note="Spain has over 8,000km of coastline. La playa = beach. El mar = sea. La orilla = shore. Las olas = waves. La arena = sand. La sombrilla = beach umbrella. El chiringuito = beach bar — one of the great Spanish institutions!">
+          <div class="travel-icon">🏖️</div>
+          <div class="travel-es">la playa / el mar</div>
+          <div class="travel-en">beach / sea</div>
+        </div>
+        <div class="travel-card"
+          data-es="la visita guiada"
+          data-pron="/la biˈsita ɡiˈaða/"
+          data-en="guided tour"
+          data-note="¿Hay visitas guiadas en inglés? (Are there guided tours in English?) La guía turística = the tour guide (person). La guía = guidebook. El folleto = leaflet/brochure. Recorrer la ciudad = to explore the city. Hacer turismo = to go sightseeing.">
+          <div class="travel-icon">🗺️</div>
+          <div class="travel-es">la visita guiada</div>
+          <div class="travel-en">guided tour</div>
+        </div>
+        <div class="travel-card"
+          data-es="el souvenir / el recuerdo"
+          data-pron="/el reˈkweɾðo/"
+          data-en="souvenir / memory"
+          data-note="El recuerdo = souvenir AND memory — a beautiful dual meaning. De recuerdo = as a souvenir / keepsake. La tienda de recuerdos = souvenir shop. Guardar un buen recuerdo de... = to have a good memory of... Both meanings are equally important!">
+          <div class="travel-icon">🎁</div>
+          <div class="travel-es">el recuerdo</div>
+          <div class="travel-en">souvenir / memory</div>
+        </div>
+        <div class="travel-card"
+          data-es="el horario / la entrada"
+          data-pron="/el oˈɾaɾjo/"
+          data-en="timetable / ticket"
+          data-note="El horario = opening hours / timetable. La entrada = entrance ticket. La cola = queue. La taquilla = ticket office. ¿A qué hora abre/cierra? = What time does it open/close? Cerrado por obras = closed for renovation (depressingly common!).">
+          <div class="travel-icon">🎫</div>
+          <div class="travel-es">el horario / la entrada</div>
+          <div class="travel-en">timetable / ticket</div>
+        </div>
+      </div>
+      <div class="travel-detail" id="es-travel-detail">
+        <div class="td-empty">Tap any item above to learn vocabulary and travel tips</div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px;">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">📸</span>
+          <div>
+            <div class="phrase-native">¿Me puede sacar una foto aquí?</div>
+            <div class="phrase-sub">/me ˈpweðe saˈkaɾ ˈuna ˈfoto aˈki/</div>
+            <div class="phrase-en">Could you take a photo of me here?</div>
+            <div class="phrase-note">Sacar una foto = to take a photo. ¿Le importaría sacarme una foto? = Would you mind taking my photo? (more formal). Salir bien en la foto = to come out well in the photo.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🧭</span>
+          <div>
+            <div class="phrase-native">¿Qué es lo más recomendable visitar aquí?</div>
+            <div class="phrase-sub">/ke es lo mas rekomendaˈβle/</div>
+            <div class="phrase-en">What is the most recommended thing to visit here?</div>
+            <div class="phrase-note">A great question to ask locals. Lo más recomendable = the most recommended thing. ¿Qué no me puedo perder? = What can't I miss? (lit. "what can I not lose?") — a wonderful colloquial way to ask for top recommendations.</div>
+          </div>
+        </div>
+        <div class="phrase-card hl">
+          <span class="phrase-icon">😍</span>
+          <div>
+            <div class="phrase-native">¡Esto es impresionante! / ¡Qué maravilla!</div>
+            <div class="phrase-sub">/impɾesjoˈnante/ · /ke maˈɾaβiʝa/</div>
+            <div class="phrase-en">This is impressive! / How wonderful!</div>
+            <div class="phrase-note">Essential exclamations for sightseeing. ¡Qué vista tan espectacular! (What a spectacular view!). ¡No me lo puedo creer! (I can't believe it!) ¡Es alucinante! (It's mind-blowing! — informal). Reactions matter as much as descriptions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Para que and purpose clauses -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Para que — subjunctive in purpose clauses</div>
+      <div class="section-title">In order that someone (else) does something — always subjunctive</div>
+      <p>When expressing purpose for another person's action, Spanish uses <strong>para que + subjunctive</strong>. This is different from <strong>para + infinitive</strong> (same subject). The rule is elegant: if the subject of the purpose clause is DIFFERENT from the main verb's subject, use para que + subjunctive. If the subject is the SAME, use para + infinitive.</p>
+
+      <table class="purpose-table">
+        <tr>
+          <th>Structure</th>
+          <th>When used</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><span class="pt-conj">para + infinitive</span></td>
+          <td class="pt-rule">SAME subject does the purpose action</td>
+          <td><span class="pt-ex">Estudio para aprender. (I study in order to learn — same person does both)</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-conj">para que + subjunctive</span></td>
+          <td class="pt-rule">DIFFERENT subject does the purpose action</td>
+          <td><span class="pt-ex">Te lo explico para que lo entiendas. (I explain it so that YOU understand — different subjects)</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-conj">a fin de que + subjunctive</span></td>
+          <td class="pt-rule">More formal equivalent of para que</td>
+          <td><span class="pt-ex">Se publicó a fin de que todos lo supieran. (It was published so that everyone would know)</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-conj">sin que + subjunctive</span></td>
+          <td class="pt-rule">Without (someone doing something)</td>
+          <td><span class="pt-ex">Entró sin que nadie lo viera. (He entered without anyone seeing him)</span></td>
+        </tr>
+      </table>
+
+      <div class="tip-box tip-amber">
+        <strong>The same-subject / different-subject rule in full:</strong><br/>
+        <strong>Same:</strong> Voy al mercado <strong>para comprar</strong> fruta. (I go to buy fruit — I go AND I buy)<br/>
+        <strong>Different:</strong> Voy al mercado <strong>para que tú puedas</strong> quedarte en casa. (I go so that YOU can stay home — I go, you stay)<br/>
+        This distinction — one infinitive form for same subject, subjunctive for different subject — runs throughout Spanish grammar and is one of its most consistent and beautiful principles.
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px;">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🗣️</span>
+          <div>
+            <div class="phrase-native">Te lo digo para que no cometas el mismo error.</div>
+            <div class="phrase-en">I'm telling you so that you don't make the same mistake.</div>
+            <div class="phrase-note">Para que + subjunctive (cometas — subjunctive of cometer). Different subjects: I tell, you act. A very natural warning or advice structure.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">💡</span>
+          <div>
+            <div class="phrase-native">He traído el mapa para que podáis orientaros.</div>
+            <div class="phrase-en">I've brought the map so that you all can find your way.</div>
+            <div class="phrase-note">He traído (I) + para que + podáis (you all — subjunctive of poder). Classic travel situation — guide brings resources for others to use.</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🤫</span>
+          <div>
+            <div class="phrase-native">Habla más despacio para que te entiendan.</div>
+            <div class="phrase-en">Speak more slowly so that they understand you.</div>
+            <div class="phrase-note">Command (habla) + para que + entiendan (subjunctive). Three different subjects: I (giving the command), you (speaking), they (understanding). Complex but perfectly natural.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relative clauses with subjunctive -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Relative clauses with the subjunctive</div>
+      <div class="section-title">Known vs unknown — the clause that reveals whether something exists or is desired</div>
+      <p>One of the most elegant uses of the Spanish subjunctive: when a relative clause refers to something that is KNOWN to exist, use the indicative. When the thing is UNKNOWN, DESIRED, or SEARCHED FOR (and may or may not exist), use the subjunctive. The grammar encodes existential certainty!</p>
+
+      <div class="rel-subj-grid">
+        <div class="rs-card ind">
+          <div class="rs-label">Indicative — known entity</div>
+          <div class="rs-formula">Exists — specific, identified</div>
+          <div class="rs-uses">
+            The noun EXISTS and is known.<br/>
+            You're describing a specific thing or person you already have in mind.
+          </div>
+          <div class="rs-ex">
+            Busco al camarero <strong>que habla</strong> inglés.<br/>
+            (I'm looking for the waiter who speaks English — I know there is one specific person)<br/><br/>
+            Tengo un amigo <strong>que vive</strong> en Madrid.<br/>
+            (I have a friend who lives in Madrid — specific real friend)<br/><br/>
+            Conozco un restaurante <strong>que sirve</strong> paella auténtica.<br/>
+            (I know a restaurant that serves authentic paella — it exists, I know it)
+          </div>
+        </div>
+        <div class="rs-card sub">
+          <div class="rs-label">Subjunctive — unknown entity</div>
+          <div class="rs-formula">Desired / hypothetical / may not exist</div>
+          <div class="rs-uses">
+            The noun may NOT EXIST yet.<br/>
+            You're searching, wishing, or describing a desired but unfound person/thing.
+          </div>
+          <div class="rs-ex">
+            Busco un camarero <strong>que hable</strong> inglés.<br/>
+            (I'm looking for a waiter who speaks English — I don't know if one exists)<br/><br/>
+            Quiero un amigo <strong>que viva</strong> cerca.<br/>
+            (I want a friend who lives nearby — hypothetical, not yet found)<br/><br/>
+            ¿Hay algún restaurante <strong>que sirva</strong> paella auténtica?<br/>
+            (Is there a restaurant that serves authentic paella? — unknown, seeking)
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box tip-purple">
+        <strong>The article as a clue:</strong> The article often signals which mood to use. Definite article (el/la) → specific, known entity → indicative: "Busco <strong>al</strong> médico que habla chino." Indefinite article (un/una) or algún/ningún → unknown entity → subjunctive: "Busco <strong>un</strong> médico que hable chino." Negative sentences almost always use subjunctive: "No hay nadie que sepa la respuesta." (There is no one who knows the answer.)
+      </div>
+    </div>
+
+    <!-- Interactive ES -->
+    <div class="section">
+      <div class="section-label">Interactive · Indicative or subjunctive in relative clauses?</div>
+      <div class="section-title">Known or unknown entity — choose a sentence and discover which mood</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇪🇸 ¿Indicativo o subjuntivo en la cláusula relativa?</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a sentence</div>
+          <div class="bl-btns" id="es-rel-btns">
+            <button class="bl-btn es-rel"
+              data-sentence="Busco un hotel que tenga piscina."
+              data-mood="Subjunctive — tenga (tener, subjunctive)"
+              data-note="Un hotel (indefinite) + que tenga = I'm looking for (any) hotel that HAS a pool — I don't know if such a hotel exists near me. The search is open. Subjunctive encodes this uncertainty.">
+              🏊 Looking for a hotel with a pool
+            </button>
+            <button class="bl-btn es-rel"
+              data-sentence="Conozco un hotel que tiene piscina."
+              data-mood="Indicative — tiene (tener, present indicative)"
+              data-note="Conozco (I know) = specific known entity → indicative. The hotel EXISTS — I know it. 'Tiene' (indicative) vs 'tenga' (subjunctive) — same sentence structure, same article, different verb — completely different meaning!">
+              ✅ I know a hotel that has a pool
+            </button>
+            <button class="bl-btn es-rel"
+              data-sentence="No hay nadie que hable cinco idiomas aquí."
+              data-mood="Subjunctive — hable (hablar, subjunctive)"
+              data-note="Nadie (no one) + que hable = negative existence → subjunctive. When the head noun is negated (no hay nadie, no existe, ninguno...), the relative clause ALWAYS uses subjunctive. The person who speaks five languages doesn't exist here.">
+              🌍 No one who speaks five languages
+            </button>
+            <button class="bl-btn es-rel"
+              data-sentence="Tengo una guía que explica la historia de la ciudad."
+              data-mood="Indicative — explica (explicar, indicative)"
+              data-note="Tengo (I have) = I already possess this specific guidebook → indicative. The book EXISTS in my hands. Compare: 'Busco una guía que explique...' (I'm looking for a guidebook that explains...) → subjunctive.">
+              📖 I have a guidebook that explains the history
+            </button>
+            <button class="bl-btn es-rel"
+              data-sentence="¿Conoces a alguien que sepa hablar japonés?"
+              data-mood="Subjunctive — sepa (saber, subjunctive)"
+              data-note="Alguien que sepa = do you know someone (unknown to me) who knows... The existence of this person is unknown to the speaker — hence subjunctive. If the person were identified: '¿Conoces a la chica que sabe japonés?' (Do you know the girl who speaks Japanese? — known person → indicative.)">
+              🗾 Do you know anyone who speaks Japanese?
+            </button>
+            <button class="bl-btn es-rel"
+              data-sentence="Quiero visitar un país que tenga mucha historia."
+              data-mood="Subjunctive — tenga (tener, subjunctive)"
+              data-note="Quiero visitar (I want to visit — desire, future) un país = an unspecified country. The country hasn't been chosen yet — it's a desired characteristic, not a real identified destination. Desired hypothetical entities always use subjunctive.">
+              🌎 I want to visit a country with a lot of history
+            </button>
+          </div>
+          <div class="bl-result" id="es-rel-result">
+            <div class="blr-empty">Choose a sentence above to see which mood is used — and why</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🎨</span>
+        <div class="culture-text">
+          <strong>El turismo cultural — Spain's extraordinary cultural heritage</strong><br/>
+          Spain has 50 UNESCO World Heritage Sites — the fourth highest number of any country in the world. From the prehistoric cave paintings of Altamira to the modernist architecture of Antoni Gaudí in Barcelona, the Moorish palaces of Granada's Alhambra to the medieval pilgrimage route of El Camino de Santiago — the country is a living museum of civilisations. The <em>Museo del Prado</em> in Madrid holds one of the world's greatest collections of European art: Velázquez, Goya, El Greco, and Bosch are represented by masterworks that rarely travel. Spain's approach to heritage is deeply personal — locals take extraordinary pride in their local monuments, history, and traditions. When visiting a Spanish city, asking a local "¿Qué es lo más especial de aquí?" (What is most special about this place?) will unlock pride, passion, and recommendations no guidebook could provide. The most authentic cultural experience in Spain is always the one shared by a Spaniard.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 12 Spanish — travel, para que &amp; relative clauses</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which structure uses para que + subjunctive?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Estudio para aprender. (same subject)</button>
+          <button class="quiz-btn" data-answer="correct">Te lo explico para que lo entiendas. (different subjects)</button>
+          <button class="quiz-btn" data-answer="wrong">Voy al mercado para comprar pan. (same subject)</button>
+          <button class="quiz-btn" data-answer="wrong">Quiero descansar para estar bien. (same subject)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">"Busco un médico que _____ chino." (hablar) — Which form?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">habla (indicative — specific known doctor)</button>
+          <button class="quiz-btn" data-answer="correct">hable (subjunctive — I don't know if such a doctor exists)</button>
+          <button class="quiz-btn" data-answer="wrong">hablará (future)</button>
+          <button class="quiz-btn" data-answer="wrong">hablaba (imperfect)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Why does "No hay nadie que sepa la respuesta" use the subjunctive?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Because nadie is a negative word</button>
+          <button class="quiz-btn" data-answer="correct">Because the entity (someone who knows) is negated — this person doesn't exist, making the relative clause refer to a non-existent entity</button>
+          <button class="quiz-btn" data-answer="wrong">Because hay is an impersonal verb</button>
+          <button class="quiz-btn" data-answer="wrong">Because it's a question</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you ask "What can't I miss?" as a tourist in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">¿Qué hay que ver aquí?</button>
+          <button class="quiz-btn" data-answer="correct">¿Qué no me puedo perder?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Qué es lo más grande?</button>
+          <button class="quiz-btn" data-answer="wrong">¿Dónde está el museo?</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — reported speech &amp; expressing purpose</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages relay what someone said — and express purpose</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Reported speech mechanics and purpose expressions reveal fascinating structural differences — especially around tense and the same-subject/different-subject distinction.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Reported speech marker</td>
+        <td>〜と言った<br/><span style="font-size:11px; color:#888">...to itta<br/>Quotation particle と (to) marks reported speech — no tense shift!</span></td>
+        <td>〜고 했어요<br/><span style="font-size:11px; color:#888">...go haesseoyo<br/>-고 하다 construction — minimal tense change</span></td>
+        <td>said that + tense backshift<br/><span style="font-size:11px; color:#888">Mandatory backshift one step back in time</span></td>
+        <td>dijo que + indicative/subjunctive<br/><span style="font-size:11px; color:#888">Tense shift, but less rigid than English</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"She said she was tired"</td>
+        <td>疲れたと言った<br/><span style="font-size:11px; color:#888">Tsukareta to itta<br/>Verb stays in original tense</span></td>
+        <td>피곤하다고 했어요<br/><span style="font-size:11px; color:#888">Pigonhadago haesseoyo<br/>Minimal change from direct</span></td>
+        <td>She said she <strong>was</strong> tired.<br/><span style="font-size:11px; color:#888">am → was (mandatory backshift)</span></td>
+        <td>Dijo que <strong>estaba</strong> cansada.<br/><span style="font-size:11px; color:#888">está → estaba (imperfect backshift)</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"In order to" (same subject)</td>
+        <td>〜ために<br/><span style="font-size:11px; color:#888">tame ni<br/>One form for all subjects</span></td>
+        <td>〜기 위해서<br/><span style="font-size:11px; color:#888">gi wihaeseo<br/>One form for all subjects</span></td>
+        <td>in order to / to + infinitive<br/><span style="font-size:11px; color:#888">No subject distinction needed</span></td>
+        <td>para + infinitive<br/><span style="font-size:11px; color:#888">SAME subject only</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"So that someone else does"</td>
+        <td>〜ように<br/><span style="font-size:11px; color:#888">you ni<br/>Used for both same and different subject</span></td>
+        <td>〜도록<br/><span style="font-size:11px; color:#888">dorok<br/>Purpose for another's action</span></td>
+        <td>so that + can/will<br/><span style="font-size:11px; color:#888">No subjunctive — modal verb used</span></td>
+        <td>para que + subjunctive<br/><span style="font-size:11px; color:#888">DIFFERENT subject → subjunctive required</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-blue" style="margin-top:14px">
+      <strong>The tense backshift insight:</strong> English is unusually strict about reported speech tense backshift — mandatory when the reporting verb is past. Japanese barely changes tenses at all in reported speech, relying on the quotation particle と (to) to do the work. Korean similarly uses minimal backshift. Spanish does backshift, but the rules are somewhat more flexible than English. This means Japanese and Korean learners often forget English backshift — while Spanish learners may find English backshift more familiar, but find the mandatory nature of it somewhat stricter than their own language.
+    </div>
+  </div>
+
+
+  <!-- Week 13 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 13</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Conditionals — zero, first, second and third conditionals · Real vs hypothetical vs impossible conditions · Mixed conditionals · "I wish" and "If only" for regrets and wishes.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Work and professional vocabulary · Business expressions · Ser vs estar — advanced and subtle uses · Impersonal expressions with se (se habla, se vende, se puede) — passive voice in Spanish.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 12 complete · Click <a href="Week13.E&S.html">here</a> when you're ready for Week 13 🇬🇧🇪🇸
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English reported speech builder ── */
+  document.querySelectorAll('.en-rep').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-rep').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-rep-result').innerHTML = `
+        <div class="blr-breakdown" style="color:#888; margin-bottom:6px;">Direct: <em>${d.direct}</em></div>
+        <div class="blr-sentence">✅ ${d.reported}</div>
+        <div class="blr-breakdown">📐 <strong>Changes:</strong> ${d.changes}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish travel vocabulary grid ── */
+  document.querySelectorAll('#es-travel-grid .travel-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-travel-grid .travel-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-travel-detail').innerHTML = `
+        <div class="td-es">${d.es}</div>
+        <div class="td-pron">${d.pron}</div>
+        <div class="td-en">${d.en}</div>
+        <div class="td-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish relative clause mood explorer ── */
+  document.querySelectorAll('.es-rel').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.es-rel').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-rel-result').innerHTML = `
+        <div class="blr-sentence">✅ ${d.sentence}</div>
+        <div class="blr-breakdown">📐 <strong>Mood:</strong> ${d.mood}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>

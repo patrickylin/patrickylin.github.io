@@ -25,23 +25,46 @@ body {
   min-height: 100vh; 
   background-color: rgba(255, 255, 255, 0.95);
   background-image: url("../gif/back.gif");
-  padding: 30px 20px;
+  padding: 30px 20px 30px 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Banner Styling */
-.site-banner {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 0 auto;
-  border: none;
 }
 
 .header-container {
   width: 100%;
   text-align: center;
-  margin-bottom: 50px;
+  padding-bottom: 5px;
+}
+/* Banner Styling */
+.site-banner {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px auto;
+  border: none;
+}
+/* Navigation links for Utility/Service pages */
+.sub-nav {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.sub-nav a {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 11pt;
+  color: #000080; /* Navy */
+  text-decoration: none;
+}
+.sub-nav span {
+  color: #000080;
+  padding: 0 10px;
+}
+/* The Horizontal Divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #cccccc; /* Light gray line */
+  margin: 10px 0 25px 0; /* Space above and below the line */
+  border: none;
 }
 
 /* Responsive Icon Grid (Replaces Absolute Positioning) */
@@ -51,7 +74,7 @@ body {
   justify-content: flex-start; /* Aligns them to the left */
   gap: 20px; /* Consistent spacing between icons */
   width: 100%;
-  margin: 40px 0;
+  margin-top: 0;
 }
 #icon-grid a {
   /* This formula: (100% / 8 icons) - (offset for the gaps) */
@@ -158,7 +181,7 @@ body {
 .footer-divider {
   border: none;
   border-top: 1px solid #ccc;
-  width: 90%;
+  width: 95%;
   margin: 0 auto 10px auto;
 }
 .footer {
