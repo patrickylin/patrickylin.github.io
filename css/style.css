@@ -99,7 +99,7 @@ body {
 }
 
 /* Modern Calculator Form Layout (No Tables) */
-.calculator-wrapper {
+.calculator-wrapper, .clock-wrapper {
   max-width: 550px;
   margin: 0 auto 50px auto;
   background: #f9f9f9;

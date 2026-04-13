@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 15 — English & Spanish: Writing Skills, Weather & Exclamations</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .week-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .week-nav { font-size: 12px; color: #aaa; text-align: right; }
+  .progress-bar { background: #eee; border-radius: 20px; height: 6px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 20px; background: #1D9E75; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Email template blocks */
+  .email-block { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 16px; margin-top: 12px; font-size: 13px; line-height: 2; }
+  .email-block.formal   { border-left: 3px solid #185FA5; }
+  .email-block.informal { border-left: 3px solid #1D9E75; }
+  .email-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+  .email-part  { margin-bottom: 6px; }
+  .email-part strong { color: #1a1a18; }
+  .ep-formal   { color: #185FA5; }
+  .ep-informal { color: #1D9E75; }
+  .ep-note     { font-size: 11px; color: #aaa; font-style: italic; }
+
+  /* Writing mistakes grid */
+  .mistake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .mistake-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .mistake-title { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+  .mistake-wrong { font-size: 13px; color: #D85A30; margin-bottom: 3px; }
+  .mistake-right { font-size: 13px; color: #0f6e56; margin-bottom: 3px; }
+  .mistake-note  { font-size: 11px; color: #aaa; font-style: italic; margin-top: 3px; }
+
+  /* Punctuation guide */
+  .punct-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .punct-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 12px; }
+  .punct-mark { font-size: 22px; color: #185FA5; font-weight: 500; margin-bottom: 4px; }
+  .punct-name { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .punct-rule { font-size: 12px; color: #333; line-height: 1.6; }
+  .punct-ex   { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 3px; }
+
+  /* Weather vocab grid — clickable */
+  .weather-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-top: 12px; }
+  .weather-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 9px 8px; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .weather-card:hover    { background: #f0f5fc; border-color: #b8d4f0; }
+  .weather-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .weather-icon { font-size: 22px; margin-bottom: 3px; }
+  .weather-es   { font-size: 12px; color: #1a1a18; font-weight: 500; line-height: 1.3; }
+  .weather-en   { font-size: 10px; color: #555; margin-top: 1px; }
+  .weather-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .wd-es    { font-size: 20px; color: #1a1a18; margin-bottom: 2px; }
+  .wd-pron  { font-size: 12px; color: #888; font-family: serif; margin-bottom: 3px; }
+  .wd-en    { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .wd-note  { font-size: 12px; color: #555; line-height: 1.6; }
+  .wd-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Seasons cards */
+  .season-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .season-card { border-radius: 12px; padding: 14px 10px; text-align: center; }
+  .season-card.spring { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .season-card.summer { background: #fdf9f0; border: 0.5px solid #f0dfa8; }
+  .season-card.autumn { background: #fdf0ed; border: 0.5px solid #f5c4b0; }
+  .season-card.winter { background: #f0f5fc; border: 0.5px solid #b8d4f0; }
+  .season-icon { font-size: 28px; margin-bottom: 6px; }
+  .season-es   { font-size: 15px; color: #1a1a18; font-weight: 500; margin-bottom: 4px; }
+  .season-en   { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .season-desc { font-size: 12px; color: #333; line-height: 1.7; }
+
+  /* Exclamations grid */
+  .excl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .excl-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; cursor: pointer; transition: background 0.15s; }
+  .excl-card:hover    { background: #f0f5fc; border-color: #b8d4f0; }
+  .excl-card.selected { background: #f0f5fc; border-color: #378ADD; }
+  .excl-word   { font-size: 18px; color: #185FA5; font-weight: 500; margin-bottom: 2px; }
+  .excl-teaser { font-size: 12px; color: #aaa; }
+  .excl-detail { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-top: 10px; min-height: 80px; }
+  .ed-word  { font-size: 22px; color: #185FA5; font-weight: 500; margin-bottom: 3px; }
+  .ed-use   { font-size: 14px; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .ed-ex    { font-size: 13px; color: #1D9E75; font-style: italic; line-height: 1.8; }
+  .ed-note  { font-size: 12px; color: #888; margin-top: 4px; }
+  .ed-empty { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Interactive builders */
+  .builder-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .builder-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .builder-body { padding: 14px; }
+  .bl-label  { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; margin-bottom: 8px; }
+  .bl-btns   { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .bl-btn    { border: 0.5px solid #ddd; background: #fff; border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+  .bl-btn:hover    { background: #f0f0ee; }
+  .bl-btn.selected { background: #f0f5fc; border-color: #378ADD; color: #185FA5; font-weight: 500; }
+  .bl-result { background: #fff; border: 0.5px solid #eee; border-radius: 10px; padding: 14px; min-height: 88px; }
+  .blr-sentence  { font-size: 18px; color: #1a1a18; margin-bottom: 4px; }
+  .blr-breakdown { font-size: 13px; color: #555; margin-bottom: 3px; }
+  .blr-note      { font-size: 12px; color: #1D9E75; font-style: italic; margin-top: 4px; }
+  .blr-empty     { font-size: 13px; color: #aaa; font-style: italic; }
+
+  /* Phrase cards */
+  .phrase-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 18px; color: #1a1a18; margin-bottom: 2px; line-height: 1.3; }
+  .phrase-sub    { font-size: 12px; color: #888; margin-bottom: 2px; }
+  .phrase-en     { font-size: 13px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 4px; font-style: italic; line-height: 1.5; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-coral  { background: #fdf0ed; border-left: 3px solid #D85A30; }
+  .tip-purple { background: #f5f0fd; border-left: 3px solid #8e44ad; }
+
+  /* Culture */
+  .culture-note { display: flex; gap: 12px; align-items: flex-start; background: #fdf9f0; border: 0.5px solid #f0e6c8; border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .culture-icon { font-size: 24px; flex-shrink: 0; }
+  .culture-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* Quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+
+  /* Preview */
+  .preview-box { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .col-card { border-radius: 10px; padding: 12px 14px; }
+  .col-card.en { background: #f0f8f5; border: 0.5px solid #a8ddc5; }
+  .col-card.es { background: #fdf0f5; border: 0.5px solid #f0b8d0; }
+  .col-lang    { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 6px; }
+  .col-content { font-size: 13px; color: #333; line-height: 1.6; }
+
+  @media (max-width: 520px) {
+    .mistake-grid, .two-col { grid-template-columns: 1fr; }
+    .punct-grid { grid-template-columns: repeat(2, 1fr); }
+    .weather-grid { grid-template-columns: repeat(3, 1fr); }
+    .season-grid { grid-template-columns: repeat(2, 1fr); }
+    .excl-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="week-header">
+    <div>
+      <span class="week-badge">Week 15 of 16</span>
+      <h1>Writing Skills, Weather & Exclamations</h1>
+      <div class="subtitle">EN: Formal &amp; informal writing · Email templates · Common writing mistakes · Punctuation · ES: Weather &amp; seasons · Nature vocabulary · Ya/todavía · Spanish exclamations</div>
+    </div>
+    <div class="week-nav">
+      <div class="progress-bar" style="width:130px;"><div class="progress-fill" style="width:93%;"></div></div>
+      93% complete
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       ENGLISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English</div>
+        <div class="lang-sub">Week 15 · Formal &amp; informal writing · Email structure · Writing errors · Punctuation guide</div>
+      </div>
+    </div>
+
+    <!-- Email writing -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · Formal &amp; informal email writing</div>
+      <div class="section-title">The complete toolkit for written English — from job applications to messages to friends</div>
+      <p>Written English requires conscious register choices at every stage — from the opening salutation to the closing sign-off. The gap between formal and informal written English is wider than in most languages, and getting it wrong can damage credibility just as surely as a grammar error.</p>
+
+      <div class="email-block formal">
+        <div class="email-label">📧 Formal email — job application, professional, unknown recipient</div>
+        <div class="email-part"><span class="ep-formal"><strong>Opening salutation:</strong></span> Dear Mr/Ms [surname], · Dear Sir or Madam, (if name unknown) · To Whom It May Concern, (very formal/impersonal)</div>
+        <div class="email-part"><span class="ep-formal"><strong>Opening line:</strong></span> I am writing to enquire about... · I am writing with reference to... · Further to our conversation... · I would like to express my interest in...</div>
+        <div class="email-part"><span class="ep-formal"><strong>Body language:</strong></span> I would be grateful if... · Please find attached... · I would appreciate your assistance with... · It would be helpful to know... · As per our previous correspondence...</div>
+        <div class="email-part"><span class="ep-formal"><strong>Closing:</strong></span> I look forward to hearing from you. · Please do not hesitate to contact me. · Thank you for your time and consideration.</div>
+        <div class="email-part"><span class="ep-formal"><strong>Sign-off:</strong></span> Yours sincerely, [name] (when you know the name) · Yours faithfully, [name] (when you wrote "Dear Sir/Madam")</div>
+        <div class="ep-note">The sincerely/faithfully rule: if you used a name → sincerely. If you wrote "Dear Sir/Madam" → faithfully. Breaking this rule is a classic error.</div>
+      </div>
+
+      <div class="email-block informal" style="margin-top:12px;">
+        <div class="email-label">💬 Informal email / message — friend, colleague you know well</div>
+        <div class="email-part"><span class="ep-informal"><strong>Opening salutation:</strong></span> Hi [first name], · Hey [name], · Hope you're well — (no comma needed in very casual messages)</div>
+        <div class="email-part"><span class="ep-informal"><strong>Opening line:</strong></span> Hope this finds you well! · Just wanted to drop you a line... · Quick question — · Hope you're having a good week!</div>
+        <div class="email-part"><span class="ep-informal"><strong>Body language:</strong></span> I was wondering if... · Would it be possible to...? · Let me know what you think · Just to let you know... · FYI... · As I mentioned...</div>
+        <div class="email-part"><span class="ep-informal"><strong>Closing:</strong></span> Let me know if you have any questions! · Looking forward to it! · Speak soon! · Thanks so much!</div>
+        <div class="email-part"><span class="ep-informal"><strong>Sign-off:</strong></span> Best, / Best wishes, / Kind regards, [name] · Thanks, [name] · Cheers, [name] · [name] alone (most casual)</div>
+        <div class="ep-note">Contractions (I'm, I'd, we'll) are expected in informal — and increasingly acceptable in semi-formal. Contractions in a formal letter signal carelessness.</div>
+      </div>
+
+      <div class="tip-box tip-blue">
+        <strong>Kind regards — the neutral middle ground:</strong> "Kind regards" has become the dominant sign-off in professional English because it sits perfectly between warm and formal. It works for emails to colleagues, clients, and new contacts where "Yours sincerely" feels stiff but "Cheers" feels too casual. "Best regards" is slightly warmer. "Regards" alone is slightly cooler. "Warm regards" implies a closer relationship. Learning to calibrate sign-offs is a small but telling mark of written fluency.
+      </div>
+    </div>
+
+    <!-- Writing mistakes -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · The most common English writing mistakes</div>
+      <div class="section-title">The errors that damage credibility — and how to fix them permanently</div>
+
+      <div class="mistake-grid">
+        <div class="mistake-card">
+          <div class="mistake-title">Its vs It's</div>
+          <div class="mistake-wrong">❌ The company changed it's policy.</div>
+          <div class="mistake-right">✅ The company changed its policy.</div>
+          <div class="mistake-note">It's = it is / it has. Its = belonging to it (possessive). The apostrophe does NOT show possession for "it" — it shows a missing letter.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">There / Their / They're</div>
+          <div class="mistake-wrong">❌ Their going to there office.</div>
+          <div class="mistake-right">✅ They're going to their office.</div>
+          <div class="mistake-note">They're = they are. Their = belonging to them. There = that place / introductory word. Three completely different words — same sound.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">Apostrophe in plurals</div>
+          <div class="mistake-wrong">❌ The 1980's were amazing. Three cat's sat down.</div>
+          <div class="mistake-right">✅ The 1980s were amazing. Three cats sat down.</div>
+          <div class="mistake-note">Apostrophes do NOT make plurals. Never add apostrophe to make a noun plural. The grocer's apostrophe ("apple's £1") is a famous British error.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">Fewer vs Less</div>
+          <div class="mistake-wrong">❌ Less people attended. Less chairs.</div>
+          <div class="mistake-right">✅ Fewer people attended. Fewer chairs.</div>
+          <div class="mistake-note">Fewer = countable nouns (fewer books, fewer people). Less = uncountable nouns (less water, less time). Supermarkets often write "10 items or less" — technically wrong but widely accepted.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">Effect vs Affect</div>
+          <div class="mistake-wrong">❌ The rain effected our plans. What is the affect?</div>
+          <div class="mistake-right">✅ The rain affected our plans. What is the effect?</div>
+          <div class="mistake-note">Affect = verb (to affect something). Effect = noun (the effect). Memory trick: RAVEN — Remember, Affect is a Verb, Effect is a Noun.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">Who vs Whom</div>
+          <div class="mistake-wrong">❌ Who did you speak to? (formal writing)</div>
+          <div class="mistake-right">✅ To whom did you speak? (formal writing)</div>
+          <div class="mistake-note">Who = subject (who did it). Whom = object (to/for/by whom). Test: replace with he/him. "He spoke" → who. "Spoke to him" → whom. Whom is vanishing from speech but still expected in formal writing.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">Sentence fragments</div>
+          <div class="mistake-wrong">❌ Because I was tired. Which is interesting.</div>
+          <div class="mistake-right">✅ I left early because I was tired. This is interesting.</div>
+          <div class="mistake-note">A sentence must have a subject and a main verb. Fragments beginning with because/which/although/however are common — each needs a main clause attached.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-title">Comma splice</div>
+          <div class="mistake-wrong">❌ I finished the report, I sent it immediately.</div>
+          <div class="mistake-right">✅ I finished the report and sent it. / I finished the report; I sent it immediately.</div>
+          <div class="mistake-note">Two independent clauses cannot be joined with just a comma. Use a conjunction (and, but, so), a semicolon, or a full stop. The comma splice is very common in learner writing.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Punctuation guide -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Punctuation — the road signs of written English</div>
+      <div class="section-title">The marks that make meaning — and the ones that cause most confusion</div>
+      <div class="punct-grid">
+        <div class="punct-card">
+          <div class="punct-mark">.</div>
+          <div class="punct-name">Full stop / Period</div>
+          <div class="punct-rule">Ends a statement. Also used in abbreviations (Mr. Dr.) in American English — British often omits these (Mr Dr).</div>
+          <div class="punct-ex">She arrived early. The meeting began at noon.</div>
+        </div>
+        <div class="punct-card">
+          <div class="punct-mark">,</div>
+          <div class="punct-name">Comma</div>
+          <div class="punct-rule">Separates list items, introductory clauses, non-defining clauses. The Oxford comma (before "and" in lists) is optional but prevents ambiguity.</div>
+          <div class="punct-ex">I bought bread, milk, and cheese. However, she disagreed.</div>
+        </div>
+        <div class="punct-card">
+          <div class="punct-mark">;</div>
+          <div class="punct-name">Semicolon</div>
+          <div class="punct-rule">Links two closely related independent clauses. Stronger than a comma, weaker than a full stop. Also separates complex list items.</div>
+          <div class="punct-ex">She loved the city; he preferred the countryside.</div>
+        </div>
+        <div class="punct-card">
+          <div class="punct-mark">:</div>
+          <div class="punct-name">Colon</div>
+          <div class="punct-rule">Introduces a list, explanation, or quotation. What follows must relate directly to what precedes.</div>
+          <div class="punct-ex">She had one goal: to finish the project on time.</div>
+        </div>
+        <div class="punct-card">
+          <div class="punct-mark">—</div>
+          <div class="punct-name">Em dash</div>
+          <div class="punct-rule">Creates a strong pause — more emphatic than a comma. Used to add information, create drama, or show an interruption. Very flexible in English.</div>
+          <div class="punct-ex">He had one talent — the ability to listen carefully.</div>
+        </div>
+        <div class="punct-card">
+          <div class="punct-mark">'</div>
+          <div class="punct-name">Apostrophe</div>
+          <div class="punct-rule">Two uses only: (1) contractions — it's, don't, she's. (2) possession — John's bag, the children's toys. NEVER for plurals.</div>
+          <div class="punct-ex">It's John's responsibility. The teachers' meeting.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive writing checker EN -->
+    <div class="section">
+      <div class="section-label">Interactive · Writing error spotter</div>
+      <div class="section-title">Choose a sentence — identify the error and see the correction</div>
+      <div class="builder-sim">
+        <div class="builder-header">🇬🇧 Spot the writing error</div>
+        <div class="builder-body">
+          <div class="bl-label">Choose a sentence to check</div>
+          <div class="bl-btns" id="en-write-btns">
+            <button class="bl-btn en-write"
+              data-wrong="The company changed it's logo last year."
+              data-error="its vs it's — apostrophe error"
+              data-right="The company changed its logo last year."
+              data-note="It's = it is / it has. Its = belonging to it. There is no apostrophe in the possessive 'its'. Test: can you say 'it is' in its place? 'The company changed it is logo' — no. Therefore: its (no apostrophe).">
+              📛 it's vs its
+            </button>
+            <button class="bl-btn en-write"
+              data-wrong="I finished my work, I sent it to my manager."
+              data-error="Comma splice — two independent clauses joined by comma alone"
+              data-right="I finished my work and sent it to my manager. / I finished my work; I sent it to my manager."
+              data-note="Two complete sentences cannot be joined by only a comma. Fix: add a conjunction (and/but/so), use a semicolon, or split into two sentences. The comma splice is the most common punctuation error in English essays.">
+              🔗 comma splice
+            </button>
+            <button class="bl-btn en-write"
+              data-wrong="Less students attended the lecture than expected."
+              data-error="fewer vs less — countable noun requires 'fewer'"
+              data-right="Fewer students attended the lecture than expected."
+              data-note="Students are countable (you can count them: 1 student, 2 students). Countable nouns take 'fewer'. Less is for uncountable nouns: less water, less time, less effort. Fewer people, fewer books, fewer problems.">
+              🔢 fewer vs less
+            </button>
+            <button class="bl-btn en-write"
+              data-wrong="Their going to present there findings tomorrow."
+              data-error="there/their/they're confusion — two errors in one sentence"
+              data-right="They're going to present their findings tomorrow."
+              data-note="They're = they are (contraction). Their = belonging to them (possessive). There = that place or introductory 'there is/are'. Test each word: 'They are going' ✓ → They're. 'Belonging to them' ✓ → their.">
+              🎭 there/their/they're
+            </button>
+            <button class="bl-btn en-write"
+              data-wrong="Yours faithfully, James Smith (written after 'Dear Mr Johnson,')"
+              data-error="Wrong sign-off — sincerely follows a named salutation"
+              data-right="Yours sincerely, James Smith"
+              data-note="The rule: if you used a specific name (Dear Mr Johnson) → Yours sincerely. If you wrote Dear Sir/Madam → Yours faithfully. This rule is uniquely British — Americans use 'Sincerely' regardless. Breaking it in a formal UK letter signals unfamiliarity with convention.">
+              ✉️ sincerely vs faithfully
+            </button>
+            <button class="bl-btn en-write"
+              data-wrong="The weather effected the match result significantly."
+              data-error="effect vs affect — affect is the verb, effect is the noun"
+              data-right="The weather affected the match result significantly."
+              data-note="Affect = verb (to have an impact on something). Effect = noun (the impact itself). 'The weather affected [verb] the result. The effect [noun] of the weather was significant.' Memory: RAVEN — Remember, Affect is a Verb, Effect is a Noun.">
+              📝 affect vs effect
+            </button>
+          </div>
+          <div class="bl-result" id="en-write-result">
+            <div class="blr-empty">Choose a sentence above to spot the error and see the correction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture EN -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">✍️</span>
+        <div class="culture-text">
+          <strong>Why written English matters more than ever — and why it is increasingly rare</strong><br/>
+          In an era of voice messages, emoji, and autocorrect, the ability to write clear, correct, well-structured English has become a genuine differentiator. Surveys consistently show that poor written English damages professional credibility — hiring managers report rejecting CVs for apostrophe errors, and business communication studies find that spelling and punctuation mistakes reduce perceived intelligence and trustworthiness. Yet writing standards in native English speakers are also declining — schools teach less formal writing, and informal digital communication has blurred conventions. This means that a non-native English speaker who writes clearly, correctly, and with appropriate register can actually outshine many native speakers in professional contexts. The investment in learning formal written English is not nostalgic — it is strategic. Clear writing is clear thinking made visible, and it is always impressive regardless of where the writer comes from.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz EN -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 15 English — writing skills</div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sign-off is correct after "Dear Sir or Madam,"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Yours sincerely</button>
+          <button class="quiz-btn" data-answer="correct">Yours faithfully</button>
+          <button class="quiz-btn" data-answer="wrong">Kind regards</button>
+          <button class="quiz-btn" data-answer="wrong">Best wishes</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which sentence is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">The dog wagged it's tail happily.</button>
+          <button class="quiz-btn" data-answer="correct">The dog wagged its tail happily.</button>
+          <button class="quiz-btn" data-answer="wrong">The dog wagged its' tail happily.</button>
+          <button class="quiz-btn" data-answer="wrong">The dog wagged it tail happily.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What is a comma splice?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Using too many commas in a list</button>
+          <button class="quiz-btn" data-answer="correct">Joining two independent clauses with only a comma, without a conjunction</button>
+          <button class="quiz-btn" data-answer="wrong">Omitting the Oxford comma</button>
+          <button class="quiz-btn" data-answer="wrong">Using a comma after an introductory phrase</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which is correct: "fewer" or "less"? — "___ than 10 people came to the event."</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="correct">Fewer — people are countable</button>
+          <button class="quiz-btn" data-answer="wrong">Less — it sounds more natural</button>
+          <button class="quiz-btn" data-answer="wrong">Both are equally correct</button>
+          <button class="quiz-btn" data-answer="wrong">Less — events are uncountable</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end English -->
+
+
+  <!-- ══════════════════════════════
+       SPANISH
+  ══════════════════════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Español</div>
+        <div class="lang-sub">Week 15 · Weather &amp; seasons · Nature vocabulary · Ya/todavía · Spanish exclamations</div>
+      </div>
+    </div>
+
+    <!-- Weather vocabulary -->
+    <div class="section">
+      <div class="section-label">Lesson 1 · El tiempo — weather vocabulary</div>
+      <div class="section-title">¿Qué tiempo hace? — talking about the weather in Spanish</div>
+      <p>Spanish uses two main structures for weather: <strong>hacer</strong> (to make/do) for most conditions and <strong>haber</strong> (impersonal — hay) for precipitation and fog. A third option is using <strong>estar</strong> with adjectives. Unlike English, Spanish doesn't say "it is raining" with a subject pronoun — the verb itself is impersonal.</p>
+
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; margin-top:12px; font-size:13px; line-height:2.3;">
+        <strong>Hacer + weather noun:</strong> Hace calor / frío / sol / viento / buen/mal tiempo.<br/>
+        <strong>Haber (hay) + noun:</strong> Hay niebla / tormenta / nubes. · Hay mucho viento.<br/>
+        <strong>Llover/Nevar (impersonal):</strong> <em>Llueve</em> (it rains) · <em>Está lloviendo</em> (it is raining) · <em>Nieva</em> (it snows).<br/>
+        <strong>Estar + adjective:</strong> El día está nublado / despejado / soleado.
+      </div>
+
+      <div class="weather-grid" id="es-weather-grid">
+        <div class="weather-card"
+          data-es="Hace sol"
+          data-pron="/ˈase sol/"
+          data-en="It's sunny"
+          data-note="Hacer + sol. El sol = the sun. Hace mucho sol = it's very sunny. Un día soleado = a sunny day (adjective). La luz solar = sunlight. La insolación = sunstroke — important in Spain's hot summers!">
+          <div class="weather-icon">☀️</div>
+          <div class="weather-es">Hace sol</div>
+          <div class="weather-en">sunny</div>
+        </div>
+        <div class="weather-card"
+          data-es="Llueve / Está lloviendo"
+          data-pron="/ˈʎweβe/"
+          data-en="It's raining"
+          data-note="Llover is an o→ue stem-changing verb: llueve (it rains). Present continuous: está lloviendo. La lluvia = rain (noun). Lluvioso = rainy. Un chaparrón = a downpour. Está lloviendo a cántaros = it's raining cats and dogs (lit. 'pouring pitchers').">
+          <div class="weather-icon">🌧️</div>
+          <div class="weather-es">Llueve</div>
+          <div class="weather-en">raining</div>
+        </div>
+        <div class="weather-card"
+          data-es="Nieva / Está nevando"
+          data-pron="/ˈnjeβa/"
+          data-en="It's snowing"
+          data-note="Nevar is also o→ue: nieva (it snows). La nieve = snow. Nevado = snowy (also a name for snow-capped peaks). Un copo de nieve = a snowflake. In Spain, it snows mainly in the north and mountains — the Pyrenees, Sierra Nevada, and Picos de Europa.">
+          <div class="weather-icon">❄️</div>
+          <div class="weather-es">Nieva</div>
+          <div class="weather-en">snowing</div>
+        </div>
+        <div class="weather-card"
+          data-es="Hace calor / frío"
+          data-pron="/ˈase kaˈloɾ/"
+          data-en="It's hot / cold"
+          data-note="Hacer + calor/frío. Mucho calor = very hot. Hace un calor terrible = it's terribly hot. Also remember: Tengo calor/frío = I am hot/cold (personal, uses tener). El calor = heat/warmth. El frío = cold. Hace un frío que pela = it's bitterly cold.">
+          <div class="weather-icon">🌡️</div>
+          <div class="weather-es">Hace calor/frío</div>
+          <div class="weather-en">hot / cold</div>
+        </div>
+        <div class="weather-card"
+          data-es="Hay niebla"
+          data-pron="/aj ˈnjeβla/"
+          data-en="It's foggy"
+          data-note="Haber (hay) + niebla. La niebla = fog. La neblina = mist (lighter). Hay mucha niebla = it's very foggy. Niebla espesa = thick fog. The Galician coast (northwest Spain) is famous for its persistent fog and mist — a feature of its Atlantic climate.">
+          <div class="weather-icon">🌫️</div>
+          <div class="weather-es">Hay niebla</div>
+          <div class="weather-en">foggy</div>
+        </div>
+        <div class="weather-card"
+          data-es="Hay tormenta"
+          data-pron="/aj toɾˈmenta/"
+          data-en="There's a storm"
+          data-note="La tormenta = storm. Hay tormenta = there's a storm. Truena = it's thundering. Hay truenos = there's thunder. Relampaguea / hay relámpagos = there's lightning. Una tormenta de verano = a summer storm — very common in Spain's interior during August.">
+          <div class="weather-icon">⛈️</div>
+          <div class="weather-es">Hay tormenta</div>
+          <div class="weather-en">stormy</div>
+        </div>
+        <div class="weather-card"
+          data-es="Hace viento"
+          data-pron="/ˈase ˈbjento/"
+          data-en="It's windy"
+          data-note="Hacer + viento. Hace mucho viento = it's very windy. El viento = wind. Ventoso = windy (adjective). Un vendaval = a gale. La tramontana = the cold north wind of Catalonia and the Balearics — fierce and distinctive enough to have its own name.">
+          <div class="weather-icon">💨</div>
+          <div class="weather-es">Hace viento</div>
+          <div class="weather-en">windy</div>
+        </div>
+        <div class="weather-card"
+          data-es="Está nublado"
+          data-pron="/esˈta nuˈβlaðo/"
+          data-en="It's cloudy"
+          data-note="Estar + nublado. Las nubes = clouds. Nublado = cloudy (adjective with estar). Despejado = clear/cloudless (opposite). Está parcialmente nublado = it's partly cloudy. El cielo = the sky. Un cielo encapotado = an overcast sky.">
+          <div class="weather-icon">☁️</div>
+          <div class="weather-es">Está nublado</div>
+          <div class="weather-en">cloudy</div>
+        </div>
+        <div class="weather-card"
+          data-es="Hace buen/mal tiempo"
+          data-pron="/ˈase bwen ˈtjempo/"
+          data-en="The weather is good/bad"
+          data-note="The most general weather summary phrases. Hace buen tiempo = the weather is good. Hace mal tiempo = the weather is bad. ¿Qué tiempo hace? = What's the weather like? ¿Cuál es la previsión del tiempo? = What's the weather forecast?">
+          <div class="weather-icon">🌈</div>
+          <div class="weather-es">Buen/mal tiempo</div>
+          <div class="weather-en">good/bad weather</div>
+        </div>
+        <div class="weather-card"
+          data-es="Está despejado"
+          data-pron="/esˈta despeˈxaðo/"
+          data-en="It's clear / cloudless"
+          data-note="Estar + despejado. Despejado = clear, cloudless. Un cielo despejado = a clear sky. El sol brilla = the sun is shining. Una tarde despejada = a clear afternoon. Used in weather forecasts: mañana estará despejado = tomorrow will be clear.">
+          <div class="weather-icon">🌤️</div>
+          <div class="weather-es">Está despejado</div>
+          <div class="weather-en">clear sky</div>
+        </div>
+        <div class="weather-card"
+          data-es="Graniza / Hay granizo"
+          data-pron="/ɡɾaˈniθa/"
+          data-en="It's hailing"
+          data-note="Granizar = to hail. El granizo = hail. Graniza = it hails (impersonal). Hay granizo = there's hail. Very common in central Spain in spring — hailstones can damage crops and cars. Las piedras de granizo = hailstones.">
+          <div class="weather-icon">🌨️</div>
+          <div class="weather-es">Graniza</div>
+          <div class="weather-en">hailing</div>
+        </div>
+        <div class="weather-card"
+          data-es="Hay humedad"
+          data-pron="/aj umeˈðað/"
+          data-en="It's humid"
+          data-note="La humedad = humidity/dampness. Hay mucha humedad = it's very humid. Húmedo = humid (adjective). El bochorno = sultry heat (muggy). Un día bochornoso = a muggy day. Coastal Spain (especially Valencia and Andalusia) can be extremely humid in summer.">
+          <div class="weather-icon">💦</div>
+          <div class="weather-es">Hay humedad</div>
+          <div class="weather-en">humid</div>
+        </div>
+      </div>
+      <div class="weather-detail" id="es-weather-detail">
+        <div class="wd-empty">Tap any weather card above to learn the full expression and vocabulary</div>
+      </div>
+    </div>
+
+    <!-- Seasons -->
+    <div class="section">
+      <div class="section-label">Lesson 2 · Las estaciones del año — the seasons</div>
+      <div class="section-title">Spain's four seasons — and the very different climates across the country</div>
+      <div class="season-grid">
+        <div class="season-card spring">
+          <div class="season-icon">🌸</div>
+          <div class="season-es">la primavera</div>
+          <div class="season-en">spring</div>
+          <div class="season-desc">March–May. Mild temperatures, wildflowers, rain in the north. Semana Santa (Holy Week) falls in spring. Las flores brotan (the flowers bloom). La temporada de alergia (hay fever season).</div>
+        </div>
+        <div class="season-card summer">
+          <div class="season-icon">☀️</div>
+          <div class="season-es">el verano</div>
+          <div class="season-en">summer</div>
+          <div class="season-desc">June–August. Very hot in the interior (40°C+). Crowded coasts. La siesta becomes essential. Los incendios forestales (forest fires) are a serious issue. School holidays: julio y agosto.</div>
+        </div>
+        <div class="season-card autumn">
+          <div class="season-icon">🍂</div>
+          <div class="season-es">el otoño</div>
+          <div class="season-en">autumn</div>
+          <div class="season-desc">September–November. Harvest season. Las vendimias (grape harvests) in Rioja and other wine regions. Temperatures drop pleasantly. La temporada de setas (mushroom season) — a beloved pastime.</div>
+        </div>
+        <div class="season-card winter">
+          <div class="season-icon">❄️</div>
+          <div class="season-es">el invierno</div>
+          <div class="season-en">winter</div>
+          <div class="season-desc">December–February. Mild on coasts, cold in the interior, snow in the mountains. La Navidad and Los Reyes Magos are the great winter celebrations. La temporada de esquí (ski season) in the Pyrenees and Sierra Nevada.</div>
+        </div>
+      </div>
+
+      <div class="phrase-list" style="margin-top:14px;">
+        <div class="phrase-card hl">
+          <span class="phrase-icon">🌡️</span>
+          <div>
+            <div class="phrase-native">¿A cuántos grados estamos hoy?</div>
+            <div class="phrase-sub">/a ˈkwantos ˈɡɾaðos esˈtamos ˈoi/</div>
+            <div class="phrase-en">What temperature is it today? (how many degrees are we at?)</div>
+            <div class="phrase-note">Spain uses Celsius exclusively. Estamos a treinta grados = We're at 30 degrees. La temperatura máxima/mínima = the maximum/minimum temperature. La previsión dice que... = the forecast says that...</div>
+          </div>
+        </div>
+        <div class="phrase-card">
+          <span class="phrase-icon">🌦️</span>
+          <div>
+            <div class="phrase-native">Parece que va a llover / a hacer calor.</div>
+            <div class="phrase-sub">/paˈɾeθe ke ˈβa a ʎoˈβeɾ/</div>
+            <div class="phrase-en">It looks like it's going to rain / be hot.</div>
+            <div class="phrase-note">Parecer que + ir a + infinitive = it seems like it's going to. Also: Creo que va a cambiar el tiempo (I think the weather is going to change). Se avecina tormenta = a storm is approaching (more dramatic).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ya and todavía -->
+    <div class="section">
+      <div class="section-label">Lesson 3 · Ya / Todavía — the Spanish already/still/yet/anymore</div>
+      <div class="section-title">Two tiny words with enormous nuance — depending entirely on context</div>
+      <p><strong>Ya</strong> and <strong>todavía</strong> (also <strong>aún</strong>) are among the most versatile and context-dependent words in Spanish. Their meaning shifts with tense, negation, and intonation — making them fascinating to study and occasionally confusing to master.</p>
+
+      <div style="background:#f9f8f5; border:0.5px solid #e5e4e0; border-radius:10px; padding:14px; margin-top:12px; font-size:13px; line-height:2.4;">
+        <strong style="color:#185FA5">YA — versatile word of completion, immediacy, and resigned acceptance:</strong><br/>
+        <strong>Ya</strong> + present/perfect = already: <em>Ya he comido.</em> (I've already eaten.)<br/>
+        <strong>Ya</strong> + future = soon / eventually: <em>Ya llamará.</em> (He'll call eventually.)<br/>
+        <strong>Ya no</strong> = not anymore: <em>Ya no vivo allí.</em> (I don't live there anymore.)<br/>
+        <strong>¡Ya!</strong> alone = right! / yes! / OK! / I know! — depends entirely on tone<br/>
+        <strong>Ya voy</strong> = I'm coming! (lit. "I go now" — response to being called)<br/><br/>
+        <strong style="color:#D85030">TODAVÍA / AÚN — still, yet, still not:</strong><br/>
+        <strong>Todavía</strong> + positive = still: <em>Todavía vive aquí.</em> (He still lives here.)<br/>
+        <strong>Todavía no / Aún no</strong> = not yet: <em>Todavía no he llegado.</em> (I haven't arrived yet.)<br/>
+        <strong>¿Todavía...?</strong> in question = still? / Is [thing] still happening?
+      </div>
+
+      <div class="tip-box tip-amber">
+        <strong>Ya vs todavía contrast pairs:</strong><br/>
+        ¿<strong>Ya</strong> has comido? = Have you eaten yet? / Have you already eaten?<br/>
+        ¿<strong>Todavía</strong> no has comido? = Haven't you eaten yet? (surprised — it's late!)<br/>
+        <strong>Ya</strong> no tengo hambre. = I'm no longer hungry. (I was, but not now.)<br/>
+        <strong>Todavía</strong> tengo hambre. = I'm still hungry. (I was and still am.)<br/>
+        The pair mirrors English already/yet vs still — but ya does even more duty than "already".
+      </div>
+    </div>
+
+    <!-- Spanish exclamations -->
+    <div class="section">
+      <div class="section-label">Lesson 4 · ¡Expresiones y exclamaciones! — Spanish exclamations</div>
+      <div class="section-title">The emotional vocabulary of everyday Spanish — from joy to frustration</div>
+      <p>Spanish is a language of vivid emotional expression. Exclamations and interjections are used constantly in everyday speech — and knowing them transforms your Spanish from correct to genuinely natural. They are also how Spanish speakers signal engagement, surprise, approval, and frustration without lengthy explanations.</p>
+
+      <div class="excl-grid" id="es-excl-grid">
+        <div class="excl-card"
+          data-word="¡Qué + adj/noun!"
+          data-use="Exclamations of quality — what a...! / how...!"
+          data-ex="¡Qué frío! (How cold!) · ¡Qué bonito! (How beautiful!) · ¡Qué lástima! (What a shame!) · ¡Qué suerte! (How lucky!) · ¡Qué asco! (How disgusting!)"
+          data-note="The most productive exclamation structure in Spanish. Add any noun or adjective after Qué. The inverted ¡ at the start is a distinctly Spanish punctuation feature — it alerts the reader that an exclamation is coming.">
+          <div class="excl-word">¡Qué...!</div>
+          <div class="excl-teaser">What a...! / How...!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Venga!"
+          data-use="Come on! / Let's go! / OK then! / Right!"
+          data-ex="¡Venga, vamos! (Come on, let's go!) · ¡Venga ya! (Oh come on! / No way!) · ¡Venga, trato hecho! (OK then, deal!)"
+          data-note="One of the most versatile Spanish interjections — especially in Spain. Context changes meaning entirely: agreement, encouragement, disbelief, or a goodbye ('¡Venga, hasta luego!'). Almost untranslatable as a single word.">
+          <div class="excl-word">¡Venga!</div>
+          <div class="excl-teaser">Come on! / OK! / Let's go!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Anda!"
+          data-use="Wow! / Go on! / No way! / Come off it!"
+          data-ex="¡Anda, qué sorpresa! (Wow, what a surprise!) · ¡Anda ya! (No way! / Come off it!) · ¡Anda, venga! (Go on then!)"
+          data-note="From the verb andar (to walk/go). ¡Anda! expresses surprise, disbelief, encouragement, or gentle shock. ¡Anda ya! is the standard way to express sceptical disbelief in Spain — 'oh come on, really?'">
+          <div class="excl-word">¡Anda!</div>
+          <div class="excl-teaser">Wow! / No way! / Really!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Menos mal!"
+          data-use="Thank goodness! / Just as well! / Phew!"
+          data-ex="¡Menos mal que trajiste el paraguas! (Thank goodness you brought the umbrella!) · ¡Menos mal que llegamos a tiempo! (Just as well we arrived on time!)"
+          data-note="Lit. 'less bad!' — expressing relief that something bad was avoided. One of Spanish's most charming expressions. Almost always followed by que + verb. The negative framing (less bad rather than 'how good') is characteristically Spanish.">
+          <div class="excl-word">¡Menos mal!</div>
+          <div class="excl-teaser">Thank goodness! / Phew!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Qué va!"
+          data-use="No way! / Not at all! / Absolutely not!"
+          data-ex="—¿Te ha gustado la película? —¡Qué va! Fue horrible. (Did you like the film? — No way! It was terrible.)"
+          data-note="A strong colloquial negative. Qué va dismisses what was said with energy. Softer alternative: para nada (not at all). ¡Qué va! is casual and emphatic — use it in conversation, not formal writing.">
+          <div class="excl-word">¡Qué va!</div>
+          <div class="excl-teaser">No way! / Absolutely not!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Madre mía!"
+          data-use="Oh my goodness! / Good grief! / Wow!"
+          data-ex="¡Madre mía, qué calor! (Oh my goodness, it's so hot!) · ¡Madre mía, qué desastre! (Good grief, what a disaster!)"
+          data-note="Lit. 'my mother!' — a very common exclamation of surprise, shock, or overwhelm. Similar to English 'Oh my God!' but more universally used. ¡Dios mío! is the religious version. Both are common in everyday speech regardless of religious belief.">
+          <div class="excl-word">¡Madre mía!</div>
+          <div class="excl-teaser">Oh my goodness! / Wow!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Hombre! / ¡Mujer!"
+          data-use="Hey! / Come on! / Well! / Oh! (used to soften, emphasise or express warmth)"
+          data-ex="¡Hombre, claro! (Well, of course!) · ¡Hombre, qué alegría verte! (Hey, how lovely to see you!) · ¡Hombre, tampoco es para tanto! (Come on, it's not that bad!)"
+          data-note="Despite meaning 'man' or 'woman', these are used with both genders in Spain as exclamative softeners. They add warmth, emphasis, or gentle reproach. ¡Mujer! is more common when addressing women. Common in Spain, less so in Latin America.">
+          <div class="excl-word">¡Hombre! / ¡Mujer!</div>
+          <div class="excl-teaser">Hey! / Come on! / Well!</div>
+        </div>
+        <div class="excl-card"
+          data-word="¡Ojalá!"
+          data-use="I hope so! / If only! / Hopefully!"
+          data-ex="—¿Crees que lloverá? —¡Ojalá que no! (Do you think it'll rain? — I hope not!) · ¡Ojalá pudiera ir! (If only I could go!)"
+          data-note="From Arabic wa-šāʾa llāh (if God wills it). Always followed by subjunctive. One of Spanish's most beautiful words — expressing longing, hope, or wistful desire. ¡Ojalá! alone = let's hope so! One of the clearest Arabic traces in the Spanish language.">
+          <div class="excl-word">¡Ojalá!</div>
+          <div class="excl-teaser">I hope so! / If only!</div>
+        </div>
+      </div>
+      <div class="excl-detail" id="es-excl-detail">
+        <div class="ed-empty">Tap any exclamation above to explore its meaning, examples, and cultural context</div>
+      </div>
+    </div>
+
+    <!-- Culture ES -->
+    <div class="section">
+      <div class="section-label">Culture note</div>
+      <div class="culture-note">
+        <span class="culture-icon">🌞</span>
+        <div class="culture-text">
+          <strong>El tiempo en España — why weather is more than small talk</strong><br/>
+          In Britain, weather is the canonical small talk subject — a safe, neutral topic for strangers. In Spain, it's also discussed constantly — but with greater emotional intensity. A summer heat wave (una ola de calor) is a genuine social emergency: work schedules adjust, schools close, the elderly are monitored. The <em>calima</em> — a hot, dust-laden wind from the Sahara that turns the sky yellow-orange — arrives several times a year and is discussed with dramatic flair. The <em>gota fría</em> (cold drop — a meteorological phenomenon causing extreme rainfall) produces catastrophic flooding in Valencia and the Mediterranean coast every few years, and its name alone evokes dread. Spanish weather is extreme by Northern European standards — 45°C summers in Seville, -15°C winters in Burgos, and some of the highest sunshine hours in Europe on the Canary Islands. Understanding weather vocabulary in Spanish is also understanding one of the country's most fundamental daily realities.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz ES -->
+    <div class="section">
+      <div class="section-label">Practice quiz</div>
+      <div class="section-title">Week 15 Spanish — weather, ya/todavía &amp; exclamations</div>
+      <div class="quiz-item">
+        <div class="quiz-q">How do you say "It's very windy" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Está muy viento.</button>
+          <button class="quiz-btn" data-answer="correct">Hace mucho viento.</button>
+          <button class="quiz-btn" data-answer="wrong">Hay muy viento.</button>
+          <button class="quiz-btn" data-answer="wrong">Es muy ventoso el tiempo.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "Ya no vivo allí" mean?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">I still live there.</button>
+          <button class="quiz-btn" data-answer="wrong">I have never lived there.</button>
+          <button class="quiz-btn" data-answer="correct">I don't live there anymore.</button>
+          <button class="quiz-btn" data-answer="wrong">I already live there.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">What does "¡Menos mal!" express?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">What a shame! / How terrible!</button>
+          <button class="quiz-btn" data-answer="correct">Thank goodness! / Relief that something bad was avoided</button>
+          <button class="quiz-btn" data-answer="wrong">Less is more! / A minimalist principle</button>
+          <button class="quiz-btn" data-answer="wrong">No way! / Disbelief</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Which correctly expresses "I haven't arrived yet" in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong">Ya he llegado.</button>
+          <button class="quiz-btn" data-answer="wrong">Ya no he llegado.</button>
+          <button class="quiz-btn" data-answer="correct">Todavía no he llegado.</button>
+          <button class="quiz-btn" data-answer="wrong">Todavía he llegado.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div><!-- end Spanish -->
+
+
+  <!-- ══════════════════════════════
+       FOUR-WAY COMPARISON
+  ══════════════════════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Four-language comparison — weather expressions &amp; exclamations</div>
+    <div class="section-title" style="margin-bottom:4px">How all four languages talk about the weather — and express surprise</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">Weather grammar and exclamation patterns reveal structural choices that each language has made about impersonality and emotional expression.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"It's raining"</td>
+        <td>雨が降っています<br/><span style="font-size:11px; color:#888">Ame ga futte imasu<br/>"Rain is falling" — rain is the subject!</span></td>
+        <td>비가 와요<br/><span style="font-size:11px; color:#888">Bi-ga wayo<br/>"Rain comes" — also has subject</span></td>
+        <td>It is raining<br/><span style="font-size:11px; color:#888">Dummy "it" subject — nothing is actually raining</span></td>
+        <td>Llueve / Está lloviendo<br/><span style="font-size:11px; color:#888">Impersonal verb — no subject at all</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"It's hot"</td>
+        <td>暑いです (atsui desu)<br/><span style="font-size:11px; color:#888">Adjective + copula — hot-is</span></td>
+        <td>더워요 (deowoyo)<br/><span style="font-size:11px; color:#888">Descriptive verb — hot-ness</span></td>
+        <td>It is hot<br/><span style="font-size:11px; color:#888">Dummy subject "it"</span></td>
+        <td>Hace calor<br/><span style="font-size:11px; color:#888">"Makes heat" — hacer + noun!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"Wow!" / surprise</td>
+        <td>すごい！(Sugoi!)<br/><span style="font-size:11px; color:#888">Amazing! · へえ！(Hee!) = Really?</span></td>
+        <td>대박！(Daebak!)<br/><span style="font-size:11px; color:#888">Jackpot/Amazing! · 아！(A!) = Ah!</span></td>
+        <td>Wow! / Oh! / Blimey! (British)<br/><span style="font-size:11px; color:#888">Relatively limited repertoire</span></td>
+        <td>¡Madre mía! / ¡Anda! / ¡Venga!<br/><span style="font-size:11px; color:#888">Very rich — many context-specific options</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"Already / yet"</td>
+        <td>もう (mou)<br/><span style="font-size:11px; color:#888">One word covers already AND not yet (with negative): もう食べた (already ate) · もう食べていない (haven't eaten yet)</span></td>
+        <td>이미 / 벌써 / 아직<br/><span style="font-size:11px; color:#888">이미/벌써 = already · 아직 = still/yet — separate words</span></td>
+        <td>already / yet / still<br/><span style="font-size:11px; color:#888">Three separate words with specific placement rules</span></td>
+        <td>ya / todavía / aún<br/><span style="font-size:11px; color:#888">Ya covers several functions · todavía = still/not yet</span></td>
+      </tr>
+    </table>
+    <div class="tip-box tip-blue" style="margin-top:14px">
+      <strong>The weather grammar insight:</strong> Languages treat weather very differently grammatically. English uses a dummy "it" that refers to nothing — purely a grammatical placeholder. Japanese and Korean make the weather phenomenon (rain, heat) the actual subject. Spanish uses a completely subjectless impersonal construction with hacer or the impersonal verb llueve/nieva — no subject at all. These choices reflect deep grammatical differences: English requires a subject in every sentence; Spanish does not. Spanish's impersonal weather expressions are more honest, in a way — the rain just rains, with nobody and nothing doing the raining.
+    </div>
+  </div>
+
+
+  <!-- Week 16 preview -->
+  <div class="preview-box">
+    <div class="section-label">Coming up in Week 16 — The Grand Finale!</div>
+    <div class="two-col">
+      <div class="col-card en">
+        <div class="col-lang">🇬🇧 English</div>
+        <div class="col-content">Complete grammar toolkit review · The 20 most powerful English phrases · Survival scenario conversations · Final challenge quiz · Where to go next — resources for continued learning.</div>
+      </div>
+      <div class="col-card es">
+        <div class="col-lang">🇪🇸 Spanish</div>
+        <div class="col-content">Complete Spanish grammar toolkit review · The 20 most powerful Spanish phrases · Survival scenario conversations · Final challenge quiz · Cross-language insights from all four languages.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa;">
+    Week 15 complete · Click <a href="Week16.E&S.html">here</a> when you're ready for Week 15 🇬🇧🇪🇸<br>One week to go — the Grand Finale awaits! 🇬🇧🇪🇸✨
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Quiz logic ── */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      this.classList.add(this.dataset.answer);
+      feedback.textContent = this.dataset.answer === 'correct'
+        ? '✓ Correct! Great work.'
+        : '✗ Not quite — review the section above.';
+      feedback.style.color = this.dataset.answer === 'correct' ? '#0f6e56' : '#791F1F';
+    });
+  });
+
+  /* ── English writing error spotter ── */
+  document.querySelectorAll('.en-write').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.en-write').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('en-write-result').innerHTML = `
+        <div class="blr-breakdown" style="color:#D85A30; margin-bottom:6px;">
+          ❌ <em>${d.wrong}</em>
+        </div>
+        <div class="blr-breakdown">⚠️ <strong>Error:</strong> ${d.error}</div>
+        <div class="blr-sentence" style="color:#0f6e56; font-size:16px; margin-top:4px;">✅ ${d.right}</div>
+        <div class="blr-note">💡 ${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish weather vocabulary grid ── */
+  document.querySelectorAll('#es-weather-grid .weather-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-weather-grid .weather-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-weather-detail').innerHTML = `
+        <div class="wd-es">${d.es}</div>
+        <div class="wd-pron">${d.pron}</div>
+        <div class="wd-en">${d.en}</div>
+        <div class="wd-note">${d.note}</div>
+      `;
+    });
+  });
+
+  /* ── Spanish exclamations grid ── */
+  document.querySelectorAll('#es-excl-grid .excl-card').forEach(card => {
+    card.addEventListener('click', function () {
+      document.querySelectorAll('#es-excl-grid .excl-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      const d = this.dataset;
+      document.getElementById('es-excl-detail').innerHTML = `
+        <div class="ed-word">${d.word}</div>
+        <div class="ed-use">${d.use}</div>
+        <div class="ed-ex">${d.ex}</div>
+        <div class="ed-note">${d.note}</div>
+      `;
+    });
+  });
+
+});
+</script>
+</body>
+</html>
