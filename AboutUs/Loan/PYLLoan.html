@@ -1,121 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=600">
-    <meta name="description" content="Love never fails">
-    <meta name="keywords" content="GOD MADE US A FAMILY">
-    <link rel="SHORTCUT ICON" type="image/x-icon" href="../../ico/the_lin.ico">
-    <link rel="stylesheet" href="../../css/style.css" type="text/css">
-    <script src="script.js"></script>
-    <title>The Lin Family - Loan Calculator</title>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Love never fails">
+  <meta name="keywords" content="GOD MADE US A FAMILY">
+  <link rel="SHORTCUT ICON" type="image/x-icon" href="../../ico/the_lin.ico">
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
+  <script src="script.js"></script>
+  <title>The Lin Family - Loan Calculator</title>
+</head>
+<body>
+  <div class="container">
 
-  <body>
-    <div class="container">
+    <div class="header-container">
+      <img src="../../png/loan_banner.png" alt="Loan Calculator"
+        class="site-banner">
+    
+      <div class="sub-nav">
+        <a href="../../index.html">Home</a><span>|</span>
+        <a href="../../page2.html">About Us</a><span>|</span>
+        <a href="../../page3.html">Photos</a><span>|</span>
+        <a href="../../page4.html">Favorites</a><span>|</span>
+        <a href="../../page5.html">What's New</a>
+      </div>      
 
-      <div class="header-container">
-        <img src="../../png/loan_banner.png" alt="Loan Calculator"
-          class="site-banner">
-      
-        <div class="sub-nav">
-          <a href="../../index.html">Home</a><span>|</span>
-          <a href="../../page2.html">About Us</a><span>|</span>
-          <a href="../../page3.html">Photos</a><span>|</span>
-          <a href="../../page4.html">Favorites</a><span>|</span>
-          <a href="../../page5.html">What's New</a>
-        </div>      
+      <hr class="section-divider">
+    </div>
 
-        <hr class="section-divider">
-      </div>
+    <div class="calculator-wrapper">
+      <form name="loandata">
 
-      <div class="calculator-wrapper">
-        <form name="loandata">
+        <h2>Enter Loan Information:</h2>
 
-          <h2>Enter Loan Information:</h2>
-
-          <div class="form-group">
-            <label>Amount of the loan:</label>
-            <div class="input-wrapper">
-              <span style="margin-right: 8px;">$</span>
-              <input class="form-control" type="number" name="principal"
-                onchange="calculate()">
-            </div>
+        <div class="form-group">
+          <label>Amount of the loan:</label>
+          <div class="input-wrapper">
+            <span style="margin-right: 8px;">$</span>
+            <input class="form-control" type="number" name="principal"
+              onchange="calculate()">
           </div>
+        </div>
 
-          <div class="form-group">
-            <label>Annual percentage rate:</label>
-            <div class="input-wrapper">
-              <input class="form-control" type="number" name="interest"
-                step="0.01" onchange="calculate()">
-              <span style="margin-left: 8px;">%</span>
-            </div>
+        <div class="form-group">
+          <label>Annual percentage rate:</label>
+          <div class="input-wrapper">
+            <input class="form-control" type="number" name="interest"
+              step="0.01" onchange="calculate()">
+            <span style="margin-left: 8px;">%</span>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label>Repayment period:</label>
-            <div class="input-wrapper">
-              <input class="form-control" type="number" name="years"
-                onchange="calculate()">
-              <span style="margin-left: 8px; font-size: 15px;">years</span>
-            </div>
+        <div class="form-group">
+          <label>Repayment period:</label>
+          <div class="input-wrapper">
+            <input class="form-control" type="number" name="years"
+              onchange="calculate()">
+            <span style="margin-left: 8px; font-size: 15px;">years</span>
           </div>
+        </div>
 
-          <button class="calc-btn" type="button"
-            onclick="calculate()">CALCULATE</button>
+        <button class="calc-btn" type="button"
+          onclick="calculate()">CALCULATE</button>
 
-          <h2>Payment Information:</h2>
+        <h2>Payment Information:</h2>
 
-          <div class="form-group">
-            <label>Your monthly payment will be:</label>
-            <div class="input-wrapper">
-              <span style="margin-right: 8px;">$</span>
-              <input class="form-control" type="text" name="payment" readonly>
-            </div>
+        <div class="form-group">
+          <label>Your monthly payment will be:</label>
+          <div class="input-wrapper">
+            <span style="margin-right: 8px;">$</span>
+            <input class="form-control" type="text" name="payment" readonly>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label>Your total payment will be:</label>
-            <div class="input-wrapper">
-              <span style="margin-right: 8px;">$</span>
-              <input class="form-control" type="text" name="total" readonly>
-            </div>
+        <div class="form-group">
+          <label>Your total payment will be:</label>
+          <div class="input-wrapper">
+            <span style="margin-right: 8px;">$</span>
+            <input class="form-control" type="text" name="total" readonly>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label>Your total interest will be:</label>
-            <div class="input-wrapper">
-              <span style="margin-right: 8px;">$</span>
-              <input class="form-control" type="text" name="totalinterest"
-                readonly>
-            </div>
+        <div class="form-group">
+          <label>Your total interest will be:</label>
+          <div class="input-wrapper">
+            <span style="margin-right: 8px;">$</span>
+            <input class="form-control" type="text" name="totalinterest"
+              readonly>
           </div>
+        </div>
 
-        </form>
-      </div>
+      </form>
+    </div>
 
-      <div class="footer-container">
-        <hr class="footer-divider">
-        <div class="footer">
-          <div class="footer-email">
-            <a href="mailto:patrickylin@gmail.com"><img title="E-mail"
-                src="../../png/E-mail.png" alt="Email"></a>
+    <div class="footer-container">
+      <hr class="footer-divider">
+      <div class="footer">
+        <div class="footer-email">
+          <a href="mailto:patrickylin@gmail.com"><img title="E-mail"
+              src="../../png/E-mail.png" alt="Email"></a>
+        </div>
+        <div class="footer-text">
+          <div class="footer-links">
+            <a href="../../index.html">Home Page</a> |
+            <a href="../../page2.html">About Us</a> |
+            <a href="../../page3.html">Photo Album</a> |
+            <a href="../../page4.html">Favorite Sites</a> |
+            <a href="../../page5.html">What's New</a>
           </div>
-          <div class="footer-text">
-            <div class="footer-links">
-              <a href="../../index.html">Home Page</a> |
-              <a href="../../page2.html">About Us</a> |
-              <a href="../../page3.html">Photo Album</a> |
-              <a href="../../page4.html">Favorite Sites</a> |
-              <a href="../../page5.html">What's New</a>
-            </div>
-            <div class="copyright">
-              &copy; Copyright 1994 - 2026, The Lin Family. All rights
-              reserved.<br>Last update: April, 2026.
-            </div>
+          <div class="copyright">
+            &copy; Copyright 1994 - 2026, The Lin Family. All rights
+            reserved.<br>Last update: April, 2026.
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>

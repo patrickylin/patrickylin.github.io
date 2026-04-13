@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700,400italic,700italic|Open+Sans:400italic,600italic,700italic,400,300,600,700,800);
 
 .moonphases {
-	width: 555px;
+	width: 450px;
 	margin: 5px;
 	margin-left: auto;
 	margin-right: auto;
@@ -18,7 +18,7 @@
 }
 
 .moonphases_tiny {
-	width: 106px;
+	width: 100px;
 	margin: 2px;
 	margin-left: auto;
 	margin-right: auto;

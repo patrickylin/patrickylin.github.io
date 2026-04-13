@@ -99,9 +99,9 @@ body {
 }
 
 /* Modern Calculator Form Layout (No Tables) */
-.calculator-wrapper, .clock-wrapper {
+.calculator-wrapper, .clock-wrapper, .moon-wrapper {
   max-width: 550px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto;
   background: #f9f9f9;
   padding: 30px;
   border-radius: 12px;
@@ -182,7 +182,7 @@ body {
   border: none;
   border-top: 1px solid #ccc;
   width: 95%;
-  margin: 0 auto 10px auto;
+  margin-top: 10px;
 }
 .footer {
   font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
