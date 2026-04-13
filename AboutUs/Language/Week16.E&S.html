@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Week 16 — English & Spanish: The Grand Finale</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.7; font-size: 15px; }
+  .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  /* Celebration header */
+  .celebration { background: linear-gradient(135deg, #1a1a18 0%, #2d2d2a 100%); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; color: #fff; text-align: center; }
+  .celebration-emoji { font-size: 48px; margin-bottom: 12px; }
+  .celebration-title { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+  .celebration-sub { font-size: 14px; opacity: 0.75; line-height: 1.7; }
+  .stat-row { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num   { font-size: 28px; font-weight: 500; color: #7de8a8; display: block; }
+  .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .week-badge { display: inline-block; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+
+  .lang-block { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; margin-bottom: 2rem; overflow: hidden; }
+  .lang-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #eee; }
+  .lang-flag { font-size: 28px; }
+  .lang-title { font-size: 18px; font-weight: 500; }
+  .lang-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .section { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid #f0f0f0; }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Course timeline */
+  .timeline { margin-top: 12px; }
+  .timeline-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .tl-week { font-size: 11px; font-weight: 600; color: #fff; border-radius: 6px; padding: 2px 7px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+  .tl-week.en { background: #185FA5; }
+  .tl-week.es { background: #D85030; }
+  .tl-week.both { background: #1D9E75; }
+  .tl-content { font-size: 13px; color: #333; line-height: 1.5; }
+  .tl-content strong { color: #1a1a18; }
+
+  /* Grammar toolkit cards */
+  .grammar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .grammar-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 12px 14px; }
+  .grammar-card.mastered { background: #f0f8f5; border-color: #a8ddc5; }
+  .g-week    { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; font-weight: 600; }
+  .g-pattern { font-size: 15px; color: #185FA5; font-weight: 500; margin-bottom: 2px; }
+  .g-meaning { font-size: 12px; color: #333; margin-bottom: 4px; }
+  .g-example { font-size: 12px; color: #1D9E75; font-style: italic; }
+
+  /* Scenario simulator */
+  .scenario-sim { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 14px; overflow: hidden; margin-top: 12px; }
+  .scenario-header { background: #1a1a18; color: #fff; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .scenario-tabs { display: flex; border-bottom: 0.5px solid #eee; overflow-x: auto; }
+  .scenario-tab { padding: 9px 14px; font-size: 12px; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; flex-shrink: 0; }
+  .scenario-tab.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
+  .scenario-body { padding: 14px; }
+  .scenario-situation { background: #fff; border: 0.5px solid #eee; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 13px; color: #555; }
+  .scenario-situation strong { color: #1a1a18; }
+  .convo-row { margin-bottom: 10px; }
+  .convo-speaker { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; font-weight: 600; }
+  .convo-bubble { border-radius: 10px; padding: 10px 13px; font-size: 14px; display: inline-block; max-width: 90%; }
+  .convo-bubble.local { background: #fff; border: 0.5px solid #e5e4e0; color: #1a1a18; }
+  .convo-bubble.you { background: #f0f5fc; border: 0.5px solid #b8d4f0; color: #185FA5; }
+  .convo-rom { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .convo-en  { font-size: 11px; color: #555; }
+  .convo-grammar { font-size: 11px; color: #aaa; margin-top: 10px; font-style: italic; }
+
+  /* Phrase list */
+  .phrase-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .phrase-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 11px 14px; display: flex; align-items: flex-start; gap: 12px; }
+  .phrase-card.hl { background: #f0f8f5; border-color: #a8ddc5; }
+  .phrase-icon   { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .phrase-native { font-size: 17px; color: #1a1a18; margin-bottom: 1px; }
+  .phrase-en     { font-size: 12px; color: #333; font-weight: 500; }
+  .phrase-note   { font-size: 11px; color: #aaa; margin-top: 3px; font-style: italic; line-height: 1.5; }
+
+  /* Final quiz */
+  .quiz-item { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 10px; padding: 14px; margin-bottom: 8px; }
+  .quiz-q { font-size: 14px; color: #333; margin-bottom: 8px; font-weight: 500; }
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn { border: 0.5px solid #ccc; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .quiz-btn:hover { background: #f0f0ee; }
+  .quiz-btn.correct { background: #e1f5ee; border-color: #1D9E75; color: #0f6e56; }
+  .quiz-btn.wrong   { background: #fceaea; border-color: #E24B4A; color: #791F1F; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; min-height: 18px; }
+  .quiz-score { background: #f0f8f5; border: 0.5px solid #a8ddc5; border-radius: 10px; padding: 12px 16px; margin-top: 12px; font-size: 14px; color: #0f6e56; display: none; text-align: center; }
+
+  /* Next steps */
+  .nextsteps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .nextstep-card { background: #f9f8f5; border: 0.5px solid #e5e4e0; border-radius: 12px; padding: 14px; }
+  .nextstep-card.featured { background: #fdf9f0; border-color: #f0dfa8; }
+  .nextstep-icon  { font-size: 24px; margin-bottom: 6px; }
+  .nextstep-title { font-size: 14px; color: #1a1a18; font-weight: 500; margin-bottom: 4px; }
+  .nextstep-desc  { font-size: 12px; color: #555; line-height: 1.6; }
+  .nextstep-tag   { display: inline-block; background: #f0f5fc; border: 0.5px solid #b8d4f0; border-radius: 6px; padding: 2px 8px; font-size: 11px; color: #185FA5; margin-top: 5px; }
+
+  /* Level table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  th { text-align: left; color: #999; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 10px; border-bottom: 0.5px solid #eee; }
+  td { padding: 9px 10px; border-bottom: 0.5px solid #f5f5f5; color: #333; vertical-align: top; }
+
+  /* Four-way */
+  .fourway { background: #fff; border: 0.5px solid #ddd; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+
+  /* Final message */
+  .final-message { background: #1a1a18; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; color: #fff; }
+  .final-message h2 { font-size: 20px; font-weight: 500; margin-bottom: 12px; }
+  .final-message p  { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
+  .final-en { font-size: 20px; color: #7de8a8; text-align: center; margin: 14px 0 4px; }
+  .final-es { font-size: 20px; color: #f0c060; text-align: center; margin-bottom: 4px; }
+  .final-rom { font-size: 12px; color: rgba(255,255,255,0.45); text-align: center; }
+
+  /* Tips */
+  .tip-box { border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .tip-green  { background: #f0f8f5; border-left: 3px solid #1D9E75; }
+  .tip-blue   { background: #f0f5fc; border-left: 3px solid #378ADD; }
+  .tip-amber  { background: #fdf6ec; border-left: 3px solid #BA7517; }
+  .tip-gold   { background: #fdfaec; border-left: 3px solid #d4a800; }
+
+  @media (max-width: 520px) {
+    .grammar-grid, .nextsteps-grid { grid-template-columns: 1fr; }
+    .stat-row { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════ CELEBRATION ══════════════ -->
+  <div class="celebration">
+    <div class="celebration-emoji">🎉🇬🇧🇪🇸🎉</div>
+    <div class="celebration-title">Week 16 — The Grand Finale</div>
+    <div class="celebration-sub">You started with "Hello" and "Hola".<br/>Look at what you can do now.</div>
+    <div class="stat-row">
+      <div class="stat-item"><span class="stat-num">16</span><span class="stat-label">Weeks</span></div>
+      <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">Languages</span></div>
+      <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">Languages studied</span></div>
+      <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Grammar patterns</span></div>
+      <div class="stat-item"><span class="stat-num">600+</span><span class="stat-label">Words &amp; phrases</span></div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ COURSE TIMELINE ══════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">📚</span>
+      <div>
+        <div class="lang-title">Your Complete 16-Week Journey</div>
+        <div class="lang-sub">Everything covered — both languages — in one place</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">The full curriculum — what you've mastered</div>
+      <div class="timeline">
+        <div class="timeline-item"><span class="tl-week both">W1</span><div class="tl-content"><strong>Alphabet, Sounds &amp; Pronunciation</strong> — EN: 26 letters, 20 vowel sounds, schwa, pronunciation rules, tricky words · ES: 27 letters, 5 pure vowels, Ñ, RR, silent H, B=V</div></div>
+        <div class="timeline-item"><span class="tl-week both">W2</span><div class="tl-content"><strong>Sentences, Articles &amp; "To Be"</strong> — EN: SVO word order, a/an/the/zero article, am/is/are, first phrases · ES: SVO + pro-drop, el/la/un/una, ser vs estar introduced</div></div>
+        <div class="timeline-item"><span class="tl-week both">W3</span><div class="tl-content"><strong>Present Tense &amp; Numbers</strong> — EN: Present simple, -s rule, do/does, 20 core verbs · ES: Three verb families (-ar/-er/-ir), regular conjugation, 6 key irregulars, numbers 1–100</div></div>
+        <div class="timeline-item"><span class="tl-week both">W4</span><div class="tl-content"><strong>Numbers, Time &amp; Calendar</strong> — EN: Numbers to a billion, ordinals, telling time (digital + analogue), days/months, date formats · ES: Numbers to 1,000,000, gender in hundreds, las horas, días y meses</div></div>
+        <div class="timeline-item"><span class="tl-week both">W5</span><div class="tl-content"><strong>Present Continuous &amp; Past Tense</strong> — EN: am/is/are + -ing, simple vs continuous, stative verbs · ES: Pretérito indefinido (snap-photo past), regular endings, 10 key irregular past verbs</div></div>
+        <div class="timeline-item"><span class="tl-week both">W6</span><div class="tl-content"><strong>Past Simple &amp; Food/Dining</strong> — EN: -ed endings, 30 irregular verbs, did/didn't, storytelling · ES: Food vocabulary, restaurant simulator, pretérito imperfecto, preterite vs imperfect</div></div>
+        <div class="timeline-item"><span class="tl-week both">W7</span><div class="tl-content"><strong>Modals, Past Continuous &amp; Getting Around</strong> — EN: Past continuous, interrupted action, 6 modal verbs, must not vs don't have to · ES: Transport vocab, directions, future simple, ir + a + infinitive</div></div>
+        <div class="timeline-item"><span class="tl-week both">W8</span><div class="tl-content"><strong>Shopping, Adjectives &amp; Descriptions</strong> — EN: Adjectives/adverbs, comparatives/superlatives, countable/uncountable · ES: Gustar + backwards verbs, adjective agreement, colours, shopping phrases</div></div>
+        <div class="timeline-item"><span class="tl-week both">W9</span><div class="tl-content"><strong>Present Perfect &amp; Health</strong> — EN: have/has + participle, perfect vs past simple, ever/never/already/yet/just · ES: Body parts, health phrases, conditional tense, polite requests with quisiera</div></div>
+        <div class="timeline-item"><span class="tl-week both">W10</span><div class="tl-content"><strong>Prepositions, Phrasal Verbs &amp; Reflexive Verbs</strong> — EN: in/on/at, 20 essential phrasal verbs · ES: Reflexive verbs, daily routine, subjunctive introduction (WEIRDO)</div></div>
+        <div class="timeline-item"><span class="tl-week both">W11</span><div class="tl-content"><strong>Relative Clauses, Passive Voice &amp; Por vs Para</strong> — EN: who/which/that/whose/where, defining vs non-defining, passive voice · ES: Time clauses + subjunctive, por vs para fully explained</div></div>
+        <div class="timeline-item"><span class="tl-week both">W12</span><div class="tl-content"><strong>Reported Speech &amp; Travel</strong> — EN: Tense backshift, reporting verbs, reported questions/commands · ES: Travel vocabulary, para que + subjunctive, relative clauses with subjunctive</div></div>
+        <div class="timeline-item"><span class="tl-week both">W13</span><div class="tl-content"><strong>Conditionals, Work &amp; Ser vs Estar</strong> — EN: Zero/1st/2nd/3rd/mixed conditionals, wish + if only · ES: Work vocabulary, ser vs estar advanced, impersonal se</div></div>
+        <div class="timeline-item"><span class="tl-week both">W14</span><div class="tl-content"><strong>Collocations, Idioms &amp; False Friends</strong> — EN: Make/do/take/have collocations, 12 essential idioms, formal vs informal register · ES: False friends (embarazada!), diminutives/augmentatives, discourse markers</div></div>
+        <div class="timeline-item"><span class="tl-week both">W15</span><div class="tl-content"><strong>Writing Skills, Weather &amp; Exclamations</strong> — EN: Formal/informal email templates, 8 writing mistakes, punctuation · ES: Weather vocabulary, seasons, ya/todavía, 8 essential exclamations</div></div>
+        <div class="timeline-item"><span class="tl-week both">W16</span><div class="tl-content"><strong>Grand Finale</strong> — Complete toolkit review · Survival conversations · Final quizzes · Where to go next</div></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ ENGLISH GRAND REVIEW ══════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇬🇧</span>
+      <div>
+        <div class="lang-title">English — Grand Review</div>
+        <div class="lang-sub">Your complete grammar toolkit · Survival scenarios · 15 essential phrases · Final challenge</div>
+      </div>
+    </div>
+
+    <!-- EN Grammar toolkit -->
+    <div class="section">
+      <div class="section-label">Your English grammar toolkit — 16 patterns mastered</div>
+      <div class="section-title">Every major grammar pattern from the course — in one place</div>
+      <div class="grammar-grid">
+        <div class="grammar-card mastered"><div class="g-week">W2</div><div class="g-pattern">a / an / the / — (zero)</div><div class="g-meaning">Articles — the trickiest concept for JP/KR speakers</div><div class="g-example">an apple · the Sun · Water is life.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W3</div><div class="g-pattern">Present simple (he/she/it -s)</div><div class="g-meaning">Habits, facts — NOT right now</div><div class="g-example">She works in Tokyo. Does she like jazz?</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W5</div><div class="g-pattern">am/is/are + verb-ing</div><div class="g-meaning">Present continuous — happening NOW</div><div class="g-example">I'm studying Spanish right now.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W5</div><div class="g-pattern">Stative verbs (no -ing!)</div><div class="g-meaning">know/love/want/believe — always simple form</div><div class="g-example">I know ✅ · I am knowing ❌</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W6</div><div class="g-pattern">Past simple (-ed / irregular)</div><div class="g-meaning">Completed past — specific time or sequence</div><div class="g-example">She went · I ate · Did you see it?</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W7</div><div class="g-pattern">was/were + verb-ing</div><div class="g-meaning">Past continuous — interrupted action background</div><div class="g-example">I was sleeping when it rang.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W7</div><div class="g-pattern">Modal verbs (can/should/must...)</div><div class="g-meaning">Ability · advice · obligation · deduction</div><div class="g-example">You should see a doctor. Must not ≠ don't have to!</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W9</div><div class="g-pattern">have/has + past participle</div><div class="g-meaning">Present perfect — past linked to now</div><div class="g-example">I've visited Japan. Have you eaten yet?</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W10</div><div class="g-pattern">Phrasal verbs (verb + particle)</div><div class="g-meaning">Completely new meanings — must learn as units</div><div class="g-example">give up · look forward to · put up with</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W11</div><div class="g-pattern">Relative clauses (who/which/that)</div><div class="g-meaning">Joining sentences · defining vs non-defining</div><div class="g-example">The woman who speaks five languages.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W11</div><div class="g-pattern">Passive voice (be + past participle)</div><div class="g-meaning">Focus on receiver not doer</div><div class="g-example">The Eiffel Tower was built in 1889.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W12</div><div class="g-pattern">Reported speech (tense backshift)</div><div class="g-meaning">Relaying what someone said — one step back</div><div class="g-example">She said she was tired. (was ← am)</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W13</div><div class="g-pattern">Conditionals (0 / 1st / 2nd / 3rd)</div><div class="g-meaning">Fact → possible → hypothetical → impossible past</div><div class="g-example">If I had studied, I would have passed.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W13</div><div class="g-pattern">Wish / If only</div><div class="g-meaning">Present regret (+ past simple) · Past regret (+ past perfect)</div><div class="g-example">I wish I spoke more languages.</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W14</div><div class="g-pattern">Collocations (make/do/take/have)</div><div class="g-meaning">Natural word partnerships — cannot be translated literally</div><div class="g-example">make a decision · do exercise · take a photo</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W15</div><div class="g-pattern">Formal vs informal register</div><div class="g-meaning">Choosing the right level for the context</div><div class="g-example">commence vs start · obtain vs get</div></div>
+      </div>
+    </div>
+
+    <!-- EN Survival scenarios -->
+    <div class="section">
+      <div class="section-label">Survival scenarios — three complete English conversations</div>
+      <div class="section-title">Click each tab to explore a real English interaction using everything you've learned</div>
+      <div class="scenario-sim">
+        <div class="scenario-header">🇬🇧 English Scenarios</div>
+        <div class="scenario-tabs" id="en-tabs">
+          <div class="scenario-tab active" data-scenario="en" data-idx="0">💼 Job interview</div>
+          <div class="scenario-tab" data-scenario="en" data-idx="1">🛒 Shopping return</div>
+          <div class="scenario-tab" data-scenario="en" data-idx="2">🏥 At the doctor's</div>
+        </div>
+        <div class="scenario-body" id="en-scenario-body">
+          <div class="scenario-situation"><strong>📍 Situation:</strong> You're in a job interview for a marketing position at a London company.</div>
+          <div class="convo-row"><div class="convo-speaker">Interviewer</div><div class="convo-bubble local">Thank you for coming in today. Could you tell me a little about yourself?</div></div>
+          <div class="convo-row" style="text-align:right"><div class="convo-speaker" style="text-align:right">You</div><div class="convo-bubble you">Of course. I've been working in digital marketing for five years, and I've recently been focusing on social media strategy. I'm particularly interested in this role because I admire how your company has been growing internationally.</div></div>
+          <div class="convo-row"><div class="convo-speaker">Interviewer</div><div class="convo-bubble local">Excellent. What would you say is your greatest strength?</div></div>
+          <div class="convo-row" style="text-align:right"><div class="convo-speaker" style="text-align:right">You</div><div class="convo-bubble you">I'd say it's my ability to analyse data and turn it into clear, actionable insights. In my current role, I set up a new reporting system that reduced our decision-making time by 30%.</div></div>
+          <div class="convo-row"><div class="convo-speaker">Interviewer</div><div class="convo-bubble local">Very impressive. Do you have any questions for us?</div></div>
+          <div class="convo-row" style="text-align:right"><div class="convo-speaker" style="text-align:right">You</div><div class="convo-bubble you">Yes — I was wondering if you could tell me more about the team I'd be working with, and what success looks like in this role after the first six months.</div></div>
+          <div class="convo-grammar">Grammar used: Present perfect (I've been working · I've recently been focusing) · Passive (has been growing) · Modal (would · I'd say) · Conditional (I'd be working) · Reported speech structure (I was wondering if...)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EN Top 15 phrases -->
+    <div class="section">
+      <div class="section-label">The 15 most powerful English phrases — your forever toolkit</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl"><span class="phrase-icon">🤝</span><div><div class="phrase-native">I was wondering if you could...</div><div class="phrase-en">The politest way to make any request</div><div class="phrase-note">Past continuous + conditional = maximum politeness. Works in every situation from asking directions to negotiating a pay rise.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">💬</span><div><div class="phrase-native">I'm looking forward to...</div><div class="phrase-en">Anticipating something with pleasure — ends every professional email</div><div class="phrase-note">Always + -ing or noun. "I'm looking forward to hearing from you." The single most useful email closing line in English.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🎯</span><div><div class="phrase-native">I'd rather... / I'd prefer...</div><div class="phrase-en">Expressing preference politely</div><div class="phrase-note">I'd rather + base form. I'd prefer + to-infinitive or noun. More elegant than "I want".</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🙏</span><div><div class="phrase-native">Would you mind...?</div><div class="phrase-en">Ultra-polite request — always + -ing</div><div class="phrase-note">"Would you mind opening the window?" The most deferential request in English. "Not at all" = yes, I'll do it.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🤔</span><div><div class="phrase-native">As far as I'm concerned...</div><div class="phrase-en">Introducing a personal opinion</div><div class="phrase-note">Signals this is your view, not fact. More sophisticated than "I think" or "In my opinion".</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">😊</span><div><div class="phrase-native">To be honest / Frankly speaking...</div><div class="phrase-en">Softening a candid statement</div><div class="phrase-note">Signals you're about to say something direct. Paradoxically makes honesty more palatable by announcing it.</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">⚖️</span><div><div class="phrase-native">On the one hand... on the other hand...</div><div class="phrase-en">Presenting two sides of an argument</div><div class="phrase-note">Essential for balanced discussion. Shows nuance and critical thinking — valued in academic and professional English.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">✅</span><div><div class="phrase-native">That's a fair point. / Fair enough.</div><div class="phrase-en">Conceding a point gracefully</div><div class="phrase-note">Acknowledges the other person's argument without fully agreeing. Very British — part of the polite disagreement toolkit.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🗣️</span><div><div class="phrase-native">Could you say that again? / Could you speak more slowly?</div><div class="phrase-en">Asking for repetition or clarity</div><div class="phrase-note">Never be afraid to use these. Native speakers appreciate them — and speak more clearly when asked. "I beg your pardon?" is the very formal British version.</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">📞</span><div><div class="phrase-native">I'll get back to you on that.</div><div class="phrase-en">Buying time to find an answer</div><div class="phrase-note">Essential in professional contexts. Signals you won't guess — you'll find out and respond. Better than silence or a wrong answer.</div></div></div>
+      </div>
+    </div>
+
+    <!-- EN Final quiz -->
+    <div class="section">
+      <div class="section-label">Final English challenge quiz — across all 15 weeks</div>
+      <div class="section-title">6 questions spanning the full course</div>
+      <div class="quiz-item">
+        <div class="quiz-q">W9 · "I saw that film yesterday" vs "I have seen that film." Which is correct with "yesterday"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="correct" data-quiz="en">I saw — past simple (specific finished time requires past simple)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">I have seen — present perfect always sounds more educated</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">Both are equally correct</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">I had seen — past perfect is needed with "yesterday"</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W7 · What is the critical difference between "must not" and "don't have to"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">Must not is more formal</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="en">Must not = forbidden / prohibited · Don't have to = no obligation (your choice)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">No difference — they are synonyms</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">Must not is past · don't have to is present</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W13 · "If I _____ more money, I _____ travel the world." (hypothetical — second conditional)</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">will have / will</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">would have / would</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="en">had / would — past simple in if-clause, would in result clause</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">have / will</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W11 · "My brother who lives in London is visiting." vs "My brother, who lives in London, is visiting." What does the comma version tell us?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">The speaker has more than one brother</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="en">The speaker has one brother — the clause is extra (non-defining) information</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">The brother currently lives in London (temporary)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">No grammatical difference — just style preference</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W14 · Which collocation is correct?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">do a decision</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">make homework</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="en">take a photo</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">have a mistake</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W15 · Which sign-off is correct after "Dear Ms Tanaka,"?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">Yours faithfully</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="en">Yours sincerely — you used a specific name</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">Yours truly (American only)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="en">Best (too informal for formal email)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-score" id="en-quiz-score"></div>
+    </div>
+  </div><!-- end EN review -->
+
+
+  <!-- ══════════════ SPANISH GRAND REVIEW ══════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🇪🇸</span>
+      <div>
+        <div class="lang-title">Spanish — Revisión Final</div>
+        <div class="lang-sub">Your complete Spanish grammar toolkit · Survival scenarios · 15 essential phrases · Final challenge</div>
+      </div>
+    </div>
+
+    <!-- ES Grammar toolkit -->
+    <div class="section">
+      <div class="section-label">Your Spanish grammar toolkit — 16 patterns mastered</div>
+      <div class="section-title">Every major Spanish grammar pattern — in one place</div>
+      <div class="grammar-grid">
+        <div class="grammar-card mastered"><div class="g-week">W2</div><div class="g-pattern">Ser vs Estar</div><div class="g-meaning">Identity/permanent vs state/location/temporary</div><div class="g-example">Soy médico · Estoy cansado · Es aburrido ≠ Está aburrido</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W2</div><div class="g-pattern">El/la/un/una + gender agreement</div><div class="g-meaning">Every noun has gender — adjectives must match</div><div class="g-example">el libro rojo · la casa blanca · las casas blancas</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W3</div><div class="g-pattern">Present tense (-ar/-er/-ir)</div><div class="g-meaning">Three families — opposite vowel endings</div><div class="g-example">hablo · comes · vive · hago · puedo</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W5</div><div class="g-pattern">Pretérito indefinido</div><div class="g-meaning">Completed past — snap-photo tense</div><div class="g-example">hablé · comí · fui · hice · estuvo</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W6</div><div class="g-pattern">Pretérito imperfecto</div><div class="g-meaning">Background/habitual past — video camera tense</div><div class="g-example">hablaba · comía · era · había</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W7</div><div class="g-pattern">Future (infinitive + endings) / Ir + a</div><div class="g-meaning">Future simple vs going-to — formal vs immediate</div><div class="g-example">hablaré · voy a hablar · tendrá (irregular stem)</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W8</div><div class="g-pattern">Gustar + backwards verbs</div><div class="g-meaning">Me gusta (singular) · me gustan (plural)</div><div class="g-example">Me encanta el jazz · Me duelen los pies</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W9</div><div class="g-pattern">Condicional (infinitive + -ía endings)</div><div class="g-meaning">Would — hypothetical + polite requests</div><div class="g-example">hablaría · quisiera · me gustaría · tendría</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W10</div><div class="g-pattern">Verbos reflexivos</div><div class="g-meaning">me/te/se/nos/os/se + verb — actions done to oneself</div><div class="g-example">me levanto · te duchas · se llama · nos acostamos</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W10</div><div class="g-pattern">Subjuntivo presente (WEIRDO)</div><div class="g-meaning">Wish · emotion · impersonal · recommendation · doubt · ojalá</div><div class="g-example">Espero que vengas · Es importante que estudies</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W11</div><div class="g-pattern">Por vs Para</div><div class="g-meaning">Por = cause/exchange/through · Para = purpose/recipient/deadline</div><div class="g-example">Compré flores por ti vs para ti</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W11</div><div class="g-pattern">Subjuntivo con cláusulas temporales</div><div class="g-meaning">cuando/hasta que/antes de que + future event → subjunctive</div><div class="g-example">Llámame cuando llegues (not llegas)</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W12</div><div class="g-pattern">Para que + subjuntivo</div><div class="g-meaning">Different subject → subjunctive · Same subject → infinitive</div><div class="g-example">Te lo digo para que lo entiendas</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W13</div><div class="g-pattern">Se impersonal y pasivo</div><div class="g-meaning">Se habla español · Se venden pisos · ¿Se puede?</div><div class="g-example">Aquí se come muy bien · Se necesitan camareros</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W14</div><div class="g-pattern">Diminutivos y aumentativos</div><div class="g-meaning">-ito/-ita (affection/small) · -ón/-azo (large/intense)</div><div class="g-example">cafecito · poquito · cochazo · riquísimo</div></div>
+        <div class="grammar-card mastered"><div class="g-week">W15</div><div class="g-pattern">Ya / Todavía</div><div class="g-meaning">Ya = already/anymore · Todavía = still/not yet</div><div class="g-example">Ya no vivo allí · Todavía no he llegado</div></div>
+      </div>
+    </div>
+
+    <!-- ES Survival scenarios -->
+    <div class="section">
+      <div class="section-label">Survival scenarios — three complete Spanish conversations</div>
+      <div class="section-title">Click each tab to explore a real Spanish interaction</div>
+      <div class="scenario-sim">
+        <div class="scenario-header">🇪🇸 Escenarios en español</div>
+        <div class="scenario-tabs" id="es-tabs">
+          <div class="scenario-tab active" data-scenario="es" data-idx="0">🍽️ En el restaurante</div>
+          <div class="scenario-tab" data-scenario="es" data-idx="1">🏨 En el hotel</div>
+          <div class="scenario-tab" data-scenario="es" data-idx="2">🏥 En la farmacia</div>
+        </div>
+        <div class="scenario-body" id="es-scenario-body">
+          <div class="scenario-situation"><strong>📍 Situación:</strong> You're at a restaurant in Seville. You want a table, you have a dietary restriction, and you'd like to pay.</div>
+          <div class="convo-row"><div class="convo-speaker">Camarero</div><div class="convo-bubble local">¡Buenas tardes! ¿Cuántas personas son?</div><div class="convo-rom">Good afternoon! How many people?</div></div>
+          <div class="convo-row" style="text-align:right"><div class="convo-speaker" style="text-align:right">Tú</div><div class="convo-bubble you">Somos dos. ¿Tendría una mesa cerca de la ventana, por favor?</div><div class="convo-rom" style="text-align:right">There are two of us. Would you have a table near the window, please?</div></div>
+          <div class="convo-row"><div class="convo-speaker">Camarero</div><div class="convo-bubble local">Por supuesto. ¿Tienen alguna alergia o intolerancia?</div><div class="convo-rom">Of course. Do you have any allergies or intolerances?</div></div>
+          <div class="convo-row" style="text-align:right"><div class="convo-speaker" style="text-align:right">Tú</div><div class="convo-bubble you">Sí — soy alérgico al marisco. ¿Me puede decir qué platos no llevan marisco? Y quisiera probar algo típico de Sevilla.</div><div class="convo-rom" style="text-align:right">Yes — I'm allergic to seafood. Could you tell me which dishes don't contain seafood? And I'd like to try something typical of Seville.</div></div>
+          <div class="convo-row"><div class="convo-speaker">Camarero</div><div class="convo-bubble local">¡Claro! Le recomiendo el salmorejo y el rabo de toro. ¡Están riquísimos!</div><div class="convo-rom">Of course! I recommend the salmorejo and oxtail. They're absolutely delicious!</div></div>
+          <div class="convo-row" style="text-align:right"><div class="convo-speaker" style="text-align:right">Tú (después)</div><div class="convo-bubble you">Ha sido todo delicioso. La cuenta, por favor. ¿Se puede pagar con tarjeta?</div><div class="convo-rom" style="text-align:right">Everything has been delicious. The bill, please. Can one pay by card?</div></div>
+          <div class="convo-grammar">Grammar used: Condicional (tendría) · Ser alérgico · Quisiera (polite conditional) · Impersonal se (¿se puede?) · Present perfect (ha sido) · Superlative (-ísimos)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ES Top 15 phrases -->
+    <div class="section">
+      <div class="section-label">Las 15 frases más poderosas — your forever Spanish toolkit</div>
+      <div class="phrase-list">
+        <div class="phrase-card hl"><span class="phrase-icon">🙏</span><div><div class="phrase-native">Quisiera... / Me gustaría...</div><div class="phrase-en">I would like... — the polite way to ask for anything</div><div class="phrase-note">Conditional of querer/gustar. More elegant than "quiero". Works in shops, restaurants, hotels — everywhere.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">❓</span><div><div class="phrase-native">¿Podría ayudarme? / ¿Me podría decir...?</div><div class="phrase-en">Could you help me? — conditional for polite requests</div><div class="phrase-note">Podría (conditional of poder) = the Spanish equivalent of "could you". Essential for formal and polite situations.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🤔</span><div><div class="phrase-native">No lo sé con seguridad, pero creo que...</div><div class="phrase-en">I don't know for certain, but I think...</div><div class="phrase-note">Hedging your answer — valued in all cultures. Sé (saber, present) · creo (creer, present). Shows intellectual honesty.</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">😊</span><div><div class="phrase-native">¡Qué + adj/noun! — ¡Qué bueno! / ¡Qué lástima!</div><div class="phrase-en">How...! / What a...! — Spanish's most versatile exclamation</div><div class="phrase-note">Add any adjective or noun. ¡Qué suerte! ¡Qué asco! ¡Qué maravilla! Instant emotional expressiveness.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🗣️</span><div><div class="phrase-native">¿Puede repetir / hablar más despacio?</div><div class="phrase-en">Can you repeat / speak more slowly?</div><div class="phrase-note">Never hesitate to use this. Spanish speakers will be delighted you're trying and will always slow down.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">📍</span><div><div class="phrase-native">¿Cómo se va a...? / ¿Dónde está...?</div><div class="phrase-en">How do you get to...? / Where is...?</div><div class="phrase-note">Impersonal se in the direction question. ¿Cómo se va al centro? = How does one get to the centre?</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🌡️</span><div><div class="phrase-native">Espero que + subjuntivo</div><div class="phrase-en">I hope that... — desire + subjunctive</div><div class="phrase-note">Espero que tengas un buen día · Espero que todo salga bien. Natural, warm, and grammatically impeccable.</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">🤝</span><div><div class="phrase-native">Mucho gusto. / Encantado/a.</div><div class="phrase-en">Nice to meet you. — gender-matched</div><div class="phrase-note">Encantado if you're male, encantada if female. Your first use of gender agreement in a real social situation!</div></div></div>
+        <div class="phrase-card"><span class="phrase-icon">💪</span><div><div class="phrase-native">¡Ojalá! / ¡Menos mal! / ¡Venga!</div><div class="phrase-en">Hopefully! / Thank goodness! / Come on!</div><div class="phrase-note">Three exclamations that make you sound truly natural. Ojalá = subjunctive always. Menos mal = relief. Venga = Spain's most versatile word.</div></div></div>
+        <div class="phrase-card hl"><span class="phrase-icon">🌟</span><div><div class="phrase-native">Si tuviera más tiempo, aprendería...</div><div class="phrase-en">If I had more time, I would learn... — hypothetical</div><div class="phrase-note">Imperfect subjunctive + conditional. The signature pattern of hypothetical thinking in Spanish. Beautiful and grammatically complete.</div></div></div>
+      </div>
+    </div>
+
+    <!-- ES Final quiz -->
+    <div class="section">
+      <div class="section-label">Final Spanish challenge quiz — across all 15 weeks</div>
+      <div class="section-title">6 questions spanning the full course</div>
+      <div class="quiz-item">
+        <div class="quiz-q">W10 · "Espero que _____ (venir) mañana." Which form of venir?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">vienes (present indicative)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">vendrás (future)</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="es">vengas (present subjunctive — esperar que triggers subjunctive)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">viniste (preterite)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W11 · "Pagué €50 ___ esta chaqueta." (exchange) — por or para?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="correct" data-quiz="es">por — exchange/in return for something</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">para — it's a gift for someone</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Both are correct</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Neither — use "de" for price</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W6 · "Cuando era niño, _____ (comer) paella todos los domingos." Which tense?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">comí (preterite — specific completed event)</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="es">comía (imperfect — habitual repeated past action)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">como (present — wrong tense entirely)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">comeré (future — wrong direction)</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W8 · How do you say "I love languages" using encantar?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Yo encanto los idiomas.</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Me encanta los idiomas.</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="es">Me encantan los idiomas. (plural noun → plural verb)</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Los idiomas me encanto.</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W14 · What does "actualmente" mean in Spanish?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Actually / in fact (same as English)</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="es">Currently / nowadays — a false friend! "Actually" = en realidad / de hecho</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Actively / in an active way</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Truly / genuinely</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-item">
+        <div class="quiz-q">W13 · "Se venden pisos." Why is the verb plural?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Because se is always plural</button>
+          <button class="quiz-btn" data-answer="correct" data-quiz="es">Because pisos (flats) is the grammatical subject and it is plural — the verb must agree</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">Because real estate transactions require plural</button>
+          <button class="quiz-btn" data-answer="wrong" data-quiz="es">It should be singular — "Se vende pisos" is also correct</button>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+      <div class="quiz-score" id="es-quiz-score"></div>
+    </div>
+  </div><!-- end ES review -->
+
+
+  <!-- ══════════════ FOUR-WAY GRAND COMPARISON ══════════════ -->
+  <div class="fourway">
+    <div class="section-label" style="margin-bottom:10px">🌏 Grand four-language comparison — all four languages you've studied</div>
+    <div class="section-title" style="margin-bottom:4px">The same ideas across Japanese, Korean, English, and Spanish</div>
+    <p style="font-size:13px; color:#666; margin-bottom:12px">A final celebration of the patterns and contrasts that make each language uniquely beautiful.</p>
+    <table>
+      <tr><th>Concept</th><th>🇯🇵 Japanese</th><th>🇰🇷 Korean</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Word order</td>
+        <td>SOV<br/><span style="font-size:11px; color:#888">Subject Object Verb<br/>猫はミルクを飲む</span></td>
+        <td>SOV<br/><span style="font-size:11px; color:#888">Subject Object Verb<br/>고양이가 우유를 마셔요</span></td>
+        <td>SVO<br/><span style="font-size:11px; color:#888">The cat drinks milk</span></td>
+        <td>SVO (flexible)<br/><span style="font-size:11px; color:#888">El gato bebe leche</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"I like coffee"</td>
+        <td>コーヒーが好きです<br/><span style="font-size:11px; color:#888">Coffee is liked (adjective)</span></td>
+        <td>커피를 좋아해요<br/><span style="font-size:11px; color:#888">I coffee-[obj] like</span></td>
+        <td>I like coffee<br/><span style="font-size:11px; color:#888">I = subject, coffee = object</span></td>
+        <td>Me gusta el café<br/><span style="font-size:11px; color:#888">Coffee pleases me — reversed!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">"To be" verbs</td>
+        <td>です/だ · いる · ある<br/><span style="font-size:11px; color:#888">3 verbs — copula + animate + inanimate existence</span></td>
+        <td>이에요/예요 · 있다<br/><span style="font-size:11px; color:#888">2 verbs — copula + existence</span></td>
+        <td>am/is/are<br/><span style="font-size:11px; color:#888">1 verb — covers everything</span></td>
+        <td>ser / estar<br/><span style="font-size:11px; color:#888">2 verbs — permanent vs temporary/state</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Vowel sounds</td>
+        <td>5 pure vowels<br/><span style="font-size:11px; color:#888">あいうえお — perfectly consistent</span></td>
+        <td>21 vowels<br/><span style="font-size:11px; color:#888">Including diphthongs — complex</span></td>
+        <td>~20 vowel sounds<br/><span style="font-size:11px; color:#888">Only 5 letters — wildly inconsistent</span></td>
+        <td>5 pure vowels<br/><span style="font-size:11px; color:#888">5 letters — perfectly consistent!</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Subjunctive mood</td>
+        <td>No subjunctive<br/><span style="font-size:11px; color:#888">Wish/doubt via verb forms and particles</span></td>
+        <td>No subjunctive<br/><span style="font-size:11px; color:#888">-(으)면 좋겠다 for wishes</span></td>
+        <td>Trace subjunctive only<br/><span style="font-size:11px; color:#888">"If I were you" (surviving form)</span></td>
+        <td>Full subjunctive system<br/><span style="font-size:11px; color:#888">WEIRDO triggers — actively used constantly</span></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px; font-weight:500">Hello / Thank you / Goodbye</td>
+        <td>こんにちは<br/>ありがとうございます<br/>さようなら</td>
+        <td>안녕하세요<br/>감사합니다<br/>안녕히 가세요</td>
+        <td>Hello<br/>Thank you<br/>Goodbye</td>
+        <td>Hola<br/>Gracias<br/>Adiós</td>
+      </tr>
+    </table>
+    <div class="tip-box tip-gold" style="margin-top:14px">
+      <strong>The four-language insight:</strong> Japanese and Korean share SOV word order and lack articles. English and Spanish share SVO order. Japanese and Spanish share 5 pure vowels. Spanish and Korean are the most grammatically complex of the four. English is the most globally spread. Each language is a complete, perfect system — none is harder or easier, only differently organised. Studying four of them simultaneously gives you a rare cross-linguistic perspective that most people never develop. That perspective — seeing language as a system, not just words to memorise — is perhaps the greatest gift of this entire 16-week journey.
+    </div>
+  </div>
+
+
+  <!-- ══════════════ WHERE YOU STAND ══════════════ -->
+  <div class="lang-block">
+    <div class="lang-header">
+      <span class="lang-flag">🚀</span>
+      <div>
+        <div class="lang-title">Where You Stand &amp; What's Next</div>
+        <div class="lang-sub">A realistic assessment — and a practical guide to continuing</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">Your level after 16 weeks</div>
+      <table>
+        <tr><th>Skill</th><th>🇬🇧 English</th><th>🇪🇸 Spanish</th></tr>
+        <tr><td>Grammar</td><td>Comprehensive coverage of core grammar up to B2 level</td><td>Solid A2–B1 foundation with B2 concepts introduced</td></tr>
+        <tr><td>Vocabulary</td><td>300+ words/phrases; collocation and idiom awareness</td><td>400+ words/phrases; false friends and diminutives</td></tr>
+        <tr><td>Reading</td><td>Can read formal/informal texts with good comprehension</td><td>Can read straightforward texts; some struggle with fast native speed</td></tr>
+        <tr><td>Speaking</td><td>Can discuss most everyday topics with appropriate register</td><td>Survival situations + basic conversation; needs more practice</td></tr>
+        <tr><td>Equivalent level</td><td>B1–B2 (grammar knowledge); needs conversational practice</td><td>A2–B1 (DELE level)</td></tr>
+      </table>
+    </div>
+    <div class="section">
+      <div class="section-label">Your next steps — practical and achievable</div>
+      <div class="nextsteps-grid">
+        <div class="nextstep-card featured">
+          <div class="nextstep-icon">📱</div>
+          <div class="nextstep-title">Daily practice — 15 minutes a day</div>
+          <div class="nextstep-desc">Duolingo or Babbel for Spanish vocabulary. AnkiApp for flashcard review. BBC Learning English for English listening. Consistency beats intensity — 15 minutes daily is worth more than 3 hours once a week.</div>
+          <span class="nextstep-tag">Free to start</span>
+        </div>
+        <div class="nextstep-card featured">
+          <div class="nextstep-icon">📺</div>
+          <div class="nextstep-title">Immersion — watch and listen</div>
+          <div class="nextstep-desc">Spanish: Netflix series in Spanish with Spanish subtitles (start with subtitles, remove them progressively). English: BBC, TED Talks, podcasts. Listening ear develops fastest through immersion at the right level.</div>
+          <span class="nextstep-tag">Netflix · BBC · Spotify</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">📖</div>
+          <div class="nextstep-title">Get a textbook</div>
+          <div class="nextstep-desc">Spanish: Talk To Me In Korean... wait — Talk To Me In Spanish (TTMIK has a Spanish equivalent!), or Assimil Spanish. For English teaching: English Grammar in Use by Raymond Murphy — the gold standard worldwide.</div>
+          <span class="nextstep-tag">TTMIK · Murphy · Assimil</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">💬</div>
+          <div class="nextstep-title">Find a language partner</div>
+          <div class="nextstep-desc">HelloTalk, Tandem, or Speaky connect you with native Spanish speakers who want to learn English — a perfect exchange. Real conversation with a native speaker accelerates learning faster than any other method.</div>
+          <span class="nextstep-tag">HelloTalk · Tandem</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">✈️</div>
+          <div class="nextstep-title">Plan a trip to a Spanish-speaking country</div>
+          <div class="nextstep-desc">You now have enough to travel independently. Order food, navigate transport, check into hotels, ask for directions, make friends. The best classroom is the country itself — and Spain and Latin America are magnificent destinations.</div>
+          <span class="nextstep-tag">España · México · Argentina</span>
+        </div>
+        <div class="nextstep-card">
+          <div class="nextstep-icon">🤖</div>
+          <div class="nextstep-title">Keep using Claude!</div>
+          <div class="nextstep-desc">Ask for practice dialogues, grammar explanations, new vocabulary sets, or quiz yourself on any topic. Ask Claude to correct your Spanish writing. Or start a completely new language adventure — 4 down, 7,000 to go!</div>
+          <span class="nextstep-tag">Always available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ FINAL MESSAGE ══════════════ -->
+  <div class="final-message">
+    <h2>Congratulations &amp; ¡Enhorabuena! 🎉</h2>
+    <p>You approached this course from the most wonderful angle — pure intellectual curiosity and the joy of comparing languages. Not for a certificate, not for a job requirement, not because someone told you to. Just because language is endlessly fascinating, and because seeing Japanese, Korean, English, and Spanish side by side reveals something profound about how human beings have found different solutions to the same ancient problem of communicating with each other.</p>
+    <p>In 16 weeks you've mapped the architecture of two more languages, added them to a mental collection that now spans four distinct linguistic families, and built a cross-linguistic perspective that most people never develop. The grammar patterns, the false friends, the ser vs estar distinction, the English conditional system, the Spanish subjunctive — these are not just facts. They are windows into different ways of seeing the world.</p>
+    <p>Whatever you do next — whether you continue with Spanish, circle back to deepen your Japanese and Korean, start something new, or simply carry this knowledge as a richer way of engaging with the world — it has been a genuine pleasure building these materials with you.</p>
+    <div class="final-en">Keep going. Every word counts.</div>
+    <div class="final-rom" style="margin-bottom:10px">🇬🇧</div>
+    <div class="final-es">¡Sigue adelante! Cada palabra cuenta.</div>
+    <div class="final-rom">🇪🇸</div>
+  </div>
+
+  <div style="text-align:center; font-size:13px; color:#aaa; margin-top:1rem;">
+    Week 16 complete · Course complete · 🇯🇵🇰🇷🇬🇧🇪🇸 · The adventure continues ✨
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── English scenario data ── */
+  const enScenarios = [
+    {
+      situation: "You're in a job interview for a marketing position at a London company.",
+      rows: [
+        { spk: 'Interviewer', cls: 'local', txt: 'Thank you for coming in today. Could you tell me a little about yourself?', rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "Of course. I've been working in digital marketing for five years, and I've recently been focusing on social media strategy. I'm particularly interested in this role because I admire how your company has been growing internationally.", rom: '', en: '' },
+        { spk: 'Interviewer', cls: 'local', txt: "Excellent. What would you say is your greatest strength?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "I'd say it's my ability to analyse data and turn it into clear, actionable insights. In my current role, I set up a new reporting system that reduced our decision-making time by 30%.", rom: '', en: '' },
+        { spk: 'Interviewer', cls: 'local', txt: "Very impressive. Do you have any questions for us?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "Yes — I was wondering if you could tell me more about the team I'd be working with, and what success looks like in this role after the first six months.", rom: '', en: '' }
+      ],
+      grammar: 'Grammar: Present perfect (I\'ve been working) · Passive (has been growing) · Modal (I\'d say) · Conditional (I\'d be working) · Polite request (I was wondering if...)'
+    },
+    {
+      situation: "You bought a jacket online but it doesn't fit. You're returning it to a UK shop.",
+      rows: [
+        { spk: 'Shop assistant', cls: 'local', txt: "Hi there! How can I help you today?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "Hello. I'd like to return this jacket, please. I ordered it online but unfortunately it doesn't fit — it's too small.", rom: '', en: '' },
+        { spk: 'Shop assistant', cls: 'local', txt: "Of course! Do you have your order confirmation or receipt?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "Yes, I've got the confirmation email here. Would it be possible to exchange it for a larger size, or would I be better off getting a refund?", rom: '', en: '' },
+        { spk: 'Shop assistant', cls: 'local', txt: "We can do either — we have the same jacket in a medium. Would you like to try it on first?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "That would be great, thank you. Where are the fitting rooms?", rom: '', en: '' }
+      ],
+      grammar: 'Grammar: I\'d like to (polite request) · Present perfect (I\'ve got) · Conditional (Would it be possible... would I be better off) · Phrasal verb (try it on)'
+    },
+    {
+      situation: "You're at a GP surgery in the UK. You have a bad cough and a fever.",
+      rows: [
+        { spk: 'Doctor', cls: 'local', txt: "Good morning. What seems to be the problem?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "Good morning, Doctor. I've had a bad cough for about a week, and I've been running a fever since yesterday. I'm also finding it hard to sleep because of the coughing.", rom: '', en: '' },
+        { spk: 'Doctor', cls: 'local', txt: "I see. Have you taken anything for it? And do you have any allergies to medication?", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "I've been taking paracetamol, but it hasn't helped much. I'm not allergic to anything as far as I know. Could you tell me if it's something serious?", rom: '', en: '' },
+        { spk: 'Doctor', cls: 'local', txt: "It sounds like a chest infection. I'll prescribe some antibiotics. You should feel better within a week.", rom: '', en: '' },
+        { spk: 'You', cls: 'you', txt: "Thank you very much. Is there anything I should avoid while taking them?", rom: '', en: '' }
+      ],
+      grammar: 'Grammar: Present perfect (I\'ve had · I\'ve been taking · it hasn\'t helped) · Past continuous (I\'ve been running) · Polite question (Could you tell me...) · Modal (should feel better)'
+    }
+  ];
+
+  /* ── Spanish scenario data ── */
+  const esScenarios = [
+    {
+      situation: "You're at a restaurant in Seville. You have a seafood allergy and want something typical.",
+      rows: [
+        { spk: 'Camarero', cls: 'local', txt: '¡Buenas tardes! ¿Cuántas personas son?', rom: 'Good afternoon! How many people?' , en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Somos dos. ¿Tendría una mesa cerca de la ventana, por favor?', rom: 'There are two of us. Would you have a table near the window, please?', en: '' },
+        { spk: 'Camarero', cls: 'local', txt: 'Por supuesto. ¿Tienen alguna alergia o intolerancia?', rom: 'Of course. Do you have any allergies or intolerances?', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Sí — soy alérgico al marisco. ¿Me puede decir qué platos no llevan marisco? Y quisiera probar algo típico de Sevilla.', rom: 'Yes — I\'m allergic to seafood. Could you tell me which dishes don\'t contain seafood? And I\'d like to try something typical of Seville.', en: '' },
+        { spk: 'Camarero', cls: 'local', txt: '¡Claro! Le recomiendo el salmorejo y el rabo de toro. ¡Están riquísimos!', rom: 'Of course! I recommend the salmorejo and oxtail. They\'re absolutely delicious!', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Ha sido todo delicioso. La cuenta, por favor. ¿Se puede pagar con tarjeta?', rom: 'Everything has been delicious. The bill please. Can one pay by card?', en: '' }
+      ],
+      grammar: 'Grammar: Condicional (tendría) · Quisiera (polite request) · Se impersonal (¿se puede?) · Present perfect (ha sido) · Superlativo (-ísimos)'
+    },
+    {
+      situation: "You're checking into a hotel in Barcelona. You have a reservation and want a quiet room.",
+      rows: [
+        { spk: 'Recepcionista', cls: 'local', txt: '¡Bienvenido/a! ¿Tiene reserva?', rom: 'Welcome! Do you have a reservation?', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Sí, tengo una reserva a nombre de... Quisiera una habitación tranquila, si es posible — si pudiera ser en un piso alto, mucho mejor.', rom: 'Yes, I have a reservation under the name of... I\'d like a quiet room if possible — if it could be on a high floor, even better.', en: '' },
+        { spk: 'Recepcionista', cls: 'local', txt: 'Por supuesto. Le hemos asignado la habitación 812, que da al jardín interior. Es muy tranquila.', rom: 'Of course. We\'ve assigned you room 812, which faces the inner garden. It\'s very quiet.', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Perfecto. ¿A qué hora se sirve el desayuno y hasta qué hora puedo quedarme en la habitación?', rom: 'Perfect. What time is breakfast served and until what time can I stay in the room?', en: '' },
+        { spk: 'Recepcionista', cls: 'local', txt: 'El desayuno se sirve de 7 a 10:30. El check-out es a las 12, pero si necesita más tiempo, dígamelo.', rom: 'Breakfast is served from 7 to 10:30. Check-out is at noon, but if you need more time, let me know.', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Muchas gracias. Oiga, ¿me podría recomendar algún restaurante cerca que no sea demasiado caro?', rom: 'Thank you very much. Excuse me, could you recommend a restaurant nearby that isn\'t too expensive?', en: '' }
+      ],
+      grammar: 'Grammar: Quisiera (conditional) · Si pudiera (imperfect subjunctive — hypothetical) · Se impersonal (se sirve · se sirve) · Relative clause with subjunctive (que no sea demasiado caro)'
+    },
+    {
+      situation: "You're at a pharmacy in Madrid. You have a sore throat and a headache.",
+      rows: [
+        { spk: 'Farmacéutico/a', cls: 'local', txt: 'Buenos días. ¿En qué le puedo ayudar?', rom: 'Good morning. How can I help you?', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Buenos días. Me duele mucho la garganta y también tengo dolor de cabeza desde esta mañana. ¿Tiene algo para eso?', rom: 'Good morning. My throat hurts a lot and I also have a headache since this morning. Do you have anything for that?', en: '' },
+        { spk: 'Farmacéutico/a', cls: 'local', txt: '¿Tiene fiebre también? ¿Es alérgico/a a algún medicamento?', rom: 'Do you also have a fever? Are you allergic to any medication?', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'No creo que tenga fiebre, pero no estoy seguro/a. No soy alérgico/a a nada que sepa.', rom: 'I don\'t think I have a fever, but I\'m not sure. I\'m not allergic to anything as far as I know.', en: '' },
+        { spk: 'Farmacéutico/a', cls: 'local', txt: 'Le recomiendo este spray para la garganta y ibuprofeno para el dolor. Tómelo cada ocho horas con las comidas.', rom: 'I recommend this throat spray and ibuprofen for the pain. Take it every eight hours with meals.', en: '' },
+        { spk: 'Tú', cls: 'you', txt: 'Perfecto. ¿Cuánto es todo? ¿Necesito receta para algo?', rom: 'Perfect. How much is everything? Do I need a prescription for anything?', en: '' }
+      ],
+      grammar: 'Grammar: Me duele (gustar-type verb) · No creo que + subjunctive (tenga) · Relative with subjunctive (que sepa) · Le recomiendo que... (recommendation + subjunctive implied) · Impersonal se (se puede)'
+    }
+  ];
+
+  /* ── Tab rendering ── */
+  function renderScenario(containerId, bodyId, data) {
+    document.querySelectorAll(`#${containerId} .scenario-tab`).forEach(tab => {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll(`#${containerId} .scenario-tab`).forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        showScenario(bodyId, data, parseInt(this.dataset.idx));
+      });
+    });
+  }
+
+  function showScenario(bodyId, data, idx) {
+    const s = data[idx];
+    let html = `<div class="scenario-situation"><strong>📍 Situation:</strong> ${s.situation}</div>`;
+    s.rows.forEach(r => {
+      const isYou = r.cls === 'you';
+      html += `<div class="convo-row"${isYou ? ' style="text-align:right"' : ''}>
+        <div class="convo-speaker"${isYou ? ' style="text-align:right"' : ''}>${r.spk}</div>
+        <div class="convo-bubble ${r.cls}">${r.txt}</div>
+        ${r.rom ? `<div class="convo-rom"${isYou ? ' style="text-align:right"' : ''}>${r.rom}</div>` : ''}
+      </div>`;
+    });
+    html += `<div class="convo-grammar">${s.grammar}</div>`;
+    document.getElementById(bodyId).innerHTML = html;
+  }
+
+  renderScenario('en-tabs', 'en-scenario-body', enScenarios);
+  renderScenario('es-tabs', 'es-scenario-body', esScenarios);
+
+  /* ── Quiz logic ── */
+  let enCorrect = 0, enTotal = 0, esCorrect = 0, esTotal = 0;
+
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group    = this.closest('.quiz-item');
+      const feedback = group.querySelector('.quiz-feedback');
+      if (group.querySelector('.correct, .wrong')) return;
+      group.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.6'; });
+      this.style.opacity = '1';
+      const result = this.dataset.answer;
+      const quiz   = this.dataset.quiz;
+      this.classList.add(result);
+      feedback.textContent = result === 'correct' ? '✓ Correct!' : '✗ Not quite — review the section above.';
+      feedback.style.color = result === 'correct' ? '#0f6e56' : '#791F1F';
+
+      if (quiz === 'en') {
+        enTotal++;
+        if (result === 'correct') enCorrect++;
+        if (enTotal === 6) {
+          const sc = document.getElementById('en-quiz-score');
+          sc.style.display = 'block';
+          sc.innerHTML = `🇬🇧 Final English score: <strong>${enCorrect}/6</strong> — ${enCorrect === 6 ? 'Perfect! Outstanding English mastery! 🏆' : enCorrect >= 4 ? 'Well done — strong English grammar! 🌟' : 'Good effort — review the highlighted weeks! 📚'}`;
+        }
+      } else if (quiz === 'es') {
+        esTotal++;
+        if (result === 'correct') esCorrect++;
+        if (esTotal === 6) {
+          const sc = document.getElementById('es-quiz-score');
+          sc.style.display = 'block';
+          sc.innerHTML = `🇪🇸 Final Spanish score: <strong>${esCorrect}/6</strong> — ${esCorrect === 6 ? '¡Perfecto! Dominio total del español! 🏆' : esCorrect >= 4 ? '¡Muy bien! Buen nivel de español! 🌟' : '¡Sigue practicando! Repasa las semanas indicadas! 📚'}`;
+        }
+      }
+    });
+  });
+
+});
+</script>
+</body>
+</html>
