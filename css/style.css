@@ -99,7 +99,10 @@ body {
 }
 
 /* Modern Calculator Form Layout (No Tables) */
-.calculator-wrapper, .clock-wrapper, .moon-wrapper {
+.calculator-wrapper, 
+.clock-wrapper, 
+.moon-wrapper,
+.doctrine-wrapper {
   max-width: 550px;
   margin: auto;
   background: #f9f9f9;
@@ -275,6 +278,22 @@ A:visited {
   font-weight: bold;
   font-size: 20pt;
   color: DARKBLUE;
+  height: 20px;
+  width: 100%;
+}
+#Sans20BBF {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20pt;
+  color: black;
+  height: 20px;
+  width: 100%;
+}
+#Sans20BRF {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20pt;
+  color: darkred;
   height: 20px;
   width: 100%;
 }
