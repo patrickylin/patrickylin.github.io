@@ -1,13 +1,20 @@
+/* Global Reset & Typography */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f5f4f0;
+  color: #333333;
+  line-height: 1.6;
   -webkit-text-size-adjust: 100%;
-  background-color: #ffffff; /* Sets a clean solid color for the wide screen edges */
 }
 
+/* Main Centered Wrapper */
 #main-wrapper {
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
   width: 580px;
   margin: 0 auto;
   position: relative;
@@ -18,10 +25,10 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  width: 550px; /* Slightly narrower as per your design */
+  max-width: 1200px;
+  width: 550px;
   margin: 0 auto;
   position: relative;
-  /* Use vh here so the white box always fills the screen */
   min-height: 100vh; 
   background-color: rgba(255, 255, 255, 0.95);
   background-image: url("../gif/back.gif");
@@ -67,24 +74,23 @@ body {
   border: none;
 }
 
-/* Responsive Icon Grid (Replaces Absolute Positioning) */
+/* Responsive Icon Grid */
 #icon-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Aligns them to the left */
+  justify-content: center; /* Aligns them to the left */
   gap: 20px; /* Consistent spacing between icons */
   width: 100%;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 #icon-grid a {
-  /* This formula: (100% / 8 icons) - (offset for the gaps) */
-  /* Using 8.5px ensures there is always a tiny bit of "breathing room" */
   flex: 0 0 calc(12.5% - 8.8px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#icon-grid img {
+#icon-grid img { /* Iconic Pages */
   width: 50px;
   height: 50px;
   object-fit: contain;
@@ -96,6 +102,53 @@ body {
 #icon-grid picture img {
   width: 50px;
   height: 50px;
+}
+
+/* Bible Study Page */
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.icon-grid a img {
+  width: 100px;
+  height: 100px;
+  border: none;
+  transition: transform 0.2s;
+}
+.icon-grid a:hover img {
+  transform: scale(1.25);
+}
+
+/* Responsive Table Styling */
+.table-responsive {
+  overflow-x: auto; /* Adds horizontal scroll on iPhones */
+  margin-bottom: 40px;
+}
+.bible-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 800px; /* Forces table to stay readable, triggers scroll on mobile */
+  background: #fff;
+}
+.bible-table th, .bible-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  vertical-align: top;
+}
+.bible-table th {
+  background-color: #1F497D;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.bible-table .section-header {
+  background-color: #e9ecef;
+  font-weight: bold;
+  text-align: center;
+  color: #1F497D;
 }
 
 /* Modern Calculator Form Layout (No Tables) */
@@ -182,16 +235,16 @@ body {
   padding: 40px 0;
 }
 .footer-divider {
-  border: none;
+  border: 0;
   border-top: 1px solid #ccc;
-  width: 95%;
-  margin: 20px auto;
+  margin: 30px 0;
 }
 .footer {
   font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 20px;
   gap: 20px;
   width: 100%;
 }
@@ -206,8 +259,7 @@ body {
 }
 .footer-links {
   margin-bottom: 5px;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 13px;
 }
 .footer-links a {
   color: #1f497d;
@@ -218,7 +270,7 @@ body {
   text-decoration: underline;
 }
 .copyright {
-  font-size: 11px;
+  font-size: 12px;
   color: #666;
 }
 
