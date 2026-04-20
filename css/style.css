@@ -110,7 +110,7 @@ body {
   font-family: Arial, sans-serif; /* A simple, modern font */
   
   /* --- NEW & CHANGED SCALING --- */
-  font-size: clamp(1.5rem, 5vw, 3rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
+  font-size: clamp(1.5rem, 2vw, 3rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
   /* This 'clamp' is a modern CSS magic tool that sets a responsive size with min/max bounds. */  
   
   transition: color 0.3s ease;
@@ -121,6 +121,7 @@ body {
 }
 
 .nav-text-group span {
+  font-size: clamp(1.5rem, 2vw, 3rem);
   color: #ccc; /* Gray color for the vertical pipe separator */
 }
 
@@ -478,6 +479,11 @@ body {
 
 .footer-links-row a:hover {
   color: #c43; /* Changes to a coral/red on hover, matching nav */
+}
+
+.footer-links-row span {
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  color: #ccc; /* Gray color for the vertical pipe separator */
 }
 
 /* Styling for the Copyright Text Block */
