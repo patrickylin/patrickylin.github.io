@@ -6,121 +6,12 @@
   <meta name="description" content="Love never fails">
   <meta name="keywords" content="GOD MADE US A FAMILY">
   <link rel="SHORTCUT ICON" href="../../ico/the_lin.ico">
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
   <title>The Lin Family - Phoenician Alphabet</title>
-
-  <style>
-    /* Global Reset & Typography */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-image: url('../../gif/back.gif');
-      background-color: #f5f4f0;
-      color: #333;
-      line-height: 1.6;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    /* Main Centered Wrapper */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 30px 20px;
-      background: rgba(255, 255, 255, 0.95);
-      min-height: 100vh;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    /* Responsive Table Styling */
-    .table-responsive {
-      overflow-x: auto;
-      margin-bottom: 40px;
-      border: 1px solid #ccc;
-    }
-    .alphabet-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 15px;
-      min-width: 800px; /* Ensures the 10 columns don't squish on mobile */
-      background: #fff;
-    }
-    .alphabet-table th, .alphabet-table td {
-      border: 1px solid #ccc;
-      padding: 10px 12px;
-      vertical-align: middle;
-      text-align: center;
-    }
-    .alphabet-table th {
-      background-color: #f0f0f0;
-      color: #333;
-      font-weight: bold;
-    }
-    .alphabet-table .main-header {
-      background-color: #1F497D;
-      color: white;
-      font-size: 18px;
-      padding: 12px;
-    }
-    .alphabet-table img {
-      width: 30px;
-      height: 30px;
-      vertical-align: middle;
-    }
-
-    /* Modern Footer */
-    hr {
-      border: 0;
-      border-top: 1px solid #ccc;
-      margin: 30px 0;
-    }
-    .footer {
-      font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center; /* Keeps the whole block centered on the page */
-      padding-bottom: 20px;
-      gap: 20px; /* Creates space between the mailbox and the text */
-    }
-    .footer-email img {
-      width: 70px;
-      height: 70px;
-      border: none;
-      display: block;
-    }
-    .footer-text {
-      text-align: center; /* Aligns the links and copyright to the left edge of the icon */
-    }
-    .footer-links {
-      margin-bottom: 5px;
-      font-size: 13px;
-    }
-    .footer-links a {
-      color: #1F497D;
-      text-decoration: none;
-      padding: 0 5px;
-    }
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-    .copyright {
-      font-size: 12px;
-      color: #666;
-    }
-
-    /* Mobile tweak: Stacks cleanly ONLY on very small phone screens */
-    @media (max-width: 500px) {
-      .footer {
-        flex-direction: column;
-        text-align: center;
-      }
-      .footer-text {
-        text-align: center;
-      }
-    }
-  </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" style="width: 1200px">
     
     <div class="table-responsive">
       <table class="alphabet-table">
@@ -234,25 +125,28 @@
       </table>
     </div>
 
-    <hr>
-
-    <div class="footer">
-      <div class="footer-email">
-        <a href="mailto:patrick.lin@bcec.net"><img title="E-mail" src="../../png/E-mail.png" alt="Email"></a>
-      </div>
-      <div class="footer-text">
-        <div class="footer-links">
-          <a href="../../index.html">Home Page</a> |
-          <a href="../../page2.html">About Us</a> |
-          <a href="../../page3.html">Photo Album</a> |
-          <a href="../../page4.html">Favorite Sites</a> |
-          <a href="../../page5.html">What's New</a>
+    <div class="footer-container">
+      <hr class="footer-divider">
+      <div class="footer">
+        <div class="footer-email">
+          <a href="mailto:patrickylin@gmail.com"><img title="E-mail"
+              src="../../png/E-mail.png" alt="Email"></a>
         </div>
-        <div class="copyright">
-          &copy; Copyright 1994 - 2026, The Lin Family. All rights reserved.<br>
-          Last update: April, 2026.
+        <div class="footer-text">
+          <div class="footer-links">
+            <a href="../../index.html">Home Page</a> |
+            <a href="../../page2.html">About Us</a> |
+            <a href="../../page3.html">Photo Album</a> |
+            <a href="../../page4.html">Favorite Sites</a> |
+            <a href="../../page5.html">What's New</a>
+          </div>
+          <div class="copyright">
+            &copy; Copyright 1994 - 2026, The Lin Family. All rights
+            reserved.<br>Last update: April, 2026.
+          </div>
         </div>
       </div>
+    </div>
 
   </div>
 </body>

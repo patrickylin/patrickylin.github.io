@@ -177,6 +177,36 @@ A:visited {
   background-color: #f0f0f0;
   font-weight: bold;
 }
+/* Alphabet Table */
+.alphabet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 800px; /* Ensures the 10 columns don't squish on mobile */
+  background: #fff;
+}
+.alphabet-table th, .alphabet-table td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  vertical-align: middle;
+  text-align: center;
+}
+.alphabet-table th {
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+}
+.alphabet-table .main-header {
+  background-color: #1F497D;
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+}
+.alphabet-table img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
 
 /* Specific Cell Colors */
 .text-red { color: #d32f2f; font-weight: bold; }
