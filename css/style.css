@@ -35,7 +35,6 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.theme-container,
 .header-container {
   width: 100%;
   text-align: center;
@@ -43,7 +42,6 @@ body {
 }
 
 /* Banner Styling */
-.theme-banner,
 .site-banner {
   max-width: 100%;
   height: auto;
@@ -82,67 +80,6 @@ body {
   background-color: #cccccc; /* Light gray line */
   margin: 10px 0 25px 0; /* Space above and below the line */
   border: none;
-}
-
-/* --- New Responsive Navigation Styles --- */
-.responsive-nav {
-  display: flex;
-  flex-direction: column; /* Stacks text and icon groups vertically */
-  align-items: center; /* Centrally aligns the groups */
-  gap: 20px; /* Space between the text group and icon group */
-  width: 100%; /* Spans full width of its container */
-  padding: 30px 0; /* Vertical padding */
-  box-sizing: border-box; /* Ensures padding is included in width */
-}
-
-.nav-text-group, .nav-icon-group {
-  display: flex;
-  flex-wrap: wrap; /* Items wrap onto new centered lines on small screens */
-  justify-content: center; /* Centered items within the row */
-  align-items: center; /* Vertically centers items within the row */
-  gap: 15px; /* Space between individual items */
-}
-
-/* Styling for the text links row */
-.nav-text-group a {
-  text-decoration: none;
-  color: #333; /* Standard dark text color */
-  font-family: Arial, sans-serif; /* A simple, modern font */
-  
-  /* --- NEW & CHANGED SCALING --- */
-  font-size: clamp(1.5rem, 2vw, 3rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
-  /* This 'clamp' is a modern CSS magic tool that sets a responsive size with min/max bounds. */  
-  
-  transition: color 0.3s ease;
-}
-
-.nav-text-group a:hover {
-  color: #c43; /* Changes to a coral/red on hover */
-}
-
-.nav-text-group span {
-  font-size: clamp(1.5rem, 2vw, 3rem);
-  color: #ccc; /* Gray color for the vertical pipe separator */
-}
-
-/* Styling for the icons row */
-.nav-icon-group a {
-  display: flex; /* Helps icons behave and center well */
-}
-
-.nav-icon-group img {
-  width: auto; /* Width is fluid and proportional */
-  height: 80px; /* A consistent height for all icons */
-  max-width: 100%; /* Important: prevents icons from exceeding their space */
-  object-fit: contain; /* Ensures original aspect ratio is maintained */
-  transition: transform 0.2s ease;
-
-  /* --- NEW & CHANGED SCALING --- */
-  height: clamp(150px, 10vw, 500px); /* Min 50px, scales with 6vw, Max 150px */  
-}
-
-.nav-icon-group a:hover img {
-  transform: scale(1.1); /* Slight zoom-in on hover */
 }
 
 /* Responsive Icon Grid */
@@ -417,84 +354,6 @@ body {
   color: #666;
 }
 
-/* --- New Fixed, Scaled & Centered Footer Styles --- */
-.responsive-footer {
-  width: 100%; /* Fully fluid container */
-  background-color: #f0f0f0; /* Classic 90s light grey background */
-  padding: 3vw 0; /* Scaling vertical padding */
-  box-sizing: border-box; /* Ensures padding is included in width */
-  display: flex; /* Stacks everything vertically and centers it */
-  flex-direction: column;
-  align-items: center; /* Centrally aligns both the divider and content */
-}
-
-.footer-divider {
-  width: 80%; /* Fluid divider line, doesn't span full width */
-  margin: 0 auto 20px; /* Centered, with bottom spacing */
-  border-top: 1px solid #ccc; /* Maintain basic 90s line style */
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: row; /* Icon on the left, text group on the right */
-  justify-content: center; /* Centrally aligns the whole row within the page */
-  align-items: center; /* Vertically centers icon and text relative to each other */
-  gap: 30px; /* Space between the icon and the text block */
-  width: 100%;
-  padding: 0 5vw; /* Internal scaling padding for clean edges */
-  box-sizing: border-box;
-}
-
-/* Fluid scaling for the Email Icon */
-.footer-icon {
-  width: auto; /* Proportional width */
-  height: clamp(30px, 10vw, 150px); /* Min 30px, scales with 4.5vw, Max 100px */
-  max-width: 100%; /* Important: prevents icons from exceeding their space */
-  object-fit: contain; /* Prevents distortion */
-}
-
-/* --- THE MAIN CENTER-ALIGNMENT FIX IS HERE --- */
-.footer-text-group {
-  display: flex;
-  flex-direction: column; /* Stack links row and copyright block */
-  justify-content: center; /* Centrally aligns them vertically */
-  
-  /* --- NEW & CHANGED ALIGNMENT --- */
-  align-items: center; /* Important: centers the whole text group relative to the icon */
-  text-align: center; /* General rule to ensure individual lines are centered */
-  
-  gap: 15px; /* Space between links row and copyright block */
-}
-
-/* Styling for the Text Links Row */
-.footer-links-row a {
-  text-decoration: none;
-  color: #333; /* Dark text color */
-  font-family: Arial, sans-serif; /* Clean, modern font */
-  transition: color 0.3s ease;
-  
-  /* --- RESPONSIVE FONT SCALING --- */
-  font-size: clamp(0.9rem, 1.8vw, 1.8rem); /* Min 0.9rem, scales with 1.8vw, Max 1.8rem */
-}
-
-.footer-links-row a:hover {
-  color: #c43; /* Changes to a coral/red on hover, matching nav */
-}
-
-.footer-links-row span {
-  font-size: clamp(1.5rem, 2vw, 3rem);
-  color: #ccc; /* Gray color for the vertical pipe separator */
-}
-
-/* Styling for the Copyright Text Block */
-.copyright-text {
-  color: #555; /* Slightly muted color, standard for copyright */
-  font-family: Arial, sans-serif;
-  
-  /* --- RESPONSIVE FONT SCALING --- */
-  font-size: clamp(0.9rem, 1.8vw, 1.8rem); /* Min 0.9rem, scales with 1.8vw, Max 1.8rem */
-}
-
 /* Mobile tweak: Stacks cleanly ONLY on very small phone screens */
 @media (max-width: 500px) {
   .footer {
@@ -656,4 +515,172 @@ h2 {
   text-align: right;
   margin-top: 0pt;
   margin-bottom: 0pt;
+}
+
+/* =========================================================
+   --- THE LIN FAMILY FINALIZED RESPONSIVE CSS ---
+   ========================================================= */
+
+/* --- 1. NEW RESPONSIVE NAVIGATION STYLES --- */
+.responsive-nav {
+  display: flex;
+  flex-direction: column; /* Stacks the text row above the icon row */
+  align-items: center; /* Centrally aligns the groups on the page */
+  gap: 20px; /* Space between the text group and icon group */
+  width: 100%; /* Fully fluid width */
+  padding: 3vw 0; /* Proportional vertical padding */
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Base styles for both text and icon links */
+.nav-text-group, .nav-icon-group {
+  display: flex;
+  flex-wrap: wrap; /* Items wrap onto new lines on small screens */
+  justify-content: center; /* Center-aligns items within the row */
+  align-items: center; /* Vertically centers items within the row */
+  gap: 15px; /* Space between individual text links or icons */
+}
+
+/* Styling for the Text Links Row */
+.nav-text-group a {
+  text-decoration: none;
+  color: #333; /* Standard dark text color */
+  font-family: Arial, sans-serif; /* Clean, modern font */
+  font-weight: bold;
+  transition: color 0.3s ease;
+  
+  /* --- NEW & CHANGED RESPONSIVE FONT SCALING --- */
+  font-size: clamp(1rem, 2vw, 1.8rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
+}
+
+.nav-text-group a:hover {
+  color: #c43; /* Changes to a coral/red on hover */
+}
+
+.nav-text-group span {
+  color: #ccc; /* Gray color for the vertical pipe separator */
+
+  /* --- NEW & CHANGED RESPONSIVE FONT SCALING --- */
+  font-size: clamp(1rem, 2vw, 1.8rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
+}
+
+/* Styling for the Icon Links Row */
+.nav-icon-group a {
+  display: flex; /* Helps icons behave and center well */
+}
+
+.nav-icon-group img {
+  width: auto; /* Width is proportional and fluid */
+  /* max-width: 100%; Important: prevents icons from exceeding their space */
+  height: auto;
+  /* max-height: 100%; */
+  object-fit: contain; /* Prevents image distortion */
+  transition: transform 0.2s ease;
+  
+  /* --- NEW & CHANGED RESPONSIVE ICON SCALING --- */
+  height: clamp(80px, 8vw, 200px); /* Min 80px, scales with 8vw, Max 200px */
+}
+
+.nav-icon-group a:hover img {
+  transform: scale(1.25); /* Slight zoom-in on hover */
+}
+
+/* --- 2. NEW RESPONSIVE FOOTER STYLES --- */
+.responsive-footer {
+  width: 100%; /* Fully fluid container */
+  background-color: #f0f0f0; /* Classic 90s light grey background */
+  padding: 3vw 0; /* Proportional vertical padding */
+  box-sizing: border-box; /* Padding is included in width */
+  display: flex; /* Stacks everything vertically and centers it */
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-divider {
+  width: 80%; /* Fluid divider line, doesn't span full width */
+  margin: 0 auto 20px; /* Centered, with bottom spacing */
+  border-top: 1px solid #ccc; /* Maintain basic 90s line style */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: row; /* Icon on the left, text group on the right */
+  justify-content: center; /* Centrally aligns the entire content block on the page */
+  align-items: center; /* Vertically centers icon and text group relative to each other */
+  gap: 30px; /* Space between the icon and the text group */
+  width: 100%;
+  padding: 0 5vw; /* Internal scaling padding for clean edges */
+  box-sizing: border-box;
+}
+
+/* --- Grouping all text into its own centered container --- */
+.footer-text-group {
+  display: flex;
+  flex-direction: column; /* Stack links row and copyright block */
+  justify-content: center; /* Centrally aligns them vertically */
+  
+  /* --- NEW & CHANGED ALIGNMENT --- */
+  align-items: center; /* Important: centers the whole text group relative to the icon */
+  text-align: center; /* General rule to ensure individual lines are centered */
+  
+  gap: 15px; /* Space between links row and copyright block */
+}
+
+/* Styling for the mailbox icon */
+.footer-icon {
+  width: auto; /* Proportional width */
+  max-width: 100%; /* Important: prevents icons from exceeding their space */
+  object-fit: contain; /* Prevents distortion */
+  
+  /* --- NEW & CHANGED RESPONSIVE ICON SCALING --- */
+  height: clamp(70px, 5vw, 150px); /* Min 70px, scales with 4.5vw, Max 100px */
+}
+
+/* Styling for both Text Links Row and Copyright Text Block */
+.copyright-text {
+  text-decoration: none;
+  font-family: Arial, sans-serif; /* Clean, modern font */
+  transition: color 0.3s ease;
+  
+  /* --- NEW & CHANGED RESPONSIVE FONT SCALING --- */
+  font-size: clamp(0.9rem, 1.8vw, 1.8rem); /* Min 0.9rem, scales with 1.8vw, Max 1.8rem */
+}
+
+/* Ensure the pipe separator scales with the links */
+.footer-links-row span {
+  color: #888; /* Maintain basic 90s light gray line color */
+  font-family: Arial, sans-serif; /* A modern font for clean line style */
+  
+  /* --- THE ESSENTIAL MATCHING CLAMP FIX --- */
+  /* This MUST be identical to the font-size clamp defined for .footer-links-row a */
+  font-size: clamp(0.9rem, 1.8vw, 1.8rem); /* Min 0.9rem, scales with 1.8vw, Max 1.8rem */
+}
+
+/* --- NEW & CHANGED VISIBILITY & SPACING FOR FOOTER LINKS --- */
+.footer-links-row a {
+  text-decoration: none;
+  color: #333; /* Dark text color */
+  font-family: Arial, sans-serif; /* Clean font */
+  transition: color 0.3s ease;
+  
+  /* --- RESPONSIVE FONT SCALING --- */
+  font-size: clamp(0.9rem, 1.8vw, 1.8rem); /* Min 0.9rem, scales with 1.8vw, Max 1.8rem */
+  
+  /* --- THE ESSENTIAL EQUAL SPACING FIX IS HERE --- */
+  /* Remove any existing spacing, and add pixel-level equality */
+  margin: 0; /* Important: removes any potential non-equal margin space */
+  padding: 0 5px; /* NEW: Perfectly equal 10px padding on the Left and Right of every link */
+  
+  /* Optional: Vertically centers the pipe against the links */
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-links-row a:hover {
+  color: #c43; /* Changes to a coral/red on hover, matching nav */
+}
+
+/* Individual style for copyright color */
+.copyright-text {
+  color: #555; /* Slightly muted color, standard for copyright */
 }
