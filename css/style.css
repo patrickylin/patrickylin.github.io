@@ -372,23 +372,6 @@ body {
   color: #666;
 }
 
-/* Mobile tweak: Stacks cleanly ONLY on very small phone screens */
-@media (max-width: 500px) {
-  .footer {
-    flex-direction: column;
-    text-align: center;
-  }
-  .footer-text {
-    text-align: center;
-  }
-  #icon-grid {
-    gap: 15px; /* Tighter gap on phones */
-  }
-  #icon-grid a {
-    flex: 0 0 calc(25% - 15px); /* 4 icons per row on small phones */
-  }
-}
-
 /* Headings */
 h1 {
   font-size: 24px;
@@ -699,4 +682,21 @@ h2 {
 /* Individual style for copyright color */
 .copyright-text {
   color: #555; /* Slightly muted color, standard for copyright */
+}
+
+/* Mobile tweak: Stacks cleanly ONLY on very small phone screens */
+@media (max-width: 500px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-text {
+    text-align: center;
+  }
+  #icon-grid {
+    gap: 15px; /* Tighter gap on phones */
+  }
+  #icon-grid a {
+    flex: 0 0 calc(25% - 15px); /* 4 icons per row on small phones */
+  }
 }
