@@ -604,6 +604,7 @@ h2 {
 
 .footer-content {
   display: flex;
+  font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
   flex-direction: row; /* Icon on the left, text group on the right */
   justify-content: center; /* Centrally aligns the entire content block on the page */
   align-items: center; /* Vertically centers icon and text group relative to each other */
@@ -639,7 +640,6 @@ h2 {
 /* Styling for both Text Links Row and Copyright Text Block */
 .copyright-text {
   text-decoration: none;
-  font-family: Arial, sans-serif; /* Clean, modern font */
   transition: color 0.3s ease;
   
   /* --- NEW & CHANGED RESPONSIVE FONT SCALING --- */
@@ -649,7 +649,6 @@ h2 {
 /* Ensure the pipe separator scales with the links */
 .footer-links-row span {
   color: #888; /* Maintain basic 90s light gray line color */
-  font-family: Arial, sans-serif; /* A modern font for clean line style */
   
   /* --- THE ESSENTIAL MATCHING CLAMP FIX --- */
   /* This MUST be identical to the font-size clamp defined for .footer-links-row a */
@@ -660,7 +659,6 @@ h2 {
 .footer-links-row a {
   text-decoration: none;
   color: #333; /* Dark text color */
-  font-family: Arial, sans-serif; /* Clean font */
   transition: color 0.3s ease;
   
   /* --- RESPONSIVE FONT SCALING --- */
@@ -669,7 +667,7 @@ h2 {
   /* --- THE ESSENTIAL EQUAL SPACING FIX IS HERE --- */
   /* Remove any existing spacing, and add pixel-level equality */
   margin: 0; /* Important: removes any potential non-equal margin space */
-  padding: 0 5px; /* NEW: Perfectly equal 10px padding on the Left and Right of every link */
+  padding: 0 5px 0 2px; /* NEW: Perfectly equal 10px padding on the Left and Right of every link */
   
   /* Optional: Vertically centers the pipe against the links */
   display: inline-flex;
