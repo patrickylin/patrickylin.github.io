@@ -551,7 +551,7 @@ h2 {
   transition: color 0.3s ease;
   
   /* --- NEW & CHANGED RESPONSIVE FONT SCALING --- */
-  font-size: clamp(1rem, 2vw, 1.8rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem); /* Min 1rem, scales with 2vw, Max 1.8rem */
 }
 
 .nav-text-group a:hover {
@@ -573,13 +573,11 @@ h2 {
 .nav-icon-group img {
   width: auto; /* Width is proportional and fluid */
   max-width: 100%; /* Important: prevents icons from exceeding their space */
-  height: auto;
-  max-height: 100%;
   object-fit: contain; /* Prevents image distortion */
   transition: transform 0.2s ease;
   
   /* --- NEW & CHANGED RESPONSIVE ICON SCALING --- */
-  height: clamp(80px, 8vw, 200px); /* Min 80px, scales with 8vw, Max 200px */
+  width: clamp(125px, 12vw, 250px);
 }
 
 .nav-icon-group a:hover img {
@@ -589,7 +587,6 @@ h2 {
 /* --- 2. NEW RESPONSIVE FOOTER STYLES --- */
 .responsive-footer {
   width: 100%; /* Fully fluid container */
-  background-color: #f0f0f0; /* Classic 90s light grey background */
   padding: 3vw 0; /* Proportional vertical padding */
   box-sizing: border-box; /* Padding is included in width */
   display: flex; /* Stacks everything vertically and centers it */
