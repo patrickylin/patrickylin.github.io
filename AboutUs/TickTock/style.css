@@ -7,10 +7,15 @@
     align-items: middle;
 }
 
-.clockbox,
+.clockbox {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1/1;
+}
+
 #clock {
-    width: 450px;
-    height: 450px;
+    width: 100%;
+    height: auto;
 }
 
 /* Clock styles */
