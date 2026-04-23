@@ -608,7 +608,6 @@ h2 {
 }
 
 /* width: clamp(125px, 12vw, 250px); gap: 50px; */
-.icons-photo-album, 
 .icons-about-us {
   --icon-min: 125px;
   --icon-scale: 12vw;
@@ -623,12 +622,20 @@ h2 {
   --icon-gap: 20px;
 }
 
+.icons-bible-study {
+  --icon-min: 50px;
+  --icon-scale: 8vw;
+  --icon-max: 100px;
+  --icon-gap: 10px;
+}
+
 .icons-large {
   --icon-min: 150px;
   --icon-scale: 15vw;
   --icon-max: 300px;
   --icon-gap: 50px;
 }
+
 .icons-medium {
   --icon-min: 50px;
   --icon-scale: 8vw;
@@ -640,9 +647,8 @@ h2 {
   --icon-min: 30px;
   --icon-scale: 4vw;
   --icon-max: 50px;
-  --icon-gap: 15px;
+  --icon-gap: 10px;
 }
-
 
 
 /* --- 2. NEW RESPONSIVE FOOTER STYLES --- */
