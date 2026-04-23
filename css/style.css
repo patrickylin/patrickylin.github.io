@@ -623,6 +623,19 @@ h2 {
   --icon-gap: 20px;
 }
 
+.icons-large {
+  --icon-min: 150px;
+  --icon-scale: 15vw;
+  --icon-max: 300px;
+  --icon-gap: 50px;
+}
+.icons-medium {
+  --icon-min: 50px;
+  --icon-scale: 8vw;
+  --icon-max: 100px;
+  --icon-gap: 25px;
+}
+
 .icons-small {
   --icon-min: 30px;
   --icon-scale: 4vw;
