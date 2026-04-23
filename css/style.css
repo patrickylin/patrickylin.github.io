@@ -105,8 +105,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Aligns them to the left */
-  gap: 20px; /* Consistent spacing between icons */
-  width: 100%;
+  gap: 10px; /* Consistent spacing between icons */
+  width: 50px;
   margin-top: 0;
   margin-bottom: 20px;
 }
