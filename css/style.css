@@ -599,7 +599,6 @@ h2 {
 }
 
 /* VARIANTS */
-/* width: clamp(125px, 12vw, 250px); gap: 15px; */
 .icons-home-page {
   --icon-min: 125px;
   --icon-scale: 12vw;
@@ -607,11 +606,10 @@ h2 {
   --icon-gap: 15px;
 }
 
-/* width: clamp(125px, 12vw, 250px); gap: 50px; */
 .icons-about-us {
-  --icon-min: 125px;
-  --icon-scale: 12vw;
-  --icon-max: 250px;
+  --icon-min: 175px;
+  --icon-scale: 15vw;
+  --icon-max: 300px;
   --icon-gap: 50px;
 }
 
