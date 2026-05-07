@@ -36,7 +36,7 @@ body {
   width: 100%;
   height: 1px;
   background-color: #cccccc; /* Light gray line */
-  margin: 10px 0 25px 0; /* Space above and below the line */
+  margin: 10px 0; /* Space above and below the line */
   border: none;
 }
 
@@ -527,7 +527,7 @@ h2 {
   display: flex;
   flex-direction: column; /* Stacks the text row above the icon row */
   align-items: center; /* Centrally aligns the groups on the page */
-  gap: 20px; /* Space between the text group and icon group */
+  gap: 0; /* Space between the text group and icon group */
   width: 100%; /* Fully fluid width */
   padding: 3vw 0; /* Proportional vertical padding */
   box-sizing: border-box; /* Ensures padding is included in width */
@@ -539,7 +539,7 @@ h2 {
   flex-wrap: wrap; /* Items wrap onto new lines on small screens */
   justify-content: center; /* Center-aligns items within the row */
   align-items: center; /* Vertically centers items within the row */
-  gap: 15px; /* Space between individual text links or icons */
+  gap: 5px; /* Space between individual text links or icons */
 }
 
 /* Styling for the Text Links Row */
