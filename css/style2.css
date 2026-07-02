@@ -191,13 +191,18 @@ body {
 
 /* (Tier 3) Large: Used for sparse primary sections (About Us Navigation Layouts) */
 .icons-large {
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
 }
+.icons-large a {
+  display: flex;
+}
 .icons-large img {
-  width: 130px; height: 130px;
   max-width: 100%;
-  width: clamp(90px,18vw,140px);
+  width: clamp(90px,18vw,180px);
   height: auto;
 }
 .icons-large a:hover img {
@@ -205,8 +210,6 @@ body {
 }
 
 /* Target Layout Fallbacks for Untouched Contexts */
-.icons-photo-album  { grid-template-columns: repeat(4, 1fr); }
-.icons-photo-album img{ width: 160px; height: 160px; }
 .icons-bible-study  { grid-template-columns: repeat(8, 1fr); }
 .icons-bible-study img{ width: 75px; height: 75px; }
 
