@@ -140,73 +140,52 @@ body {
    -------------------------------------------------------------------------- */
 
 /* Standard Global Rule Mapping for Icons across all generational groups */
-.small-icon-group, .medium-icon-group, .large-icon-group,
-.nav-icon-group, .icon-grid, #icon-grid {
-  display: grid;
-  width: 100%;
-  margin: 20px auto;
+.icons-small, .icons-medium, .icons-large {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
-.small-icon-group a, .medium-icon-group a, .large-icon-group a,
-.nav-icon-group a, .icon-grid a, #icon-grid a {
+.icons-small a, .icons-medium a, .icons-large a {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
 }
 
-.small-icon-group img, .medium-icon-group img, .large-icon-group img,
-.nav-icon-group img, .icon-grid img, #icon-grid img {
-  object-fit: contain;
-  display: block;
-  border: none;
-  transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+.icons-small img, .icons-medium img, .icons-large img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Interactivity (Universal Hover Zoom Engine) */
-.small-icon-group a:hover img, .medium-icon-group a:hover img, .large-icon-group a:hover img,
-.nav-icon-group a:hover img, .icon-grid a:hover img, #icon-grid a:hover img {
+.icons-small a:hover img, .icons-medium a:hover img, .icons-large a:hover img {
   transform: scale(1.2);
 }
 
 /* (Tier 1) Small: Used for hyper-dense dashboard layouts (Favorite Links) */
-.small-icon-group, .icons-small {
-  grid-template-columns: repeat(16, 1fr);
-  gap: 8px;
+.icons-small {
+  gap: 10px;
 }
-.small-icon-group img, .icons-small img {
-  width: 40px; height: 40px;
+.icons-small img {
+  width: clamp(30px,4vw,50px);
 }
 
 /* (Tier 2) Medium: Used for secondary internal portals (Library Room & Tools) */
-.medium-icon-group, .icons-medium {
-  grid-template-columns: repeat(7, 1fr);
+.icons-medium {
   gap: 20px;
 }
-.medium-icon-group img, .icons-medium img {
-  width: 65px; height: 65px;
+.icons-medium img {
+  width: clamp(50px,8vw,100px);
 }
 
 /* (Tier 3) Large: Used for sparse primary sections (About Us Navigation Layouts) */
 .icons-large {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   gap: 30px;
 }
-.icons-large a {
-  display: flex;
-}
 .icons-large img {
-  max-width: 100%;
   width: clamp(90px,18vw,180px);
-  height: auto;
-}
-.icons-large a:hover img {
-    transform: scale(1.20);
 }
 
 /* Target Layout Fallbacks for Untouched Contexts */
