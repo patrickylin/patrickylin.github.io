@@ -1,0 +1,523 @@
+/* ==========================================================================
+   VERSION 2.0 - ARCHITECTURAL LIVING STYLESHEET
+   ==========================================================================
+   Design Philosophy: Preserve a 30+ year web legacy via modern standard layouts.
+   Strict Rules: 1. Maintain cross-browser parity (Safari layout engine focus).
+                 2. Backward-compatible mapping for older portal assets.
+                 3. Zero layout JavaScript dependencies.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN SYSTEM SYSTEM VARIABLES (ONE SOURCE OF TRUTH)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Branding Palette */
+  --color-primary: #1F497D;      /* Core branding deep navy blue */
+  --color-accent: #c43;          /* Interactive hover highlight red */
+  --color-text-dark: #333333;    /* Body content high contrast black */
+  --color-text-muted: #666666;   /* Secondary copyright & notes gray */
+  --color-bg-page: #f5f4f0;      /* Warm historic background ivory */
+  --color-border: #cccccc;       /* Structural division lines */
+  --color-table-header: #1F497D; /* Master data tables matching branding */
+  --color-table-alt: #f7f7f7;    /* Alternating data row layout gray */
+  --color-photo-bg: #ffffff;
+  
+  /* Shared Structural Sizing */
+  --wrapper-max-width: 1000px;   /* Standard maximum container lock boundary */
+  --container-max-width: 1200px; /* Extended table view boundary */
+  --font-stack-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
+  --font-stack-serif: "Times New Roman", Times, serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL UTILITY BASES & RESET
+   -------------------------------------------------------------------------- */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: var(--font-stack-sans);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%; /* Fixes mobile font resizing bugs in Safari */
+}
+
+/* --------------------------------------------------------------------------
+   3. STRUCTURAL WRAPPERS & CONTAINERS (UNIFIED ARCHITECTURE)
+   -------------------------------------------------------------------------- */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--wrapper-max-width);
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  background-image: url("../gif/back.gif");
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh; 
+  background-color: rgba(255, 255, 255, 0.95);
+  background-image: url("../gif/back.gif");
+  padding: 30px 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+/* --------------------------------------------------------------------------
+   4. DIVIDERS & STATIC CONTENT BANNERS
+   -------------------------------------------------------------------------- */
+.banner img,
+.bulletin img,
+.site-banner {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px auto;
+  border: none;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 10px 0;
+  border: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVIGATION ARCHITECTURE (FLUID RESPONSIVE DESIGN)
+   -------------------------------------------------------------------------- */
+.responsive-nav {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%; 
+  padding: 15px 0; 
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 5px; 
+}
+
+.navigation a {
+  text-decoration: none;
+  color: var(--color-text-dark); 
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem); 
+}
+
+.navigation a:hover { 
+  color: var(--color-accent); 
+}
+
+.navigation span { 
+  color: var(--color-border); 
+  font-size: clamp(1rem, 2vw, 1.8rem); 
+}
+
+/* --------------------------------------------------------------------------
+   6. 3-TIER MODERN DASHBOARD ICON ENGINES (SAFARI OPTIMIZED)
+   -------------------------------------------------------------------------- */
+
+/* Standard Global Rule Mapping for Icons across all generational groups */
+.small-icon-group, .medium-icon-group, .large-icon-group,
+.nav-icon-group, .icon-grid, #icon-grid {
+  display: grid;
+  width: 100%;
+  margin: 20px auto;
+  justify-content: center;
+  align-content: center;
+}
+
+.small-icon-group a, .medium-icon-group a, .large-icon-group a,
+.nav-icon-group a, .icon-grid a, #icon-grid a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.small-icon-group img, .medium-icon-group img, .large-icon-group img,
+.nav-icon-group img, .icon-grid img, #icon-grid img {
+  object-fit: contain;
+  display: block;
+  border: none;
+  transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Interactivity (Universal Hover Zoom Engine) */
+.small-icon-group a:hover img, .medium-icon-group a:hover img, .large-icon-group a:hover img,
+.nav-icon-group a:hover img, .icon-grid a:hover img, #icon-grid a:hover img {
+  transform: scale(1.2);
+}
+
+/* (Tier 1) Small: Used for hyper-dense dashboard layouts (Favorite Links) */
+.small-icon-group, .icons-small {
+  grid-template-columns: repeat(16, 1fr);
+  gap: 8px;
+}
+.small-icon-group img, .icons-small img {
+  width: 40px; height: 40px;
+}
+
+/* (Tier 2) Medium: Used for secondary internal portals (Library Room & Tools) */
+.medium-icon-group, .icons-medium {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+}
+.medium-icon-group img, .icons-medium img {
+  width: 65px; height: 65px;
+}
+
+/* (Tier 3) Large: Used for sparse primary sections (About Us Navigation Layouts) */
+.icons-large {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.icons-large img {
+  width: 130px; height: 130px;
+  max-width: 100%;
+  width: clamp(90px,18vw,140px);
+  height: auto;
+}
+.icons-large a:hover img {
+    transform: scale(1.20);
+}
+
+/* Target Layout Fallbacks for Untouched Contexts */
+.icons-photo-album  { grid-template-columns: repeat(4, 1fr); }
+.icons-photo-album img{ width: 160px; height: 160px; }
+.icons-bible-study  { grid-template-columns: repeat(8, 1fr); }
+.icons-bible-study img{ width: 75px; height: 75px; }
+
+/* --------------------------------------------------------------------------
+   7. SEMANTIC CONTENT TYPOGRAPHY & HISTORIC ID FALLBACKS
+   -------------------------------------------------------------------------- */
+h1 {
+  font-size: 24px;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: var(--color-text-dark);
+}
+
+/* Mapping rules for legacy typography tags preventing data loss on older pages */
+#Sans8NBF    { font-family: var(--font-stack-sans); font-size: 8pt; color: BLUE; }
+#Sans9BNF    { font-family: var(--font-stack-sans); font-weight: bold; font-size: 9pt; color: NAVY; }
+#Sans11BNF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 11pt; color: NAVY; }
+#Sans14BPF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 14pt; color: PURPLE; }
+#Sans14INF   { font-family: Impact, sans-serif; font-size: 14pt; color: NAVY; }
+#Sans18BGF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 18pt; color: darkslategrey; width: 100%; }
+#Sans20BPF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 20pt; color: DARKBLUE; width: 100%; }
+#Sans20BBF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 20pt; color: black; width: 100%; }
+#Sans20BRF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 20pt; color: darkred; width: 100%; }
+#Sans24BPF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 24pt; color: DARKRED; width: 100%; }
+#Sans30BPF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 30pt; color: DARKRED; width: 100%; }
+#Sans40BPF   { font-family: var(--font-stack-sans); font-weight: bold; font-size: 40pt; color: PURPLE; width: 100%; }
+#Serif12BGF  { font-family: var(--font-stack-serif); font-weight: bold; font-size: 12pt; color: GRAY; }
+#Serif14BNF  { font-family: var(--font-stack-serif); font-weight: bold; font-size: 14pt; color: NAVY; }
+#Serif14BWF  { font-family: var(--font-stack-serif); font-weight: bold; font-size: 14pt; color: WHITE; }
+#Serif14NBF  { font-family: cursive; font-weight: normal; font-size: 14pt; color: BLACK; }
+#Serif28BYF  { font-family: var(--font-stack-serif); font-weight: bold; font-size: 28pt; color: YELLOW; }
+
+/* Positional Utility Maps */
+#AlignLeftP, .text-left     { text-align: left; }
+#AlignCenterP, .text-center { text-align: center; }
+#AlignRightP, .text-right   { text-align: right; }
+
+/* --------------------------------------------------------------------------
+   8. DATA ARCHITECTURE & TABLES
+   -------------------------------------------------------------------------- */
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 25px;
+  border: 1px solid var(--color-border);
+}
+
+.alphabet-table, .bible-table, .pinyin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  min-width: 800px;
+}
+
+.alphabet-table th, .alphabet-table td,
+.bible-table th, .bible-table td,
+.pinyin-table th, .pinyin-table td {
+  border: 1px solid var(--color-border);
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+
+.bible-table td { vertical-align: top; font-size: 14px; }
+.pinyin-table { font-size: 15px; text-align: center; }
+.pinyin-table th { background-color: #f0f0f0; font-weight: bold; }
+
+.alphabet-table th { background-color: #f0f0f0; color: var(--color-text-dark); font-weight: bold; }
+.alphabet-table .main-header, .bible-table th {
+  background-color: var(--color-table-header);
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+.alphabet-table .main-header { font-size: 18px; padding: 12px; }
+.alphabet-table img { width: 30px; height: 30px; vertical-align: middle; }
+
+.bible-table .section-header {
+  background-color: #e9ecef;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+/* Specific Style Variations for Cross-Reference Modules */
+.text-red { color: #d32f2f; font-weight: bold; }
+.bg-gray  { background-color: var(--color-table-alt); }
+.bg-cyan  { background-color: #e0f7fa; font-weight: bold; }
+.bg-dark  { background-color: #e9ecef; }
+.spacer-row td { height: 10px; background-color: #ffffff; border-left: none; border-right: none; }
+
+.notes-section {
+  background: #f9f9f9;
+  border-left: 4px solid var(--color-primary);
+  padding: 10px 20px;
+  font-size: 15px;
+}
+.notes-section p { margin-bottom: 8px; }
+.notes-section p:last-child { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   9. INTERACTIVE TOOLS & ENGINE STYLES (CALCULATORS & FORM UTILITIES)
+   -------------------------------------------------------------------------- */
+.calculator-wrapper, .clock-wrapper, .moon-wrapper, .doctrine-wrapper {
+  max-width: 550px;
+  margin: auto;
+  background: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+.calculator-wrapper h2 {
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+.form-group label {
+  flex: 1 1 200px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 5px;
+}
+.input-wrapper {
+  flex: 1 1 200px;
+  display: flex;
+  align-items: center;
+}
+.input-wrapper span { font-size: 18px; color: #555; }
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+}
+.form-control[readonly] {
+  background: #eef2f5;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.calc-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  color: #fff;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 25px 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+.calc-btn:hover { background-color: #153257; }
+
+/* --------------------------------------------------------------------------
+   10. UNIVERSAL RESPONSIVE FOOTER ARCHITECTURE
+   -------------------------------------------------------------------------- */
+.footer-container {
+  margin-top: auto;
+  width: 100%;
+  padding: 3vw 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  font-family: "Arial Narrow", "Helvetica Narrow", Arial, sans-serif;
+  flex-direction: row;
+  justify-content: center; 
+  align-items: center; 
+  gap: 30px; 
+  width: 100%;
+  padding: 0 5vw;
+  box-sizing: border-box;
+}
+
+.footer-email img {
+  width: auto;
+  max-width: 100%;
+  height: clamp(70px, 5vw, 150px);
+  object-fit: contain;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.footer-links { 
+  margin-bottom: 5px; 
+  font-size: 13px; 
+  font-weight: bold;
+}
+.footer-links a { 
+  text-decoration: none;
+  color: var(--color-text-dark);
+  transition: color 0.3s ease;
+  font-size: clamp(0.9rem, 1.8vw, 1.8rem);
+  margin: 0; 
+  padding: 0 5px 0 2px;
+  display: inline-flex;
+  align-items: center; 
+}
+.footer-links a:hover { 
+  color: var(--color-accent);
+  text-decoration: underline; 
+}
+.footer-links span { 
+  color: var(--color-border);
+  font-size: clamp(0.9rem, 1.8vw, 1.8rem); 
+}
+
+.copyright { 
+  color: var(--color-text-muted); 
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: clamp(0.9rem, 1.8vw, 1.8rem);
+}
+
+/* --------------------------------------------------------------------------
+   11. PHOTO ALBUM THUMBNAIL ENGINE (FLUID PORTRAIT / LANDSCAPE)
+   -------------------------------------------------------------------------- */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin: 20px auto;
+  margin-bottom: 20px;
+}
+
+.gallery a {
+  display: flex;
+  text-decoration: none;
+}
+
+.gallery img {
+  max-width: 100%;
+  width: clamp(90px,18vw,140px);
+  height: auto;
+  object-fit: contain; /* Preserves pixel-perfect original photography ratios */
+  border-radius: 4px; /* Optional clean edge finish */
+  border: 1px solid var(--color-border);
+  background-color: var(--color-photo-bg);
+  padding: 4px; /* Creates a clean, traditional photo border effect */
+  transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gallery a:hover img {
+    transform: scale(1.24);
+}
+
+/* --------------------------------------------------------------------------
+   12. MEDIA VIEWPORT BREAKPOINTS (CROSS-BROWSER AUTO-SCALING)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  /* Dynamic conversion handling scaling environments (Tablets) */
+  .small-icon-group, .icons-small   { grid-template-columns: repeat(8, 1fr); }
+  .medium-icon-group, .icons-medium { grid-template-columns: repeat(5, 1fr); }
+  .large-icon-group, .icons-large   { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .small-icon-group, .icons-small   {
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 10px; 
+  }
+  .medium-icon-group, .icons-medium { 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+  }
+  .large-icon-group, .icons-large   { 
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 20px; 
+  }
+  .gallery {
+    gap: 10px;
+  }
+  .footer, .footer-content { 
+    flex-direction: column; 
+    gap: 15px; 
+  }
+}
