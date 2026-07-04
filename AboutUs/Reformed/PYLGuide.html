@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reformed Faith — One Story, One God, One People</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF7ED;
+    --bg-card:#FFFFFF;
+    --bg-card2:#F4EEDC;
+    --ink:#2B2A25;
+    --ink-dim:#5B584C;
+    --ink-faint:#938F7E;
+    --gold:#C99A2E;
+    --gold-deep:#9C7515;
+    --gold-tint:#F6E9C6;
+    --burgundy:#AC4646;
+    --burgundy-tint:#F5DEDE;
+    --sage:#5F8555;
+    --sage-tint:#DEE9D7;
+    --slate:#2F5D82;
+    --slate-tint:#D9E5EE;
+    --purple:#71508A;
+    --purple-tint:#E7DEEE;
+    --anchor-dark:#233B57;
+    --line:rgba(43,42,37,0.12);
+    --serif:'Spectral', serif;
+    --sans:'Source Sans 3', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold-tint); color:var(--ink);}
+
+  /* ===== Language toggle ===== */
+  .lang-toggle{
+    position:fixed; top:20px; right:20px; z-index:100;
+    display:flex; gap:2px;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:4px;
+  }
+  .lang-toggle button{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.05em;
+    background:none;
+    border:none;
+    color:var(--ink-faint);
+    padding:7px 14px;
+    border-radius:100px;
+    cursor:pointer;
+    transition:all 0.25s ease;
+  }
+  .lang-toggle button.active{
+    background:var(--gold);
+    color:#FFFFFF;
+    font-weight:600;
+  }
+
+  /* ===== Progress thread ===== */
+  .thread-rail{
+    position:fixed;
+    left:32px; top:0; bottom:0;
+    width:2px;
+    z-index:5;
+    display:none;
+  }
+  @media(min-width:900px){ .thread-rail{display:block;} }
+  .thread-rail .track{
+    position:absolute; left:0; top:12vh; bottom:12vh; width:2px;
+    background:rgba(203,167,89,0.15);
+  }
+  .thread-rail .fill{
+    position:absolute; left:0; top:12vh; width:2px; height:0;
+    background:linear-gradient(180deg, var(--gold), var(--gold-deep));
+    transition:height 0.15s linear;
+    box-shadow:0 0 8px rgba(231,199,122,0.5);
+  }
+  .thread-node{
+    position:absolute; left:-5px; width:12px; height:12px; border-radius:50%;
+    background:var(--bg); border:2px solid rgba(203,167,89,0.35);
+    transition:all 0.4s ease;
+  }
+  .thread-node.lit{
+    background:var(--gold-deep);
+    border-color:var(--gold-deep);
+    box-shadow:0 0 12px rgba(231,199,122,0.8);
+  }
+
+  section{position:relative; z-index:1;}
+
+  /* ===== Hero ===== */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:40px 24px;
+  }
+  .hero .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    line-height:1.05;
+    max-width:14ch;
+    background:linear-gradient(135deg, var(--ink) 40%, var(--gold-deep));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero .sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    color:var(--ink-dim);
+    margin-top:22px;
+    max-width:32ch;
+  }
+  .hero .scroll-cue{
+    margin-top:70px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .scroll-cue .line{
+    width:1px; height:44px;
+    background:linear-gradient(180deg, var(--gold), transparent);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  /* ===== Section shell ===== */
+  .step{
+    max-width:1040px;
+    margin:0 auto;
+    padding:130px 28px 90px;
+  }
+  @media(min-width:900px){ .step{padding-left:100px;} }
+  .step-head{ margin-bottom:56px; }
+  .step-num{
+    font-family:var(--mono);
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:0.2em;
+    margin-bottom:14px;
+  }
+  .step-head h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.9rem,4vw,3rem);
+    color:var(--ink);
+  }
+  .step-head .tag{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--ink-dim);
+    font-size:1.15rem;
+    margin-top:10px;
+  }
+
+  /* ===== Foundation tiers (Step 1: Our Foundation) ===== */
+  .tier{ display:flex; flex-direction:column; align-items:center; }
+  .tier-arrow{ width:1px; height:30px; background:var(--line); }
+  .tier-card{
+    width:100%;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-top:4px solid var(--line);
+    border-radius:14px;
+    padding:28px 30px;
+    box-shadow:0 3px 14px rgba(43,42,37,0.06);
+    margin-bottom:14px;
+  }
+  .tier-eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:8px; }
+  .tier-card h3{ font-family:var(--serif); font-weight:600; font-size:1.4rem; margin-bottom:8px; }
+  .tier-card p{ color:var(--ink-dim); font-size:0.95rem; max-width:60ch; margin:0 auto; }
+  .tier-chips{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
+  .tier-chip{
+    background:var(--bg-card2);
+    border-radius:10px;
+    padding:12px 18px;
+    text-align:center;
+    min-width:150px;
+  }
+  .tier-chip .zh-name{ font-family:var(--serif); font-weight:600; font-size:0.98rem; }
+  .tier-note{ margin-top:16px; font-family:var(--serif); font-style:italic; color:var(--ink-faint); font-size:0.9rem; }
+  .tier-scripture{ border-top-color:var(--slate); } .tier-scripture .tier-eyebrow{ color:var(--slate); }
+  .tier-creeds{ border-top-color:var(--gold); } .tier-creeds .tier-eyebrow{ color:var(--gold-deep); }
+  .tier-confessions{ border-top-color:var(--purple); } .tier-confessions .tier-eyebrow{ color:var(--purple); }
+
+  /* ===== Timeline (Step 1: Big Picture) ===== */
+  .timeline{
+    display:flex; flex-direction:column; gap:0;
+    border-left:1px solid var(--line);
+    margin-left:20px;
+  }
+  .tl-item{
+    position:relative;
+    padding:0 0 44px 40px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{
+    position:absolute; left:-9px; top:2px;
+    width:17px; height:17px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--bg);
+  }
+  .tl-item h3{
+    font-family:var(--serif);
+    font-size:1.3rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .tl-item p{ color:var(--ink-dim); font-size:0.98rem; max-width:56ch;}
+  .tl-item .ref{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--gold);
+    display:inline-block;
+    margin-top:8px;
+    letter-spacing:0.03em;
+  }
+  .c-creation{background:var(--sage);} .c-fall{background:var(--burgundy);}
+  .c-covenant{background:var(--purple);} .c-christ{background:var(--gold);}
+  .c-union{background:var(--slate);}
+
+  .twin-cards{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    margin:44px 0 44px 40px;
+  }
+  @media(max-width:640px){ .twin-cards{grid-template-columns:1fr;} }
+  .mini-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:22px;
+    box-shadow:0 3px 14px rgba(43,42,37,0.06);
+  }
+  .mini-card h4{ font-family:var(--serif); font-size:1.05rem; margin-bottom:8px; color:var(--gold-deep);}
+  .mini-card p{ color:var(--ink-dim); font-size:0.92rem; }
+  .mini-card .ref{ font-family:var(--mono); font-size:11px; color:var(--ink-faint); margin-top:8px; display:block;}
+
+  .gratitude-band{
+    margin:0 0 0 40px;
+    background:linear-gradient(135deg, rgba(110,149,118,0.12), rgba(110,149,118,0.03));
+    border:1px solid rgba(110,149,118,0.3);
+    border-radius:14px;
+    padding:28px 26px;
+  }
+  .gratitude-band h4{
+    font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--sage);
+    margin-bottom:18px;
+  }
+  .gratitude-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:14px;
+  }
+  @media(max-width:760px){ .gratitude-grid{grid-template-columns:repeat(2,1fr);} }
+  .g-item{ text-align:center; }
+  .g-item .label{ font-family:var(--sans); font-weight:600; font-size:0.85rem; }
+  .g-item .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:4px;}
+
+  /* ===== Covenant diagram (Step 2) ===== */
+  .cov-flow{
+    display:flex; flex-direction:column; align-items:center; gap:0;
+    margin:10px 0 40px;
+  }
+  .cov-node{
+    padding:14px 30px;
+    border-radius:10px;
+    font-family:var(--serif); font-weight:600;
+    text-align:center;
+    font-size:1.05rem;
+    border:1px solid var(--line);
+    min-width:200px;
+  }
+  .cov-node .ref{ display:block; font-family:var(--mono); font-weight:400; font-size:10.5px; margin-top:4px; opacity:0.8;}
+  .cov-node .desc{ display:block; font-family:var(--sans); font-weight:400; font-size:0.82rem; margin-top:4px; opacity:0.85;}
+  .cov-arrow{ width:1px; height:26px; background:var(--line); }
+  .n-god{background:var(--anchor-dark); color:#FBF7ED; border-color:var(--anchor-dark);}
+  .n-creation{background:var(--sage-tint); color:var(--sage); border-color:rgba(95,133,85,0.35);}
+  .n-fall{background:var(--burgundy-tint); color:var(--burgundy); border-color:rgba(172,70,70,0.35);}
+  .n-grace{background:var(--purple-tint); color:var(--purple); border-color:rgba(113,80,138,0.35);}
+
+  .cov-people{
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+    margin:22px 0;
+    padding-top:22px;
+    border-top:1px dashed var(--line);
+    width:100%;
+  }
+  .person-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 18px;
+    text-align:center;
+    min-width:120px;
+    flex:1;
+    box-shadow:0 3px 14px rgba(43,42,37,0.06);
+  }
+  .person-card .name{ font-family:var(--serif); font-weight:600; font-size:0.95rem; color:var(--gold-deep);}
+  .person-card .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:4px;}
+
+  .same-line{
+    text-align:center;
+    font-family:var(--serif); font-style:italic;
+    color:var(--ink-dim);
+    font-size:1.15rem;
+    margin-top:36px;
+  }
+
+  /* ===== Solas (Step 3) ===== */
+  .solas-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:14px;
+    margin-bottom:50px;
+  }
+  @media(max-width:900px){ .solas-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .solas-grid{grid-template-columns:1fr;} }
+  .sola-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-top:4px solid var(--line);
+    border-radius:14px;
+    padding:28px 18px 24px;
+    text-align:center;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:0 3px 14px rgba(43,42,37,0.06);
+  }
+  .sola-card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(43,42,37,0.12); }
+  .sola-card .glyph{
+    width:46px; height:46px; margin:0 auto 16px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem;
+  }
+  .sola-card h4{ font-family:var(--serif); font-weight:600; font-size:1rem; margin-bottom:8px;}
+  .sola-card p{ font-size:0.85rem; color:var(--ink-dim); }
+  .sola-card .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:10px;}
+
+  .sola-scripture{ border-top-color:var(--slate); } .sola-scripture .glyph{ background:var(--slate-tint); } .sola-scripture h4{ color:var(--slate); }
+  .sola-grace{ border-top-color:var(--burgundy); } .sola-grace .glyph{ background:var(--burgundy-tint); } .sola-grace h4{ color:var(--burgundy); }
+  .sola-faith{ border-top-color:var(--sage); } .sola-faith .glyph{ background:var(--sage-tint); } .sola-faith h4{ color:var(--sage); }
+  .sola-christ{ border-top-color:var(--purple); } .sola-christ .glyph{ background:var(--purple-tint); } .sola-christ h4{ color:var(--purple); }
+  .sola-glory{ border-top-color:var(--gold); } .sola-glory .glyph{ background:var(--gold-tint); } .sola-glory h4{ color:var(--gold-deep); }
+
+  .glory-banner{
+    text-align:center;
+    background:linear-gradient(135deg, rgba(203,167,89,0.15), rgba(203,167,89,0.03));
+    border:1px solid rgba(203,167,89,0.4);
+    border-radius:16px;
+    padding:46px 24px;
+  }
+  .glory-banner h3{
+    font-family:var(--serif); font-weight:700;
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    color:var(--gold-deep);
+    letter-spacing:0.02em;
+  }
+  .glory-banner .ref{ font-family:var(--mono); font-size:12px; color:var(--gold); margin-top:12px; display:block;}
+
+  /* ===== Footer summary bar ===== */
+  .summary-bar{
+    display:grid; grid-template-columns:repeat(5,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--bg-card2);
+  }
+  @media(max-width:800px){ .summary-bar{grid-template-columns:repeat(2,1fr);} }
+  .sb-item{
+    padding:26px 18px;
+    text-align:center;
+    border-right:1px solid var(--line);
+  }
+  .sb-item:last-child{ border-right:none; }
+  .sb-item .label{ font-family:var(--serif); font-weight:600; font-size:0.95rem; }
+  .sb-item .ref{ font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); display:block; margin-top:6px;}
+
+  /* ===== Appendix / Reference Library ===== */
+  .appendix{
+    max-width:1040px; margin:0 auto; padding:90px 28px 140px;
+  }
+  .appendix-head{ text-align:center; margin-bottom:16px; }
+  .appendix-head .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.2em; color:var(--ink-faint); text-transform:uppercase;
+  }
+  .appendix-head h2{
+    font-family:var(--serif); font-weight:600; font-size:1.8rem; margin-top:10px;
+  }
+  .appendix-head p{ color:var(--ink-faint); font-size:0.92rem; margin-top:10px; max-width:52ch; margin-inline:auto;}
+
+  .accordion{ margin-top:44px; display:flex; flex-direction:column; gap:12px; }
+  .acc-item{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 3px 14px rgba(43,42,37,0.06);
+  }
+  .acc-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .acc-head h3{ font-family:var(--serif); font-weight:600; font-size:1.15rem; }
+  .acc-head .plus{ font-family:var(--mono); color:var(--gold); font-size:20px; transition:transform 0.3s ease; }
+  .acc-item.open .plus{ transform:rotate(45deg); }
+  .acc-body{
+    max-height:0; overflow:hidden;
+    transition:max-height 0.4s ease;
+    padding:0 24px;
+  }
+  .acc-item.open .acc-body{ padding-bottom:26px; }
+  .acc-body p.note{ color:var(--ink-dim); font-size:0.92rem; margin-bottom:18px; }
+
+  /* small grids reused inside accordion */
+  .flow-mini{ display:flex; flex-direction:column; gap:8px; }
+  .flow-mini .row{ display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--bg-card2); border-radius:8px; border-left:3px solid var(--gold);}
+  .flow-mini .row b{ font-family:var(--serif); min-width:180px; }
+  .flow-mini .row span.ref{ font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); margin-left:auto; }
+
+  .tulip-list{ display:flex; flex-direction:column; gap:10px; }
+  .tulip-row{ display:flex; gap:14px; align-items:flex-start; padding:12px 14px; background:var(--bg-card2); border-radius:8px;}
+  .tulip-letter{ font-family:var(--serif); font-weight:700; font-size:1.3rem; color:var(--burgundy); min-width:24px;}
+  .tulip-row .t-body b{ display:block; font-family:var(--sans); font-weight:600; font-size:0.92rem;}
+  .tulip-row .t-body span{ font-size:0.85rem; color:var(--ink-dim); }
+  .tulip-row .t-body .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:2px;}
+
+  .office-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media(max-width:640px){ .office-grid{grid-template-columns:1fr;} }
+  .office-card{ background:var(--bg-card2); border-radius:8px; padding:16px; text-align:center; }
+  .office-card h5{ font-family:var(--serif); color:var(--gold-deep); font-size:0.95rem; }
+  .office-card span{ font-size:0.82rem; color:var(--ink-dim); display:block; margin-top:6px;}
+  .office-card .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:6px;}
+
+  .wheel-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media(max-width:640px){ .wheel-grid{grid-template-columns:1fr;} }
+  .wheel-card{ background:var(--bg-card2); border-radius:8px; padding:14px 16px; border-left:3px solid var(--slate);}
+  .wheel-card h5{ font-family:var(--serif); font-size:0.92rem; color:var(--ink); }
+  .wheel-card span{ font-size:0.82rem; color:var(--ink-dim); display:block; margin-top:4px;}
+  .wheel-card .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:4px;}
+
+  footer.end{
+    text-align:center;
+    padding:50px 24px 70px;
+    color:var(--ink-faint);
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.08em;
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+  <button id="btn-zh" onclick="setLang('zh')">繁中</button>
+</div>
+
+<div class="thread-rail" id="rail">
+  <div class="track"></div>
+  <div class="fill" id="railFill"></div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <h1 data-en="The Reformed Faith" data-zh="改革宗信仰">The Reformed Faith</h1>
+  <p class="sub" data-en="One story. One God. One people." data-zh="一個故事、一位神、一群子民。">One story. One God. One people.</p>
+  <div class="scroll-cue">
+    <span data-en="SCROLL TO BEGIN" data-zh="向下捲動開始">SCROLL TO BEGIN</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- ============ STEP 1: OUR FOUNDATION ============ -->
+<section class="step" id="step0" data-node="0">
+  <div class="step-head">
+    <div class="step-num" data-en="STEP ONE" data-zh="第一步">STEP ONE</div>
+    <h2 data-en="Our Foundation" data-zh="我們信仰的根基">Our Foundation</h2>
+    <div class="tag" data-en="What we believe, together with the Church across time and place." data-zh="我們所信的，是與普世教會、歷代聖徒同心持守的信仰。">What we believe, together with the Church across time and place.</div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-card tier-scripture">
+      <div class="tier-eyebrow" data-en="THE FOUNDATION" data-zh="根基">THE FOUNDATION</div>
+      <h3 data-en="Scripture" data-zh="聖經">Scripture</h3>
+      <p data-en="The Old and New Testaments — God's Word, and the final authority for what we believe and how we live." data-zh="舊約與新約——是神的話語，也是我們信仰與生活最終的權威。">The Old and New Testaments — God's Word, and the final authority for what we believe and how we live.</p>
+    </div>
+    <div class="tier-arrow"></div>
+
+    <div class="tier-card tier-creeds">
+      <div class="tier-eyebrow" data-en="SHARED WITH THE WHOLE CHURCH" data-zh="與普世教會共有">SHARED WITH THE WHOLE CHURCH</div>
+      <h3 data-en="The Ecumenical Creeds" data-zh="大公教會信經">The Ecumenical Creeds</h3>
+      <p data-en="Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere." data-zh="三個由普世教會於歷世歷代所採納的信經，總結了基督教信仰最重要的真理——是普世信徒所共同持守的。">Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere.</p>
+      <div class="tier-chips">
+        <div class="tier-chip"><span class="zh-name" data-en="Apostles' Creed" data-zh="使徒信經">Apostles' Creed</span></div>
+        <div class="tier-chip"><span class="zh-name" data-en="Nicene Creed" data-zh="尼西亞信經">Nicene Creed</span></div>
+        <div class="tier-chip"><span class="zh-name" data-en="Athanasian Creed" data-zh="亞他那修信經">Athanasian Creed</span></div>
+      </div>
+    </div>
+    <div class="tier-arrow"></div>
+
+    <div class="tier-card tier-confessions">
+      <div class="tier-eyebrow" data-en="OUR REFORMED ACCENT" data-zh="我們改革宗的表達">OUR REFORMED ACCENT</div>
+      <h3 data-en="The Reformed Confessions" data-zh="改革宗信條">The Reformed Confessions</h3>
+      <p data-en="Historic confessions that articulate a Reformed understanding of that same biblical faith — not a different faith, but a particular, careful expression of it." data-zh="這些歷史性信條，以改革宗的角度闡述同一個聖經信仰——並非另一種信仰，而是對這信仰更細緻、更具體的表達。">Historic confessions that articulate a Reformed understanding of that same biblical faith — not a different faith, but a particular, careful expression of it.</p>
+      <div class="tier-chips">
+        <div class="tier-chip"><span class="zh-name" data-en="Belgic Confession" data-zh="比利時信條">Belgic Confession</span></div>
+        <div class="tier-chip"><span class="zh-name" data-en="Heidelberg Catechism" data-zh="海德堡要理問答">Heidelberg Catechism</span></div>
+        <div class="tier-chip"><span class="zh-name" data-en="Canons of Dort" data-zh="多特信經">Canons of Dort</span></div>
+      </div>
+      <div class="tier-note" data-en="Together known as the Three Forms of Unity." data-zh="三者合稱「三項聯合信條」。">Together known as the Three Forms of Unity.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 2: BIG PICTURE ============ -->
+<section class="step" id="step1" data-node="0">
+  <div class="step-head">
+    <div class="step-num" data-en="STEP TWO" data-zh="第二步">STEP TWO</div>
+    <h2 data-en="The Big Picture" data-zh="全貌總覽">The Big Picture</h2>
+    <div class="tag" data-en="The whole Bible, told as one story." data-zh="整本聖經，是一個故事。">The whole Bible, told as one story.</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot c-creation"></div>
+      <h3 data-en="Creation" data-zh="創造">Creation</h3>
+      <p data-en="God creates all things good." data-zh="神創造萬物，並且甚好。">God creates all things good.</p>
+      <span class="ref">Gen. 1:1–31</span>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot c-fall"></div>
+      <h3 data-en="The Fall" data-zh="墮落">The Fall</h3>
+      <p data-en="Sin enters every part of life." data-zh="罪進入生命的每一個層面。">Sin enters every part of life.</p>
+      <span class="ref">Gen. 3</span>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot c-covenant"></div>
+      <h3 data-en="Covenant of Grace" data-zh="恩典之約">Covenant of Grace</h3>
+      <p data-en="God's promise of redemption." data-zh="神應許要施行救贖。">God's promise of redemption.</p>
+      <span class="ref">Gen. 12:3; Gal. 3:16</span>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot c-christ"></div>
+      <h3 data-en="Christ" data-zh="基督">Christ</h3>
+      <p data-en="Prophet, Priest, King." data-zh="先知、祭司、君王。">Prophet, Priest, King.</p>
+      <span class="ref">Luke 4:18–19; Heb. 7:25</span>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot c-union"></div>
+      <h3 data-en="Union with Christ" data-zh="與基督聯合">Union with Christ</h3>
+      <p data-en="By grace, through faith." data-zh="藉著恩典，因著信心。">By grace, through faith.</p>
+      <span class="ref">John 15:4–5; Eph. 2:8–9</span>
+    </div>
+  </div>
+
+  <div class="twin-cards">
+    <div class="mini-card">
+      <h4 data-en="Justification" data-zh="稱義">Justification</h4>
+      <p data-en="We are declared righteous in Christ." data-zh="我們在基督裡被宣告為義。">We are declared righteous in Christ.</p>
+      <span class="ref">Rom. 5:1</span>
+    </div>
+    <div class="mini-card">
+      <h4 data-en="Sanctification" data-zh="成聖">Sanctification</h4>
+      <p data-en="We are made more like Christ." data-zh="我們被塑造得更像基督。">We are made more like Christ.</p>
+      <span class="ref">Phil. 2:12–13</span>
+    </div>
+  </div>
+
+  <div class="gratitude-band">
+    <h4 data-en="A life of gratitude flows from grace received" data-zh="生命的感恩，源於所領受的恩典">A life of gratitude flows from grace received</h4>
+    <div class="gratitude-grid">
+      <div class="g-item"><div class="label" data-en="Worship" data-zh="敬拜">Worship</div><span class="ref">Ps. 95:1–7</span></div>
+      <div class="g-item"><div class="label" data-en="Family" data-zh="家庭">Family</div><span class="ref">Eph. 6:1–4</span></div>
+      <div class="g-item"><div class="label" data-en="Work" data-zh="工作">Work</div><span class="ref">Col. 3:23–24</span></div>
+      <div class="g-item"><div class="label" data-en="Society" data-zh="社會">Society</div><span class="ref">Mic. 6:8</span></div>
+      <div class="g-item"><div class="label" data-en="Mission" data-zh="使命">Mission</div><span class="ref">Matt. 28:18–20</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 2: COVENANT STRUCTURE ============ -->
+<section class="step" id="step2" data-node="1">
+  <div class="step-head">
+    <div class="step-num" data-en="STEP THREE" data-zh="第三步">STEP THREE</div>
+    <h2 data-en="The Covenant Structure" data-zh="聖約的結構">The Covenant Structure</h2>
+    <div class="tag" data-en="One redemptive plan, one people of God." data-zh="一個救贖計劃，一群神的子民。">One redemptive plan, one people of God.</div>
+  </div>
+
+  <div class="cov-flow">
+    <div class="cov-node n-god" data-en="GOD" data-zh="神">GOD</div>
+    <div class="cov-arrow"></div>
+    <div class="cov-node n-creation">
+      <span data-en="Covenant of Creation" data-zh="創造之約">Covenant of Creation</span>
+      <span class="desc" data-en="Adam represents humanity" data-zh="亞當代表全人類">Adam represents humanity</span>
+      <span class="ref">Gen. 1–2</span>
+    </div>
+    <div class="cov-arrow"></div>
+    <div class="cov-node n-fall">
+      <span data-en="Fall" data-zh="墮落">Fall</span>
+      <span class="ref">Gen. 3</span>
+    </div>
+    <div class="cov-arrow"></div>
+    <div class="cov-node n-grace">
+      <span data-en="Covenant of Grace" data-zh="恩典之約">Covenant of Grace</span>
+      <span class="desc" data-en="The promise of redemption" data-zh="救贖的應許">The promise of redemption</span>
+    </div>
+
+    <div class="cov-people">
+      <div class="person-card"><div class="name" data-en="Abraham" data-zh="亞伯拉罕">Abraham</div><span class="ref">Gen. 12:1–3</span></div>
+      <div class="person-card"><div class="name" data-en="Moses" data-zh="摩西">Moses</div><span class="ref">Ex. 19:5–6</span></div>
+      <div class="person-card"><div class="name" data-en="David" data-zh="大衛">David</div><span class="ref">2 Sam. 7:12–16</span></div>
+      <div class="person-card"><div class="name" data-en="Christ" data-zh="基督">Christ</div><span class="ref">Luke 22:20</span></div>
+      <div class="person-card"><div class="name" data-en="Church" data-zh="教會">Church</div><span class="ref">Acts 2:39</span></div>
+    </div>
+
+    <div class="cov-arrow"></div>
+    <div class="cov-node" style="background:var(--sage); color:#FBF7ED;">
+      <span data-en="New Creation" data-zh="新創造">New Creation</span>
+      <span class="ref" style="color:#FBF7ED; opacity:0.85;">Rev. 21:1–5</span>
+    </div>
+  </div>
+
+  <p class="same-line" data-en="The same God. The same promise. The same people." data-zh="同一位神。同一個應許。同一群子民。">The same God. The same promise. The same people.</p>
+</section>
+
+<!-- ============ STEP 3: FIVE SOLAS ============ -->
+<section class="step" id="step3" data-node="2">
+  <div class="step-head">
+    <div class="step-num" data-en="STEP FOUR" data-zh="第四步">STEP FOUR</div>
+    <h2 data-en="The Five Solas" data-zh="五個唯獨">The Five Solas</h2>
+    <div class="tag" data-en="The foundations of the Reformation." data-zh="宗教改革的根基。">The foundations of the Reformation.</div>
+  </div>
+
+  <div class="solas-grid">
+    <div class="sola-card sola-scripture">
+      <div class="glyph">📖</div>
+      <h4 data-en="Scripture Alone" data-zh="唯獨聖經">Scripture Alone</h4>
+      <p data-en="The Bible is the final authority in all matters of faith and life." data-zh="聖經是信仰與生活一切事上最終的權威。">The Bible is the final authority in all matters of faith and life.</p>
+      <span class="ref">2 Tim. 3:16–17</span>
+    </div>
+    <div class="sola-card sola-grace">
+      <div class="glyph">🎁</div>
+      <h4 data-en="Grace Alone" data-zh="唯獨恩典">Grace Alone</h4>
+      <p data-en="We are saved by God's grace, not by anything we do." data-zh="我們得救是本乎神的恩典，不是靠自己的行為。">We are saved by God's grace, not by anything we do.</p>
+      <span class="ref">Eph. 2:8–9</span>
+    </div>
+    <div class="sola-card sola-faith">
+      <div class="glyph">🛡️</div>
+      <h4 data-en="Faith Alone" data-zh="唯獨信心">Faith Alone</h4>
+      <p data-en="We are justified by faith alone, not by works." data-zh="我們因信稱義，不是因行為。">We are justified by faith alone, not by works.</p>
+      <span class="ref">Eph. 2:8–9</span>
+    </div>
+    <div class="sola-card sola-christ">
+      <div class="glyph">✚</div>
+      <h4 data-en="Christ Alone" data-zh="唯獨基督">Christ Alone</h4>
+      <p data-en="Christ alone is our Mediator and Savior." data-zh="基督是我們唯一的中保與救主。">Christ alone is our Mediator and Savior.</p>
+      <span class="ref">John 14:6</span>
+    </div>
+    <div class="sola-card sola-glory">
+      <div class="glyph">👑</div>
+      <h4 data-en="Glory to God Alone" data-zh="唯獨榮耀歸神">Glory to God Alone</h4>
+      <p data-en="All that we are and all that we do is for the glory of God." data-zh="我們的一切所是、所行，都是為了神的榮耀。">All that we are and all that we do is for the glory of God.</p>
+      <span class="ref">1 Cor. 10:31</span>
+    </div>
+  </div>
+
+  <div class="glory-banner">
+    <h3 data-en="TO GOD ALONE BE THE GLORY" data-zh="願榮耀單單歸與神">TO GOD ALONE BE THE GLORY</h3>
+    <span class="ref">Rom. 11:36</span>
+  </div>
+</section>
+
+<!-- ============ SUMMARY BAR ============ -->
+<div class="summary-bar">
+  <div class="sb-item"><div class="label" data-en="Rooted in Scripture" data-zh="根基於聖經">Rooted in Scripture</div><span class="ref">2 Tim. 3:16–17</span></div>
+  <div class="sb-item"><div class="label" data-en="Centered on Christ" data-zh="以基督為中心">Centered on Christ</div><span class="ref">Col. 1:15–20</span></div>
+  <div class="sb-item"><div class="label" data-en="Saved by Grace" data-zh="因恩典得救">Saved by Grace</div><span class="ref">Eph. 2:8–9</span></div>
+  <div class="sb-item"><div class="label" data-en="For God's Glory" data-zh="為了神的榮耀">For God's Glory</div><span class="ref">1 Cor. 10:31</span></div>
+  <div class="sb-item"><div class="label" data-en="Sent in Mission" data-zh="被差遣宣教">Sent in Mission</div><span class="ref">Matt. 28:18–20</span></div>
+</div>
+
+<!-- ============ APPENDIX: REFERENCE LIBRARY ============ -->
+<section class="appendix">
+  <div class="appendix-head">
+    <div class="eyebrow" data-en="FOR FURTHER STUDY" data-zh="延伸研讀">FOR FURTHER STUDY</div>
+    <h2 data-en="The Reference Library" data-zh="參考資料庫">The Reference Library</h2>
+    <p data-en="Not part of the guided walk-through — open these on your own, or in a later meeting, as you go deeper." data-zh="這部分不屬於導覽的主要流程——歡迎日後自行閱讀，或在下一次聚會中深入探討。">Not part of the guided walk-through — open these on your own, or in a later meeting, as you go deeper.</p>
+  </div>
+
+  <div class="accordion">
+
+    <!-- The Heart of Reformed Theology -->
+    <div class="acc-item">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <h3 data-en="The Heart of Reformed Theology" data-zh="改革宗神學的核心">The Heart of Reformed Theology</h3>
+        <span class="plus">+</span>
+      </div>
+      <div class="acc-body">
+        <p class="note" data-en="All for God's glory — from His purpose, through Christ's work, to the church's response." data-zh="一切都是為了神的榮耀——從祂的旨意，經過基督的工作，到教會的回應。">All for God's glory — from His purpose, through Christ's work, to the church's response.</p>
+        <div class="flow-mini">
+          <div class="row"><b data-en="God's Glory" data-zh="神的榮耀">God's Glory</b><span class="ref">Ps. 115:1</span></div>
+          <div class="row"><b data-en="God's Sovereign Purpose" data-zh="神主權的旨意">God's Sovereign Purpose</b><span class="ref">Eph. 1:11</span></div>
+          <div class="row"><b data-en="Christ Accomplishes Salvation" data-zh="基督成就救恩">Christ Accomplishes Salvation</b><span class="ref">John 19:30</span></div>
+          <div class="row"><b data-en="Holy Spirit Applies Salvation" data-zh="聖靈施行救恩">Holy Spirit Applies Salvation</b><span class="ref">John 16:8</span></div>
+          <div class="row"><b data-en="God's People Respond" data-zh="神子民的回應">God's People Respond</b><span class="ref">John 14:15</span></div>
+          <div class="row"><b data-en="Glory Returns to God" data-zh="榮耀歸回於神">Glory Returns to God</b><span class="ref">Rev. 4:11</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Christ at the Center -->
+    <div class="acc-item">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <h3 data-en="Christ at the Center — The Threefold Office" data-zh="以基督為中心——三重職分">Christ at the Center — The Threefold Office</h3>
+        <span class="plus">+</span>
+      </div>
+      <div class="acc-body">
+        <p class="note" data-en="Christ the Mediator, united to His church by faith." data-zh="基督是中保，藉著信與祂的教會聯合。">Christ the Mediator, united to His church by faith.</p>
+        <div class="office-grid">
+          <div class="office-card"><h5 data-en="Prophet" data-zh="先知">Prophet</h5><span data-en="Reveals God" data-zh="啟示神">Reveals God</span><span class="ref">John 1:18</span></div>
+          <div class="office-card"><h5 data-en="Priest" data-zh="祭司">Priest</h5><span data-en="Reconciles sinners" data-zh="使罪人與神和好">Reconciles sinners</span><span class="ref">Heb. 7:25</span></div>
+          <div class="office-card"><h5 data-en="King" data-zh="君王">King</h5><span data-en="Rules creation" data-zh="治理萬有">Rules creation</span><span class="ref">Ps. 2:6–12</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TULIP -->
+    <div class="acc-item">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <h3 data-en="TULIP — The Doctrines of Grace" data-zh="TULIP——恩典教義">TULIP — The Doctrines of Grace</h3>
+        <span class="plus">+</span>
+      </div>
+      <div class="acc-body">
+        <p class="note" data-en="A 17th-century clarification, written to answer a specific controversy — not the starting point for understanding the faith, but a helpful summary once the bigger story is clear." data-zh="這是十七世紀為回應特定爭議所作的教義澄清——並非認識信仰的起點，而是在整體故事清楚之後，一個有幫助的補充總結。">A 17th-century clarification, written to answer a specific controversy — not the starting point for understanding the faith, but a helpful summary once the bigger story is clear.</p>
+        <div class="tulip-list">
+          <div class="tulip-row"><div class="tulip-letter">T</div><div class="t-body"><b data-en="Total Depravity" data-zh="全然敗壞">Total Depravity</b><span data-en="We are totally unable to save ourselves." data-zh="我們完全沒有能力自救。">We are totally unable to save ourselves.</span><span class="ref">Rom. 3:10–12</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">U</div><div class="t-body"><b data-en="Unconditional Election" data-zh="無條件的揀選">Unconditional Election</b><span data-en="God chooses His people in His mercy." data-zh="神本於憐憫揀選祂的子民。">God chooses His people in His mercy.</span><span class="ref">Eph. 1:4–5</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">L</div><div class="t-body"><b data-en="Limited Atonement" data-zh="限定的贖罪">Limited Atonement</b><span data-en="Christ died effectively for His people." data-zh="基督的死有效地為祂的子民成就救贖。">Christ died effectively for His people.</span><span class="ref">John 10:15</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">I</div><div class="t-body"><b data-en="Irresistible Grace" data-zh="不可抗拒的恩典">Irresistible Grace</b><span data-en="The Holy Spirit overcomes our resistance." data-zh="聖靈勝過我們的抗拒。">The Holy Spirit overcomes our resistance.</span><span class="ref">John 6:37</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">P</div><div class="t-body"><b data-en="Perseverance of the Saints" data-zh="聖徒的堅忍">Perseverance of the Saints</b><span data-en="God preserves His people to the end." data-zh="神保守祂的子民直到底。">God preserves His people to the end.</span><span class="ref">Phil. 1:6</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reformed Theology Map -->
+    <div class="acc-item">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <h3 data-en="The Reformed Theology Map — A Summary" data-zh="改革宗神學地圖——總覽">The Reformed Theology Map — A Summary</h3>
+        <span class="plus">+</span>
+      </div>
+      <div class="acc-body">
+        <p class="note" data-en="From all things, and for all things, and to all things be glory forever. Amen." data-zh="因為萬有都是本於祂，倚靠祂，歸於祂。願榮耀歸給祂，直到永遠。阿們。">From all things, and for all things, and to all things be glory forever. Amen.</p>
+        <div class="wheel-grid">
+          <div class="wheel-card"><h5 data-en="Scripture" data-zh="聖經">Scripture</h5><span data-en="God speaks to us" data-zh="神向我們說話">God speaks to us</span><span class="ref">2 Tim. 3:16</span></div>
+          <div class="wheel-card"><h5 data-en="Creation" data-zh="創造">Creation</h5><span data-en="God creates all things" data-zh="神創造萬物">God creates all things</span><span class="ref">Gen. 1:1</span></div>
+          <div class="wheel-card"><h5 data-en="Kingdom" data-zh="國度">Kingdom</h5><span data-en="God renews all things" data-zh="神更新萬物">God renews all things</span><span class="ref">Rev. 21:1–5</span></div>
+          <div class="wheel-card"><h5 data-en="Fall" data-zh="墮落">Fall</h5><span data-en="Sin corrupts all" data-zh="罪敗壞一切">Sin corrupts all</span><span class="ref">Rom. 3:23</span></div>
+          <div class="wheel-card"><h5 data-en="Church" data-zh="教會">Church</h5><span data-en="God gathers His people" data-zh="神招聚祂的子民">God gathers His people</span><span class="ref">Eph. 1:22–23</span></div>
+          <div class="wheel-card"><h5 data-en="Redemption" data-zh="救贖">Redemption</h5><span data-en="Christ saves His people" data-zh="基督拯救祂的子民">Christ saves His people</span><span class="ref">John 3:16</span></div>
+        </div>
+        <p class="note" style="margin-top:16px; margin-bottom:0;"><span class="ref">Rom. 11:36</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="end">
+  <span data-en="SOLI DEO GLORIA" data-zh="唯獨榮耀歸神">SOLI DEO GLORIA</span>
+</footer>
+
+<script>
+  function setLang(l){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      el.textContent = el.getAttribute('data-' + l);
+    });
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-Hant' : 'en';
+  }
+
+  function toggleAcc(headEl){
+    var item = headEl.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(function(i){
+      i.classList.remove('open');
+      i.querySelector('.acc-body').style.maxHeight = null;
+    });
+    if(!wasOpen){
+      item.classList.add('open');
+      var body = item.querySelector('.acc-body');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+
+  // Progress thread
+  (function(){
+    var rail = document.getElementById('rail');
+    var fill = document.getElementById('railFill');
+    var steps = [document.getElementById('step0'), document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
+
+    // create nodes
+    var nodes = [];
+    steps.forEach(function(s, i){
+      var n = document.createElement('div');
+      n.className = 'thread-node';
+      rail.appendChild(n);
+      nodes.push(n);
+    });
+
+    function layoutNodes(){
+      var railTop = rail.querySelector('.track').getBoundingClientRect().top + window.scrollY;
+      var railHeight = rail.querySelector('.track').getBoundingClientRect().height;
+      steps.forEach(function(s, i){
+        var rect = s.getBoundingClientRect();
+        var docTop = rect.top + window.scrollY;
+        var relative = docTop - railTop + 40;
+        nodes[i].style.top = Math.max(0, relative) + 'px';
+      });
+    }
+
+    function updateProgress(){
+      var track = rail.querySelector('.track');
+      var trackRect = track.getBoundingClientRect();
+      var trackTop = trackRect.top;
+      var trackHeight = trackRect.height;
+      var viewportRef = window.innerHeight * 0.4;
+      var progressPx = viewportRef - trackTop;
+      progressPx = Math.max(0, Math.min(trackHeight, progressPx));
+      fill.style.height = progressPx + 'px';
+
+      var scrollY = window.scrollY + viewportRef;
+      steps.forEach(function(s, i){
+        var rect = s.getBoundingClientRect();
+        var docTop = rect.top + window.scrollY;
+        if(scrollY >= docTop){
+          nodes[i].classList.add('lit');
+        } else {
+          nodes[i].classList.remove('lit');
+        }
+      });
+    }
+
+    window.addEventListener('load', function(){ layoutNodes(); updateProgress(); });
+    window.addEventListener('resize', function(){ layoutNodes(); updateProgress(); });
+    window.addEventListener('scroll', updateProgress);
+  })();
+</script>
+
+</body>
+</html>
