@@ -58,10 +58,11 @@
     background:none;
     border:none;
     color:var(--ink-faint);
-    padding:7px 14px;
+    padding:7px 12px;
     border-radius:100px;
     cursor:pointer;
     transition:all 0.25s ease;
+    white-space:nowrap;
   }
   .lang-toggle button.active{
     background:var(--gold);
@@ -560,6 +561,7 @@
 <div class="lang-toggle">
   <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
   <button id="btn-zh" onclick="setLang('zh')">繁中</button>
+  <button id="btn-cn" onclick="setLang('cn')">简中</button>
 </div>
 
 <div class="thread-rail" id="rail">
@@ -569,11 +571,11 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero">
-  <h1 data-en="The Reformed Faith" data-zh="改革宗信仰">The Reformed Faith</h1>
-  <p class="sub" data-en="One Body. One Spirit. One Lord. One Faith. One Baptism. One God and Father of All." data-zh="一個身體，一位聖靈；一主，一信，一洗；一神，就是萬有的父。">One Body. One Spirit. One Lord. One Faith. One Baptism. One God and Father of All.</p>
-  <div style="font-family:var(--mono); font-size:11px; color:var(--gold-deep); letter-spacing:0.08em; margin-top:14px;" data-en="EPHESIANS 4:4–6" data-zh="以弗所書 4:4–6">EPHESIANS 4:4–6</div>
+  <h1 data-en="The Reformed Faith" data-zh="改革宗信仰" data-cn="改革宗信仰">The Reformed Faith</h1>
+  <p class="sub" data-en="One Body. One Spirit. One Lord. One Faith. One Baptism. One God and Father of All." data-zh="一個身體，一位聖靈；一主，一信，一洗；一神，就是萬有的父。" data-cn="一个身体，一位圣灵；一主，一信，一洗；一神，就是万有的父。">One Body. One Spirit. One Lord. One Faith. One Baptism. One God and Father of All.</p>
+  <div style="font-family:var(--mono); font-size:11px; color:var(--gold-deep); letter-spacing:0.08em; margin-top:14px;" data-en="EPHESIANS 4:4–6" data-zh="以弗所書 4:4–6" data-cn="以弗所书 4:4–6">EPHESIANS 4:4–6</div>
   <div class="scroll-cue">
-    <span data-en="SCROLL TO BEGIN" data-zh="向下捲動開始">SCROLL TO BEGIN</span>
+    <span data-en="SCROLL TO BEGIN" data-zh="向下捲動開始" data-cn="向下卷动开始">SCROLL TO BEGIN</span>
     <div class="line"></div>
   </div>
 </section>
@@ -581,76 +583,76 @@
 <!-- ============ STEP 1: OUR FOUNDATION ============ -->
 <section class="step" id="step0" data-node="0">
   <div class="step-head">
-    <div class="step-num" data-en="STEP ONE" data-zh="第一步">STEP ONE</div>
-    <h2 data-en="Our Foundation" data-zh="我們信仰的根基">Our Foundation</h2>
-    <div class="tag" data-en="What we believe, together with the Church across time and place." data-zh="我們所信的，是與普世教會、歷代聖徒同心持守的信仰。">What we believe, together with the Church across time and place.</div>
-    <div class="step-note" data-en="A note on the name: &quot;Reformed&quot; names a theological tradition — God's sovereignty, covenant, and the convictions of the Reformation — not a church currently undergoing reform." data-zh="關於名稱的說明：「改革宗」（Reformed）指的是一個神學傳統——強調神的主權、聖約，以及宗教改革的信念——而不是指一間正在進行改革的教會。">A note on the name: "Reformed" names a theological tradition — God's sovereignty, covenant, and the convictions of the Reformation — not a church currently undergoing reform.</div>
+    <div class="step-num" data-en="STEP ONE" data-zh="第一步" data-cn="第一步">STEP ONE</div>
+    <h2 data-en="Our Foundation" data-zh="我們信仰的根基" data-cn="我们信仰的根基">Our Foundation</h2>
+    <div class="tag" data-en="What we believe, together with the Church across time and place." data-zh="我們所信的，是與普世教會、歷代聖徒同心持守的信仰。" data-cn="我们所信的，是与普世教会、历代圣徒同心持守的信仰。">What we believe, together with the Church across time and place.</div>
+    <div class="step-note" data-en="A note on the name: &quot;Reformed&quot; names a theological tradition — God's sovereignty, covenant, and the convictions of the Reformation — not a church currently undergoing reform." data-zh="關於名稱的說明：「改革宗」（Reformed）指的是一個神學傳統——強調神的主權、聖約，以及宗教改革的信念——而不是指一間正在進行改革的教會。" data-cn="关于名称的说明：“改革宗”（Reformed）指的是一个神学传统——强调神的主权、圣约，以及宗教改革的信念——而不是指一间正在进行改革的教会。">A note on the name: "Reformed" names a theological tradition — God's sovereignty, covenant, and the convictions of the Reformation — not a church currently undergoing reform.</div>
   </div>
 
   <div class="tier">
     <div class="tier-card tier-scripture">
-      <div class="tier-eyebrow" data-en="THE FOUNDATION" data-zh="根基">THE FOUNDATION</div>
-      <h3 data-en="Scripture" data-zh="聖經">Scripture</h3>
-      <p data-en="The Old and New Testaments — God's Word, and the final authority for what we believe and how we live." data-zh="舊約與新約——是神的話語，也是我們信仰與生活最終的權威。">The Old and New Testaments — God's Word, and the final authority for what we believe and how we live.</p>
-      <p style="margin-top:14px;" data-en="Reformed theology holds to organic inspiration: the Spirit worked through each author's own voice, style, and setting, so Scripture is fully God's Word and fully human writing at once. And Scripture is infallible — completely trustworthy for faith and life — even where precise historical or scientific detail was never its purpose." data-zh="改革宗神學持守「有機默示」的觀點：聖靈透過每位作者自己的聲音、文筆與處境動工，使聖經同時是完全屬神的話語，也是完全出於人手的著作。並且聖經是無謬誤的（infallible）——在信仰與生活上完全可信可靠——即使某些歷史或科學上的細節，本來就不是聖經寫作的目的。">Reformed theology holds to organic inspiration: the Spirit worked through each author's own voice, style, and setting, so Scripture is fully God's Word and fully human writing at once. And Scripture is infallible — completely trustworthy for faith and life — even where precise historical or scientific detail was never its purpose.</p>
+      <div class="tier-eyebrow" data-en="THE FOUNDATION" data-zh="根基" data-cn="根基">THE FOUNDATION</div>
+      <h3 data-en="Scripture" data-zh="聖經" data-cn="圣经">Scripture</h3>
+      <p data-en="The Old and New Testaments — God's Word, and the final authority for what we believe and how we live." data-zh="舊約與新約——是神的話語，也是我們信仰與生活最終的權威。" data-cn="旧约与新约——是神的话语，也是我们信仰与生活最终的权威。">The Old and New Testaments — God's Word, and the final authority for what we believe and how we live.</p>
+      <p style="margin-top:14px;" data-en="Reformed theology holds to organic inspiration: the Spirit worked through each author's own voice, style, and setting, so Scripture is fully God's Word and fully human writing at once. And Scripture is infallible — completely trustworthy for faith and life — even where precise historical or scientific detail was never its purpose." data-zh="改革宗神學持守「有機默示」的觀點：聖靈透過每位作者自己的聲音、文筆與處境動工，使聖經同時是完全屬神的話語，也是完全出於人手的著作。並且聖經是無謬誤的（infallible）——在信仰與生活上完全可信可靠——即使某些歷史或科學上的細節，本來就不是聖經寫作的目的。" data-cn="改革宗神学持守“有机默示”的观点：圣灵通过每位作者自己的声音、文笔与处境动工，使圣经同时是完全属神的话语，也是完全出于人手的著作。并且圣经是无谬误的（infallible）——在信仰与生活上完全可信可靠——即使某些历史或科学上的细节，本来就不是圣经写作的目的。">Reformed theology holds to organic inspiration: the Spirit worked through each author's own voice, style, and setting, so Scripture is fully God's Word and fully human writing at once. And Scripture is infallible — completely trustworthy for faith and life — even where precise historical or scientific detail was never its purpose.</p>
     </div>
     <div class="tier-arrow"></div>
 
     <div class="tier-card tier-creeds">
-      <div class="tier-eyebrow" data-en="SHARED WITH THE WHOLE CHURCH" data-zh="與普世教會共有">SHARED WITH THE WHOLE CHURCH</div>
-      <h3 data-en="The Ecumenical Creeds" data-zh="大公教會信經">The Ecumenical Creeds</h3>
-      <p data-en="Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere." data-zh="三個由普世教會於歷世歷代所採納的信經，總結了基督教信仰最重要的真理——是普世信徒所共同持守的。">Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere.</p>
+      <div class="tier-eyebrow" data-en="SHARED WITH THE WHOLE CHURCH" data-zh="與普世教會共有" data-cn="与普世教会共有">SHARED WITH THE WHOLE CHURCH</div>
+      <h3 data-en="The Ecumenical Creeds" data-zh="大公教會信經" data-cn="大公教会信经">The Ecumenical Creeds</h3>
+      <p data-en="Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere." data-zh="三個由普世教會於歷世歷代所採納的信經，總結了基督教信仰最重要的真理——是普世信徒所共同持守的。" data-cn="三个由普世教会于历世历代所采纳的信经，总结了基督教信仰最重要的真理——是普世信徒所共同持守的。">Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere.</p>
       <div class="conf-accordion">
 
         <div class="conf-item">
           <div class="conf-head" onclick="toggleConf(this)">
-            <span class="name" data-en="Apostles' Creed" data-zh="使徒信經">Apostles' Creed</span>
+            <span class="name" data-en="Apostles' Creed" data-zh="使徒信經" data-cn="使徒信经">Apostles' Creed</span>
             <span class="plus">+</span>
           </div>
           <div class="conf-body">
-            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Not written by the apostles themselves, but developed from the Church's ancient baptismal confessions, reaching its familiar form by around the 8th century. It summarizes the apostles' teaching in a form new believers could memorize and confess at their baptism." data-zh="使徒信經並非由使徒親自撰寫，而是源自教會古代的洗禮信仰宣告，約在主後第八世紀定型為我們今日所熟悉的樣式。它以初信者便於背誦、並在受洗時宣認的方式，總結了使徒的教導。">Not written by the apostles themselves, but developed from the Church's ancient baptismal confessions, reaching its familiar form by around the 8th century. It summarizes the apostles' teaching in a form new believers could memorize and confess at their baptism.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景" data-cn="背景">Background</span><p data-en="Not written by the apostles themselves, but developed from the Church's ancient baptismal confessions, reaching its familiar form by around the 8th century. It summarizes the apostles' teaching in a form new believers could memorize and confess at their baptism." data-zh="使徒信經並非由使徒親自撰寫，而是源自教會古代的洗禮信仰宣告，約在主後第八世紀定型為我們今日所熟悉的樣式。它以初信者便於背誦、並在受洗時宣認的方式，總結了使徒的教導。" data-cn="使徒信经并非由使徒亲自撰写，而是源自教会古代的洗礼信仰声明，约在主后第八世纪定型为我们今日所熟悉的样式。它以初信者便于背诵、并在受洗时宣认的方式，总结了使徒的教导。">Not written by the apostles themselves, but developed from the Church's ancient baptismal confessions, reaching its familiar form by around the 8th century. It summarizes the apostles' teaching in a form new believers could memorize and confess at their baptism.</p></div>
             <div class="conf-row">
-              <span class="conf-label" data-en="The Creed" data-zh="信經全文">The Creed</span>
-              <div class="creed-text" data-en="I believe in God, the Father almighty, creator of heaven and earth." data-zh="我信上帝，全能的父，創造天地的主。">I believe in God, the Father almighty, creator of heaven and earth.</div>
-              <div class="creed-text" data-en="I believe in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit and born of the virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried; he descended to hell. The third day he rose again from the dead. He ascended to heaven and is seated at the right hand of God the Father almighty. From there he will come to judge the living and the dead." data-zh="我信我主耶穌基督，上帝的獨生子；因聖靈感孕，由童貞女馬利亞所生；在本丟彼拉多手下受難，被釘於十字架，受死，埋葬；降在陰間；第三天從死人中復活；升天，坐在全能父上帝的右邊；將來必從那裡降臨，審判活人死人。">I believe in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit and born of the virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried; he descended to hell. The third day he rose again from the dead. He ascended to heaven and is seated at the right hand of God the Father almighty. From there he will come to judge the living and the dead.</div>
-              <div class="creed-text" data-en="I believe in the Holy Spirit, the holy catholic* church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen." data-zh="我信聖靈；我信聖而公之教會＊；我信聖徒相通；我信罪得赦免；我信身體復活；我信永生。阿們。">I believe in the Holy Spirit, the holy catholic* church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen.</div>
-              <p style="font-size:0.78rem; color:var(--ink-faint); margin-top:6px;" data-en="*that is, the true Christian church of all times and all places" data-zh="＊意指歷世歷代、放諸四海皆然的真基督教會">*that is, the true Christian church of all times and all places</p>
+              <span class="conf-label" data-en="The Creed" data-zh="信經全文" data-cn="信经全文">The Creed</span>
+              <div class="creed-text" data-en="I believe in God, the Father almighty, creator of heaven and earth." data-zh="我信上帝，全能的父，創造天地的主。" data-cn="我信上帝，全能的父，创造天地的主。">I believe in God, the Father almighty, creator of heaven and earth.</div>
+              <div class="creed-text" data-en="I believe in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit and born of the virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried; he descended to hell. The third day he rose again from the dead. He ascended to heaven and is seated at the right hand of God the Father almighty. From there he will come to judge the living and the dead." data-zh="我信我主耶穌基督，上帝的獨生子；因聖靈感孕，由童貞女馬利亞所生；在本丟彼拉多手下受難，被釘於十字架，受死，埋葬；降在陰間；第三天從死人中復活；升天，坐在全能父上帝的右邊；將來必從那裡降臨，審判活人死人。" data-cn="我信我主耶稣基督，上帝的独生子；因圣灵感孕，由童贞女马利亚所生；在本丢彼拉多手下受难，被钉于十字架，受死，埋葬；降在阴间；第三天从死人中复活；升天，坐在全能父上帝的右边；将来必从那里降临，审判活人死人。">I believe in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit and born of the virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried; he descended to hell. The third day he rose again from the dead. He ascended to heaven and is seated at the right hand of God the Father almighty. From there he will come to judge the living and the dead.</div>
+              <div class="creed-text" data-en="I believe in the Holy Spirit, the holy catholic* church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen." data-zh="我信聖靈；我信聖而公之教會＊；我信聖徒相通；我信罪得赦免；我信身體復活；我信永生。阿們。" data-cn="我信圣灵；我信圣而公之教会＊；我信圣徒相通；我信罪得赦免；我信身体复活；我信永生。阿们。">I believe in the Holy Spirit, the holy catholic* church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen.</div>
+              <p style="font-size:0.78rem; color:var(--ink-faint); margin-top:6px;" data-en="*that is, the true Christian church of all times and all places" data-zh="＊意指歷世歷代、放諸四海皆然的真基督教會" data-cn="＊意指历世历代、放诸四海皆然的真基督教会">*that is, the true Christian church of all times and all places</p>
             </div>
           </div>
         </div>
 
         <div class="conf-item">
           <div class="conf-head" onclick="toggleConf(this)">
-            <span class="name" data-en="Nicene Creed" data-zh="尼西亞信經">Nicene Creed</span>
+            <span class="name" data-en="Nicene Creed" data-zh="尼西亞信經" data-cn="尼西亚信经">Nicene Creed</span>
             <span class="plus">+</span>
           </div>
           <div class="conf-body">
-            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Formulated at the Council of Nicaea (325 AD) and completed at the Council of Constantinople (381 AD), in response to Arianism — the teaching that Jesus Christ was a created being, not truly and eternally God. Its central phrase, 'of the same essence as the Father,' was chosen specifically to rule that view out." data-zh="本信經制訂於尼西亞大公會議（主後325年），並在君士坦丁堡大公會議（主後381年）定稿，目的是為了回應亞流主義——這種教導認為耶穌基督是受造之物，而非真實、永恆的神。信經中「與父同質」一語，正是特意用來排除這種觀點。">Formulated at the Council of Nicaea (325 AD) and completed at the Council of Constantinople (381 AD), in response to Arianism — the teaching that Jesus Christ was a created being, not truly and eternally God. Its central phrase, "of the same essence as the Father," was chosen specifically to rule that view out.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景" data-cn="背景">Background</span><p data-en="Formulated at the Council of Nicaea (325 AD) and completed at the Council of Constantinople (381 AD), in response to Arianism — the teaching that Jesus Christ was a created being, not truly and eternally God. Its central phrase, 'of the same essence as the Father,' was chosen specifically to rule that view out." data-zh="本信經制訂於尼西亞大公會議（主後325年），並在君士坦丁堡大公會議（主後381年）定稿，目的是為了回應亞流主義——這種教導認為耶穌基督是受造之物，而非真實、永恆的神。信經中「與父同質」一語，正是特意用來排除這種觀點。" data-cn="本信经制订于尼西亚大公会议（主后325年），并在君士坦丁堡大公会议（主后381年）定稿，目的是为了回应亚流主义——这种教导认为耶稣基督是受造之物，而非真实、永恒的神。信经中“与父同质”一语，正是特意用来排除这种观点。">Formulated at the Council of Nicaea (325 AD) and completed at the Council of Constantinople (381 AD), in response to Arianism — the teaching that Jesus Christ was a created being, not truly and eternally God. Its central phrase, "of the same essence as the Father," was chosen specifically to rule that view out.</p></div>
             <div class="conf-row">
-              <span class="conf-label" data-en="The Creed" data-zh="信經全文">The Creed</span>
-              <div class="creed-text" data-en="We believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible." data-zh="我信獨一上帝，全能的父，創造天地和有形無形萬物的主。">We believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible.</div>
-              <div class="creed-text" data-en="And in one Lord Jesus Christ, the only Son of God, begotten from the Father before all ages, God from God, Light from Light, true God from true God, begotten, not made; of the same essence as the Father. Through him all things were made. For us and for our salvation he came down from heaven; he became incarnate by the Holy Spirit and the virgin Mary, and was made human. He was crucified for us under Pontius Pilate; he suffered and was buried. The third day he rose again, according to the Scriptures. He ascended to heaven and is seated at the right hand of the Father. He will come again with glory to judge the living and the dead. His kingdom will never end." data-zh="我信獨一主耶穌基督，上帝的獨生子。在萬世之前為父所生。出於神，即神之神，光而出於光，出於真神，即真神之真神。是生非造，與父同質，萬物都是藉著他造的。他為要拯救我們世人，從天降臨，因聖靈感孕，由童貞女馬利亞成為肉身，而為人。在本丟彼拉多手下，為我們釘在十字架上，受難，埋葬。照聖經第三天復活。並升天，坐在父的右邊。將來必有榮耀再降臨，審判活人死人；他的國無窮無盡。">And in one Lord Jesus Christ, the only Son of God, begotten from the Father before all ages, God from God, Light from Light, true God from true God, begotten, not made; of the same essence as the Father. Through him all things were made. For us and for our salvation he came down from heaven; he became incarnate by the Holy Spirit and the virgin Mary, and was made human. He was crucified for us under Pontius Pilate; he suffered and was buried. The third day he rose again, according to the Scriptures. He ascended to heaven and is seated at the right hand of the Father. He will come again with glory to judge the living and the dead. His kingdom will never end.</div>
-              <div class="creed-text" data-en="And we believe in the Holy Spirit, the Lord, the giver of life. He proceeds from the Father and the Son, and with the Father and the Son is worshiped and glorified. He spoke through the prophets. We believe in one holy catholic and apostolic church. We affirm one baptism for the forgiveness of sins. We look forward to the resurrection of the dead, and to life in the world to come. Amen." data-zh="我信聖靈，是主，是賜生命者，從父和子所出，與父和子同受敬拜、同受榮耀，他曾藉眾先知說話。我信獨一、聖而公之使徒的教會。我認使罪得赦的一次洗禮。我望死人復活，並來世生命。阿們。">And we believe in the Holy Spirit, the Lord, the giver of life. He proceeds from the Father and the Son, and with the Father and the Son is worshiped and glorified. He spoke through the prophets. We believe in one holy catholic and apostolic church. We affirm one baptism for the forgiveness of sins. We look forward to the resurrection of the dead, and to life in the world to come. Amen.</div>
+              <span class="conf-label" data-en="The Creed" data-zh="信經全文" data-cn="信经全文">The Creed</span>
+              <div class="creed-text" data-en="We believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible." data-zh="我信獨一上帝，全能的父，創造天地和有形無形萬物的主。" data-cn="我信独一上帝，全能的父，创造天地和有形无形万物的主。">We believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible.</div>
+              <div class="creed-text" data-en="And in one Lord Jesus Christ, the only Son of God, begotten from the Father before all ages, God from God, Light from Light, true God from true God, begotten, not made; of the same essence as the Father. Through him all things were made. For us and for our salvation he came down from heaven; he became incarnate by the Holy Spirit and the virgin Mary, and was made human. He was crucified for us under Pontius Pilate; he suffered and was buried. The third day he rose again, according to the Scriptures. He ascended to heaven and is seated at the right hand of the Father. He will come again with glory to judge the living and the dead. His kingdom will never end." data-zh="我信獨一主耶穌基督，上帝的獨生子。在萬世之前為父所生。出於神，即神之神，光而出於光，出於真神，即真神之真神。是生非造，與父同質，萬物都是藉著他造的。他為要拯救我們世人，從天降臨，因聖靈感孕，由童貞女馬利亞成為肉身，而為人。在本丟彼拉多手下，為我們釘在十字架上，受難，埋葬。照聖經第三天復活。並升天，坐在父的右邊。將來必有榮耀再降臨，審判活人死人；他的國無窮無盡。" data-cn="我信独一主耶稣基督，上帝的独生子。在万世之前为父所生。出于神，即神之神，光而出于光，出于真神，即真神之真神。是生非造，与父同质，万物都是借着他造的。他为要拯救我们世人，从天降临，因圣灵感孕，由童贞女马利亚成为肉身，而为人。在本丢彼拉多手下，为我们钉在十字架上，受难，埋葬。照圣经第三天复活。并升天，坐在父的右边。将来必有荣耀再降临，审判活人死人；他的国无穷无尽。">And in one Lord Jesus Christ, the only Son of God, begotten from the Father before all ages, God from God, Light from Light, true God from true God, begotten, not made; of the same essence as the Father. Through him all things were made. For us and for our salvation he came down from heaven; he became incarnate by the Holy Spirit and the virgin Mary, and was made human. He was crucified for us under Pontius Pilate; he suffered and was buried. The third day he rose again, according to the Scriptures. He ascended to heaven and is seated at the right hand of the Father. He will come again with glory to judge the living and the dead. His kingdom will never end.</div>
+              <div class="creed-text" data-en="And we believe in the Holy Spirit, the Lord, the giver of life. He proceeds from the Father and the Son, and with the Father and the Son is worshiped and glorified. He spoke through the prophets. We believe in one holy catholic and apostolic church. We affirm one baptism for the forgiveness of sins. We look forward to the resurrection of the dead, and to life in the world to come. Amen." data-zh="我信聖靈，是主，是賜生命者，從父和子所出，與父和子同受敬拜、同受榮耀，他曾藉眾先知說話。我信獨一、聖而公之使徒的教會。我認使罪得赦的一次洗禮。我望死人復活，並來世生命。阿們。" data-cn="我信圣灵，是主，是赐生命者，从父和子所出，与父和子同受敬拜、同受荣耀，他曾藉众先知说话。我信独一、圣而公之使徒的教会。我认使罪得赦的一次洗礼。我望死人复活，并来世生命。阿们。">And we believe in the Holy Spirit, the Lord, the giver of life. He proceeds from the Father and the Son, and with the Father and the Son is worshiped and glorified. He spoke through the prophets. We believe in one holy catholic and apostolic church. We affirm one baptism for the forgiveness of sins. We look forward to the resurrection of the dead, and to life in the world to come. Amen.</div>
             </div>
           </div>
         </div>
 
         <div class="conf-item">
           <div class="conf-head" onclick="toggleConf(this)">
-            <span class="name" data-en="Athanasian Creed" data-zh="亞他那修信經">Athanasian Creed</span>
+            <span class="name" data-en="Athanasian Creed" data-zh="亞他那修信經" data-cn="亚他那修信经">Athanasian Creed</span>
             <span class="plus">+</span>
           </div>
           <div class="conf-body">
-            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Traditionally associated with Athanasius, the 4th-century bishop who defended Christ's full divinity against Arianism, though it was likely composed somewhat later. It is the most detailed of the three creeds, spelling out with technical precision both the doctrine of the Trinity and the two natures of Christ — written to close off several specific ways these truths were being misstated in the early church." data-zh="傳統上與主後四世紀、竭力捍衛基督完全神性以對抗亞流主義的主教亞他那修（Athanasius）相關聯，但實際成文時間可能稍晚。這是三大信經中最詳盡的一篇，以精確的神學語言，仔細闡明三一論與基督二性的教義——目的是要具體排除當時教會中幾種對這些真理的錯誤表述方式。">Traditionally associated with Athanasius, the 4th-century bishop who defended Christ's full divinity against Arianism, though it was likely composed somewhat later. It is the most detailed of the three creeds, spelling out with technical precision both the doctrine of the Trinity and the two natures of Christ — written to close off several specific ways these truths were being misstated in the early church.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景" data-cn="背景">Background</span><p data-en="Traditionally associated with Athanasius, the 4th-century bishop who defended Christ's full divinity against Arianism, though it was likely composed somewhat later. It is the most detailed of the three creeds, spelling out with technical precision both the doctrine of the Trinity and the two natures of Christ — written to close off several specific ways these truths were being misstated in the early church." data-zh="傳統上與主後四世紀、竭力捍衛基督完全神性以對抗亞流主義的主教亞他那修（Athanasius）相關聯，但實際成文時間可能稍晚。這是三大信經中最詳盡的一篇，以精確的神學語言，仔細闡明三一論與基督二性的教義——目的是要具體排除當時教會中幾種對這些真理的錯誤表述方式。" data-cn="传统上与主后四世纪、竭力捍卫基督完全神性以对抗亚流主义的主教亚他那修（Athanasius）相关联，但实际成文时间可能稍晚。这是三大信经中最详尽的一篇，以精确的神学语言，仔细阐明三一论与基督二性的教义——目的是要具体排除当时教会中几种对这些真理的错误表述方式。">Traditionally associated with Athanasius, the 4th-century bishop who defended Christ's full divinity against Arianism, though it was likely composed somewhat later. It is the most detailed of the three creeds, spelling out with technical precision both the doctrine of the Trinity and the two natures of Christ — written to close off several specific ways these truths were being misstated in the early church.</p></div>
             <div class="conf-row">
-              <span class="conf-label" data-en="The Creed, Part One: The Trinity" data-zh="信經全文，第一部分：論三一">The Creed, Part One: The Trinity</span>
-              <div class="creed-text" data-en="Whoever desires to be saved should above all hold to the catholic faith. Anyone who does not keep it whole and unbroken will doubtless perish eternally. Now this is the catholic faith: that we worship one God in trinity and the trinity in unity, neither blending their persons nor dividing their essence. For the person of the Father is a distinct person, the person of the Son is another, and that of the Holy Spirit still another. But the divinity of the Father, Son, and Holy Spirit is one, their glory equal, their majesty coeternal." data-zh="凡願得救的人，首要持守大公信仰。凡不持守此信仰、持守純全無損的人，必要永遠沉淪。這大公信仰乃是：我們敬拜三一之中的一神，也敬拜一神之中的三一；不混淆位格，也不分割本體。因為父是一個位格，子是另一個位格，聖靈又是另一個位格；然而父、子、聖靈的神性為一，榮耀相等，威嚴同永。">Whoever desires to be saved should above all hold to the catholic faith. Anyone who does not keep it whole and unbroken will doubtless perish eternally. Now this is the catholic faith: that we worship one God in trinity and the trinity in unity, neither blending their persons nor dividing their essence. For the person of the Father is a distinct person, the person of the Son is another, and that of the Holy Spirit still another. But the divinity of the Father, Son, and Holy Spirit is one, their glory equal, their majesty coeternal.</div>
-              <div class="creed-text" data-en="What quality the Father has, the Son has, and the Holy Spirit has: uncreated, immeasurable, eternal — and yet there are not three eternal beings, but one eternal being. So too the Father is almighty, the Son is almighty, the Holy Spirit is almighty — yet there are not three almighty beings, but one almighty being. Thus the Father is God, the Son is God, the Holy Spirit is God — yet there are not three gods, but one God. The Father was neither made nor created nor begotten from anyone. The Son was neither made nor created; he was begotten from the Father alone. The Holy Spirit was neither made nor created nor begotten; he proceeds from the Father and the Son. Nothing in this trinity is before or after, nothing is greater or smaller; the three persons are coeternal and coequal with each other." data-zh="父具有何等性質，子也具有何等性質，聖靈也具有何等性質：非受造、無限、永恆——然而並非有三位永恆者，只有一位永恆者。照樣，父是全能的，子是全能的，聖靈也是全能的——然而並非有三位全能者，只有一位全能者。如此，父是神，子是神，聖靈也是神——然而並非有三位神，只有一位神。父非受造、非被造、非被生自任何一位；子非受造、非被造，乃獨由父所生；聖靈非受造、非被造、非被生，乃由父和子所出。在此三一之中，沒有先後之分，沒有大小之別；三個位格全然同永、同等。">What quality the Father has, the Son has, and the Holy Spirit has: uncreated, immeasurable, eternal — and yet there are not three eternal beings, but one eternal being. So too the Father is almighty, the Son is almighty, the Holy Spirit is almighty — yet there are not three almighty beings, but one almighty being. Thus the Father is God, the Son is God, the Holy Spirit is God — yet there are not three gods, but one God. The Father was neither made nor created nor begotten from anyone. The Son was neither made nor created; he was begotten from the Father alone. The Holy Spirit was neither made nor created nor begotten; he proceeds from the Father and the Son. Nothing in this trinity is before or after, nothing is greater or smaller; the three persons are coeternal and coequal with each other.</div>
+              <span class="conf-label" data-en="The Creed, Part One: The Trinity" data-zh="信經全文，第一部分：論三一" data-cn="信经全文，第一部分：论三一">The Creed, Part One: The Trinity</span>
+              <div class="creed-text" data-en="Whoever desires to be saved should above all hold to the catholic faith. Anyone who does not keep it whole and unbroken will doubtless perish eternally. Now this is the catholic faith: that we worship one God in trinity and the trinity in unity, neither blending their persons nor dividing their essence. For the person of the Father is a distinct person, the person of the Son is another, and that of the Holy Spirit still another. But the divinity of the Father, Son, and Holy Spirit is one, their glory equal, their majesty coeternal." data-zh="凡願得救的人，首要持守大公信仰。凡不持守此信仰、持守純全無損的人，必要永遠沉淪。這大公信仰乃是：我們敬拜三一之中的一神，也敬拜一神之中的三一；不混淆位格，也不分割本體。因為父是一個位格，子是另一個位格，聖靈又是另一個位格；然而父、子、聖靈的神性為一，榮耀相等，威嚴同永。" data-cn="凡愿得救的人，首要持守大公信仰。凡不持守此信仰、持守纯全无损的人，必要永远沉沦。这大公信仰乃是：我们敬拜三一之中的一神，也敬拜一神之中的三一；不混淆位格，也不分割本体。因为父是一个位格，子是另一个位格，圣灵又是另一个位格；然而父、子、圣灵的神性为一，荣耀相等，威严同永。">Whoever desires to be saved should above all hold to the catholic faith. Anyone who does not keep it whole and unbroken will doubtless perish eternally. Now this is the catholic faith: that we worship one God in trinity and the trinity in unity, neither blending their persons nor dividing their essence. For the person of the Father is a distinct person, the person of the Son is another, and that of the Holy Spirit still another. But the divinity of the Father, Son, and Holy Spirit is one, their glory equal, their majesty coeternal.</div>
+              <div class="creed-text" data-en="What quality the Father has, the Son has, and the Holy Spirit has: uncreated, immeasurable, eternal — and yet there are not three eternal beings, but one eternal being. So too the Father is almighty, the Son is almighty, the Holy Spirit is almighty — yet there are not three almighty beings, but one almighty being. Thus the Father is God, the Son is God, the Holy Spirit is God — yet there are not three gods, but one God. The Father was neither made nor created nor begotten from anyone. The Son was neither made nor created; he was begotten from the Father alone. The Holy Spirit was neither made nor created nor begotten; he proceeds from the Father and the Son. Nothing in this trinity is before or after, nothing is greater or smaller; the three persons are coeternal and coequal with each other." data-zh="父具有何等性質，子也具有何等性質，聖靈也具有何等性質：非受造、無限、永恆——然而並非有三位永恆者，只有一位永恆者。照樣，父是全能的，子是全能的，聖靈也是全能的——然而並非有三位全能者，只有一位全能者。如此，父是神，子是神，聖靈也是神——然而並非有三位神，只有一位神。父非受造、非被造、非被生自任何一位；子非受造、非被造，乃獨由父所生；聖靈非受造、非被造、非被生，乃由父和子所出。在此三一之中，沒有先後之分，沒有大小之別；三個位格全然同永、同等。" data-cn="父具有何等性质，子也具有何等性质，圣灵也具有何等性质：非受造、无限、永恒——然而并非有三位永恒者，只有一位永恒者。照样，父是全能的，子是全能的，圣灵也是全能的——然而并非有三位全能者，只有一位全能者。如此，父是神，子是神，圣灵也是神——然而并非有三位神，只有一位神。父非受造、非被造、非被生自任何一位；子非受造、非被造，乃独由父所生；圣灵非受造、非被造、非被生，乃由父和子所出。在此三一之中，没有先后之分，没有大小之别；三个位格全然同永、同等。">What quality the Father has, the Son has, and the Holy Spirit has: uncreated, immeasurable, eternal — and yet there are not three eternal beings, but one eternal being. So too the Father is almighty, the Son is almighty, the Holy Spirit is almighty — yet there are not three almighty beings, but one almighty being. Thus the Father is God, the Son is God, the Holy Spirit is God — yet there are not three gods, but one God. The Father was neither made nor created nor begotten from anyone. The Son was neither made nor created; he was begotten from the Father alone. The Holy Spirit was neither made nor created nor begotten; he proceeds from the Father and the Son. Nothing in this trinity is before or after, nothing is greater or smaller; the three persons are coeternal and coequal with each other.</div>
             </div>
             <div class="conf-row">
-              <span class="conf-label" data-en="The Creed, Part Two: Christ, God and Man" data-zh="信經全文，第二部分：論基督的神人二性">The Creed, Part Two: Christ, God and Man</span>
-              <div class="creed-text" data-en="It is necessary for eternal salvation that one also believe faithfully in the incarnation of our Lord Jesus Christ. Now this is the true faith: that our Lord Jesus Christ, God's Son, is both God and human, equally. He is God from the essence of the Father, begotten before time; and he is human from the essence of his mother, born in time; completely God, completely human. Although he is God and human, Christ is not two, but one — not by his divinity being turned into flesh, but by God's taking humanity to himself; not by a blending of essence, but by the unity of his person." data-zh="要得永遠的救恩，也必須忠實相信我們主耶穌基督的道成肉身。真信仰乃是：我們的主耶穌基督，神的兒子，同時是神，也是人，二者均全。他從父的本體而出，在萬世之先受生為神；也從他母親的本體而出，在時間之中降生為人；完全是神，完全是人。雖然他是神又是人，基督卻不是二，而是一——並非因神性變為肉身，而是因神取了人性歸於自己；並非因本體混合，而是因位格合一。">It is necessary for eternal salvation that one also believe faithfully in the incarnation of our Lord Jesus Christ. Now this is the true faith: that our Lord Jesus Christ, God's Son, is both God and human, equally. He is God from the essence of the Father, begotten before time; and he is human from the essence of his mother, born in time; completely God, completely human. Although he is God and human, Christ is not two, but one — not by his divinity being turned into flesh, but by God's taking humanity to himself; not by a blending of essence, but by the unity of his person.</div>
-              <div class="creed-text" data-en="He suffered for our salvation; he descended to hell; he arose from the dead; he ascended to heaven; he is seated at the Father's right hand; from there he will come to judge the living and the dead. At his coming all people will arise bodily and give an accounting of their own deeds. Those who have done good will enter eternal life, and those who have done evil will enter eternal fire. This is the catholic faith: one cannot be saved without believing it firmly and faithfully." data-zh="他為我們的救恩受苦；他降在陰間；他從死裡復活；他升天；他坐在父的右邊；將來必從那裡降臨，審判活人死人。在他降臨的時候，眾人都要肉身復活，並要為自己所行的交帳。行善的人要進入永生，作惡的人要進入永火。這就是大公信仰：人若不堅實忠誠地相信，就不能得救。">He suffered for our salvation; he descended to hell; he arose from the dead; he ascended to heaven; he is seated at the Father's right hand; from there he will come to judge the living and the dead. At his coming all people will arise bodily and give an accounting of their own deeds. Those who have done good will enter eternal life, and those who have done evil will enter eternal fire. This is the catholic faith: one cannot be saved without believing it firmly and faithfully.</div>
+              <span class="conf-label" data-en="The Creed, Part Two: Christ, God and Man" data-zh="信經全文，第二部分：論基督的神人二性" data-cn="信经全文，第二部分：论基督的神人二性">The Creed, Part Two: Christ, God and Man</span>
+              <div class="creed-text" data-en="It is necessary for eternal salvation that one also believe faithfully in the incarnation of our Lord Jesus Christ. Now this is the true faith: that our Lord Jesus Christ, God's Son, is both God and human, equally. He is God from the essence of the Father, begotten before time; and he is human from the essence of his mother, born in time; completely God, completely human. Although he is God and human, Christ is not two, but one — not by his divinity being turned into flesh, but by God's taking humanity to himself; not by a blending of essence, but by the unity of his person." data-zh="要得永遠的救恩，也必須忠實相信我們主耶穌基督的道成肉身。真信仰乃是：我們的主耶穌基督，神的兒子，同時是神，也是人，二者均全。他從父的本體而出，在萬世之先受生為神；也從他母親的本體而出，在時間之中降生為人；完全是神，完全是人。雖然他是神又是人，基督卻不是二，而是一——並非因神性變為肉身，而是因神取了人性歸於自己；並非因本體混合，而是因位格合一。" data-cn="要得永远的救恩，也必须忠实相信我们主耶稣基督的道成肉身。真信仰乃是：我们的主耶稣基督，神的儿子，同时是神，也是人，二者均全。他从父的本体而出，在万世之先受生为神；也从他母亲的本体而出，在时间之中降生为人；完全是神，完全是人。虽然他是神又是人，基督却不是二，而是一——并非因神性变为肉身，而是因神取了人性归于自己；并非因本体混合，而是因位格合一。">It is necessary for eternal salvation that one also believe faithfully in the incarnation of our Lord Jesus Christ. Now this is the true faith: that our Lord Jesus Christ, God's Son, is both God and human, equally. He is God from the essence of the Father, begotten before time; and he is human from the essence of his mother, born in time; completely God, completely human. Although he is God and human, Christ is not two, but one — not by his divinity being turned into flesh, but by God's taking humanity to himself; not by a blending of essence, but by the unity of his person.</div>
+              <div class="creed-text" data-en="He suffered for our salvation; he descended to hell; he arose from the dead; he ascended to heaven; he is seated at the Father's right hand; from there he will come to judge the living and the dead. At his coming all people will arise bodily and give an accounting of their own deeds. Those who have done good will enter eternal life, and those who have done evil will enter eternal fire. This is the catholic faith: one cannot be saved without believing it firmly and faithfully." data-zh="他為我們的救恩受苦；他降在陰間；他從死裡復活；他升天；他坐在父的右邊；將來必從那裡降臨，審判活人死人。在他降臨的時候，眾人都要肉身復活，並要為自己所行的交帳。行善的人要進入永生，作惡的人要進入永火。這就是大公信仰：人若不堅實忠誠地相信，就不能得救。" data-cn="他为我们的救恩受苦；他降在阴间；他从死里复活；他升天；他坐在父的右边；将来必从那里降临，审判活人死人。在他降临的时候，众人都要肉身复活，并要为自己所行的交帐。行善的人要进入永生，作恶的人要进入永火。这就是大公信仰：人若不坚实忠诚地相信，就不能得救。">He suffered for our salvation; he descended to hell; he arose from the dead; he ascended to heaven; he is seated at the Father's right hand; from there he will come to judge the living and the dead. At his coming all people will arise bodily and give an accounting of their own deeds. Those who have done good will enter eternal life, and those who have done evil will enter eternal fire. This is the catholic faith: one cannot be saved without believing it firmly and faithfully.</div>
             </div>
           </div>
         </div>
@@ -660,47 +662,47 @@
     <div class="tier-arrow"></div>
 
     <div class="tier-card tier-confessions">
-      <div class="tier-eyebrow" data-en="OUR REFORMED ACCENT" data-zh="我們改革宗的表達">OUR REFORMED ACCENT</div>
-      <h3 data-en="The Reformed Confessions" data-zh="改革宗信條">The Reformed Confessions</h3>
-      <p data-en="Historic confessions that articulate a Reformed understanding of that same biblical faith — not a different faith, but a particular, careful expression of it." data-zh="這些歷史性信條，以改革宗的角度闡述同一個聖經信仰——並非另一種信仰，而是對這信仰更細緻、更具體的表達。">Historic confessions that articulate a Reformed understanding of that same biblical faith — not a different faith, but a particular, careful expression of it.</p>
+      <div class="tier-eyebrow" data-en="OUR REFORMED ACCENT" data-zh="我們改革宗的表達" data-cn="我们改革宗的表达">OUR REFORMED ACCENT</div>
+      <h3 data-en="The Reformed Confessions" data-zh="改革宗信條" data-cn="改革宗信条">The Reformed Confessions</h3>
+      <p data-en="Historic confessions that articulate a Reformed understanding of that same biblical faith — not a different faith, but a particular, careful expression of it." data-zh="這些歷史性信條，以改革宗的角度闡述同一個聖經信仰——並非另一種信仰，而是對這信仰更細緻、更具體的表達。" data-cn="这些历史性信条，以改革宗的角度阐述同一个圣经信仰——并非另一种信仰，而是对这信仰更细致、更具体的表达。">Historic confessions that articulate a Reformed understanding of that same biblical faith — not a different faith, but a particular, careful expression of it.</p>
       <div class="conf-accordion">
         <div class="conf-item">
           <div class="conf-head" onclick="toggleConf(this)">
-            <span class="name" data-en="Belgic Confession" data-zh="比利時信條">Belgic Confession</span>
+            <span class="name" data-en="Belgic Confession" data-zh="比利時信條" data-cn="比利时信条">Belgic Confession</span>
             <span class="plus">+</span>
           </div>
           <div class="conf-body">
-            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Written in 1561 by Guido de Brès, a Reformed pastor in the Netherlands, during a time of severe persecution — intended to explain the Reformed faith to both the government and the Roman Catholic Church." data-zh="寫於1561年，作者是身處荷蘭、正遭遇嚴重逼迫的改革宗牧者基多・德布雷（Guido de Brès）——目的是向政府與羅馬天主教會說明改革宗信仰的內容。">Written in 1561 by Guido de Brès, a Reformed pastor in the Netherlands, during a time of severe persecution — intended to explain the Reformed faith to both the government and the Roman Catholic Church.</p></div>
-            <div class="conf-row"><span class="conf-label" data-en="Structure" data-zh="結構">Structure</span><p data-en="37 articles covering the nature of God, the Trinity, creation, the fall, salvation, the church, and the sacraments." data-zh="共37條，涵蓋神的本質、三位一體、創造、墮落、救恩、教會與聖禮等主題。">37 articles covering the nature of God, the Trinity, creation, the fall, salvation, the church, and the sacraments.</p></div>
-            <div class="conf-row"><span class="conf-label" data-en="Emphases" data-zh="重點強調">Emphases</span><p data-en="The continuity of Reformed belief with the ancient Christian creeds, the authority of Scripture, justification by faith, and the marks of a true church." data-zh="強調改革宗信仰與古代大公教會信經的一脈相承、聖經的權威、因信稱義，以及真教會的記號。">The continuity of Reformed belief with the ancient Christian creeds, the authority of Scripture, justification by faith, and the marks of a true church.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景" data-cn="背景">Background</span><p data-en="Written in 1561 by Guido de Brès, a Reformed pastor in the Netherlands, during a time of severe persecution — intended to explain the Reformed faith to both the government and the Roman Catholic Church." data-zh="寫於1561年，作者是身處荷蘭、正遭遇嚴重逼迫的改革宗牧者基多・德布雷（Guido de Brès）——目的是向政府與羅馬天主教會說明改革宗信仰的內容。" data-cn="写于1561年，作者是身处荷兰、正遭遇严重逼迫的改革宗牧者基多・德布雷（Guido de Brès）——目的是向政府与罗马天主教会说明改革宗信仰的内容。">Written in 1561 by Guido de Brès, a Reformed pastor in the Netherlands, during a time of severe persecution — intended to explain the Reformed faith to both the government and the Roman Catholic Church.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Structure" data-zh="結構" data-cn="结构">Structure</span><p data-en="37 articles covering the nature of God, the Trinity, creation, the fall, salvation, the church, and the sacraments." data-zh="共37條，涵蓋神的本質、三位一體、創造、墮落、救恩、教會與聖禮等主題。" data-cn="共37条，涵盖神的本质、三位一体、创造、堕落、救恩、教会与圣礼等主题。">37 articles covering the nature of God, the Trinity, creation, the fall, salvation, the church, and the sacraments.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Emphases" data-zh="重點強調" data-cn="重点强调">Emphases</span><p data-en="The continuity of Reformed belief with the ancient Christian creeds, the authority of Scripture, justification by faith, and the marks of a true church." data-zh="強調改革宗信仰與古代大公教會信經的一脈相承、聖經的權威、因信稱義，以及真教會的記號。" data-cn="强调改革宗信仰与古代大公教会信经的一脉相承、圣经的权威、因信称义，以及真教会的记号。">The continuity of Reformed belief with the ancient Christian creeds, the authority of Scripture, justification by faith, and the marks of a true church.</p></div>
           </div>
         </div>
 
         <div class="conf-item">
           <div class="conf-head" onclick="toggleConf(this)">
-            <span class="name" data-en="Heidelberg Catechism" data-zh="海德堡要理問答">Heidelberg Catechism</span>
+            <span class="name" data-en="Heidelberg Catechism" data-zh="海德堡要理問答" data-cn="海德堡要理问答">Heidelberg Catechism</span>
             <span class="plus">+</span>
           </div>
           <div class="conf-body">
-            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Written in 1563 by Zacharias Ursinus and Caspar Olevianus in Heidelberg, Germany, as a teaching tool for instructing young people in the faith — commissioned by Elector Frederick III." data-zh="寫於1563年，作者是烏爾西努（Zacharias Ursinus）與奧利維雅努（Caspar Olevianus），寫作地點在德國海德堡，是受腓特烈三世選侯委託而寫，作為教導年輕人信仰的教材。">Written in 1563 by Zacharias Ursinus and Caspar Olevianus in Heidelberg, Germany, as a teaching tool for instructing young people in the faith — commissioned by Elector Frederick III.</p></div>
-            <div class="conf-row"><span class="conf-label" data-en="Structure" data-zh="結構">Structure</span><p data-en="129 questions and answers in three parts — Guilt, Grace, and Gratitude — divided into 52 Lord's Days for a year of weekly teaching." data-zh="共129個問答，分為三個部分——罪、恩、謝——並依「主日」劃分為52個單元，供全年每週教導使用。">129 questions and answers in three parts — Guilt, Grace, and Gratitude — divided into 52 Lord's Days for a year of weekly teaching.</p></div>
-            <div class="conf-row"><span class="conf-label" data-en="Emphases" data-zh="重點強調">Emphases</span><p data-en="A warm, personal tone; the comfort and assurance of belonging to Christ; and the practical, grateful shape of the Christian life." data-zh="語氣溫暖親切，著重屬於基督的安慰與確據，並強調基督徒生活應活出感恩與實際的樣式。">A warm, personal tone; the comfort and assurance of belonging to Christ; and the practical, grateful shape of the Christian life.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景" data-cn="背景">Background</span><p data-en="Written in 1563 by Zacharias Ursinus and Caspar Olevianus in Heidelberg, Germany, as a teaching tool for instructing young people in the faith — commissioned by Elector Frederick III." data-zh="寫於1563年，作者是烏爾西努（Zacharias Ursinus）與奧利維雅努（Caspar Olevianus），寫作地點在德國海德堡，是受腓特烈三世選侯委託而寫，作為教導年輕人信仰的教材。" data-cn="写于1563年，作者是乌尔西努（Zacharias Ursinus）与奥利维雅努（Caspar Olevianus），写作地点在德国海德堡，是受腓特烈三世选侯委托而写，作为教导年轻人信仰的教材。">Written in 1563 by Zacharias Ursinus and Caspar Olevianus in Heidelberg, Germany, as a teaching tool for instructing young people in the faith — commissioned by Elector Frederick III.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Structure" data-zh="結構" data-cn="结构">Structure</span><p data-en="129 questions and answers in three parts — Guilt, Grace, and Gratitude — divided into 52 Lord's Days for a year of weekly teaching." data-zh="共129個問答，分為三個部分——罪、恩、謝——並依「主日」劃分為52個單元，供全年每週教導使用。" data-cn="共129个问答，分为三个部分——罪、恩、谢——并依“主日”划分为52个单元，供全年每周教导使用。">129 questions and answers in three parts — Guilt, Grace, and Gratitude — divided into 52 Lord's Days for a year of weekly teaching.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Emphases" data-zh="重點強調" data-cn="重点强调">Emphases</span><p data-en="A warm, personal tone; the comfort and assurance of belonging to Christ; and the practical, grateful shape of the Christian life." data-zh="語氣溫暖親切，著重屬於基督的安慰與確據，並強調基督徒生活應活出感恩與實際的樣式。" data-cn="语气温暖亲切，着重属于基督的安慰与确据，并强调基督徒生活应活出感恩与实际的样式。">A warm, personal tone; the comfort and assurance of belonging to Christ; and the practical, grateful shape of the Christian life.</p></div>
           </div>
         </div>
 
         <div class="conf-item">
           <div class="conf-head" onclick="toggleConf(this)">
-            <span class="name" data-en="Canons of Dort" data-zh="多特信經">Canons of Dort</span>
+            <span class="name" data-en="Canons of Dort" data-zh="多特信經" data-cn="多特信经">Canons of Dort</span>
             <span class="plus">+</span>
           </div>
           <div class="conf-body">
-            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Formulated by the Synod of Dort (1618–1619) in response to the Arminian controversy — a defense of the Reformed doctrines of grace against objections raised by followers of Jacobus Arminius." data-zh="由多特總會（1618–1619年）制訂，為回應亞米念主義爭議而寫——為要在亞米念（Jacobus Arminius）追隨者所提出的質疑面前，捍衛改革宗的恩典教義。">Formulated by the Synod of Dort (1618–1619) in response to the Arminian controversy — a defense of the Reformed doctrines of grace against objections raised by followers of Jacobus Arminius.</p></div>
-            <div class="conf-row"><span class="conf-label" data-en="Structure" data-zh="結構">Structure</span><p data-en="Five main points, often remembered by the acronym TULIP — Total Depravity, Unconditional Election, Limited Atonement, Irresistible Grace, and Perseverance of the Saints." data-zh="共有五個要點，常以「鬱金香」（TULIP）字母縮寫來記憶——全然敗壞、無條件的揀選、限定的贖罪、不可抗拒的恩典，以及聖徒的堅忍。">Five main points, often remembered by the acronym TULIP — Total Depravity, Unconditional Election, Limited Atonement, Irresistible Grace, and Perseverance of the Saints.</p></div>
-            <div class="conf-row"><span class="conf-label" data-en="Emphases" data-zh="重點強調">Emphases</span><p data-en="God's sovereignty in salvation from beginning to end, and the settled assurance believers can have that God preserves what he starts." data-zh="強調救恩自始至終都在神的主權之下，並且信徒可以確實安穩地相信：神必保守祂所開始的工作，直到完成。">God's sovereignty in salvation from beginning to end, and the settled assurance believers can have that God preserves what he starts.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景" data-cn="背景">Background</span><p data-en="Formulated by the Synod of Dort (1618–1619) in response to the Arminian controversy — a defense of the Reformed doctrines of grace against objections raised by followers of Jacobus Arminius." data-zh="由多特總會（1618–1619年）制訂，為回應亞米念主義爭議而寫——為要在亞米念（Jacobus Arminius）追隨者所提出的質疑面前，捍衛改革宗的恩典教義。" data-cn="由多特总会（1618–1619年）制订，为回应亚米念主义争议而写——为要在亚米念（Jacobus Arminius）追随者所提出的质疑面前，捍卫改革宗的恩典教义。">Formulated by the Synod of Dort (1618–1619) in response to the Arminian controversy — a defense of the Reformed doctrines of grace against objections raised by followers of Jacobus Arminius.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Structure" data-zh="結構" data-cn="结构">Structure</span><p data-en="Five main points, often remembered by the acronym TULIP — Total Depravity, Unconditional Election, Limited Atonement, Irresistible Grace, and Perseverance of the Saints." data-zh="共有五個要點，常以「鬱金香」（TULIP）字母縮寫來記憶——全然敗壞、無條件的揀選、限定的贖罪、不可抗拒的恩典，以及聖徒的堅忍。" data-cn="共有五个要点，常以“郁金香”（TULIP）字母缩写来记忆——全然败坏、无条件的拣选、限定的赎罪、不可抗拒的恩典，以及圣徒的坚忍。">Five main points, often remembered by the acronym TULIP — Total Depravity, Unconditional Election, Limited Atonement, Irresistible Grace, and Perseverance of the Saints.</p></div>
+            <div class="conf-row"><span class="conf-label" data-en="Emphases" data-zh="重點強調" data-cn="重点强调">Emphases</span><p data-en="God's sovereignty in salvation from beginning to end, and the settled assurance believers can have that God preserves what he starts." data-zh="強調救恩自始至終都在神的主權之下，並且信徒可以確實安穩地相信：神必保守祂所開始的工作，直到完成。" data-cn="强调救恩自始至终都在神的主权之下，并且信徒可以确实安稳地相信：神必保守祂所开始的工作，直到完成。">God's sovereignty in salvation from beginning to end, and the settled assurance believers can have that God preserves what he starts.</p></div>
           </div>
         </div>
       </div>
-      <div class="tier-note" data-en="Together known as the Three Forms of Unity." data-zh="三者合稱「三項聯合信條」。">Together known as the Three Forms of Unity.</div>
+      <div class="tier-note" data-en="Together known as the Three Forms of Unity." data-zh="三者合稱「三項聯合信條」。" data-cn="三者合称“三项联合信条”。">Together known as the Three Forms of Unity.</div>
     </div>
   </div>
 </section>
@@ -708,41 +710,41 @@
 <!-- ============ STEP 2: OUR REFORMED ACCENT ============ -->
 <section class="step" id="step-accent" data-node="0">
   <div class="step-head">
-    <div class="step-num" data-en="STEP TWO" data-zh="第二步">STEP TWO</div>
-    <h2 data-en="Our Reformed Accent" data-zh="我們改革宗的「口音」">Our Reformed Accent</h2>
-    <div class="tag" data-en="Same faith, same family — a particular way of speaking it." data-zh="同一個信仰，同一個大家庭——只是用了特定的方式來表達。">Same faith, same family — a particular way of speaking it.</div>
+    <div class="step-num" data-en="STEP TWO" data-zh="第二步" data-cn="第二步">STEP TWO</div>
+    <h2 data-en="Our Reformed Accent" data-zh="我們改革宗的「口音」" data-cn="我们改革宗的“口音”">Our Reformed Accent</h2>
+    <div class="tag" data-en="Same faith, same family — a particular way of speaking it." data-zh="同一個信仰，同一個大家庭——只是用了特定的方式來表達。" data-cn="同一个信仰，同一个大家庭——只是用了特定的方式来表达。">Same faith, same family — a particular way of speaking it.</div>
   </div>
 
-  <p style="color:var(--ink-dim); max-width:64ch; margin-bottom:34px; font-size:0.98rem;" data-en="Most of what Reformed Christians believe, we hold in common with the whole Church. But every tradition speaks the same faith with its own emphasis — the way an English speaker from Toronto and one from Johannesburg share a language but sound different. Three words carry much of the Reformed emphasis: sovereignty, covenant, and kingdom." data-zh="改革宗信徒所信的，絕大部分是與普世教會共有的信仰。然而每個傳統在表達同一個信仰時，都會有自己特別著重的地方——就像來自多倫多和約翰尼斯堡的英語使用者，說的是同一種語言，口音卻各有不同。「主權」、「聖約」、「國度」這三個詞，最能代表改革宗所著重的表達。">Most of what Reformed Christians believe, we hold in common with the whole Church. But every tradition speaks the same faith with its own emphasis — the way an English speaker from Toronto and one from Johannesburg share a language but sound different. Three words carry much of the Reformed emphasis: sovereignty, covenant, and kingdom.</p>
+  <p style="color:var(--ink-dim); max-width:64ch; margin-bottom:34px; font-size:0.98rem;" data-en="Most of what Reformed Christians believe, we hold in common with the whole Church. But every tradition speaks the same faith with its own emphasis — the way an English speaker from Toronto and one from Johannesburg share a language but sound different. Three words carry much of the Reformed emphasis: sovereignty, covenant, and kingdom." data-zh="改革宗信徒所信的，絕大部分是與普世教會共有的信仰。然而每個傳統在表達同一個信仰時，都會有自己特別著重的地方——就像來自多倫多和約翰尼斯堡的英語使用者，說的是同一種語言，口音卻各有不同。「主權」、「聖約」、「國度」這三個詞，最能代表改革宗所著重的表達。" data-cn="改革宗信徒所信的，绝大部分是与普世教会共有的信仰。然而每个传统在表达同一个信仰时，都会有自己特别着重的地方——就像来自多伦多和约翰尼斯堡的英语用户，说的是同一种语言，口音却各有不同。“主权”、“圣约”、“国度”这三个词，最能代表改革宗所着重的表达。">Most of what Reformed Christians believe, we hold in common with the whole Church. But every tradition speaks the same faith with its own emphasis — the way an English speaker from Toronto and one from Johannesburg share a language but sound different. Three words carry much of the Reformed emphasis: sovereignty, covenant, and kingdom.</p>
 
   <div class="tier">
     <div class="tier-card tier-scripture">
-      <div class="tier-eyebrow" data-en="GOD'S PLAN, GOD'S POWER" data-zh="神的計劃，神的權能">GOD'S PLAN, GOD'S POWER</div>
-      <h3 data-en="Sovereignty" data-zh="主權">Sovereignty</h3>
-      <p data-en="Reformed Christians hold a high view of God's rule over everything — from the rise and fall of nations to the faith of one person. Because sin has touched even the human will, salvation is God's initiative from beginning to end; we are called into relationship with God, and respond in gratitude, rather than salvation depending on our own power to choose." data-zh="改革宗信徒對神掌管萬有抱持很高的看法——從國家的興衰，到個人信心的建立，皆在神的主權之下。因為罪甚至影響了人的意志，救恩自始至終都是神主動的作為；我們是被神呼召進入與祂的關係，並以感恩回應祂，而非單靠自己揀選的能力得救。">Reformed Christians hold a high view of God's rule over everything — from the rise and fall of nations to the faith of one person. Because sin has touched even the human will, salvation is God's initiative from beginning to end; we are called into relationship with God, and respond in gratitude, rather than salvation depending on our own power to choose.</p>
+      <div class="tier-eyebrow" data-en="GOD'S PLAN, GOD'S POWER" data-zh="神的計劃，神的權能" data-cn="神的计划，神的权能">GOD'S PLAN, GOD'S POWER</div>
+      <h3 data-en="Sovereignty" data-zh="主權" data-cn="主权">Sovereignty</h3>
+      <p data-en="Reformed Christians hold a high view of God's rule over everything — from the rise and fall of nations to the faith of one person. Because sin has touched even the human will, salvation is God's initiative from beginning to end; we are called into relationship with God, and respond in gratitude, rather than salvation depending on our own power to choose." data-zh="改革宗信徒對神掌管萬有抱持很高的看法——從國家的興衰，到個人信心的建立，皆在神的主權之下。因為罪甚至影響了人的意志，救恩自始至終都是神主動的作為；我們是被神呼召進入與祂的關係，並以感恩回應祂，而非單靠自己揀選的能力得救。" data-cn="改革宗信徒对神掌管万有抱持很高的看法——从国家的兴衰，到个人信心的创建，皆在神的主权之下。因为罪甚至影响了人的意志，救恩自始至终都是神主动的作为；我们是被神呼召进入与祂的关系，并以感恩回应祂，而非单靠自己拣选的能力得救。">Reformed Christians hold a high view of God's rule over everything — from the rise and fall of nations to the faith of one person. Because sin has touched even the human will, salvation is God's initiative from beginning to end; we are called into relationship with God, and respond in gratitude, rather than salvation depending on our own power to choose.</p>
     </div>
     <div class="tier-arrow"></div>
 
     <div class="tier-card tier-confessions">
-      <div class="tier-eyebrow" data-en="GOD KEEPS HIS PROMISES" data-zh="神信守祂的應許">GOD KEEPS HIS PROMISES</div>
-      <h3 data-en="Covenant" data-zh="聖約">Covenant</h3>
-      <p data-en="God is a promise-making, promise-keeping God, and his promises are not only to individuals but to families across generations — the same pattern seen with Israel and echoed at Pentecost, when Peter promised the Spirit 'to you and your children.' This is why Reformed churches baptize both believing adults and the infant children of believing parents: a sign that God's grace comes before we can earn or even understand it." data-zh="神是一位立約、又信守應許的神；祂的應許不僅賜給個人，也賜給世世代代的家庭——這正是以色列所經歷的模式，也在五旬節彼得應許聖靈「賜給你們和你們的兒女」時再次應驗。這也是為什麼改革宗教會既為表明信心的成年人施洗，也為信徒兒女施行嬰兒洗禮：這是一個記號，表明神的恩典先於我們的努力，甚至先於我們的理解。">God is a promise-making, promise-keeping God, and his promises are not only to individuals but to families across generations — the same pattern seen with Israel and echoed at Pentecost, when Peter promised the Spirit "to you and your children." This is why Reformed churches baptize both believing adults and the infant children of believing parents: a sign that God's grace comes before we can earn or even understand it.</p>
+      <div class="tier-eyebrow" data-en="GOD KEEPS HIS PROMISES" data-zh="神信守祂的應許" data-cn="神信守祂的应许">GOD KEEPS HIS PROMISES</div>
+      <h3 data-en="Covenant" data-zh="聖約" data-cn="圣约">Covenant</h3>
+      <p data-en="God is a promise-making, promise-keeping God, and his promises are not only to individuals but to families across generations — the same pattern seen with Israel and echoed at Pentecost, when Peter promised the Spirit 'to you and your children.' This is why Reformed churches baptize both believing adults and the infant children of believing parents: a sign that God's grace comes before we can earn or even understand it." data-zh="神是一位立約、又信守應許的神；祂的應許不僅賜給個人，也賜給世世代代的家庭——這正是以色列所經歷的模式，也在五旬節彼得應許聖靈「賜給你們和你們的兒女」時再次應驗。這也是為什麼改革宗教會既為表明信心的成年人施洗，也為信徒兒女施行嬰兒洗禮：這是一個記號，表明神的恩典先於我們的努力，甚至先於我們的理解。" data-cn="神是一位立约、又信守应许的神；祂的应许不仅赐给个人，也赐给世世代代的家庭——这正是以色列所经历的模式，也在五旬节彼得应许圣灵“赐给你们和你们的儿女”时再次应验。这也是为什么改革宗教会既为表明信心的成年人施洗，也为信徒儿女施行婴儿洗礼：这是一个记号，表明神的恩典先于我们的努力，甚至先于我们的理解。">God is a promise-making, promise-keeping God, and his promises are not only to individuals but to families across generations — the same pattern seen with Israel and echoed at Pentecost, when Peter promised the Spirit "to you and your children." This is why Reformed churches baptize both believing adults and the infant children of believing parents: a sign that God's grace comes before we can earn or even understand it.</p>
       <span class="ref">Acts 2:39</span>
     </div>
     <div class="tier-arrow"></div>
 
     <div class="tier-card tier-kingdom">
-      <div class="tier-eyebrow" data-en="EVERY SQUARE INCH" data-zh="每一寸土地">EVERY SQUARE INCH</div>
-      <h3 data-en="Kingdom" data-zh="國度">Kingdom</h3>
-      <p data-en="God's kingdom is not a building or a strictly 'religious' zone — it is God's reign extending over all of creation: work, art, family, and public life included. Reformed Christians resist splitting life into 'sacred' and 'secular,' believing every calling can be carried out for God's glory." data-zh="神的國度並非一座建築物，也不侷限於「宗教性」的範疇——而是神的統治延伸到全部受造界：工作、藝術、家庭、公共生活，無一例外。改革宗信徒拒絕將生活劃分為「屬靈」與「世俗」，相信每一種呼召都可以為了神的榮耀而活出。">God's kingdom is not a building or a strictly "religious" zone — it is God's reign extending over all of creation: work, art, family, and public life included. Reformed Christians resist splitting life into "sacred" and "secular," believing every calling can be carried out for God's glory.</p>
+      <div class="tier-eyebrow" data-en="EVERY SQUARE INCH" data-zh="每一寸土地" data-cn="每一寸土地">EVERY SQUARE INCH</div>
+      <h3 data-en="Kingdom" data-zh="國度" data-cn="国度">Kingdom</h3>
+      <p data-en="God's kingdom is not a building or a strictly 'religious' zone — it is God's reign extending over all of creation: work, art, family, and public life included. Reformed Christians resist splitting life into 'sacred' and 'secular,' believing every calling can be carried out for God's glory." data-zh="神的國度並非一座建築物，也不侷限於「宗教性」的範疇——而是神的統治延伸到全部受造界：工作、藝術、家庭、公共生活，無一例外。改革宗信徒拒絕將生活劃分為「屬靈」與「世俗」，相信每一種呼召都可以為了神的榮耀而活出。" data-cn="神的国度并非一座建筑物，也不局限于“宗教性”的范畴——而是神的统治延伸到全部受造界：工作、艺术、家庭、公共生活，无一例外。改革宗信徒拒绝将生活划分为“属灵”与“世俗”，相信每一种呼召都可以为了神的荣耀而活出。">God's kingdom is not a building or a strictly "religious" zone — it is God's reign extending over all of creation: work, art, family, and public life included. Reformed Christians resist splitting life into "sacred" and "secular," believing every calling can be carried out for God's glory.</p>
       <div class="tier-quote">
-        <span data-en="&ldquo;There is not a square inch in the whole domain of our human existence over which Christ, who is Sovereign over all, does not cry: 'Mine!'&rdquo;" data-zh="「在人類生存的整個領域中，沒有一寸土地，是那位掌管萬有的基督不宣告『這是我的！』的。」">&ldquo;There is not a square inch in the whole domain of our human existence over which Christ, who is Sovereign over all, does not cry: 'Mine!'&rdquo;</span>
-        <cite data-en="— Abraham Kuyper, 1880" data-zh="——亞伯拉罕・凱伯，1880年">— Abraham Kuyper, 1880</cite>
+        <span data-en="&ldquo;There is not a square inch in the whole domain of our human existence over which Christ, who is Sovereign over all, does not cry: 'Mine!'&rdquo;" data-zh="「在人類生存的整個領域中，沒有一寸土地，是那位掌管萬有的基督不宣告『這是我的！』的。」" data-cn="“在人类生存的整个领域中，没有一寸土地，是那位掌管万有的基督不声明‘这是我的！’的。”">&ldquo;There is not a square inch in the whole domain of our human existence over which Christ, who is Sovereign over all, does not cry: 'Mine!'&rdquo;</span>
+        <cite data-en="— Abraham Kuyper, 1880" data-zh="——亞伯拉罕・凱伯，1880年" data-cn="——亚伯拉罕・凯伯，1880年">— Abraham Kuyper, 1880</cite>
       </div>
     </div>
 
     <div class="tier-credit">
-      <span data-en="Adapted from the CRCNA's " data-zh="改編自CRCNA〈">Adapted from the CRCNA's </span><a href="https://www.crcna.org/welcome/beliefs/reformed-accent" target="_blank" data-en="&quot;Reformed Accent&quot;" data-zh="改革宗『口音』">"Reformed Accent"</a><span data-en=" essay." data-zh="〉一文。"> essay.</span>
+      <span data-en="Adapted from the CRCNA's " data-zh="改編自CRCNA〈" data-cn="改编自CRCNA〈">Adapted from the CRCNA's </span><a href="https://www.crcna.org/welcome/beliefs/reformed-accent" target="_blank" data-en="&quot;Reformed Accent&quot;" data-zh="改革宗『口音』" data-cn="改革宗‘口音’">"Reformed Accent"</a><span data-en=" essay." data-zh="〉一文。" data-cn="〉一文。"> essay.</span>
     </div>
   </div>
 </section>
@@ -750,83 +752,83 @@
 <!-- ============ STEP 3: BIG PICTURE ============ -->
 <section class="step" id="step1" data-node="0">
   <div class="step-head">
-    <div class="step-num" data-en="STEP THREE" data-zh="第三步">STEP THREE</div>
-    <h2 data-en="The Big Picture" data-zh="全貌總覽">The Big Picture</h2>
-    <div class="tag" data-en="From Creation to New Creation, fulfilled in Christ." data-zh="從創造到新創造，在基督裡得著成就。">From Creation to New Creation, fulfilled in Christ.</div>
+    <div class="step-num" data-en="STEP THREE" data-zh="第三步" data-cn="第三步">STEP THREE</div>
+    <h2 data-en="The Big Picture" data-zh="全貌總覽" data-cn="全貌总览">The Big Picture</h2>
+    <div class="tag" data-en="From Creation to New Creation, fulfilled in Christ." data-zh="從創造到新創造，在基督裡得著成就。" data-cn="从创造到新创造，在基督里得着成就。">From Creation to New Creation, fulfilled in Christ.</div>
   </div>
 
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot c-creation"></div>
-      <h3 data-en="Creation" data-zh="創造">Creation</h3>
-      <p data-en="God creates all things good." data-zh="神創造萬物，並且甚好。">God creates all things good.</p>
+      <h3 data-en="Creation" data-zh="創造" data-cn="创造">Creation</h3>
+      <p data-en="God creates all things good." data-zh="神創造萬物，並且甚好。" data-cn="神创造万物，并且甚好。">God creates all things good.</p>
       <span class="ref">Gen. 1:1–31</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot c-fall"></div>
-      <h3 data-en="The Fall" data-zh="墮落">The Fall</h3>
-      <p data-en="Sin enters every part of life." data-zh="罪進入生命的每一個層面。">Sin enters every part of life.</p>
+      <h3 data-en="The Fall" data-zh="墮落" data-cn="堕落">The Fall</h3>
+      <p data-en="Sin enters every part of life." data-zh="罪進入生命的每一個層面。" data-cn="罪进入生命的每一个层面。">Sin enters every part of life.</p>
       <span class="ref">Gen. 3</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot c-covenant"></div>
-      <h3 data-en="Covenant of Grace" data-zh="恩典之約">Covenant of Grace</h3>
-      <p data-en="God's promise of redemption." data-zh="神應許要施行救贖。">God's promise of redemption.</p>
+      <h3 data-en="Covenant of Grace" data-zh="恩典之約" data-cn="恩典之约">Covenant of Grace</h3>
+      <p data-en="God's promise of redemption." data-zh="神應許要施行救贖。" data-cn="神应许要施行救赎。">God's promise of redemption.</p>
       <span class="ref">Gen. 12:3; Gal. 3:16</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot c-christ"></div>
-      <h3 data-en="Christ" data-zh="基督">Christ</h3>
-      <p data-en="Prophet, Priest, King." data-zh="先知、祭司、君王。">Prophet, Priest, King.</p>
+      <h3 data-en="Christ" data-zh="基督" data-cn="基督">Christ</h3>
+      <p data-en="Prophet, Priest, King." data-zh="先知、祭司、君王。" data-cn="先知、祭司、君王。">Prophet, Priest, King.</p>
       <span class="ref">Luke 4:18–19; Heb. 7:25</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot c-union"></div>
-      <h3 data-en="Union with Christ" data-zh="與基督聯合">Union with Christ</h3>
-      <p data-en="By grace, through faith." data-zh="藉著恩典，因著信心。">By grace, through faith.</p>
+      <h3 data-en="Union with Christ" data-zh="與基督聯合" data-cn="与基督联合">Union with Christ</h3>
+      <p data-en="By grace, through faith." data-zh="藉著恩典，因著信心。" data-cn="借着恩典，因着信心。">By grace, through faith.</p>
       <span class="ref">John 15:4–5; Eph. 2:8–9</span>
     </div>
   </div>
 
   <div class="twin-cards">
     <div class="mini-card">
-      <h4 data-en="Justification" data-zh="稱義">Justification</h4>
-      <p data-en="We are declared righteous in Christ." data-zh="我們在基督裡被宣告為義。">We are declared righteous in Christ.</p>
+      <h4 data-en="Justification" data-zh="稱義" data-cn="称义">Justification</h4>
+      <p data-en="We are declared righteous in Christ." data-zh="我們在基督裡被宣告為義。" data-cn="我们在基督里被声明为义。">We are declared righteous in Christ.</p>
       <span class="ref">Rom. 5:1</span>
     </div>
     <div class="mini-card">
-      <h4 data-en="Sanctification" data-zh="成聖">Sanctification</h4>
-      <p data-en="We are made more like Christ." data-zh="我們被塑造得更像基督。">We are made more like Christ.</p>
+      <h4 data-en="Sanctification" data-zh="成聖" data-cn="成圣">Sanctification</h4>
+      <p data-en="We are made more like Christ." data-zh="我們被塑造得更像基督。" data-cn="我们被塑造得更像基督。">We are made more like Christ.</p>
       <span class="ref">Phil. 2:12–13</span>
     </div>
   </div>
 
   <div class="gratitude-band">
-    <h4 data-en="A life of gratitude flows from grace received" data-zh="生命的感恩，源於所領受的恩典">A life of gratitude flows from grace received</h4>
+    <h4 data-en="A life of gratitude flows from grace received" data-zh="生命的感恩，源於所領受的恩典" data-cn="生命的感恩，源于所领受的恩典">A life of gratitude flows from grace received</h4>
     <div class="gratitude-grid">
-      <div class="g-item"><div class="label" data-en="Worship" data-zh="敬拜">Worship</div><span class="ref">Ps. 95:1–7</span></div>
-      <div class="g-item"><div class="label" data-en="Family" data-zh="家庭">Family</div><span class="ref">Eph. 6:1–4</span></div>
-      <div class="g-item"><div class="label" data-en="Work" data-zh="工作">Work</div><span class="ref">Col. 3:23–24</span></div>
-      <div class="g-item"><div class="label" data-en="Society" data-zh="社會">Society</div><span class="ref">Mic. 6:8</span></div>
-      <div class="g-item"><div class="label" data-en="Mission" data-zh="使命">Mission</div><span class="ref">Matt. 28:18–20</span></div>
+      <div class="g-item"><div class="label" data-en="Worship" data-zh="敬拜" data-cn="敬拜">Worship</div><span class="ref">Ps. 95:1–7</span></div>
+      <div class="g-item"><div class="label" data-en="Family" data-zh="家庭" data-cn="家庭">Family</div><span class="ref">Eph. 6:1–4</span></div>
+      <div class="g-item"><div class="label" data-en="Work" data-zh="工作" data-cn="工作">Work</div><span class="ref">Col. 3:23–24</span></div>
+      <div class="g-item"><div class="label" data-en="Society" data-zh="社會" data-cn="社会">Society</div><span class="ref">Mic. 6:8</span></div>
+      <div class="g-item"><div class="label" data-en="Mission" data-zh="使命" data-cn="使命">Mission</div><span class="ref">Matt. 28:18–20</span></div>
     </div>
   </div>
 
-  <p class="threads-head" data-en="Covenant gets its own chapter next — but three more threads run through this same story:" data-zh="「聖約」將在下一步有專屬的篇章——而另外三條脈絡，也貫穿在同一個故事之中：">Covenant gets its own chapter next — but three more threads run through this same story:</p>
+  <p class="threads-head" data-en="Covenant gets its own chapter next — but three more threads run through this same story:" data-zh="「聖約」將在下一步有專屬的篇章——而另外三條脈絡，也貫穿在同一個故事之中：" data-cn="“圣约”将在下一步有专属的篇章——而另外三条脉络，也贯穿在同一个故事之中：">Covenant gets its own chapter next — but three more threads run through this same story:</p>
   <div class="threads-grid">
     <div class="thread-card thread-kingdom">
-      <h4 data-en="Kingdom" data-zh="國度">Kingdom</h4>
-      <p data-en="From Eden's garden-kingdom, to Israel's throne, to Christ's own words — 'the kingdom of God has come near' — God's reign is already here, and still coming in full." data-zh="從伊甸園的園中國度，到以色列的寶座，再到基督親口所說：「神的國近了」——神的掌權已經臨到，卻仍等候完全的實現。">From Eden's garden-kingdom, to Israel's throne, to Christ's own words — "the kingdom of God has come near" — God's reign is already here, and still coming in full.</p>
+      <h4 data-en="Kingdom" data-zh="國度" data-cn="国度">Kingdom</h4>
+      <p data-en="From Eden's garden-kingdom, to Israel's throne, to Christ's own words — 'the kingdom of God has come near' — God's reign is already here, and still coming in full." data-zh="從伊甸園的園中國度，到以色列的寶座，再到基督親口所說：「神的國近了」——神的掌權已經臨到，卻仍等候完全的實現。" data-cn="从伊甸园的园中国度，到以色列的宝座，再到基督亲口所说：“神的国近了”——神的掌权已经临到，却仍等候完全的实现。">From Eden's garden-kingdom, to Israel's throne, to Christ's own words — "the kingdom of God has come near" — God's reign is already here, and still coming in full.</p>
       <span class="ref">Mark 1:15</span>
     </div>
     <div class="thread-card thread-mission">
-      <h4 data-en="Mission" data-zh="使命">Mission</h4>
-      <p data-en="God's blessing to Abraham was never meant to stop with his family — it was always headed toward every nation, fulfilled in the church's call to go and make disciples of all peoples." data-zh="神賜給亞伯拉罕的祝福，從來不是只為了他一個家族——而是要臨到萬國萬民，並在教會領受使萬民作主門徒的使命中得著成就。">God's blessing to Abraham was never meant to stop with his family — it was always headed toward every nation, fulfilled in the church's call to go and make disciples of all peoples.</p>
+      <h4 data-en="Mission" data-zh="使命" data-cn="使命">Mission</h4>
+      <p data-en="God's blessing to Abraham was never meant to stop with his family — it was always headed toward every nation, fulfilled in the church's call to go and make disciples of all peoples." data-zh="神賜給亞伯拉罕的祝福，從來不是只為了他一個家族——而是要臨到萬國萬民，並在教會領受使萬民作主門徒的使命中得著成就。" data-cn="神赐给亚伯拉罕的祝福，从来不是只为了他一个家族——而是要临到万国万民，并在教会领受使万民作主门徒的使命中得着成就。">God's blessing to Abraham was never meant to stop with his family — it was always headed toward every nation, fulfilled in the church's call to go and make disciples of all peoples.</p>
       <span class="ref">Gen. 12:3; Matt. 28:18–20</span>
     </div>
     <div class="thread-card thread-temple">
-      <h4 data-en="Temple" data-zh="聖殿">Temple</h4>
-      <p data-en="From the Garden, to the tabernacle, to Solomon's temple, to Christ's own body, to the church as the Spirit's dwelling — God has been moving toward one goal all along: to dwell with his people forever." data-zh="從伊甸園，到會幕，到所羅門的聖殿，到基督自己的身體，再到教會成為聖靈的居所——神一直朝著同一個目標前進：要永遠與祂的子民同住。">From the Garden, to the tabernacle, to Solomon's temple, to Christ's own body, to the church as the Spirit's dwelling — God has been moving toward one goal all along: to dwell with his people forever.</p>
+      <h4 data-en="Temple" data-zh="聖殿" data-cn="圣殿">Temple</h4>
+      <p data-en="From the Garden, to the tabernacle, to Solomon's temple, to Christ's own body, to the church as the Spirit's dwelling — God has been moving toward one goal all along: to dwell with his people forever." data-zh="從伊甸園，到會幕，到所羅門的聖殿，到基督自己的身體，再到教會成為聖靈的居所——神一直朝著同一個目標前進：要永遠與祂的子民同住。" data-cn="从伊甸园，到会幕，到所罗门的圣殿，到基督自己的身体，再到教会成为圣灵的居所——神一直朝着同一个目标前进：要永远与祂的子民同住。">From the Garden, to the tabernacle, to Solomon's temple, to Christ's own body, to the church as the Spirit's dwelling — God has been moving toward one goal all along: to dwell with his people forever.</p>
       <span class="ref">John 1:14; Rev. 21:3</span>
     </div>
   </div>
@@ -836,70 +838,70 @@
 <section class="step" id="step2" data-node="1">
 
   <div class="step-head">
-    <div class="step-num" data-en="STEP FOUR" data-zh="第四步">STEP FOUR</div>
-    <h2 data-en="The Covenant Structure" data-zh="聖約的結構">The Covenant Structure</h2>
-    <div class="tag" data-en="One covenant of grace, fulfilled in Christ." data-zh="一個恩典的聖約，在基督裡得著成就。">One covenant of grace, fulfilled in Christ.</div>
+    <div class="step-num" data-en="STEP FOUR" data-zh="第四步" data-cn="第四步">STEP FOUR</div>
+    <h2 data-en="The Covenant Structure" data-zh="聖約的結構" data-cn="圣约的结构">The Covenant Structure</h2>
+    <div class="tag" data-en="One covenant of grace, fulfilled in Christ." data-zh="一個恩典的聖約，在基督裡得著成就。" data-cn="一个恩典的圣约，在基督里得着成就。">One covenant of grace, fulfilled in Christ.</div>
   </div>
 
   <div class="cov-flow">
-    <div class="cov-node n-god" data-en="GOD" data-zh="神">GOD</div>
+    <div class="cov-node n-god" data-en="GOD" data-zh="神" data-cn="神">GOD</div>
     <div class="cov-arrow"></div>
     <div class="cov-node n-creation">
-      <span data-en="Covenant of Creation" data-zh="創造之約">Covenant of Creation</span>
-      <span class="desc" data-en="Adam represents humanity" data-zh="亞當代表全人類">Adam represents humanity</span>
+      <span data-en="Covenant of Creation" data-zh="創造之約" data-cn="创造之约">Covenant of Creation</span>
+      <span class="desc" data-en="Adam represents humanity" data-zh="亞當代表全人類" data-cn="亚当代表全人类">Adam represents humanity</span>
       <span class="ref">Gen. 1–2</span>
     </div>
     <div class="cov-arrow"></div>
     <div class="cov-node n-fall">
-      <span data-en="Fall" data-zh="墮落">Fall</span>
+      <span data-en="Fall" data-zh="墮落" data-cn="堕落">Fall</span>
       <span class="ref">Gen. 3</span>
     </div>
     <div class="cov-arrow"></div>
     <div class="cov-node n-grace">
-      <span data-en="Covenant of Grace" data-zh="恩典之約">Covenant of Grace</span>
-      <span class="desc" data-en="The promise of redemption" data-zh="救贖的應許">The promise of redemption</span>
+      <span data-en="Covenant of Grace" data-zh="恩典之約" data-cn="恩典之约">Covenant of Grace</span>
+      <span class="desc" data-en="The promise of redemption" data-zh="救贖的應許" data-cn="救赎的应许">The promise of redemption</span>
     </div>
 
     <div class="cov-people">
-      <div class="person-card"><div class="name" data-en="Abraham" data-zh="亞伯拉罕">Abraham</div><span class="ref">Gen. 12:1–3</span></div>
-      <div class="person-card"><div class="name" data-en="Moses" data-zh="摩西">Moses</div><span class="ref">Ex. 19:5–6</span></div>
-      <div class="person-card"><div class="name" data-en="David" data-zh="大衛">David</div><span class="ref">2 Sam. 7:12–16</span></div>
-      <div class="person-card"><div class="name" data-en="Christ" data-zh="基督">Christ</div><span class="ref">Luke 22:20</span></div>
-      <div class="person-card"><div class="name" data-en="Church" data-zh="教會">Church</div><span class="ref">Acts 2:39</span></div>
+      <div class="person-card"><div class="name" data-en="Abraham" data-zh="亞伯拉罕" data-cn="亚伯拉罕">Abraham</div><span class="ref">Gen. 12:1–3</span></div>
+      <div class="person-card"><div class="name" data-en="Moses" data-zh="摩西" data-cn="摩西">Moses</div><span class="ref">Ex. 19:5–6</span></div>
+      <div class="person-card"><div class="name" data-en="David" data-zh="大衛" data-cn="大卫">David</div><span class="ref">2 Sam. 7:12–16</span></div>
+      <div class="person-card"><div class="name" data-en="Christ" data-zh="基督" data-cn="基督">Christ</div><span class="ref">Luke 22:20</span></div>
+      <div class="person-card"><div class="name" data-en="Church" data-zh="教會" data-cn="教会">Church</div><span class="ref">Acts 2:39</span></div>
     </div>
 
     <div class="cov-arrow"></div>
     <div class="cov-node" style="background:var(--sage); color:#FBF7ED;">
-      <span data-en="New Creation" data-zh="新創造">New Creation</span>
+      <span data-en="New Creation" data-zh="新創造" data-cn="新创造">New Creation</span>
       <span class="ref" style="color:#FBF7ED; opacity:0.85;">Rev. 21:1–5</span>
     </div>
   </div>
 
-  <p class="same-line" data-en="The same covenant. The same Christ. One Body across the ages." data-zh="同一個聖約。同一位基督。歷世歷代，同為一個身體。">The same covenant. The same Christ. One Body across the ages.</p>
+  <p class="same-line" data-en="The same covenant. The same Christ. One Body across the ages." data-zh="同一個聖約。同一位基督。歷世歷代，同為一個身體。" data-cn="同一个圣约。同一位基督。历世历代，同为一个身体。">The same covenant. The same Christ. One Body across the ages.</p>
 </section>
 
 <!-- ============ STEP 5: THE SACRAMENTS ============ -->
 <section class="step" id="step-sacraments" data-node="3">
   <div class="step-head">
-    <div class="step-num" data-en="STEP FIVE" data-zh="第五步">STEP FIVE</div>
-    <h2 data-en="The Sacraments" data-zh="聖禮">The Sacraments</h2>
-    <div class="tag" data-en="Two signs and seals of the covenant of grace." data-zh="恩典之約的兩個記號與印證。">Two signs and seals of the covenant of grace.</div>
+    <div class="step-num" data-en="STEP FIVE" data-zh="第五步" data-cn="第五步">STEP FIVE</div>
+    <h2 data-en="The Sacraments" data-zh="聖禮" data-cn="圣礼">The Sacraments</h2>
+    <div class="tag" data-en="Two signs and seals of the covenant of grace." data-zh="恩典之約的兩個記號與印證。" data-cn="恩典之约的两个记号与印证。">Two signs and seals of the covenant of grace.</div>
   </div>
 
   <div class="sac-grid">
     <div class="sac-card sac-baptism">
       <div class="glyph">💧</div>
-      <div class="eyebrow-sm" data-en="A SIGN FOR BELIEVERS AND THEIR CHILDREN" data-zh="信徒與其兒女的記號">A SIGN FOR BELIEVERS AND THEIR CHILDREN</div>
-      <h3 data-en="Baptism" data-zh="洗禮">Baptism</h3>
-      <p data-en="Baptism marks a person's entry into God's covenant community, much as circumcision once marked God's covenant with Israel. This is why Reformed churches baptize believers who profess their faith, and also the infant children of believing parents — trusting God's promise that his covenant extends to 'you and your children.'" data-zh="洗禮標誌著一個人進入神立約群體之中，正如割禮曾是神與以色列所立之約的記號。這也是為什麼改革宗教會不僅為公開宣認信仰的信徒施洗，也為信徒兒女施行嬰兒洗——因為我們相信神的應許，是「賜給你們和你們的兒女」的。">Baptism marks a person's entry into God's covenant community, much as circumcision once marked God's covenant with Israel. This is why Reformed churches baptize believers who profess their faith, and also the infant children of believing parents — trusting God's promise that his covenant extends to "you and your children."</p>
+      <div class="eyebrow-sm" data-en="A SIGN FOR BELIEVERS AND THEIR CHILDREN" data-zh="信徒與其兒女的記號" data-cn="信徒与其儿女的记号">A SIGN FOR BELIEVERS AND THEIR CHILDREN</div>
+      <h3 data-en="Baptism" data-zh="洗禮" data-cn="洗礼">Baptism</h3>
+      <p data-en="Baptism marks a person's entry into God's covenant community, much as circumcision once marked God's covenant with Israel. This is why Reformed churches baptize believers who profess their faith, and also the infant children of believing parents — trusting God's promise that his covenant extends to 'you and your children.'" data-zh="洗禮標誌著一個人進入神立約群體之中，正如割禮曾是神與以色列所立之約的記號。這也是為什麼改革宗教會不僅為公開宣認信仰的信徒施洗，也為信徒兒女施行嬰兒洗——因為我們相信神的應許，是「賜給你們和你們的兒女」的。" data-cn="洗礼标志着一个人进入神立约群体之中，正如割礼曾是神与以色列所立之约的记号。这也是为什么改革宗教会不仅为公开宣认信仰的信徒施洗，也为信徒儿女施行婴儿洗——因为我们相信神的应许，是“赐给你们和你们的儿女”的。">Baptism marks a person's entry into God's covenant community, much as circumcision once marked God's covenant with Israel. This is why Reformed churches baptize believers who profess their faith, and also the infant children of believing parents — trusting God's promise that his covenant extends to "you and your children."</p>
       <span class="ref">Gen. 17:10–12; Acts 2:39</span>
     </div>
 
     <div class="sac-card sac-supper">
       <div class="glyph">🍞</div>
-      <div class="eyebrow-sm" data-en="MORE THAN A MEMORIAL" data-zh="不僅僅是紀念">MORE THAN A MEMORIAL</div>
-      <h3 data-en="The Lord's Supper" data-zh="聖餐">The Lord's Supper</h3>
-      <p data-en="The Lord's Supper is not simply an act of remembering — it is a means of grace, a true participation in Christ, and a renewal of his covenant with us each time it's shared. This is why Reformed churches celebrate communion often rather than occasionally: every table is a fresh proclamation of the gospel until Christ returns." data-zh="聖餐並不只是一種紀念性的操練——它是一種恩典的媒介，是與基督真實的聯合與參與，也是每一次領受時，神與我們所立之約的更新。這也是為什麼改革宗教會經常（而非偶爾）舉行聖餐：每一次的聖餐桌，都是在基督再來之前，對福音的重新宣告。">The Lord's Supper is not simply an act of remembering — it is a means of grace, a true participation in Christ, and a renewal of his covenant with us each time it's shared. This is why Reformed churches celebrate communion often rather than occasionally: every table is a fresh proclamation of the gospel until Christ returns.</p>
+      <div class="eyebrow-sm" data-en="MORE THAN A MEMORIAL" data-zh="不僅僅是紀念" data-cn="不仅仅是纪念">MORE THAN A MEMORIAL</div>
+      <h3 data-en="The Lord's Supper" data-zh="聖餐" data-cn="圣餐">The Lord's Supper</h3>
+      <p data-en="The Lord's Supper is not simply an act of remembering — it is a means of grace, a true participation in Christ, and a renewal of his covenant with us each time it's shared. This is why Reformed churches celebrate communion often rather than occasionally: every table is a fresh proclamation of the gospel until Christ returns." data-zh="聖餐並不只是一種紀念性的操練——它是一種恩典的媒介，是與基督真實的聯合與參與，也是每一次領受時，神與我們所立之約的更新。這也是為什麼改革宗教會經常（而非偶爾）舉行聖餐：每一次的聖餐桌，都是在基督再來之前，對福音的重新宣告。" data-cn="圣餐并不只是一种纪念性的操练——它是一种恩典的媒介，是与基督真实的联合与参与，也是每一次领受时，神与我们所立之约的更新。这也是为什么改革宗教会经常（而非偶尔）举行圣餐：每一次的圣餐桌，都是在基督再来之前，对福音的重新声明。">The Lord's Supper is not simply an act of remembering — it is a means of grace, a true participation in Christ, and a renewal of his covenant with us each time it's shared. This is why Reformed churches celebrate communion often rather than occasionally: every table is a fresh proclamation of the gospel until Christ returns.</p>
       <span class="ref">1 Cor. 10:16; 1 Cor. 11:26</span>
     </div>
   </div>
@@ -908,65 +910,65 @@
 <!-- ============ STEP 6: FIVE SOLAS ============ -->
 <section class="step" id="step3" data-node="2">
   <div class="step-head">
-    <div class="step-num" data-en="STEP SIX" data-zh="第六步">STEP SIX</div>
-    <h2 data-en="The Five Solas" data-zh="五個唯獨">The Five Solas</h2>
-    <div class="tag" data-en="The foundations of the Reformation." data-zh="宗教改革的根基。">The foundations of the Reformation.</div>
+    <div class="step-num" data-en="STEP SIX" data-zh="第六步" data-cn="第六步">STEP SIX</div>
+    <h2 data-en="The Five Solas" data-zh="五個唯獨" data-cn="五个唯独">The Five Solas</h2>
+    <div class="tag" data-en="The foundations of the Reformation." data-zh="宗教改革的根基。" data-cn="宗教改革的根基。">The foundations of the Reformation.</div>
   </div>
 
   <div class="solas-grid">
     <div class="sola-card sola-scripture">
       <div class="glyph">📖</div>
-      <h4 data-en="Scripture Alone" data-zh="唯獨聖經">Scripture Alone</h4>
-      <p data-en="The Bible is the final authority in all matters of faith and life." data-zh="聖經是信仰與生活一切事上最終的權威。">The Bible is the final authority in all matters of faith and life.</p>
+      <h4 data-en="Scripture Alone" data-zh="唯獨聖經" data-cn="唯独圣经">Scripture Alone</h4>
+      <p data-en="The Bible is the final authority in all matters of faith and life." data-zh="聖經是信仰與生活一切事上最終的權威。" data-cn="圣经是信仰与生活一切事上最终的权威。">The Bible is the final authority in all matters of faith and life.</p>
       <span class="ref">2 Tim. 3:16–17</span>
     </div>
     <div class="sola-card sola-grace">
       <div class="glyph">🎁</div>
-      <h4 data-en="Grace Alone" data-zh="唯獨恩典">Grace Alone</h4>
-      <p data-en="We are saved by God's grace, not by anything we do." data-zh="我們得救是本乎神的恩典，不是靠自己的行為。">We are saved by God's grace, not by anything we do.</p>
+      <h4 data-en="Grace Alone" data-zh="唯獨恩典" data-cn="唯独恩典">Grace Alone</h4>
+      <p data-en="We are saved by God's grace, not by anything we do." data-zh="我們得救是本乎神的恩典，不是靠自己的行為。" data-cn="我们得救是本乎神的恩典，不是靠自己的行为。">We are saved by God's grace, not by anything we do.</p>
       <span class="ref">Eph. 2:8–9</span>
     </div>
     <div class="sola-card sola-faith">
       <div class="glyph">🛡️</div>
-      <h4 data-en="Faith Alone" data-zh="唯獨信心">Faith Alone</h4>
-      <p data-en="We are justified by faith alone, not by works." data-zh="我們因信稱義，不是因行為。">We are justified by faith alone, not by works.</p>
+      <h4 data-en="Faith Alone" data-zh="唯獨信心" data-cn="唯独信心">Faith Alone</h4>
+      <p data-en="We are justified by faith alone, not by works." data-zh="我們因信稱義，不是因行為。" data-cn="我们因信称义，不是因行为。">We are justified by faith alone, not by works.</p>
       <span class="ref">Eph. 2:8–9</span>
     </div>
     <div class="sola-card sola-christ">
       <div class="glyph">✚</div>
-      <h4 data-en="Christ Alone" data-zh="唯獨基督">Christ Alone</h4>
-      <p data-en="Christ alone is our Mediator and Savior." data-zh="基督是我們唯一的中保與救主。">Christ alone is our Mediator and Savior.</p>
+      <h4 data-en="Christ Alone" data-zh="唯獨基督" data-cn="唯独基督">Christ Alone</h4>
+      <p data-en="Christ alone is our Mediator and Savior." data-zh="基督是我們唯一的中保與救主。" data-cn="基督是我们唯一的中保与救主。">Christ alone is our Mediator and Savior.</p>
       <span class="ref">John 14:6</span>
     </div>
     <div class="sola-card sola-glory">
       <div class="glyph">👑</div>
-      <h4 data-en="Glory to God Alone" data-zh="唯獨榮耀歸神">Glory to God Alone</h4>
-      <p data-en="All that we are and all that we do is for the glory of God." data-zh="我們的一切所是、所行，都是為了神的榮耀。">All that we are and all that we do is for the glory of God.</p>
+      <h4 data-en="Glory to God Alone" data-zh="唯獨榮耀歸神" data-cn="唯独荣耀归神">Glory to God Alone</h4>
+      <p data-en="All that we are and all that we do is for the glory of God." data-zh="我們的一切所是、所行，都是為了神的榮耀。" data-cn="我们的一切所是、所行，都是为了神的荣耀。">All that we are and all that we do is for the glory of God.</p>
       <span class="ref">1 Cor. 10:31</span>
     </div>
   </div>
 
   <div class="glory-banner">
-    <h3 data-en="TO GOD ALONE BE THE GLORY" data-zh="願榮耀單單歸與神">TO GOD ALONE BE THE GLORY</h3>
+    <h3 data-en="TO GOD ALONE BE THE GLORY" data-zh="願榮耀單單歸與神" data-cn="愿荣耀单单归与神">TO GOD ALONE BE THE GLORY</h3>
     <span class="ref">Rom. 11:36</span>
   </div>
 </section>
 
 <!-- ============ SUMMARY BAR ============ -->
 <div class="summary-bar">
-  <div class="sb-item"><div class="label" data-en="Rooted in Scripture" data-zh="根基於聖經">Rooted in Scripture</div><span class="ref">2 Tim. 3:16–17</span></div>
-  <div class="sb-item"><div class="label" data-en="Centered on Christ" data-zh="以基督為中心">Centered on Christ</div><span class="ref">Col. 1:15–20</span></div>
-  <div class="sb-item"><div class="label" data-en="Saved by Grace" data-zh="因恩典得救">Saved by Grace</div><span class="ref">Eph. 2:8–9</span></div>
-  <div class="sb-item"><div class="label" data-en="For God's Glory" data-zh="為了神的榮耀">For God's Glory</div><span class="ref">1 Cor. 10:31</span></div>
-  <div class="sb-item"><div class="label" data-en="Sent in Mission" data-zh="被差遣宣教">Sent in Mission</div><span class="ref">Matt. 28:18–20</span></div>
+  <div class="sb-item"><div class="label" data-en="Rooted in Scripture" data-zh="根基於聖經" data-cn="根基于圣经">Rooted in Scripture</div><span class="ref">2 Tim. 3:16–17</span></div>
+  <div class="sb-item"><div class="label" data-en="Centered on Christ" data-zh="以基督為中心" data-cn="以基督为中心">Centered on Christ</div><span class="ref">Col. 1:15–20</span></div>
+  <div class="sb-item"><div class="label" data-en="Saved by Grace" data-zh="因恩典得救" data-cn="因恩典得救">Saved by Grace</div><span class="ref">Eph. 2:8–9</span></div>
+  <div class="sb-item"><div class="label" data-en="For God's Glory" data-zh="為了神的榮耀" data-cn="为了神的荣耀">For God's Glory</div><span class="ref">1 Cor. 10:31</span></div>
+  <div class="sb-item"><div class="label" data-en="Sent in Mission" data-zh="被差遣宣教" data-cn="被差遣宣教">Sent in Mission</div><span class="ref">Matt. 28:18–20</span></div>
 </div>
 
 <!-- ============ APPENDIX: REFERENCE LIBRARY ============ -->
 <section class="appendix">
   <div class="appendix-head">
-    <div class="eyebrow" data-en="FOR FURTHER STUDY" data-zh="延伸研讀">FOR FURTHER STUDY</div>
-    <h2 data-en="The Reference Library" data-zh="參考資料庫">The Reference Library</h2>
-    <p data-en="Not part of the guided walk-through — open these on your own, or in a later meeting, as you go deeper." data-zh="這部分不屬於導覽的主要流程——歡迎日後自行閱讀，或在下一次聚會中深入探討。">Not part of the guided walk-through — open these on your own, or in a later meeting, as you go deeper.</p>
+    <div class="eyebrow" data-en="FOR FURTHER STUDY" data-zh="延伸研讀" data-cn="延伸研读">FOR FURTHER STUDY</div>
+    <h2 data-en="The Reference Library" data-zh="參考資料庫" data-cn="参考数据库">The Reference Library</h2>
+    <p data-en="Not part of the guided walk-through — open these on your own, or in a later meeting, as you go deeper." data-zh="這部分不屬於導覽的主要流程——歡迎日後自行閱讀，或在下一次聚會中深入探討。" data-cn="这部分不属于导览的主要流程——欢迎日后自行阅读，或在下一次聚会中深入探讨。">Not part of the guided walk-through — open these on your own, or in a later meeting, as you go deeper.</p>
   </div>
 
   <div class="accordion">
@@ -974,18 +976,18 @@
     <!-- The Heart of Reformed Theology -->
     <div class="acc-item">
       <div class="acc-head" onclick="toggleAcc(this)">
-        <h3 data-en="The Heart of Reformed Theology" data-zh="改革宗神學的核心">The Heart of Reformed Theology</h3>
+        <h3 data-en="The Heart of Reformed Theology" data-zh="改革宗神學的核心" data-cn="改革宗神学的内核">The Heart of Reformed Theology</h3>
         <span class="plus">+</span>
       </div>
       <div class="acc-body">
-        <p class="note" data-en="All for God's glory — from His purpose, through Christ's work, to the church's response." data-zh="一切都是為了神的榮耀——從祂的旨意，經過基督的工作，到教會的回應。">All for God's glory — from His purpose, through Christ's work, to the church's response.</p>
+        <p class="note" data-en="All for God's glory — from His purpose, through Christ's work, to the church's response." data-zh="一切都是為了神的榮耀——從祂的旨意，經過基督的工作，到教會的回應。" data-cn="一切都是为了神的荣耀——从祂的旨意，经过基督的工作，到教会的回应。">All for God's glory — from His purpose, through Christ's work, to the church's response.</p>
         <div class="flow-mini">
-          <div class="row"><b data-en="God's Glory" data-zh="神的榮耀">God's Glory</b><span class="ref">Ps. 115:1</span></div>
-          <div class="row"><b data-en="God's Sovereign Purpose" data-zh="神主權的旨意">God's Sovereign Purpose</b><span class="ref">Eph. 1:11</span></div>
-          <div class="row"><b data-en="Christ Accomplishes Salvation" data-zh="基督成就救恩">Christ Accomplishes Salvation</b><span class="ref">John 19:30</span></div>
-          <div class="row"><b data-en="Holy Spirit Applies Salvation" data-zh="聖靈施行救恩">Holy Spirit Applies Salvation</b><span class="ref">John 16:8</span></div>
-          <div class="row"><b data-en="God's People Respond" data-zh="神子民的回應">God's People Respond</b><span class="ref">John 14:15</span></div>
-          <div class="row"><b data-en="Glory Returns to God" data-zh="榮耀歸回於神">Glory Returns to God</b><span class="ref">Rev. 4:11</span></div>
+          <div class="row"><b data-en="God's Glory" data-zh="神的榮耀" data-cn="神的荣耀">God's Glory</b><span class="ref">Ps. 115:1</span></div>
+          <div class="row"><b data-en="God's Sovereign Purpose" data-zh="神主權的旨意" data-cn="神主权的旨意">God's Sovereign Purpose</b><span class="ref">Eph. 1:11</span></div>
+          <div class="row"><b data-en="Christ Accomplishes Salvation" data-zh="基督成就救恩" data-cn="基督成就救恩">Christ Accomplishes Salvation</b><span class="ref">John 19:30</span></div>
+          <div class="row"><b data-en="Holy Spirit Applies Salvation" data-zh="聖靈施行救恩" data-cn="圣灵施行救恩">Holy Spirit Applies Salvation</b><span class="ref">John 16:8</span></div>
+          <div class="row"><b data-en="God's People Respond" data-zh="神子民的回應" data-cn="神子民的回应">God's People Respond</b><span class="ref">John 14:15</span></div>
+          <div class="row"><b data-en="Glory Returns to God" data-zh="榮耀歸回於神" data-cn="荣耀归回于神">Glory Returns to God</b><span class="ref">Rev. 4:11</span></div>
         </div>
       </div>
     </div>
@@ -993,15 +995,15 @@
     <!-- Christ at the Center -->
     <div class="acc-item">
       <div class="acc-head" onclick="toggleAcc(this)">
-        <h3 data-en="Christ at the Center — The Threefold Office" data-zh="以基督為中心——三重職分">Christ at the Center — The Threefold Office</h3>
+        <h3 data-en="Christ at the Center — The Threefold Office" data-zh="以基督為中心——三重職分" data-cn="以基督为中心——三重职分">Christ at the Center — The Threefold Office</h3>
         <span class="plus">+</span>
       </div>
       <div class="acc-body">
-        <p class="note" data-en="Christ the Mediator, united to His church by faith." data-zh="基督是中保，藉著信與祂的教會聯合。">Christ the Mediator, united to His church by faith.</p>
+        <p class="note" data-en="Christ the Mediator, united to His church by faith." data-zh="基督是中保，藉著信與祂的教會聯合。" data-cn="基督是中保，借着信与祂的教会联合。">Christ the Mediator, united to His church by faith.</p>
         <div class="office-grid">
-          <div class="office-card"><h5 data-en="Prophet" data-zh="先知">Prophet</h5><span data-en="Reveals God" data-zh="啟示神">Reveals God</span><span class="ref">John 1:18</span></div>
-          <div class="office-card"><h5 data-en="Priest" data-zh="祭司">Priest</h5><span data-en="Reconciles sinners" data-zh="使罪人與神和好">Reconciles sinners</span><span class="ref">Heb. 7:25</span></div>
-          <div class="office-card"><h5 data-en="King" data-zh="君王">King</h5><span data-en="Rules creation" data-zh="治理萬有">Rules creation</span><span class="ref">Ps. 2:6–12</span></div>
+          <div class="office-card"><h5 data-en="Prophet" data-zh="先知" data-cn="先知">Prophet</h5><span data-en="Reveals God" data-zh="啟示神" data-cn="启示神">Reveals God</span><span class="ref">John 1:18</span></div>
+          <div class="office-card"><h5 data-en="Priest" data-zh="祭司" data-cn="祭司">Priest</h5><span data-en="Reconciles sinners" data-zh="使罪人與神和好" data-cn="使罪人与神和好">Reconciles sinners</span><span class="ref">Heb. 7:25</span></div>
+          <div class="office-card"><h5 data-en="King" data-zh="君王" data-cn="君王">King</h5><span data-en="Rules creation" data-zh="治理萬有" data-cn="治理万有">Rules creation</span><span class="ref">Ps. 2:6–12</span></div>
         </div>
       </div>
     </div>
@@ -1009,17 +1011,17 @@
     <!-- TULIP -->
     <div class="acc-item">
       <div class="acc-head" onclick="toggleAcc(this)">
-        <h3 data-en="TULIP — The Doctrines of Grace" data-zh="TULIP——恩典教義">TULIP — The Doctrines of Grace</h3>
+        <h3 data-en="TULIP — The Doctrines of Grace" data-zh="TULIP——恩典教義" data-cn="TULIP——恩典教义">TULIP — The Doctrines of Grace</h3>
         <span class="plus">+</span>
       </div>
       <div class="acc-body">
-        <p class="note" data-en="A 17th-century clarification, written to answer a specific controversy — not the starting point for understanding the faith, but a helpful summary once the bigger story is clear." data-zh="這是十七世紀為回應特定爭議所作的教義澄清——並非認識信仰的起點，而是在整體故事清楚之後，一個有幫助的補充總結。">A 17th-century clarification, written to answer a specific controversy — not the starting point for understanding the faith, but a helpful summary once the bigger story is clear.</p>
+        <p class="note" data-en="A 17th-century clarification, written to answer a specific controversy — not the starting point for understanding the faith, but a helpful summary once the bigger story is clear." data-zh="這是十七世紀為回應特定爭議所作的教義澄清——並非認識信仰的起點，而是在整體故事清楚之後，一個有幫助的補充總結。" data-cn="这是十七世纪为回应特定争议所作的教义澄清——并非认识信仰的起点，而是在整体故事清楚之后，一个有帮助的补充总结。">A 17th-century clarification, written to answer a specific controversy — not the starting point for understanding the faith, but a helpful summary once the bigger story is clear.</p>
         <div class="tulip-list">
-          <div class="tulip-row"><div class="tulip-letter">T</div><div class="t-body"><b data-en="Total Depravity" data-zh="全然敗壞">Total Depravity</b><span data-en="We are totally unable to save ourselves." data-zh="我們完全沒有能力自救。">We are totally unable to save ourselves.</span><span class="ref">Rom. 3:10–12</span></div></div>
-          <div class="tulip-row"><div class="tulip-letter">U</div><div class="t-body"><b data-en="Unconditional Election" data-zh="無條件的揀選">Unconditional Election</b><span data-en="God chooses His people in His mercy." data-zh="神本於憐憫揀選祂的子民。">God chooses His people in His mercy.</span><span class="ref">Eph. 1:4–5</span></div></div>
-          <div class="tulip-row"><div class="tulip-letter">L</div><div class="t-body"><b data-en="Limited Atonement" data-zh="限定的贖罪">Limited Atonement</b><span data-en="Christ died effectively for His people." data-zh="基督的死有效地為祂的子民成就救贖。">Christ died effectively for His people.</span><span class="ref">John 10:15</span></div></div>
-          <div class="tulip-row"><div class="tulip-letter">I</div><div class="t-body"><b data-en="Irresistible Grace" data-zh="不可抗拒的恩典">Irresistible Grace</b><span data-en="The Holy Spirit overcomes our resistance." data-zh="聖靈勝過我們的抗拒。">The Holy Spirit overcomes our resistance.</span><span class="ref">John 6:37</span></div></div>
-          <div class="tulip-row"><div class="tulip-letter">P</div><div class="t-body"><b data-en="Perseverance of the Saints" data-zh="聖徒的堅忍">Perseverance of the Saints</b><span data-en="God preserves His people to the end." data-zh="神保守祂的子民直到底。">God preserves His people to the end.</span><span class="ref">Phil. 1:6</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">T</div><div class="t-body"><b data-en="Total Depravity" data-zh="全然敗壞" data-cn="全然败坏">Total Depravity</b><span data-en="We are totally unable to save ourselves." data-zh="我們完全沒有能力自救。" data-cn="我们完全没有能力自救。">We are totally unable to save ourselves.</span><span class="ref">Rom. 3:10–12</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">U</div><div class="t-body"><b data-en="Unconditional Election" data-zh="無條件的揀選" data-cn="无条件的拣选">Unconditional Election</b><span data-en="God chooses His people in His mercy." data-zh="神本於憐憫揀選祂的子民。" data-cn="神本于怜悯拣选祂的子民。">God chooses His people in His mercy.</span><span class="ref">Eph. 1:4–5</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">L</div><div class="t-body"><b data-en="Limited Atonement" data-zh="限定的贖罪" data-cn="限定的赎罪">Limited Atonement</b><span data-en="Christ died effectively for His people." data-zh="基督的死有效地為祂的子民成就救贖。" data-cn="基督的死有效地为祂的子民成就救赎。">Christ died effectively for His people.</span><span class="ref">John 10:15</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">I</div><div class="t-body"><b data-en="Irresistible Grace" data-zh="不可抗拒的恩典" data-cn="不可抗拒的恩典">Irresistible Grace</b><span data-en="The Holy Spirit overcomes our resistance." data-zh="聖靈勝過我們的抗拒。" data-cn="圣灵胜过我们的抗拒。">The Holy Spirit overcomes our resistance.</span><span class="ref">John 6:37</span></div></div>
+          <div class="tulip-row"><div class="tulip-letter">P</div><div class="t-body"><b data-en="Perseverance of the Saints" data-zh="聖徒的堅忍" data-cn="圣徒的坚忍">Perseverance of the Saints</b><span data-en="God preserves His people to the end." data-zh="神保守祂的子民直到底。" data-cn="神保守祂的子民直到底。">God preserves His people to the end.</span><span class="ref">Phil. 1:6</span></div></div>
         </div>
       </div>
     </div>
@@ -1027,18 +1029,18 @@
     <!-- Reformed Theology Map -->
     <div class="acc-item">
       <div class="acc-head" onclick="toggleAcc(this)">
-        <h3 data-en="The Reformed Theology Map — A Summary" data-zh="改革宗神學地圖——總覽">The Reformed Theology Map — A Summary</h3>
+        <h3 data-en="The Reformed Theology Map — A Summary" data-zh="改革宗神學地圖——總覽" data-cn="改革宗神学地图——总览">The Reformed Theology Map — A Summary</h3>
         <span class="plus">+</span>
       </div>
       <div class="acc-body">
-        <p class="note" data-en="From all things, and for all things, and to all things be glory forever. Amen." data-zh="因為萬有都是本於祂，倚靠祂，歸於祂。願榮耀歸給祂，直到永遠。阿們。">From all things, and for all things, and to all things be glory forever. Amen.</p>
+        <p class="note" data-en="From all things, and for all things, and to all things be glory forever. Amen." data-zh="因為萬有都是本於祂，倚靠祂，歸於祂。願榮耀歸給祂，直到永遠。阿們。" data-cn="因为万有都是本于祂，倚靠祂，归于祂。愿荣耀归给祂，直到永远。阿们。">From all things, and for all things, and to all things be glory forever. Amen.</p>
         <div class="wheel-grid">
-          <div class="wheel-card"><h5 data-en="Scripture" data-zh="聖經">Scripture</h5><span data-en="God speaks to us" data-zh="神向我們說話">God speaks to us</span><span class="ref">2 Tim. 3:16</span></div>
-          <div class="wheel-card"><h5 data-en="Creation" data-zh="創造">Creation</h5><span data-en="God creates all things" data-zh="神創造萬物">God creates all things</span><span class="ref">Gen. 1:1</span></div>
-          <div class="wheel-card"><h5 data-en="Kingdom" data-zh="國度">Kingdom</h5><span data-en="God renews all things" data-zh="神更新萬物">God renews all things</span><span class="ref">Rev. 21:1–5</span></div>
-          <div class="wheel-card"><h5 data-en="Fall" data-zh="墮落">Fall</h5><span data-en="Sin corrupts all" data-zh="罪敗壞一切">Sin corrupts all</span><span class="ref">Rom. 3:23</span></div>
-          <div class="wheel-card"><h5 data-en="Church" data-zh="教會">Church</h5><span data-en="God gathers His people" data-zh="神招聚祂的子民">God gathers His people</span><span class="ref">Eph. 1:22–23</span></div>
-          <div class="wheel-card"><h5 data-en="Redemption" data-zh="救贖">Redemption</h5><span data-en="Christ saves His people" data-zh="基督拯救祂的子民">Christ saves His people</span><span class="ref">John 3:16</span></div>
+          <div class="wheel-card"><h5 data-en="Scripture" data-zh="聖經" data-cn="圣经">Scripture</h5><span data-en="God speaks to us" data-zh="神向我們說話" data-cn="神向我们说话">God speaks to us</span><span class="ref">2 Tim. 3:16</span></div>
+          <div class="wheel-card"><h5 data-en="Creation" data-zh="創造" data-cn="创造">Creation</h5><span data-en="God creates all things" data-zh="神創造萬物" data-cn="神创造万物">God creates all things</span><span class="ref">Gen. 1:1</span></div>
+          <div class="wheel-card"><h5 data-en="Kingdom" data-zh="國度" data-cn="国度">Kingdom</h5><span data-en="God renews all things" data-zh="神更新萬物" data-cn="神更新万物">God renews all things</span><span class="ref">Rev. 21:1–5</span></div>
+          <div class="wheel-card"><h5 data-en="Fall" data-zh="墮落" data-cn="堕落">Fall</h5><span data-en="Sin corrupts all" data-zh="罪敗壞一切" data-cn="罪败坏一切">Sin corrupts all</span><span class="ref">Rom. 3:23</span></div>
+          <div class="wheel-card"><h5 data-en="Church" data-zh="教會" data-cn="教会">Church</h5><span data-en="God gathers His people" data-zh="神招聚祂的子民" data-cn="神招聚祂的子民">God gathers His people</span><span class="ref">Eph. 1:22–23</span></div>
+          <div class="wheel-card"><h5 data-en="Redemption" data-zh="救贖" data-cn="救赎">Redemption</h5><span data-en="Christ saves His people" data-zh="基督拯救祂的子民" data-cn="基督拯救祂的子民">Christ saves His people</span><span class="ref">John 3:16</span></div>
         </div>
         <p class="note" style="margin-top:16px; margin-bottom:0;"><span class="ref">Rom. 11:36</span></p>
       </div>
@@ -1047,27 +1049,27 @@
     <!-- Honest Questions -->
     <div class="acc-item">
       <div class="acc-head" onclick="toggleAcc(this)">
-        <h3 data-en="Honest Questions" data-zh="誠實面對的問題">Honest Questions</h3>
+        <h3 data-en="Honest Questions" data-zh="誠實面對的問題" data-cn="诚实面对的问题">Honest Questions</h3>
         <span class="plus">+</span>
       </div>
       <div class="acc-body">
-        <p class="note" data-en="Questions elders are actually asked — answered plainly, without dodging the hard parts." data-zh="這些是長執真實會被問到的問題——我們選擇坦白面對，而不迴避困難之處。">Questions elders are actually asked — answered plainly, without dodging the hard parts.</p>
+        <p class="note" data-en="Questions elders are actually asked — answered plainly, without dodging the hard parts." data-zh="這些是長執真實會被問到的問題——我們選擇坦白面對，而不迴避困難之處。" data-cn="这些是长执真实会被问到的问题——我们选择坦白面对，而不回避困难之处。">Questions elders are actually asked — answered plainly, without dodging the hard parts.</p>
         <div class="faq-list">
           <div class="faq-item">
-            <div class="faq-q" data-en="If God is sovereign, why do natural disasters and tragedies happen?" data-zh="如果神是掌權的，為什麼還會有天災與悲劇發生？">If God is sovereign, why do natural disasters and tragedies happen?</div>
-            <div class="faq-a"><span data-en="Reformed theology holds God's sovereignty and goodness together, even when suffering remains mysterious to us. Scripture doesn't promise an explanation for every tragedy — but it does promise that God can bring good out of suffering, and that in Christ, suffering itself will one day end." data-zh="改革宗神學並不試圖化解這個張力，而是同時持守神的主權與神的良善——即使苦難對我們而言仍是奧秘。聖經沒有應許為每一場悲劇提供解釋，但應許神能使苦難成就美善，並且在基督裡，苦難終將止息。">Reformed theology holds God's sovereignty and goodness together, even when suffering remains mysterious to us. Scripture doesn't promise an explanation for every tragedy — but it does promise that God can bring good out of suffering, and that in Christ, suffering itself will one day end.</span><span class="ref">Rom. 8:28; Rev. 21:4</span></div>
+            <div class="faq-q" data-en="If God is sovereign, why do natural disasters and tragedies happen?" data-zh="如果神是掌權的，為什麼還會有天災與悲劇發生？" data-cn="如果神是掌权的，为什么还会有天灾与悲剧发生？">If God is sovereign, why do natural disasters and tragedies happen?</div>
+            <div class="faq-a"><span data-en="Reformed theology holds God's sovereignty and goodness together, even when suffering remains mysterious to us. Scripture doesn't promise an explanation for every tragedy — but it does promise that God can bring good out of suffering, and that in Christ, suffering itself will one day end." data-zh="改革宗神學並不試圖化解這個張力，而是同時持守神的主權與神的良善——即使苦難對我們而言仍是奧秘。聖經沒有應許為每一場悲劇提供解釋，但應許神能使苦難成就美善，並且在基督裡，苦難終將止息。" data-cn="改革宗神学并不试图化解这个张力，而是同时持守神的主权与神的良善——即使苦难对我们而言仍是奥秘。圣经没有应许为每一场悲剧提供解释，但应许神能使苦难成就美善，并且在基督里，苦难终将止息。">Reformed theology holds God's sovereignty and goodness together, even when suffering remains mysterious to us. Scripture doesn't promise an explanation for every tragedy — but it does promise that God can bring good out of suffering, and that in Christ, suffering itself will one day end.</span><span class="ref">Rom. 8:28; Rev. 21:4</span></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q" data-en="Does prayer actually change anything, if God's plan doesn't change?" data-zh="如果神的計劃不會改變，禱告真的能改變什麼嗎？">Does prayer actually change anything, if God's plan doesn't change?</div>
-            <div class="faq-a"><span data-en="God is unchanging, but he has ordained prayer itself as one of the means through which he carries out his plan. Praying doesn't move God from one plan to another — it's how he has chosen to involve his people in the plan he already has." data-zh="神是不改變的，但祂親自將禱告設立為施行祂計劃的途徑之一。禱告並不是要把神從一個計劃挪到另一個計劃，而是神所揀選、讓祂的子民參與在祂既定計劃中的方式。">God is unchanging, but he has ordained prayer itself as one of the means through which he carries out his plan. Praying doesn't move God from one plan to another — it's how he has chosen to involve his people in the plan he already has.</span><span class="ref">James 5:16</span></div>
+            <div class="faq-q" data-en="Does prayer actually change anything, if God's plan doesn't change?" data-zh="如果神的計劃不會改變，禱告真的能改變什麼嗎？" data-cn="如果神的计划不会改变，祷告真的能改变什么吗？">Does prayer actually change anything, if God's plan doesn't change?</div>
+            <div class="faq-a"><span data-en="God is unchanging, but he has ordained prayer itself as one of the means through which he carries out his plan. Praying doesn't move God from one plan to another — it's how he has chosen to involve his people in the plan he already has." data-zh="神是不改變的，但祂親自將禱告設立為施行祂計劃的途徑之一。禱告並不是要把神從一個計劃挪到另一個計劃，而是神所揀選、讓祂的子民參與在祂既定計劃中的方式。" data-cn="神是不改变的，但祂亲自将祷告设立为施行祂计划的途径之一。祷告并不是要把神从一个计划挪到另一个计划，而是神所拣选、让祂的子民参与在祂既定计划中的方式。">God is unchanging, but he has ordained prayer itself as one of the means through which he carries out his plan. Praying doesn't move God from one plan to another — it's how he has chosen to involve his people in the plan he already has.</span><span class="ref">James 5:16</span></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q" data-en="Do Reformed churches pay enough attention to the Holy Spirit?" data-zh="改革宗教會是否足夠重視聖靈？">Do Reformed churches pay enough attention to the Holy Spirit?</div>
-            <div class="faq-a"><span data-en="It's a fair challenge, and Reformed churches have sometimes earned it — a strong focus on doctrine can crowd out a lived sense of the Spirit's presence. But the Spirit is fully God, at work in every believer from regeneration through sanctification, and the Heidelberg Catechism itself teaches this at length. The goal isn't less doctrine — it's doctrine and daily dependence on the Spirit, held together." data-zh="這是一個公允的提醒，而改革宗教會有時確實如此——過度著重教義，可能會使人對聖靈同在的實際經歷變得淡漠。然而聖靈完全是神，在每一位信徒身上動工，從重生直到成聖，海德堡要理問答本身也詳盡教導了這一點。我們所需要的，不是減少教義，而是讓教義與每日倚靠聖靈的生活，兩者並重。">It's a fair challenge, and Reformed churches have sometimes earned it — a strong focus on doctrine can crowd out a lived sense of the Spirit's presence. But the Spirit is fully God, at work in every believer from regeneration through sanctification, and the Heidelberg Catechism itself teaches this at length. The goal isn't less doctrine — it's doctrine and daily dependence on the Spirit, held together.</span><span class="ref">2 Thess. 2:13; Heidelberg Catechism Q&amp;A 53</span></div>
+            <div class="faq-q" data-en="Do Reformed churches pay enough attention to the Holy Spirit?" data-zh="改革宗教會是否足夠重視聖靈？" data-cn="改革宗教会是否足够重视圣灵？">Do Reformed churches pay enough attention to the Holy Spirit?</div>
+            <div class="faq-a"><span data-en="It's a fair challenge, and Reformed churches have sometimes earned it — a strong focus on doctrine can crowd out a lived sense of the Spirit's presence. But the Spirit is fully God, at work in every believer from regeneration through sanctification, and the Heidelberg Catechism itself teaches this at length. The goal isn't less doctrine — it's doctrine and daily dependence on the Spirit, held together." data-zh="這是一個公允的提醒，而改革宗教會有時確實如此——過度著重教義，可能會使人對聖靈同在的實際經歷變得淡漠。然而聖靈完全是神，在每一位信徒身上動工，從重生直到成聖，海德堡要理問答本身也詳盡教導了這一點。我們所需要的，不是減少教義，而是讓教義與每日倚靠聖靈的生活，兩者並重。" data-cn="这是一个公允的提醒，而改革宗教会有时确实如此——过度着重教义，可能会使人对圣灵同在的实际经历变得淡漠。然而圣灵完全是神，在每一位信徒身上动工，从重生直到成圣，海德堡要理问答本身也详尽教导了这一点。我们所需要的，不是减少教义，而是让教义与每日倚靠圣灵的生活，两者并重。">It's a fair challenge, and Reformed churches have sometimes earned it — a strong focus on doctrine can crowd out a lived sense of the Spirit's presence. But the Spirit is fully God, at work in every believer from regeneration through sanctification, and the Heidelberg Catechism itself teaches this at length. The goal isn't less doctrine — it's doctrine and daily dependence on the Spirit, held together.</span><span class="ref">2 Thess. 2:13; Heidelberg Catechism Q&amp;A 53</span></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q" data-en="What about the rapture — will believers be taken up before a time of tribulation?" data-zh="關於「被提」——信徒會在災難之前被提到空中嗎？">What about the rapture — will believers be taken up before a time of tribulation?</div>
-            <div class="faq-a"><span data-en="Reformed theology generally does not hold to a pre-tribulation rapture. Instead, it looks forward to a single, visible return of Christ, the resurrection of the dead, and the full renewal of creation — not an escape from the world, but its restoration." data-zh="改革宗神學一般並不持守「災前被提」的觀點，而是期待基督單一、可見的再來、死人復活，以及受造界完全的更新——這不是要逃離這個世界，而是要使這世界得著恢復。">Reformed theology generally does not hold to a pre-tribulation rapture. Instead, it looks forward to a single, visible return of Christ, the resurrection of the dead, and the full renewal of creation — not an escape from the world, but its restoration.</span><span class="ref">1 Thess. 4:16–17; Rev. 21:1–4</span></div>
+            <div class="faq-q" data-en="What about the rapture — will believers be taken up before a time of tribulation?" data-zh="關於「被提」——信徒會在災難之前被提到空中嗎？" data-cn="关于“被提”——信徒会在灾难之前被提到空中吗？">What about the rapture — will believers be taken up before a time of tribulation?</div>
+            <div class="faq-a"><span data-en="Reformed theology generally does not hold to a pre-tribulation rapture. Instead, it looks forward to a single, visible return of Christ, the resurrection of the dead, and the full renewal of creation — not an escape from the world, but its restoration." data-zh="改革宗神學一般並不持守「災前被提」的觀點，而是期待基督單一、可見的再來、死人復活，以及受造界完全的更新——這不是要逃離這個世界，而是要使這世界得著恢復。" data-cn="改革宗神学一般并不持守“灾前被提”的观点，而是期待基督单一、可见的再来、死人复活，以及受造界完全的更新——这不是要逃离这个世界，而是要使这世界得着恢复。">Reformed theology generally does not hold to a pre-tribulation rapture. Instead, it looks forward to a single, visible return of Christ, the resurrection of the dead, and the full renewal of creation — not an escape from the world, but its restoration.</span><span class="ref">1 Thess. 4:16–17; Rev. 21:1–4</span></div>
           </div>
         </div>
       </div>
@@ -1077,7 +1079,7 @@
 </section>
 
 <footer class="end">
-  <span data-en="SOLI DEO GLORIA" data-zh="唯獨榮耀歸神">SOLI DEO GLORIA</span>
+  <span data-en="SOLI DEO GLORIA" data-zh="唯獨榮耀歸神" data-cn="唯独荣耀归神">SOLI DEO GLORIA</span>
 </footer>
 
 <script>
@@ -1087,7 +1089,8 @@
     });
     document.getElementById('btn-en').classList.toggle('active', l === 'en');
     document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
-    document.documentElement.lang = (l === 'zh') ? 'zh-Hant' : 'en';
+    document.getElementById('btn-cn').classList.toggle('active', l === 'cn');
+    document.documentElement.lang = (l === 'zh') ? 'zh-Hant' : (l === 'cn') ? 'zh-Hans' : 'en';
     document.querySelectorAll('.conf-item.open .conf-body, .acc-item.open .acc-body').forEach(function(body){
       body.style.maxHeight = body.scrollHeight + 'px';
     });
