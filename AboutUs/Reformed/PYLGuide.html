@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Reformed Faith — One Story, One God, One Body</title>
+<title>The Reformed Faith — One Story, One God, One People</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -224,6 +224,16 @@
   .conf-row:first-child{ margin-top:0; }
   .conf-row .conf-label{ display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple); margin-bottom:4px; }
   .conf-row p{ font-size:0.88rem; color:var(--ink-dim); }
+  .tier-creeds .conf-head .plus{ color:var(--gold-deep); }
+  .tier-creeds .conf-row .conf-label{ color:var(--gold-deep); }
+  .creed-text{
+    font-family:var(--serif); font-style:italic;
+    font-size:0.95rem; line-height:1.75; color:var(--ink);
+    border-left:3px solid var(--gold);
+    padding:2px 0 2px 16px;
+    margin-top:6px;
+  }
+  .creed-text + .creed-text{ margin-top:14px; }
   .tier-quote{
     font-family:var(--serif); font-style:italic; text-align:left;
     border-left:3px solid var(--sage);
@@ -589,10 +599,61 @@
       <div class="tier-eyebrow" data-en="SHARED WITH THE WHOLE CHURCH" data-zh="與普世教會共有">SHARED WITH THE WHOLE CHURCH</div>
       <h3 data-en="The Ecumenical Creeds" data-zh="大公教會信經">The Ecumenical Creeds</h3>
       <p data-en="Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere." data-zh="三個由普世教會於歷世歷代所採納的信經，總結了基督教信仰最重要的真理——是普世信徒所共同持守的。">Three creeds adopted by the worldwide church centuries ago, summarizing the most important truths of the Christian faith — held in common with Christians everywhere.</p>
-      <div class="tier-chips">
-        <div class="tier-chip"><span class="zh-name" data-en="Apostles' Creed" data-zh="使徒信經">Apostles' Creed</span></div>
-        <div class="tier-chip"><span class="zh-name" data-en="Nicene Creed" data-zh="尼西亞信經">Nicene Creed</span></div>
-        <div class="tier-chip"><span class="zh-name" data-en="Athanasian Creed" data-zh="亞他那修信經">Athanasian Creed</span></div>
+      <div class="conf-accordion">
+
+        <div class="conf-item">
+          <div class="conf-head" onclick="toggleConf(this)">
+            <span class="name" data-en="Apostles' Creed" data-zh="使徒信經">Apostles' Creed</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="conf-body">
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Not written by the apostles themselves, but developed from the Church's ancient baptismal confessions, reaching its familiar form by around the 8th century. It summarizes the apostles' teaching in a form new believers could memorize and confess at their baptism." data-zh="使徒信經並非由使徒親自撰寫，而是源自教會古代的洗禮信仰宣告，約在主後第八世紀定型為我們今日所熟悉的樣式。它以初信者便於背誦、並在受洗時宣認的方式，總結了使徒的教導。">Not written by the apostles themselves, but developed from the Church's ancient baptismal confessions, reaching its familiar form by around the 8th century. It summarizes the apostles' teaching in a form new believers could memorize and confess at their baptism.</p></div>
+            <div class="conf-row">
+              <span class="conf-label" data-en="The Creed" data-zh="信經全文">The Creed</span>
+              <div class="creed-text" data-en="I believe in God, the Father almighty, creator of heaven and earth." data-zh="我信上帝，全能的父，創造天地的主。">I believe in God, the Father almighty, creator of heaven and earth.</div>
+              <div class="creed-text" data-en="I believe in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit and born of the virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried; he descended to hell. The third day he rose again from the dead. He ascended to heaven and is seated at the right hand of God the Father almighty. From there he will come to judge the living and the dead." data-zh="我信我主耶穌基督，上帝的獨生子；因聖靈感孕，由童貞女馬利亞所生；在本丟彼拉多手下受難，被釘於十字架，受死，埋葬；降在陰間；第三天從死人中復活；升天，坐在全能父上帝的右邊；將來必從那裡降臨，審判活人死人。">I believe in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit and born of the virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried; he descended to hell. The third day he rose again from the dead. He ascended to heaven and is seated at the right hand of God the Father almighty. From there he will come to judge the living and the dead.</div>
+              <div class="creed-text" data-en="I believe in the Holy Spirit, the holy catholic* church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen." data-zh="我信聖靈；我信聖而公之教會＊；我信聖徒相通；我信罪得赦免；我信身體復活；我信永生。阿們。">I believe in the Holy Spirit, the holy catholic* church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen.</div>
+              <p style="font-size:0.78rem; color:var(--ink-faint); margin-top:6px;" data-en="*that is, the true Christian church of all times and all places" data-zh="＊意指歷世歷代、放諸四海皆然的真基督教會">*that is, the true Christian church of all times and all places</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-head" onclick="toggleConf(this)">
+            <span class="name" data-en="Nicene Creed" data-zh="尼西亞信經">Nicene Creed</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="conf-body">
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Formulated at the Council of Nicaea (325 AD) and completed at the Council of Constantinople (381 AD), in response to Arianism — the teaching that Jesus Christ was a created being, not truly and eternally God. Its central phrase, 'of the same essence as the Father,' was chosen specifically to rule that view out." data-zh="本信經制訂於尼西亞大公會議（主後325年），並在君士坦丁堡大公會議（主後381年）定稿，目的是為了回應亞流主義——這種教導認為耶穌基督是受造之物，而非真實、永恆的神。信經中「與父同質」一語，正是特意用來排除這種觀點。">Formulated at the Council of Nicaea (325 AD) and completed at the Council of Constantinople (381 AD), in response to Arianism — the teaching that Jesus Christ was a created being, not truly and eternally God. Its central phrase, "of the same essence as the Father," was chosen specifically to rule that view out.</p></div>
+            <div class="conf-row">
+              <span class="conf-label" data-en="The Creed" data-zh="信經全文">The Creed</span>
+              <div class="creed-text" data-en="We believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible." data-zh="我信獨一上帝，全能的父，創造天地和有形無形萬物的主。">We believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible.</div>
+              <div class="creed-text" data-en="And in one Lord Jesus Christ, the only Son of God, begotten from the Father before all ages, God from God, Light from Light, true God from true God, begotten, not made; of the same essence as the Father. Through him all things were made. For us and for our salvation he came down from heaven; he became incarnate by the Holy Spirit and the virgin Mary, and was made human. He was crucified for us under Pontius Pilate; he suffered and was buried. The third day he rose again, according to the Scriptures. He ascended to heaven and is seated at the right hand of the Father. He will come again with glory to judge the living and the dead. His kingdom will never end." data-zh="我信獨一主耶穌基督，上帝的獨生子。在萬世之前為父所生。出於神，即神之神，光而出於光，出於真神，即真神之真神。是生非造，與父同質，萬物都是藉著他造的。他為要拯救我們世人，從天降臨，因聖靈感孕，由童貞女馬利亞成為肉身，而為人。在本丟彼拉多手下，為我們釘在十字架上，受難，埋葬。照聖經第三天復活。並升天，坐在父的右邊。將來必有榮耀再降臨，審判活人死人；他的國無窮無盡。">And in one Lord Jesus Christ, the only Son of God, begotten from the Father before all ages, God from God, Light from Light, true God from true God, begotten, not made; of the same essence as the Father. Through him all things were made. For us and for our salvation he came down from heaven; he became incarnate by the Holy Spirit and the virgin Mary, and was made human. He was crucified for us under Pontius Pilate; he suffered and was buried. The third day he rose again, according to the Scriptures. He ascended to heaven and is seated at the right hand of the Father. He will come again with glory to judge the living and the dead. His kingdom will never end.</div>
+              <div class="creed-text" data-en="And we believe in the Holy Spirit, the Lord, the giver of life. He proceeds from the Father and the Son, and with the Father and the Son is worshiped and glorified. He spoke through the prophets. We believe in one holy catholic and apostolic church. We affirm one baptism for the forgiveness of sins. We look forward to the resurrection of the dead, and to life in the world to come. Amen." data-zh="我信聖靈，是主，是賜生命者，從父和子所出，與父和子同受敬拜、同受榮耀，他曾藉眾先知說話。我信獨一、聖而公之使徒的教會。我認使罪得赦的一次洗禮。我望死人復活，並來世生命。阿們。">And we believe in the Holy Spirit, the Lord, the giver of life. He proceeds from the Father and the Son, and with the Father and the Son is worshiped and glorified. He spoke through the prophets. We believe in one holy catholic and apostolic church. We affirm one baptism for the forgiveness of sins. We look forward to the resurrection of the dead, and to life in the world to come. Amen.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-head" onclick="toggleConf(this)">
+            <span class="name" data-en="Athanasian Creed" data-zh="亞他那修信經">Athanasian Creed</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="conf-body">
+            <div class="conf-row"><span class="conf-label" data-en="Background" data-zh="背景">Background</span><p data-en="Traditionally associated with Athanasius, the 4th-century bishop who defended Christ's full divinity against Arianism, though it was likely composed somewhat later. It is the most detailed of the three creeds, spelling out with technical precision both the doctrine of the Trinity and the two natures of Christ — written to close off several specific ways these truths were being misstated in the early church." data-zh="傳統上與主後四世紀、竭力捍衛基督完全神性以對抗亞流主義的主教亞他那修（Athanasius）相關聯，但實際成文時間可能稍晚。這是三大信經中最詳盡的一篇，以精確的神學語言，仔細闡明三一論與基督二性的教義——目的是要具體排除當時教會中幾種對這些真理的錯誤表述方式。">Traditionally associated with Athanasius, the 4th-century bishop who defended Christ's full divinity against Arianism, though it was likely composed somewhat later. It is the most detailed of the three creeds, spelling out with technical precision both the doctrine of the Trinity and the two natures of Christ — written to close off several specific ways these truths were being misstated in the early church.</p></div>
+            <div class="conf-row">
+              <span class="conf-label" data-en="The Creed, Part One: The Trinity" data-zh="信經全文，第一部分：論三一">The Creed, Part One: The Trinity</span>
+              <div class="creed-text" data-en="Whoever desires to be saved should above all hold to the catholic faith. Anyone who does not keep it whole and unbroken will doubtless perish eternally. Now this is the catholic faith: that we worship one God in trinity and the trinity in unity, neither blending their persons nor dividing their essence. For the person of the Father is a distinct person, the person of the Son is another, and that of the Holy Spirit still another. But the divinity of the Father, Son, and Holy Spirit is one, their glory equal, their majesty coeternal." data-zh="凡願得救的人，首要持守大公信仰。凡不持守此信仰、持守純全無損的人，必要永遠沉淪。這大公信仰乃是：我們敬拜三一之中的一神，也敬拜一神之中的三一；不混淆位格，也不分割本體。因為父是一個位格，子是另一個位格，聖靈又是另一個位格；然而父、子、聖靈的神性為一，榮耀相等，威嚴同永。">Whoever desires to be saved should above all hold to the catholic faith. Anyone who does not keep it whole and unbroken will doubtless perish eternally. Now this is the catholic faith: that we worship one God in trinity and the trinity in unity, neither blending their persons nor dividing their essence. For the person of the Father is a distinct person, the person of the Son is another, and that of the Holy Spirit still another. But the divinity of the Father, Son, and Holy Spirit is one, their glory equal, their majesty coeternal.</div>
+              <div class="creed-text" data-en="What quality the Father has, the Son has, and the Holy Spirit has: uncreated, immeasurable, eternal — and yet there are not three eternal beings, but one eternal being. So too the Father is almighty, the Son is almighty, the Holy Spirit is almighty — yet there are not three almighty beings, but one almighty being. Thus the Father is God, the Son is God, the Holy Spirit is God — yet there are not three gods, but one God. The Father was neither made nor created nor begotten from anyone. The Son was neither made nor created; he was begotten from the Father alone. The Holy Spirit was neither made nor created nor begotten; he proceeds from the Father and the Son. Nothing in this trinity is before or after, nothing is greater or smaller; the three persons are coeternal and coequal with each other." data-zh="父具有何等性質，子也具有何等性質，聖靈也具有何等性質：非受造、無限、永恆——然而並非有三位永恆者，只有一位永恆者。照樣，父是全能的，子是全能的，聖靈也是全能的——然而並非有三位全能者，只有一位全能者。如此，父是神，子是神，聖靈也是神——然而並非有三位神，只有一位神。父非受造、非被造、非被生自任何一位；子非受造、非被造，乃獨由父所生；聖靈非受造、非被造、非被生，乃由父和子所出。在此三一之中，沒有先後之分，沒有大小之別；三個位格全然同永、同等。">What quality the Father has, the Son has, and the Holy Spirit has: uncreated, immeasurable, eternal — and yet there are not three eternal beings, but one eternal being. So too the Father is almighty, the Son is almighty, the Holy Spirit is almighty — yet there are not three almighty beings, but one almighty being. Thus the Father is God, the Son is God, the Holy Spirit is God — yet there are not three gods, but one God. The Father was neither made nor created nor begotten from anyone. The Son was neither made nor created; he was begotten from the Father alone. The Holy Spirit was neither made nor created nor begotten; he proceeds from the Father and the Son. Nothing in this trinity is before or after, nothing is greater or smaller; the three persons are coeternal and coequal with each other.</div>
+            </div>
+            <div class="conf-row">
+              <span class="conf-label" data-en="The Creed, Part Two: Christ, God and Man" data-zh="信經全文，第二部分：論基督的神人二性">The Creed, Part Two: Christ, God and Man</span>
+              <div class="creed-text" data-en="It is necessary for eternal salvation that one also believe faithfully in the incarnation of our Lord Jesus Christ. Now this is the true faith: that our Lord Jesus Christ, God's Son, is both God and human, equally. He is God from the essence of the Father, begotten before time; and he is human from the essence of his mother, born in time; completely God, completely human. Although he is God and human, Christ is not two, but one — not by his divinity being turned into flesh, but by God's taking humanity to himself; not by a blending of essence, but by the unity of his person." data-zh="要得永遠的救恩，也必須忠實相信我們主耶穌基督的道成肉身。真信仰乃是：我們的主耶穌基督，神的兒子，同時是神，也是人，二者均全。他從父的本體而出，在萬世之先受生為神；也從他母親的本體而出，在時間之中降生為人；完全是神，完全是人。雖然他是神又是人，基督卻不是二，而是一——並非因神性變為肉身，而是因神取了人性歸於自己；並非因本體混合，而是因位格合一。">It is necessary for eternal salvation that one also believe faithfully in the incarnation of our Lord Jesus Christ. Now this is the true faith: that our Lord Jesus Christ, God's Son, is both God and human, equally. He is God from the essence of the Father, begotten before time; and he is human from the essence of his mother, born in time; completely God, completely human. Although he is God and human, Christ is not two, but one — not by his divinity being turned into flesh, but by God's taking humanity to himself; not by a blending of essence, but by the unity of his person.</div>
+              <div class="creed-text" data-en="He suffered for our salvation; he descended to hell; he arose from the dead; he ascended to heaven; he is seated at the Father's right hand; from there he will come to judge the living and the dead. At his coming all people will arise bodily and give an accounting of their own deeds. Those who have done good will enter eternal life, and those who have done evil will enter eternal fire. This is the catholic faith: one cannot be saved without believing it firmly and faithfully." data-zh="他為我們的救恩受苦；他降在陰間；他從死裡復活；他升天；他坐在父的右邊；將來必從那裡降臨，審判活人死人。在他降臨的時候，眾人都要肉身復活，並要為自己所行的交帳。行善的人要進入永生，作惡的人要進入永火。這就是大公信仰：人若不堅實忠誠地相信，就不能得救。">He suffered for our salvation; he descended to hell; he arose from the dead; he ascended to heaven; he is seated at the Father's right hand; from there he will come to judge the living and the dead. At his coming all people will arise bodily and give an accounting of their own deeds. Those who have done good will enter eternal life, and those who have done evil will enter eternal fire. This is the catholic faith: one cannot be saved without believing it firmly and faithfully.</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="tier-arrow"></div>
