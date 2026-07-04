@@ -210,6 +210,18 @@
   .tier-scripture{ border-top-color:var(--slate); } .tier-scripture .tier-eyebrow{ color:var(--slate); }
   .tier-creeds{ border-top-color:var(--gold); } .tier-creeds .tier-eyebrow{ color:var(--gold-deep); }
   .tier-confessions{ border-top-color:var(--purple); } .tier-confessions .tier-eyebrow{ color:var(--purple); }
+  .tier-kingdom{ border-top-color:var(--sage); } .tier-kingdom .tier-eyebrow{ color:var(--sage); }
+  .tier-quote{
+    font-family:var(--serif); font-style:italic; text-align:left;
+    border-left:3px solid var(--sage);
+    padding:4px 0 4px 18px;
+    margin-top:20px;
+    color:var(--ink);
+    font-size:1rem;
+  }
+  .tier-quote cite{ display:block; font-family:var(--mono); font-style:normal; font-size:11px; color:var(--ink-faint); margin-top:8px;}
+  .tier-credit{ text-align:center; margin-top:20px; font-family:var(--mono); font-size:11px; color:var(--ink-faint); }
+  .tier-credit a{ color:var(--ink-faint); }
 
   /* ===== Timeline (Step 1: Big Picture) ===== */
   .timeline{
@@ -537,10 +549,52 @@
   </div>
 </section>
 
-<!-- ============ STEP 2: BIG PICTURE ============ -->
-<section class="step" id="step1" data-node="0">
+<!-- ============ STEP 2: OUR REFORMED ACCENT ============ -->
+<section class="step" id="step-accent" data-node="0">
   <div class="step-head">
     <div class="step-num" data-en="STEP TWO" data-zh="第二步">STEP TWO</div>
+    <h2 data-en="Our Reformed Accent" data-zh="我們改革宗的「口音」">Our Reformed Accent</h2>
+    <div class="tag" data-en="Same faith, same family — a particular way of speaking it." data-zh="同一個信仰，同一個大家庭——只是用了特定的方式來表達。">Same faith, same family — a particular way of speaking it.</div>
+  </div>
+
+  <p style="color:var(--ink-dim); max-width:64ch; margin-bottom:34px; font-size:0.98rem;" data-en="Most of what Reformed Christians believe, we hold in common with the whole Church. But every tradition speaks the same faith with its own emphasis — the way an English speaker from Toronto and one from Johannesburg share a language but sound different. Three words carry much of the Reformed emphasis: sovereignty, covenant, and kingdom." data-zh="改革宗信徒所信的，絕大部分是與普世教會共有的信仰。然而每個傳統在表達同一個信仰時，都會有自己特別著重的地方——就像來自多倫多和約翰尼斯堡的英語使用者，說的是同一種語言，口音卻各有不同。「主權」、「聖約」、「國度」這三個詞，最能代表改革宗所著重的表達。">Most of what Reformed Christians believe, we hold in common with the whole Church. But every tradition speaks the same faith with its own emphasis — the way an English speaker from Toronto and one from Johannesburg share a language but sound different. Three words carry much of the Reformed emphasis: sovereignty, covenant, and kingdom.</p>
+
+  <div class="tier">
+    <div class="tier-card tier-scripture">
+      <div class="tier-eyebrow" data-en="GOD'S PLAN, GOD'S POWER" data-zh="神的計劃，神的權能">GOD'S PLAN, GOD'S POWER</div>
+      <h3 data-en="Sovereignty" data-zh="主權">Sovereignty</h3>
+      <p data-en="Reformed Christians hold a high view of God's rule over everything — from the rise and fall of nations to the faith of one person. Because sin has touched even the human will, salvation is God's initiative from beginning to end; we are called into relationship with God, and respond in gratitude, rather than salvation depending on our own power to choose." data-zh="改革宗信徒對神掌管萬有抱持很高的看法——從國家的興衰，到個人信心的建立，皆在神的主權之下。因為罪甚至影響了人的意志，救恩自始至終都是神主動的作為；我們是被神呼召進入與祂的關係，並以感恩回應祂，而非單靠自己揀選的能力得救。">Reformed Christians hold a high view of God's rule over everything — from the rise and fall of nations to the faith of one person. Because sin has touched even the human will, salvation is God's initiative from beginning to end; we are called into relationship with God, and respond in gratitude, rather than salvation depending on our own power to choose.</p>
+    </div>
+    <div class="tier-arrow"></div>
+
+    <div class="tier-card tier-confessions">
+      <div class="tier-eyebrow" data-en="GOD KEEPS HIS PROMISES" data-zh="神信守祂的應許">GOD KEEPS HIS PROMISES</div>
+      <h3 data-en="Covenant" data-zh="聖約">Covenant</h3>
+      <p data-en="God is a promise-making, promise-keeping God, and his promises are not only to individuals but to families across generations — the same pattern seen with Israel and echoed at Pentecost, when Peter promised the Spirit 'to you and your children.' This is why Reformed churches baptize both believing adults and the infant children of believing parents: a sign that God's grace comes before we can earn or even understand it." data-zh="神是一位立約、又信守應許的神；祂的應許不僅賜給個人，也賜給世世代代的家庭——這正是以色列所經歷的模式，也在五旬節彼得應許聖靈「賜給你們和你們的兒女」時再次應驗。這也是為什麼改革宗教會既為表明信心的成年人施洗，也為信徒兒女施行嬰兒洗禮：這是一個記號，表明神的恩典先於我們的努力，甚至先於我們的理解。">God is a promise-making, promise-keeping God, and his promises are not only to individuals but to families across generations — the same pattern seen with Israel and echoed at Pentecost, when Peter promised the Spirit "to you and your children." This is why Reformed churches baptize both believing adults and the infant children of believing parents: a sign that God's grace comes before we can earn or even understand it.</p>
+      <span class="ref">Acts 2:39</span>
+    </div>
+    <div class="tier-arrow"></div>
+
+    <div class="tier-card tier-kingdom">
+      <div class="tier-eyebrow" data-en="EVERY SQUARE INCH" data-zh="每一寸土地">EVERY SQUARE INCH</div>
+      <h3 data-en="Kingdom" data-zh="國度">Kingdom</h3>
+      <p data-en="God's kingdom is not a building or a strictly 'religious' zone — it is God's reign extending over all of creation: work, art, family, and public life included. Reformed Christians resist splitting life into 'sacred' and 'secular,' believing every calling can be carried out for God's glory." data-zh="神的國度並非一座建築物，也不侷限於「宗教性」的範疇——而是神的統治延伸到全部受造界：工作、藝術、家庭、公共生活，無一例外。改革宗信徒拒絕將生活劃分為「屬靈」與「世俗」，相信每一種呼召都可以為了神的榮耀而活出。">God's kingdom is not a building or a strictly "religious" zone — it is God's reign extending over all of creation: work, art, family, and public life included. Reformed Christians resist splitting life into "sacred" and "secular," believing every calling can be carried out for God's glory.</p>
+      <div class="tier-quote">
+        <span data-en="&ldquo;There is not a square inch in the whole domain of our human existence over which Christ, who is Sovereign over all, does not cry: 'Mine!'&rdquo;" data-zh="「在人類生存的整個領域中，沒有一寸土地，是那位掌管萬有的基督不宣告『這是我的！』的。」">&ldquo;There is not a square inch in the whole domain of our human existence over which Christ, who is Sovereign over all, does not cry: 'Mine!'&rdquo;</span>
+        <cite data-en="— Abraham Kuyper, 1880" data-zh="——亞伯拉罕・凱伯，1880年">— Abraham Kuyper, 1880</cite>
+      </div>
+    </div>
+
+    <div class="tier-credit">
+      <span data-en="Adapted from the CRCNA's " data-zh="改編自CRCNA〈">Adapted from the CRCNA's </span><a href="https://www.crcna.org/welcome/beliefs/reformed-accent" target="_blank" data-en="&quot;Reformed Accent&quot;" data-zh="改革宗『口音』">"Reformed Accent"</a><span data-en=" essay." data-zh="〉一文。"> essay.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 3: BIG PICTURE ============ -->
+<section class="step" id="step1" data-node="0">
+  <div class="step-head">
+    <div class="step-num" data-en="STEP THREE" data-zh="第三步">STEP THREE</div>
     <h2 data-en="The Big Picture" data-zh="全貌總覽">The Big Picture</h2>
     <div class="tag" data-en="The whole Bible, told as one story." data-zh="整本聖經，是一個故事。">The whole Bible, told as one story.</div>
   </div>
@@ -606,7 +660,7 @@
 <!-- ============ STEP 2: COVENANT STRUCTURE ============ -->
 <section class="step" id="step2" data-node="1">
   <div class="step-head">
-    <div class="step-num" data-en="STEP THREE" data-zh="第三步">STEP THREE</div>
+    <div class="step-num" data-en="STEP FOUR" data-zh="第四步">STEP FOUR</div>
     <h2 data-en="The Covenant Structure" data-zh="聖約的結構">The Covenant Structure</h2>
     <div class="tag" data-en="One redemptive plan, one people of God." data-zh="一個救贖計劃，一群神的子民。">One redemptive plan, one people of God.</div>
   </div>
@@ -651,7 +705,7 @@
 <!-- ============ STEP 3: FIVE SOLAS ============ -->
 <section class="step" id="step3" data-node="2">
   <div class="step-head">
-    <div class="step-num" data-en="STEP FOUR" data-zh="第四步">STEP FOUR</div>
+    <div class="step-num" data-en="STEP FIVE" data-zh="第五步">STEP FIVE</div>
     <h2 data-en="The Five Solas" data-zh="五個唯獨">The Five Solas</h2>
     <div class="tag" data-en="The foundations of the Reformation." data-zh="宗教改革的根基。">The foundations of the Reformation.</div>
   </div>
@@ -822,7 +876,7 @@
   (function(){
     var rail = document.getElementById('rail');
     var fill = document.getElementById('railFill');
-    var steps = [document.getElementById('step0'), document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
+    var steps = [document.getElementById('step0'), document.getElementById('step-accent'), document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
 
     // create nodes
     var nodes = [];
