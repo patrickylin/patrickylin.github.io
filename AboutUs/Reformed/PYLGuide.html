@@ -383,9 +383,13 @@
   }
   .cov-node .ref{ display:block; font-family:var(--mono); font-weight:400; font-size:10.5px; margin-top:4px; opacity:0.8;}
   .cov-node .desc{ display:block; font-family:var(--sans); font-weight:400; font-size:0.82rem; margin-top:4px; opacity:0.85;}
+  .cov-node-wide{ max-width:620px; width:100%; text-align:left; padding:22px 28px; }
+  .cov-node-wide .eyebrow{ display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; opacity:0.75; font-weight:400; }
+  .cov-node-wide .title{ display:block; font-size:1.2rem; }
+  .cov-node-wide .desc{ font-size:0.92rem; line-height:1.65; margin-top:10px; }
   .cov-arrow{ width:1px; height:26px; background:var(--line); }
   .n-god{background:var(--anchor-dark); color:#FBF7ED; border-color:var(--anchor-dark);}
-  .n-creation{background:var(--sage-tint); color:var(--sage); border-color:rgba(95,133,85,0.35);}
+  .n-works{background:var(--sage-tint); color:var(--sage); border-color:rgba(95,133,85,0.35);}
   .n-fall{background:var(--burgundy-tint); color:var(--burgundy); border-color:rgba(172,70,70,0.35);}
   .n-grace{background:var(--purple-tint); color:var(--purple); border-color:rgba(113,80,138,0.35);}
 
@@ -842,7 +846,7 @@
   </div>
 </section>
 
-<!-- ============ STEP 2: COVENANT STRUCTURE ============ -->
+<!-- ============ STEP 4: COVENANT STRUCTURE ============ -->
 <section class="step" id="step2" data-node="1">
 
   <div class="step-head">
@@ -852,40 +856,103 @@
   </div>
 
   <div class="cov-flow">
-    <div class="cov-node n-god" data-en="GOD" data-zh="神" data-cn="神">GOD</div>
-    <div class="cov-arrow"></div>
-    <div class="cov-node n-creation">
-      <span data-en="Covenant of Creation" data-zh="創造之約" data-cn="创造之约">Covenant of Creation</span>
-      <span class="desc" data-en="Adam represents humanity" data-zh="亞當代表全人類" data-cn="亚当代表全人类">Adam represents humanity</span>
-      <span class="ref">Gen. 1–2</span>
+    <div class="cov-node cov-node-wide n-god">
+      <span class="eyebrow" data-en="BEFORE CREATION" data-zh="在創世以先" data-cn="在创世以先">BEFORE CREATION</span>
+      <span class="title" data-en="Covenant of Redemption" data-zh="救贖之約" data-cn="救赎之约">Covenant of Redemption</span>
+      <span class="desc" data-en="Before time began, the Father appointed the Son to redeem his people, the Son agreed to accomplish their redemption, and the Spirit agreed to apply it — an eternal plan within the Trinity itself, from which everything that follows flows." data-zh="在時間開始以先，父神委任聖子救贖屬祂的子民，聖子應允要完成這救贖，聖靈應允要施行這救贖——這是三一真神內部永恆的計劃，此後一切都由此而出。" data-cn="在时间开始以先，父神委任圣子救赎属祂的子民，圣子应允要完成这救赎，圣灵应允要施行这救赎——这是三一真神内部永恒的计划，此后一切都由此而出。">Before time began, the Father appointed the Son to redeem his people, the Son agreed to accomplish their redemption, and the Spirit agreed to apply it — an eternal plan within the Trinity itself, from which everything that follows flows.</span>
+      <span class="ref">Eph. 1:4–5; 2 Tim. 1:9</span>
     </div>
     <div class="cov-arrow"></div>
+
+    <div class="cov-node cov-node-wide n-works">
+      <span class="eyebrow" data-en="IN THE GARDEN" data-zh="在伊甸園中" data-cn="在伊甸园中">IN THE GARDEN</span>
+      <span class="title" data-en="Covenant of Works" data-zh="行為之約" data-cn="行为之约">Covenant of Works</span>
+      <span class="desc" data-en="God covenanted with Adam in the garden: perfect obedience would bring life and blessing. Adam represented all humanity — so his disobedience broke this covenant for everyone united to him." data-zh="神在伊甸園中與亞當立約：完全的順服將帶來生命與福份。亞當代表全人類——因此他的悖逆，使凡在他裡面的人都失去了這約。" data-cn="神在伊甸园中与亚当立约：完全的顺服将带来生命与福份。亚当代表全人类——因此他的悖逆，使凡在他里面的人都失去了这约。">God covenanted with Adam in the garden: perfect obedience would bring life and blessing. Adam represented all humanity — so his disobedience broke this covenant for everyone united to him.</span>
+      <span class="ref">Gen. 2:16–17; Rom. 5:12–14</span>
+    </div>
+    <div class="cov-arrow"></div>
+
     <div class="cov-node n-fall">
       <span data-en="Fall" data-zh="墮落" data-cn="堕落">Fall</span>
       <span class="ref">Gen. 3</span>
     </div>
     <div class="cov-arrow"></div>
-    <div class="cov-node n-grace">
-      <span data-en="Covenant of Grace" data-zh="恩典之約" data-cn="恩典之约">Covenant of Grace</span>
-      <span class="desc" data-en="The promise of redemption" data-zh="救贖的應許" data-cn="救赎的应许">The promise of redemption</span>
+
+    <div class="cov-node cov-node-wide n-grace">
+      <span class="eyebrow" data-en="AFTER THE FALL" data-zh="墮落之後" data-cn="堕落之后">AFTER THE FALL</span>
+      <span class="title" data-en="Covenant of Grace" data-zh="恩典之約" data-cn="恩典之约">Covenant of Grace</span>
+      <span class="desc" data-en="God did not abandon his purposes. He promised to save fallen sinners through Christ — a promise announced to Abraham, administered through the law and the prophets, and fulfilled and received by faith." data-zh="神並未放棄祂的計劃。祂應許要藉著基督拯救墮落的罪人——這應許向亞伯拉罕宣告，藉著律法與先知施行，並藉著信心而被成就、被領受。" data-cn="神并未放弃祂的计划。祂应许要借着基督拯救堕落的罪人——这应许向亚伯拉罕声明，借着律法与先知施行，并借着信心而被成就、被领受。">God did not abandon his purposes. He promised to save fallen sinners through Christ — a promise announced to Abraham, administered through the law and the prophets, and fulfilled and received by faith.</span>
+      <span class="ref">Gen. 3:15; Gal. 3:16</span>
+    </div>
+  </div>
+
+  <p class="threads-head" style="margin-left:0; text-align:left; max-width:70ch;" data-en="These aren't four separate covenants, but one Covenant of Grace, administered across history — the same in substance, changing only in form, from type and shadow to fulfilled reality in Christ." data-zh="這並非四個各自獨立的聖約，而是同一個恩典之約在歷史中不同階段的施行——本質相同，形式不同：從預表與影兒，到在基督裡成就的實體。" data-cn="这并非四个各自独立的圣约，而是同一个恩典之约在历史中不同阶段的施行——本质相同，形式不同：从预表与影儿，到在基督里成就的实体。">These aren't four separate covenants, but one Covenant of Grace, administered across history — the same in substance, changing only in form, from type and shadow to fulfilled reality in Christ.</p>
+  <div class="tier-credit" style="text-align:left; margin-top:0; margin-bottom:22px;" data-en="A framework associated with Reformed biblical theologian Geerhardus Vos." data-zh="此框架與改革宗聖經神學家霍志恆（Geerhardus Vos）的教導相關。" data-cn="此框架与改革宗圣经神学家霍志恒（Geerhardus Vos）的教导相关。">A framework associated with Reformed biblical theologian Geerhardus Vos.</div>
+
+  <div class="conf-accordion">
+    <div class="conf-item">
+      <div class="conf-head" onclick="toggleConf(this)">
+        <span class="name" data-en="Abrahamic Covenant" data-zh="亞伯拉罕之約" data-cn="亚伯拉罕之约">Abrahamic Covenant</span>
+        <span class="plus">+</span>
+      </div>
+      <div class="conf-body">
+        <div class="conf-row"><span class="conf-label" data-en="Sign" data-zh="記號" data-cn="记号">Sign</span><p data-en="Circumcision — the mark of belonging to God's covenant family." data-zh="割禮——歸屬於神立約家庭的印記。" data-cn="割礼——归属于神立约家庭的印记。">Circumcision — the mark of belonging to God's covenant family.</p></div>
+        <div class="conf-row"><span class="conf-label" data-en="Promise" data-zh="應許" data-cn="应许">Promise</span><p data-en="God's promise anticipating the coming Christ and a believing people — 'to your offspring,' who is Christ." data-zh="神的應許，預表著將要來臨的基督，以及一群信靠的子民——「歸給你的後裔」，就是基督。" data-cn="神的应许，预表着将要来临的基督，以及一群信靠的子民——“归给你的后裔”，就是基督。">God's promise anticipating the coming Christ and a believing people — "to your offspring," who is Christ.</p><span class="ref">Gen. 12:1–3; Gal. 3:16</span></div>
+        <div class="conf-row"><span class="conf-label" data-en="Role" data-zh="角色" data-cn="角色">Role</span><p data-en="The starting point of the covenant of grace's unfolding in history — God binds himself to bless Abraham's family, and through them, every nation on earth." data-zh="恩典之約在歷史中展開的起點——神親自應許要祝福亞伯拉罕一家，並藉著他們，祝福地上的萬國。" data-cn="恩典之约在历史中展开的起点——神亲自应许要祝福亚伯拉罕一家，并借着他们，祝福地上的万国。">The starting point of the covenant of grace's unfolding in history — God binds himself to bless Abraham's family, and through them, every nation on earth.</p></div>
+      </div>
     </div>
 
-    <div class="cov-people">
-      <div class="person-card"><div class="name" data-en="Abraham" data-zh="亞伯拉罕" data-cn="亚伯拉罕">Abraham</div><span class="ref">Gen. 12:1–3</span></div>
-      <div class="person-card"><div class="name" data-en="Moses" data-zh="摩西" data-cn="摩西">Moses</div><span class="ref">Ex. 19:5–6</span></div>
-      <div class="person-card"><div class="name" data-en="David" data-zh="大衛" data-cn="大卫">David</div><span class="ref">2 Sam. 7:12–16</span></div>
-      <div class="person-card"><div class="name" data-en="Christ" data-zh="基督" data-cn="基督">Christ</div><span class="ref">Luke 22:20</span></div>
-      <div class="person-card"><div class="name" data-en="Church" data-zh="教會" data-cn="教会">Church</div><span class="ref">Acts 2:39</span></div>
+    <div class="conf-item">
+      <div class="conf-head" onclick="toggleConf(this)">
+        <span class="name" data-en="Mosaic Covenant" data-zh="摩西之約" data-cn="摩西之约">Mosaic Covenant</span>
+        <span class="plus">+</span>
+      </div>
+      <div class="conf-body">
+        <div class="conf-row"><span class="conf-label" data-en="Sign" data-zh="記號" data-cn="记号">Sign</span><p data-en="The Sabbath, and the blood of the covenant sprinkled at Sinai." data-zh="安息日，以及在西奈山所灑的立約之血。" data-cn="安息日，以及在西奈山所洒的立约之血。">The Sabbath, and the blood of the covenant sprinkled at Sinai.</p><span class="ref">Ex. 24:8; 31:16–17</span></div>
+        <div class="conf-row"><span class="conf-label" data-en="Promise" data-zh="應許" data-cn="应许">Promise</span><p data-en="God forms Israel as his covenant people, giving them the law, the sacrificial system, and a detailed pattern for covenant life." data-zh="神藉著律法、祭祀制度，以及詳細的立約生活規範，將以色列建立為祂的立約子民。" data-cn="神借着律法、祭祀制度，以及详细的立约生活规范，将以色列创建为祂的立约子民。">God forms Israel as his covenant people, giving them the law, the sacrificial system, and a detailed pattern for covenant life.</p><span class="ref">Ex. 19:5–6</span></div>
+        <div class="conf-row"><span class="conf-label" data-en="Role" data-zh="角色" data-cn="角色">Role</span><p data-en="The law exposes the seriousness of sin, sustains Israel's covenant life through sacrifice, and points forward to its fulfillment in Christ." data-zh="律法顯明罪的嚴重性，藉著獻祭維繫以色列的立約生活，並指向這一切在基督裡的成就。" data-cn="律法显明罪的严重性，借着献祭维系以色列的立约生活，并指向这一切在基督里的成就。">The law exposes the seriousness of sin, sustains Israel's covenant life through sacrifice, and points forward to its fulfillment in Christ.</p><span class="ref">Gal. 3:24</span></div>
+      </div>
     </div>
 
-    <div class="cov-arrow"></div>
+    <div class="conf-item">
+      <div class="conf-head" onclick="toggleConf(this)">
+        <span class="name" data-en="Davidic Covenant" data-zh="大衛之約" data-cn="大卫之约">Davidic Covenant</span>
+        <span class="plus">+</span>
+      </div>
+      <div class="conf-body">
+        <div class="conf-row"><span class="conf-label" data-en="Sign" data-zh="記號" data-cn="记号">Sign</span><p data-en="No separate sign is given — the promise itself is the throne, established forever." data-zh="沒有另外賜下印記——這應許本身，就是那永遠堅立的寶座。" data-cn="没有另外赐下印记——这应许本身，就是那永远坚立的宝座。">No separate sign is given — the promise itself is the throne, established forever.</p></div>
+        <div class="conf-row"><span class="conf-label" data-en="Promise" data-zh="應許" data-cn="应许">Promise</span><p data-en="God's promise of an enduring royal line and an everlasting kingdom." data-zh="神應許賜下一個延續不斷的王室與永遠的國度。" data-cn="神应许赐下一个延续不断的王室与永远的国度。">God's promise of an enduring royal line and an everlasting kingdom.</p><span class="ref">2 Sam. 7:12–16</span></div>
+        <div class="conf-row"><span class="conf-label" data-en="Role" data-zh="角色" data-cn="角色">Role</span><p data-en="Fulfilled ultimately in the great, eternal King — the Messiah, Jesus Christ." data-zh="最終在那位永遠、偉大的君王——彌賽亞耶穌基督——身上得著成就。" data-cn="最终在那位永远、伟大的君王——弥赛亚耶稣基督——身上得着成就。">Fulfilled ultimately in the great, eternal King — the Messiah, Jesus Christ.</p><span class="ref">Luke 1:32–33</span></div>
+      </div>
+    </div>
+
+    <div class="conf-item">
+      <div class="conf-head" onclick="toggleConf(this)">
+        <span class="name" data-en="New Covenant" data-zh="新約" data-cn="新约">New Covenant</span>
+        <span class="plus">+</span>
+      </div>
+      <div class="conf-body">
+        <div class="conf-row"><span class="conf-label" data-en="Sign" data-zh="記號" data-cn="记号">Sign</span><p data-en="The Lord's Supper, sealing the covenant in Christ's own body and blood." data-zh="聖餐——藉著基督自己的身體與寶血，印證這約。" data-cn="圣餐——借着基督自己的身体与宝血，印证这约。">The Lord's Supper, sealing the covenant in Christ's own body and blood.</p><span class="ref">Luke 22:20</span></div>
+        <div class="conf-row"><span class="conf-label" data-en="Promise" data-zh="應許" data-cn="应许">Promise</span><p data-en="The covenant promised through Jeremiah — God's law written on the heart, and the full forgiveness of sins." data-zh="藉耶利米所應許的約——神的律法寫在人心版上，並且罪得著完全的赦免。" data-cn="藉耶利米所应许的约——神的律法写在人心版上，并且罪得着完全的赦免。">The covenant promised through Jeremiah — God's law written on the heart, and the full forgiveness of sins.</p><span class="ref">Jer. 31:31–34</span></div>
+        <div class="conf-row"><span class="conf-label" data-en="Role" data-zh="角色" data-cn="角色">Role</span><p data-en="Inaugurated through Christ's death and resurrection, applied by the Spirit, and reaching its consummation when Christ returns." data-zh="藉著基督的死而復活開啟，由聖靈施行，並要在基督再來時得著完全的成就。" data-cn="借着基督的死而复活打开，由圣灵施行，并要在基督再来时得着完全的成就。">Inaugurated through Christ's death and resurrection, applied by the Spirit, and reaching its consummation when Christ returns.</p><span class="ref">Heb. 8:6–13</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="same-line" style="margin-top:36px;" data-en="The Church today lives under this New Covenant — heirs, by faith, of the very promise first made to Abraham." data-zh="教會今日活在這新約之下——因著信，成為亞伯拉罕最初所領受應許的後裔與承受者。" data-cn="教会今日活在这新约之下——因着信，成为亚伯拉罕最初所领受应许的后裔与承受者。">The Church today lives under this New Covenant — heirs, by faith, of the very promise first made to Abraham.</p>
+
+  <div class="cov-flow" style="margin-top:36px;">
     <div class="cov-node" style="background:var(--sage); color:#FBF7ED;">
       <span data-en="New Creation" data-zh="新創造" data-cn="新创造">New Creation</span>
       <span class="ref" style="color:#FBF7ED; opacity:0.85;">Rev. 21:1–5</span>
     </div>
   </div>
 
-  <p class="same-line" data-en="The same covenant. The same Christ. One Body across the ages." data-zh="同一個聖約。同一位基督。歷世歷代，同為一個身體。" data-cn="同一个圣约。同一位基督。历世历代，同为一个身体。">The same covenant. The same Christ. One Body across the ages.</p>
+  <p class="threads-head" style="text-align:center; margin-left:0;" data-en="The same promise, spoken again and again throughout Scripture:" data-zh="同一個應許，在聖經中一次又一次地被宣告：" data-cn="同一个应许，在圣经中一次又一次地被宣告：">The same promise, spoken again and again throughout Scripture:</p>
+  <div class="tier-quote" style="max-width:640px; margin:0 auto; text-align:center; border-left:none; border-top:3px solid var(--sage); padding:16px 0 0;">
+    <span data-en="&ldquo;I will be your God, and you shall be my people.&rdquo;" data-zh="「我要作你們的神，你們要作我的子民。」" data-cn="“我要作你们的神，你们要作我的子民。”">&ldquo;I will be your God, and you shall be my people.&rdquo;</span>
+    <cite data-en="Gen. 17:7–8 · Ex. 6:6–7 · Lev. 26:12 · Deut. 4:20 · Jer. 11:4 · Ezek. 11:20 — fulfilled at last in Rev. 21:3" data-zh="Gen. 17:7–8 · Ex. 6:6–7 · Lev. 26:12 · Deut. 4:20 · Jer. 11:4 · Ezek. 11:20 — 最終在啟示錄21:3得著成就" data-cn="Gen. 17:7–8 · Ex. 6:6–7 · Lev. 26:12 · Deut. 4:20 · Jer. 11:4 · Ezek. 11:20 — 最终在启示录21:3得着成就">Gen. 17:7–8 · Ex. 6:6–7 · Lev. 26:12 · Deut. 4:20 · Jer. 11:4 · Ezek. 11:20 — fulfilled at last in Rev. 21:3</cite>
+  </div>
 </section>
 
 <!-- ============ STEP 5: THE SACRAMENTS ============ -->
