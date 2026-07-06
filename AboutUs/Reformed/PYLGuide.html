@@ -259,16 +259,18 @@
     font-family:var(--serif); font-style:italic; color:var(--ink-dim);
     font-size:1rem; margin:46px 0 20px 40px;
   }
-  .threads-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-left:40px; }
+  .threads-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-left:40px; }
   @media(max-width:760px){ .threads-grid{grid-template-columns:1fr;} }
   .thread-card{
     background:var(--bg-card); border:1px solid var(--line); border-top:4px solid var(--line);
     border-radius:12px; padding:20px; box-shadow:0 3px 14px rgba(43,42,37,0.06);
   }
-  .thread-card h4{ font-family:var(--serif); font-weight:600; font-size:1.05rem; margin-bottom:8px; }
+  .thread-card h4{ font-family:var(--serif); font-weight:600; font-size:1.05rem; margin-bottom:6px; }
+  .thread-card .thread-def{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:0.95rem; color:var(--ink); margin-bottom:10px; }
   .thread-card p{ font-size:0.88rem; color:var(--ink-dim); }
   .thread-card .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:8px;}
   .thread-kingdom{ border-top-color:var(--gold); } .thread-kingdom h4{ color:var(--gold-deep); }
+  .thread-covenant{ border-top-color:var(--purple); } .thread-covenant h4{ color:var(--purple); }
   .thread-mission{ border-top-color:var(--burgundy); } .thread-mission h4{ color:var(--burgundy); }
   .thread-temple{ border-top-color:var(--slate); } .thread-temple h4{ color:var(--slate); }
 
@@ -328,7 +330,7 @@
   }
   .c-creation{background:var(--sage);} .c-fall{background:var(--burgundy);}
   .c-covenant{background:var(--purple);} .c-christ{background:var(--gold);}
-  .c-union{background:var(--slate);}
+  .c-union{background:var(--slate);} .c-newcreation{background:var(--sage);}
 
   .twin-cards{
     display:grid; grid-template-columns:1fr 1fr; gap:18px;
@@ -754,40 +756,38 @@
   <div class="step-head">
     <div class="step-num" data-en="STEP THREE" data-zh="第三步" data-cn="第三步">STEP THREE</div>
     <h2 data-en="The Big Picture" data-zh="全貌總覽" data-cn="全貌总览">The Big Picture</h2>
-    <div class="tag" data-en="From Creation to New Creation, fulfilled in Christ." data-zh="從創造到新創造，在基督裡得著成就。" data-cn="从创造到新创造，在基督里得着成就。">From Creation to New Creation, fulfilled in Christ.</div>
+    <div class="tag" data-en="Four chapters: Creation, Fall, Redemption, New Creation." data-zh="四個篇章：創造、墮落、救贖、新創造。" data-cn="四个篇章：创造、堕落、救赎、新创造。">Four chapters: Creation, Fall, Redemption, New Creation.</div>
   </div>
 
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot c-creation"></div>
       <h3 data-en="Creation" data-zh="創造" data-cn="创造">Creation</h3>
-      <p data-en="God creates all things good." data-zh="神創造萬物，並且甚好。" data-cn="神创造万物，并且甚好。">God creates all things good.</p>
-      <span class="ref">Gen. 1:1–31</span>
+      <p data-en="God made a world of perfect harmony — everything in right relationship with him, each other, and creation itself." data-zh="神創造了一個完全和諧的世界——人與神、人與人、人與受造界之間，關係都是美好、完整的。" data-cn="神创造了一个完全和谐的世界——人与神、人与人、人与受造界之间，关系都是美好、完整的。">God made a world of perfect harmony — everything in right relationship with him, each other, and creation itself.</p>
+      <span class="ref">Gen. 1:31</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot c-fall"></div>
-      <h3 data-en="The Fall" data-zh="墮落" data-cn="堕落">The Fall</h3>
-      <p data-en="Sin enters every part of life." data-zh="罪進入生命的每一個層面。" data-cn="罪进入生命的每一个层面。">Sin enters every part of life.</p>
-      <span class="ref">Gen. 3</span>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot c-covenant"></div>
-      <h3 data-en="Covenant of Grace" data-zh="恩典之約" data-cn="恩典之约">Covenant of Grace</h3>
-      <p data-en="God's promise of redemption." data-zh="神應許要施行救贖。" data-cn="神应许要施行救赎。">God's promise of redemption.</p>
-      <span class="ref">Gen. 12:3; Gal. 3:16</span>
+      <h3 data-en="Fall" data-zh="墮落" data-cn="堕落">Fall</h3>
+      <p data-en="Enticed by pride, humanity rebelled against God. Sin now touches every person, relationship, and institution — yet God's image in us still longs for him." data-zh="人類因驕傲被引誘，背叛了神。罪如今觸及每一個人、每一段關係、每一個制度——然而神的形像仍存留在我們裡面，使我們仍然渴慕祂。" data-cn="人类因骄傲被引诱，背叛了神。罪如今触及每一个人、每一段关系、每一个制度——然而神的形像仍存留在我们里面，使我们仍然渴慕祂。">Enticed by pride, humanity rebelled against God. Sin now touches every person, relationship, and institution — yet God's image in us still longs for him.</p>
+      <span class="ref">Gen. 3; Rom. 3:23</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot c-christ"></div>
-      <h3 data-en="Christ" data-zh="基督" data-cn="基督">Christ</h3>
-      <p data-en="Prophet, Priest, King." data-zh="先知、祭司、君王。" data-cn="先知、祭司、君王。">Prophet, Priest, King.</p>
-      <span class="ref">Luke 4:18–19; Heb. 7:25</span>
+      <h3 data-en="Redemption" data-zh="救贖" data-cn="救赎">Redemption</h3>
+      <p data-en="God refused to let sin have the last word. He called Abraham's family to bless the world, then sent his Son to live, die, and rise again — and his kingdom is growing in the world even now." data-zh="神不容讓罪擁有最後的話語權。祂呼召亞伯拉罕一家去祝福世界，又差遣祂的兒子降世、受死、復活——如今，神的國度仍在這世上不斷擴展。" data-cn="神不容让罪拥有最后的话语权。祂呼召亚伯拉罕一家去祝福世界，又差遣祂的儿子降世、受死、复活——如今，神的国度仍在这世上不断扩展。">God refused to let sin have the last word. He called Abraham's family to bless the world, then sent his Son to live, die, and rise again — and his kingdom is growing in the world even now.</p>
+      <span class="ref">Gen. 12:3; 1 Cor. 15:3–4</span>
     </div>
     <div class="tl-item">
-      <div class="tl-dot c-union"></div>
-      <h3 data-en="Union with Christ" data-zh="與基督聯合" data-cn="与基督联合">Union with Christ</h3>
-      <p data-en="By grace, through faith." data-zh="藉著恩典，因著信心。" data-cn="借着恩典，因着信心。">By grace, through faith.</p>
-      <span class="ref">John 15:4–5; Eph. 2:8–9</span>
+      <div class="tl-dot c-newcreation"></div>
+      <h3 data-en="New Creation" data-zh="新創造" data-cn="新创造">New Creation</h3>
+      <p data-en="Christ will return to complete God's reign on earth, ending sin and its effects for good. God himself will dwell with his people, and all creation will be fully restored." data-zh="基督必要再來，使神在地上的掌權得以完全，永遠終結罪及其影響。神自己要與祂的子民同住，全部受造界都要得著完全的更新。" data-cn="基督必要再来，使神在地上的掌权得以完全，永远终结罪及其影响。神自己要与祂的子民同住，全部受造界都要得着完全的更新。">Christ will return to complete God's reign on earth, ending sin and its effects for good. God himself will dwell with his people, and all creation will be fully restored.</p>
+      <span class="ref">Rev. 21:1–5</span>
     </div>
+  </div>
+
+  <div class="tier-credit" style="text-align:left; margin-left:40px;">
+    <span data-en="Adapted from the CRCNA's " data-zh="改編自CRCNA〈" data-cn="改编自CRCNA〈">Adapted from the CRCNA's </span><a href="https://www.crcna.org/welcome/beliefs/bible" target="_blank" data-en="&quot;The Bible&quot;" data-zh="聖經" data-cn="圣经">"The Bible"</a><span data-en=" page." data-zh="〉一文。" data-cn="〉一文。"> page.</span>
   </div>
 
   <div class="twin-cards">
@@ -814,21 +814,29 @@
     </div>
   </div>
 
-  <p class="threads-head" data-en="Covenant gets its own chapter next — but three more threads run through this same story:" data-zh="「聖約」將在下一步有專屬的篇章——而另外三條脈絡，也貫穿在同一個故事之中：" data-cn="“圣约”将在下一步有专属的篇章——而另外三条脉络，也贯穿在同一个故事之中：">Covenant gets its own chapter next — but three more threads run through this same story:</p>
+  <p class="threads-head" data-en="The Bible traces four threads through this whole story:" data-zh="聖經在整個故事中，交織著四條脈絡：" data-cn="圣经在整个故事中，交织着四条脉络：">The Bible traces four threads through this whole story:</p>
   <div class="threads-grid">
     <div class="thread-card thread-kingdom">
       <h4 data-en="Kingdom" data-zh="國度" data-cn="国度">Kingdom</h4>
-      <p data-en="From Eden's garden-kingdom, to Israel's throne, to Christ's own words — 'the kingdom of God has come near' — God's reign is already here, and still coming in full." data-zh="從伊甸園的園中國度，到以色列的寶座，再到基督親口所說：「神的國近了」——神的掌權已經臨到，卻仍等候完全的實現。" data-cn="从伊甸园的园中国度，到以色列的宝座，再到基督亲口所说：“神的国近了”——神的掌权已经临到，却仍等候完全的实现。">From Eden's garden-kingdom, to Israel's throne, to Christ's own words — "the kingdom of God has come near" — God's reign is already here, and still coming in full.</p>
+      <p class="thread-def" data-en="God's plan for his kingdom." data-zh="神為祂國度所定的計劃。" data-cn="神为祂国度所定的计划。">God's plan for his kingdom.</p>
+      <p data-en="From Eden, to Israel's throne, to Christ's declaration that the kingdom of God has come near — already here, and still coming in full." data-zh="從伊甸園，到以色列的寶座，再到基督宣告神的國已經臨近——已經來到，卻仍等候完全的實現。" data-cn="从伊甸园，到以色列的宝座，再到基督宣告神的国已经临近——已经来到，却仍等候完全的实现。">From Eden, to Israel's throne, to Christ's declaration that the kingdom of God has come near — already here, and still coming in full.</p>
       <span class="ref">Mark 1:15</span>
+    </div>
+    <div class="thread-card thread-covenant">
+      <h4 data-en="Covenant" data-zh="聖約" data-cn="圣约">Covenant</h4>
+      <p class="thread-def" data-en="God's relationship with his people." data-zh="神與祂子民之間的關係。" data-cn="神与祂子民之间的关系。">God's relationship with his people.</p>
+      <p data-en="The thread that ties Abraham, Moses, David, and the Church into one continuing relationship — explored in depth in the next step." data-zh="這條脈絡把亞伯拉罕、摩西、大衛與教會連結成一段持續不斷的關係——將在下一步深入探討。" data-cn="这条脉络把亚伯拉罕、摩西、大卫与教会连结成一段持续不断的关系——将在下一步深入探讨。">The thread that ties Abraham, Moses, David, and the Church into one continuing relationship — explored in depth in the next step.</p>
     </div>
     <div class="thread-card thread-mission">
       <h4 data-en="Mission" data-zh="使命" data-cn="使命">Mission</h4>
-      <p data-en="God's blessing to Abraham was never meant to stop with his family — it was always headed toward every nation, fulfilled in the church's call to go and make disciples of all peoples." data-zh="神賜給亞伯拉罕的祝福，從來不是只為了他一個家族——而是要臨到萬國萬民，並在教會領受使萬民作主門徒的使命中得著成就。" data-cn="神赐给亚伯拉罕的祝福，从来不是只为了他一个家族——而是要临到万国万民，并在教会领受使万民作主门徒的使命中得着成就。">God's blessing to Abraham was never meant to stop with his family — it was always headed toward every nation, fulfilled in the church's call to go and make disciples of all peoples.</p>
+      <p class="thread-def" data-en="God's mission to redeem the world." data-zh="神救贖世界的使命。" data-cn="神救赎世界的使命。">God's mission to redeem the world.</p>
+      <p data-en="From the call of Abraham to bless all nations, to the church's call to go and make disciples of all peoples." data-zh="從神呼召亞伯拉罕要祝福萬國，到教會領受使萬民作主門徒的使命。" data-cn="从神呼召亚伯拉罕要祝福万国，到教会领受使万民作主门徒的使命。">From the call of Abraham to bless all nations, to the church's call to go and make disciples of all peoples.</p>
       <span class="ref">Gen. 12:3; Matt. 28:18–20</span>
     </div>
     <div class="thread-card thread-temple">
       <h4 data-en="Temple" data-zh="聖殿" data-cn="圣殿">Temple</h4>
-      <p data-en="From the Garden, to the tabernacle, to Solomon's temple, to Christ's own body, to the church as the Spirit's dwelling — God has been moving toward one goal all along: to dwell with his people forever." data-zh="從伊甸園，到會幕，到所羅門的聖殿，到基督自己的身體，再到教會成為聖靈的居所——神一直朝著同一個目標前進：要永遠與祂的子民同住。" data-cn="从伊甸园，到会幕，到所罗门的圣殿，到基督自己的身体，再到教会成为圣灵的居所——神一直朝着同一个目标前进：要永远与祂的子民同住。">From the Garden, to the tabernacle, to Solomon's temple, to Christ's own body, to the church as the Spirit's dwelling — God has been moving toward one goal all along: to dwell with his people forever.</p>
+      <p class="thread-def" data-en="God's desire to dwell among us." data-zh="神渴望與我們同住。" data-cn="神渴望与我们同住。">God's desire to dwell among us.</p>
+      <p data-en="From the Garden, to the tabernacle, to Christ's own body, to the church as the Spirit's dwelling place." data-zh="從伊甸園，到會幕，到基督自己的身體，再到教會成為聖靈的居所。" data-cn="从伊甸园，到会幕，到基督自己的身体，再到教会成为圣灵的居所。">From the Garden, to the tabernacle, to Christ's own body, to the church as the Spirit's dwelling place.</p>
       <span class="ref">John 1:14; Rev. 21:3</span>
     </div>
   </div>
