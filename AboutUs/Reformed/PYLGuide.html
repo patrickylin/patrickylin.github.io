@@ -445,15 +445,16 @@
     display:flex; align-items:center; justify-content:center;
     font-size:1.3rem;
   }
-  .sola-card h4{ font-family:var(--serif); font-weight:600; font-size:1rem; margin-bottom:8px;}
+  .sola-card h4{ font-family:var(--sans); font-weight:600; font-size:0.78rem; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px;}
+  .sola-card .sola-latin{ font-family:var(--serif); font-weight:700; font-style:italic; font-size:1.2rem; margin-bottom:4px; }
   .sola-card p{ font-size:0.85rem; color:var(--ink-dim); }
   .sola-card .ref{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin-top:10px;}
 
-  .sola-scripture{ border-top-color:var(--slate); } .sola-scripture .glyph{ background:var(--slate-tint); } .sola-scripture h4{ color:var(--slate); }
-  .sola-grace{ border-top-color:var(--burgundy); } .sola-grace .glyph{ background:var(--burgundy-tint); } .sola-grace h4{ color:var(--burgundy); }
-  .sola-faith{ border-top-color:var(--sage); } .sola-faith .glyph{ background:var(--sage-tint); } .sola-faith h4{ color:var(--sage); }
-  .sola-christ{ border-top-color:var(--purple); } .sola-christ .glyph{ background:var(--purple-tint); } .sola-christ h4{ color:var(--purple); }
-  .sola-glory{ border-top-color:var(--gold); } .sola-glory .glyph{ background:var(--gold-tint); } .sola-glory h4{ color:var(--gold-deep); }
+  .sola-scripture{ border-top-color:var(--slate); } .sola-scripture .glyph{ background:var(--slate-tint); } .sola-scripture .sola-latin{ color:var(--slate); }
+  .sola-grace{ border-top-color:var(--burgundy); } .sola-grace .glyph{ background:var(--burgundy-tint); } .sola-grace .sola-latin{ color:var(--burgundy); }
+  .sola-faith{ border-top-color:var(--sage); } .sola-faith .glyph{ background:var(--sage-tint); } .sola-faith .sola-latin{ color:var(--sage); }
+  .sola-christ{ border-top-color:var(--purple); } .sola-christ .glyph{ background:var(--purple-tint); } .sola-christ .sola-latin{ color:var(--purple); }
+  .sola-glory{ border-top-color:var(--gold); } .sola-glory .glyph{ background:var(--gold-tint); } .sola-glory .sola-latin{ color:var(--gold-deep); }
 
   .glory-banner{
     text-align:center;
@@ -846,7 +847,7 @@
   </div>
 </section>
 
-<!-- ============ STEP 4: COVENANT STRUCTURE ============ -->
+<!-- ============ STEP 2: COVENANT STRUCTURE ============ -->
 <section class="step" id="step2" data-node="1">
 
   <div class="step-head">
@@ -993,30 +994,35 @@
   <div class="solas-grid">
     <div class="sola-card sola-scripture">
       <div class="glyph">📖</div>
+      <div class="sola-latin">Sola Scriptura</div>
       <h4 data-en="Scripture Alone" data-zh="唯獨聖經" data-cn="唯独圣经">Scripture Alone</h4>
       <p data-en="The Bible is the final authority in all matters of faith and life." data-zh="聖經是信仰與生活一切事上最終的權威。" data-cn="圣经是信仰与生活一切事上最终的权威。">The Bible is the final authority in all matters of faith and life.</p>
       <span class="ref">2 Tim. 3:16–17</span>
     </div>
     <div class="sola-card sola-grace">
       <div class="glyph">🎁</div>
+      <div class="sola-latin">Sola Gratia</div>
       <h4 data-en="Grace Alone" data-zh="唯獨恩典" data-cn="唯独恩典">Grace Alone</h4>
       <p data-en="We are saved by God's grace, not by anything we do." data-zh="我們得救是本乎神的恩典，不是靠自己的行為。" data-cn="我们得救是本乎神的恩典，不是靠自己的行为。">We are saved by God's grace, not by anything we do.</p>
       <span class="ref">Eph. 2:8–9</span>
     </div>
     <div class="sola-card sola-faith">
       <div class="glyph">🛡️</div>
+      <div class="sola-latin">Sola Fide</div>
       <h4 data-en="Faith Alone" data-zh="唯獨信心" data-cn="唯独信心">Faith Alone</h4>
       <p data-en="We are justified by faith alone, not by works." data-zh="我們因信稱義，不是因行為。" data-cn="我们因信称义，不是因行为。">We are justified by faith alone, not by works.</p>
       <span class="ref">Eph. 2:8–9</span>
     </div>
     <div class="sola-card sola-christ">
       <div class="glyph">✚</div>
+      <div class="sola-latin">Solus Christus</div>
       <h4 data-en="Christ Alone" data-zh="唯獨基督" data-cn="唯独基督">Christ Alone</h4>
       <p data-en="Christ alone is our Mediator and Savior." data-zh="基督是我們唯一的中保與救主。" data-cn="基督是我们唯一的中保与救主。">Christ alone is our Mediator and Savior.</p>
       <span class="ref">John 14:6</span>
     </div>
     <div class="sola-card sola-glory">
       <div class="glyph">👑</div>
+      <div class="sola-latin">Soli Deo Gloria</div>
       <h4 data-en="Glory to God Alone" data-zh="唯獨榮耀歸神" data-cn="唯独荣耀归神">Glory to God Alone</h4>
       <p data-en="All that we are and all that we do is for the glory of God." data-zh="我們的一切所是、所行，都是為了神的榮耀。" data-cn="我们的一切所是、所行，都是为了神的荣耀。">All that we are and all that we do is for the glory of God.</p>
       <span class="ref">1 Cor. 10:31</span>
@@ -1024,6 +1030,7 @@
   </div>
 
   <div class="glory-banner">
+    <div style="font-family:var(--mono); font-size:12px; letter-spacing:0.15em; color:var(--gold); margin-bottom:10px;">SOLI DEO GLORIA</div>
     <h3 data-en="TO GOD ALONE BE THE GLORY" data-zh="願榮耀單單歸與神" data-cn="愿荣耀单单归与神">TO GOD ALONE BE THE GLORY</h3>
     <span class="ref">Rom. 11:36</span>
   </div>
